@@ -44,7 +44,7 @@ class Solution:
             length = max(length, windowend - windowstart + 1) #update the maximum length of the valid window
         return length #after we finished trasversing our entire array, we return the max length we found that consists of unique characters
         
-        
+   #in line 44, we are comparing the history's greatest window up to that point with the current window, not 0 with the current window even though 38 is length because length gets updated with the bigger of the two between the history's biggest and the current in line 44.
    #line 44 returns to line 39, and the for loop in line 39 automatically increments and expands our window. 
    #for windowend in range(len(s)) goes up to but not including the length of the array, which is the index because index is always one less than the length. This is denoted by the range function
    # you cannot use an if statement in line 40 because it would shrink the window once and still proceed to add the right pointer character without continuing to check if the duplicates have been removed
