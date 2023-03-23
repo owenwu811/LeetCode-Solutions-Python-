@@ -1,0 +1,44 @@
+You are given an integer array height of length n. There are n vertical lines drawn such that the two endpoints of the ith line are (i, 0) and (i, height[i]).
+
+Find two lines that together with the x-axis form a container, such that the container contains the most water.
+
+Return the maximum amount of water a container can store.
+
+Notice that you may not slant the container.
+
+Example 1:
+
+
+Input: height = [1,8,6,2,5,4,8,3,7]
+Output: 49
+Explanation: The above vertical lines are represented by array [1,8,6,2,5,4,8,3,7]. In this case, the max area of water (blue section) the container can contain is 49.
+
+Example 2:
+
+Input: height = [1,1]
+Output: 1
+ 
+Constraints:
+
+n == height.length
+2 <= n <= 105
+0 <= height[i] <= 104
+
+My Solution:
+
+class Solution:
+    import math
+    def maxArea(self, height: List[int]) -> int:
+        left = 0 #this is a two pointer problem, so we are setting left pointer to the first index and right pointer to the last index of the array
+        right = len(height) - 1 # this is not a sliding window problem because we don't care about the values in between the pointers; we just care about the difference between the two times the smaller of the heights, with the heights being the values of the left and right pointers
+        maxarea = 0
+        while (left < right): #we need to make sure that the values don't duplicate for the two pointer approach
+            area = (right - left) * min(height[left], height[right]) # we are multiplying the distance between the two indexes times the shorter of the two values between left and right pointer array values
+            maxarea = max(maxarea, area) #comparing history max area to current turn max area
+            if height[left] < height[right]: # because our constraint is the smaller of the two heights between the two pointers, we want to maximize the chances of finding less containts, so we move the shorter pointer. 
+            #either way, the distance will be less because we are moving closer. This ensures that we have found the max area for the pointers before moving them in, which means the distance will be less but more chances of finding a bigger height because if you only move the larger pointer, it dosen't make a difference because the larger height is not the limtation. we need to make the shorter of the two taller because it's like we're only as strong as our weakest member.
+                left += 1
+            else:
+                right -= 1
+        return maxarea
+            
