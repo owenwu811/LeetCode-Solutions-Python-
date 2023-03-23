@@ -30,3 +30,4 @@ class Solution:
             if complement in mydict: #will always be false on the first turn since the dictionary is empty at start
                 return mydict[complement], i #returning the two indicies IF we find them in our dictionary
             mydict[j] = i #if the complement is not already a VALUE, not KEY, in our dictionary, then add the value as the Key and the array's index as the value so that, if and when you do find the complement in the dictionary, you can call the key to get the value, which happens to be the array's index because we flipped the two. This is because dictionarys in python as only one directinoal: you can only call the key to get the value; you can't call the value to get the key. 
+#usually, you need to return 0 or nothing, but there is no such requirement in the question, so there is no need for a return at the end.
