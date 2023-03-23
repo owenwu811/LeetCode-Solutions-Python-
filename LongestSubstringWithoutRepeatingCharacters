@@ -38,12 +38,13 @@ class Solution:
         length = 0 #we set length to 0 so that any length that comes after it will be bigger 
         for windowend in range(len(s)): #we are expanding the window with the windowend pointer
             while s[windowend] in duplicatecheck: #if we find a duplicate, we keep shrinking the window until we don't have anymore duplicates
-                duplicatecheck.remove(s[windowstart]) #if the windowend pointer we are about to add is already in the set, shrink the window by removing and incrementing left
+                duplicatecheck.remove(s[windowstart]) #if the windowend pointer we are about to add is already in the set, shrink the window by removing 
                 windowstart += 1 #we are shrinking the window with the left pointer, which is windowstart
             duplicatecheck.add(s[windowend]) #if we don't have this, we can't use line 9 to determine if it's a duplicate or not because we're checking to see if it already exists in the set to determine if we need to shrink the window
             length = max(length, windowend - windowstart + 1) #update the maximum length of the valid window
         return length #after we finished trasversing our entire array, we return the max length we found that consists of unique characters
-        
+  
+   #THINK OF LINE 41 AS A TALLY SYSTEM OF DUPLICATE ALLOWANCES: we do this so that when we check the set in the future for the same character, we know we already removed it once and so it can be duplicated once. 
    #in line 44, we are comparing the history's greatest window up to that point with the current window, not 0 with the current window even though 38 is length because length gets updated with the bigger of the two between the history's biggest and the current in line 44.
    #line 44 returns to line 39, and the for loop in line 39 automatically increments and expands our window. 
    #for windowend in range(len(s)) goes up to but not including the length of the array, which is the index because index is always one less than the length. This is denoted by the range function
