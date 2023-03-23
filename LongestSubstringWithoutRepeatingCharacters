@@ -43,5 +43,8 @@ class Solution:
             duplicatecheck.add(s[windowend]) #if we don't have this, we can't use line 9 to determine if it's a duplicate or not because we're checking to see if it already exists in the set to determine if we need to shrink the window
             length = max(length, windowend - windowstart + 1) #update the maximum length of the valid window
         return length #after we finished trasversing our entire array, we return the max length we found that consists of unique characters
-            
-            
+        
+        
+   #line 44 returns to line 39, and the for loop in line 39 automatically increments and expands our window. 
+   #for windowend in range(len(s)) goes up to but not including the length of the array, which is the index because index is always one less than the length. This is denoted by the range function
+   # you cannot use an if statement in line 40 because it would shrink the window once and still proceed to add the right pointer character without continuing to check if the duplicates have been removed
