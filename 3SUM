@@ -55,3 +55,7 @@ class Solution(object):
                         left += 1
         return result #once we have finished trasversing the entire array with the index, value pairs of each element, we can return the triplets we have found that are unique and sum to zero. 
                 
+                
+     #it's important to note that line 54 must be WITHIN THE ELSE BLOCK. this is because we only check for duplicates because the previous, if duplicate, left pointer value was already returned as a valid triplet.
+     #if line 54 was indented to the same level as the else above it, it would always execute, which we don't want
+     #i in line 40 acts as the starting pointer, so left pointer always comes one after i. You don't need to purposely define another starting pointer.
