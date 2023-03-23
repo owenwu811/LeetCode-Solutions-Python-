@@ -1,0 +1,32 @@
+Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
+
+You may assume that each input would have exactly one solution, and you may not use the same element twice.
+
+You can return the answer in any order.
+
+ 
+
+Example 1:
+
+Input: nums = [2,7,11,15], target = 9
+Output: [0,1]
+Explanation: Because nums[0] + nums[1] == 9, we return [0, 1].
+Example 2:
+
+Input: nums = [3,2,4], target = 6
+Output: [1,2]
+Example 3:
+
+Input: nums = [3,3], target = 6
+Output: [0,1]
+
+My Solution:
+
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        mydict = {}  #using a double for loop here is slow, so we use a dictionary. 
+        for i, j in enumerate(nums): # we are getting i and j as the index, value pair of the array
+            complement = target - j # we are looking for the target value minus the current index's value, which is the complement
+            if complement in mydict: #will always be false on the first turn since the dictionary is empty at start
+                return mydict[complement], i #returning the two indicies IF we find them in our dictionary
+            mydict[j] = i #if the complement is not already a VALUE, not KEY, in our dictionary, then add the value as the Key and the array's index as the value so that, if and when you do find the complement in the dictionary, you can call the key to get the value, which happens to be the array's index because we flipped the two. This is because dictionarys in python as only one directinoal: you can only call the key to get the value; you can't call the value to get the key. 
