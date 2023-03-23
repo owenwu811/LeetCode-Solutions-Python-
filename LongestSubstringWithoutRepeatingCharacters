@@ -32,16 +32,16 @@ My Solution:
 class Solution:
     import math
     def lengthOfLongestSubstring(self, s: str) -> int:
-        duplicatecheck = set()
+        duplicatecheck = set() #we use a set data structure to check if the element that windowend is pointing to, aka we are about to add, is a duplicate or not
         windowstart = 0 
         windowend = 0
-        length = 0
+        length = 0 #we set length to 0 so that any length that comes after it will be bigger 
         for windowend in range(len(s)): #we are expanding the window with the windowend pointer
-            while s[windowend] in duplicatecheck: 
+            while s[windowend] in duplicatecheck: #if we find a duplicate, we keep shrinking the window until we don't have anymore duplicates
                 duplicatecheck.remove(s[windowstart]) #if the windowend pointer we are about to add is already in the set, shrink the window by removing and incrementing left
-                windowstart += 1
+                windowstart += 1 #we are shrinking the window with the left pointer, which is windowstart
             duplicatecheck.add(s[windowend]) #if we don't have this, we can't use line 9 to determine if it's a duplicate or not because we're checking to see if it already exists in the set to determine if we need to shrink the window
             length = max(length, windowend - windowstart + 1) #update the maximum length of the valid window
-        return length
+        return length #after we finished trasversing our entire array, we return the max length we found that consists of unique characters
             
             
