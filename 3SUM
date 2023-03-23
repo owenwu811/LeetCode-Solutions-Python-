@@ -35,23 +35,23 @@ My Solution:
 
 class Solution(object):
     def threeSum(self, nums):
-        result = []
-        nums.sort()
-        for i, j in enumerate(nums):
-            if i > 0 and j == nums[i - 1]:
+        result = [] #this is our final result
+        nums.sort() # we need to sort our array so that we can use a three pointer approach
+        for i, j in enumerate(nums): #i, j are the index, value of the array
+            if i > 0 and j == nums[i - 1]: #i must be bigger than 0 so that we have an element before to even compare to. if the current value is the same as previous, keep moving to the next i, j (index, value) pair in the array until we reach the last element
                 continue
-            left = i + 1
+            left = i + 1 
             right = len(nums) - 1
-            while (left < right):
-                threesum = j + nums[left] + nums[right]
-                if threesum > 0:
+            while (left < right): #the reason we need this is because we already sorted the nums array, so if left < right is false, we are pointing to values we already visited before. If this line is false, then we go back to the for loop at line 40 to move to the next i, j (ndex, value) pair in our array. 
+                threesum = j + nums[left] + nums[right] #WE MUST MAKE SURE LEFT < RIGHT BEFORE CALCULATING THREESUM, OR ELSE WE WON'T HAVE VALID POINTERS
+                if threesum > 0: # this takes advantage of the fact that the array is sorted
                     right -= 1
-                elif threesum < 0:
+                elif threesum < 0: #same
                     left += 1
                 else:
-                    result.append([j, nums[left], nums[right]])
+                    result.append([j, nums[left], nums[right]]) #we found a triplet to return
                     left += 1
-                    while nums[left] == nums[left - 1] and left < right:
+                    while nums[left] == nums[left - 1] and left < right: #if left pointer is equal to the left pointer in the previous index, and left is still less than right, then we can increment to make sure that we don't return a duplicate triplet. We can do this by just making sure left pointer is different than left pointer was before. 
                         left += 1
-        return result
+        return result #once we have finished trasversing the entire array with the index, value pairs of each element, we can return the triplets we have found that are unique and sum to zero. 
                 
