@@ -1,0 +1,53 @@
+You are climbing a staircase. It takes n steps to reach the top.
+
+Each time you can either climb 1 or 2 steps. In how many distinct ways can you climb to the top?
+
+ 
+
+Example 1:
+
+Input: n = 2
+Output: 2
+Explanation: There are two ways to climb to the top.
+1. 1 step + 1 step
+2. 2 steps
+Example 2:
+
+Input: n = 3
+Output: 3
+Explanation: There are three ways to climb to the top.
+1. 1 step + 1 step + 1 step
+2. 1 step + 2 steps
+3. 2 steps + 1 step
+ 
+
+Constraints:
+
+1 <= n <= 45
+
+My Solution:
+
+class Solution:
+    def climbStairs(self, n: int) -> int:
+        one = 1 #regardless of how big or small n is, the first two pointers will always start at 1, and they will move left until one pointer is to the right of the output and two pointer is two to the right of the output
+        two = 1
+        for i in range(n - 1): #8 - 1 = 7; range(7) = 0123456, so 8 - 6 to make room for 2 pointers
+            temp = one 
+            one = one + two #the result we will return before terminating case
+            two = temp 
+        return one
+        
+  #line 35 is the one pointer
+  #line 36 is the result of the terminating case (21 + 13)
+  #line 37 is the two pointer
+  #we are first calculating the sum of one and two pointer values, moving the two pointer into one, and then moving one pointer forward. During the terminating condition, thw two sandwiches with the one pointer, so both are equal, and then the for loop exits and returns the last calculated sum
+  #[34 21 13 8 5 3 2 1 1]
+                     one two
+                     0    0
+                     (inclusive)
+  #[34 21 13 8 5 3 2 1 1]
+       one two
+       6   6
+  #for i in range(8) means for i in range 01234567
+  #when i hits 7, return one plus two pointer VALUES (13 + 21)
+  #when i = 0, we initialize both pointer values as 1 and 1
