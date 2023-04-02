@@ -36,7 +36,7 @@ class Solution:
             currsum += nums[right]
             if currsum < 0:
                 maxsum = max(maxsum, currsum)
-                currsum = 0 #we are trying to nuetralize the currsum 
+                currsum = 0 #we are trying to nuetralize the currsum. We get rid of deadweight because negatives never contribute anything. a negative plus negative is even smaller, so you might as well just take the bigger of the two negatives. 
                 right += 1
                 left = right
             else:
