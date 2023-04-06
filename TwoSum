@@ -31,3 +31,5 @@ class Solution:
                 return mydict[complement], i #returning the two indicies IF we find them in our dictionary
             mydict[j] = i #if the complement is not already a VALUE, not KEY, in our dictionary, then add the value as the Key and the array's index as the value so that, if and when you do find the complement in the dictionary, you can call the key to get the value, which happens to be the array's index because we flipped the two. This is because dictionarys in python as only one directinoal: you can only call the key to get the value; you can't call the value to get the key. 
 #usually, you need to return 0 or nothing, but there is no such requirement in the question, so there is no need for a return at the end.
+
+#NOTE THAT LINES 30 AND 31 WILL NEVER BE TRUE ON THE FIRST ITERATION BECAUSE WE'VE ONLY SEEN ONE DIGIT SO FAR, SO THERE'S NOT EVEN A SECOND DIGIT UNTIL THE 2ND ITERATION.
