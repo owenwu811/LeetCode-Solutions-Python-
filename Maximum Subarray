@@ -44,3 +44,21 @@ class Solution:
         return maxsum
   #line 33 should be nums[0] and not 0 because the array may only contain negative values. 
   #line 38 is necessary
+
+
+You could also do it like this: 
+
+class Solution:
+    import math
+    def maxSubArray(self, nums: List[int]) -> int:
+        #largest sum means the largest out of whatever is available in the given list. if the list only has [-2], then -2 is the maximum subarray, not 0. 
+        if len(nums) == 1:
+            return nums[0]
+        maxsum = nums[0]
+        currentsum = 0 #currentsum starts at 0
+        for i in range(len(nums)):
+            if currentsum < 0:
+                currentsum = 0 #negatives don't contribute anything, so start with a fresh slate
+            currentsum += nums[i]
+            maxsum = max(maxsum, currentsum)
+        return maxsum
