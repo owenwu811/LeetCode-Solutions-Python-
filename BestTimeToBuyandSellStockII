@@ -34,3 +34,7 @@ class Solution:
             if prices[right] > prices[right - 1]: #WE WANT TO FIND ALL INDIVIDUAL PROFITS. YOU CAN'T BUY AT 1 AND SELL AT 3 AND THEN BUY AT 1 AGAIN AND SELL AT 4.
                 maxprofit += prices[right] - prices[right - 1]
         return maxprofit
+
+# some clarifications: even though the question is worded as if they are interested in a single profit aka find and return the maximum profiT you can achieve, the first example shows that we can buy and sell multiple times as long as we hold one stock at a time meaning you can't buy from the same value twice
+# It would be imperative to clarify this with the interviewer:
+# There is no part of the problem statement that states we must sell all of our shares at a single time. The problem only requires us to find the maximum profit that can be achieved with the given prices. However, the solution assumes that we can only hold one stock at a time, which means we must sell our current stock before buying a new one.
