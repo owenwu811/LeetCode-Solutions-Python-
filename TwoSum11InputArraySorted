@@ -51,3 +51,7 @@ for i, j in enumerate(numbers):
         else:   
             right -= 1 
        
+# IMPORTANT DISTINCTION: for line 45 - while left < right - WE NEED WHILE LEFT < RIGHT BECAUSE WITHOUT THIS CHECK, IT WOULD CROSS, AND KEEP GOING UNTIL IT TRIES TO ACCESS AND INDEX ON THE OPPOSITE SIDE OUT OF BOUNDS. THIS MAY NOT RESULT IN AN INFINITE LOOP. Not having while left < right might not lead to an infinite loop but just slower calculation times
+# While left < right is perfectly optimized because it stops right before it starts checking duplicate sums, which would waste time as the left pointer would revisit an element that right pointer already visited and vice versa.
+# While left < right is perfectly optimized to make the least amount of unnecessary comparisons. 
+
