@@ -38,3 +38,16 @@ class Solution:
 # some clarifications: even though the question is worded as if they are interested in a single profit aka find and return the maximum profiT you can achieve, the first example shows that we can buy and sell multiple times as long as we hold one stock at a time meaning you can't buy from the same value twice
 # It would be imperative to clarify this with the interviewer:
 # There is no part of the problem statement that states we must sell all of our shares at a single time. The problem only requires us to find the maximum profit that can be achieved with the given prices. However, the solution assumes that we can only hold one stock at a time, which means we must sell our current stock before buying a new one.
+
+
+Another way to do it that I came up with:
+
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        maxprofit = 0
+        for i, j in enumerate(prices):
+            if i > 0 and j > prices[i - 1]:
+                maxprofit += j - prices[i - 1]
+        return maxprofit
+           
+#with this solution, the idea is the same, but I'm just using enumerate instead. I find that it's more intuitive to do it this way since this isn't a sliding window.
