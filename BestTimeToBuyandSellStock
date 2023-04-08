@@ -40,6 +40,8 @@ class Solution:
             maxprofit = max(maxprofit, profit) #return to line 36 for loop. the for loop will automatically increment sell to expand the window. maxprofit starts at 0 and gets updated with the bigger of the two comparing it to the HISTORICAL max profit and the current windows profit and choosing the bigger of the two.
         return maxprofit
         
+        #Note that, for line 37, >= also works because if the buy and sell value are the same, you won't lose profit, but you also won't make profit, so you can just calculate profit and compare to historical and keep expanding the window using the for sell in range(len(prices)).
+        
        
         #line 36 for loop goes up to but not including the length of the prices array, which means that sell represents incdicies because indicies are one less than the usual length way of counting
         #if we dont find a max profit, maxprofit in line 40 would stay 0, and so we would return 0 because we have gone through every profit pair and compared it, and we have found that none have exceeded zero in this edge case.
