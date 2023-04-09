@@ -53,3 +53,6 @@ My Solution:
             
 #max_char_freq is the frequency of most frequently occuring character in current window while max_len is the length of the longest substring with same character seen so far 
             
+ #Clarifications: The problem description doesn't explicitly state that the input string consists of only two different letters. 
+ # However, this can be inferred from the problem statement, which asks for the length of the longest substring containing the same letter after performing at most k character replacements. 
+ # Since there are only two different letters in the string, we can only perform character replacements between those two letters, which means that the resulting substring will also only contain those two letters.
