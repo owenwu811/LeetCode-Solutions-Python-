@@ -56,3 +56,26 @@ My Solution:
  #Clarifications: The problem description doesn't explicitly state that the input string consists of only two different letters. 
  # However, this can be inferred from the problem statement, which asks for the length of the longest substring containing the same letter after performing at most k character replacements. 
  # Since there are only two different letters in the string, we can only perform character replacements between those two letters, which means that the resulting substring will also only contain those two letters.
+
+ 
+ #My other solution:
+ #I find this even more intuitive than my first solution as you don't need to worry about rightchar = s[windowend] being placed after if s[windowend] not in charfrequency, which would ask if the previous iteration's windowend character is in the dictionary, not the current iterations because the association - rightchar = s[windowend] must happen before the if check to be valid. 
+ 
+ class Solution:
+    import math
+    def characterReplacement(self, s: str, k: int) -> int:
+        result = 0
+        charfrequency = {}
+        windowstart = 0
+        maxcharacter = 0
+        for windowend in range(len(s)):
+            if s[windowend] not in charfrequency:
+                charfrequency[s[windowend]] = 0
+            charfrequency[s[windowend]] += 1
+            maxcharacter = max(maxcharacter, charfrequency[s[windowend]]) # we find the biggest value out of keys for each new iteration
+            if (windowend - windowstart + 1) - maxcharacter > k: #if we do not have enough flips, as denoted by k, then we execute this inner block to shrink the window and reflect the same changes in our dictionary
+                leftchar = s[windowstart]
+                charfrequency[leftchar] -= 1
+                windowstart += 1
+            result = max(result, windowend - windowstart + 1) #if we do have enough flips, as denoted by k, return the length of the window. the question just asks if the flips are possible and to find the longest substring that is possible with the k limitatino. The question never asks to count the number of flips to get each substring.
+        return result
