@@ -79,3 +79,9 @@ My Solution:
                 windowstart += 1
             result = max(result, windowend - windowstart + 1) #if we do have enough flips, as denoted by k, return the length of the window. the question just asks if the flips are possible and to find the longest substring that is possible with the k limitatino. The question never asks to count the number of flips to get each substring.
         return result
+       
+#In line 76, we can either subtract the current window's length by the highest frequency value in the dictionary or lowest frequency value. It would make sense to subtract by the highest frequency value to minimize the number of flips to maximize the chances of satisfying k. Again, the purpose here is solely to find the number of changes to get the entire string to be of one character assuming that the entire string only consists of two characters to begin with.
+#[......III] 
+#[xxxxxxxxx] > should we subtract the . or III from x? Probably III as that would result in less flips for k
+# xxxxxxxxx - III = 6. If 6 > k, we have a problem. Otherwise, we can go ahead and say 6 is a valid canditate for our result.
+
