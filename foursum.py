@@ -50,7 +50,7 @@ class Solution(object):
                         fourth -= 1
                         while nums[third] == nums[third - 1] and third < fourth: #even after finding a valid quadruplet, because we just moved third and fourth pointers closer to one another, hence to new elements, we have to duplicate check again to ensure that these new elements are not a repeat of the outer third and fourth pointers that we just counted as a valid quadruplet. if these new inner third and fourth pointer values are a repeat, then move the corresponding pointer that was a repeat until third < fourth is not true 
                             third += 1
-                        while nums[fourth] == nums[fourth + 1] and third < fourth: #if this is false, then we go back to while third < fourth check, and if that's false, then we increment second by hitting line 36, and if second dosen't make room for a 4th pointer, then we increment first pointer by hitting line 33
+                        while nums[fourth] == nums[fourth + 1] and third < fourth: #if this is false, then we go back to while third < fourth check, and if that's false, then we increment second by hitting line 36, and if second dosen't make room for a 4th pointer, then we increment first pointer by hitting line 33. Note that fourth won't be out of bounds to the right because line 10 already decremented it when we found a valid quadruplet, and this while loop is inside of the else block
                             fourth -= 1
         return result
        
