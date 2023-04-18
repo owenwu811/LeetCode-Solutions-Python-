@@ -59,3 +59,31 @@ class Solution(object):
      #it's important to note that line 54 must be WITHIN THE ELSE BLOCK. this is because we only check for duplicates because the previous, if duplicate, left pointer value was already returned as a valid triplet.
      #if line 54 was indented to the same level as the else above it, it would always execute, which we don't want
      #i in line 40 acts as the starting pointer, so left pointer always comes one after i. You don't need to purposely define another starting pointer.
+     
+     
+ My other solution:
+      
+ class Solution(object):
+    def threeSum(self, nums):
+        result = []
+        nums.sort()
+        for i, j in enumerate(nums):
+            if i > 0 and nums[i] == nums[i - 1]:
+                continue
+            left = i + 1
+            right = len(nums) - 1
+            while left < right:
+                threesum = j + nums[left] + nums[right]
+                if threesum < 0:
+                    left += 1
+                elif threesum > 0:
+                    right -= 1
+                else:
+                    result.append([j, nums[left], nums[right]])
+                    left += 1 #this solution is even faster as we know we found a result, so we can reduce the time complexity by moving left and right towards each other instead of just left
+                    right -= 1
+                    while nums[left] == nums[left - 1] and left < right: #duplicate checking the outer pairs
+                        left += 1
+                    while nums[right] == nums[right + 1] and left < right:
+                        right -= 1
+        return result
