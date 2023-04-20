@@ -34,7 +34,7 @@ class Solution(object):
             if first > 0 and nums[first] == nums[first - 1]:
                 continue
             for second in range(first + 1, len(nums) - 2): #second pointer increments when while third < fourth is false
-                if second > first + 1 and nums[second] == nums[second - 1]:
+                if second > first + 1 and nums[second] == nums[second - 1]: #note that nums[second] == num[first] won't work because second > first + 1 ensures that second is ATLEAST TWO STEPS ahead of first, not one step
                     continue
                 third = second + 1 #note that third and fourth pointer values are set according to their relationship to first and second pointer; current third and fourh pointer values have no relationship to what the previous third and fourth pointer values were before
                 fourth = len(nums) - 1
