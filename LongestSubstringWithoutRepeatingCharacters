@@ -49,3 +49,19 @@ class Solution:
    #line 44 returns to line 39, and the for loop in line 39 automatically increments and expands our window. 
    #for windowend in range(len(s)) goes up to but not including the length of the array, which is the index because index is always one less than the length. This is denoted by the range function
    # you cannot use an if statement in line 40 because it would shrink the window once and still proceed to add the right pointer character without continuing to check if the duplicates have been removed
+   
+Another Solution:
+
+class Solution:
+    import math
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        windowstart = 0
+        result = 0
+        duplicatecheck = set() #we use a set, not a dictionary, to check for duplicates
+        for windowend in range(len(s)):
+            while s[windowend] in duplicatecheck: #if there is a duplicate
+                duplicatecheck.remove(s[windowstart])
+                windowstart += 1
+            result = max(result, windowend - windowstart + 1) #note that it dosen't matter if we check the result and then add windowend or add windowend and then check the length as long as the current character (windowend) is added so that we make sure the current windowend's character only appears once in the set and is not a duplicate
+            duplicatecheck.add(s[windowend]) #lines 65 and 66 can be swapped in terms of order
+        return result
