@@ -54,4 +54,17 @@ class Solution(object):
                             fourth -= 1
         return result
        
+       
+       #for first in range(len(nums) - 3) > this represents the number of iterations where first is pointing to a valid index and there is still room for a 4th pointer
+       # 0  1  2. 3. 4. 5 
+       #[1, 2, 3, 4, 5, 6]
+       #for 0 in range(3) > len(nums) - 3 = 6 - 3 = 3
+       #This means that first goes up to 0, 1, 2 inclusive
+       # 0  1  2. 3  4  5
+       #[1, 2, 3, 4, 5, 6]
+        F   S. T. F
+       # 0. 1. 2  3. 4. 5
+       #[1, 2, 3, 4, 5, 6] > this is the last valid iteration for first pointer before fourth goes out of bounds, and notice how first is pointing to INDEX 2, so index 2 represents the last inclusive value for first in for 0 in range(3): aka 0, 1, 2
+               F  S. T.  F
+              
       
