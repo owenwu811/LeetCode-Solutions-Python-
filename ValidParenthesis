@@ -39,4 +39,4 @@ class Solution:
                 opening_bracket = stack.pop()
                 if opening_brackets.index(opening_bracket) != closing_brackets.index(char):
                     return False
-        return not stack
+        return not stack #stack is empty, so all symbols are matched, so return True
