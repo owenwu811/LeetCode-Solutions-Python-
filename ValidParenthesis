@@ -47,7 +47,7 @@ class Solution:
                 #by this line, we will never come across a closing bracket in s because we either returned false already because we didn't find valid match or because we popped a valid pair off
                 if opening_brackets.index(opening_bracket) != closing_brackets.index(char): #anything leftover in the stack after iterating through s, return false because there are unpaired characters.
                     return False
-        return not stack #stack is empty, so all symbols are matched, so return True
+        return not stack #stack is empty, so all symbols are matched, so return True. NOT STACK == TRUE MEANS STACK IS EMPTY WHILE NOT STACK == FALSE MEANS THE STACK STILL HAS UNMATCHED CHARACTERS, SO RETURN FALSE. EITHER WAY, THIS LINE WILL RETURN A BOOLEAN AT THE END OF EITHER TRUE OR FALSE.
         
  #the idea is that ][ is not a valid parenthesis, but [] is
  #if we encounter a closing bracket ], and there isn't already an opening bracket [ in front of it in s, then it's automatically false
