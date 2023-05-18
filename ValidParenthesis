@@ -38,6 +38,7 @@ class Solution:
         for char in s:
             if char in opening_brackets:
                 stack.append(char)
+            #closing characters {[( can't be the same as opening )]}, so either if is true or elif is true, not both
             elif char in closing_brackets: #if there is not a corresponding opening bracket, and the stack (current characters in s so far) is empty, then there is not a valid parenthesis.
                 if not stack:
                     return False
