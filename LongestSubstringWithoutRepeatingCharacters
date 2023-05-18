@@ -65,3 +65,20 @@ class Solution:
             result = max(result, windowend - windowstart + 1) #note that it dosen't matter if we check the result and then add windowend or add windowend and then check the length as long as the current character (windowend) is added so that we make sure the current windowend's character only appears once in the set and is not a duplicate
             duplicatecheck.add(s[windowend]) #lines 65 and 66 can be swapped in terms of order
         return result
+        
+        
+ Refresher 5/18/23:
+ 
+ class Solution:
+    import math
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        lengthoflongest = 0
+        windowstart = 0
+        duplicatecheck = set()
+        for windowend in range(len(s)):
+            while s[windowend] in duplicatecheck:
+                duplicatecheck.remove(s[windowstart]) #make changes to set first so we keep the tally system in check
+                windowstart += 1 #shrink window
+            duplicatecheck.add(s[windowend]) #no more duplicates, so add windowend since, if windowend was a duplicate, that tally was removed by windowstart because windowstart must be a character that windowend was already on, which means windowstart and windowend are the same thing at some point if windowend is a duplicate
+            lengthoflongest = max(lengthoflongest, windowend - windowstart + 1)
+        return lengthoflongest
