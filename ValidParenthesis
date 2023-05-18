@@ -28,6 +28,7 @@ Solution:
 #use a list to simulate a stack
 #a mismatch of characters in the stack means that the top character is different, which automatically invalidates all True cases
 #at every iteration in s, we either pop from the stack (True up to this point) or return False (mismatch)
+#the stack will never have more than one symbol in it because we either return False due to incorrect opening complement or don't add current and pop the correct complement from the stack if True until that point
 
 class Solution:
     def isValid(self, s: str) -> bool:
