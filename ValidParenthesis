@@ -42,6 +42,7 @@ class Solution:
             elif char in closing_brackets: #if there is not a corresponding opening bracket, and the stack (current characters in s so far) is empty, then there is not a valid parenthesis.
                 if not stack:
                     return False
+                #by default, .pop() pops from the end of the list
                 opening_bracket = stack.pop() #if there is a match, then we don't add the closing to the stack and instead pop the opening from the stack.
                 #we did find an opening character aka didn't reach end of s yet, but it's a mismatch, so not valid parenthesis, so you can return False
                 #by this line, we will never come across a closing bracket in s because we either returned false already because we didn't find valid match or because we popped a valid pair off
