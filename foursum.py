@@ -66,5 +66,19 @@ class Solution(object):
        # 0. 1. 2  3. 4. 5
        #[1, 2, 3, 4, 5, 6] > this is the last valid iteration for first pointer before fourth goes out of bounds, and notice how first is pointing to INDEX 2, so index 2 represents the last inclusive value for first in for 0 in range(3): aka 0, 1, 2
                F  S. T.  F
-              
+      
+      
+      #for second in range(first + 1, len(nums) - 2) > using the same example with [1, 2, 3, 4, 5, 6]
+
+      #for second in range(first + 1, range(len) - 2)
+
+      #for second in range(1, 6 - 2)
+
+      #for second in range(1, 4)
+
+      #for second in 1, 2, 3
+
+     #0  1  2  3  4  5
+     #[1, 2, 3, 4, 5, 6]
+     #         F  S  T  F > last acceptable index value for second before no room for fourth
       
