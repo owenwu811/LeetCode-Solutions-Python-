@@ -26,6 +26,7 @@ Output: false
 Solution: 
 
 #use a list to simulate a stack
+#a mismatch of characters in the stack means that the top character is different, which automatically invalidates all True cases
 
 class Solution:
     def isValid(self, s: str) -> bool:
