@@ -36,7 +36,7 @@ class Solution:
         opening_brackets = "({["
         closing_brackets = ")}]"
         for char in s:
-            if char in opening_brackets:
+            if char in opening_brackets: #if char in opening_brackets checks if the character char is present in the opening_brackets list anywhere, not just at the same index as the for char in s.
                 stack.append(char)
             #closing characters {[( can't be the same as opening )]}, so either if is true or elif is true, not both
             elif char in closing_brackets: #if there is not a corresponding opening bracket, and the stack (current characters in s so far) is empty, then there is not a valid parenthesis.
