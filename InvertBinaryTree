@@ -39,6 +39,7 @@ class Solution:
         #root.right overtakes root.left, and root.left overtakes root.right
         root.left, root.right = root.right, root.left
         #Recursively invert the left and right subtrees
+        #This line is just recalling the entire invertTree function except moving down one node to the left
         self.invertTree(root.left) 
         self.invertTree(root.right)     
         return root
