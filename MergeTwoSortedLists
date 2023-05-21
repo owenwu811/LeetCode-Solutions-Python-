@@ -64,7 +64,9 @@ def mergeTwoLists(list1, list2):
     # Append the remaining nodes of list1 or list2 if any 
     current.next = list1 or list2
     
-    # Return the head of the merged list (excluding the dummy node)
+    # The dummy node, which was created at the beginning as a placeholder or dummy head node, ensures that the merged list has a starting point even before any actual nodes are merged. This dummy node is not part of the final merged list.
+    
+    # By returning dummy.next, we effectively return the next node after the dummy node, which represents the actual head of the final resulting merged list
     return dummy.next
 
 
