@@ -46,8 +46,7 @@ class ListNode:
     def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
         #we are creating the head of the merged list we will eventually return
         previousoffirst = ListNode(0)
-        #current represents the merged list 
-        #pointing to current node of merged list we will eventually return
+        #result = previousoffirst - is when the dummy node is actually associated with a new merged list called result, and result doesn't actually have a head node at this point, just a previous node to the head
         result = previousoffirst
         #make sure list1 and list2 are not empty and actually have nodes 
         while list1 and list2:
