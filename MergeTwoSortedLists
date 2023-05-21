@@ -16,8 +16,9 @@ class ListNode:
         self.next = next
 
 def mergeTwoLists(list1, list2):
-    # Create a dummy node as the head of the merged list
+    # Create a dummy node that serves as the head of the merged list
     dummy = ListNode()
+    #current will represent the merged list
     current = dummy
     while list1 and list2:
         if list1.val <= list2.val: #if the values are equal, merge the values from list1 into the merged list
@@ -51,6 +52,7 @@ def mergeTwoLists(list1, list2):
     while list1 and list2:
         # Compare the values of the current nodes of list1 and list2 and Choose the smaller value, and append that smaller value to the resulting merged list
         if list1.val <= list2.val:
+            #since list1 is smaller, append list1's node to the merged list - remember that current is the merged list
             current.next = list1
             list1 = list1.next
         else: #if we are not merging from list1, then we are merging from list2
