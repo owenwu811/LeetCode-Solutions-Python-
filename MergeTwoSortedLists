@@ -43,31 +43,26 @@ class ListNode:
         self.val = val
         self.next = next
 
-def mergeTwoLists(list1, list2):
-    #create a new head of the merged list we will eventually return the head of as our result
-    startingofresult = ListNode(0)
-    # Pointer to the current node of the merged list
-    result = startingofresult
-    # Iterate while both lists have nodes. if not, then return the head 
-    while list1 and list2:
-        # Compare the values of the current nodes of list1 and list2 and Choose the smaller value, and append that smaller value to the resulting merged list
-        if list1.val <= list2.val:
-            #since list1 is smaller, append list1's node to the merged list - remember that current is the merged list
-            result.next = list1
-            list1 = list1.next
-        else: #if we are not merging from list1, then we are merging from list2
-            result.next = list2
-            list2 = list2.next
-        # Move the pointer of the merged list to the next node. aka iterating to the next element of the resulting merged list
-        result = result.next
-    
-    # Append the remaining nodes of list1 or list2 if any 
-    result.next = list1 or list2
-    
-    # The startingofresult node, which was created at the beginning as a placeholder or dummy head node, ensures that the merged list has a starting point even before any actual nodes are merged. This dummy node is not part of the final merged list.
-    
-    # By returning startingofresult.next, we effectively return the next node after the startingofresult node, which represents the actual head of the final resulting merged list
-    return startingofresult.next
+    def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
+        #we are creating the head of the merged list we will eventually return
+        previousoffirst = ListNode(0)
+        #current represents the merged list 
+        #pointing to current node of merged list we will eventually return
+        result = previousoffirst
+        #make sure list1 and list2 are not empty and actually have nodes 
+        while list1 and list2:
+            if list1.val <= list2.val:
+                #since list1 is the smaller value, append it to the merged list
+                result.next = list1
+                list1 = list1.next
+            else:
+                result.next = list2
+                list2 = list2.next
+            result = result.next
+        result.next = list1 or list2
+        #the next of previousoffirst must be first or head, which is what we want to return
+        return previousoffirst.next
+
 
 
 
