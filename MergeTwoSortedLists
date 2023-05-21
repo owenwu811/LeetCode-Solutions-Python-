@@ -32,6 +32,7 @@ def mergeTwoLists(list1, list2):
     current.next = list1 if list1 else list2
     
     # Return the head of the merged list (skip the dummy node)
+    #the reason we can't just return head is because head is the head of list1 or list2, not the merged list, which we set to dummy at the beginning
     return dummy.next
 #if list1 or list2 are empty, then append the rest of the nonempty elements to the merged list automatically.
 
