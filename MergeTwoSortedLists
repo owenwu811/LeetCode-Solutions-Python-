@@ -22,6 +22,7 @@ def mergeTwoLists(list1, list2):
     current = dummy
     while list1 and list2:
         if list1.val <= list2.val: #if the values are equal, merge the values from list1 into the merged list
+            # current.next = list1.val instead of current.next = list1 would lose the pointer because it only takes the value of the node, not the node itself because list1.val is the value of the node, not the node itself:
             current.next = list1
             list1 = list1.next
         else: 
