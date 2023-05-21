@@ -40,7 +40,7 @@ class Solution:
         root.left, root.right = root.right, root.left
         #Recursively invert the left and right subtrees
         #This line is just recalling the entire invertTree function except moving down one node to the left
-        self.invertTree(root.left) 
+        self.invertTree(root.left) # just means passing the new left node as an argument and executing all code in the function again
         self.invertTree(root.right)     
         return root
         
