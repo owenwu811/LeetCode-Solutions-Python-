@@ -53,12 +53,14 @@ class ListNode:
         #make sure list1 and list2 are not empty and actually have nodes 
         while list1 and list2:
             if list1.val <= list2.val:
-                #since list1 is the smaller value, append it to the merged list
+                # since list1 is the smaller value, append it to the merged list
+                # result.next = list1.val instead of result.next = list1 would lose the pointer because it only takes the value of the node, not the node itself because list1.val is the value of the node, not the node itself:
                 result.next = list1
                 list1 = list1.next
             else:
                 result.next = list2
                 list2 = list2.next
+            #takes the smaller node from either list1 or list2 and assigns the pointer of the merged list (current) to that smaller node:
             result = result.next
         #his is basically a boolean meaning the list that still has remaining nodes will be true while the other will be false, and the true list will take over result.next variable.
         result.next = list1 or list2
