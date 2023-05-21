@@ -52,3 +52,4 @@ class Solution:
         
  #the idea is that ][ is not a valid parenthesis, but [] is
  #if we encounter a closing bracket ], and there isn't already an opening bracket [ in front of it in s, then it's automatically false
+ #the reason you can't do if char in closing_brackets elif char in opening_brackets is because () is valid but )( is not valid. If the first is (, then you wouldn't have a matching opening.
