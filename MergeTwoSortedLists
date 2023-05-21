@@ -58,6 +58,7 @@ class ListNode:
                 result.next = list2
                 list2 = list2.next
             result = result.next
+        #his is basically a boolean meaning the list that still has remaining nodes will be true while the other will be false, and the true list will take over result.next variable.
         result.next = list1 or list2
         #the next of previousoffirst must be first or head, which is what we want to return
         return previousoffirst.next
