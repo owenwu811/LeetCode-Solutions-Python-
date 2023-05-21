@@ -51,3 +51,4 @@ class Solution:
  #       a
  #      c b
  #.    d e f
+ # when a level has an odd number of nodes, the middle one stays, but the left and right are swapped, but when the level has an even number of nodes, the left becomes the right, and the right becomes the left
