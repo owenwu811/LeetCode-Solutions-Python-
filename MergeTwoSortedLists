@@ -64,7 +64,7 @@ class ListNode:
             result = result.next
         #his is basically a boolean meaning the list that still has remaining nodes will be true while the other will be false, and the true list will take over result.next variable.
         result.next = list1 or list2
-        #the next of previousoffirst must be first or head, which is what we want to return
+        #the next of previousoffirst must be first or head, which is what we want to return when either list dosen't have any more nodes and the one with ramining nodes is already appended to the end of the merged resulting list
         return previousoffirst.next
 
 
