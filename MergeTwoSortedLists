@@ -35,6 +35,37 @@ def mergeTwoLists(list1, list2):
 #if list1 or list2 are empty, then append the rest of the nonempty elements to the merged list automatically.
 
 
+Another Solution:
+
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+def mergeTwoLists(list1, list2):
+    #create a new head of the merged list we will eventually return the head of as our result
+    dummy = ListNode(0)
+    # Pointer to the current node of the merged list
+    current = dummy
+    # Iterate while both lists have nodes. if not, then return the head 
+    while list1 and list2:
+        # Compare the values of the current nodes of list1 and list2 and Choose the smaller value, and append that smaller value to the resulting merged list
+        if list1.val <= list2.val:
+            current.next = list1
+            list1 = list1.next
+        else: #if we are not merging from list1, then we are merging from list2
+            current.next = list2
+            list2 = list2.next
+        # Move the pointer of the merged list to the next node. aka iterating to the next element of the resulting merged list
+        current = current.next
+    
+    # Append the remaining nodes of list1 or list2 if any 
+    current.next = list1 or list2
+    
+    # Return the head of the merged list (excluding the dummy node)
+    return dummy.next
+
+
 
 
 
