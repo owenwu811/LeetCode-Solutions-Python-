@@ -46,6 +46,8 @@ class Solution:
     def fill(self, image, row, col, original_color, color):
         #we have two conditions: don't go out of bounds in up down right left of grid and don't step onto a square that already has the same value
         #these are boundary checks
+        
+        #if the pixel is out of bounds, return the grid and exit the problem
         if (row < 0 or row >= len(image)) or (col < 0 or col >= len(image[0])):
             return 
         
