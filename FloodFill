@@ -55,6 +55,7 @@ class Solution:
         image[row][col] = color
 
         # Recursively fill the neighboring pixels in the four cardinal directions
+        # when you move to the next row, that automatically implies down, and when you move to the next column, that automatically implies right
         self.fill(image, row + 1, col, original_color, color)  # Down
         self.fill(image, row - 1, col, original_color, color)  # Up
         self.fill(image, row, col + 1, original_color, color)  # Right
