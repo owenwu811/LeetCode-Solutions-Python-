@@ -28,6 +28,7 @@ Explanation: The starting pixel is already colored 0, so no changes are made to 
 Solution: 
 #At the beginning, we want to find the starting square and replace that square's value with color as given by the variable in the problem
 # What we want to do is essentially check that every square to the left right up or down is the same value as the starting square provided by image[sr][sc], and if it is, stop recursing, and if it's not, then replace that square with the value of color
+# In other words, we keep recursing to the left right up down until the new square we are stepping onto is already the same color, and if it's the same color, we step back by coming back from the direction we came in
 #at the end, we return the new image once the recursion stops and the base case is reached 
 class Solution:
     def floodFill(self, image: List[List[int]], sr: int, sc: int, color: int) -> List[List[int]]:
