@@ -44,6 +44,8 @@ class Solution:
         return image
     # Add the self parameter to the fill function to make it a method of the Solution class
     def fill(self, image, row, col, original_color, color):
+        #we have two conditions: don't go out of bounds in up down right left of grid and don't step onto a square that already has the same value
+        #these are boundary checks
         if (row < 0 or row >= len(image)) or (col < 0 or col >= len(image[0])):
             return 
         
