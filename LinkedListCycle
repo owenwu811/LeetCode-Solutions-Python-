@@ -28,6 +28,9 @@ Explanation: There is no cycle in the linked list.
 
 My Solution:
 
+# cycle just means that every node are linked together as the fast pointer paves the path. In a no cycle condition, fast.next reahces a none node, which means that there is some breakage, which is the definition of no cycle. 
+# so no cycle just means there is some breakage based on the slow and fast pointer's path
+
 # Definition for singly-linked list.
 # class ListNode:
 #     def __init__(self, x):
