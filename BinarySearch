@@ -36,5 +36,25 @@ class Solution:
             if j == target: #if the value is equal to target, return corresponding index
                 return i
         return -1 #if we go through the entire list and don't find any j's equal to target, return -1 as stated in the problem if does not exist
+        
+        
+A better way to solve:
+
+#in this approach, we divide the list in half and half again until we find the target or return -1
+
+class Solution:
+    def search(self, nums: List[int], target: int) -> int:
+        left, right = 0, len(nums) - 1
+        #the reason we use <= instead of < is because when left and right become equal, the search space has been reduced to a single element. If the target element happens to be equal to this single element, the algorithm should still return its index.
+        while left <= right:
+            mid = (left + right) // 2 #finding the middle element of the list
+            if nums[mid] == target:
+                return mid
+            elif nums[mid] < target: #if nums[mid] is smaller than the target, we know that target can only exist in the right half of the range, so left = mid + 1 narrows down the search range to the right half of the list
+                left = mid + 1
+            else: #if nums[mid] is bigger than target, target can only exist in left half of range, so right = mid - 1 narrows down search to left half of list
+                right = mid - 1
+        return -1
+
 
 
