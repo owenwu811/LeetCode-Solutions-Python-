@@ -33,6 +33,7 @@ Solution:
 #         self.right = right
 class Solution:
     def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
+        #here, root represents the entire binary tree as shown by the method signature, and we want to check that a tree exists before proceeding - root:Optional[TreeNode]
         if not root: #base case as terminating condition when we've reached bottom of tree. Returns None if there is not another node below the current node and applies to both the left and right tree.
             return None
         #Swap the left and right children of the current Node
