@@ -47,7 +47,7 @@ class Solution:
         left, right = 0, len(nums) - 1
         #the reason we use <= instead of < is because when left and right become equal, the search space has been reduced to a single element. If the target element happens to be equal to this single element, the algorithm should still return its index.
         while left <= right:
-            mid = (left + right) // 2 #finding the middle element of the list
+            mid = (left + right) // 2 #finding the middle element of the list prioritizing left side: [-1, 0, 3, 5, 9, 12] - middle would be 3, not 5 if left = 0 and right = 5 because left and right are integers representing indicies.
             if nums[mid] == target:
                 return mid
             elif nums[mid] < target: #if nums[mid] is smaller than the target, we know that target can only exist in the right half of the range, so left = mid + 1 narrows down the search range to the right half of the list
