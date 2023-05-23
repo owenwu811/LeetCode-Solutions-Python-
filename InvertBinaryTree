@@ -46,7 +46,7 @@ class Solution:
         return root
         
         
- #invert binary tree basically is flipping the children and then going to the left child, and flipping (literally just swapping places) that left child's children, and then going to the right child, flipping that right child's children, and keep going until you reach the bottom of the tree
+ #invert binary tree basically is flipping the children and then going to the left child, and flipping (literally just swapping places) that left child's children, and then going to the right child, flipping that right child's children, and keep going until you reach the bottom of the tree.
         
  #if the three is 
  #.      a
