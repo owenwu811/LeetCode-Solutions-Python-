@@ -16,6 +16,8 @@ Output: true
 
 Solution:
 
+#balanced binary tree basically means that one tree must not be shorter or taller by the other tree by more than 1 node vertically
+
 # Definition for a binary tree node.
 # class TreeNode:
 #     def __init__(self, val=0, left=None, right=None):
