@@ -43,7 +43,7 @@ class Solution:
         #This line is just recalling the entire invertTree function except moving down one node to the left
         self.invertTree(root.left) # just means passing the new left node as an argument and executing all code in the function again
         self.invertTree(root.right)     
-        return root
+        return root #return root meaning return the entire tree after it's inverted because it would make sense as root is the tree itself. you can tell that root is tree because root is 4 2 7 1 3 6 9, and the picture shows that the tree consists of 4 2 7 1 3 6 9, so it makes sense that root is equal to tree or the tree itself.
         
         
  #note that, in a binary tree, the left side is smaller than the right side
