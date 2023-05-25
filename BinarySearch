@@ -55,6 +55,8 @@ class Solution:
             else: #if nums[mid] is bigger than target, target can only exist in left half of range, so right = mid - 1 narrows down search to left half of list
                 right = mid - 1
         return -1
+        
+        #the general approach is dividing the problem in a half and half again until we find the element we are looking for or returning -1 (malan's lecture from harvard cs50)
 
 
 
