@@ -59,4 +59,18 @@ class Solution:
         #the general approach is dividing the problem in a half and half again until we find the element we are looking for or returning -1 (malan's lecture from harvard cs50)
 
 
+another solution:
 
+class Solution:
+    def search(self, nums: List[int], target: int) -> int:
+        left = 0
+        right = len(nums) - 1
+        while left <= right: # = is necessary so that, in case the target equals the middle index itself, it's not being ignored by the looping condition.
+            middle = left + (right - left) // 2 #this could also be middle = right - (right - left) // 2 as well
+            if nums[middle] == target:
+                return middle
+            elif nums[middle] < target:
+                left = middle + 1
+            else:
+                right = middle - 1
+        return -1
