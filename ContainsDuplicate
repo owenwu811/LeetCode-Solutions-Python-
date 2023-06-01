@@ -33,3 +33,15 @@ class Solution:
             return False
         else:
             return True
+
+
+Another solution:
+
+class Solution:
+    def containsDuplicate(self, nums: List[int]) -> bool:
+        newset = set()
+        for i in nums:
+            newset.add(i)
+        if len(newset) == len(nums):
+            return False
+        return True
