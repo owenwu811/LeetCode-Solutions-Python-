@@ -38,4 +38,4 @@ class Solution:
                 left = mid + 1
         return left
 
-   
+   #this solution actually utilizes the two pointer approach and recursion to find the middle element, cutting the problem in a half and half again
