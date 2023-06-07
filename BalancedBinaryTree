@@ -29,9 +29,9 @@ class Solution:
         def get_height(node):
             if node is None:
                 return 0
-            return max(get_height(node.left), get_height(node.right)) + 1
+            return max(get_height(node.left), get_height(node.right)) + 1 #recursive calls trasversing down binary tree
         
-        def check_balance(node):
+        def check_balance(node): #each recursive call compares if the left and right heights are differing by more than 1
             if node is None:
                 return True
             
