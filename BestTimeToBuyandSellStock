@@ -56,7 +56,7 @@ class Solution:
         buy = 0
         sell = 1
         maxprofit = 0
-        for sell in range(len(prices)): 
+        for sell in range(len(prices)): #use if instead of while because, if we used while, if buy and sell values were equal, we would set buy = sell, but then the while loop would be true forever and never terminate.
             if prices[buy] >= prices[sell]: #the mistake I made was accidentally reversing >= as <= meaning if prices[buy] was less than or equal to prices[sell], then set them equal, which dosen't make sense because if the buy value is less than the sell value, you would have a positive profit from sell - buy. the other mistake was using buy >= sell instead of prices[buy] >= prices[sell] - the former means indicies values as integers while the latter gets the values inside of the list by indexing into the list(we want to get the values in the list by indexing into the list).
                 buy = sell
             profit = prices[sell] - prices[buy]
