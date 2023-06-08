@@ -53,3 +53,23 @@ class Solution:
  #the idea is that ][ is not a valid parenthesis, but [] is
  #if we encounter a closing bracket ], and there isn't already an opening bracket [ in front of it in s, then it's automatically false
  #the reason you can't do if char in closing_brackets elif char in opening_brackets is because () is valid but )( is not valid. If the first is (, then you wouldn't have a matching opening.
+ 
+ 
+ Solution 6/8/23 refresh:
+ 
+ class Solution:
+    def isValid(self, s: str) -> bool:   
+        result = []
+        opening_brackets = "([{"
+        closing_brackets = ")]}"
+        for char in s:
+            if char in opening_brackets:
+                result.append(char)
+            elif char in closing_brackets and not result: #if the current iteration character is a closing bracket and result list is empty, that means we don't have any matches because the first character in the string is a closing bracket, and }{ or )( or ][ dosen't count as true
+                return False
+            else:
+                opening_bracket = result.pop()
+                if opening_brackets.index(opening_bracket) != closing_brackets.index(char):  #my mistake was that I was trying to index into opening_bracket instead of opening_brackets, so I need to give a more descriptive variable name to opening_bracket = result.pop() - makesurematchesthis?
+                    return False
+        return not result
+
