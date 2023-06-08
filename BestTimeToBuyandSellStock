@@ -48,3 +48,18 @@ class Solution:
         #we are using integers to represent indicies of the array and then plugging the indicies into array[indicies] to get the value when we need it
         #when we have explored the entire array, then we can return the max profit. we don't return the maxprofit until we have trasversed through every element of the array, which is why the return lines up with the for loop. while and for loops have to finish iterating or be false to execute the next line at the same indentation. On the other hand, conditionals, like if, elif, and else automatically go on to execute the next line at the same indentation. 
             
+ 6/8/23 refresher (my solution):
+ 
+ class Solution:
+    import math
+    def maxProfit(self, prices: List[int]) -> int:
+        buy = 0
+        sell = 1
+        maxprofit = 0
+        for sell in range(len(prices)): 
+            if prices[buy] >= prices[sell]: #the mistake I made was accidentally reversing >= as <= meaning if prices[buy] was less than or equal to prices[sell], then set them equal, which dosen't make sense because if the buy value is less than the sell value, you would have a positive profit from sell - buy. the other mistake was using buy >= sell instead of prices[buy] >= prices[sell] - the former means indicies values as integers while the latter gets the values inside of the list by indexing into the list(we want to get the values in the list by indexing into the list).
+                buy = sell
+            profit = prices[sell] - prices[buy]
+            maxprofit = max(maxprofit, profit)
+        return maxprofit
+            
