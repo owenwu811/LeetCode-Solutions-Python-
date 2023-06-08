@@ -69,6 +69,32 @@ class ListNode:
         return previousoffirst.next
 
 
+6/8/23 refresher (my solution):
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
+        head = ListNode(0) 
+        result = head
+        while list1 and list2: #make sure both lists have node elements inside
+            if list1.val <= list2.val: #<= or < both work since the logic works out as if they are equal, you can append either element
+                result.next = list1
+                list1 = list1.next
+            else:
+                result.next = list2
+                list2 = list2.next
+            result = result.next #my mistake was putting this in the same indentation level as while loop, which means the pointer of the merged list would never point to the next element to be appended to unless either list1 or list2 was empty, which is not what we want. After merging from either list1 or list2, we want to move the pointer of the new merged list so that the next time we append from either list1 or list2 into merged, we don't override the merged element from the previous iteration aka we want to add and not replace on each iteration of the while loop.
+        if not list2: #list2 is empty, and since the while list1 and list2 same indentation level, we know that either one of them must be empty, so if list2 is empty, and both list1 and list2 being full is false, that means that list1 is the non empty one, so point the merged pointer to list1's nodes.
+            result.next = list1
+        else: #so list1 is the empty one here because either list1 or list2 have to be empty at this point, so point merged to list2's nodes, appending list2's nodes to the end of merged list
+            result.next = list2
+        return head.next #the mistake was not returning head.next as head acts as a dummy node, and instructions say to return head of new merged list
+
+
 
 
 
