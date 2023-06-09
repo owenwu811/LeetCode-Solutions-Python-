@@ -36,3 +36,18 @@ class Solution:
             start += 1 #if start and end chars do match, increment start and decrement end and ask the same question until you get to the middle of the string
             end -= 1
         return True #if, after we've gone through all characters starting on either side of the string and determined that they are all equal, then we do have a valid palindrome, so return True
+        
+ 6/9/23 refresher (my solution) - only 94/485 test cases passing:
+ 
+ class Solution:
+    def isPalindrome(self, s: str) -> bool:
+        middle = len(s) / 2
+        left = middle
+        right = middle
+        while left >= 0 and right < len(s):
+            if s[left] != s[right]:
+                return False
+            left -= 1
+            right += 1
+        return True
+                
