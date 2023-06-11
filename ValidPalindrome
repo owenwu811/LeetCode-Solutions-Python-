@@ -40,7 +40,7 @@ class Solution:
  6/9/23 refresher (my solution) - only 94/485 test cases passing - issue is that need to only keep alphanumeric characters and find middle index of string:
  
  class Solution:
-    def isPalindrome(self, s: str) -> bool:
+    def isPalindrome(self, s: str) -> bool - this approach is starting from the middle and expanding outwards and checking if they are the same until you reach the opposite ends:
         middle = len(s) / 2
         left = middle
         right = middle
@@ -52,7 +52,7 @@ class Solution:
         return True
                 
                 
-6/9/23 refresher (I also tried using a dictionary) - same 94/485 result:
+6/9/23 refresher (I also tried using a dictionary) - same 94/485 result - the issue is checking for only alphanumeric characters:
 
 class Solution:
     def isPalindrome(self, s: str) -> bool:
