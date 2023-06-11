@@ -1,0 +1,43 @@
+
+
+Given two strings ransomNote and magazine, return true if ransomNote can be constructed by using the letters from magazine and false otherwise.
+
+Each letter in magazine can only be used once in ransomNote.
+
+ 
+
+Example 1:
+
+Input: ransomNote = "a", magazine = "b"
+Output: false
+Example 2:
+
+Input: ransomNote = "aa", magazine = "ab"
+Output: false
+Example 3:
+
+Input: ransomNote = "aa", magazine = "aab"
+Output: true
+
+
+
+
+6/10/23 (My Solution):
+
+class Solution:
+    def canConstruct(self, ransomNote: str, magazine: str) -> bool:
+        ransomdict = {}
+        magazinedict = {}
+        for r in ransomNote:
+            if r not in ransomdict:
+                ransomdict[r] = 0
+            ransomdict[r] += 1
+        for m in magazine:
+            if m not in magazinedict:
+                magazinedict[m] = 0
+            magazinedict[m] += 1
+        for i, j in ransomdict.items(): #mistake was here. We want to compare the frequencies of characters in both dictionaries. if any char in ransomdict is higher, than it's not possible.
+            if j > magazinedict.get(i, 0):
+                return False
+        return True
+
