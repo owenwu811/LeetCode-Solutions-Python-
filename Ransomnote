@@ -36,8 +36,9 @@ class Solution:
             if m not in magazinedict:
                 magazinedict[m] = 0
             magazinedict[m] += 1
+           
         for i, j in ransomdict.items(): #mistake was here. We want to compare the frequencies of characters in both dictionaries. if any char in ransomdict is higher, than it's not possible.
-            if j > magazinedict.get(i, 0):
+            if j > magazinedict.get(i, 0): #we are getting the VALUE of the I KEY in the magazinedict dictionary. the number of times a appears has to be exactly equal in both strings to be valid.
                 return False
         return True
 
