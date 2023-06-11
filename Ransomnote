@@ -42,7 +42,7 @@ class Solution:
                 return False
         return True
 
-#you cannot use nested loops for 59 because that would compare every single pair in one dictionary with every single pair in the other dictionary, which we don't want:
+#you cannot use nested loops for 59 because that would compare every single pair in one dictionary with every single pair in the other dictionary, which we don't want.
 
 class Solution:
     def canConstruct(self, ransomNote: str, magazine: str) -> bool:
