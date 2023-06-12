@@ -56,7 +56,7 @@ class Solution:
             if m not in magazineD:
                 magazineD[m] = 0
             magazineD[m] += 1
-        for key, value in ransomnoteD.items():
+        for key, value in ransomnoteD.items(): #.items is used to iterate over a dictionary in python
             if value > magazineD.get(key, 0):
                 return False
         return True
