@@ -44,7 +44,7 @@ class Solution:
                 if abs(three_sum - target) < abs(closest_sum - target): #you can do abs(three_sum - target) or abs(target - three_sum) as the values are the same except with flipped signs but abs puts them back as same sign
                     #whichever one has the bigger difference needs to be set to the one with the smaller distance when comparing three_sum to current_sum
                     closest_sum = three_sum #this will always execute on the 1st turn since anything minus target will always be less than infinity minus target
-
+                #closest_sum is the final result after each iteration while threesum is preparing for the next iteration, so we want to compare threesum
                 if three_sum < target:
                     left += 1
                 else:
