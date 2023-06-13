@@ -51,3 +51,9 @@ class Solution:
                     right -= 1
 
         return closest_sum
+        
+        
+        #During each iteration, if the current three_sum is closer to the target than the previous closest_sum, closest_sum is updated to hold the value of the current three_sum
+        #The three_sum variable, on the other hand, represents the sum of three numbers being considered in each iteration. It is calculated as the sum of nums[i], nums[left], and nums[right] within the nested while loop.
+
+
