@@ -27,7 +27,7 @@ My Solution:
 class Solution:
     def isPalindrome(self, s: str) -> bool:
         s.replace(" ", "")
-        s = re.sub(r'[\W_]', '', s) #removing all non alphanumeric characters using regex - r[\W_] matches any character that is not a word or underscore - the _ is included to remove underscores - '' is the replacement string. s is the string on which the subsitution is being performed on. r makes sure backslashes are treated as literal characters.  
+        s = re.sub('[\W_]', '', s) #removing all non alphanumeric characters using regex - r[\W_] matches any character that is not a word or underscore - the _ is included to remove underscores - '' is the replacement string. s is the string on which the subsitution is being performed on.  
         start = 0 #indicies representing integers as starting pointer
         end = len(s) - 1 #indicies representing integers as ending pointer
         while start < end: #make sure start and end don't cross 
