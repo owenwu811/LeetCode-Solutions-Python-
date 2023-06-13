@@ -41,8 +41,8 @@ class Solution:
                 if three_sum == target:
                     return target
 
-                if abs(three_sum - target) < abs(closest_sum - target):
-                    closest_sum = three_sum
+                if abs(three_sum - target) < abs(closest_sum - target): #you can do abs(three_sum - target) or abs(target - three_sum) as the values are the same except with flipped signs but abs puts them back as same sign
+                    closest_sum = three_sum #this will always execute on the 1st turn since anything minus target will always be less than infinity minus target
 
                 if three_sum < target:
                     left += 1
