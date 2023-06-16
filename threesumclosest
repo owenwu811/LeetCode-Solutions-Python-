@@ -29,7 +29,7 @@ Solution:
 class Solution:
     def threeSumClosest(self, nums: List[int], target: int) -> int:
         nums.sort()
-        closest_sum = float('inf')
+        closest_sum = float('inf') #setting closest_sum to infinity so that next turn will always be less than infinity
 
         for i in range(len(nums) - 2):
             left = i + 1
