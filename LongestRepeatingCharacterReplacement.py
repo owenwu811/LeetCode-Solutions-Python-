@@ -64,13 +64,13 @@ My Solution:
  class Solution:
     import math
     def characterReplacement(self, s: str, k: int) -> int:
-        result = 0
+        result = 0 #result is what we will return in the end
         charfrequency = {}
         windowstart = 0
-        maxcharacter = 0
+        maxcharacter = 0 #gets updated on each turn
         for windowend in range(len(s)):
-            if s[windowend] not in charfrequency:
-                charfrequency[s[windowend]] = 0
+            if s[windowend] not in charfrequency: 
+                charfrequency[s[windowend]] = 0 #only executes to create a new row for a char that dosen't already exist in the dictionary
             charfrequency[s[windowend]] += 1
             maxcharacter = max(maxcharacter, charfrequency[s[windowend]]) # we find the biggest value out of keys for each new iteration
             if (windowend - windowstart + 1) - maxcharacter > k: #if we do not have enough flips, as denoted by k, then we execute this inner block to shrink the window and reflect the same changes in our dictionary
