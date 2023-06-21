@@ -62,3 +62,18 @@ class Solution:
             currentsum += nums[i]
             maxsum = max(maxsum, currentsum)
         return maxsum
+
+
+6/20/23 refresher (my solution):
+
+class Solution:
+    import math
+    def maxSubArray(self, nums: List[int]) -> int:
+        maxsum = nums[0]
+        currentsum = 0
+        for i in nums:
+            if currentsum < 0:
+                currentsum = 0
+            currentsum += i
+            maxsum = max(maxsum, currentsum)
+        return maxsum
