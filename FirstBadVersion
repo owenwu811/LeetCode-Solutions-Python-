@@ -58,4 +58,6 @@ class Solution:
                 left = mid + 1
         return left
 
+#after we find a mid that makes isBadVersion true, we will reduce the array's right to one left of mid and then add both left and right divided by 2 plus left again to calculate mid again in the reduced space
+
 
