@@ -49,12 +49,13 @@ class Solution:
 class Solution:
     def firstBadVersion(self, n: int) -> int:
         left = 1
-        right = n
+        right = n #we can garuntee that the last n value will always be bad 
         while left <= right:
             mid = left + (right - left) // 2
-            if isBadVersion(mid):
+            if isBadVersion(mid): #if mid is a failed version, then search from the beginning to one less than mid because you know that the first bad version can't be to the right of mid at that point because the array is already sorted. When we search to the left of mid, the result will only update if mid is less. otherwise, we save that original mid value that made the function true in case that anything to the left of what mid was originally dosen't make the function true.
                 right = mid - 1
             else:
                 left = mid + 1
         return left
-        
+
+
