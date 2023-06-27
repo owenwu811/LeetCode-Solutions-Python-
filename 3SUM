@@ -40,7 +40,7 @@ class Solution(object):
         for i, j in enumerate(nums): #i, j are the index, value of the array
             if i > 0 and j == nums[i - 1]: #i must be bigger than 0 so that we have an element before to even compare to. if the current value is the same as previous, keep moving to the next i, j (index, value) pair in the array until we reach the last element
                 continue
-            left = i + 1 
+            left = i + 1        #i acts as our first pointer that only moves when left < right is no longer true
             right = len(nums) - 1
             while (left < right): #the reason we need this is because we already sorted the nums array, so if left < right is false, we are pointing to values we already visited before. If this line is false, then we go back to the for loop at line 40 to move to the next i, j (ndex, value) pair in our array. 
                 threesum = j + nums[left] + nums[right] #WE MUST MAKE SURE LEFT < RIGHT BEFORE CALCULATING THREESUM, OR ELSE WE WON'T HAVE VALID POINTERS
