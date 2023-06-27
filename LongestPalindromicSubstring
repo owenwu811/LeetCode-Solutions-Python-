@@ -30,21 +30,22 @@ s consist of only digits and English letters.
 
 My Solution (Python):
 
+#We are expanding outwards from the center by comparing left and right values. If left and right values match, we keep expanding outwards until characters either 1. no longer match or 2. reach the boundaries of the string
+
 class Solution(object):
     def longestPalindrome(self, s):
-        def helper(left, right):
-            while (left >= 0 and right < len(s) and s[left] == s[right]):
+        def helper(left, right): #helper function keeps track of the longest palindrome we have found so far
+            while (left >= 0 and right < len(s) and s[left] == s[right]): #boundary checks to ensure left dosen't go out of bounds to the left side of the string and right dosen't go out of bounds to the right side of the string
                 left -= 1
                 right += 1
-            return s[left + 1: right]
-        
-        result = ""
+            return s[left + 1: right] #ensures that the character at index left is not included in the substring because it is the character that caused the loop to exit and no longer satisfies the palindrome condition. By excluding the character at index left, the returned substring represents the longest palindrome substring without including the expanding character.        
+        result = "" #initializes result as an empty string to set an initial value for result before the loop starts. since no palindromic substring has been found yet, result is, initially, set to an empty substring. As the loop progresses and palindromic substrings are found, result value will be updated to store the longest palindromic substring found up to that point
         for i in range(len(s)):
-            test = helper(i, i)
-            if len(test) > len(result):
+            test = helper(i, i) #single character as center aka s is an odd number of characters
+            if len(test) > len(result): #result keeps track of the longest palindromic substring found so far, so if test is greater than result, result updates to test to store the new longest palindromic substring so far
                 result = test
-            test = helper(i, i + 1)
+            test = helper(i, i + 1) #two adjacent characters as center aka s is an even number of characters
             if len(test) > len(result):
                 result = test
         
-        return result
+        return result #at the end, result will contain the longest palindromic substring found in the given string s
