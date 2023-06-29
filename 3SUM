@@ -102,7 +102,7 @@ class Solution:
             right = len(nums) - 1
             while left < right:
                 threesum = nums[i] + nums[left] + nums[right]
-                if threesum < 0:
+                if threesum < 0: # we are comparing to 0 here, not a variable target number
                     left += 1
                 elif threesum > 0:
                     right -= 1
