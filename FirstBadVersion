@@ -48,7 +48,7 @@ class Solution:
 
 class Solution:
     def firstBadVersion(self, n: int) -> int:
-        left = 1
+        left = 1 #left starts at 1 because the first bad version can't be the first element in the list as all versions would be bad
         right = n #we can garuntee that the last n value will always be bad, so that's why we will set right to n, or the last version, at the very least. 
         while left <= right:
             mid = left + (right - left) // 2
