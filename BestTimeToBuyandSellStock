@@ -62,4 +62,19 @@ class Solution:
             profit = prices[sell] - prices[buy]
             maxprofit = max(maxprofit, profit)
         return maxprofit
-            
+
+7/1/23 refresher (my solution):
+
+class Solution(object):
+    import math
+    def maxProfit(self, prices):
+        buy = 0 #integers representing indicies
+        sell = 1 #integers representing indicies
+        maxprofit = 0 
+        for sell in range(len(prices)): 
+            if prices[buy] >= prices[sell]: #it's not possible to make a profit here, so close the window, and the window will open with sell again when the loop in 74 gets invoked again.
+                buy = sell 
+            profit = prices[sell] - prices[buy]
+            maxprofit = max(maxprofit, profit)
+        return maxprofit
+
