@@ -77,3 +77,18 @@ class Solution:
             currentsum += i
             maxsum = max(maxsum, currentsum)
         return maxsum
+
+7/1/23 refresher (my solution):
+
+class Solution(object):
+    import math
+    def maxSubArray(self, nums):
+        #has to include atleast one of the elemnts in the array. if there is only one negative element in the array, the result cannot be 0
+        maxsum = nums[0]
+        currentsum = 0
+        for val in nums: #YOU MUST REMEMBER TO LOOP THROUGH NUMS TO GET THE NEXT VALUE IN THE ARRAY 
+            if currentsum < 0:
+                currentsum = 0
+            currentsum += val #YOU ADD CURRENTSUM TO VAL TO SEE IF IT IS BIGGER AFTER NUETRALIZING IT TO 0
+            maxsum = max(maxsum, currentsum) #WE COMPARE THE HISTORICAL BIGGEST MAXSUM TO WHAT YOU GET RIGHT ABOVE AFTER ADDING THE NEXT ELEMENT AFTER NUETRALIZING IT TO 0. MAXSUM WOULD ONLY BE THE BIGGEST ON THE 1ST TURN BECAUSE MAXSUM IS ONLY A STARTING POINT.
+        return maxsum
