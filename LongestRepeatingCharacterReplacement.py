@@ -85,3 +85,26 @@ My Solution:
 #[xxxxxxxxx] > should we subtract the . or III from x? Probably III as that would result in less flips for k
 # xxxxxxxxx - III = 6. If 6 > k, we have a problem. Otherwise, we can go ahead and say 6 is a valid canditate for our result.
 
+
+7/1/23 refresher (my solution):
+
+class Solution:
+    import math
+    def characterReplacement(self, s: str, k: int) -> int:
+        frequency = {} #keeping track of frequency of characters
+        windowstart = 0 #integers representing indicies 
+        mostfrequent = 0
+        lengthoflongest = 0 #result we will return at the end
+        for windowend in range(len(s)):
+            if s[windowend] not in frequency:
+                frequency[s[windowend]] = 0
+            frequency[s[windowend]] += 1
+            mostfrequent = max(mostfrequent, frequency[s[windowend]])
+            if (windowend - windowstart + 1) - mostfrequent > k: #don't have enough flips to make the same letters in a row, so shrink the window
+                frequency[s[windowstart]] -= 1 #don't need a refrence to windowstart right above this line since it's already defined in line 95.
+                windowstart += 1
+            else:
+                lengthoflongest = max(lengthoflongest, windowend - windowstart + 1) #length, not indicies, so + 1
+        return lengthoflongest
+            
+
