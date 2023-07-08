@@ -38,9 +38,9 @@ Solution (Python):
 class Solution:
     def countGoodSubstrings(self, s: str) -> int:
         count = 0
-        for i in range(len(s) - 2):
-            substring = s[i:i+3]
-            if len(set(substring)) == 3:
+        for i in range(len(s) - 2): #since we want to find length 3, we start i at 0 and iterate over the string, leaving room for 2 additional pointers because 2 characters plus i = 3 characters or 3 in length 
+            substring = s[i:i+3] #we include i but don't include i + 3, so, again, i + 2 more characters equals length of 3. s[i:i+3] means s[i, i + 1, i + 2] inclusive aka 3 characters in total aka 3 in length.
+            if len(set(substring)) == 3: #we found a length of 3, but now we need to make sure they are unique, so wrap the substring around a set while checking that the length is 3, and if it is, add 1 to the result that we will return because we found a grouping of characters that is of length 3 where all the characters in the grouping are distinct from each other
                 count += 1
         return count
 
