@@ -1,0 +1,87 @@
+58. Length of Last Word
+Easy
+3.5K
+183
+Companies
+Given a string s consisting of words and spaces, return the length of the last word in the string.
+
+A word is a maximal 
+substring
+ consisting of non-space characters only.
+
+ 
+
+Example 1:
+
+Input: s = "Hello World"
+Output: 5
+Explanation: The last word is "World" with length 5.
+Example 2:
+
+Input: s = "   fly me   to   the moon  "
+Output: 4
+Explanation: The last word is "moon" with length 4.
+Example 3:
+
+Input: s = "luffy is still joyboy"
+Output: 6
+Explanation: The last word is "joyboy" with length 6.
+ 
+
+Constraints:
+
+1 <= s.length <= 104
+s consists of only English letters and spaces ' '.
+There will be at least one word in s.
+Accepted
+1.2M
+Submissions
+2.7M
+Acceptance Rate
+44.4%
+Seen this question in a real interview before?
+1/4
+
+
+
+My Solution (Python):
+
+class Solution:
+    def lengthOfLastWord(self, s: str) -> int:
+        result = []
+        newstring = s[::-1] #reversing the string 
+        for i in newstring.strip(): #strip is for chopping off the front end end of the string so that we don't terminate the loop too early just because we ran into space before running into the first character of the final word that we want the length of to return as the result 
+            if i.isalpha(): #if we do run into an alphabetical character, add it to the resulting list that we will take the length of later
+                result.append(i)
+            else: #if we run into a non alphabetical character, terminate the loop because we're done adding to the length of the last word
+                break
+        return len(result)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
