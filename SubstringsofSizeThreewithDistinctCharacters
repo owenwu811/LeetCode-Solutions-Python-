@@ -44,3 +44,14 @@ class Solution:
                 count += 1
         return count
 
+
+#this solution works too, but it just wastes time since, if you are already at range(len(i) - 2)), you know the length of 3 condition can no longer be fulfilled with future groupings you will find, so there's no point in iterating further through the string because further findings will not affect the result we want to return, which is the count of the distinct groupings with length of 3
+class Solution:
+    def countGoodSubstrings(self, s: str) -> int:
+        count = 0
+        for i in range(len(s)):
+            substring = s[i:i+3]
+            if len(set(substring)) == 3:
+                count += 1
+        return count
+
