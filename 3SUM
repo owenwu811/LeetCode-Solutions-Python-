@@ -40,8 +40,8 @@ class Solution(object):
         for i, j in enumerate(nums): #i, j are the index, value of the array
             if i > 0 and j == nums[i - 1]: #i must be bigger than 0 so that we have an element before to even compare to. if the current value is the same as previous, keep moving to the next i, j (index, value) pair in the array until we reach the last element
                 continue
-            left = i + 1        #i acts as our first pointer that only moves when left < right is no longer true
-            right = len(nums) - 1
+            left = i + 1        #i acts as our first pointer that only increments by one when the left < right condition is no longer true
+            right = len(nums) - 1 #right starts at the last index in our list 
             while (left < right): #the reason we need this is because we already sorted the nums array, so if left < right is false, we are pointing to values we already visited before. If this line is false, then we go back to the for loop at line 40 to move to the next i, j (ndex, value) pair in our array. 
                 threesum = j + nums[left] + nums[right] #WE MUST MAKE SURE LEFT < RIGHT BEFORE CALCULATING THREESUM, OR ELSE WE WON'T HAVE VALID POINTERS
                 if threesum > 0: # this takes advantage of the fact that the array is sorted
@@ -101,7 +101,7 @@ class Solution:
             left = i + 1
             right = len(nums) - 1
             while left < right:
-                threesum = nums[i] + nums[left] + nums[right]
+                threesum = nums[i] + nums[left] + nums[right] #i here is essentially the 1st pointer while left is 2nd and right is 3rd, which starts at the last index in the list pointing to the last element in the list 
                 if threesum < 0: # we are comparing to 0 here, not a variable target number
                     left += 1
                 elif threesum > 0:
