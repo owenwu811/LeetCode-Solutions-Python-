@@ -51,8 +51,8 @@ class Solution:
     import math
     def maxConsecutiveAnswers(self, answerKey: str, k: int) -> int:
         windowstart = 0
-        result = 0
-        mostfrequent = 0
+        result = 0 
+        mostfrequent = 0 #we use this to keep track of the most frequent letter in the string so that we can subtract the entire string from that to minimize the number of flips needed
         mydict = dict()
         for windowend in range(len(answerKey)): #range(len(anwserKey)) is needed to iterate over anwserKey string with windowend as an index starting at 0 and auto incrementing by 1 each time this for loop is called
             if answerKey[windowend] not in mydict:
