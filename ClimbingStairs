@@ -27,6 +27,8 @@ Constraints:
 
 My Solution:
 
+#this is a classic dynamic programming problem
+
 class Solution:
     def climbStairs(self, n: int) -> int:
         one = 1 #regardless of how big or small n is, the first two pointers will always start at 1, and they will move left until one pointer is to the right of the output and two pointer is two to the right of the output
