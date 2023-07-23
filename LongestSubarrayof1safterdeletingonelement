@@ -45,12 +45,12 @@ class Solution:
         left = 0
         zero_count = 0
 
-        for right in range(len(nums)):
-            if nums[right] == 0:
+        for right in range(len(nums)): 
+            if nums[right] == 0: #we know the array consists of only 0s and 1s as stated in the problem
                 zero_count += 1
 
             # Check if the current window violates the condition (at most one zero)
-            while zero_count > 1:
+            while zero_count > 1: #we must check this condition before updating the max length
                 if nums[left] == 0:
                     zero_count -= 1
                 left += 1
