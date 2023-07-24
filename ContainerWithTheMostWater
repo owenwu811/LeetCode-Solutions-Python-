@@ -8,7 +8,6 @@ Notice that you may not slant the container.
 
 Example 1:
 
-
 Input: height = [1,8,6,2,5,4,8,3,7]
 Output: 49
 Explanation: The above vertical lines are represented by array [1,8,6,2,5,4,8,3,7]. In this case, the max area of water (blue section) the container can contain is 49.
@@ -31,7 +30,7 @@ class Solution:
     def maxArea(self, height: List[int]) -> int:
         left = 0 #this is a two pointer problem, so we are setting left pointer to the first index and right pointer to the last index of the array
         right = len(height) - 1 # this is not a sliding window problem because we don't care about the values in between the pointers; we just care about the difference between the two times the smaller of the heights, with the heights being the values of the left and right pointers
-        maxarea = 0
+        maxarea = 0 #this is the result we will return at the end 
         while (left < right): #we need to make sure that the values don't duplicate for the two pointer approach
             area = (right - left) * min(height[left], height[right]) # we are multiplying the distance between the two indexes times the shorter of the two values between left and right pointer array values
             maxarea = max(maxarea, area) #comparing history max area to current turn max area
