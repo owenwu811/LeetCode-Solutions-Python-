@@ -45,7 +45,7 @@ answerKey[i] is either 'T' or 'F'
 
 My Solution (Python):
 
-#this problem is nearly identical to the problem called Longest Repeating Character Replacement to the point where the anwser is literally the same but with different list names 
+#this problem is nearly identical to the problem called Longest Repeating Character Replacement to the point where the anwser is the same pattern and skeleton code but with different list names 
 
 class Solution:
     import math
