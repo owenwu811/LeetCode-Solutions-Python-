@@ -81,4 +81,36 @@ class Solution(object):
      #0  1  2  3  4  5
      #[1, 2, 3, 4, 5, 6]
      #         F  S  T  F > last acceptable index value for second before no room for fourth
+
+
+My Solution (8/1/23 refresher):
+
+class Solution:
+    def fourSum(self, nums: List[int], target: int) -> List[List[int]]:
+        result = []
+        nums.sort()
+        for first in range(len(nums) - 3):
+            if first > 0 and nums[first] == nums[first - 1]:
+                continue
+            for second in range(first + 1, len(nums) - 2): #must include first + 1 because second has to start exactly one space to the right of first and go up to but not including 4 - 2 = 2.
+                if second > first + 1 and nums[second] == nums[second - 1]:
+                    continue
+                third = second + 1
+                fourth = len(nums) - 1
+                while third < fourth:
+                    foursum = nums[first] + nums[second] + nums[third] + nums[fourth]
+                    if foursum < target:
+                        third += 1
+                    elif foursum > target:
+                        fourth -= 1
+                    else:
+                        result.append([nums[first], nums[second], nums[third], nums[fourth]]) #each valid quadruplet must be wrapped within an outer list to be valid as we are returning a list of lists
+                        third += 1
+                        fourth -= 1
+                        while nums[third] == nums[third - 1] and third < fourth:
+                            third += 1
+                        while nums[fourth] == nums[fourth + 1] and third < fourth:
+                            fourth -= 1
+        return result
+
       
