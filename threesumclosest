@@ -31,7 +31,7 @@ class Solution:
         nums.sort()
         closest_sum = float('inf') #setting closest_sum to infinity so that next turn will always be less than infinity
 
-        for i in range(len(nums) - 2):
+        for i in range(len(nums) - 2): #i acts as the first pointer starting with index 0 here
             left = i + 1
             right = len(nums) - 1
 
