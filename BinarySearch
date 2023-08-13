@@ -74,3 +74,23 @@ class Solution:
             else:
                 right = middle - 1
         return -1
+
+
+
+8/13/23 (better formatted solution):
+
+class Solution:
+    def search(self, nums: List[int], target: int) -> int:
+        #already sorted
+
+        left, right = 0, len(nums) - 1 #change is here, taking up one less line of code
+        while left <= right:
+            middle = (left + right) // 2
+            if nums[middle] == target:
+                return middle
+            elif nums[middle] < target:
+                left = middle + 1
+            else:
+                right = middle - 1
+        return - 1
+
