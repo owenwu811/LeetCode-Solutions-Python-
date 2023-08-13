@@ -116,9 +116,9 @@ class Solution(object):
                 list2 = list2.next
             head = head.next
         if not list1 and list2:
-            head.next = list2
+            head.next = list2 #if list1 is empty, then you have to append the rest of list2's nodes - the ordering of this matters - you can't put list1 here instead of list2 without changing the logic
         else:
-            head.next = list1
+            head.next = list1 #implies not list2 and list1, so list1 has nodes, so append the rest of list1's nodes to the head result
         return dummy.next #mistake was dummy.next, not head.next, because dummy was used to associate with the linked list itself.
 
 
