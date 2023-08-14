@@ -78,16 +78,16 @@ My Solution 7/1/23 refresh:
 class Solution:
     def isValid(self, s: str) -> bool:   
         stack = []
-        openbrackets = "({["
-        closebrackets = ")}]"
+        openbrackets = "({[" #these are all possibilities of opening brackets that we can have 
+        closebrackets = ")}]" #make sure the corresponding closing bracket is at the same index in this string as in openbrackets
         for values in s:
             if values in openbrackets:
                 stack.append(values)
-            elif values in closebrackets and not stack:
+            elif values in closebrackets and not stack: #stack is empty, and )( dosen't count as valid, so return False
                 return False
             else:
-                complement = stack.pop()
-                if openbrackets.index(complement) != closebrackets.index(values): #make sure we are lining up values with closebrackets.index because this case has a close bracket and tries to find an opening bracket since not stack was false, meaning there were still characters in the stack, so it's still a possibility to be true to continue onto the next iteration
+                complement = stack.pop() #we have found a closing bracket and want to find the corresponding opening bracket 
+                if openbrackets.index(complement) != closebrackets.index(values): #make sure we are lining up values with closebrackets.index because this case has a close bracket and tries to find an opening bracket since not stack was false, meaning there were still characters in the stack, so it's still a possibility to be true to continue onto the next iteration of the for loop
                     return False
         return not stack #the stack should be empty is every pair has exactly one complement, so this is a boolean
 
