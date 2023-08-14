@@ -22,6 +22,8 @@ Output: [0,1]
 
 My Solution:
 
+#flipping trick is applied here with reverse dictionary 
+
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
         mydict = {}  #using a double for loop here is slow, so we use a dictionary. 
