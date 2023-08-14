@@ -55,13 +55,12 @@ class Solution:
 Another way I came up with:
 
 class Solution(object):
-   maxprofit = 0
    def maxProfit(self, prices):
        maxprofit = 0
        for i in range(1, len(prices)): #if you didn't include 1, i - [i - 1] would actually wrap around - [7, 1, 5. 3. 6. 4]: 7 - 4 = 3, which is wrong
            if prices[i] > prices[i - 1]: # you are only comparing the previous [7, 1, 5, 3, 6, 4] - 3 less than 5, so back to for loop, and i becomes 6.
                profit = prices[i] - prices[i - 1] #current minus previous
-               maxprofit += profit
+               maxprofit += profit #update max profit 
        return maxprofit
        
        
