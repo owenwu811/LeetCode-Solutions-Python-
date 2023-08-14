@@ -39,11 +39,11 @@ My Solution:
 
 class Solution:
     def hasCycle(self, head: Optional[ListNode]) -> bool:
-        slow = head #we are using a two pointer approach with slow and fast pointers, both starting at head
+        slow = head #we are using a two pointer approach with slow and fast pointers, both of which are starting at head of the linked list
         fast = head
-        while fast is not None and fast.next is not None: #making sure the fast exists and we are not out of bounds
+        while fast is not None and fast.next is not None: #making sure the fast exists and we are not out of bounds - if fast.next is not None, we know that fast isn't None either
             slow = slow.next
-            fast = fast.next.next #fast moves at twice the speed of slow
+            fast = fast.next.next #fast pointer moves through the linked list at twice the speed of slow, jumping two nodes at once 
             if slow == fast: #if slow and fast ever meet, then there is a cycle aka no disconnect assuming fast pointer paves the path, which it does in this case
                 return True
         return False #if you've trasversed through the entire list, and slow and fast never meet, or fast is on None, then there is not a cycle
