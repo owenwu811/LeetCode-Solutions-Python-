@@ -50,7 +50,7 @@ My Solution (Python):
 class Solution:
     import math
     def maxConsecutiveAnswers(self, answerKey: str, k: int) -> int:
-        windowstart = 0
+        windowstart = 0 #used to shrink window if need be, and windowend in the for loop is used to expand the window 
         result = 0 
         mostfrequent = 0 #we use this to keep track of the most frequent letter in the string so that we can subtract the entire string from that to minimize the number of flips needed
         mydict = dict()
@@ -62,6 +62,6 @@ class Solution:
             if (windowend - windowstart + 1) - mostfrequent > k: #we don't have enough flips in our allowance bank, so shrink the window by moving windowstart forward, but, first, kick that character out of our dictionary record
                 mydict[answerKey[windowstart]] -= 1
                 windowstart += 1
-            result = max(result, windowend - windowstart + 1)
+            result = max(result, windowend - windowstart + 1) #converting indexes back to length because question asks for length, but computers use indexes to iterate
         return result
                 
