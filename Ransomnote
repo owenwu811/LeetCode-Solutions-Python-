@@ -57,7 +57,7 @@ class Solution:
                 magazineD[m] = 0
             magazineD[m] += 1
         for key, value in ransomnoteD.items(): #.items is used to iterate over a dictionary in python
-            if value > magazineD.get(key, 0):
+            if value > magazineD.get(key, 0): # compares the value (count) of the current word in the ransom note dictionary with the corresponding value in the magazineD dictionary. The .get(key, 0) method is used to retrieve the value associated with the key from the magazineD dictionary. If the key is not present in the magazineD dictionary, the .get() method returns 0
                 return False
         return True
 
