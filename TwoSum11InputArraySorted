@@ -48,7 +48,7 @@ for i, j in enumerate(numbers):
             print(left + 1, right + 1) #this problem is different in that we are returning non indexed but lengthed values, so add 1
         elif pointersum < target: #since we know the array is sorted, we increment left pointer index to the next element that we will eventually plugin to the numbers list to get the value when we find the value we are looking for
             left += 1
-        else:   
+        else:   #we either have to increment left or decrement right, so if pointer sum is not equal to or smaller than target, and the input array is sorted from largest to smallest, we must decrement right to index into a smaller value in the next iteration
             right -= 1 
        
 # IMPORTANT DISTINCTION: for line 45 - while left < right - WE NEED WHILE LEFT < RIGHT BECAUSE WITHOUT THIS CHECK, IT WOULD CROSS, AND KEEP GOING UNTIL IT TRIES TO ACCESS AND INDEX ON THE OPPOSITE SIDE OUT OF BOUNDS. THIS MAY NOT RESULT IN AN INFINITE LOOP. Not having while left < right might not lead to an infinite loop but just slower calculation times
