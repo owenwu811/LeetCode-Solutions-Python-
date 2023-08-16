@@ -36,7 +36,7 @@ class Solution:
         for i in range(n - 1): #8 - 1 = 7; range(7) = 0123456, so 8 - 6 to make room for 2 pointers
             temp = one 
             one = one + two #the result we will return before terminating case
-            two = temp 
+            two = temp #two is set to one's previous value
         return one
         
   #line 35 is the one pointer
