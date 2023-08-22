@@ -56,11 +56,11 @@ class Solution:
         while p1 >= 0 and p2 >= 0: #a boundary check since we know that p1 and p2 are not too far to the right outside the array due to the previous lines
             if nums1[p1] > nums2[p2]: #nums1 is an array while p1 is an integer index
                 nums1[p1 + p2 + 1] = nums1[p1]
-                p1 -= 1
+                p1 -= 1 #moving 1 pointer backwards because we already merged that element into the final list
             else:
                 nums1[p1 + p2 + 1] = nums2[p2]
-                p2 -= 1
+                p2 -= 1 #moving 2 pointer backwards because we already merged that element into the final list (we merge either 1 or 2, not both. we are starting from the end of each list and doing this comparison)
         
-        while p2 >= 0:
+        while p2 >= 0: #boundary check
             nums1[p2] = nums2[p2]
             p2 -= 1
