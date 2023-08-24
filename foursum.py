@@ -36,8 +36,7 @@ class Solution(object):
             for second in range(first + 1, len(nums) - 2): #second pointer increments when while third < fourth is false
                 if second > first + 1 and nums[second] == nums[second - 1]: #note that nums[second] == num[first] won't work because second > first + 1 ensures that second is ATLEAST TWO STEPS ahead of first, not one step
                     continue
-                third = second + 1 #note that third and fourth pointer values are set according to their relationship to first and second pointer; current third and fourh pointer values have no relationship to what the previous third and fourth pointer values were before
-                fourth = len(nums) - 1
+                third, fourth = second + 1, len(nums) - 1 #note that third and fourth pointer values are set according to their relationship to first and second pointer; current third and fourh pointer values have no relationship to what the previous third and fourth pointer values were before
                 while third < fourth: #we are reducing the problem into a two sum wih two pointer wih the 3rd and 4th pointer, so we need to make sure the third and fourth don't cross, and if they do cross, then go back to 2nd pointer
                     foursum = nums[first] + nums[second] + nums[third] + nums[fourth]
                     if foursum < target and third < fourth: # we are reducing the problem into essentially a two sum #with third and fourth pointer
@@ -95,8 +94,7 @@ class Solution:
             for second in range(first + 1, len(nums) - 2): #must include first + 1 because second has to start exactly one space to the right of first and go up to but not including 4 - 2 = 2.
                 if second > first + 1 and nums[second] == nums[second - 1]:
                     continue
-                third = second + 1
-                fourth = len(nums) - 1
+                third, fourth = second + 1, len(nums) - 1
                 while third < fourth:
                     foursum = nums[first] + nums[second] + nums[third] + nums[fourth]
                     if foursum < target:
