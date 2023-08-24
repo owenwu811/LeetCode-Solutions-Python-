@@ -59,3 +59,17 @@ class Solution:
                 return False
         return True
 
+#counter class auto handles this to abstract away the low level stuff - cleaner solution below
+
+from collections import Counter
+
+class Solution:
+    def canConstruct(self, ransomNote: str, magazine: str) -> bool:
+        ransomD = Counter(ransomNote)
+        magazineD = Counter(magazine)
+        
+        for x, y in ransomD.items():
+            if y > magazineD[x]:
+                return False
+        return True
+        
