@@ -32,15 +32,11 @@ class Solution:
         closest_sum = float('inf') #setting closest_sum to infinity so that next turn will always be less than infinity
 
         for i in range(len(nums) - 2): #i acts as the first pointer starting with index 0 here
-            left = i + 1
-            right = len(nums) - 1
-
+            left, right = i + 1, len(nums) - 1
             while left < right:
-                three_sum = nums[i] + nums[left] + nums[right]
-                
+                three_sum = nums[i] + nums[left] + nums[right]                
                 if three_sum == target:
                     return target
-
                 if abs(three_sum - target) < abs(closest_sum - target): #you can do abs(three_sum - target) or abs(target - three_sum) as the values are the same except with flipped signs but abs puts them back as same sign
                     #whichever one has the bigger difference needs to be set to the one with the smaller distance when comparing three_sum to current_sum
                     closest_sum = three_sum #this will always execute on the 1st turn since anything minus target will always be less than infinity minus target
