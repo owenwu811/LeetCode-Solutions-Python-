@@ -60,8 +60,7 @@ class Solution:
  class Solution:
     def isValid(self, s: str) -> bool:   
         result = []
-        opening_brackets = "([{"
-        closing_brackets = ")]}"
+        opening_brackets, closing_brackets = "([{", ")]}"
         for char in s:
             if char in opening_brackets:
                 result.append(char)
