@@ -40,8 +40,7 @@ My Solution:
 numbers = [2, 7, 11, 15]
 target = 9
 for i, j in enumerate(numbers): 
-    left = 0 #again, we are using integers to represent indicies that we will plug in
-    right = len(numbers) - 1 
+    left, right = 0, len(numbers) - 1 #again, we are using integers to represent indicies that we will plug in
     while left < right:
         pointersum = numbers[left] + numbers[right]
         if pointersum == target: #we are comparing to the target directly this time instead of trying to find the complement. this is where this problem differs from two sum
