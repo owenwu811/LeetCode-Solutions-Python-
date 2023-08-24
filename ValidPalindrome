@@ -42,8 +42,7 @@ class Solution:
  class Solution:
     def isPalindrome(self, s: str) -> bool - this approach is starting from the middle and expanding outwards and checking if they are the same until you reach the opposite ends:
         middle = len(s) / 2
-        left = middle
-        right = middle
+        left, right = middle, middle
         while left >= 0 and right < len(s):
             if s[left] != s[right]:
                 return False
@@ -56,8 +55,7 @@ class Solution:
 
 class Solution:
     def isPalindrome(self, s: str) -> bool:
-        forwarddict = {}
-        backwarddict = {}
+        forwarddict, backwarddict = {}, {}
         for i in s:
             forwarddict[s] = 0
         forwarddict[s] += 1
