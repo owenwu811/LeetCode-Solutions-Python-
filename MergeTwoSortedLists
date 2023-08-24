@@ -17,9 +17,8 @@ class ListNode:
 
 def mergeTwoLists(list1, list2):
     # Create a dummy node that serves as the head of the merged list
-    dummy = ListNode()
+    dummy, current = ListNode(), dummy
     #current will represent the merged list
-    current = dummy
     while list1 and list2:
         if list1.val <= list2.val: #if the values are equal, merge the values from list1 into the merged list
             # current.next = list1.val instead of current.next = list1 would lose the pointer because it only takes the value of the node, not the node itself because list1.val is the value of the node, not the node itself:
@@ -48,9 +47,8 @@ class ListNode:
 
     def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
         #we are creating the head of the merged list we will eventually return
-        previousoffirst = ListNode(0)
+        previousoffirst, result = ListNode(0), previousoffirst
         #result = previousoffirst - is when the dummy node is actually associated with a new merged list called result, and result doesn't actually have a head node at this point, just a previous node to the head
-        result = previousoffirst
         #make sure list1 and list2 are not empty and actually have nodes 
         while list1 and list2:
             if list1.val <= list2.val:
@@ -78,8 +76,7 @@ class ListNode:
 #         self.next = next
 class Solution:
     def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
-        head = ListNode(0) 
-        result = head
+        head, result = ListNode(0), head
         while list1 and list2: #make sure both lists have node elements inside
             if list1.val <= list2.val: #<= or < both work since the logic works out as if they are equal, you can append either element
                 result.next = list1
@@ -105,8 +102,7 @@ class Solution(object):
         :type list2: Optional[ListNode]
         :rtype: Optional[ListNode]
         """
-        dummy = ListNode(0)
-        head = dummy
+        dummy, head = ListNode(0), dummy
         while list1 and list2:
             if list1.val < list2.val:
                 head.next = list1
@@ -139,8 +135,7 @@ class Solution(object):
         """
         
 
-        dummy = ListNode(0)
-        head = dummy
+        dummy, head = ListNode(0), dummy
         while list1 and list2:
             if list1.val < list2.val:
                 head.next = list1
@@ -149,10 +144,7 @@ class Solution(object):
                 head.next = list2
                 list2 = list2.next
             head = head.next
-        if not list2 and list1:
-            head.next = list1
-        else:
-            head.next = list2
+        head.next = list1 if list1 else list2 #cleaner version
         return dummy.next
 
 
