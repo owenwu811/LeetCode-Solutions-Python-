@@ -26,8 +26,7 @@ Output: true
 
 class Solution:
     def canConstruct(self, ransomNote: str, magazine: str) -> bool:
-        ransomdict = {}
-        magazinedict = {}
+        ransomdict, magazinedict = {}, {}
         for r in ransomNote:
             if r not in ransomdict:
                 ransomdict[r] = 0
@@ -46,8 +45,7 @@ class Solution:
 
 class Solution:
     def canConstruct(self, ransomNote: str, magazine: str) -> bool:
-        ransomnoteD = {}
-        magazineD = {}
+        ransomnoteD, magazineD = {}, {}
         for r in ransomNote:
             if r not in ransomnoteD:
                 ransomnoteD[r] = 0
