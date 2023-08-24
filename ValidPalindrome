@@ -28,8 +28,7 @@ class Solution:
     def isPalindrome(self, s: str) -> bool:
         s.replace(" ", "") #s.replace(old, new)
         s = re.sub('[\W_]', '', s) #re.sub(pattern, replacement, string). '[\W_]' patternmatches any character that isn't considered a word so that the replacement can replace the pattern. 
-        start = 0 #indicies representing integers as starting pointer
-        end = len(s) - 1 #indicies representing integers as ending pointer
+        start, end = 0, len(s) - 1 #indicies representing integers as starting and ending pointer
         while start < end: #make sure start and end don't cross 
             if s[start].casefold() != s[end].casefold(): #if, even after ignoring case, any starting character dosen't matching ending, we can automatically return false and say that it's not a perfect palindrome already
                 return False
