@@ -38,10 +38,8 @@ My Solution (Python):
 #         self.next = next
 class Solution:
     def middleNode(self, head: Optional[ListNode]) -> Optional[ListNode]:                #we are using two pointer here where slow and fast pointer both start on the 1st node of the linked list. if the fast pointer moves at double the speed as slow, by the time fast reaches end of linked list, slow will reach middle of linked list, which works on an odd length linked list
-        slow = head                                                                    #on even length linked lists, it works too since we are returning the right most of the middle nodes, and we will terminate after fast.next.next, which will take fast out of bounds, so slow will still be on the right of the two middle nodes
-        fast = head
+        slow, fast = head, head                                                                    #on even length linked lists, it works too since we are returning the right most of the middle nodes, and we will terminate after fast.next.next, which will take fast out of bounds, so slow will still be on the right of the two middle nodes
         while fast is not None and fast.next is not None:
-            slow = slow.next
-            fast = fast.next.next
+            slow, fast = slow.next, fast.next.next
         return slow
 
