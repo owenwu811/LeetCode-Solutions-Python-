@@ -23,8 +23,8 @@ My Solution (Python):
 
 class Solution(object):
     def reverseList(self, head):
-        current = head #we initially set current to 1.               # NULL 1 2 3 4 5
-        previous = None # we initially set previous to null behind 1 # P    C
+        current, previous = head, None #we initially set current to 1.               # NULL 1 2 3 4 5
+        # we initially set previous to null behind 1 # P    C
         while current is not None:
             next = current.next # N 1 2 3 3 4 5 (previous is 1, current is 2, next is 3) becomes (previous is 2 from line 31, current is 3 from line 32, and next is 4 from this line aka 29)
             current.next = previous #let's assume that prev is on 1 and current is on 2. so we put 1 in front of 2 > 2 1. In the next iteration, if current is 3 and previous is 2, we put 2 in front of 3 > 3 2. Previous value is overriding current.next, so 2 overtakes 4's last place, with 4s last place being next > 3 2
