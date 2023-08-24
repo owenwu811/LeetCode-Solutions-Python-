@@ -79,8 +79,7 @@ class Solution(object):
                     right -= 1
                 else:
                     result.append([j, nums[left], nums[right]])
-                    left += 1 #this solution is even faster as we know we found a result, so we can reduce the time complexity by moving left and right towards each other instead of just left
-                    right -= 1
+                    left, right = left + 1, right - 1 #this solution is even faster as we know we found a result, so we can reduce the time complexity by moving left and right towards each other instead of just left
                     while nums[left] == nums[left - 1] and left < right: #duplicate checking the outer pairs
                         left += 1
                     while nums[right] == nums[right + 1] and left < right:
@@ -106,8 +105,7 @@ class Solution:
                     right -= 1
                 else:
                     result.append([nums[i], nums[left], nums[right]])
-                    left += 1
-                    right -= 1
+                    left, right = left + 1, right - 1
                     while nums[left] == nums[left - 1] and left < right:
                         left += 1
                     while nums[right] == nums[right + 1] and left < right:
