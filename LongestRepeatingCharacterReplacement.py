@@ -29,10 +29,8 @@ My Solution:
   class Solution:
     import math
     def characterReplacement(self, s: str, k: int) -> int:
-        maxlength = 0
-        windowstart = 0
+        maxlength, windowstart, max_char_freq = 0, 0, 0
         char_freq = {}
-        max_char_freq = 0
         for window_end in range(len(s)):
             right_char = s[window_end]
             if right_char not in char_freq:
@@ -64,10 +62,8 @@ My Solution:
  class Solution:
     import math
     def characterReplacement(self, s: str, k: int) -> int:
-        result = 0 #result is what we will return in the end
+        result, windowstart, maxcharacter = 0, 0, 0 #result is what we will return in the end while maxcharacter gets updated on each turn
         charfrequency = {}
-        windowstart = 0
-        maxcharacter = 0 #gets updated on each turn
         for windowend in range(len(s)):
             if s[windowend] not in charfrequency: 
                 charfrequency[s[windowend]] = 0 #only executes to create a new row for a char that dosen't already exist in the dictionary
@@ -92,9 +88,8 @@ class Solution:
     import math
     def characterReplacement(self, s: str, k: int) -> int:
         frequency = {} #keeping track of frequency of characters
-        windowstart = 0 #integers representing indicies 
-        mostfrequent = 0
-        lengthoflongest = 0 #result we will return at the end
+        windowstart, mostfrequent, lengthoflongest = 0, 0, 0 #integers representing indicies 
+        lengthoflongest variable will be our anwser at the end
         for windowend in range(len(s)):
             if s[windowend] not in frequency:
                 frequency[s[windowend]] = 0
