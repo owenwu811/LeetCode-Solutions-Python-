@@ -31,8 +31,8 @@ My Solution:
 
 class Solution:
     def climbStairs(self, n: int) -> int:
-        one = 1 #regardless of how big or small n is, the first two pointers will always start at 1, and they will move left until one pointer is to the right of the output and two pointer is two to the right of the output
-        two = 1 #the 2nd pointer starts on the same element
+        one, two = 1, 1 #regardless of how big or small n is, the first two pointers will always start at 1, and they will move left until one pointer is to the right of the output and two pointer is two to the right of the output
+        #the 2nd pointer starts on the same element
         for i in range(n - 1): #8 - 1 = 7; range(7) = 0123456, so 8 - 6 to make room for 2 pointers
             temp = one 
             one = one + two #the result we will return before terminating case
