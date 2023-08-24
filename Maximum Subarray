@@ -28,10 +28,7 @@ My Solution:
 class Solution:
     import math
     def maxSubArray(self, nums: List[int]) -> int:
-        left = 0 #using the sliding window approach
-        right = 0
-        maxsum = nums[0]
-        currsum = 0
+        left, right, currsum, maxsum = 0, 0, 0, nums[0] #using the sliding window approach
         for right in range(len(nums)):
             currsum += nums[right]
             if currsum < 0:
