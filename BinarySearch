@@ -63,8 +63,7 @@ another solution:
 
 class Solution:
     def search(self, nums: List[int], target: int) -> int:
-        left = 0
-        right = len(nums) - 1
+        left, right = 0, len(nums) - 1
         while left <= right: # = is necessary so that, in case the target equals the middle index itself, it's not being ignored by the looping condition.
             middle = left + (right - left) // 2 #this could also be middle = right - (right - left) // 2 as well
             if nums[middle] == target:
@@ -82,13 +81,12 @@ class Solution:
 class Solution:
     def search(self, nums: List[int], target: int) -> int:
         #already sorted
-
         left, right = 0, len(nums) - 1 #change is here, taking up one less line of code
-        while left <= right:
-            middle = (left + right) // 2
-            if nums[middle] == target:
+        while left <= right: #= is included since there may be the pointer where left and right are equal that also happens to be equal to the target that we are looking for 
+            middle = (left + right) // 2 #avoids issues with floating point integers since // deals with integer division, so the result will be rounded down
+            if nums[middle] == target: #we found the target, so return 
                 return middle
-            elif nums[middle] < target:
+            elif nums[middle] < target: 
                 left = middle + 1
             else:
                 right = middle - 1
