@@ -29,15 +29,12 @@ Solution (Python):
 class Solution:
     @staticmethod
     def numberOfSubstrings(s):
-        count = 0 #keeps track of all valid substrings containing atleast one instance of each of the three characters
-        freq = {'a': 0, 'b': 0, 'c': 0} #keeps track of the count of each character within the current sliding window 
-        left = 0 
+        count, freq, left = 0, {'a': 0, 'b': 0, 'c': 0}, 0 #keeps track of all valid substrings containing atleast one instance of each of the three characters
+        #freq dict keeps track of the count of each character within the current sliding window 
         for right in range(len(s)): #right pointer actually creates the window as it expands 
-            freq[s[right]] += 1 #updates the count of the character at the right index in the freq dictionary 
-            
+            freq[s[right]] += 1 #updates the count of the character at the right index in the freq dictionary    
             while all(freq.values()): #condition that checks whether all the values in the freq dictionary are non-zero. when this condition becomes false, atleast one of the characters is missing from the window, which indicates that the substring no longer contains all three characters 
                 count += len(s) - right #it means the current window contains all three characters. So, the count of valid substrings is incremented by the number of substrings that can be formed from the remaining characters in the string s (i.e., from right to the end of the string
                 freq[s[left]] -= 1 #shrink window to make sure we do not double count a substring, reflecting the letter frequency in the dictionary
-                left += 1 #actually shrink the window by moving the left pointer forward one 
-                
+                left += 1 #actually shrink the window by moving the left pointer forward one          
         return count #return count because we have finished iterating through each character of the string
