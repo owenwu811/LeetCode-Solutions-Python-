@@ -25,14 +25,11 @@ Explanation: In this case, no transactions are done and the max profit = 0.
 class Solution:
     import math
     def maxProfit(self, prices: List[int]) -> int:
-        buy = 0
-        sell = 1
-        maxprofit = 0
+        buy, sell, maxprofit = 0, 1, 0
         while sell < len(prices):
             if prices[buy] > prices[sell]:
                 buy = sell
-            profit = prices[sell] - prices[buy]
-            maxprofit = max(maxprofit, profit)
+            profit, maxprofit = prices[sell] - prices[buy], max(maxprofit, profit)
             sell += 1
         return maxprofit
 
