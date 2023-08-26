@@ -36,8 +36,7 @@ class Solution:
             if node is None:
                 return True
             
-            left_height = get_height(node.left) #call line 3 function again except trasversing down one node to the left 
-            right_height = get_height(node.right) 
+            left_height, right_height = get_height(node.left), get_height(node.right) #call line 3 function again except trasversing down one node to the left 
             
             if abs(left_height - right_height) > 1: #the left and right trees have heights that differ by more than one node vertically
                 return False
