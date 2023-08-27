@@ -142,3 +142,5 @@ Notice how line 4 strs[0] is the same as line 6 strs[0][i], so we may be using t
 
 
 We cannot substitute strs[0] in lines 4, 6, and 8 with strs[1] or strs[2] because it would be out of the index of i, which starts at 0 - I PROVED MY ASSUMPTION TRUE BECAUSE using strs[-1] in lines 4, 6, and 8 works!!!
+
+The reason strs[-2] in lines 4, 6, and 8 dosen’t work is probably because it gives us the same substring in the list as strs[0] given that the list is of length 3 substrings - ["flower","flow","flight"] (both strs[0] and strs[-2] are "flower")
