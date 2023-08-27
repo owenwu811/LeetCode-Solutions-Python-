@@ -55,9 +55,8 @@ Another Solution:
 class Solution:
     import math
     def lengthOfLongestSubstring(self, s: str) -> int:
-        windowstart = 0
-        result = 0
-        duplicatecheck = set() #we use a set, not a dictionary, to check for duplicates
+        windowstart, result, duplicatecheck = 0, 0, set()
+        #we use a set, not a dictionary, to check for duplicates
         for windowend in range(len(s)):
             while s[windowend] in duplicatecheck: #if there is a duplicate
                 duplicatecheck.remove(s[windowstart])
@@ -72,9 +71,7 @@ class Solution:
  class Solution:
     import math
     def lengthOfLongestSubstring(self, s: str) -> int:
-        lengthoflongest = 0
-        windowstart = 0
-        duplicatecheck = set()
+        lengthoflongest, windowstart, duplicatecheck = 0, 0, set()
         for windowend in range(len(s)):
             while s[windowend] in duplicatecheck:
                 duplicatecheck.remove(s[windowstart]) #make changes to set first so we keep the tally system in check
@@ -88,9 +85,7 @@ Refresher 8/1/23:
 class Solution:
     import math
     def lengthOfLongestSubstring(self, s: str) -> int:
-        lengthoflongest = 0
-        duplicatecheck = set()
-        windowstart = 0
+        lengthoflongest, duplicatecheck, windowstart = 0, set(), 0
         for windowend in range(len(s)):
             while s[windowend] in duplicatecheck: #this must be a while and not an if statement because we need to continually shrink the window when the next character is a duplicate from the windowstart side
                 duplicatecheck.remove(s[windowstart])
