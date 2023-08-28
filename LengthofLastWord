@@ -48,8 +48,7 @@ My Solution (Python):
 
 class Solution:
     def lengthOfLastWord(self, s: str) -> int:
-        result = []
-        newstring = s[::-1] #reversing the string 
+        result, newstring = [], s[::-1] #reversing the string 
         for i in newstring.strip(): #strip is for chopping off the front end end of the string so that we don't terminate the loop too early just because we ran into space before running into the first character of the final word that we want the length of to return as the result 
             if i.isalpha(): #if we do run into an alphabetical character, add it to the resulting list that we will take the length of later
                 result.append(i)
