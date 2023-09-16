@@ -1,0 +1,61 @@
+Given an array, colors, which contains a combination of the following three elements:
+
+0
+0
+ (representing red)
+1
+1
+ (representing white)
+2
+2
+ (representing blue)
+Sort the array in place so that the elements of the same color are adjacent, with the colors in the order of red, white, and blue.
+
+
+My Solution (Python):
+
+def sort_colors(colors):
+
+    red, white, blue = 0, 0, len(colors) - 1
+    #for white in range(blue):
+    #[102122]
+    #blue = 5
+    #i = 0,1,2,3,4, so must add 1 because range without + 1 would terminate right before the actual flip in a case where color = [0, 1, 0] because i would be 0, 1 before terminating while the len(blue) would be 2, and we want to flip the index 1's 1 with index 2's 0 to go from [0, 1, 0] to [0, 0, 1]
+    for i in range((blue) + 1):
+        if colors[white] == 0 and white <= blue:
+            colors[white], colors[red] = colors[red], colors[white]
+            white += 1
+            red += 1
+        elif colors[white] == 1 and white <= blue:
+            white += 1
+    
+        elif colors[white] == 2 and white <= blue:
+            colors[white], colors[blue] = colors[blue], colors[white]
+            blue -= 1
+            
+    return colors
+
+
+Grokking's Solution (Python):
+
+def sort_colors(colors):
+
+    # Replace this placeholder return statement with your code
+    red, white, blue = 0, 0, len(colors) - 1
+    #for white in range(blue):
+    #[102122]
+    #blue = 5
+    #i = 0,1,2,3,4
+    while white <= blue:
+        if colors[white] == 0 and white <= blue:
+            colors[white], colors[red] = colors[red], colors[white]
+            white += 1
+            red += 1
+        elif colors[white] == 1 and white <= blue:
+            white += 1
+    
+        elif colors[white] == 2 and white <= blue:
+            colors[white], colors[blue] = colors[blue], colors[white]
+            blue -= 1
+            
+    return colors
