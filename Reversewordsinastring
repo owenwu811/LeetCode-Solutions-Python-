@@ -1,0 +1,37 @@
+#Statement
+#Given a sentence, reverse the order of its words without affecting the order of letters within a given word.
+
+#Constraints:
+
+#Sentence contains English uppercase and lowercase letters, digits, and spaces.
+
+#The order of the letters within a word is not to be reversed.
+#Note: The input string may contain leading or trailing spaces or multiple spaces between words. The returned string, however, should only have a single space separating each word. Do not include any extra spaces.
+
+
+#My Solution(Python):
+
+def reverse_words(sentence):
+   sentence_chars = sentence.split() 
+   # Replace this placeholder return statement with your code
+   left, right = 0, len(sentence_chars) - 1
+   while left < right:
+      sentence_chars[left], sentence_chars[right] = sentence_chars[right], sentence_chars[left]
+      left += 1
+      right -= 1
+   return " ".join(sentence_chars) #mistake was not having the space to seperate each word
+
+
+#Grokking's solution(Python):
+
+def reverse_words(sentence):
+    if not sentence.strip(): #covers edge case where entire sentence is empty
+        return ""
+    words = sentence.split() #better variable names
+    left, right = 0, len(words) - 1
+    while left < right:
+        words[left], words[right] = words[right], words[left]
+        left += 1
+        right -= 1
+
+    return " ".join(words)
