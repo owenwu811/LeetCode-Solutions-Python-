@@ -93,3 +93,20 @@ class Solution:
             duplicatecheck.add(s[windowend])
             lengthoflongest = max(lengthoflongest, windowend - windowstart + 1)
         return lengthoflongest
+
+Refresher 9/23/23:
+
+class Solution:
+    import math
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        historicalbiggest = 0
+        duplicatecheck = set()
+        windowstart = 0
+        for windowend in range(len(s)):
+            while s[windowend] in duplicatecheck: #while is used because if there is more than 1 duplicate, we have to keep removing the duplicate with windowstart until no duplicates are left, not just remove 1 of the duplicates aka the tally system has to even out
+                duplicatecheck.remove(s[windowstart]) #you have to keep shrinking the window USING WINDOWSTART until you get rid of both w's if there are 2 ws and then when there are no duplicates, then you can add the windowend character and start counting the new window as a potential new window length result
+                windowstart += 1
+            duplicatecheck.add(s[windowend])
+            currentwindowlength = windowend - windowstart + 1
+            historicalbiggest = max(historicalbiggest, currentwindowlength)
+        return historicalbiggest
