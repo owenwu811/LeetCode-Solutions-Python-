@@ -47,7 +47,7 @@ class Solution:
             if j not in tdict: #must have not in tdict, not in tdict
                 tdict[j] = 0
             tdict[j] += 1
-        if sdict == tdict:
+        if sdict == tdict: #could just say return sdict == tdict
             return True
         else:
             return False
