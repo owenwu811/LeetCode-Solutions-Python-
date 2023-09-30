@@ -90,4 +90,21 @@ class Solution:
                     return False
         return not stack #the stack should be empty is every pair has exactly one complement, so this is a boolean
 
+My Solution 9/29/23 refresh:
+
+class Solution:
+    def isValid(self, s: str) -> bool:
+        stack = []
+        ob = "({["
+        cb = ")}]"
+        for char in s:
+            if char in ob:
+                stack.append(char)
+            elif char in cb and not stack:
+                return False 
+            else:
+                complementto = stack.pop()
+                if ob.index(complementto) != cb.index(char):
+                    return False
+        return not stack
 
