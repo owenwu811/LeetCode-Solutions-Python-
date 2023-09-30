@@ -47,4 +47,22 @@ class Solution:
         #we don't use a while loop in line 38 because we need to move the pointer ONCE and recompute the area, not move it over and over again. 
         #note that in cases where the two heights are equal, we can move either pointer, so we just choose right pointer to move in line 41 to write less lines of code
         #when left < right becomes false, meaning that the two pointers touch, then we know we have found every max solution at every greater width, so we can return the maxrea we have found
-            
+
+
+9/29/23 refresher (my solution):
+
+class Solution:
+    import math
+    def maxArea(self, height: List[int]) -> int:
+        result = 0
+        left = 0
+        right = len(height) - 1
+        while left < right:
+            current = (right - left) * min(height[left], height[right])
+            result = max(result, current)
+            if height[left] < height[right]:
+                left += 1
+            else:
+                right -= 1
+        return result
+
