@@ -87,8 +87,8 @@ class Solution:
     def fourSum(self, nums: List[int], target: int) -> List[List[int]]:
         result = []
         nums.sort()
-        for first in range(len(nums) - 3):
-            if first > 0 and nums[first] == nums[first - 1]:
+        for first in range(len(nums) - 3): #up to but not including the final value, so if first starts at 1, it includes up to and including index 2 if the the length is 6
+            if first > 0 and nums[first] == nums[first - 1]: #duplicate, so continue onto next iteration of loop 
                 continue
             for second in range(first + 1, len(nums) - 2): #must include first + 1 because second has to start exactly one space to the right of first and go up to but not including 4 - 2 = 2.
                 if second > first + 1 and nums[second] == nums[second - 1]:
