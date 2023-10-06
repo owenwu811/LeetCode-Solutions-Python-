@@ -29,9 +29,11 @@ class Solution:
         mydict = {}  #using a double for loop here is slow, so we use a dictionary. 
         for i, j in enumerate(nums): # we are getting i and j as the index, value pair of the array
             complement = target - j # we are looking for the target value minus the current index's value, which is the complement
-            if complement in mydict: #will always be false on the first turn since the dictionary is empty at start
+            if complement in mydict: #will always be false on the first turn since the dictionary is empty at start - if complement exists as a key in mydict, then return the corresponding value as a key in mydict to get the index as a reverse because complement will always have been j at some point
                 return mydict[complement], i #returning the two indicies IF we find them in our dictionary
             mydict[j] = i #if the complement is not already a VALUE, not KEY, in our dictionary, then add the value as the Key and the array's index as the value so that, if and when you do find the complement in the dictionary, you can call the key to get the value, which happens to be the array's index because we flipped the two. This is because dictionarys in python as only one directinoal: you can only call the key to get the value; you can't call the value to get the key. 
 #usually, you need to return 0 or nothing, but there is no such requirement in the question, so there is no need for a return at the end.
 
 #NOTE THAT LINES 30 AND 31 WILL NEVER BE TRUE ON THE FIRST ITERATION BECAUSE WE'VE ONLY SEEN ONE DIGIT SO FAR, SO THERE'S NOT EVEN A SECOND DIGIT UNTIL THE 2ND ITERATION.
+
+
