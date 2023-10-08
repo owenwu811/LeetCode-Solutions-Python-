@@ -60,3 +60,20 @@ class Solution:
 #after we find a mid that makes isBadVersion true, we will reduce the array's right to one left of mid and then add both left and right divided by 2 plus left again to calculate mid again in the reduced space
 
 
+# The isBadVersion API is already defined for you.
+# def isBadVersion(version: int) -> bool:
+
+10/8/23 refresher solution (after looking at solution, I came up with some modifications and got the accepted solution below) - the key to remember is that ALL BAD VERSIONS AFTER THE FIRST BAD VERSION ARE ALSO BAD:
+class Solution:
+    def firstBadVersion(self, n: int) -> int:
+        l = 0
+        r = n 
+        while l <= r:
+            mid = (l + r) // 2
+            if isBadVersion(mid): #is the current mid is a BadVersion aka isBadVersion(mid) turns out to be true, the actual FIRST bad version could be before mid, so we move right to mid minus one because, at the very least, right - 1 would HAVE to be the first bad version 
+                r = mid - 1
+            else: #we don't have a bad number to go by, so if isBadVersion(mid)
+            #returns false, then we know that the bad version can't be before mid because all versions after a bad version are bad, so if isBadVersion(mid - 1) were true, than isBadVersion(mid) would be true, which it isn't, so if we 
+            #know that the bad version isn't before the mid and isn't the mid, then, at best case, the first bad version could only be mid + 1, so we move the left pointer to mid + 1
+                l = mid + 1
+        return l #the reason we return left is because left represents the FIRST bad version aka the FIRST time that isBadVersion(mid) returns true
