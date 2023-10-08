@@ -66,7 +66,7 @@ class Solution:
                 three_sum = nums[i] + nums[l] + nums[r]
                 if three_sum == target: # since target is equal to three_sum, it's the anwser
                     return target
-                if abs(target - three_sum) < abs(target - closest_sum): # if threesum is smaller than closestsum, than that means closestsum is bigger than threesum, so closestsum is father away from target than threesum is, so update the solution to be threesum since it's now our next closest sum - it works out with negatives too - if the target is negative, the target still stays the same from left to right side 
+                if abs(target - three_sum) < abs(target - closest_sum): # if threesum is smaller than closestsum, than that means closestsum is bigger than threesum, so closestsum is father away from target than threesum is, so update the solution to be threesum since it's now our next closest sum - it works out with negatives too - if the target is negative, the target still stays the same from left to right side, which is the key to why this formula works aka the target is always the number being subtracted from  
                     closest_sum = three_sum
                 if three_sum < target: #we want to get as close as we can to target but with the stipulation that you have to be on a valid tile aka value in the list
                     l += 1
