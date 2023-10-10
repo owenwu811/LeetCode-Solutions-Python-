@@ -77,3 +77,23 @@ class Solution:
             #know that the bad version isn't before the mid and isn't the mid, then, at best case, the first bad version could only be mid + 1, so we move the left pointer to mid + 1
                 l = mid + 1
         return l #the reason we return left is because left represents the FIRST bad version aka the FIRST time that isBadVersion(mid) returns true
+
+
+10/9/23 refresher solution (my own in depth notes and thought process - please read):
+
+# The isBadVersion API is already defined for you.
+# def isBadVersion(version: int) -> bool:
+
+class Solution:
+    def firstBadVersion(self, n: int) -> int:
+        l = 0
+        r = n
+        while l <= r:
+            mid = (l + r) // 2
+            if isBadVersion(mid):
+                r = mid - 1
+            else:
+                l = mid + 1 #if version 5 is mid and version 5 is good, then version 1 had to have been good software to have gotten up to 5's point because if 1 is bad, then 5 is bad because 5 comes after 1, so if 1 is good, then 5 is good, so if 5 is good, then 1 had to have been good because 5 builds on one, so if 5 is good, at best case, the first bad version has to be 6 at the best case, so move left pointer to 6 aka mid + 1 if mid is 5. 
+        return l #we return left after l <= r is broken because left is always the smallest out of l, r, and mid, and if l and r cross, then that means right had to have been pulled down meaning that we had to have found a bad version because, for right to have been pulled down, we had to have called a bad version, so since l is the smallest, and l has atleast stepped on right but not overstepped, we know that l is at worst equal to r or l is smaller than r, which represnets the smallest numbered bad version aka the first version that returned true from the isBadVersion() function when everything before it returned false. the reason I am concluding that right had to have been pulled down aka bad version returned true for left and right to have overcrossed is because there always has to be a bad version, and for left to overcross aka make l <= r false, it must have come from the opposite direction and have crossed paths before overcrossing
+        # if only the left pointer is moved (meaning only the else block is executed), the pointers l and r will indeed eventually cross. in the case of 1 2 3 l mid r. if only left is pulled up aka else is called, l and r will still cross and overcross. note that the problem's constraints tell us that there will always be a bad version
+        #since there is guaranteed to always be a bad version, at worst case, the first bad version is the right most element, which, in this case, left will eventually hit by being pulled up over and over again aka the else block executed over again until they cross paths meaning that l will always eventually land on the first bad version
