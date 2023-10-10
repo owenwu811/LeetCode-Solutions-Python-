@@ -79,7 +79,7 @@ class Solution:
         return l #the reason we return left is because left represents the FIRST bad version aka the FIRST time that isBadVersion(mid) returns true
 
 
-10/9/23 refresher solution (my own in depth notes and thought process - please read):
+10/9/23 refresher (my own notes + thought process - please read):
 
 # The isBadVersion API is already defined for you.
 # def isBadVersion(version: int) -> bool:
