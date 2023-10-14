@@ -176,6 +176,6 @@ class Solution:
 #       i    12345
 #remember that the longest common prefix must apply to ALL 3 STRINGS - we are only as strong as our weakest or shortest member in this case
 
-#you have to use indexes aka i to compare to len(s) because len(strs[0]) < len(s) is valid but has index out of bounds error because, in the process of comparing, you're trying to access an index that is not valid in the other
-#you have to use len(s) because s isn't accessed with i and range while strs is, so if it's not the index one, it has to be the length one in the comparison
+#you have to use indexes aka i to compare to len(s) comparing len with len has the possibility to run into an index out of bounds error because, in the process of comparing, you're trying to access an index that is not valid in the other
+#you have to use len(s) because s isn't accessed with i and range while strs 
                 
