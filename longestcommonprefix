@@ -156,4 +156,23 @@ class Solution:
                     return res
             res += s[i] #works too instead of res ++ strs[0][i]
         return res
+
+class Solution:
+    def longestCommonPrefix(self, strs: List[str]) -> str:
+        res = ""
+        for i in range(len(strs[0])):
+            for s in strs:
+                if i == len(s) or s[i] != strs[0][i]:
+                    return res
+            res += strs[0][i]
+        return res
+
+
+#if i == len(s) means that your anwser key INDEX is out of bounds of either one of the 3 strings that exist in the list because they're supposed to be matched as they both come from strs and indexes are 1 less than string length, so if they are equal, there's a problem
+# like if i = 5 as the last of "flower" anwser key while len(s) = 6 for "flight", we're fine
+# but if i = 5 as the last of "flower" anwser key while len(s) = 5 for "flows", then "flower" would be overstepping "flows", so the biggest match out of ALL 3 strings in the list with the anwser key has ended since, at the very least, you can't keep comparing "floweR" in "flows"
+# "flower" "flows"
+#  012345   01234
+#       i    12345
+#remember that the longest common prefix must apply to ALL 3 STRINGS - we are only as strong as our weakest or shortest member in this case
                 
