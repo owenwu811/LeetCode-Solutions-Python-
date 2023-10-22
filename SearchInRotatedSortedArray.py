@@ -56,4 +56,17 @@ class Solution:
                 return i 
         if target not in myset:
             return -1
-        
+
+#My even better Solution (10/22/23 - Python) - since the problem states that every number is unique, we don't even need the set:
+
+class Solution:
+    def search(self, nums: List[int], target: int) -> int:
+        #myset = set()
+        #if target == 0: 
+        #    return nums[0]
+        for i in range(len(nums)): # i is an index
+            #myset.add(nums[i]) 
+            if nums[i] == target: #nums[i] is a value while target is an index
+                return i 
+        #if target not in myset:
+        return -1
