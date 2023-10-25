@@ -50,3 +50,19 @@ class Solution:
       # when trying to determine the depth for the left child of D (which doesn't exist), the method call becomes self.maxDepth(None) because D.left is None.
       # when a leaf node returns 0, it's just that particular next iteration returning 0 where self.maxDepth(None) not overriding the entire previous left historical height
       # if you switch the order of lines 44 and 45, the result will still be correct
+
+#refresher solution (10/25/23):
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def maxDepth(self, root: Optional[TreeNode]) -> int:
+        if root is None:
+            return 0
+        left = self.maxDepth(root.left)
+        right = self.maxDepth(root.right)
+        return max(left, right) + 1
