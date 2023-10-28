@@ -59,7 +59,22 @@ class Solution:
 
 
 
+My Solution (10/27/23 refresher):
 
+class Solution:
+    def lengthOfLastWord(self, s: str) -> int:
+        words = []
+        res = 0
+        s = reversed(s)
+        for i in s:
+            if i == ' ' and not words:
+                continue
+            elif i == ' ' and words:
+                return len(words)
+            else:
+                words.append(i)
+        return len(words)
+                
 
 
 
