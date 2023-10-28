@@ -39,11 +39,11 @@ Constraints:
 class Solution:
     def findRepeatedDnaSequences(self, s: str) -> List[str]:
         seen, res = set(), set()
-        for i in range(len(s) - 9): #len = 13, so index 3 is the last inclusive before out of bounds - 0, 1, 2, 3 
-            cur = s[i: i + 10] #3:13 means index 12 is the last inclusive
-            if cur in seen:
+        for i in range(len(s) - 9): #len = 13, so index 3 is the last inclusive before out of bounds - 0, 1, 2, 3
+            cur = s[i: i + 10] #3:13 means index 12 is the last inclusive - each 10 window character
+            if cur in seen: #already appeared, so did occur more than once, so add to result since we want to return all substrings that occur more than once
                 res.add(cur)
-            seen.add(cur)
+            seen.add(cur) #if current substring we are analyzing has not already been seen, then skip adding it to the result set and add it to just the seen set since it's the first time we have seen this substring #regardless of if this substring has been seen before, it is now seen, so add it to seen - we want to count as many times as the substring occurs in s from when it was seen from the 2nd time onewards
         return res
         
         #PYTHON SETS ORDER DOES NOT MATTER
