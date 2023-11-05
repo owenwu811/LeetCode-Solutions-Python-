@@ -30,7 +30,7 @@ class Solution:
         """
         Do not return anything, modify nums in-place instead.
         """
-        #if k is bigger than the length of the array, it wraps around
+        #if k is bigger than the length of the array, it wraps around - we are always setting k equal to the remainder of k / len(nums)
         k %= len(nums)
     
         # Reverse the entire array
