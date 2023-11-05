@@ -30,6 +30,7 @@ class Solution:
         """
         Do not return anything, modify nums in-place instead.
         """
+        #if k is bigger than the length of the array, it wraps around
         k %= len(nums)
     
         # Reverse the entire array
@@ -37,6 +38,6 @@ class Solution:
     
         # Reverse the first k elements
         nums[:k] = nums[:k][::-1]
-    
+ 
         # Reverse the remaining elements in the array
         nums[k:] = nums[k:][::-1]
