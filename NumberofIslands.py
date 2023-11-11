@@ -34,7 +34,7 @@ class Solution:
 
 #after a DFS call completes, 
 #the algorithm returns to the for loop to continue scanning the grid for any other '1's that might represent a different, unvisited island. 
-#The DFS call is responsible for an entire island, and the loops are responsible for ensuring every cell in the grid is checked. - THIS IS THE KEY
+#The DFS call is responsible for an entire island, and the loops are responsible for ensuring every cell in the grid is checked. - THIS IS THE KEY - and, remember that whether rows or columns loop comes first dosen't matter, so we could be returning to j loop or i loop if you wanted to flip the order of loops
 
 #the 1st time this if statement in line 14 is evalvulated, it will never execute the inner block because it came from the if statement where grid[I]jj] was equal to 1 from line 24. It's only after one of the recursive calls below executes that this if block can become true?
                 #return
