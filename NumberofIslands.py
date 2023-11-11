@@ -13,7 +13,7 @@
 class Solution:
     def numIslands(self, grid: List[List[str]]) -> int:
         def dfs(down, right, grid):
-            if down < 0 or down >= len(grid) or right < 0 or right >= len(grid[0]) or grid[down][right] == '0': #skipping this block if line 24 equals 1
+            if down < 0 or down >= len(grid) or right < 0 or right >= len(grid[0]) or grid[down][right] == '0': #skipping this block if line 24 equals 1 on the 1st call iteration
                 return #out of bounds, so return out of the function
             grid[down][right] = '0' #sinking the 1 into a 0 so we don't double count it - we go here from line 24
             dfs(down + 1, right, grid) #and then we call dfs again to go down one tile and then we boundary check this new tile in line 14 
