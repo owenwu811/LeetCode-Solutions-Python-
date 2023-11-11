@@ -8,6 +8,8 @@
 
 #Python3 solution:
 
+#we have to trasverse every tile of the grid to determine count of islands
+
 class Solution:
     def numIslands(self, grid: List[List[str]]) -> int:
         def dfs(down, right, grid):
@@ -25,7 +27,10 @@ class Solution:
                     count += 1
                     dfs(down, right, grid) #we must do a boundary check before sinking that 1 into a 0!!!!!!
         return count 
-        
+
+#sequence 16 > 18 > 19 > 15 (this just means that the direction we are going is fine and is part of the same island, so sink the 1 tile we found to 0 and keep going in the same direction)
+#sequence 19 > 15 > 16 > 17 > 20 (this means the tile we visited was either out of bounds or was already visited, so move in another direction to find more 1s to sink IN THE SAME ISLAND)
+#sequence 22 > 15 > 16 > 17 > 22 > 25 (this means we've exhausted all directions and are looking for a new island)
 
 
 #the 1st time this if statement in line 14 is evalvulated, it will never execute the inner block because it came from the if statement where grid[I]jj] was equal to 1 from line 24. It's only after one of the recursive calls below executes that this if block can become true?
