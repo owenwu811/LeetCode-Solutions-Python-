@@ -21,8 +21,8 @@ class Solution:
             dfs(down, right + 1, grid)
             dfs(down, right - 1, grid)
         count = 0 #we will return this at the end
-        for down in range(len(grid)): #right
-            for right in range(len(grid[0])): #down
+        for down in range(len(grid)): #right - rows
+            for right in range(len(grid[0])): #down - columns
                 if grid[down][right] == '1': #we found a 1, so we found atleast 1 island - if grid[I[j] == 1, then we increment count, and then we call dfs, and we skip the if block and directly call grid[I][j] = '0'? and then we execute dfs(I + 1, j) - so we are boundary checking dfs(I + 1, j) aka the new tile, not the old tile with 1 we already visited
                     count += 1
                     dfs(down, right, grid) #we must do a boundary check before sinking that 1 into a 0!!!!!!
