@@ -8,9 +8,7 @@
 
 #Python3 solution:
 
-#This problem is equivalent to finding out the number of connected components in a graph.
 
-#we have to trasverse every tile of the grid to determine count of islands
 
 class Solution:
     def numIslands(self, grid: List[List[str]]) -> int:
@@ -30,6 +28,7 @@ class Solution:
                     dfs(down, right, grid) #we must do a boundary check before sinking that 1 into a 0!!!!!!
         return count 
 
+#sequence 22 > 21 (this is due to backtracking as we need to check all adjacent cells where it left off)
 #sequence 21 > 15 > 16 > 18 > 19 > 15 > 16 > 17 > 19 (we have to start over from the 1st recursive call all over again because we have to explore all possible directions for that one direction!!!! islands can be connected to other islands!)
 
 #sequence 16 > 18 > 19 > 15 (this just means that the direction we are going is fine and is part of the same island, so sink the 1 tile we found to 0 and keep going in the same direction)
