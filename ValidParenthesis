@@ -108,3 +108,23 @@ class Solution:
                     return False
         return not stack
 
+
+my solution 11/10/23 refresh:
+
+class Solution:
+    def isValid(self, s: str) -> bool:
+        matchmaker = []
+        openingb = "([{"
+        closingb = ")]}"
+        for current in s:
+            if current in openingb:
+                matchmaker.append(current)
+            elif current in closingb and not matchmaker:
+                return False
+            elif current in closingb and matchmaker: #current in closingb and matchmaker list has open brackets inside of it
+                potentialopeningmatch = matchmaker.pop()
+                if openingb.index(potentialopeningmatch) != closingb.index(current):
+                    return False
+        return not matchmaker
+
+
