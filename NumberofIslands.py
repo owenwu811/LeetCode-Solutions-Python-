@@ -28,7 +28,7 @@ class Solution:
                     dfs(down, right, grid) #we must do a boundary check before sinking that 1 into a 0!!!!!!
         return count 
 
-#sequence 22 > 21 (this is due to backtracking as we need to check all adjacent cells where it left off)
+#sequence 22 > 21 (this is due to backtracking as we need to check all adjacent cells where it left off) - This backtracking ensures that every part of an island (group of connected '1's) is visited and marked, and no potential connections are missed. Once an island is fully explored and marked, the algorithm continues to search for other islands in the grid.
 #sequence 21 > 15 > 16 > 18 > 19 > 15 > 16 > 17 > 19 (we have to start over from the 1st recursive call all over again because we have to explore all possible directions for that one direction!!!! islands can be connected to other islands!)
 
 #sequence 16 > 18 > 19 > 15 (this just means that the direction we are going is fine and is part of the same island, so sink the 1 tile we found to 0 and keep going in the same direction)
