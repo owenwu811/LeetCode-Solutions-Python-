@@ -26,3 +26,9 @@ class Solution:
                     dfs(down, right, grid) #we must do a boundary check before sinking that 1 into a 0!!!!!!
         return count 
         
+
+
+#the 1st time this if statement in line 14 is evalvulated, it will never execute the inner block because it came from the if statement where grid[I]jj] was equal to 1 from line 24. It's only after one of the recursive calls below executes that this if block can become true?
+                #return
+           # grid[i][j] = '0'
+            #dfs(i + 1, j, grid) #recursive calls below refers to one of these 4 in lines 17 - 20
