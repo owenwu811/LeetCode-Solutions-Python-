@@ -52,7 +52,7 @@ class Solution:
         def dfs(down, right, grid):
             if down < 0 or down >= len(grid) or right < 0 or right >= len(grid[0]) or grid[down][right] == '0':
                 return
-            grid[down][right] = '0' #the 0 check here is to be sure that either we haven't revisited a cell because the previous cell was already flipped from 1 to 0 or we are not stepping onto water
+            grid[down][right] = '0' #the 0 check here is to be sure that either we haven't revisited a cell because the previous cell was already flipped from 1 to 0 or we are not stepping onto water - 0 means it can't be part of the same island in either one of these two scenarios 
             dfs(down + 1, right, grid)
             dfs(down - 1, right, grid)
             dfs(down, right + 1, grid)
