@@ -8,6 +8,8 @@
 
 #Python3 solution:
 
+#This problem is equivalent to finding out the number of connected components in a graph.
+
 #we have to trasverse every tile of the grid to determine count of islands
 
 class Solution:
