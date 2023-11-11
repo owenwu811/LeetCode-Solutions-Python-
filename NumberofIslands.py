@@ -65,3 +65,27 @@ class Solution:
                     count += 1
                     dfs(down, right, grid)
         return count
+
+
+
+#time, space, and memory complexities are the same whether we iterate over rows first or columns first 
+#Time Complexity
+#The time complexity of this algorithm is primarily determined by the number of cells in the grid and the number of times each cell is visited. Let's assume the grid is of size m x n, where m is the number of rows and n is the number of columns.
+
+#Outer Loops: The outer for loops iterate through each cell of the grid once. Therefore, the total number of iterations here is m * n.
+#DFS Calls: For each cell that is a '1', a DFS (Depth-First Search) is performed. In the worst case, DFS can visit each cell in the grid once (if the entire grid is filled with '1's). However, each cell is visited only once across all DFS calls because the visited '1' cells are marked as '0', preventing revisits.
+#Combining these factors, the worst-case time complexity is O(m * n).
+
+#Space Complexity
+#The space complexity of the algorithm is determined by the maximum size of the call stack during the recursive DFS calls.
+
+#Call Stack in DFS: In the worst case, where the grid is filled with '1's, the DFS could potentially go as deep as the total number of cells in the grid before backtracking. However, this is a highly unlikely scenario since it would require a pathological case of a grid where DFS traverses the entire grid in a snake-like pattern. A more realistic worst-case scenario would involve a DFS depth equivalent to the maximum of m and n.
+#Therefore, the worst-case space complexity is O(max(m, n)).
+
+#Memory Complexity
+#In terms of memory usage, the algorithm modifies the input grid in place and does not use any additional significant memory that scales with the size of the input. Thus, the memory complexity is essentially the same as the space complexity, O(max(m, n)).
+
+#Summary
+#Time Complexity: O(m * n)
+#Space Complexity: O(max(m, n))
+#Memory Complexity: O(max(m, n))
