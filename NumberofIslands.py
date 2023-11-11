@@ -40,3 +40,25 @@ class Solution:
                 #return
            # grid[i][j] = '0'
             #dfs(i + 1, j, grid) #recursive calls below refers to one of these 4 in lines 17 - 20
+
+
+#if you wanted to flip the order of loops, your solution would be: 
+
+class Solution:
+    def numIslands(self, grid: List[List[str]]) -> int:
+        def dfs(down, right, grid):
+            if down < 0 or down >= len(grid) or right < 0 or right >= len(grid[0]) or grid[down][right] == '0':
+                return
+            grid[down][right] = '0'
+            dfs(down + 1, right, grid)
+            dfs(down - 1, right, grid)
+            dfs(down, right + 1, grid)
+            dfs(down, right - 1, grid)
+        
+        count = 0
+        for right in range(len(grid[0])): # Iterate over columns first
+            for down in range(len(grid)): # Then iterate over rows
+                if grid[down][right] == '1':
+                    count += 1
+                    dfs(down, right, grid)
+        return count
