@@ -11,17 +11,17 @@
 class Solution:
     def numIslands(self, grid: List[List[str]]) -> int:
         def dfs(down, right, grid):
-            if down < 0 or down >= len(grid) or right < 0 or right >= len(grid[0]) or grid[down][right] == '0':
+            if down < 0 or down >= len(grid) or right < 0 or right >= len(grid[0]) or grid[down][right] == '0': #skipping this block if line 24 equals 1
                 return #out of bounds, so return out of the function
-            grid[down][right] = '0' #sinking the 1 into a 0 so we don't double count it
-            dfs(down + 1, right, grid)
+            grid[down][right] = '0' #sinking the 1 into a 0 so we don't double count it - we go here from line 24
+            dfs(down + 1, right, grid) #and then we call dfs again to go down one tile and then we boundary check this new tile in line 14 
             dfs(down - 1, right, grid)
             dfs(down, right + 1, grid)
             dfs(down, right - 1, grid)
         count = 0 #we will return this at the end
         for down in range(len(grid)): #right
             for right in range(len(grid[0])): #down
-                if grid[down][right] == '1': #we found a 1, so we found atleast 1 island
+                if grid[down][right] == '1': #we found a 1, so we found atleast 1 island - if grid[I[j] == 1, then we increment count, and then we call dfs, and we skip the if block and directly call grid[I][j] = '0'? and then we execute dfs(I + 1, j) - so we are boundary checking dfs(I + 1, j) aka the new tile, not the old tile with 1 we already visited
                     count += 1
                     dfs(down, right, grid) #we must do a boundary check before sinking that 1 into a 0!!!!!!
         return count 
