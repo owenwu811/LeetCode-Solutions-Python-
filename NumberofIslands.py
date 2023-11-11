@@ -28,6 +28,8 @@ class Solution:
                     dfs(down, right, grid) #we must do a boundary check before sinking that 1 into a 0!!!!!!
         return count 
 
+#sequence 21 > 15 > 16 > 18 > 19 (we have to start over from the 1st recursive call because we have to explore all possible directions for that one direction!!!!)
+
 #sequence 16 > 18 > 19 > 15 (this just means that the direction we are going is fine and is part of the same island, so sink the 1 tile we found to 0 and keep going in the same direction)
 #sequence 19 > 15 > 16 > 17 > 20 (this means the tile we visited was either out of bounds or was already visited, so move in another direction to find more 1s to sink IN THE SAME ISLAND)
 #sequence 22 > 15 > 16 > 17 > 22 > 25 (this means we've exhausted all directions and are looking for a new island)
