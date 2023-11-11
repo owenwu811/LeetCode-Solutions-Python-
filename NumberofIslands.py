@@ -58,7 +58,7 @@ class Solution:
         count = 0
         for right in range(len(grid[0])): # Iterate over columns first
             for down in range(len(grid)): # Then iterate over rows
-                if grid[down][right] == '1':
+                if grid[down][right] == '1': #the dfs function looks for all adjacent 1s aka 1s that comprise of the same island while the loops look for non adjacent 1s that would signal a new island and would increase count
                     count += 1
                     dfs(down, right, grid)
         return count
