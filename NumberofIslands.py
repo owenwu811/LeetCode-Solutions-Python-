@@ -89,3 +89,25 @@ class Solution:
 #Time Complexity: O(m * n)
 #Space Complexity: O(max(m, n))
 #Memory Complexity: O(max(m, n))
+
+
+#11/24 refresher:
+
+class Solution:
+    def numIslands(self, grid: List[List[str]]) -> int:  
+        def search(rows, columns, grid):
+            if rows < 0 or rows >= len(grid) or columns < 0 or columns >= len(grid[0]) or grid[rows][columns] == '0': #if we are on water, then return. If 1, then keep going to the next tile because it's part of the same island. 
+                return
+            grid[rows][columns] = '0' #set any 1s to 0 so we don't double count - the if block will always be false, and this line will always execute the first time this recursive function is called
+            search(rows + 1, columns, grid)
+            search(rows - 1, columns, grid)
+            search(rows, columns + 1, grid)
+            search(rows, columns - 1, grid)
+        count = 0
+        for rows in range(len(grid)):
+            for columns in range(len(grid[0])):
+                if grid[rows][columns] == '1':
+                    count += 1
+                    search(rows, columns, grid)
+        return count
+
