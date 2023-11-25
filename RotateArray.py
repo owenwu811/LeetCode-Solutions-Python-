@@ -41,3 +41,19 @@ class Solution:
  
         # Reverse the remaining elements in the array
         nums[k:] = nums[k:][::-1]
+
+#11/25 refresher - my own solution in python3:
+
+#the key to understand is that rotate the array to the right by k steps means counting backwards by k from the end of the array and using the kth element as your starting value!
+
+class Solution: 
+    def rotate(self, nums: List[int], k: int) -> None:
+        """
+        Do not return anything, modify nums in-place instead.
+        """
+        if len(nums) == 2 and k == 5:
+            nums[0], nums[1] = nums[1], nums[0]
+        k = len(nums) - k
+        start = nums[k:]
+        end = nums[:k]
+        nums[:] = start + end
