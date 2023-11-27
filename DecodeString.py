@@ -26,7 +26,7 @@ class Solution:
         for i in range(len(s)):
             if s[i] != "]":
                 stack.append(s[i])
-            else:
+            else: #i has reached a ], and, without appending ] to the list in order:
                 substr = ""
                 while stack[-1] != "[":
                     substr = stack.pop() + substr
