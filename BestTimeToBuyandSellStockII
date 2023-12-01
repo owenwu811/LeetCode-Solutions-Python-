@@ -62,5 +62,20 @@ class Solution(object):
                profit = prices[i] - prices[i - 1] #current minus previous
                maxprofit += profit #update max profit 
        return maxprofit
-       
-       
+
+#mysolution in python3 on 12/1/2023:
+
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        res = 0
+        l = 0
+        maxprofit = 0
+        for r in range(1, len(prices)):
+            if prices[r] > prices[l]:
+                currprofit = prices[r] - prices[l]
+                maxprofit += currprofit
+                l = r
+            else:
+                l = r
+        return maxprofit
+            
