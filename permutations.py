@@ -25,7 +25,8 @@ class Solution:
         result = [] 
         backtrack(nums, []) 
         return result 
-
+     
+#SUPER IMPORTANT: indentation for last 3 lines must be to the indentation of def backtrack(nums, path) because the execution goes from def backtrack(nums, path): > result = [] > backtrack(nums, []) in the beginning!!!
 #nums resets to 0 when if block is skipped
       
 #[1, 2, 3] example:
