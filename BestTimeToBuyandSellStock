@@ -72,3 +72,19 @@ class Solution(object):
             maxprofit = max(maxprofit, profit)
         return maxprofit
 
+#12/2/23 refresher (my solution):
+
+class Solution:
+    import math
+    def maxProfit(self, prices: List[int]) -> int:
+        res, curr = 0, 0
+        l, r = 0, 1
+        for r in range(len(prices)):
+            while prices[l] > prices[r]:
+                l += 1
+                continue
+            curr = prices[r] - prices[l]
+            res = max(res, curr)
+        return res
+            
+            
