@@ -92,3 +92,20 @@ class Solution:
                 right = middle - 1
         return - 1
 
+#12/2/23 refresher (my solution):
+
+class Solution:
+    def search(self, nums: List[int], target: int) -> int:
+        nums.sort()
+        l = 0
+        r = len(nums) - 1
+        while l <= r: # we need <= because of when nums = [5] and target = 5
+            mid = (l + r) // 2
+            if nums[mid] == target:
+                return mid
+            elif target > nums[mid]:
+                l = mid + 1
+            elif target < nums[mid]:
+                r = mid - 1
+        return -1
+
