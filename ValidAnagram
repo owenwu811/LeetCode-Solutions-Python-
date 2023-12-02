@@ -52,5 +52,21 @@ class Solution:
         else:
             return False
 
+#12/2/23 refresher (my solution):
+
+class Solution:
+    def isAnagram(self, s: str, t: str) -> bool:
+        sdict = {}
+        tdict = {}
+        for i in s:
+            if i not in sdict:
+                sdict[i] = 0
+            sdict[i] += 1
+        for j in t:
+            if j not in tdict:
+                tdict[j] = 0
+            tdict[j] += 1
+        return sdict == tdict #returns a boolean 
+
 
         
