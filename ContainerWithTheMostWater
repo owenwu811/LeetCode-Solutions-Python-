@@ -84,5 +84,22 @@ class Solution(object):
                 r -= 1
         return res
 
+#12/2/23 refresher (my solution):
+
+class Solution:
+    import math
+    def maxArea(self, height: List[int]) -> int:
+        res = 0
+        l = 0
+        r = len(height) - 1
+        while l < r:
+            current = (r - l) * min(height[l], height[r])
+            res = max(res, current)
+            if height[l] < height[r]:
+                l += 1
+            else:
+                r -= 1
+        return res
+
 
 
