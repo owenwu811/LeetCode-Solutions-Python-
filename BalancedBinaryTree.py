@@ -44,4 +44,33 @@ class Solution:
             return check_balance(node.left) and check_balance(node.right)
         
         return check_balance(root)
+
+
+#another solution:
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def isBalanced(self, root: Optional[TreeNode]) -> bool:
+        #initializes a list res with a single element, 1.
+        #Lists are mutable in Python, so the code uses a list with a single element to be able to modify its value inside the maxDepth function.
+        res = [1]
+        def maxDepth(root):
+            if root is None:
+                return False
+            left = maxDepth(root.left)
+            right = maxDepth(root.right)
+            if abs(right - left) > 1:
+                res[0] = False
+            return 1 + max(left,right)
+        maxDepth(root)
+        if res[0] == 1:
+            return True 
+        else:
+            return False
+
     
