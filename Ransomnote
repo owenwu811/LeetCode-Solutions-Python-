@@ -73,3 +73,13 @@ class Solution:
                 return False
         return True
         
+#better solution - 12/15/23:
+
+class Solution:
+    def canConstruct(self, ransomNote: str, magazine: str) -> bool:
+            #want to know if ransomnote can be constructed using magazine
+            for char in ransomNote: #ransomnote is the job description
+                if char not in magazine: #magazine is the applicant 
+                    return False #if even one skill in the description the applicant dosen't have, we can return False
+                magazine = magazine.replace(char, "", 1) #cross out that skill off applicant since can only use it once, and keep looping through the job description ransomNote - don't cross anything out of the job description ransomNote
+            return True #the applicant had all the skills on the description, so he passed as 100% is required to pass, so return true
