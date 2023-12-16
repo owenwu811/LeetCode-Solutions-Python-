@@ -94,5 +94,5 @@ class Solution:
         for i in range(len(ransomNote)):
             if ransomNote[i] not in magazine:
                 return False
-            magazine = magazine.replace(ransomNote[i], "", 1)
+            magazine = magazine.replace(ransomNote[i], "", 1) #means cross out the skill off the candidates list from the beginning 1 time 
         return True #the application has exceeded the expectations, and we finished looping through the job description, so return yes because the applicant has met the 100% requirement on the test
