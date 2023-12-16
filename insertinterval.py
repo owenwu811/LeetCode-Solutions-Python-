@@ -26,6 +26,7 @@ class Solution:
                 res.append(intervals[i])
             else: #the newinterval list is neither absolutely bigger or absolutely smaller than the first interval, so merge both, and this merged one will be the next sublist in the resulting list
                 newInterval = [min([intervals[i][0], newInterval[0]]), max(intervals[i][1], newInterval[1])]
-        res.append(newInterval) 
+        res.append(newInterval) #without this line, we would fail test case intervals = [] newInterval = [5, 7] because you would get [] as output instead of [[5, 7]] 
         return res
-        
+
+
