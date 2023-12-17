@@ -73,4 +73,18 @@ class Solution:
         else:
             return False
 
-    
+class Solution:
+    def isBalanced(self, root: Optional[TreeNode]) -> bool:
+        res = [True]
+        def f(root):
+            if root is None:
+                return 0
+            l = f(root.left)
+            r = f(root.right)
+            if abs(r - l) > 1:
+                res[0] = False
+            return 1 + max(l, r) #this line is used to tell us the current height aka keep track of where we are in the tree so that, in the next iteration, we can actually compare r and l as integers in the abs function
+        f(root)
+        return res[0]
+
+
