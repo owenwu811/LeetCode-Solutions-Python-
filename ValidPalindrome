@@ -26,6 +26,7 @@ My Solution:
 
 class Solution:
     def isPalindrome(self, s: str) -> bool:
+#DO NOT CONFUSE S = S.REPLACE(CHARACTERTOREPLACE,REPLACEMENT,NUMBEROFTIMESTOREPLACEFROMBEG) WITH S = RE.SUB(PATTERN, REPLACEMENT, STRINGREPLACEMENTISPERFORMEDON)!!!!!
         s.replace(" ", "") #s.replace(old, new)
         s = re.sub('[\W_]', '', s) #re.sub(pattern, replacement, string). '[\W_]' patternmatches any character that isn't considered a word so that the replacement can replace the pattern. 
         start, end = 0, len(s) - 1 #indicies representing integers as starting and ending pointer
