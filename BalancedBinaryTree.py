@@ -83,6 +83,7 @@ class Solution:
             r = f(root.right)
             if abs(r - l) > 1:
                 res[0] = False
+            #without the line return 1 + max(l, r), the abs function would have no integers to actually compute the difference between the r and l subtrees as the line provides the height of the current node as an integer + 1 to account for the current
             return 1 + max(l, r) #this line is used to tell us the current height aka keep track of where we are in the tree so that, in the next iteration, we can actually compare r and l as integers in the abs function
         f(root)
         return res[0]
