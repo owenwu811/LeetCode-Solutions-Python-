@@ -28,5 +28,19 @@ class Solution:
                 newInterval = [min([intervals[i][0], newInterval[0]]), max(intervals[i][1], newInterval[1])]
         res.append(newInterval) #without this line, we would fail test case intervals = [] newInterval = [5, 7] because you would get [] as output instead of [[5, 7]] 
         return res
+  
+#my solution - python3 - 12/17/2023
 
-
+class Solution:
+    def insert(self, intervals: List[List[int]], newInterval: List[int]) -> List[List[int]]:
+        res = []
+        for List in range(len(intervals)):
+            if intervals[List][0] > newInterval[1]:
+                res.append(newInterval)
+                return res + intervals[List:]
+            elif intervals[List][1] < newInterval[0]:
+                res.append(intervals[List]) #we know the current list [[here]] that we are on is next in the result because even the biggest element of our current list [[here]] is smaller than the smallest element of newList
+            else: #we need to stretch newInterval out because there is some overlap between newInterval and our current sublist [[here]] that we are iterating over - and then we return to the for loop - if, with the newInterval that has been merged is smaller than the next iteration of the original list of lists - [[], [here]], then append newInterval because newInterval would be the next biggest one
+                newInterval = [min(intervals[List][0], newInterval[0]), max(intervals[List][1], newInterval[1])]
+        res.append(newInterval) #this line of code is only to catch the case where intervals is nothing and newInterval has something, so we still have to add newInterval list to the result before returning the result 
+        return res
