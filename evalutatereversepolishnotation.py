@@ -46,3 +46,29 @@ class Solution:
             else:
                 stack.append(int(elements))
         return stack.pop()
+
+#my solution python3:
+
+class Solution:
+    def evalRPN(self, tokens: List[str]) -> int:
+        stack = []
+        for elements in tokens:
+            if elements == "+":
+                a = stack.pop()
+                b = stack.pop()
+                stack.append(int(b + a)) #remember that, if we have [[10, 6, 9, 3, +, -11] and elements is on "+", we get [10, 6, 12], and then elements continues iterating to -11 in the for loop
+            elif elements == "*":
+                a = stack.pop()
+                b = stack.pop()
+                stack.append(int(b * a)) #remember that, since stack is filo, when you append in order, you get the opposite order you want, so you do b * a, for example, since we want to compute in the same order as given in the input - we want fifo, but stack.append() and stack.pop() give us lifo, so we just reverse it - [5, 13] go as [5, 13] on the stack, but stack.pop gives us a = 13 and then b = 5, so we do b / a, for example, to offset this
+            elif elements == "/":
+                a = stack.pop()
+                b = stack.pop()
+                stack.append(int(b / a))
+            elif elements == "-":
+                a = stack.pop()
+                b = stack.pop()
+                stack.append(int(b - a))
+            else:
+                stack.append(int(elements))
+        return stack[0]
