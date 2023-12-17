@@ -21,3 +21,17 @@ class Solution:
             postfixn *= nums[i]
         return result
             
+#my solution - python3 - 12/17/23:
+
+class Solution:
+    def productExceptSelf(self, nums: List[int]) -> List[int]:
+        prefixn = 1
+        postfixn = 1
+        res = [0] * len(nums) #create an empty array to declare it's length by filling it with zeros
+        for number in range(len(nums)): 
+            res[number] = prefixn #[1, 1, 2, 6]
+            prefixn *= nums[number] # [1] [1*1] [1*1*2] [1*1*2*3]
+        for number in range(len(nums) -1, -1, -1): 
+            res[number] = postfixn * res[number] #[24, 12, 8, 6]
+            postfixn *= nums[number] #[1 * 2 * 3 * 4] [1 * 3 * 4] [1 * 4 * 2] [6 * 1]
+        return res
