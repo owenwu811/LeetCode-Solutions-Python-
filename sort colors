@@ -59,3 +59,26 @@ def sort_colors(colors):
             blue -= 1
             
     return colors
+
+
+#python3 solution:
+
+class Solution:
+    def sortColors(self, nums: List[int]) -> None:
+        """
+        Do not return anything, modify nums in-place instead.
+        """
+        l, r = 0, len(nums) - 1
+        n = 0 #n is going to represnet the point at which everything up to including n is sorted in order, and when the n > r, the while loop terminates aka when n is on 2 and r is on 1, representing all numbers from 0 up to and including 2 being sorted in order
+        while n <= r:
+            if nums[n] == 2:
+                nums[n], nums[r] = nums[r], nums[n]
+                r -= 1
+            elif nums[n] == 1:
+                n += 1 #n will go from a 1 to a 0 and then will get flipped next turn because we only have 0s and 1s and 2s in our array because next iteration will look like [1, 0, 2]
+                                                                                                                                                                                l  r/c
+            else:
+                nums[n], nums[l] = nums[l], nums[n]
+                n += 1
+                l += 1
+
