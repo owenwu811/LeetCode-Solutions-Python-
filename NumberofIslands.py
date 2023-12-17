@@ -105,7 +105,7 @@ class Solution:
             search(rows, columns - 1, grid)
         count = 0
         for rows in range(len(grid)):
-            for columns in range(len(grid[0])):
+            for columns in range(len(grid[0])): #cannot be grid[1] because it would fail test case [["1"]], so grid[0] and grid[-1] work!!!!!!!!!!!!!!!!!
                 if grid[rows][columns] == '1':
                     count += 1
                     search(rows, columns, grid)
