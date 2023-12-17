@@ -111,3 +111,24 @@ class Solution:
                     search(rows, columns, grid)
         return count
 
+#12/17/23 refresher:
+
+class Solution:
+    def numIslands(self, grid: List[List[str]]) -> int:        
+        def f(row, column, grid):
+            #the grid[row][column] checks if we are on water 
+            #len(grid[-1]) works for test case grid = [["1"]]
+            if row < 0 or row >= len(grid) or column < 0 or column >= len(grid[-1]) or grid[row][column] == "0":
+                return
+            grid[row][column] = "0" #will always execute on the 1st turn. this is for making sure we don't double count islands since any 1s in 4 directions are part of the same island, so flip them to 0
+            f(row + 1, column, grid)
+            f(row - 1, column, grid)
+            f(row, column + 1, grid)
+            f(row, column - 1, grid)
+        res = 0
+        for row in range(len(grid)):
+            for column in range(len(grid[-1])): #works for test case grid = [["1"]]
+                if grid[row][column] == '1':
+                    res += 1
+                    f(row, column, grid)
+        return res
