@@ -53,7 +53,7 @@ class Solution:
     def evalRPN(self, tokens: List[str]) -> int:
         stack = []
         for elements in tokens:
-            if elements == "+":
+            if elements == "+": #remember that + - * / never get appended to the stack! and we only perform operations such as + - * / on elements on the stack! if we hit a * + - or /, we simply apply that operation to the last two numbers on the stack and then continue iterating onto the next element in our input list.
                 a = stack.pop()
                 b = stack.pop()
                 stack.append(int(b + a)) #remember that, if we have [[10, 6, 9, 3, +, -11] and elements is on "+", we get [10, 6, 12], and then elements continues iterating to -11 in the for loop
