@@ -197,4 +197,6 @@ class Solution:
             list1 = list1.next
         else:
             curr.next = list2 #we don't need list2 = list2.next after this because the only nodes left are list2
+        #we also don't need a final curr = curr.next here because the nodes are already placed at this point!
         return dummy.next
+
