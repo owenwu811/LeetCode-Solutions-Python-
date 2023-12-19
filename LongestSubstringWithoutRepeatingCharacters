@@ -110,3 +110,18 @@ class Solution:
             currentwindowlength = windowend - windowstart + 1
             historicalbiggest = max(historicalbiggest, currentwindowlength)
         return historicalbiggest
+
+12/18/2023 refresher solution:
+
+class Solution(object):
+    def lengthOfLongestSubstring(self, s):
+        res = 0
+        repeatingcheck = set()
+        l = 0
+        for r in range(len(s)):
+            while s[r] in repeatingcheck:
+                repeatingcheck.remove(s[l])
+                l += 1
+            repeatingcheck.add(s[r])
+            res = max(res, len(repeatingcheck)) #note that len(set) works here too instead of just we - ws + 1 since both are the same mechanism 
+        return res
