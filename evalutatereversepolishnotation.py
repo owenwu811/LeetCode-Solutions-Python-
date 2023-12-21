@@ -72,3 +72,30 @@ class Solution:
             else:
                 stack.append(int(elements))
         return stack[0]
+
+
+#my solution python3:
+
+class Solution:
+    def evalRPN(self, tokens: List[str]) -> int:
+        stack = []
+        for element in range(len(tokens)):
+            if tokens[element] == "*":
+                minusone = stack.pop()
+                minustwo = stack.pop()
+                stack.append(int(minustwo * minusone))
+            elif tokens[element] == "+":
+                minusone = stack.pop()
+                minustwo = stack.pop()
+                stack.append(int(minustwo + minusone))
+            elif tokens[element] == "/":
+                minusone = stack.pop()
+                minustwo = stack.pop()
+                stack.append(int(minustwo / minusone))
+            elif tokens[element] == "-":
+                minusone = stack.pop()
+                minustwo = stack.pop()
+                stack.append(int(minustwo - minusone))
+            else:
+                stack.append(int(tokens[element])) #IF YOU APPEND ELEMENT INSTEAD OF TOKENS[ELEMENT], THE STACK WILL LOOK LIKE [0] INSTEAD OF [2] BECAUSE ELEMENT IS AN INDEX, NOT AN ELEMENT IN THE LIST!!!!!
+        return stack.pop()
