@@ -27,6 +27,8 @@ class Solution:
 
 #my solution python3:
 
+#the output list always has to include atleast the first element in the list of lists - [1] in this case
+#output is always stretched out or new lists are added in order left to right, and so when a new list is added, the output[-1][-1] would read the 1st index of the most recently added list
 class Solution:
     def merge(self, intervals: List[List[int]]) -> List[List[int]]:
         intervals.sort(key = lambda n:n[0])
