@@ -1,18 +1,18 @@
 Given an array, colors, which contains a combination of the following three elements:
 
-0
-0
+#0
+#0
  (representing red)
-1
-1
+#1
+#1
  (representing white)
-2
-2
+#2
+#2
  (representing blue)
 Sort the array in place so that the elements of the same color are adjacent, with the colors in the order of red, white, and blue.
 
 
-My Solution (Python):
+#My Solution (Python):
 
 def sort_colors(colors):
 
@@ -36,7 +36,7 @@ def sort_colors(colors):
     return colors
 
 
-Grokking's Solution (Python):
+#Grokking's Solution (Python):
 
 def sort_colors(colors):
 
@@ -82,3 +82,24 @@ class Solution:
                 n += 1
                 l += 1
 
+
+#my solution python3 - 12/24/23 refresher:
+
+class Solution:
+    def sortColors(self, nums: List[int]) -> None:
+        """
+        Do not return anything, modify nums in-place instead.
+        """
+        start = 0
+        uptosorted = 0
+        end = len(nums) - 1
+        while uptosorted <= end: #by the time this is violated, end will be on a 1 and uptosorted will be on a 2, indicating everything up to 2 is sorted
+            if nums[uptosorted] == 2:
+                nums[uptosorted], nums[end] = nums[end], nums[uptosorted]
+                end -= 1
+            elif nums[uptosorted] == 1:
+                uptosorted += 1
+            else:
+                nums[uptosorted], nums[start] = nums[start], nums[uptosorted]
+                uptosorted += 1
+                start += 1
