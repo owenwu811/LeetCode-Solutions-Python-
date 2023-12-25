@@ -39,3 +39,16 @@ class Solution:
             else:
                 output.append([first, second])
         return output
+
+#practice run 12/25/23 - my solution:
+
+class Solution:
+    def merge(self, intervals: List[List[int]]) -> List[List[int]]:
+        intervals.sort(key = lambda index: index[0])
+        res = [intervals[0]]
+        for first, second in intervals[1:]:
+            if first <= res[-1][1]:
+                res[-1][1] = max(second, res[-1][1])
+            else:
+                res.append([first, second])
+        return res
