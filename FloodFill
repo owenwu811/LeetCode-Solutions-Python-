@@ -82,3 +82,22 @@ class Solution:
         self.fill(image, sr - 1, sc, starting, color)
         self.fill(image, sr, sc + 1, starting, color)
         self.fill(image, sr, sc - 1, starting, color)
+
+
+#my solution - python3 12/25/23:
+
+class Solution:
+    def floodFill(self, image: List[List[int]], sr: int, sc: int, color: int) -> List[List[int]]:
+        starting = image[sr][sc]
+        if starting == color: # if the starting pixel is already equal to color, then there's nothing to fill
+            return image
+        self.fill(starting, sr, sc, color, image)
+        return image
+    def fill(self, starting, sr, sc, color, image):
+        if sr < 0 or sr >= len(image) or sc < 0 or sc >= len(image[0]) or image[sr][sc] != starting:
+            return
+        image[sr][sc] = color #we must set the 1 to 2 color so we don't revisit it
+        self.fill(starting, sr + 1, sc, color, image)
+        self.fill(starting, sr - 1, sc, color, image)
+        self.fill(starting, sr, sc + 1, color, image)
+        self.fill(starting, sr, sc - 1, color, image)
