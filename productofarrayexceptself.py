@@ -35,3 +35,18 @@ class Solution:
             res[number] = postfixn * res[number] #[24, 12, 8, 6]
             postfixn *= nums[number] #[1 * 2 * 3 * 4] [1 * 3 * 4] [1 * 4 * 2] [6 * 1]
         return res
+
+#12/25/23 refresher - my solution:
+
+class Solution:
+    def productExceptSelf(self, nums: List[int]) -> List[int]:
+        forward = 1
+        backward = 1
+        result = len(nums) * [0]
+        for number in range(len(nums)):
+            result[number] = forward
+            forward *= nums[number]
+        for number in range(len(nums)-1, -1, -1):
+            result[number] *= backward
+            backward *= nums[number]
+        return result
