@@ -44,3 +44,19 @@ class Solution:
                 newInterval = [min(intervals[List][0], newInterval[0]), max(intervals[List][1], newInterval[1])]
         res.append(newInterval) #this line of code is only to catch the case where intervals is nothing and newInterval has something, so we still have to add newInterval list to the result before returning the result 
         return res
+
+#refresher 12/25/23 - my solution:
+
+class Solution:
+    def insert(self, intervals: List[List[int]], newInterval: List[int]) -> List[List[int]]:
+        res = []
+        for lists in range(len(intervals)):
+            if newInterval[1] < intervals[lists][0]:
+                res.append(newInterval)
+                return res + intervals[lists:]
+            elif intervals[lists][1] < newInterval[0]:
+                res.append(intervals[lists])
+            else:
+                newInterval = [min(newInterval[0], intervals[lists][0]), max(newInterval[1], intervals[lists][1])]
+        res.append(newInterval)
+        return res
