@@ -89,3 +89,17 @@ class Solution(object):
             currentsum += val #YOU ADD CURRENTSUM TO VAL TO SEE IF IT IS BIGGER AFTER NUETRALIZING IT TO 0
             maxsum = max(maxsum, currentsum) #WE COMPARE THE HISTORICAL BIGGEST MAXSUM TO WHAT YOU GET RIGHT ABOVE AFTER ADDING THE NEXT ELEMENT AFTER NUETRALIZING IT TO 0. MAXSUM WOULD ONLY BE THE BIGGEST ON THE 1ST TURN BECAUSE MAXSUM IS ONLY A STARTING POINT.
         return maxsum
+
+#12/25/23 refresher (my solution) - kadane's algorithm
+
+class Solution:
+    def maxSubArray(self, nums: List[int]) -> int:
+        #has to atleast be something
+        result = nums[-1] # can't be nums[-2] because the input is garunteed to have atleast 1 element in it, so [] wouldn't be an input, so [-1] means that nums[-1] works at worst case but nums[-2] is out of bounds
+        windowsum = 0
+        for number in nums:
+            if windowsum < 0:
+                windowsum = 0
+            windowsum += number
+            result = max(result, windowsum)
+        return result
