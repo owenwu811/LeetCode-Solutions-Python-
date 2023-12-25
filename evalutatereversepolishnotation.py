@@ -99,3 +99,29 @@ class Solution:
             else:
                 stack.append(int(tokens[element])) #IF YOU APPEND ELEMENT INSTEAD OF TOKENS[ELEMENT], THE STACK WILL LOOK LIKE [0] INSTEAD OF [2] BECAUSE ELEMENT IS AN INDEX, NOT AN ELEMENT IN THE LIST!!!!!
         return stack.pop()
+
+#refresher 12/25/23:
+
+class Solution:
+    def evalRPN(self, tokens: List[str]) -> int:
+        stack = []
+        for element in tokens: 
+            if element == "*":
+                first = stack.pop()
+                second = stack.pop()
+                stack.append(int(second * first))
+            elif element == "/":
+                first = stack.pop()
+                second = stack.pop()
+                stack.append(int(second / first))
+            elif element == "-":
+                first = stack.pop()
+                second = stack.pop()
+                stack.append(int(second - first))
+            elif element == "+":
+                first = stack.pop()
+                second = stack.pop()
+                stack.append(int(second + first))
+            else:
+                stack.append(int(element))
+        return stack[0]
