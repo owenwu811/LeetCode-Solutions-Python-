@@ -125,3 +125,20 @@ class Solution(object):
             repeatingcheck.add(s[r])
             res = max(res, len(repeatingcheck)) #note that len(set) works here too instead of just we - ws + 1 since both are the same mechanism 
         return res
+
+
+12/25/23 refresher solution:
+
+class Solution(object):
+    def lengthOfLongestSubstring(self, s):
+        duplicatecheck = set()
+        res = 0
+        ws = 0
+        for we in range(len(s)):
+            while s[we] in duplicatecheck:
+                duplicatecheck.remove(s[ws])
+                ws += 1
+            duplicatecheck.add(s[we])
+            res = max(res, len(duplicatecheck))
+        return res
+            
