@@ -141,4 +141,5 @@ class Solution(object):
             duplicatecheck.add(s[we])
             res = max(res, len(duplicatecheck))
         return res
-            
+
+
