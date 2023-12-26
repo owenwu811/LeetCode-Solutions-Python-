@@ -103,3 +103,18 @@ class Solution:
             windowsum += number
             result = max(result, windowsum)
         return result
+
+
+#12/25/23 refresher 2 - my solution in python3:
+
+class Solution:
+    def maxSubArray(self, nums: List[int]) -> int:
+        #we are garunteed to have atleast one element in the list as input, so nums[-2] dosen't work, but nums[-1] is always garunteed to be NOT out of bounds since we will always have atleast one element in the input
+        result = nums[-1]
+        windowsum = 0
+        for number in nums:
+            if windowsum < 0:
+                windowsum = 0
+            windowsum = windowsum + number
+            result = max(result, windowsum)
+        return result
