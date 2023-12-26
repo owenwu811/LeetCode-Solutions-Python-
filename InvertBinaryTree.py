@@ -1,29 +1,29 @@
-Given the root of a binary tree, invert the tree, and return its root.
+#Given the root of a binary tree, invert the tree, and return its root.
 
 
-Example 1:
+#Example 1:
 
 
-Input: root = [4,2,7,1,3,6,9]
-Output: [4,7,2,9,6,3,1]
-Example 2:
+#Input: root = [4,2,7,1,3,6,9]
+#Output: [4,7,2,9,6,3,1]
+#Example 2:
 
 
-Input: root = [2,1,3]
-Output: [2,3,1]
-Example 3:
+#Input: root = [2,1,3]
+#Output: [2,3,1]
+#Example 3:
 
-Input: root = []
-Output: []
+#Input: root = []
+#Output: []
  
 
-Constraints:
+#Constraints:
 
-The number of nodes in the tree is in the range [0, 100].
--100 <= Node.val <= 100
+#The number of nodes in the tree is in the range [0, 100].
+#-100 <= Node.val <= 100
 
 
-Solution:
+#Solution:
 
 # Definition for a binary tree node.
 # class TreeNode:
@@ -63,7 +63,7 @@ class Solution:
  # inverting means like anagram backwards, not just replacing the left side with the right side, so 1 3 6 9 should become 9 6 3 1 (backwards to forwards), not 6 9 1 3.
  
  
- 6/9/23 refresher (my solution):
+ #6/9/23 refresher (my solution):
  
  # Definition for a binary tree node.
 # class TreeNode:
@@ -79,4 +79,24 @@ class Solution:
         self.invertTree(root.left)
         self.invertTree(root.right)
         return root
-        
+
+#12/25/23 refresher ( my solution with my own explanation):
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
+        #if root is None, then none == none, so there's nothing to invert, so just return the root becuase it's already inverted
+        #this is also base case if we hit bottom of subtree itself since, at the bottom, there's nothing to invert, so just return root for that particular function call that started it - either l or r
+        if root is None:
+            return root
+        #swap left and right nodes at current level of tree
+        root.left, root.right = root.right, root.left
+        #recurvisely go down until hitting bottom of left
+        l = self.invertTree(root.left)
+        r = self.invertTree(root.right)
+        return root
