@@ -69,4 +69,14 @@ class Solution:
         return sdict == tdict #returns a boolean 
 
 
+#12/25/23 my own solution python3:
+
+class Solution:
+    def isAnagram(self, s: str, t: str) -> bool:
+        for char in s:
+            if char not in t:
+                return False
+            t = t.replace(char, "", 1)
+        return len(t) == 0
+        
         
