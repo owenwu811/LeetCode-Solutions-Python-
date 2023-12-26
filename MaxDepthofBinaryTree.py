@@ -82,3 +82,20 @@ class Solution:
         left = self.maxDepth(root.left) #these are the recursive calls
         right = self.maxDepth(root.right) #these are the recursive calls
         return max(left, right) + 1 #returning the bigger of the two + 1 because we are one above 
+
+
+#my solution 12/25/23 - good explanation of how recursion works:
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def maxDepth(self, root: Optional[TreeNode]) -> int:
+        if root is None:
+            return 0 #returns 0 back as the value of the maxDepth function back to the function call that started it after hitting bottom of tree aka base case
+        left = self.maxDepth(root.left) #finish getting to bottom of left node, so return 0 as the last function call, and we know how tall left subtree is, so move onto next line right = self.maxDepth(root.right) and do the same thing
+        right = self.maxDepth(root.right) #after we finish getting to the bottom of the right node, we return 0 from the base case, and we know how tall we are, so, in the next line, we add one to get to where we are, and then we pick the bigger of the two 
+        return 1 + max(left, right)
