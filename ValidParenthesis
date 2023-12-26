@@ -128,3 +128,23 @@ class Solution:
         return not matchmaker
 
 
+my solution 12/26/23 refresher:
+
+class Solution:
+    def isValid(self, s: str) -> bool:
+        stack = []
+        openb = "({["
+        closeb = ")}]"
+        for char in s:
+            if char in openb: #only girls go on the stack in order
+                stack.append(char) #stack.append is first in last out
+            elif char in closeb and not stack: #too many boys or boys come first because )( is not the right order
+                return False
+            else:
+                girl = stack.pop()
+                if openb.index(girl) != closeb.index(char):
+                    return False
+        #False if too many girls
+        return not stack
+
+
