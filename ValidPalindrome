@@ -67,3 +67,19 @@ class Solution:
         else:
             return False
 
+#12/25/23 refresher:
+
+class Solution:
+    def isPalindrome(self, s: str) -> bool:
+        s.replace(" ", "")
+        s = re.sub('[\W_]', "", s)
+        l, r = 0, len(s) - 1
+        #we know the last character is going to be the same as itself, so we don't need =, but having = works too in l <= r is valid too
+        while l < r:
+            #starting and ending must be equal because starting is ending's opposite, so if they are the same forward as backward, ending must also be starting's opposite, which they aren't if they aren't equal on both sides
+            if s[l].casefold() != s[r].casefold():
+                return False
+            l += 1
+            r -= 1
+        return True
+
