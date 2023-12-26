@@ -55,4 +55,15 @@ class Solution:
             if currentwindow == key:
                 res.append(startofwindow)
         return res
-        
+
+#12/25/23 refresher - my solution in python3:
+
+class Solution:
+    def findAnagrams(self, s: str, p: str) -> List[int]:
+        res = []
+        key = "".join(sorted(p))
+        for window in range(len(s) - len(p) + 1): # we need + 1 because range(value) is up to but not including value, so if s = 10 and p = 3, then 10 - 3 = 7, and we want to include 7, so 7 + 1 = 8, so range(8) would include 7 as it's last index in the case of s = "cbaebabAcd", p = "abc" since 01234567 is actually 8 long since index is 1 less than length, index being 01234567, and we want to include the 8th character if we are speaking in terms of lengths for s = "cbaebabAcd", p = "abc" - the capital A being the last INCLUSIVE character that can have a valid window without going out of bounds
+            current = "".join(sorted(s[window:window + len(p)]))
+            if current == key:
+                res.append(window)
+        return res
