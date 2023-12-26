@@ -139,3 +139,21 @@ class Solution:
         self.fill(starting, image, sr, sc + 1, color)
         self.fill(starting, image, sr, sc - 1, color)
         
+
+#python3 - 12/26/12 refresher solution:
+
+class Solution:
+    def floodFill(self, image: List[List[int]], sr: int, sc: int, color: int) -> List[List[int]]:
+        starting = image[sr][sc]
+        if starting == color:
+            return image
+        self.fill(starting, image, sr, sc, color)
+        return image
+    def fill(self, starting, image, sr, sc, color):
+        if sr < 0 or sr >= len(image) or sc < 0 or sc >= len(image[0]) or image[sr][sc] != starting #if any tile is not equal to starting, we can't flood it, so we return nothing as the result to the function call that started it and then keep reading down one line of code from that function call:
+            return
+        image[sr][sc] = color # no infinite recursion - if we keep seeing 1, we will keep calling the function over and over again
+        self.fill(starting, image, sr + 1, sc, color)
+        self.fill(starting, image, sr - 1, sc, color)
+        self.fill(starting, image, sr, sc + 1, color)
+        self.fill(starting, image, sr, sc - 1, color)
