@@ -58,4 +58,20 @@ class Solution:
             slow = slow.next
             fast = fast.next.next
         return slow
+
+#12/25/23 refresher - my solution in python3:
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def middleNode(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        slow = head
+        fast = head
+        while fast is not None and fast.next is not None:
+            slow = slow.next
+            fast = fast.next.next
+        return slow #the reason we know slow will be the middle when fast reaches out of bounds is because slow goes exactly half the speed of fast, and middle is exactly half as long as the entire list itself
         
