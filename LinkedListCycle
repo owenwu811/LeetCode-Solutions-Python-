@@ -45,3 +45,24 @@ class Solution:
             if slow == fast: #if slow and fast ever meet, then there is a cycle aka no disconnect assuming fast pointer paves the path, which it does in this case
                 return True
         return False #if you've trasversed through the entire list, and slow and fast never meet, or fast is on None, then there is not a cycle
+
+
+#12/25/23 refresher - my solution in python3:
+
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def hasCycle(self, head: Optional[ListNode]) -> bool:
+        slow = head
+        fast = head
+        while fast is not None and fast.next is not None:
+            slow = slow.next
+            fast = fast.next.next
+            if slow == fast:
+                return True
+        return False
