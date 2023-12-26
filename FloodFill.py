@@ -1,31 +1,31 @@
-An image is represented by an m x n integer grid image where image[i][j] represents the pixel value of the image.
+#An image is represented by an m x n integer grid image where image[i][j] represents the pixel value of the image.
 
-You are also given three integers sr, sc, and color. You should perform a flood fill on the image starting from the pixel image[sr][sc].
+#You are also given three integers sr, sc, and color. You should perform a flood fill on the image starting from the pixel image[sr][sc].
 
-To perform a flood fill, consider the starting pixel, plus any pixels connected 4-directionally to the starting pixel of the same color as the starting pixel, plus any pixels connected 4-directionally to those pixels (also with the same color), and so on. Replace the color of all of the aforementioned pixels with color.
+#To perform a flood fill, consider the starting pixel, plus any pixels connected 4-directionally to the starting pixel of the same color as the starting pixel, plus any pixels connected 4-directionally to those pixels (also with the same color), and so on. Replace the color of all of the aforementioned pixels with color.
 
-Return the modified image after performing the flood fill.
+#Return the modified image after performing the flood fill.
 
  
 
-Example 1:
+#Example 1:
 
 
-Input: image = [[1,1,1],[1,1,0],[1,0,1]], sr = 1, sc = 1, color = 2
-Output: [[2,2,2],[2,2,0],[2,0,1]]
-Explanation: From the center of the image with position (sr, sc) = (1, 1) (i.e., the red pixel), all pixels connected by a path of the same color as the starting pixel (i.e., the blue pixels) are colored with the new color.
-Note the bottom corner is not colored 2, because it is not 4-directionally connected to the starting pixel.
-Example 2:
+#Input: image = [[1,1,1],[1,1,0],[1,0,1]], sr = 1, sc = 1, color = 2
+#Output: [[2,2,2],[2,2,0],[2,0,1]]
+#Explanation: From the center of the image with position (sr, sc) = (1, 1) (i.e., the red pixel), all pixels connected by a path of the same color as the starting pixel (i.e., the blue pixels) are colored with the new color.
+#Note the bottom corner is not colored 2, because it is not 4-directionally connected to the starting pixel.
+#Example 2:
 
-Input: image = [[0,0,0],[0,0,0]], sr = 0, sc = 0, color = 0
-Output: [[0,0,0],[0,0,0]]
-Explanation: The starting pixel is already colored 0, so no changes are made to the image.
+#Input: image = [[0,0,0],[0,0,0]], sr = 0, sc = 0, color = 0
+#Output: [[0,0,0],[0,0,0]]
+#Explanation: The starting pixel is already colored 0, so no changes are made to the image.
 
 
 #this is a recursion problem
 
 
-Solution: 
+#Solution: 
 #At the beginning, we want to find the starting square and replace that square's value with color as given by the variable in the problem
 # What we want to do is essentially check that every square to the left right up or down is the same value as the starting square provided by image[sr][sc], and if it is, stop recursing, and if it's not, then replace that square with the value of color
 # In other words, we keep recursing to the left right up down until the new square we are stepping onto is already the same color, and if it's the same color, we step back by coming back from the direction we came in
@@ -119,3 +119,23 @@ class Solution:
         self.fill(starting, image, sr - 1, sc, color)
         self.fill(starting, image, sr, sc + 1, color)
         self.fill(starting, image, sr, sc - 1, color)
+
+
+#python3 - 12/25/23 evening solution refresher:
+
+class Solution:
+    def floodFill(self, image: List[List[int]], sr: int, sc: int, color: int) -> List[List[int]]:
+        starting = image[sr][sc]
+        if starting == color:
+            return image
+        self.fill(starting, image, sr, sc, color)
+        return image
+    def fill(self, starting, image, sr, sc, color):
+        if sr < 0 or sr >= len(image) or sc < 0 or sc >= len(image[0]) or image[sr][sc] != starting:
+            return
+        image[sr][sc] = color #WE HAVE TO ACTUALLY FLOOD FILL IT BY TURNING THE 1 - STARTING INTO A 2 - COLOR GIVEN. OR ELSE, IF WE DON'T DO THIS, WE WOULD BE FLOODING INFINTELY BECAUSE WE WOULD SEE THAT 1 THAT WILL ALWAYS BE A 1, SO WE WILL HAVE THAT TILE TO FILL FOREVER
+        self.fill(starting, image, sr + 1, sc, color)
+        self.fill(starting, image, sr - 1, sc, color)
+        self.fill(starting, image, sr, sc + 1, color)
+        self.fill(starting, image, sr, sc - 1, color)
+        
