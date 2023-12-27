@@ -63,3 +63,19 @@ class Solution:
 # i = 0, so nums = [] path = [3, 2, 1]
 # nums is empty, so add [3, 2, 1] to the result list and return 
 # i = 1 returns none and i = 2 returns none, so the execution ends, and we return the result list
+
+
+#12/27/23 refresher - my solution in python3:
+class Solution:
+    def permute(self, nums: List[int]) -> List[List[int]]:
+        def f(nums, path):
+            if not nums:
+                result.append(path)
+                return
+            for number in range(len(nums)):
+                #:number, not number: because we are excluding everything up to number and not including number first!!!!!
+                f(nums[:number] + nums[number + 1:], path + [nums[number]])
+        result = []
+        f(nums, [])
+        return result
+            
