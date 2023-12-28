@@ -79,4 +79,13 @@ class Solution:
             t = t.replace(char, "", 1)
         return len(t) == 0
         
+#12/27/23 my own solution python3:
+
+class Solution:
+    def isAnagram(self, s: str, t: str) -> bool:
+        if sorted(s) == sorted(t):
+            return True
+        else:
+            return False
+        
         
