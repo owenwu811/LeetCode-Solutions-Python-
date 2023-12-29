@@ -83,3 +83,41 @@ class Solution:
                     numberoffresh -= 1
             mintime += 1
         return mintime if numberoffresh == 0 else -1
+
+
+#another practice run with important explanation:
+
+class Solution:
+    def orangesRotting(self, grid: List[List[int]]) -> int:
+        #we can only rot an oranhe that is a 1, or, fresh, and if it's adjacent to a rotten orange (2)
+        #we know that, at minute 0, there are going to be some rotting oranges, so our task in the first loop will be to find those oranges
+        d = deque()
+        numberoffresh = 0
+        minimumtime = 0
+        #find rotten oranges from time 0 that will start the destruction process
+        for rows in range(len(grid)):
+            for columns in range(len(grid[0])):
+                if grid[rows][columns] == 1:
+                    numberoffresh += 1
+                elif grid[rows][columns] == 2:
+                    #append the coordinates of the first rotten orange we found onto the deque list in order 
+                    d.append([rows, columns])
+                else:
+                    continue
+        directions = [[0, 1], [0, -1], [1, 0], [-1, 0]]
+        #we have rotten oranges ready to cause destruction and fresh oranges waiting to be rotten
+        while d and numberoffresh > 0:
+            #each sublist in d represents the coordinates of a rotting orange that started with the original rotten orange that will rot adjacent oranges for A PARTICULAR MINUTE 
+            for index in range(len(d)):
+                xoffirstrotten, yoffirstrotten = d.popleft()
+                #all adjacent oranges rotting process for a particular minute
+                for newdirectionx, newdirectiony in directions:
+                    xofdestroynow, yofdestroynow = xoffirstrotten + newdirectionx, yoffirstrotten + newdirectiony
+                    if xofdestroynow < 0 or xofdestroynow >= len(grid) or yofdestroynow < 0 or yofdestroynow >= len(grid[0]) or grid[xofdestroynow][yofdestroynow] != 1:
+                        continue
+                    grid[xofdestroynow][yofdestroynow] = 2
+                    d.append([xofdestroynow, yofdestroynow])
+                    numberoffresh -= 1
+            #IMPORTANT: we need to go through all rotten oranges from time 0 before incrementing minimumtime - time 0 could have more than 1 rotten orange, so just 4 directions of just 1 isn't enough to say tha we're finished rotting all oranges for that particular timeslot
+            minimumtime += 1
+        return minimumtime if numberoffresh == 0 else -1
