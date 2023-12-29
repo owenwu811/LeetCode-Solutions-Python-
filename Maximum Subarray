@@ -118,3 +118,18 @@ class Solution:
             windowsum = windowsum + number
             result = max(result, windowsum)
         return result
+
+
+#12/29/25 refresher - my python3 solution:
+
+class Solution:
+    def maxSubArray(self, nums: List[int]) -> int:
+        #we want the subarray with the largest sum, not longest in any way, so this is not a sliding window - if the array only has one element, which it is gaurunteed to through the input, the only element will be the result, so start with one element instead of 0. we can't just skip negatives because the subarray wouldn't be contiguous, and a subarray, by definition, must be contiguous 
+        res = nums[0]
+        windowsum = 0
+        for number in nums:
+            if windowsum < 0:
+                windowsum = 0
+            windowsum += number
+            res = max(res, windowsum)
+        return res
