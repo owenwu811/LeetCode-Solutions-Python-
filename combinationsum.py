@@ -38,3 +38,23 @@ class Solution:
         f(0, [], 0)
         return res
         
+
+#12/29/23 refresher: 
+
+class Solution:
+    def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
+        res = []
+        def f(index, sublist, sublistsum):
+            if sublistsum == target:
+                res.append(sublist.copy())
+                return
+            elif index >= len(candidates) or sublistsum > target:
+                return
+            sublist.append(candidates[index])
+            f(index, sublist, sublistsum + candidates[index])
+            #from [2, 2, 2, 2] to [2, 2, 2] because 2222 is 8, which is bigger than 7
+            sublist.pop()
+            #from [2, 2, 2] to [2, 2, 2, 3]
+            f(index + 1, sublist, sublistsum)
+        f(0, [], 0)
+        return res
