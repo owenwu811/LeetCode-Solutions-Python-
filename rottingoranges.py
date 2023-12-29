@@ -121,3 +121,36 @@ class Solution:
             #IMPORTANT: we need to go through all rotten oranges from time 0 before incrementing minimumtime - time 0 could have more than 1 rotten orange, so just 4 directions of just 1 isn't enough to say tha we're finished rotting all oranges for that particular timeslot
             minimumtime += 1
         return minimumtime if numberoffresh == 0 else -1
+
+
+
+#again - refresher 12/29/23
+
+class Solution:
+    def orangesRotting(self, grid: List[List[int]]) -> int:
+        rottingorangesl = deque()
+        minminutes = 0
+        numberoffresh = 0
+        #find all rotten oranges from time 0 
+        for rows in range(len(grid)):
+            for columns in range(len(grid[0])):
+                if grid[rows][columns] == 2:
+                    #coordinates of the first rotten orange
+                    rottingorangesl.append([rows, columns])
+                elif grid[rows][columns] == 1:
+                    numberoffresh += 1
+                else:
+                    continue
+        directions = [[0, 1], [0, -1], [1, 0], [-1, 0]]
+        while rottingorangesl and numberoffresh > 0:
+            for i in range(len(rottingorangesl)):
+                xoffirstrotting, yoffirstrotting = rottingorangesl.popleft()
+                for newx, newy in directions:
+                    destroyx, destroyy = xoffirstrotting + newx, yoffirstrotting + newy
+                    if destroyx < 0 or destroyx >= len(grid) or destroyy < 0 or destroyy >= len(grid[0]) or grid[destroyx][destroyy] != 1: 
+                        continue
+                    grid[destroyx][destroyy] = 2
+                    numberoffresh -= 1
+                    rottingorangesl.append([destroyx, destroyy])
+            minminutes += 1
+        return minminutes if numberoffresh == 0 else -1
