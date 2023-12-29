@@ -24,3 +24,27 @@ class Solution:
                 rightside = max(rightside, height[r])
                 result += (rightside - height[r])
         return result
+
+
+
+#python3 solution:
+
+#uae two pointer to outermost values of array and set maxleft and maxright initially to the values of those two pointer, subtracting the minimum of maximum historical coming inwards between left and right sides from the current inner value and add this value to result
+class Solution:
+    def trap(self, height: List[int]) -> int:
+        if not height:
+            return 0
+        l, r = 0, len(height) - 1
+        res = 0
+        maxleft, maxright = height[l], height[r]
+        while l < r: #will end on l and r being on the highest elevation where you know you can't trap any water at highest elevation since we are constrained by minimum, and we visited all other elements in array since we came from outward inwards
+            if maxright < maxleft:
+                r -= 1
+                maxright = max(maxright, height[r])
+                #res only increases from this line if above line's maxright historical won out meaning current inner is smaller than historical from tha side - 1 may be historical and 0 may be current, so we can trap 1
+                res += (maxright - height[r])
+            else:
+                l += 1
+                maxleft = max(maxleft, height[l])
+                res += (maxleft - height[l])
+        return res
