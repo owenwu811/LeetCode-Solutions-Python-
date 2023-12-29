@@ -45,3 +45,41 @@ class Solution:
                     fresh -= 1
             time += 1
         return time if fresh == 0 else - 1
+
+
+#my solution python3 with explanations:
+
+class Solution:
+    def orangesRotting(self, grid: List[List[int]]) -> int:
+        #we can only rot fresh oranges into rotting oranges, not empty cells
+        #deque used to keep track of all rotting oranges left that can possibly cause destruction in 4 directions - we will loop through this deque later. deque used to place where oranges can rot and is used to keep track of indicies or coordinates of rotting oranges at time 0
+        d = deque()
+        mintime = 0
+        numberoffresh = 0
+        #loop through grid to find all rotten oranges from time 0
+        for rows in range(len(grid)):
+            for columns in range(len(grid[0])):
+                if grid[rows][columns] == 1:
+                    numberoffresh += 1
+                elif grid[rows][columns] == 2:
+                    #append coordinates of rotten orange from time 0
+                    d.append([rows, columns])
+                else:
+                    continue
+        #we can rot in all 4 directions
+        directions = [[0, 1], [0, -1], [1, 0], [-1, 0]]
+        #means there are oranges to rot and rotting oranges in our deque ready to cause destruction
+        while d and numberoffresh > 0:
+            for index in range(len(d)):
+                #values from the deque represent the x and y coordinates of the rotten oranges we found from time 0
+                xfirstrotten, yfirstrotten = d.popleft()
+                for xnew, ynew in directions:
+                    
+                    rotadjacentx, rotadjacenty = xfirstrotten + xnew, yfirstrotten + ynew
+                    if rotadjacentx < 0 or rotadjacentx >= len(grid) or rotadjacenty < 0 or rotadjacenty >= len(grid[0]) or grid[rotadjacentx][rotadjacenty] != 1:
+                        continue
+                    grid[rotadjacentx][rotadjacenty] = 2
+                    d.append([rotadjacentx, rotadjacenty])
+                    numberoffresh -= 1
+            mintime += 1
+        return mintime if numberoffresh == 0 else -1
