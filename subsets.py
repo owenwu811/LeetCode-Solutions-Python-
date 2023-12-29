@@ -54,4 +54,21 @@ class Solution:
 #f(0)
 #print(res)
         
-            
+#12/29/23 refresher:
+
+class Solution:
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+        def f(index):
+            if index >= len(nums):
+                res.append(s.copy())
+                return
+            s.append(nums[index])
+            f(index + 1)
+            s.pop()
+            f(index + 1)
+        
+        res = []
+        s = []
+        f(0)
+        return res
+    
