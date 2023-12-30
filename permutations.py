@@ -94,3 +94,17 @@ class Solution:
 
         f(nums, [])
         return res
+
+#12/29/23 refresher - my solution:
+
+class Solution:
+    def permute(self, nums: List[int]) -> List[List[int]]:
+        def f(nums, ans):
+            if not nums:
+                result.append(ans)
+                return
+            for number in range(len(nums)):
+                f(nums[:number] + nums[number + 1:], ans + [nums[number]])
+        result = []
+        f(nums, [])
+        return result
