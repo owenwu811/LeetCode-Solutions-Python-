@@ -48,3 +48,25 @@ class Solution:
                 maxleft = max(maxleft, height[l])
                 res += (maxleft - height[l])
         return res
+        
+#12/30/23 refresher - my solution in python3:
+
+class Solution:
+    def trap(self, height: List[int]) -> int:
+        l, r = 0, len(height) - 1
+        res = 0
+        maxleft, maxright = height[l], height[r]
+        while l < r:
+            if maxleft < maxright:
+                l += 1
+                maxleft = max(maxleft, height[l])
+                res += (maxleft - height[l])
+            elif maxleft == maxright:
+                r -= 1
+                maxright = max(maxright, height[r])
+                res += (maxright - height[r])
+            else:
+                r -= 1
+                maxright = max(maxright, height[r])
+                res += (maxright - height[r])
+        return res
