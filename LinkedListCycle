@@ -60,6 +60,7 @@ class Solution:
     def hasCycle(self, head: Optional[ListNode]) -> bool:
         slow = head
         fast = head
+        #fast.next is not None is used to ensure the bridge between fast (current node) and fast.next.next (destination) exist to avoid Nonetype error
         while fast is not None and fast.next is not None:
             slow = slow.next
             fast = fast.next.next
