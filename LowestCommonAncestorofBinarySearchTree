@@ -42,3 +42,27 @@ class Solution:
         if left_lca and right_lca:
             return root
         return left_lca if left_lca else right_lca
+
+
+#my solution - python3 - 12/30/2023:
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+        cur = root
+        #we need to remember that, if p or q equals to the current value, then the anwser will be current because a node can be an ancestor of itself and the current ancestor is a descendant of all of the nodes below it in the same subtree
+        while cur:
+            if p.val < cur.val and q.val > cur.val or q.val < cur.val and p.val > cur.val or p.val == cur.val or q.val == cur.val:
+                return cur
+            #if p and q nodes occur at a split, the cmomon ancestor will be the split node itself
+            elif p.val > cur.val and q.val > cur.val:
+                cur = cur.right
+            else:
+                cur = cur.left
+        return cur
