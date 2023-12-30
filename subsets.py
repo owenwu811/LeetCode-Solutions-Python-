@@ -71,4 +71,21 @@ class Solution:
         s = []
         f(0)
         return res
-    
+
+#12/30/23 refresher:
+
+class Solution:
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+        def f(i):
+            if i >= len(nums):
+                res.append(subset.copy())
+                return
+            subset.append(nums[i])
+            f(i + 1)
+            subset.pop()
+            f(i + 1)
+
+        subset = []
+        res = []
+        f(0)
+        return res
