@@ -199,3 +199,43 @@ class Solution:
             minminutes += 1
         #after we have no more rotten oranges to rot or no more fresh oranges, we return minminutes. but if we still have fresh oranges that have not ever been adjacent to a rotting orange after this entire process of spreading at each timeslot and stepping onto new directions in the grid, we return -1 - this is the case where deque is empty meaning no more diseases to spread or rotten oranges to spread but still have fresh oranges
         return minminutes if numberoffresh == 0 else -1
+
+
+#12/31/23 refresher:
+
+class Solution:
+    def orangesRotting(self, grid: List[List[int]]) -> int:
+        d = deque()
+        freshcount = 0
+        minminutesres = 0
+        #starting from time 0 slot, find all rotting oranges and add them to the deque by adding their indiciy coordinate
+        for row in range(len(grid)):
+            for column in range(len(grid[0])):
+                if grid[row][column] == 2:
+                    d.append([row, column])
+                #we need to count fresh oranges to make sure we can even rot any fresh oranges. if no fresh oranges exist, then we won't increment minutes, and we will return -1 at the end since freshcount stays 0
+                elif grid[row][column] == 1:
+                    freshcount += 1
+                else:
+                    continue
+        directions = [[0, 1], [0, -1], [-1, 0], [1, 0]]
+        #we want to make sure we have rotten oranges from time slot 0 and there are fresh oranges to rot so we won't have to return -1 
+        while d and freshcount > 0:
+            #since we do have work to do, we loop through out deque, which represents a time period where the rotting spread happens
+            for rottenorangeindex in range(len(d)):
+                #since we know our deque will have the coordinates / indicies of rotten oranges from a time slot starting from the first time slot, we unpack those indicies into an x and y coordinate
+                rottenorangexindex, rottenorangeyindex = d.popleft()
+                #now, we have to simulate the spread, so we loop through our directions and spread the rotting in all 4 directions using unpacking as well because our directions array is a list of lists with 2 values in each sublist
+                for xnewindex, ynewindex in directions:
+                    #make a new x and y variables to represnet the new tile that was rotted in this time frame
+                    xdestroyedindex, ydestroyedindex = xnewindex + rottenorangexindex, ynewindex + rottenorangeyindex
+                    #boundary check the new tile we are spreading the disease to and make sure this new tile has a fresh orange or 1 because we can only rot fresh oranges into rotten and not empty cells of cells with already rotten oranges - 2s in them
+                    if xdestroyedindex < 0 or xdestroyedindex >= len(grid) or ydestroyedindex < 0 or ydestroyedindex >= len(grid[0]) or grid[xdestroyedindex][ydestroyedindex] != 1:
+                        continue
+                    grid[xdestroyedindex][ydestroyedindex] = 2 #set the fresh ornage to rotten so we don't run into an infinite loop because we will keep searching for 1s in all 4 directions for this particular timeframe
+                    #after turning a fresh orange rotten, we have to reflect this change in our total number of fresh oranges and add this new rotting orange that we just turned from 1 to 2 into the next timeslot aka our deque - we never pop off rotting oranges off the deque because rotting oranges never change
+                    freshcount -= 1
+                    #we are appending a coordinate pair of indicies of the new rotten orange we just turned rotten as a sublist 
+                    d.append([xdestroyedindex, ydestroyedindex])
+            minminutesres += 1
+        return minminutesres if freshcount == 0 else -1
