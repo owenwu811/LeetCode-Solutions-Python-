@@ -89,3 +89,23 @@ class Solution:
         res = []
         f(0)
         return res
+
+
+#1/1/24 refresher:
+
+
+class Solution:
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+        def f(index):
+            if index >= len(nums):
+                res.append(ans.copy())
+                return
+            ans.append(nums[index])
+            f(index + 1)
+            ans.pop()
+            f(index + 1)
+        res = []
+        ans = []
+        #I think: since the recursive parameter is being used to control the index, and we can't have duplicates, we have to keep increasing with every recursive call because a subet can't have two of the same numbers in it
+        f(0)
+        return res
