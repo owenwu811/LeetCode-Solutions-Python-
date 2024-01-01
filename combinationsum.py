@@ -58,3 +58,23 @@ class Solution:
             f(index + 1, sublist, sublistsum)
         f(0, [], 0)
         return res
+
+
+#1/1/24 refresher:
+
+class Solution:
+    def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
+        res = []
+        def f(index, ans, windowsum):
+            if windowsum == target:
+                res.append(ans.copy())
+                return
+            elif index >= len(candidates) or windowsum > target:
+                return
+            ans.append(candidates[index])
+            f(index, ans, windowsum + candidates[index])
+            ans.pop()
+            #223 now instead of 222 from 22 backtracked because we need to explore a new path instead of the same path again, which would lead to infinite recursion because it would be bigger than target as 2 + 2 + 2 + 2 = 8, which is bigger than our target of 7
+            f(index + 1, ans, windowsum)
+        f(0, [], 0)
+        return res
