@@ -109,3 +109,10 @@ class Solution:
         #I think: since the recursive parameter is being used to control the index, and we can't have duplicates, we have to keep increasing with every recursive call because a subet can't have two of the same numbers in it
         f(0)
         return res
+
+#explanation:
+
+#ans.append(nums[index]): Add the current element to the subset.
+#f(index + 1): Recursively call the function with the next index to include the current element in the subset.
+#ans.pop(): Remove the current element from the subset (backtrack).
+#f(index + 1): Recursively call the function with the next index to exclude the current element from the subset.
