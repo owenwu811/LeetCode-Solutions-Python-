@@ -116,3 +116,5 @@ class Solution:
 #f(index + 1): Recursively call the function with the next index to include the current element in the subset.
 #ans.pop(): Remove the current element from the subset (backtrack).
 #f(index + 1): Recursively call the function with the next index to exclude the current element from the subset.
+
+#If you were to replace f(index + 1) with f(index) in the code, it would result in an infinite loop. You would keep calling the same index element over and over again
