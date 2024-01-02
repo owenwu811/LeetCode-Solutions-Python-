@@ -60,3 +60,20 @@ class Solution:
                 newInterval = [min(newInterval[0], intervals[lists][0]), max(newInterval[1], intervals[lists][1])]
         res.append(newInterval)
         return res
+     
+#1/2/24 refresher - my solution with explanation:
+
+class Solution:
+    def insert(self, intervals: List[List[int]], newInterval: List[int]) -> List[List[int]]:
+        res = []
+        for sublist in range(len(intervals)):
+            #the interval we are trying to insert's biggest number is still smaller than the smallest number of our current sublist, so insert the interval first before returning the rest of our given list unaltered 
+            if newInterval[1] < intervals[sublist][0]:
+                res.append(newInterval)
+                return res + intervals[sublist:]
+            elif newInterval[0] > intervals[sublist][1]:
+                res.append(intervals[sublist])
+            else: #overlapping case - we stretch out both sides 
+                newInterval = [min(newInterval[0], intervals[sublist][0]), max(newInterval[1], intervals[sublist][1])]
+        res.append(newInterval)
+        return res
