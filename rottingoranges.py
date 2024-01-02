@@ -239,3 +239,34 @@ class Solution:
                     d.append([xdestroyedindex, ydestroyedindex])
             minminutesres += 1
         return minminutesres if freshcount == 0 else -1
+
+#1/2/24 refresher solution:
+
+class Solution:
+    def orangesRotting(self, grid: List[List[int]]) -> int:
+        d = deque()
+        minminutes = 0
+        numberoffresh = 0
+        for row in range(len(grid)):
+            for column in range(len(grid[0])):
+                if grid[row][column] == 2:
+                    d.append([row, column])
+                elif grid[row][column] == 1:
+                    numberoffresh += 1
+                else:
+                    continue
+        directions = [[0, 1], [0, -1], [1, 0], [-1, 0]]
+        while d and numberoffresh > 0:
+            for orange in range(len(d)):
+                xofrotten, yofrotten = d.popleft()
+                for xnew, ynew in directions:
+                    xdestroy, ydestroy = xofrotten + xnew, yofrotten + ynew
+                    if xdestroy < 0 or xdestroy >= len(grid) or ydestroy < 0 or ydestroy >= len(grid[0]) or grid[xdestroy][ydestroy] != 1:
+                        continue
+                    grid[xdestroy][ydestroy] = 2
+                    numberoffresh -= 1
+                    #remember, this is a sublist that will be unpacked, so popleft equals to ONE sublist, and then the xdestroy, ydestroy will be set, in order, to the first and second values of that sublist
+                    d.append([xdestroy, ydestroy])
+            minminutes += 1
+        return minminutes if numberoffresh == 0 else -1
+         
