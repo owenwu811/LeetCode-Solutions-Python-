@@ -108,3 +108,20 @@ class Solution:
         result = []
         f(nums, [])
         return result
+     
+#1/2/24 refresher - my solution:
+
+class Solution:
+    def permute(self, nums: List[int]) -> List[List[int]]:
+        def f(nums, ans):
+            if not nums:
+                res.append(ans)
+                return
+            #when the if not nums block gets executed, then we increment number. this is because, once we start subarrays that start with each number in nums, then we are finished exploring all paths - for example, [1, 2, 3] permutation has 2 subarrays starting with 1 and 2 starting with 2 and 2 starting with 3, and we only increment the starting value after we have swapped the order of the order numbers - [1, 2, 3] and [1, 3, 2] - only then do we go onto permutations starting with [2
+            for number in range(len(nums)):
+                f(nums[:number] + nums[number + 1:], ans + [nums[number]])
+
+        res = []
+        f(nums, [])
+        return res
+        
