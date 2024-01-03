@@ -37,3 +37,36 @@ class Solution:
                 res.append(level)
         #while loop terminates because we have hit the bottom of the tree and have no more child nodes to add to the deque 
         return res
+
+
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    from collections import deque
+    def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
+        
+        res = []
+        q = deque()
+        #this will only happen once - to add the root node of the tree to the deque so that while q will even begin executing 
+        q.append(root)
+        while q:
+            #len is taken before the for loop
+            currentgeneration = len(q)
+            #the level list just holds the integer values of all nodes in the current level 
+            level = []
+            #the for loop just represents the number of iterations in the current level of the tree using i 
+            for i in range(currentgeneration):
+                node = q.popleft()
+                if node:
+                    level.append(node.val)
+                    #children at down one level in the tree compared to the parent aka children are not at the same level as current node that we are evaluating now is at, and, if there are children in the current level, the while loop - while q - will become true after we append the current level - q only has something if we added children to it
+                    q.append(node.left)
+                    q.append(node.right)
+            if level:
+                res.append(level)
+        return res
