@@ -106,4 +106,28 @@ class Solution:
                     res.append(level)
             return res
 
+
+#1/3/24 refresher:
+
+res = []
+d = deque()
+d.append(root)
+#there are child nodes that were added at the previous level meaning this level of the tree has nodes 
+while d:
+    #the values of the nodes in a particular level of the tree will be kept in this list
+    level = []
+    #how many iterations as indexes in the current level of the tree
+    for i in range(len(d)):
+        #from left to right direction in the current level of the tree, remove each node from the tree and set current generation equal to the value of that node
+        currentgeneration = d.popleft()
+        #we need to make sure that the value of the current node is not None
+        if currentgeneration is not None:
+            level.append(currentgeneration.val)
+            #trees go from left to right - these are appending the children nodes from the perspective of the currentgeneration node we are on 
+            d.append(currentgeneration.left)
+            d.append(currentgeneration.right)
+    if level:
+        res.append(level)
+return res
+
        
