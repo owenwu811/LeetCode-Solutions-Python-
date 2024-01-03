@@ -70,3 +70,40 @@ class Solution:
             if level:
                 res.append(level)
         return res
+
+
+
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    from collections import deque
+    def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
+        
+            res = []
+            #represents if we have anymore children and holds all the children at one level to be processed later
+            d = deque()
+            #we have to append the root node to kick off the while loop
+            d.append(root)
+            while d:
+                #this just holds all the integer values of nodes at a current level of the tree
+                level = []
+                #this determines the number of iterations using i in each level of the tree
+                currentgeneration = len(d)
+                for i in range(currentgeneration):
+                    currentnode = d.popleft()
+                    if currentnode is not None:
+                        #if our currentnode is not none, add it to the level list in order using append
+                        level.append(currentnode.val)
+                        #this will be used to determine if while d is true since children added here at one level down from the current node and will be evaluated - note that the currentgeneration (meaning current level of tree in intuitive way) that equals variable of len(d) is set statically before the for loop begins
+                        d.append(currentnode.left)
+                        d.append(currentnode.right)
+                if level:
+                    res.append(level)
+            return res
+
+       
