@@ -87,3 +87,24 @@ class Solution:
             #split condition or if p or q equal to the node itself 
             else:
                 return root
+
+
+#1/4/24 refresher solution:
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+        currentnode = root
+        while True:
+            if p.val < currentnode.val and q.val < currentnode.val:
+                currentnode = currentnode.left
+            elif p.val > currentnode.val and q.val > currentnode.val:
+                currentnode = currentnode.right
+            else:
+                return currentnode
