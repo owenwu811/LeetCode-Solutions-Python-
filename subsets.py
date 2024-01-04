@@ -137,3 +137,23 @@ class Solution:
         res = []
         f(0, [])
         return res
+
+
+#1/4/24 refresher - my solution in python3:
+
+class Solution:
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+        def f(index, subset):
+            if index >= len(nums):
+                result.append(subset.copy())
+                return
+            #left side - add
+            subset.append(nums[index])
+            f(index + 1, subset)
+            #right side - don't include aka pop from before
+            #123 12 13 1 23 2 
+            subset.pop()
+            f(index + 1, subset)
+        result = []
+        f(0, [])
+        return result
