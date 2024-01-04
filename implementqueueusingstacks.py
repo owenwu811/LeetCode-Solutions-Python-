@@ -39,3 +39,24 @@ class MyQueue:
 # param_2 = obj.pop()
 # param_3 = obj.peek()
 # param_4 = obj.empty()
+
+
+#my solution - python3 - 1/4/24:
+
+class MyQueue:
+
+    def __init__(self):
+        self.list = []
+
+    def push(self, x: int) -> None:
+        self.list.append(x)
+
+    def pop(self) -> int:
+        h = self.list.pop(0)
+        return h
+
+    def peek(self) -> int:
+        return self.list[0]
+
+    def empty(self) -> bool:
+       return len(self.list) == 0
