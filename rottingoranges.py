@@ -269,4 +269,35 @@ class Solution:
                     d.append([xdestroy, ydestroy])
             minminutes += 1
         return minminutes if numberoffresh == 0 else -1
-         
+
+
+#1/4/24 refresher:
+
+class Solution:
+    def orangesRotting(self, grid: List[List[int]]) -> int:
+        #use a deque to keep track of all rotten oranges at a particular time slot
+        d = deque()
+        minminutes = 0
+        freshcount = 0
+        for row in range(len(grid)):
+            for column in range(len(grid[0])):
+                if grid[row][column] == 2:
+                    d.append([row, column])
+                elif grid[row][column] == 1:
+                    freshcount += 1
+                else:
+                    continue
+        #we want to spread the rot in all 4 directions
+        directions = [[0, 1], [0, -1], [1, 0], [-1, 0]]
+        while d and freshcount > 0:
+            for rottenoranges in range(len(d)):
+                xofrotten, yofrotten = d.popleft()
+                for xnew, ynew in directions:
+                    destroyx, destroyy = xofrotten + xnew, yofrotten + ynew
+                    if destroyx < 0 or destroyx >= len(grid) or destroyy < 0 or destroyy >= len(grid[0]) or grid[destroyx][destroyy] != 1:
+                        continue
+                    grid[destroyx][destroyy] = 2
+                    freshcount -= 1
+                    d.append([destroyx, destroyy])
+            minminutes += 1
+        return minminutes if freshcount == 0 else -1
