@@ -67,3 +67,17 @@ class Solution:
             if current == key:
                 res.append(window)
         return res
+
+
+
+#1/4/24 refresher solution - my solution in python3:
+
+class Solution:
+    def findAnagrams(self, s: str, p: str) -> List[int]:
+        res = []
+        key = "".join(sorted(p))
+        for char in range(len(s) - len(p) + 1):
+            window = "".join(sorted(s[char:char + len(p)]))
+            if window == key:
+                res.append(char)
+        return res
