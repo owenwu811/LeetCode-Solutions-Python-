@@ -139,3 +139,37 @@ return res
 #IMPORTANT: the level = [] list after the line - while d - GETS CLEARED EVERYTIME THE line - while d - is recalled after the execution of the line - res.append(level). The reason the level [] list gets cleared in this manner is because every new level of the input tree starts fresh - think children's generation vs parent's generation as levels in the tree. you aren't in your parent's generation. 
 #we use the d.popleft() method to simulate the order of going from left to right in a particular level in the input tree - popping from left to right and adding to the level list from left to right (keeping the order depicted in the input tree)
        
+#1/4/24 refresher solution:
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    from collections import deque
+    def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
+        #we use a deque to keep track of the nodes at every level of the input tree
+        d = deque()
+        res = []
+        #we need to start with the root node of the tree as that is the first level
+        d.append(root)
+        #while our deque has elements inside of it
+        while len(d) > 0:
+            #iterating through our deque
+            #level list will represent all the values of the nodes at the current level of the tree
+            level = []
+            for index in range(len(d)):
+                #we want to pop the values of the nodes from left to right and add those values to our level list as long as the node itself is not a null value
+                currentnode = d.popleft()
+                if currentnode is not None:
+                    level.append(currentnode.val)
+                    #we add the children nodes to the deque from the perspective of our current level so that the while loop can continue - the while loop continues as long as there is a child level. after the while loop continues for the next level, the level list is cleared 
+                    d.append(currentnode.left)
+                    d.append(currentnode.right)
+            #we do not want empty sublists in our result, so we must check that our level list has elements inside of it
+            if len(level) > 0:
+                res.append(level)
+        #after we have gone through all levels meaning there is nothing in the current deque because there were no children added for the current level, we can return the res list of lists as the solution
+        return res
