@@ -65,3 +65,19 @@ class Solution:
             else:
                 output.append([start, end])
         return output
+
+
+#1/4/24 refresher solution: 
+
+class Solution:
+    def merge(self, intervals: List[List[int]]) -> List[List[int]]:
+        #we sort by the 0th index of each sublist so that we know the 1st sublist's 0th index will always be the smallest element in our resulting list and that we only need to compare the 1st index element of our current sublist we are iterating over and our previous biggest sublist because we know that the 0th index is smaller than the 1st index of the sublist to the right
+        intervals.sort(key=lambda n:n[0])
+        res = [intervals[0]]
+        for start, end in intervals[1:]:
+            if start <= res[-1][1]:
+                res[-1][1] = max(end, res[-1][1])
+            else:
+                #unpacking the 1st and 2nd values in each sublist 
+                res.append([start, end])
+        return res
