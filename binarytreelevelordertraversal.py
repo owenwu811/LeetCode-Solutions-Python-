@@ -130,4 +130,12 @@ while d:
         res.append(level)
 return res
 
+#notes:
+
+#the line - while d - will mostly always be true on the 1st time it is called, but future times when it is recalled will depend on if children were added in the previous iterations from the new while loop call's perspective
+#the level [] list represents the node values for the current level of the input tree
+#the deque d() represents the nodes themselves for the current level of the input tree 
+#the line - if level: res.append(level) - is necessary because we don't want empty sublists in the output - [[3], [9, 20], [15, 7]] instead of [[3], [9, 20], [15, 7], []]
+#IMPORTANT: the level = [] list after the line - while d - GETS CLEARED EVERYTIME THE line - while d - is recalled after the execution of the line - res.append(level). The reason the level [] list gets cleared in this manner is because every new level of the input tree starts fresh - think children's generation vs parent's generation as levels in the tree. you aren't in your parent's generation. 
+#we use the d.popleft() method to simulate the order of going from left to right in a particular level in the input tree - popping from left to right and adding to the level list from left to right (keeping the order depicted in the input tree)
        
