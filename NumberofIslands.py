@@ -132,3 +132,29 @@ class Solution:
                     res += 1
                     f(row, column, grid)
         return res
+
+
+
+#1/6/24 refresher:
+
+class Solution:
+    def numIslands(self, grid: List[List[str]]) -> int:
+        def dfs(grid, row, column):
+            if row < 0 or row >= len(grid) or column < 0 or column >= len(grid[0]) or grid[row][column] == "0":
+                return
+            #we are only given 1s and 0s, so if the grid dosen't contain a string 0 and is in bounds, then it must be a 1 and is part of the same island, so turn that 1 into a 0 so we don't keep calling that 1 tile forever
+            grid[row][column] = "0" #avoid infinite recursion
+            dfs(grid, row + 1, column)
+            dfs(grid, row - 1, column)
+            dfs(grid, row, column + 1)
+            dfs(grid, row, column - 1)
+
+
+
+        res = 0
+        for row in range(len(grid)):
+            for column in range(len(grid[0])):
+                if grid[row][column] == "1":
+                    res += 1
+                    dfs(grid, row, column)
+        return res
