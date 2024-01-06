@@ -1,28 +1,28 @@
-A phrase is a palindrome if, after converting all uppercase letters into lowercase letters and removing all non-alphanumeric characters, it reads the same forward and backward. Alphanumeric characters include letters and numbers.
+#A phrase is a palindrome if, after converting all uppercase letters into lowercase letters and removing all non-alphanumeric characters, it reads the same forward and backward. Alphanumeric characters include letters and numbers.
 
-Given a string s, return true if it is a palindrome, or false otherwise.
+#Given a string s, return true if it is a palindrome, or false otherwise.
 
  
 
-Example 1:
+#Example 1:
 
-Input: s = "A man, a plan, a canal: Panama"
-Output: true
-Explanation: "amanaplanacanalpanama" is a palindrome.
-Example 2:
+#Input: s = "A man, a plan, a canal: Panama"
+#Output: true
+#Explanation: "amanaplanacanalpanama" is a palindrome.
+#Example 2:
 
-Input: s = "race a car"
-Output: false
-Explanation: "raceacar" is not a palindrome.
-Example 3:
+#Input: s = "race a car"
+#Output: false
+#Explanation: "raceacar" is not a palindrome.
+#Example 3:
 
-Input: s = " "
-Output: true
-Explanation: s is an empty string "" after removing non-alphanumeric characters.
-Since an empty string reads the same forward and backward, it is a palindrome.
+#Input: s = " "
+#Output: true
+#Explanation: s is an empty string "" after removing non-alphanumeric characters.
+#Since an empty string reads the same forward and backward, it is a palindrome.
 
 
-My Solution:
+#My Solution:
 
 class Solution:
     def isPalindrome(self, s: str) -> bool:
@@ -37,10 +37,10 @@ class Solution:
             end -= 1
         return True #if, after we've gone through all characters starting on either side of the string and determined that they are all equal, then we do have a valid palindrome, so return True
         
- 6/9/23 refresher (my solution) - only 94/485 test cases passing - issue is that need to only keep alphanumeric characters and find middle index of string:
+# 6/9/23 refresher (my solution) - only 94/485 test cases passing - issue is that need to only keep alphanumeric characters and find middle index of string:
  
  class Solution:
-    def isPalindrome(self, s: str) -> bool - this approach is starting from the middle and expanding outwards and checking if they are the same until you reach the opposite ends:
+    def isPalindrome(self, s: str) -> bool #- this approach is starting from the middle and expanding outwards and checking if they are the same until you reach the opposite ends:
         middle = len(s) / 2
         left, right = middle, middle
         while left >= 0 and right < len(s):
@@ -51,7 +51,7 @@ class Solution:
         return True
                 
                 
-6/9/23 refresher (I also tried using a dictionary) - same 94/485 result - the issue is checking for only alphanumeric characters:
+#6/9/23 refresher (I also tried using a dictionary) - same 94/485 result - the issue is checking for only alphanumeric characters:
 
 class Solution:
     def isPalindrome(self, s: str) -> bool:
@@ -87,11 +87,11 @@ class Solution:
 #1/6/24 refresher solution:
 
 s.replace(" ", "")
-        s = re.sub("[\W_]", "", s)
-        l, r = 0, len(s) - 1
-        while l < r:
-            if s[l].casefold() != s[r].casefold():
-                return False
-            l += 1
-            r -= 1
-        return True
+s = re.sub("[\W_]", "", s)
+l, r = 0, len(s) - 1
+while l < r:
+    if s[l].casefold() != s[r].casefold():
+        return False
+    l += 1
+    r -= 1
+return True
