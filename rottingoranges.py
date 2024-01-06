@@ -301,3 +301,39 @@ class Solution:
                     d.append([destroyx, destroyy])
             minminutes += 1
         return minminutes if freshcount == 0 else -1
+
+
+
+#1/6/24 refresher solution:
+
+class Solution:
+    def orangesRotting(self, grid: List[List[int]]) -> int:
+        minminutes = 0
+        freshcount = 0
+        d = deque()
+        for row in range(len(grid)):
+            for column in range(len(grid[0])):
+                if grid[row][column] == 2:
+                    d.append([row, column])
+                elif grid[row][column] == 1:
+                    freshcount += 1
+                #we don't care about 0s or empty spaces, and we know we are only given 0s and 1s and 2s in our grid
+                else:
+                    continue
+        #simulate the spread in all 4 directions using coordinates as indices 
+        directions = [[0, 1], [0, -1], [1, 0], [-1, 0]]
+        while d and freshcount > 0:
+            for i in range(len(d)):
+                xrotten, yrotten = d.popleft()
+                for xofnew, yofnew in directions:
+                    #we have to get the new coordinate we are stepping onto - xdstroy and ydestroy - before we boundary check and make sure the new coordinate is a fresh orange that we can rot 
+                    xdestroy, ydestroy = xrotten + xofnew, yrotten + yofnew
+                    if xdestroy < 0 or xdestroy >= len(grid) or ydestroy < 0 or ydestroy >= len(grid[0]) or grid[xdestroy][ydestroy] != 1:
+                        continue
+                    #prevent infinite looping
+                    grid[xdestroy][ydestroy] = 2
+                    freshcount -= 1
+                    d.append([xdestroy, ydestroy])
+            minminutes += 1
+        return minminutes if freshcount == 0 else -1
+
