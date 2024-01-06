@@ -83,3 +83,15 @@ class Solution:
             r -= 1
         return True
 
+
+#1/6/24 refresher solution:
+
+s.replace(" ", "")
+        s = re.sub("[\W_]", "", s)
+        l, r = 0, len(s) - 1
+        while l < r:
+            if s[l].casefold() != s[r].casefold():
+                return False
+            l += 1
+            r -= 1
+        return True
