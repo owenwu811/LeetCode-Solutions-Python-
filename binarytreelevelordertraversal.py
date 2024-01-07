@@ -173,3 +173,32 @@ class Solution:
                 res.append(level)
         #after we have gone through all levels meaning there is nothing in the current deque because there were no children added for the current level, we can return the res list of lists as the solution
         return res
+
+
+#1/7/24 refresher solution - my own solution in python3:
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    from collections import deque
+    def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
+        #keep track of nodes at the current level in our input tree
+        res = []
+        d = deque()
+        d.append(root)
+        while len(d) > 0:
+            #level is used to keep track of the integer values of the nodes at the current level in our input tree
+            level = []
+            for i in range(len(d)):
+                currentnode = d.popleft()
+                if currentnode is not None:
+                    level.append(currentnode.val)
+                    d.append(currentnode.left)
+                    d.append(currentnode.right)
+            if level:
+                res.append(level)
+        return res
