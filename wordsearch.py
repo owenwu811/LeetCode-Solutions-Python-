@@ -73,6 +73,7 @@ class Solution:
         def f(index, row, column):
             if row < 0 or row >= len(board) or column < 0 or column >= len(board[0]) or board[row][column] != word[index]:
                 return False
+            #when we return True here, we know we have found the word, so we can bubble back up the recursive tree to return every cell in our path as true - even though this may look like new calculations, it is not; it's just verifying all the letters in the path up to that point - and then return True back to the if statement in the nested for loop
             if index >= len(word) - 1:
                 return True
             temp = board[row][column]
