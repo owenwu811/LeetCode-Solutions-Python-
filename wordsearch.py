@@ -35,3 +35,4 @@ class Solution:
 #the idea is that we backtrack only to the point where we still had the correct letters in the word up to that point, and we reset the variable back to temp for a new exploration because the use once rule only applies to a specific exploration or path - this is the essence of the backtracking mechanism 
 #Backtracking is a technique used in recursive algorithms where, upon reaching a dead-end or determining that a certain path is not valid, you backtrack to the previous state to explore alternative paths.
 #By resetting the cell to its original value, you undo the changes made during the current exploration path. This ensures that the grid is restored to its state before the exploration began.
+#we reset the cell to its original value when we have hit a dead end meaning we still haven't found the entire word yet
