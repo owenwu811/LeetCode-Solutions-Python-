@@ -88,3 +88,26 @@ class Solution:
                 maxright = max(maxright, height[r])
                 res += (maxright - height[r])
         return res
+
+
+
+#1/7/24 refresher solution:
+
+class Solution:
+    def trap(self, height: List[int]) -> int:
+        #don't forget to acount for this edge case!!!! - if the array has no elements, then we can't trap any water, so return 0 as the maximum units of water we can trap!
+        if not height:
+            return 0
+        l, r = 0, len(height) - 1
+        res = 0
+        maxleft, maxright = height[l], height[r]
+        while l < r:
+            if maxleft < maxright:
+                l += 1
+                maxleft = max(maxleft, height[l])
+                res += (maxleft - height[l])
+            else:
+                r -= 1
+                maxright = max(maxright, height[r])
+                res += (maxright - height[r])
+        return res
