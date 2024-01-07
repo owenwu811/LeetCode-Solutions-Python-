@@ -47,7 +47,7 @@ class Solution:
         def dfs(index, row, column):
             if row < 0 or row >= len(board) or column < 0 or column >= len(board[0]) or board[row][column] != word[index]:
                 return False
-            #index only gets up to a point where we have found all letters in the path we are exploring because it would backtrack if we didn't at any point. we would backtrack until we reached the point where we still did find all letters up to a certain point in the word and continue exploring new paths
+            #index represents and only reachess up to a point in the input word where we have found all letters in our current path we are exploring because it would backtrack if we didn't at any point. we would backtrack until we reached the point where we still did find all letters up to a certain point in the word and continue exploring new paths
             if index >= len(word) - 1:
                 return True
             temp = board[row][column]
