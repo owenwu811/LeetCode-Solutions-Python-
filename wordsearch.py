@@ -87,4 +87,24 @@ class Solution:
                 if board[row][column] == word[0] and f(0, row, column):
                     return True
         return False
-         
+
+#again
+class Solution:
+    def exist(self, board: List[List[str]], word: str) -> bool:
+        def f(index, row, column, board):
+            if row < 0 or row >= len(board) or column < 0 or column >= len(board[0]) or board[row][column] != word[index]:
+                return False
+            if index >= len(word) - 1:
+                return True
+            temp = board[row][column]
+            board[row][column] = "visited"
+            result = (f(index + 1, row + 1, column, board) or f(index + 1, row - 1, column, board) or f(index + 1, row, column + 1, board) or f(index + 1, row, column - 1, board))
+            board[row][column] = temp
+            return result
+
+        for row in range(len(board)):
+            for column in range(len(board[0])):
+                if board[row][column] == word[0] and f(0, row, column, board):
+                    return True
+        return False
+        
