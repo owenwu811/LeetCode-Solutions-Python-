@@ -30,4 +30,6 @@ class Solution:
                 if board[row][column] == word[0] and f(0, row, column):
                     return True
         return False
-        
+
+
+#the idea is that we backtrack only to the point where we still had the correct letters in the word up to that point, and we reset the variable back to temp for a new exploration because the use once rule only applies to a specific exploration or path - this is the essence of the backtracking mechanism 
