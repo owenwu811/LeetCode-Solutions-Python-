@@ -97,3 +97,26 @@ class Solution:
         res = []
         f(0, [], 0)
         return res
+
+
+#1/7/24 my refresher solution with my explanation:
+
+class Solution:
+    def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
+        def dfs(index, ans, sublistsum):
+            if sublistsum == target:
+                res.append(ans.copy())
+                return
+            elif index >= len(candidates) or sublistsum > target:
+                return
+            ans.append(candidates[index])
+            #the same number can be chosen an uliminted number of times for this problem, not subsets, so index is acceptable
+            dfs(index, ans, sublistsum + candidates[index])
+            ans.pop()
+            #the absence of adding candidates[index] has the same affect on the sublistsum integer as popping from the end of the list
+            #we've reached a dead end - 2222 > 7, so we have to pop - 222 and then try maybe 2223 - eventually, we will find that we need to pop again from 222 to 22 and add 223, which will trigger this below line - dfs(index + 1, ans, sublistsum + candidates[index]) because 3 is an index to the right of 2 in our candidates input array
+            dfs(index + 1, ans, sublistsum)
+
+        res = []
+        dfs(0, [], 0)
+        return res
