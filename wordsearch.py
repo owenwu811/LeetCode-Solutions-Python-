@@ -36,3 +36,31 @@ class Solution:
 #Backtracking is a technique used in recursive algorithms where, upon reaching a dead-end or determining that a certain path is not valid, you backtrack to the previous state to explore alternative paths.
 #By resetting the cell to its original value, you undo the changes made during the current exploration path. This ensures that the grid is restored to its state before the exploration began.
 #we reset the cell to its original value when we have hit a dead end meaning we still haven't found the entire word yet
+
+
+
+#practice run #2 - 1/6/24
+
+
+class Solution:
+    def exist(self, board: List[List[str]], word: str) -> bool:
+        def dfs(index, row, column):
+            if row < 0 or row >= len(board) or column < 0 or column >= len(board[0]) or board[row][column] != word[index]:
+                return False
+            #index only gets up to a point where we have found all letters in the path we are exploring because it would backtrack if we didn't at any point. we would backtrack until we reached the point where we still did find all letters up to a certain point in the word and continue exploring new paths
+            if index >= len(word) - 1:
+                return True
+            temp = board[row][column]
+            #we mark the cell as visited and then explore all 4 cells adjacent to this cell - this counts as the same path
+            board[row][column] = "visited"
+            result = (dfs(index + 1, row + 1, column) or dfs(index + 1, row - 1, column) or dfs(index + 1, row, column + 1) or dfs(index + 1, row, column - 1))
+            #after we explore all 4 directions and hit a dead end, then we need to backtrack and explore a new path, but, first, we need to reset the cell marked as visited to their original value since the same cell cannot be used more than once in a particular path of exploration only
+            board[row][column] = temp
+            return result
+
+
+        for row in range(len(board)):
+            for column in range(len(board[0])):
+                if board[row][column] == word[0] and dfs(0, row, column):
+                    return True
+        return False
