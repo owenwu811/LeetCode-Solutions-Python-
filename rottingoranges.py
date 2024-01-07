@@ -337,3 +337,37 @@ class Solution:
             minminutes += 1
         return minminutes if freshcount == 0 else -1
 
+
+#1/7/24 my refresher solution with explanation:
+
+class Solution:
+    def orangesRotting(self, grid: List[List[int]]) -> int:
+        #deque represents all the initial rotten oranges at the 1st time slot
+        d = deque()
+        minminutes = 0
+        freshcount = 0
+        for row in range(len(grid)):
+            for column in range(len(grid[0])):
+                if grid[row][column] == 2:
+                    d.append([row, column])
+                elif grid[row][column] == 1:
+                    freshcount += 1
+                elif grid[row][column] == 0:
+                    continue
+        #start the spread of rotten oranges in all 4 directions at a certain timeslot 
+        directions = [[1, 0], [-1, 0], [0, -1], [0, 1]]
+        while d and freshcount > 0:
+            for i in range(len(d)):
+                xrottenindex, yrottenindex = d.popleft()
+                for xdestroy, ydestroy in directions:
+                    xrotcell, yrotcell = xrottenindex + xdestroy, yrottenindex + ydestroy
+                    #the new cell that we are trying to rot must be 4 directionally adjacent to a rotten orange, simulated by the directions list of lists above selecting a random direction to step. the new cell that we are trying to rot must also be in the bounds of the grid and must be a fresh cell (1) and not an empty cell (0)
+                    if xrotcell < 0 or xrotcell >= len(grid) or yrotcell < 0 or yrotcell >= len(grid[0]) or grid[xrotcell][yrotcell] != 1:
+                        continue
+                    grid[xrotcell][yrotcell] = 2
+                    #we rot by stepping onto a new cell in the grid through unpacking pairs of indicies, and the deque represents a particular time slot
+                    d.append([xrotcell, yrotcell])
+                    freshcount -= 1
+            #each time cell has passed since we iterated through the entire d from time 0, so increment minminutes
+            minminutes += 1
+        return minminutes if freshcount == 0 else -1
