@@ -77,3 +77,20 @@ class Solution:
                 newInterval = [min(newInterval[0], intervals[sublist][0]), max(newInterval[1], intervals[sublist][1])]
         res.append(newInterval)
         return res
+
+
+#1/7/24 refresher - my solution with explanation:
+
+class Solution:
+    def insert(self, intervals: List[List[int]], newInterval: List[int]) -> List[List[int]]:
+        res = []
+        for lists in range(len(intervals)):
+            if newInterval[1] < intervals[lists][0]:
+                res.append(newInterval)
+                return res + intervals[lists:]
+            elif newInterval[0] > intervals[lists][1]:
+                res.append(intervals[lists])
+            else:#in this case, our current sublist in our intervals input overlaps with newInterval that we want to insert into intervals, so stretch newInterval out by comparing both ends to create a new newInterval list to override the old one before inserting newInterval into intervals in future iterations based on it's proper place
+                newInterval = [min(intervals[lists][0], newInterval[0]), max(intervals[lists][1], newInterval[1])]
+        res.append(newInterval)
+        return res
