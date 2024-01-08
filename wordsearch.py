@@ -150,3 +150,25 @@ class Solution:
 
 #and the boundary check case if never true when the findword function is originally called because we are garunteed to have found the first letter of the word in some cell of the board through the nested for loops
         
+#another run:
+
+class Solution:
+    def exist(self, board: List[List[str]], word: str) -> bool:
+        def f(index, row, column):
+            if row < 0 or row >= len(board) or column < 0 or column >= len(board[0]) or board[row][column] != word[index]:
+                return False
+            #this True base case will actually return True back to the parent function call back to the block in the nested for loops because we found the word. We determine if we found the word because we keep incrementing index by 1 if we found the current letter. 
+            elif index >= len(word) - 1:
+                return True
+            origcellvalue = board[row][column]
+            board[row][column] = "visited"
+            #note that return False base case will only be triggered by one of these recursive calls because the first instance of this base case being checked will never be False as we found the first letter of the word to even start our path. These recursive calls also move onto look for the next letter in the word and also in a different direction as indicated by the index + 1 part and also the row + 1 part, for example. 
+            result = (f(index + 1, row + 1, column) or f(index + 1, row - 1, column) or f(index + 1, row, column + 1) or f(index + 1, row, column - 1))
+            board[row][column] = origcellvalue
+            return result
+            
+        for row in range(len(board)):
+            for column in range(len(board[0])):
+                if board[row][column] == word[0] and f(0, row, column):
+                    return True
+        return False
