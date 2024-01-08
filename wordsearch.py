@@ -107,4 +107,44 @@ class Solution:
                 if board[row][column] == word[0] and f(0, row, column, board):
                     return True
         return False
+
+
+#another run:
+
+
+class Solution:
+    def exist(self, board: List[List[str]], word: str) -> bool:
+        def findword(index, row, column):
+            #we will start a dfs from the current cell in our board, and we need to boundary check it first and make sure it matches the letter we are looking for whose order is determined by index
+            if row < 0 or row >= len(board) or column < 0 or column >= len(board[0]) or board[row][column] != word[index]:
+                #each recursive call will return a boolean indicating if the current letter in our word could be found - if we are out of bounds or the current cell is not the correct letter we are looking for next in the word, we return false and then undo the current recursive call to explore other paths
+                return False
+            #we found the word if index reaches that point because index backtracks and only continues if we have found another letter and made progress
+            elif index >= len(word) - 1:
+                return True
+            #we haven't returned true or false because we haven't found the entire word yet, but we have found another letter to get closer to this goal, so mark this cell as visited so the same path dosen't revisit it
+            originalvalue = board[row][column]
+            board[row][column] = "visited"
+            #if we found the next letter in the word we are looking for in any of the 4 directions from the current cell, then we can return True and go onto the next letter in our word
+            result = (findword(index + 1, row + 1, column) or findword(index + 1, row - 1, column) or findword(index + 1, row, column + 1) or findword(index + 1, row, column - 1))
+            #if we explored all 4 directions and couldn't find the next letter in the word, we need to undo the change, which counts as a new path, so reset the visited cell to it's original value
+            # restoring the original value is basically undoing the current path and any changes during this path
+            #when we backtrack aka hit a dead end, we return False and undo any incorrect changes and start a new path from the point that it was still correct (found a portion of the letters in our word), and the index variable is also rewinded to when it was still correct - this is why the index >= len(word) - 1 works to check if we have found the entire word
+            board[row][column] = originalvalue
+            return result
+ 
+            
+
+
+        for row in range(len(board)):
+            for column in range(len(board[0])):
+                if board[row][column] == word[0] and findword(0, row, column): #if none of these recursive calls have returned a final result of false meaning that it was possible to find the rest of the word
+                    return True
+        #if, after iterating over every cell in our board as a starting path, we could never find the word without restepping over a cell, return False
+        return False
+
+
+
+        #When index >= len(word) - 1 becomes true, it means that the algorithm has successfully found the entire word in the current path. In this case, the findword function returns True, indicating that the word has been found, and the search can stop for the current path.
+        #The result of this True return will propagate up through the recursive calls. Eventually, if the initial call to findword(0, row, column) was part of the main loop and not part of a deeper recursive call, it would return True to the calling code, and the exist method would return True as well. This indicates that the word has been found in the board, and the entire search can stop. so this index >= len(word) - 1 acts as a base case to stop infinite recursion after we already found the word
         
