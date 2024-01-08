@@ -103,3 +103,28 @@ class Solution:
                 nums[uptosorted], nums[start] = nums[start], nums[uptosorted]
                 uptosorted += 1
                 start += 1
+
+
+#my solution - python3 - 1/7/24 refresher:
+
+class Solution:
+    def sortColors(self, nums: List[int]) -> None:
+        """
+        Do not return anything, modify nums in-place instead.
+        """
+        left = 0
+        #nuetral pointer represents the point at which all numbers up to including nuetral are sorted (nuetral is also an index into the array starting at 0)
+        n = 0
+        right = len(nums) - 1
+        while n <= right:
+            #we are only given 0s, 1s, and 2s in our input array nums
+            if nums[n] == 2:
+                nums[n], nums[right] = nums[right], nums[n]
+                right -= 1
+            elif nums[n] == 1:
+                n += 1
+            elif nums[n] == 0:
+                #the bug I made this time was a typo - nums[left], nums[n] on the right side of the equation instead of the inverse as intended
+                nums[left], nums[n] = nums[n], nums[left]
+                left += 1
+                n += 1
