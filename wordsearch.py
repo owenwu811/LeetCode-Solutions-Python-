@@ -147,4 +147,6 @@ class Solution:
 
         #When index >= len(word) - 1 becomes true, it means that the algorithm has successfully found the entire word in the current path. In this case, the findword function returns True, indicating that the word has been found, and the search can stop for the current path.
         #The result of this True return will propagate up through the recursive calls. Eventually, if the initial call to findword(0, row, column) was part of the main loop and not part of a deeper recursive call, it would return True to the calling code, and the exist method would return True as well. This indicates that the word has been found in the board, and the entire search can stop. so this index >= len(word) - 1 acts as a base case to stop infinite recursion after we already found the word
+
+#and the boundary check case if never true when the findword function is originally called because we are garunteed to have found the first letter of the word in some cell of the board through the nested for loops
         
