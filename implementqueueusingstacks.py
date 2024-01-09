@@ -60,3 +60,45 @@ class MyQueue:
 
     def empty(self) -> bool:
        return len(self.list) == 0
+
+
+
+
+#1/8/24 refresher solution:
+
+class MyQueue:
+
+    def __init__(self):
+        self.stack = []
+
+    def push(self, x: int) -> None:
+        self.stack.append(x)
+
+    def pop(self) -> int:
+        return self.stack.pop(0)
+
+    def peek(self) -> int:
+        return self.stack[0]
+
+    def empty(self) -> bool:
+        return len(self.stack) == 0
+
+
+#1/8/24 refresher solution (deque variant):
+
+class MyQueue:
+
+    def __init__(self):
+        self.d = deque()
+
+    def push(self, x: int) -> None:
+        self.d.append(x)
+
+    def pop(self) -> int:
+        return self.d.popleft()
+
+    def peek(self) -> int:
+        return self.d[0]
+
+    def empty(self) -> bool:
+        return len(self.d) == 0
