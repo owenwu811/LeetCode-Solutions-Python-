@@ -371,3 +371,41 @@ class Solution:
             #each time cell has passed since we iterated through the entire d from time 0, so increment minminutes
             minminutes += 1
         return minminutes if freshcount == 0 else -1
+
+
+#1/9/24 refresher:
+
+class Solution:
+    def orangesRotting(self, grid: List[List[int]]) -> int:
+        #each time limit is represented with the deque
+        d = deque()
+        minminutes = 0
+        freshcount = 0
+        #we can only turn fresh oranges (1) into rotten (2)
+        for row in range(len(grid)):
+            for column in range(len(grid[0])):
+                if grid[row][column] == 2:
+                    #the coordinates to identify the cell of the rotten orange from this particular time slot
+                    d.append([row, column])
+                elif grid[row][column] == 1:
+                    freshcount += 1
+                elif grid[row][column] == 0:
+                    continue
+        #simulate the spread in all 4 directions - we will step onto this cell from each fresh orange in our deque at a particular minute
+        directions = [[1, 0], [-1, 0], [0, 1], [0, -1]]
+        while d and freshcount > 0:
+            for i in range(len(d)):
+                #unpacking the coordinates of the rotten oranges from our d from left to right because each sublist only has 2 values
+                rottenr, rottenc = d.popleft()
+                #unpacking directions aka the cells we want to step onto - the format of directions is the same as the deque - list of lists with 2 values in each sublist describing coordinates or indicies to identify a spot in our cell
+                for xsteponto, ysteponto in directions:
+                    rotthisx, rotthisy = rottenr + xsteponto, rottenc + ysteponto
+                    #now that we have to cell we want to rot because it's adjacent to the rotten orange from that timeslot, we have to boundary check and make sure the new cell is a fresh orange we can rot - if we are out of bounds of the cell dosen't contain a 1 aka fresh orange, then we go in another direction
+                    if rotthisx < 0 or rotthisx >= len(grid) or rotthisy < 0 or rotthisy >= len(grid[0]) or grid[rotthisx][rotthisy] != 1:
+                        continue
+                    grid[rotthisx][rotthisy] = 2
+                    freshcount -= 1
+                    #the format is the same as d.append[row, column] 
+                    d.append([rotthisx, rotthisy])
+            minminutes += 1
+        return minminutes if freshcount == 0 else -1
