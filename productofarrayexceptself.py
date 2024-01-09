@@ -50,3 +50,20 @@ class Solution:
             result[number] *= backward
             backward *= nums[number]
         return result
+
+
+
+#1/8/24 refresher - my solution:
+
+class Solution:
+    def productExceptSelf(self, nums: List[int]) -> List[int]:
+        anwser = [0] * len(nums)
+        prefixn = 1
+        postfixn = 1
+        for number in range(len(nums)):
+            anwser[number] = prefixn
+            prefixn *= nums[number]
+        for number in range(len(nums)-1, -1, -1):
+            anwser[number] *= postfixn
+            postfixn *= nums[number]
+        return anwser
