@@ -143,3 +143,18 @@ class Solution(object):
         return res
 
 
+#1/8/24 refresher solution:
+
+class Solution(object):
+    def lengthOfLongestSubstring(self, s):
+        res = 0
+        duplicatecheck = set()
+        ws = 0
+        for we in range(len(s)):
+            while s[we] in duplicatecheck:
+                duplicatecheck.remove(s[ws])
+                ws += 1
+            duplicatecheck.add(s[we])
+            res = max(res, len(duplicatecheck))
+        return res
+        
