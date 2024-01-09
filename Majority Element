@@ -26,3 +26,19 @@ class Solution:
                 mydict[i] = 0
             mydict[i] += 1
         return max(mydict, key=mydict.get) #we are fetching the key of the largest value in the dictionary
+
+
+
+#my solution - python3 - 1/8/24 refresher:
+
+class Solution:
+    def majorityElement(self, nums: List[int]) -> int:
+        mydict = dict()
+        winner = len(nums) / 2
+        for i in nums:
+            if i not in mydict:
+                mydict[i] = 0
+            mydict[i] += 1
+        for d in mydict:
+            if mydict[d] >= winner:
+                return d
