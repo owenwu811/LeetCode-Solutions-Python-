@@ -172,3 +172,32 @@ class Solution:
                 if board[row][column] == word[0] and f(0, row, column):
                     return True
         return False
+
+
+#1/9/24 refresher:
+
+class Solution:
+    def exist(self, board: List[List[str]], word: str) -> bool:
+        def dfs(index, row, column):
+            #the next cell we stepped onto - is it out of bounds in any way or not the letter we are currently looking to mark off in our word? If so, return False for that specific recursive call and undo the changes
+            if row < 0 or row >= len(board) or column < 0 or column >= len(board[0]) or board[row][column] != word[index]:
+                return False
+            
+            elif index >= len(word) - 1:
+                return True
+            original = board[row][column]
+            board[row][column] = "visited"
+            #as long as one of these recursive calls returns true in one of the directions, we can still keep going in our path to find the rest of the letters meaning another direction AND the next letter in the word
+            result = (dfs(index + 1, row + 1, column) or dfs(index + 1, row - 1, column) or dfs(index + 1, row, column + 1) or dfs(index + 1, row, column - 1))
+            #if we hit a dead end, we need to undo all the changes in the current path until we have still made some progress from the 1st letter in the word, which we found
+            board[row][column] = original
+            return result
+
+
+        for row in range(len(board)):
+            for column in range(len(board[0])):
+                if board[row][column] == word[0] and dfs(0, row, column):
+                    return True
+        return False
+        
+        
