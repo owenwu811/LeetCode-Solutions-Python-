@@ -48,3 +48,23 @@ class Solution:
             return (dfs(node.left, small, node.val) and dfs(node.right, node.val, large))
         
         return dfs(root, float('-inf'), float('inf'))
+
+
+
+#practice run 1/10/24:
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def isValidBST(self, root: Optional[TreeNode]) -> bool:
+        def f(node, small, large):
+            if not node:
+                return True
+            if not (node.val > small and node.val < large):
+                return False
+            return (f(node.left, small, node.val) and f(node.right, node.val, large))
+        return f(root, float("-inf"), float("inf"))
