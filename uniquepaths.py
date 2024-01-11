@@ -24,3 +24,14 @@ class Solution:
             row = newrow
         return row[0]
 
+
+
+#1/11/24 refresher:
+
+buildoff = [1] * n
+for row in range(m - 1):
+    result = [1] * n
+    for column in range(n - 2, -1, -1):
+        result[column] = result[column + 1] + buildoff[column]
+    buildoff = result
+return buildoff[0]
