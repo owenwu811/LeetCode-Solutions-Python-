@@ -199,5 +199,29 @@ class Solution:
                 if board[row][column] == word[0] and dfs(0, row, column):
                     return True
         return False
+
+
+#1/11/24 refresher:
+
+class Solution:
+    def exist(self, board: List[List[str]], word: str) -> bool:
+        def dfs(board, index, row, column):
+            if row < 0 or row >= len(board) or column < 0 or column >= len(board[0]) or board[row][column] != word[index]:
+                return False
+            if index == len(word) - 1:
+                return True
+            temp = board[row][column] 
+            board[row][column] = "visited"
+            result = (dfs(board, index + 1, row + 1, column) or dfs(board, index + 1, row - 1, column) or dfs(board, index + 1, row, column + 1) or dfs(board, index + 1, row, column - 1))
+            board[row][column] = temp
+            return result
+ 
+
+
+        for row in range(len(board)):
+            for column in range(len(board[0])):
+                if board[row][column] == word[0] and dfs(board, 0, row, column):
+                    return True
+        return False
         
         
