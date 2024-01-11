@@ -107,3 +107,39 @@ class MinStack:
       
     def getMin(self) -> int:
         return self.minstack[-1]
+
+
+
+#1/11/24 refresher:
+
+class MinStack:
+    def __init__(self):
+       self.regular = []
+       self.minimum = []
+
+    def push(self, val: int) -> None:
+        self.regular.append(val)
+        #if the minimum array already has elements in it, we need to compare the most minimum element to the current val - the only way the minimum array has elements in it - which it won't in the first iteration - is through self.minimum.appnd(val)
+        if self.minimum:
+            val = min(val, self.minimum[-1])
+        else:
+            val
+        #the idea is to push the minimum value in order through append - on the top of the stack
+        self.minimum.append(val)
+        
+        
+    def pop(self) -> None:
+        self.regular.pop()
+        #going to be the minimum value we return
+        self.minimum.pop()
+
+        
+       
+    def top(self) -> int:
+        #we would use self.regular.pop(), but we don't want to modify the array again 
+        return self.regular[-1]
+       
+     
+    def getMin(self) -> int:
+        return self.minimum[-1]
+
