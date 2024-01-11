@@ -128,3 +128,23 @@ class Solution:
                 nums[left], nums[n] = nums[n], nums[left]
                 left += 1
                 n += 1
+
+
+
+#1/11/24 refresher solution:
+
+l = 0
+r = len(nums) - 1
+c = 0
+while c <= r:
+    if nums[c] == 2:
+        #the order of r or c or c or r first dosen't matter as long as they are swapped
+        nums[r], nums[c] = nums[c], nums[r]
+        r -= 1
+    elif nums[c] == 1:
+        c += 1
+    else:
+        #the order of c or l or l or c first dosen't matter as long as they are swapped 
+        nums[l], nums[c] = nums[c], nums[l]
+        l += 1
+        c += 1
