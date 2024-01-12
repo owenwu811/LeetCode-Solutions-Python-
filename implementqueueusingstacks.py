@@ -102,3 +102,28 @@ class MyQueue:
 
     def empty(self) -> bool:
         return len(self.d) == 0
+
+
+
+#1/11/24 refresher solution:
+
+class MyQueue:
+
+    def __init__(self):
+        self.d = deque()
+
+    def push(self, x: int) -> None:
+        self.d.append(x)
+
+ 
+    def pop(self) -> int:
+        return self.d.popleft()
+    
+
+    def peek(self) -> int:
+        return self.d[0]
+
+
+    def empty(self) -> bool:
+        return len(self.d) == 0
+  
