@@ -42,3 +42,18 @@ class Solution:
         for d in mydict:
             if mydict[d] >= winner:
                 return d
+
+
+#1/12/24 refresher:
+
+class Solution:
+    def majorityElement(self, nums: List[int]) -> int:
+        mydict = dict()
+        frequency = len(nums) / 2
+        for i in nums:
+            if i not in mydict:
+                mydict[i] = 0
+            mydict[i] += 1
+        for d in mydict:
+            if mydict[d] > frequency:
+                return d
