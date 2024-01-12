@@ -22,6 +22,9 @@
 #Explanation: 11 = 5 + 5 + 1
 
 
+#problem restatement - we want the fewest FREQUENCY of coins that the frequency of coins will make up exactly the target amount - if this is not possible aka we have infinity - then we can return -1
+
+
 #python3 solution:
 class Solution:
     import math
