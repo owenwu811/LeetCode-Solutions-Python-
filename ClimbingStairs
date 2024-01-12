@@ -68,3 +68,18 @@ class Solution:
             one = one + two
             two = prev
         return one
+
+
+#1/12/24 refresher:
+
+class Solution:
+    def climbStairs(self, n: int) -> int:
+        oneway = 1
+        secondway = 1
+        #think of like fibonacci sequence
+        for steps in range(n - 1):
+            first = oneway
+            oneway += secondway
+            secondway = first
+        return oneway
+        
