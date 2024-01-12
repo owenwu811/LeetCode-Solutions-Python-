@@ -40,6 +40,21 @@ class Solution:
         else:
             return dparr[-1]
 
+#again - better explanation
+
+class Solution:
+    import math
+    def coinChange(self, coins: List[int], amount: int) -> int:
+        dparr = [0] + ([float('inf')] * amount)
+        for amountfrom0 in range(1, amount + 1):
+            for coinvalue in coins:
+                if coinvalue <= amountfrom0:
+                    #we can either pick the number in the array itself - 3 for example - the value of itself vs. we can pick the amount minus the coinvalue + 1, but you might say then the left side would always win out, but remember that we don't get every single number in amount in our input array - if amount is 11, that dosen't mean we get coins = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+                    dparr[amountfrom0] = min(dparr[amountfrom0], dparr[amountfrom0 - coinvalue] + 1)
+        if dparr[-1] == float('inf'):
+            return -1
+        else:
+            return dparr[-1]
 
 
 #note that 
