@@ -81,3 +81,17 @@ class Solution:
             if window == key:
                 res.append(char)
         return res
+
+
+#1/12/24 solution refresher:
+
+class Solution:
+    def findAnagrams(self, s: str, p: str) -> List[int]:
+        res = []
+        key = "".join(sorted(p))
+        for startindex in range(len(s) - len(p) + 1):
+            window = "".join(sorted(s[startindex:startindex + len(p)]))
+            if window == key:
+                res.append(startindex)
+        return res
+        
