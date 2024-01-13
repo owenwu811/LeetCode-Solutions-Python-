@@ -35,3 +35,17 @@ for row in range(m - 1):
         result[column] = result[column + 1] + buildoff[column]
     buildoff = result
 return buildoff[0]
+
+
+#1/12/24 refresher:
+
+class Solution:
+    def uniquePaths(self, m: int, n: int) -> int:
+        buildoff = [1] * n
+        for rows in range(m - 1):
+            res = [1] * n
+            for column in range(n - 2, -1, -1):
+                res[column] = res[column + 1] + buildoff[column]
+            buildoff = res
+        return buildoff[0]
+       
