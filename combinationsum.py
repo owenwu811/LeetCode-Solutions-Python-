@@ -120,3 +120,22 @@ class Solution:
         res = []
         dfs(0, [], 0)
         return res
+
+
+#1/12/24 refresher:
+
+class Solution:
+    def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
+        def func(index, ans, windowsum):
+            if windowsum == target:
+                res.append(ans.copy())
+                return
+            elif index >= len(candidates) or windowsum > target:
+                return
+            ans.append(candidates[index])
+            func(index, ans, windowsum + candidates[index])
+            ans.pop()
+            func(index + 1, ans, windowsum)
+        res = []
+        func(0, [], 0)
+        return res
