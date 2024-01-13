@@ -409,3 +409,38 @@ class Solution:
                     d.append([rotthisx, rotthisy])
             minminutes += 1
         return minminutes if freshcount == 0 else -1
+
+#1/13/ 24 refresher:
+
+class Solution:
+    def orangesRotting(self, grid: List[List[int]]) -> int:
+        #number of rotten oranges from time 0
+        d = deque()
+        minminutes = 0
+        numberoffresh = 0
+        for row in range(len(grid)):
+            for column in range(len(grid[0])):
+                #we will use rotten from this time slot to spread the disease later in all 4 directions
+                if grid[row][column] == 2:
+                    d.append([row, column])
+                elif grid[row][column] == 1:
+                    numberoffresh += 1
+                else:
+                    continue
+        directions = [[0, 1], [0, -1], [1, 0], [-1, 0]]
+        while d and numberoffresh > 0:
+            #for each time slot
+            for i in range(len(d)):
+                xofrotten, yofrotten = d.popleft()
+                for xnew, ynew in directions:
+                    xdestroy, ydestroy = xofrotten + xnew, yofrotten + ynew
+                    if xdestroy < 0 or xdestroy >= len(grid) or ydestroy < 0 or ydestroy >= len(grid[0]) or grid[xdestroy][ydestroy] != 1:
+                        continue
+                    grid[xdestroy][ydestroy] = 2
+                    numberoffresh -= 1
+                    d.append([xdestroy, ydestroy])
+            minminutes += 1
+        if numberoffresh == 0:
+            return minminutes
+        else:
+            return -1
