@@ -224,4 +224,33 @@ class Solution:
                     return True
         return False
         
-        
+
+
+#1/12/24 refresher:
+
+class Solution:
+    def exist(self, board: List[List[str]], word: str) -> bool:
+        def dfs(index, row, column):
+            if row < 0 or row >= len(board) or column < 0 or column >= len(board[0]) or board[row][column] != word[index]:
+                #we are using booleans for each recursive function call to determine - if we return False, then that path has already failed, so we need to undo the step (path) and try another of the 3 directions left. If we can't find the next letter we need in the remaining 3 directions, then our path isn't valid, so undo the change, and then, in another path, we can reuse the cell because we start a new path
+                #reember that return False can't be caused by the 1st call of this dfs function because we already found the 1st letter of the word in our nested for loop - return False can only be caused by one of the 4 direction calls in result
+                return False
+            if index >= len(word) - 1:
+                return True
+            #we aren't out of bounds, haven't found the entire word yet, but we have found the current letter we are looking for in our current cell, so save it before marking this cell as visited, and keep looking for the NEXT letter (indicated by index + 1 in the recursive call in result )in a NEW direction (indicated by either row + 1 or - 1 or colum + 1 or -1 in the recursive call in result) - if any of the 4 directional recursive calls in result return True, then we found our letter and can keep going again until we find the entire word
+            originalvalue = board[row][column]
+            board[row][column] = "visited"
+            result = (dfs(index + 1, row + 1, column) or dfs(index + 1, row - 1, column) or dfs(index + 1, row, column + 1) or dfs(index + 1, row, column - 1)
+            ) 
+            #if none of the directions find our next letter, the entire path is invalid, so restore the original value of any of the cells we marked as visited in our current path, undo the current change and keep undoing until we are still valid and have made some progress beyond the 1st letter
+            board[row][column] = originalvalue
+            return result
+
+
+
+        for row in range(len(board)):
+            for column in range(len(board[0])):
+                if board[row][column] == word[0] and dfs(0, row, column):
+                    return True
+        #if we started the full dfs from every cell in the grid and couldn't find a 100% valid path given the constraint of not reusing the same cell, return False
+        return False
