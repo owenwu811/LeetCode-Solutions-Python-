@@ -120,4 +120,4 @@ class Solution:
 
 
 #IMPORTNAT INSIGHT: #start[amountfrom0 - coinvalue] dosen't necessarily mean that the difference has to be 0 because that would mean start[0] is just calculating the fewest frequency to make up 0 cents. it's just reusing previous already computed values to get the current level
-            
+#at each step, you are optimizing the number of coins needed to make up the current amount by considering the optimal solutions for smaller amounts, and this dynamic programming approach helps avoid redundant calculations.
