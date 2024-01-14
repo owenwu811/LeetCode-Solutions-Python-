@@ -45,3 +45,27 @@ class Solution:
                 if mylist[victim] == 0:
                     d.append(victim)
         return visited == numCourses
+
+
+#another run:
+
+class Solution:
+    def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+        indegree = [0] * numCourses
+        dictlist = [[] for attacker in range(numCourses)]
+        for p in prerequisites:
+            dictlist[p[1]].append(p[0])
+            indegree[p[0]] += 1
+        d = deque()
+        for i in range(numCourses):
+            if indegree[i] == 0:
+                d.append(i)
+        visited = 0
+        while len(d) > 0:
+            visited += 1
+            v = d.popleft()
+            for victim in dictlist[v]:
+                indegree[victim] -= 1
+                if indegree[victim] == 0:
+                    d.append(victim)
+        return visited == numCourses
