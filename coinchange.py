@@ -84,3 +84,22 @@ class Solution:
         if start[-1] == float('inf'):
             return -1
         return start[-1]
+
+
+#better notes:
+
+class Solution:
+    import math
+    def coinChange(self, coins: List[int], amount: int) -> int:
+        #we can only use the value of the coins that are given in our input array, so just because a penny exists in real life dosen't mean we can use a penny (1 cent) to make up our amount if the coins array dosen't have an integer one inside of it
+        #we are looking for the fewest frequency of coins to make up our amount 
+        dparr = [0] + ([float('inf')] * amount)
+        #we don't need to worry about freqnency to make up 0 cents since that was already the base case made up as the 1st value in our dparr
+        for amountfrom0 in range(1, amount + 1):
+            for coinvalue in coins:
+                if coinvalue <= amountfrom0:
+                    #represents the frequency of coins - we don't always have exactly the amount as a value itself, so if the amount if 11, that dosen't mean we have a coin worth 11 cents in our coins array or else dp[amountfrom0] would always be the minimum frequency, and we wouldn't need this check
+                    dparr[amountfrom0] = min(dparr[amountfrom0], dparr[amountfrom0 - coinvalue] + 1)
+        if dparr[-1] == float('inf'):
+            return -1
+        return dparr[-1]
