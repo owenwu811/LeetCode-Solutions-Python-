@@ -119,5 +119,5 @@ class Solution:
         return dparr[-1]
 
 
-#IMPORTNAT INSIGHT: #start[amountfrom0 - coinvalue] dosen't necessarily mean that the difference has to be 0 because that would mean start[0] is just calculating the fewest frequency to make up 0 cents. it's just reusing previous already computed values to get the current level
+#IMPORTNAT INSIGHT: #start[amountfrom0 - coinvalue] dosen't necessarily mean that the difference has to be 0 because that would mean we would be calculating start[0] over and over again, which is not what we want - if the difference between start[amountfrom0 - coinvalue] + 1 always equals start[0] + 1, we would just be calculating the fewest frequency to make up 0 cents over and over again, which we already know to b 0 frequency to make up 0 cents from the base case. it's just reusing previous already computed values to get the current level
 #at each step, you are optimizing the number of coins needed to make up the current amount by considering the optimal solutions for smaller amounts, and this dynamic programming approach helps avoid redundant calculations.
