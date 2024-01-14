@@ -105,24 +105,19 @@ class Solution:
         return dparr[-1]
 
 
-
 class Solution:
     import math
     def coinChange(self, coins: List[int], amount: int) -> int:
-        #the array includes the values of each coin we can choose from an infinite number of times
-        #we want the fewest frequency of coins from our options in the array to make up amount
-        #we will build up our dparr from left to right for each level in amount + 1 starting from 0 because there are 0 frequency of coins required to make up 0 cents
-        #anything is less than infinity, and if we have infinity, then we can't make up infinity coins, so we can return -1 in the case that the fewest frequency to make up infinity amount is infinity coins
         dparr = [0] + ([float('inf')] * amount)
-        #we want to start looping in our dparr from 1 because we already established that it takes 0 frequency of coins to make up 0 cents as our base case
         for amountateachlevelfrom0 in range(1, amount + 1):
             for coinvalue in coins:
                 if coinvalue <= amountateachlevelfrom0:
-                    #we can't garuntee that we have a coin worth exactly what amount the input gives us, so we have this check
-                    #this computes the minimum frequency of coins to make up the target sum at each increment of one in the target sum
-                    #after each computation at each increment, we have to try ever coin we have in our coins array, and the remaining amount at that level will be computed by subtracting the coinvalue from our current increment level
+                    #start[amountfrom0 - coinvalue] dosen't necessarily mean that the difference has to be 0 because that would mean start[0] is just calculating the fewest frequency to make up 0 cents. it's just reusing previous already computed values to get the current level
                     dparr[amountateachlevelfrom0] = min(dparr[amountateachlevelfrom0], dparr[amountateachlevelfrom0 - coinvalue] + 1)
-        #having infinite frequency of coins is not valid, and you can't make up infinite money, so return -1
         if dparr[-1] == float('inf'):
             return -1
         return dparr[-1]
+
+
+#IMPORTNAT INSIGHT: #start[amountfrom0 - coinvalue] dosen't necessarily mean that the difference has to be 0 because that would mean start[0] is just calculating the fewest frequency to make up 0 cents. it's just reusing previous already computed values to get the current level
+            
