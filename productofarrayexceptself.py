@@ -67,3 +67,22 @@ class Solution:
             anwser[number] *= postfixn
             postfixn *= nums[number]
         return anwser
+
+
+#1/14 refresher - IMPORTANT INSIGHT
+
+class Solution:
+    def productExceptSelf(self, nums: List[int]) -> List[int]:
+        result = [0] * len(nums)
+        prefixn, postfixn = 1, 1
+        for forward in range(len(nums)):
+            result[forward] = prefixn
+            prefixn *= nums[forward]
+        for backward in range(len(nums) -1, -1, -1):
+            #result = [1, 1, 2, 6]
+            #nums = [1, 2, 3, 4]
+            #we want = [24, 12, 8, 6]
+            #we don't get [24, 12, 12, 6] because result[2] = 2, and 2 * 4(postfixn) = 8. WE WANT POSTFIXN * RESULT[2] NOT POSTFIXN * NUMS[2] - POSTFIXN TIMES RESULT[2] NOT POSTFIXN TIMES NUMS[2] IS PLACED IN THE 2ND INDEX IN OUR FINAL LIST
+            result[backward] = postfixn * result[backward]
+            postfixn *= nums[backward]
+        return result
