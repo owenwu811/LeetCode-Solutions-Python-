@@ -66,4 +66,21 @@ dparr = [0] + ([float('inf')] * 7)
 print(dparr)
 
 #would output [0, inf] as infinity times anything equals infinity
-        
+
+
+#1/14/24 refresher practice:
+
+class Solution:
+    import math
+    def coinChange(self, coins: List[int], amount: int) -> int:
+        #the values in the coins array represent how much the coin is worth
+        #we want the fewest frequency of coins given the coins in our array to make up amount
+        #0 number of coins required to make up 0 cents as base case
+        start = [0] + ([float('inf')] * amount)
+        for amountfrom0 in range(1, amount + 1):
+            for coinvalue in coins:
+                if coinvalue <= amountfrom0:
+                    start[amountfrom0] = min(start[amountfrom0], start[amountfrom0 - coinvalue] + 1)
+        if start[-1] == float('inf'):
+            return -1
+        return start[-1]
