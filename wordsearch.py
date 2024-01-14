@@ -254,3 +254,26 @@ class Solution:
                     return True
         #if we started the full dfs from every cell in the grid and couldn't find a 100% valid path given the constraint of not reusing the same cell, return False
         return False
+
+
+#1/14/24 refresher:
+
+class Solution:
+    def exist(self, board: List[List[str]], word: str) -> bool:
+        def dfs(index, row, column):
+            if row < 0 or row >= len(board) or column < 0 or column >= len(board[0]) or board[row][column] != word[index]:
+                return False
+            elif index == len(word) - 1:
+                return True
+            original = board[row][column]
+            board[row][column] = "visited"
+            bol = (dfs(index + 1, row + 1, column) or dfs(index + 1, row - 1, column) or dfs(index + 1, row, column + 1) or dfs(index + 1, row, column - 1))
+            board[row][column] = original
+            return bol
+        
+
+        for row in range(len(board)):
+            for column in range(len(board[0])):
+                if board[row][column] == word[0] and dfs(0, row, column):
+                    return True
+        return False
