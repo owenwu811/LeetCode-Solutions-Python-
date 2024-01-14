@@ -82,7 +82,7 @@ class Solution:
             adj[p[1]].append(p[0])
             indegree[p[0]] += 1
         d = deque()
-        for i in range(len(indegree)): # works too instead of for i in range(numCourses):
+        for i in range(len(indegree)): # works too instead of for i in range(numCourses): but must have LEN indegree and not just range indegree
             if indegree[i] == 0:
                 d.append(i)
         visited = 0
