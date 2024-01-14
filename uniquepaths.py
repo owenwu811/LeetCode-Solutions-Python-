@@ -48,4 +48,18 @@ class Solution:
                 res[column] = res[column + 1] + buildoff[column]
             buildoff = res
         return buildoff[0]
-       
+
+
+#1/14/24 refresher:
+
+class Solution:
+    def uniquePaths(self, m: int, n: int) -> int:
+        buildoff = [1] * n
+        #down is an index
+        for down in range(m - 1):
+            new = [1] * n
+            #we are trying to find the cell at [2, 6] in terms of lengths, which is [1, 5] in indexes, and we get this by adding the cell to the right at the current level plus the cell below at the same position - pascale's triangle tilted left
+            for right in range(n - 2, -1, -1):
+                new[right] = new[right + 1] + buildoff[right]
+            buildoff = new
+        return buildoff[0]
