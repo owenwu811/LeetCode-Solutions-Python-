@@ -69,3 +69,33 @@ class Solution:
                 if indegree[victim] == 0:
                     d.append(victim)
         return visited == numCourses
+
+
+
+#another run:
+
+class Solution:
+    def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+        indegree = [0]* numCourses
+        adj = [[] for x in range(numCourses)]
+        for p in prerequisites:
+            adj[p[1]].append(p[0])
+            indegree[p[0]] += 1
+        d = deque()
+        for i in range(len(indegree)): # works too instead of for i in range(numCourses):
+            if indegree[i] == 0:
+                d.append(i)
+        visited = 0
+        while len(d) > 0:
+            #the victims will be mapped to the attacker in the adj list, which will then be mapped to a victim in the adj list, which will then be mapped to an attacker that will be decremented by 1 in the indegree list
+            node = d.popleft()
+            #we could visit them becuase they have no prerequisites
+            visited += 1
+            #adj[node] = right side of adj list
+            for victim in adj[node]:
+                #indegree[victim] = top of indegree list
+                indegree[victim] -= 1
+                if indegree[victim] == 0:
+                    d.append(victim)
+        return numCourses == visited
+
