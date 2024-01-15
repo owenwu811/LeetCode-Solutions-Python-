@@ -63,3 +63,21 @@ class Solution:
                 new[right] = new[right + 1] + buildoff[right]
             buildoff = new
         return buildoff[0]
+
+#1/14/24 refresher with better comments:
+
+class Solution:
+    def uniquePaths(self, m: int, n: int) -> int:
+        #unique paths means frequency of ways from every cell to the bottom right. if we only move down from the top cell to the bottom, it only counts as 1 way even though 2 arrows are required, but it only counts as 1 way / path because we are still going in the same direction - this is why the right and bottom most borders are filled with 1s - because only one direction or path from any cell in the bottom most or right most row to the bottom right cell
+        #the bottom array filled with 1s initially
+        buildoff = [1] * n
+        #columns
+        for down in range(m - 1):
+            #the array right above the most bottom array 
+            result = [1] * n
+            #we have 7 cells wide, so since the rightmost cell is already filled with 1s, we don't care about the right most cell of the 2nd level we are trying to build, so 7 cells wide is through 0 1 2 3 4 5 6, but we are only going up through 0 1 2 3 4 5
+            for right in range(n - 2, -1, -1):
+                #result[5] = result[6] + buildoff[5]
+                result[right] = result[right + 1] + buildoff[right]
+            buildoff = result
+        return buildoff[0]
