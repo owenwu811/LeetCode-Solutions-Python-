@@ -158,3 +158,28 @@ class Solution:
                     res += 1
                     dfs(grid, row, column)
         return res
+
+
+#1/14/24 refresher:
+
+class Solution:
+    def numIslands(self, grid: List[List[str]]) -> int:
+        def dfs(grid, r, c):
+            #won't be true in 1st turn bc we already found start of island (a 1 string cell that is in bounds)
+            if r < 0 or r >= len(grid) or c < 0 or c >= len(grid[0]) or grid[r][c] == "0":
+                return
+            grid[r][c] = "0" #prevents infinite recursion
+            dfs(grid, r + 1, c)
+            dfs(grid, r - 1, c)
+            dfs(grid, r, c + 1)
+            dfs(grid, r, c - 1)
+
+        res = 0
+        #vertical
+        for r in range(len(grid)):
+            #horizontal - wide 
+            for c in range(len(grid[0])):
+                if grid[r][c] == "1":
+                    res += 1
+                    dfs(grid, r, c)
+        return res
