@@ -81,3 +81,18 @@ class Solution:
                 result[right] = result[right + 1] + buildoff[right]
             buildoff = result
         return buildoff[0]
+
+
+#1/15/24 refresher:
+
+class Solution:
+    def uniquePaths(self, m: int, n: int) -> int:
+       #we want the frequency of unique ways to get from every cell to the bottom right, which will include lots of repeated work
+       #one because the right and bottom borders will be filled with 1s to build off since we are tilting pascal's triangle from the bottom left in the left direction and building to the top right from the bottom level up
+        lowerlevel = [1] * n
+        for down in range(m - 1):
+            upplevel = [1] * n
+            for right in range(n - 2, -1, -1):
+                upplevel[right] = upplevel[right + 1] + lowerlevel[right]
+            lowerlevel = upplevel
+        return lowerlevel[0]
