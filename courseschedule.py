@@ -99,3 +99,30 @@ class Solution:
                     d.append(victim)
         return numCourses == visited
 
+
+
+
+class Solution:
+    def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+        indegree = [0] * numCourses #6 0s from 0 to 5 inclusive if numCourses == 6
+        #set an empty list for each node from 0 through 5 inclusive
+        a = [[] for x in range(numCourses)]
+        for p in prerequisites:
+            a[p[1]].append(p[0])
+            #pairs[0], the victim in prerequisites, is now on the right side of adjacent list, which corresponds to the bottom indexes of indegree list, so pass pairs[0] as an index inside of indegree list to get the value of indegree list, or number of attackers
+            indegree[p[0]] += 1
+        d = deque()
+        for i in range(len(indegree)):
+            if indegree[i] == 0:
+                d.append(i)
+        visited = 0
+        while len(d) > 0:
+            visited += 1
+            currnode = d.popleft()
+            #for (2, 4) in adj[5]
+            for neighbors in a[currnode]:
+             #find index 2 in the indegree list and decrement the corresponding value by 1 - do the same with index 4 since neighbors takes on 2, 4 as adj: 5: [2, 4] because out deque looks like [0, 5], which we popped 0 off, which was already processed the same way and just showing you 5's example, but our deque = [5], and we would pop 5 off, and currnode would be set to 5, and then we would let neighbor take on 2 and 4 since adj = 5: [2, 4], and then we find index 2 and 4 in indegree list and decrement the respective values by 1
+                indegree[neighbors] -= 1
+                if indegree[neighbors] == 0:
+                    d.append(neighbors)
+        return visited == numCourses
