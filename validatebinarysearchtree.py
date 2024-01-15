@@ -88,4 +88,24 @@ class Solution:
             return (f(root.left, small, root.val) and f(root.right, root.val, large))
 
         return f(root, float("-inf"), float("inf"))
+
+
+#1/15/24 practice run:
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def isValidBST(self, root: Optional[TreeNode]) -> bool:
+        def dfs(root, lowerbound, upperbound):
+            if root is None:
+                return True
+            #if even one level of the tree is unbalanced, return False as we need both sides of the entire tree to be balanced
+            if not (root.val > lowerbound and root.val < upperbound):
+                return False
+            return (dfs(root.left, lowerbound, root.val) and dfs(root.right, root.val, upperbound))
+        return dfs(root, float("-inf"), float("inf"))
         
