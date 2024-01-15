@@ -156,4 +156,31 @@ class Solution:
                 if indegree[node] == 0:
                     d.append(node)
         return visitc == numCourses
-                
+
+#1/15/24:
+
+class Solution:
+    def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+        
+        #if we have 6 courses, we want 0 from 0 through 5 - this array will be used to keep track of the courses that have no prerequisites and can add up to the result
+        indegree = [0] * numCourses
+        adj = [[] for node in range(numCourses)]
+        for p in prerequisites:
+            adj[p[1]].append(p[0])
+            indegree[p[0]] += 1
+        d = deque()
+        for nodes in range(len(indegree)):
+            if indegree[nodes] == 0:
+                d.append(nodes)
+        visited = 0
+        while d:
+            visited += 1
+            currentnode = d.popleft()
+            for node in adj[currentnode]:
+                indegree[node] -= 1
+                if indegree[node] == 0:
+                    d.append(node)
+        return visited == numCourses
+
+
+
