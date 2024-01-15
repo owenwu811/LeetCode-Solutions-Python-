@@ -127,3 +127,33 @@ class Solution:
                 if indegree[neighbors] == 0:
                     d.append(neighbors)
         return visited == numCourses
+
+
+
+class Solution:
+    def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+        #we want an array with all nodes as indexes and number of prerequisites as the values
+        #if numCourses = 6, then we would have 6 0s indexes 0 through 5
+        indegree = [0] * numCourses
+        #adjacency list will store the dependencies on right
+        adj = [[] for node in range(numCourses)]
+        #which courses have which dependencies
+        d = deque()
+        for courses in prerequisites:
+            adj[courses[1]].append(courses[0])
+            indegree[courses[0]] += 1
+        for index, value in enumerate(indegree):
+            if value == 0:
+                d.append(index)
+        visitc = 0
+        while len(d) > 0:
+            visitc += 1
+            currentnode = d.popleft()
+            #for (2, 4) in adj[5]
+            for node in adj[currentnode]:
+                #no more attackers
+                indegree[node] -= 1
+                if indegree[node] == 0:
+                    d.append(node)
+        return visitc == numCourses
+                
