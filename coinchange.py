@@ -146,3 +146,26 @@ class Solution:
         if dparr[-1] == float('inf'):
             return -1
         return dparr[-1]
+
+
+#again
+
+class Solution:
+    import math
+    def coinChange(self, coins: List[int], amount: int) -> int:
+        #we want to find the smallest frequency of coins out of the coins that we have that will sum up to amount cents
+        #just because a penny exists in real life dosen't mean that you can use it if 1 dosen't exist in the array
+        #we need 0 frequency of coins to make up 0 cents, so 0 exists as the base case. Anything is smaller than amount, so we will try to find the fewest frequency of coins needed to make up 1 cent... 2 cent... 3 cent... all the way up to 11 cents, and then the smallest frequency of coins to make up 11 cents will be our anwser since amount = 11
+        dparr = [0] + ([float('inf')] * amount)
+        #we already established that the smallest frequency of coins needed to make up 0 cents is 0 coins, so we can start from 1 to find the smallest frequency of coins to make up 1 cent
+        #we can't garuntee that, just because our amount = 11 that we will have [11] in the coins array, so that's why the if coinvalue <= amountfrom0 check is necessary
+        for amountfrom0 in range(1, amount + 1):
+            for coinvalue in coins:
+                #if our current coin we are trying has a value greater than amount we are trying to find the fewest frequency of coins to sum to, then our current coin can't even contribute to being the smallest frequency of coins to make up 11 cents because our current coin is worth more than 11 cents by itself
+                if coinvalue <= amountfrom0:
+                    #smallest frequency of coins needed to make up 2 cents (our current level). this has nothing to do with value, so dparr[amountfrom0 - coinvalue] does not have to equal dparr[0] + 1 because we would be finding the number of ways to make up 1 cent forever - if dparr[3] + 1 is our result, we would just reuse the most optimal solution from dparr[3] that was already computed - the smallest frequency of coins to make up 3 cents plus 1 since we would currently be at the smallest frequency of coins to make up 4 cents
+                    dparr[amountfrom0] = min(dparr[amountfrom0], dparr[amountfrom0 - coinvalue] + 1)
+        #if we need infinite frequency of coins to make up infinite money, you can't do that because amount is going to be less than or equal to 10 to the power of 4 as stated in the problem description, so return -1 since it's not possible to make up infinity cents
+        if dparr[-1] == float('inf'):
+            return -1
+        return dparr[-1]
