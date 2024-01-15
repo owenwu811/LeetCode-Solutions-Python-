@@ -444,3 +444,42 @@ class Solution:
             return minminutes
         else:
             return -1
+
+
+#1/14/24 practice:
+
+class Solution:
+    def orangesRotting(self, grid: List[List[int]]) -> int:
+        #all rotten oranges at each timeslot will be inside of the deque
+        d = deque()
+        minminutes = 0
+        freshcount = 0
+        for r in range(len(grid)):
+            for c in range(len(grid[0])):
+                #we found a rotten orange at this timeslot, so append the indicies / coordinates of that orange so we can spread from that cell in the future by unpacking from left to right
+                if grid[r][c] == 2:
+                    d.append([r, c])
+                elif grid[r][c] == 1:
+                    freshcount += 1
+                else: # we don't care about empty cells or input values of 0
+                    continue
+        directions = [[0, 1], [1, 0], [0, -1], [-1, 0]]
+        #we have fresh oranges to rot and rotten oranges to infect others at this timeslot
+        while len(d) > 0 and freshcount > 0:
+            for index in range(len(d)):
+                xinfected, yinfected = d.popleft()
+                for xnew, ynew in directions:
+                    #infecting another cell in one of the 4 directions
+                    xdestroy, ydestroy = xinfected + xnew, yinfected + ynew
+                    #boundary check and make sure we see a 1 on the new cell we are stepping onto 
+                    if xdestroy < 0 or xdestroy >= len(grid) or ydestroy < 0 or ydestroy >= len(grid[0]) or grid[xdestroy][ydestroy] != 1:
+                        continue
+                    #rot the current cell since we are in bounds and initially found a 1 here
+                    grid[xdestroy][ydestroy] = 2
+                    #reflect the change in freshcount
+                    freshcount -= 1
+                    #append this new rotten orange so that, in the next minute, this new rotten orange, identified by its coordinates, can rot other oranges
+                    d.append([xdestroy, ydestroy])
+            #since an entire iteration of the deque represents an entire minute, increment minminutes
+            minminutes += 1
+        return minminutes if freshcount == 0 else -1
