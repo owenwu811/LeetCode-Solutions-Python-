@@ -119,5 +119,30 @@ class Solution:
         return dparr[-1]
 
 
+
 #IMPORTNAT INSIGHT: #start[amountfrom0 - coinvalue] dosen't necessarily mean that the difference has to be 0 because that would mean we would be calculating start[0] over and over again, which is not what we want - if the difference between start[amountfrom0 - coinvalue] + 1 always equals start[0] + 1, we would just be calculating the fewest frequency to make up 0 cents over and over again, which we already know to b 0 frequency to make up 0 cents from the base case. it's just reusing previous already computed values to get the current level
 #at each step, you are optimizing the number of coins needed to make up the current amount by considering the optimal solutions for smaller amounts, and this dynamic programming approach helps avoid redundant calculations.
+
+
+
+
+#practice run again:
+
+class Solution:
+    import math
+    def coinChange(self, coins: List[int], amount: int) -> int:
+        #we want the fewest frequency of coins that will sum up to amount cents
+        #we will compute and reuse the most optimal solution from lower levels from 0 to amount until we get to amount, and the most optimal solution in amount will be our result
+        #0 frequncy of coins are needed tp sum up to 0 cents, which is our base case and or first level 
+        #if amount is 6, then we have 6 items in our array all equal to inifnity on top of 0 for a total of 7 elements
+        dparr = [0] + ([float('inf')] * amount)
+        #start computing fewest frequency of coins to sum up to 1 cent since we already did 0, so you will have 6 iterations in this for loop if amount = 6 - 012345
+        for levelamount in range(1, amount + 1):
+            for coinvalue in coins:
+                if coinvalue <= levelamount:
+                    #computing most optimal frequency bc just because amount = 11 dosen't mean we have [11] in our coins array or else this comparison would be pointless becuaes frequency would always be 1, and levelamount - coinvalue dosen't have to equal 0 because dp[0] was already established to need 0 frequency of coins to sum up to 0 cents - this is frequency, not amount
+                    dparr[levelamount] = min(dparr[levelamount], dparr[levelamount - coinvalue] + 1)
+        #since we iterated amount times in the for loop, we have computed the fewest number of coins to make up 6 cents if amount = 6
+        if dparr[-1] == float('inf'):
+            return -1
+        return dparr[-1]
