@@ -235,3 +235,32 @@ class Solution:
             if level:
                 res.append(level)
         return res
+
+
+#1/14/24 refresher practice:
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    from collections import deque
+    def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
+        res = []
+        #nodes at each level of input tree
+        d = deque()
+        d.append(root)
+        while len(d) > 0:
+            #level gets cleared after traversing all nodes at a particular level of the input tree, so after the for loop finishes for a particular level of the input tree, we see if d still has elements aka there is another level in the input tree, and if there is, then we start with an empty list as level as we haven't added and node values to the level list yet 
+            level = []
+            for i in range(len(d)):
+                currentnode = d.popleft()
+                if currentnode is not None:
+                    level.append(currentnode.val)
+                    d.append(currentnode.left)
+                    d.append(currentnode.right)
+            if level:
+                res.append(level)
+        return res
