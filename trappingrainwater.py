@@ -111,3 +111,33 @@ class Solution:
                 maxright = max(maxright, height[r])
                 res += (maxright - height[r])
         return res
+
+
+#1/15 refresher - my own solution in python3:
+
+class Solution:
+    def trap(self, height: List[int]) -> int:
+        #we are given and array of integers, that, at the very least are equal to 0 if not greater than 0
+        #we want to find how much water we can trap at each level that is restricted by the smaller of the two heights minus the current height
+        #our array is empty [], so we can't trap any water, so return 0 units of water trapped
+        if not height:
+            return 0
+        res = 0
+        #indexes starting at the beginning and end of the array
+        l, r = 0, len(height) - 1
+        #l and r indexes will meet at the highest level where we can't trap any water at the highest level because we are bounded to the lower of the two heights, so l <= r is not necessary 
+        maxleft, maxright = height[l], height[r]
+        while l < r:
+            #we want to reduce the number of restrictions, so we move the pointer with the smaller height
+            if maxleft < maxright:
+                l += 1
+                #if maxleft wins out, result will be greater than it was before. If height[l] wins out, we can't trap anymore water
+                maxleft = max(maxleft, height[l])
+                if maxleft > height[l]:
+                    res += (maxleft - height[l])
+            else:
+                r -= 1
+                maxright = max(maxright, height[r])
+                if maxright > height[r]:
+                    res += (maxright - height[r])
+        return res
