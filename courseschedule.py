@@ -122,7 +122,7 @@ class Solution:
             #for (2, 4) in adj[5]
             for neighbors in a[currnode]:
              #find index 2 in the indegree list and decrement the corresponding value by 1 - do the same with index 4 since neighbors takes on 2, 4 as adj: 5: [2, 4] because out deque looks like [0, 5], which we popped 0 off, which was already processed the same way and just showing you 5's example, but our deque = [5], and we would pop 5 off, and currnode would be set to 5, and then we would let neighbor take on 2 and 4 since adj = 5: [2, 4], and then we find index 2 and 4 in indegree list and decrement the respective values by 1
-                #prerequisites are satisfied when it has no pointers to this node
+                #prerequisites are satisfied when it has no pointers to this node, so we decrement the current node's attacker that has no attackers to it 
                 indegree[neighbors] -= 1
                 if indegree[neighbors] == 0:
                     d.append(neighbors)
