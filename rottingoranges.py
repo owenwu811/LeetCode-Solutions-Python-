@@ -483,3 +483,39 @@ class Solution:
             #since an entire iteration of the deque represents an entire minute, increment minminutes
             minminutes += 1
         return minminutes if freshcount == 0 else -1
+
+
+#1/16/24 refresher:
+
+class Solution:
+    def orangesRotting(self, grid: List[List[int]]) -> int:
+        #use a deque to keep track of all rotten oranges at a particular minute as we can pop off the deque and append to it - we will pop off rotten oranges off the deque while also appending the neighboring rotten oranges
+        d = deque()
+        minminutes = 0
+        freshcount = 0
+
+        for r in range(len(grid)):
+            for c in range(len(grid[0])):
+                if grid[r][c] == 2:
+                    d.append([r, c])
+                elif grid[r][c] == 1:
+                    freshcount += 1
+                else:
+                    continue
+        #now we have all the fresh oranges from the 1st minute appended onto the deque in form of lists 
+        directions = [[0, 1], [0, -1], [1, 0], [-1, 0]]
+        while len(d) > 0 and freshcount > 0:
+            #unppacking list of length 2 representing x and y coordinates of the bad oranges from that minute
+            for i in range(len(d)):
+                badx, bady = d.popleft()
+                for xdestroy, ydestroy in directions:
+                    #the new coordinate we will try to rot that is adjacent and in one of the four directions
+                    rotx, roty = badx + xdestroy, bady + ydestroy
+                    if rotx < 0 or rotx >= len(grid) or roty < 0 or roty >= len(grid[0]) or grid[rotx][roty] != 1:
+                        continue
+                    grid[rotx][roty] = 2
+                    freshcount -= 1
+                    #will spread in the next minute 
+                    d.append([rotx, roty])
+            minminutes += 1
+        return minminutes if freshcount == 0 else -1
