@@ -148,3 +148,27 @@ while c <= r:
         nums[l], nums[c] = nums[c], nums[l]
         l += 1
         c += 1
+
+
+#1/16/24 refresher solution:
+
+class Solution:
+    def sortColors(self, nums: List[int]) -> None:
+        """
+        Do not return anything, modify nums in-place instead.
+        """
+        c = 0
+        l = 0
+        r = len(nums) - 1
+        #if c crosses to the right of r, then we've sorted all numbers in the array
+        while c <= r:
+            if nums[c] == 2:
+                nums[c], nums[r] = nums[r], nums[c]
+                r -= 1
+            elif nums[c] == 1:
+                c += 1
+            else:
+                nums[l], nums[c] = nums[c], nums[l]
+                l += 1
+                c += 1
+                
