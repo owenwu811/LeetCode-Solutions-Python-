@@ -94,4 +94,27 @@ class Solution:
             if len(second) > len(res):
                 res = second
         return res
-        
+
+
+#1/16/24 refresher:
+
+class Solution:
+    def longestPalindrome(self, s):
+        def dfs(l, r, s):
+            while l >= 0 and r < len(s) and s[l] == s[r]:
+                #expanding outwad to find a longer palindrome window than before if we are in bounds and the letters both pointers are pointing to are the same (think reverse staircase)
+                l -= 1
+                r += 1
+            return s[l + 1: r]
+
+        res = ""
+        #remember that a palindrome can occur starting anywhere in the string, not just from the middle!!!!! 
+        for char in range(len(s)):
+            first = dfs(char, char, s)
+            if len(first) > len(res):
+                res = first
+            second = dfs(char, char + 1, s)
+            if len(second) > len(res):
+                res = second
+        return res
+
