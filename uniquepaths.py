@@ -96,3 +96,20 @@ class Solution:
                 upplevel[right] = upplevel[right + 1] + lowerlevel[right]
             lowerlevel = upplevel
         return lowerlevel[0]
+
+
+#1/16/24 refresher:
+
+class Solution:
+    def uniquePaths(self, m: int, n: int) -> int:
+       #we want the number of unique ways from each cell to reach the bottom right corner. we know this anwser will be 1 for the right and bottom edge because you can only go in one direction, and moving 3 cells in the same direction still only counts as one way
+        #since there is always one way to get to the bottom right hand cell, we start every cell as [1] instead of [0] to represent the number of ways 
+        lowestrow = [1] * n
+        #we can move down twice regardless of the value m is
+        for down in range(m - 1):
+            result = [1] * n
+            for right in range(n - 2, -1, -1):
+                result[right] = result[right + 1] + lowestrow[right]
+            lowestrow = result
+        return lowestrow[0]
+         
