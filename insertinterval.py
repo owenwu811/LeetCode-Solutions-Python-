@@ -94,3 +94,23 @@ class Solution:
                 newInterval = [min(intervals[lists][0], newInterval[0]), max(intervals[lists][1], newInterval[1])]
         res.append(newInterval)
         return res
+
+
+#1/15/24 refresher:
+
+class Solution:
+    def insert(self, intervals: List[List[int]], newInterval: List[int]) -> List[List[int]]:
+        res = []
+        for sublist in range(len(intervals)):
+            #non overlapping
+            if newInterval[1] < intervals[sublist][0]:
+                res.append(newInterval)
+                return res + intervals[sublist:]
+            #non overlapping
+            elif newInterval[0] > intervals[sublist][1]:
+                res.append(intervals[sublist])
+            #overlapping
+            else:
+                newInterval = [min(newInterval[0], intervals[sublist][0]), max(newInterval[1], intervals[sublist][1])]
+        res.append(newInterval)
+        return res
