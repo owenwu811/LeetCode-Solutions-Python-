@@ -143,3 +143,54 @@ class MinStack:
     def getMin(self) -> int:
         return self.minimum[-1]
 
+
+#use the following for visualization in pythontutor:
+
+class MinStack:
+    def __init__(self):
+        self.stack = []
+        self.minstack = []
+
+    def push(self, val: int) -> None:
+        self.stack.append(val)
+        print(self.stack)
+        if self.minstack:
+            val = min(val, self.minstack[-1])
+        self.minstack.append(val)
+        print(self.minstack)
+
+    def pop(self) -> None:
+        self.stack.pop()
+        print(self.stack)
+        self.minstack.pop()
+        print(self.minstack)
+
+    def top(self) -> int:
+        return self.stack[-1]
+
+    def getMin(self) -> int:
+        return self.minstack[-1]
+
+input_commands = ["MinStack", "push", "push", "push", "getMin", "pop", "top", "getMin"]
+input_values = [[], [-2], [0], [-3], [], [], [], []]
+print(input_values)
+
+min_stack = None
+output = []
+
+for cmd, values in zip(input_commands, input_values):
+    if cmd == "MinStack":
+        min_stack = MinStack()
+        output.append(None)
+    elif cmd == "push":
+        min_stack.push(values[0])
+        output.append(None)
+    elif cmd == "pop":
+        min_stack.pop()
+        output.append(None)
+    elif cmd == "top":
+        output.append(min_stack.top())
+    elif cmd == "getMin":
+        output.append(min_stack.getMin())
+
+print(output)
