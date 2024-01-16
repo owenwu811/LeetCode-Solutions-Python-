@@ -184,3 +184,35 @@ class Solution:
 
 
 
+
+#again:
+
+class Solution:
+    def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+        #if we have 6 courses in total, we will have an array from 0 through 5
+        indegree = [0] * numCourses
+        adj = [[] for nodes in range(numCourses)]
+        for sublist in prerequisites:
+            adj[sublist[1]].append(sublist[0])
+            indegree[sublist[0]] += 1 
+        d = deque()
+        for i in range(len(indegree)):
+            if indegree[i] == 0:
+                #[0, 5] both have 0 attackers, so append them to the deque in order
+                d.append(i)
+        visitcount = 0
+        while len(d) > 0:
+            visitcount += 1
+            #currentnode becomes 0 
+            #currentnode becomes 5
+            currentnode = d.popleft()
+            #we have to make niehgbor take on every value in order in the corresponding right hand side 
+            #for (2, 4) in adj[5]
+            for neighbor in adj[currentnode]:
+                #we then find node 5 as an index in indegree and decrement the associated value by 1, so indegree[5] -= 1
+                indegree[neighbor] -= 1
+                #if indegred[5] == 0, then append 5 onto the deque in order 
+                if indegree[neighbor] == 0:
+                    d.append(neighbor)
+        return visitcount == numCourses
+
