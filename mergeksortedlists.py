@@ -59,3 +59,39 @@ class Solution:
             elif list2 and not list1:
                 current.next = list2
             return dummy.next
+
+
+
+
+#IMPORTANT: 
+
+Here, the loop condition # while len(lists) > 1 depends on the length of the original lists variable. Inside the loop, you are updating the res variable #with the merged lists, 
+#but this doesn't affect the length of the original lists. Therefore, the loop condition may not change, leading to an infinite loop.
+
+while len(lists) > 1:
+    res = []  # Creating a new list
+    merged = []
+    for i in range(0, len(lists), 2):
+        list1 = lists[i]
+        if (i + 1) < len(lists):
+            list2 = lists[i + 1]
+        else:
+            list2 = None
+        merged.append(self.ml(list1, list2))
+    res = merged  # Assigning the value of merged to res
+return res[0]
+
+
+VS. 
+
+while len(lists) > 1:
+    merged = []
+    for i in range(0, len(lists), 2):
+        list1 = lists[i]
+        if (i + 1) < len(lists):
+            list2 = lists[i + 1]
+        else:
+            list2 = None
+        merged.append(self.ml(list1, list2))
+    lists = merged  # Overwriting the original lists variable
+return lists[0]
