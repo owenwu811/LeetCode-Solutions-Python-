@@ -167,3 +167,25 @@ class Solution:
                     return False
         return not stack 
 
+
+
+#1/17/24 refresher solution:
+
+class Solution:
+    def isValid(self, s: str) -> bool:
+        #our input string only has 3 types of brackets inside of it
+        #valid = True = same type of brackets + no closed before opening + equal frequency of brackets of each type
+        openb = "({["
+        closeb = ")}]"
+        stack = []
+        for char in s:
+            if char in openb:
+                stack.append(char)
+            #too many boys or boy comes first before ever seeing girl meaning we have a misstmatch already
+            elif char in closeb and not stack:
+                return False
+            else: #char in closeb(char is a boy) and there are girls
+                girl = stack.pop()
+                if openb.index(girl) != closeb.index(char):
+                    return False
+        return not stack
