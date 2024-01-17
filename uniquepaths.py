@@ -112,4 +112,23 @@ class Solution:
                 result[right] = result[right + 1] + lowestrow[right]
             lowestrow = result
         return lowestrow[0]
+
+
+
+#again
+
+class Solution:
+    def uniquePaths(self, m: int, n: int) -> int:
+       #we can fill the border of the bottom and right cells with 1 way since we know that one direction counts as 1 way: you can only move down OR right, so regardless if you are in the top right or middle right, there is only 1 unique path to get to the bottom right cell
+       #if the block is 7 cells wide, we fill the bottom border with 7 1s first since buildoff initially represents the bottom row that we will build upwards from 
+        buildoff = [1] * n
+        for down in range(m - 1):
+            result = [1] * n
+            #if n = 7, n starts at 5 and goes to including 0
+            for right in range(n - 2, -1, -1):
+                result[right] = result[right + 1] + buildoff[right]
+            buildoff = result
+        return buildoff[0]
+
+
          
