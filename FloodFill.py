@@ -194,3 +194,24 @@ class Solution:
         self.fill(starting, image, sr - 1, sc, color)
         self.fill(starting, image, sr, sc + 1, color)
         self.fill(starting, image, sr, sc - 1, color)
+
+
+#1/17/24 refresher solution:
+
+class Solution:
+    def floodFill(self, image: List[List[int]], sr: int, sc: int, color: int) -> List[List[int]]:
+        starting = image[sr][sc]
+        #we can't even flip the starting tile, so there's no work to do, so our modified image after performing the flood fill is image
+        if starting == color:
+            return image
+        #after we determine that we can flip the starting cell, we call the recursive function, which will try to flood in all 4 directions as long as the current cell has the same value as the starting color, so we pass in our current image, sr - wont change as given in input, sc - wont change as given in input, starting at image[sr][sc], and our color (won't change - given in input)
+        self.fill(image, sr, sc, starting, color)
+        return image
+    def fill(self, image, sr, sc, starting, color):
+        if sr < 0 or sr >= len(image) or sc < 0 or sc >= len(image[0]) or image[sr][sc] != starting:
+            return
+        image[sr][sc] = color
+        self.fill(image, sr + 1, sc, starting, color)
+        self.fill(image, sr - 1, sc, starting, color)
+        self.fill(image, sr, sc + 1, starting, color)
+        self.fill(image, sr, sc - 1, starting, color)
