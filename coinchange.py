@@ -190,3 +190,27 @@ class Solution:
         if buildoff[-1] == float('inf'):
             return -1
         return buildoff[-1]
+
+
+#1/17/24 refresher:
+
+class Solution:
+    import math
+    def coinChange(self, coins: List[int], amount: int) -> int:
+        #we are looking for the fewest frequency of coins given the coins with values depicted in our coins input array to make up amount # of cents
+        #just because a penny exists in real life dosen't mean that we have [1] in our input coins array which means we can't use it
+        #just because amount = 11 dosen't mean we have an [11] in our input array, which means we need to use dynammic programming to reuse previous smaller calculations
+        #we start with 0 frequency of coins needed to make up 0 cents, and we build up each level until amount.... fewest frequency of coins from coins array to make up 1 cent 2 cents 3 cents all the way up to 11 cents, and the fewest frequency of coins needed to make up 11 cents will be our anwser unless we need infinity frequency of coins, in which case we will return -1
+        #we have to do 0 i i i i i i i i i i i - i standing for infinity
+        #              0 1 2 3 4 5 6 7 8 9 10 11
+        result = [0] + ([float('inf')] * amount)
+        for levelamount in range(1, amount + 1):
+            #we have to try every coin from left to right in our array - try 1 cent then 2 cents then 5 cents for coins = [1, 2, 5]
+            for coinvalue in coins:
+                #it's possible to makeup the amount using the current coin we are trying out from our coins array because the value of our one coin dosen't surpass the level we are trying to optimize for - find the smallest frequency to make up the level - amount 5 - for example
+                if coinvalue <= levelamount:
+                    #obviously, if our amount is 11 and we have [11] in our array, then the left hand side of min would win out as our best case, but since we most likely won't this computes the frequency of coins - result[0] + 1 dosen't need to be computed over and over again 
+                    result[levelamount] = min(result[levelamount], result[levelamount - coinvalue] + 1)
+        if result[-1] == float('inf'):
+            return -1
+        return result[-1]
