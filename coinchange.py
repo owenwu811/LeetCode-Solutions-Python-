@@ -169,3 +169,24 @@ class Solution:
         if dparr[-1] == float('inf'):
             return -1
         return dparr[-1]
+
+
+#1/16/24 refresher:
+
+class Solution:
+    import math
+    def coinChange(self, coins: List[int], amount: int) -> int:
+        #we want the minimum frequency to sum up to amount cents for every 1 digit step up to amount
+        #we have established our basecase here in that it takes 0 frequency of coins to make up 0 cents, and we will fill the rest of the array with infinity so that any minimum frequency to make up 1 2 3 ... cents will always be less than infinity
+        #just because a penny exists in real life dosen't mean we can use it here unless we are explicitly given a [1] in the coins input array
+        buildoff = [0] + ([float('inf')] * amount)
+        #start with 1 cent - smallest frequency of coins out of our given options in coins array to make up 1 cent? note that amount + 1 is not inclusive
+        #levelamount is an index starting from 1 through amount, but it actually represents the amount that we are trying to find the smallest frequency of coins to sum up to out of our given options
+        for levelamount in range(1, amount + 1):
+            for coinvalue in coins:
+                if coinvalue <= levelamount:
+                    #we can't garuntee that we will have a [11] in our array just because the amount we are looking to return is fewest frequency of coins to make up 11 cents out of our options, and we are looking for frequency here, not value, so buildoff[0] + 1 dosen't need to be recomputed over and over again - we will reuse calculations at previous values for optimization purposes - if we are looking for buildoff[3], we may reuse buildoff[2]
+                    buildoff[levelamount] = min(buildoff[levelamount], buildoff[levelamount - coinvalue] + 1)
+        if buildoff[-1] == float('inf'):
+            return -1
+        return buildoff[-1]
