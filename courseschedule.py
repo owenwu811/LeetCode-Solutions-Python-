@@ -216,3 +216,31 @@ class Solution:
                     d.append(neighbor)
         return visitcount == numCourses
 
+
+#1/16/24 refresher:
+
+class Solution:
+    def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+        #if we have 6 courses, we have 0 through 5 as the nodes and the number of the attackers to each node starting at 0
+        indegree = [0] * numCourses
+        adj = [[] for node in range(numCourses)]
+        for p in prerequisites:
+            adj[p[1]].append(p[0])
+            #adding attackers
+            indegree[p[0]] += 1
+        d = deque()
+        for i in range(len(indegree)):
+            if indegree[i] == 0:
+                d.append(i)
+        visitc = 0
+        while len(d) > 0:
+            visitc += 1
+            currentnode = d.popleft()
+            for righthandlist in adj[currentnode]:
+                #removing attackers
+                indegree[righthandlist] -= 1
+                if indegree[righthandlist] == 0:
+                    #making sure every course that has 0 attackers gets added to the deque by it's index / node value 
+                    d.append(righthandlist)
+        return visitc == numCourses
+
