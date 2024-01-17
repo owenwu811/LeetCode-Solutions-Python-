@@ -131,4 +131,22 @@ class Solution:
         return buildoff[0]
 
 
-         
+
+#again - 1/17/24
+
+class Solution:
+    def uniquePaths(self, m: int, n: int) -> int:
+        #we will the right and bottom borders with 1 since it represents 1 direction aka 1 way aka 1 unique path to go from the current cell to the bottom right hand cell
+        #buildoff starts to represent the bottom wide row
+        buildoff = [1] * n
+        #if m = 3 aka 3 rows, then down would move 2 times - 0 and 1
+        for down in range(m - 1):
+            #result will be the same length as the buildoff row, but result will represent the one row above the bottom most row (buildoff)
+            result = [1] * n
+            #n = 7, so 6 steps to get from left to right, so 0 through 5
+            for right in range(n - 2, -1, -1):
+                #pascal's triangle titled
+                #right of current cell level plus cell value right below current cell - we are on the 2nd to lowest level row
+                result[right] = result[right + 1] + buildoff[right]
+            buildoff = result
+        return buildoff[0]
