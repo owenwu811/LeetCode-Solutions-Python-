@@ -244,3 +244,37 @@ class Solution:
                     d.append(righthandlist)
         return visitc == numCourses
 
+
+
+#1/17/24 refresher:
+
+class Solution:
+    def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+        #we assume that each course starts with no prerequisites first
+        indegree = [0] * numCourses
+        #if numCourses = 6, then we have an empty list on the right hand side for every key (0 through 5)
+        adj = [[] for course in range(numCourses)]
+        for sublist in prerequisites:
+            adj[sublist[1]].append(sublist[0])
+            #although we placed 0 in 1s place, we still have to find the node, which was the value at the left side from our prerequisites list, which corresponds with the node, which is the bottom index of our indegree list, and then we have to document that indegree's node has 1 more attacker
+            indegree[sublist[0]] += 1
+        d = deque()
+        for i in range(len(indegree)):
+            if indegree[i] == 0:
+                #after we match all attackers with their victims, we check to see which courses have 0 attackers or prerequisites, and we add those courses to our deque list in order
+                d.append(i)
+        #while we have courses that have no attackers, we know that course can be visited and can contribute to our final result, which is if we can visit every course in our input or not
+        visitc = 0
+        while len(d) > 0:
+            visitc += 1
+            currentnode = d.popleft()
+            #for (2, 4) in adj[5] if 5 = d.popleft()
+            # our adjacent list looks like: 5: [2, 4]
+            for neighbor in adj[currentnode]:
+                #now we have to find node 2 in our indegree list and decrement it's attacker by 1: indegree[2] -= 1, and if indegree[2] == 0, then append 2 to to our deque in order. next, neighbor = 4, so we have to find node 4 and do the same process as with node 2 - indegree[4] -= 1 and if indegree[4] == 0 then append 4 to our deque in order
+                indegree[neighbor] -= 1
+                if indegree[neighbor] == 0:
+                    d.append(neighbor)
+        return visitc == numCourses
+        
+        
