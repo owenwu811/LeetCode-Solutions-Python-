@@ -176,3 +176,21 @@ class Solution:
         res = []
         f(0, [])
         return res
+
+
+#1/17/24 refresher:
+
+
+class Solution:
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+        def dfs(index, path, nums):
+            if index >= len(nums):
+                res.append(path.copy())
+                return
+            path.append(nums[index])
+            dfs(index + 1, path, nums)
+            path.pop()
+            dfs(index + 1, path, nums)
+        res = []
+        dfs(0, [], nums)
+        return res
