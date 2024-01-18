@@ -139,3 +139,24 @@ class Solution:
         res = []
         func(0, [], 0)
         return res
+
+
+#1/17/24 refresher(made a mistake with index >= len(candidates) - 1 instead of index >= len(candidates) - using -1 would stop trying before trying the last element 7 in the array, which is why the output returned just 223 without 7:
+
+class Solution:
+    def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
+        
+        def dfs(index, ans, windowsum):
+            if windowsum == target:
+                res.append(ans.copy())
+                return
+            #if we are trying to add a number that is out of bounds to the right - past 7. if 7 has already been tried in [2, 3, 6, 7]
+            elif index >= len(candidates) or windowsum > target:
+                return
+            ans.append(candidates[index])
+            dfs(index, ans, windowsum + candidates[index])
+            ans.pop()
+            dfs(index + 1, ans, windowsum)
+        res = []
+        dfs(0, [], 0)
+        return res
