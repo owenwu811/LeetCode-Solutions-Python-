@@ -81,3 +81,26 @@ class Solution:
         self.res = 0
         f(root)
         return self.res
+
+
+#1/17/24 refresher:
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def diameterOfBinaryTree(self, root: TreeNode) -> int:
+        self.val = 0
+        def f(root):
+            if root is None:
+                return 0
+            left = f(root.left)
+            right = f(root.right)
+            self.val = max(self.val, left + right)
+            return 1 + max(left, right) #returns to the function call that caused it - either left or right, and then left or right calls def f(root) again
+
+        f(root)
+        return self.val
