@@ -82,4 +82,19 @@ class Solution:
             oneway += secondway
             secondway = first
         return oneway
+
+
+#1/17/24 refresher:
+
+class Solution:
+    def climbStairs(self, n: int) -> int:
+        #we want to find unique paths to the top, so we want the number of unique was to climb 0 steps all the way to n steps - similar to unique paths, but since we can only climb one or two steps, we can use two pointers
+        one = 1
+        two = 1
+        #making room for two pointers
+        for i in range(n - 1):
+            storage = one
+            one = one + two
+            two = storage
+        return one
         
