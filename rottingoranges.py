@@ -519,3 +519,43 @@ class Solution:
                     d.append([rotx, roty])
             minminutes += 1
         return minminutes if freshcount == 0 else -1
+
+
+#1/18/24 refresher:
+
+class Solution:
+    def orangesRotting(self, grid: List[List[int]]) -> int:
+        #used to keep track of rotten oranges at each timeslot
+        d = deque()
+        freshcount = 0
+        minminutes = 0
+        for r in range(len(grid)):
+            for c in range(len(grid[0])):
+                if grid[r][c] == 2:
+                    #indicies / coordinates to identify the cell that the rotten orange is in 
+                    d.append([r, c])
+                elif grid[r][c] == 1:
+                    freshcount += 1
+                else:
+                    continue
+        directions = [[0, 1], [0, -1], [1, 0], [-1, 0]]
+        while len(d) > 0 and freshcount > 0:
+            #each minute, we will simulate the rotting process
+            for i in range(len(d)):
+                #we are unpacking the 1st sublist inside our deque list in order of the coordinates of the rotten orange we found from this minute
+                xrotten, yrotten = d.popleft()
+                #we want to step onto a new cell - REMEMBER THIS REQUIRES UNPACKING THE LIST OF LISTS IN DIRECTIONS!!!! XNEW BECOMES THE X COORDINATE OF THE PARTICULAR SUBLIST WE ARE ON (INDEX 0) WHILE YNEW BECOMES THE Y COORDINATE OF THE PARTICULAR SUBLIST WE ARE ON (INDEX 1)
+                for xnew, ynew in directions:
+                    #becomex, becomey is the new cell indicies that we are trying to rot in one of the 4 directions
+                    becomex, becomey = xrotten + xnew, yrotten + ynew
+                    
+                    if becomex < 0 or becomex >= len(grid) or becomey < 0 or becomey >= len(grid[0]) or grid[becomex][becomey] != 1:
+                        continue
+                    #turning this new fresh orange cell into rotten
+                    grid[becomex][becomey] = 2
+                    #since this fresh orange became rotten, we have to add it's coordinate indicies to our deque for the next minute so this one can infect others
+                    d.append([becomex, becomey])
+                    freshcount -= 1
+            #since our deque represents each passing minute, after we finish looping through each iteration of our deque, we increment the minutes that have passed
+            minminutes += 1
+        return minminutes if freshcount == 0 else -1
