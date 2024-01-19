@@ -152,3 +152,25 @@ class Solution:
             return (dfs(root.left, lowerbound, root.val) and dfs(root.right, root.val, upperbound))
         
         return dfs(root, float('-inf'), float('inf'))
+
+
+#1/19/24 practice:
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def isValidBST(self, root: Optional[TreeNode]) -> bool:
+        def dfs(root, lowerbound, upperbound):
+            #if there is no root in the tree, it dosen't violate the bst property, so it's technically considered a valid binary search tree
+            if root is None:
+                return True
+            #if any of the levels violate the bst property, then the entire tree is not 100% balanced
+            if not (lowerbound < root.val < upperbound):
+                return False
+            #traversing down both left and right subtrees to check each level 
+            return (dfs(root.left, lowerbound, root.val) and dfs(root.right, root.val, upperbound))
+        return dfs(root, float('-inf'), float('inf'))
