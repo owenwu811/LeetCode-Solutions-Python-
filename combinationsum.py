@@ -184,3 +184,28 @@ class Solution:
         res = []
         dfs(0, [], 0)
         return res
+
+
+#again
+
+class Solution:
+    def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
+        def dfs(index, ans, windowsum):
+            if windowsum == target:
+                res.append(ans.copy())
+                return
+            elif index >= len(candidates) or windowsum > target:
+                return
+            ans.append(candidates[index])
+            #choosing the same number again is fine - [2222]
+            dfs(index, ans, windowsum + candidates[index])
+            ans.pop()
+            #absence of candidates[index] is like subtracting it from windowsum since we backtracked
+            dfs(index + 1, ans, windowsum)
+
+
+        res = []
+        dfs(0, [], 0)
+        return res
+        
+        
