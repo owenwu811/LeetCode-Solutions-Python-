@@ -182,3 +182,50 @@ class Solution:
                 current.next = list2
             return dummy.next
 
+
+#another practice run:
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+        def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
+        
+            if len(lists) == 0 or not lists:
+                return None
+            #we need to keep merging
+            while len(lists) > 1:
+                #we placed mergedlist above for loop. bceause we don't want to clear mergedlist everytime we want to merge because our progress would be lost
+                mergedlist = []
+                for i in range(0, len(lists), 2):
+                    
+                    list1 = lists[i]
+                    if (i + 1) < len(lists):
+                        list2 = lists[i + 1]
+                    else:
+                        list2 = None
+                    mergedlist.append(self.ml(list1, list2))
+                lists = mergedlist
+            return lists[0]
+        def ml(self, list1, list2):
+            dummy = ListNode(0)
+            current = dummy
+            while list1 and list2:
+                if list1.val < list2.val:
+                    current.next = list1
+                    list1 = list1.next
+                else:
+                    current.next = list2
+                    list2 = list2.next
+                current = current.next
+            if list1 and not list2:
+                current.next = list1
+            elif list2 and not list1:
+                current.next = list2
+            return dummy.next
+                    
+
+            
+
