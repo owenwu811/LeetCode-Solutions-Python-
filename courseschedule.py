@@ -306,3 +306,31 @@ class Solution:
                         d.append(neighbor)
         return numCourses == visitc
 
+
+#1/19/24 practice run:
+
+class Solution:
+    def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+        #each course from 0 through numCourse - 1 starts out with 0 prerequsites
+        indegree = [0] * numCourses
+        #our adjaceny list represents the course on the left and the course's naighbors on the right as a list
+        adj = [[] for course in range(numCourses)]
+        for p in prerequisites:
+            #we have to find the right hand side of the prerequisites as the left hand side in our adhacency list and then add the left hand side of prerequisites to the right hand side of the left hand side in our adjacency list
+            adj[p[1]].append(p[0])
+            indegree[p[0]] += 1
+        d = deque()
+        #if any of the courses still have 0 attackers after the 1st round, then we can add them to our deque and increment each of them as one of the courses we can visit
+        for i in range(len(indegree)):
+            if indegree[i] == 0:
+                d.append(i)
+        visitcount = 0
+        while len(d) > 0:
+            visitcount += 1
+            #we take the node from our indegree list just like with the prerequisites sublist, and we find that node in the left hand side of the adjacency list and make neighbor each of it's neighbors in the right hand side sublist, and then for each neighbor in the right sublist, we make the neighbor a node in the indegree list and decrement the corresponding count from the indegree list and repeat the process of adding the course to our deque if this new course also has 0 attackers 
+            currentnode = d.popleft()
+            for neighbor in adj[currentnode]:
+                indegree[neighbor] -= 1
+                if indegree[neighbor] == 0:
+                    d.append(neighbor)
+        return visitcount == numCourses
