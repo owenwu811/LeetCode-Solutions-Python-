@@ -118,3 +118,22 @@ class Solution:
                 res = second
         return res
 
+#1/18/24 refresher:
+
+class Solution:
+    def longestPalindrome(self, s):
+        def dfs(l, r, s):
+            while l >= 0 and r < len(s) and s[l] == s[r]:
+                l -= 1
+                r += 1
+            return s[l + 1: r]
+        
+        res = ""
+        for char in range(len(s)):
+            first = dfs(char, char, s)
+            if len(first) > len(res):
+                res = first
+            second = dfs(char, char + 1, s)
+            if len(second) > len(res):
+                res = second
+        return res
