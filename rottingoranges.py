@@ -559,3 +559,38 @@ class Solution:
             #since our deque represents each passing minute, after we finish looping through each iteration of our deque, we increment the minutes that have passed
             minminutes += 1
         return minminutes if freshcount == 0 else -1
+
+
+#another:
+
+class Solution:
+    def orangesRotting(self, grid: List[List[int]]) -> int:
+        #keep track of all rotten oranges from a particular timeslot starting from the 1st minute that elapses
+        d = deque()
+        minminutes = 0
+        freshcount = 0
+        for r in range(len(grid)):
+            for c in range(len(grid[0])):
+                if grid[r][c] == 2:
+                    #coordinates of rotten orange appended in order to unpack later
+                    d.append([r, c])
+                elif grid[r][c] == 1:
+                    freshcount += 1
+                else:
+                    continue
+        directions = [[0, 1], [0, -1], [1, 0], [-1, 0]]
+        #we can only turn freshoranges (1) into rottenoranges (2)
+        while len(d) > 0 and freshcount > 0:
+            for i in range(len(d)):
+                xrotten, yrotten = d.popleft()
+                for xstepon, ystepon in directions:
+                    xdestroy, ydestroy = xrotten + xstepon, yrotten + ystepon
+                    #now, we have to boundary check the new cell we are trying to rot and make sure it's a fresh orange
+                    if xdestroy < 0 or xdestroy >= len(grid) or ydestroy < 0 or ydestroy >= len(grid[0]) or grid[xdestroy][ydestroy] != 1:
+                        continue
+                    grid[xdestroy][ydestroy] = 2
+                    freshcount -= 1
+                    #coordinates that will spread again later
+                    d.append([xdestroy, ydestroy])
+            minminutes += 1
+        return minminutes if freshcount == 0 else -1
