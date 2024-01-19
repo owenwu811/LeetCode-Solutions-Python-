@@ -264,3 +264,34 @@ class Solution:
             if level:
                 res.append(level)
         return res
+
+#1/19/24 refresher:
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    from collections import deque
+    def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
+        #our deque will store all the nodes at the current level of the input tree
+        d = deque()
+        res = []
+        #the first level of our input tree only contains the root, so we append only the root node of the tree to our deque list
+        d.append(root)
+        #this while loop will terminate when there are no more levels aka children from the perspective of the previous level
+        while len(d) > 0:
+            level = []
+            for i in range(len(d)):
+                currentnode = d.popleft()
+                if currentnode is not None:
+                    level.append(currentnode.val)
+                    #adding the children
+                    d.append(currentnode.left)
+                    d.append(currentnode.right)
+            if level:
+                res.append(level)
+        return res
+                
