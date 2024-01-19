@@ -277,4 +277,32 @@ class Solution:
                     d.append(neighbor)
         return visitc == numCourses
         
-        
+
+
+#another of my slightly different solutions:
+
+class Solution:
+    def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+        #originally, all courses are assumed to have 0 prerequisites
+        indegree = [0] * numCourses
+        adj = [[] for course in range(len(indegree))]
+        for prereq in prerequisites:
+            adj[prereq[1]].append(prereq[0])
+            indegree[prereq[0]] += 1
+        d = deque()
+        for i in range(len(indegree)):
+            if indegree[i] == 0:
+                d.append(i)
+        visitc = 0
+        while len(d) > 0:
+            for i in range(len(d)):
+                visitc += 1
+                leftside = d.popleft()
+                #right side is a list
+                for neighbor in adj[leftside]:
+                    #will take on every node in order on the right hand side of adj list, and that new node has to be matched to an index in indegree and decrement the corresponding value by 1 - represents a cycle 
+                    indegree[neighbor] -= 1
+                    if indegree[neighbor] == 0:
+                        d.append(neighbor)
+        return numCourses == visitc
+
