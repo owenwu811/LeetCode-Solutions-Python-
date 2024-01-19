@@ -214,3 +214,24 @@ class Solution:
         if result[-1] == float('inf'):
             return -1
         return result[-1]
+
+
+#1/18/24 refresher:
+
+class Solution:
+    import math
+    def coinChange(self, coins: List[int], amount: int) -> int:
+        #we are looking for the smallest frequency of coins given our options to make up amount cents through adding up our options. just because a 1 exists in real life as a penny dosen't mean we can use 1 if we don't have a [1] in our input coins array. we will first determine that the base case [0] means that we need 0 as the smallest frequency of coins to sum up to 0 cents and then do the same for 1 cent.. 2 cents... 3 cents.. up to amount cents, and each level from 1 to amount cents is represented by infinity so that any smallest frequency of cents is smaller than infinity 
+        dparr = [0] + ([float('inf')] * amount)
+        #we start looping from 1 because we already established the base case as 0 is the smallest frequency of coins to make up 0 cents, and we do the same for 1 cent....... 
+        #although levelamount is an index here, it actually represents smallest frequency of coins from our options to sum up to 1 cent... 2 cents... 3 cents... level amount is the 1 cent 2 cents 3 cents or whatever level we are on up to not including amount + 1 meaning up to including amount cents, and when we get to amount cents, the smallest frequency of coins from our array that can sum up to amount cents will be our result, which will be the last element in our dparr array as long as the last element dosen't equal infinity 
+        for levelamount in range(1, amount + 1):
+            #we have to check each coin from left to right in our input coins array 
+            for coinvalue in coins:
+                if coinvalue <= levelamount:
+                    #we are calculating the smallest frequency for the current level. we don't want to calculate d[0] + 1 over and over again
+                    dparr[levelamount] = min(dparr[levelamount], dparr[levelamount - coinvalue] + 1)
+        if dparr[-1] == float('inf'):
+            return -1
+        return dparr[-1]
+
