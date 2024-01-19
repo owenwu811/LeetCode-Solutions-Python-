@@ -150,3 +150,19 @@ class Solution:
                 result[right] = result[right + 1] + buildoff[right]
             buildoff = result
         return buildoff[0]
+
+#1/18/24 refresher:
+
+class Solution:
+    def uniquePaths(self, m: int, n: int) -> int:
+        #we want the number of unique ways from each cell to the bottom right cell, and note that the right and bottom borders will be filled with 1s first because there is only one way from anywhere on the right border to the bottom right cell (go down) regardless if we move down 1 block or 2 blocks, it still counts as one unique way / path - same goes for the bottom, so we will initially start with an array of 1s filling an array the length of the bottom row and build upwards from right to left 
+        buildoff = [1] * n
+        #if we have three rows, then we can only move down twice, so down = 0, 1
+        for down in range(m - 1):
+            #finalresult is one row above the bottom most row and will be build by tilting pascal's triangle towards the left
+            finalresult = [1] * n
+            for right in range(n - 2, -1, -1):
+                finalresult[right] = finalresult[right + 1] + buildoff[right]
+            buildoff = finalresult
+        return buildoff[0]
+
