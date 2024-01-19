@@ -277,3 +277,65 @@ class Solution:
                 if board[row][column] == word[0] and dfs(0, row, column):
                     return True
         return False
+
+
+#1/18/24 refresher:
+
+class Solution:
+    def exist(self, board: List[List[str]], word: str) -> bool:
+        def dfs(index, r, c):
+            if r < 0 or r >= len(board) or c < 0 or c >= len(board[-1]) or board[r][c] != word[index]: #not equal to word index means equal to visited that we marked since visited would never be equal to a particular letter that we are looking for
+            #we haven't returned False up to the last letter of the word, so if we reach the last index of the word, then we can say we found the entire word
+                return False
+            elif index >= len(word) - 1:
+                return True
+            original = board[r][c]
+            board[r][c] = "visited"
+            result = (dfs(index + 1, r + 1, c) or dfs(index + 1, r - 1, c) or dfs(index + 1, r, c + 1) or dfs(index + 1, r, c - 1))
+            #if none of the 4 directions find the path, then return False and backtrack to last viable position that was not yet tried as a path
+            board[r][c] = original
+            return result
+            
+
+
+        for r in range(len(board)):
+            for c in range(len(board[-1])):
+                if board[r][c] == word[0] and dfs(0, r, c):
+                    return True
+        return False
+
+
+#better notes:
+
+from typing import List
+class Solution:
+    def exist(self, board: List[List[str]], word: str) -> bool:
+        def dfs(index, r, c):
+            if r < 0 or r >= len(board) or c < 0 or c >= len(board[0]) or board[r][c] != word[index]:
+                return False
+                #when False executes here, we return nothing to the call in result, and index, r, c all reset to 0 if we are still looking for the 2nd character, and we proceed to call the next function call a line down in result
+            elif index >= len(word) - 1:
+                return True
+            #when we do find the next letter we are looking for, we start executing from the 1st line recursive call in result, but instead of resetting index, r, c to 0, index, r, c continue from the last value. note that, if we already made progress, and one of the function calls return False, then we start from the last viable point in which we know progress has been made, so index, r, c might reset to 1, 0, 1 if we already found a in "abcb" if the grid is board = [["A","B","C","E"], ["S","F","C","S"],["A","D","E","E"]], and we continue executing the next recursive call in result at the next line if the 1st one lead to False, so everytime we find another progress letter, then that (index, r, c) combination now becomes the last viable point to backtrack too if we return False from any of the 4 function calls
+            original = board[r][c]
+            board[r][c] = "visited"
+            result = (
+                dfs(index + 1, r + 1, c) or
+                dfs(index + 1, r - 1, c) or
+                dfs(index + 1, r, c + 1) or
+                dfs(index + 1, r, c - 1)
+            )
+            board[r][c] = original
+            return result
+        for r in range(len(board)):
+            for c in range(len(board[0])):
+                if board[r][c] == word[0] and dfs(0, r, c):
+                    return True
+        return False
+board = [["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]]
+word = "ABCB"
+solution = Solution()
+result = solution.exist(board, word)
+
+#at this point, let's say that we've made progress up to (2, 0, 2), and from (2, 0, 2), we call all 4 recursive functions, and none of them lead to the next character. IN THAT CASE, WE WOULD board[r][c] = original because we already marked c as stepped on in board = [["A","B","CCCCCC","E"],["S","F","C","S"],["A","D","E","E"]], and we would return False, and then we would backtrack from (2, 0, 2) to (2, 0, 0), not (1, 0, 1) because THE ONLY VIABLE PATH FORWARD OUT OF THE 4 RECURSIVE CALLS from (1, 0, 1) that lead to a correct result, WAS (2, 0, 2).
+#return result
