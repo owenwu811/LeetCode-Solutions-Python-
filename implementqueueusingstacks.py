@@ -126,4 +126,31 @@ class MyQueue:
 
     def empty(self) -> bool:
         return len(self.d) == 0
-  
+
+
+#1/19/24 refresher:
+
+class MyQueue:
+
+    def __init__(self):
+       self.d = deque()
+
+    def push(self, x: int) -> None:
+        self.d.append(x)
+     
+ 
+    def pop(self) -> int:
+        #this particular element that was popped from the left of the list, not the rest of the list is what self.d.popleft() is equal to!!!!!
+        return self.d.popleft()
+        
+    
+
+    def peek(self) -> int:
+        return self.d[0]
+
+ 
+
+
+    def empty(self) -> bool:
+        return len(self.d) == 0
+      
