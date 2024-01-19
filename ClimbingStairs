@@ -98,3 +98,17 @@ class Solution:
             two = storage
         return one
         
+
+#1/19/24 refresher:
+
+class Solution:
+    def climbStairs(self, n: int) -> int:
+        #there is always one way to climb the first step 
+        one = 1
+        two = 1
+        #making room for two pointers
+        for i in range(n - 1):
+            nxt = one
+            one = one + two
+            two = nxt
+        return one
