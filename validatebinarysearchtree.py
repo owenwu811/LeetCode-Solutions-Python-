@@ -129,3 +129,26 @@ class Solution:
 
             return (dfs(root.left, lowerbound, root.val) and dfs(root.right, root.val, upperbound))
         return dfs(root, float("-inf"), float("inf"))
+
+
+#1/18/24 practice run:
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def isValidBST(self, root: Optional[TreeNode]) -> bool:
+        def dfs(root, lowerbound, upperbound):
+            #technically, if there is no root in the tree, it is balanced
+            if root is None:
+                return True
+            #checking the balance status at every level we traverse down in the input tree
+            if not (root.val > lowerbound and root.val < upperbound):
+                return False
+            #keeps digging down one subtree (left) for example until we reach the leaf of the left subtree, and if left subtree returns True then and only then do we even evaluate the right subtree because both parts of the subtree need to be balanced at every level following the bst rule 
+            return (dfs(root.left, lowerbound, root.val) and dfs(root.right, root.val, upperbound))
+        
+        return dfs(root, float('-inf'), float('inf'))
