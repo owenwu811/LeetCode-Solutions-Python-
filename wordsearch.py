@@ -339,3 +339,31 @@ result = solution.exist(board, word)
 
 #at this point, let's say that we've made progress up to (2, 0, 2), and from (2, 0, 2), we call all 4 recursive functions, and none of them lead to the next character. IN THAT CASE, WE WOULD board[r][c] = original because we already marked c as stepped on in board = [["A","B","CCCCCC","E"],["S","F","C","S"],["A","D","E","E"]], and we would return False, and then we would backtrack from (2, 0, 2) to (2, 0, 0), not (1, 0, 1) because THE ONLY VIABLE PATH FORWARD OUT OF THE 4 RECURSIVE CALLS from (1, 0, 1) that lead to a correct result, WAS (2, 0, 2).
 #return result
+
+
+#1/22/24 refresher:
+
+class Solution:
+    def exist(self, board: List[List[str]], word: str) -> bool:
+        def dfs(index, r, c):
+            if r < 0 or r >= len(board) or c < 0 or c >= len(board[0]) or board[r][c] != word[index]:
+                #return back to the dfs call that started it and try the next one down in result
+                return False
+            elif index >= len(word) - 1:
+                return True
+            original = board[r][c]
+            board[r][c] = "visited"
+            #if we find the letter in word that we are on in any of the 4 directions, we can mark it as visited and go onto the next word in our input string words
+            result = (dfs(index + 1, r + 1, c) or dfs(index + 1, r - 1, c) or dfs(index + 1, r, c + 1) or dfs(index + 1, r, c - 1))
+            #if we can't find the letter we are looking for in any of the 4 directions, then we have to start a new path and backtrack
+            board[r][c] = original
+            #return back to the parent call that started the wrong path and go back to the last viable path
+            return result
+            
+        
+
+        for r in range(len(board)):
+            for c in range(len(board[0])):
+                if board[r][c] == word[0] and dfs(0, r, c):
+                    return True
+        return False
