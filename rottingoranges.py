@@ -594,3 +594,43 @@ class Solution:
                     d.append([xdestroy, ydestroy])
             minminutes += 1
         return minminutes if freshcount == 0 else -1
+
+#1/21/24 practice refresher:
+
+class Solution:
+    def orangesRotting(self, grid: List[List[int]]) -> int:
+        #used to store rotten oranges from each particular timeslot
+        d = deque()
+        #return this at the end
+        minminutes = 0
+        #if this is still 0 by the end, then it's still possible to return minminutes - so minminutes is the independent variable
+        freshcount = 0
+        for r in range(len(grid)):
+            for c in range(len(grid[0])):
+                #if, in our cell, we are seeing a rotten orange, then add it's indicies/cell coordinates to the deque in order as a list with 2 elements in it
+                if grid[r][c] == 2:
+                    d.append([r, c])
+                elif grid[r][c] == 1:
+                    freshcount += 1
+                else:
+                    continue
+        #now that we have all of our rotten and fresh oranges from the 1st minute, it's time to spread the rot in all 4 directions to fresh oranges that are 4 directionally adjacent to a rotten orange
+        directions = [[0, 1], [0, -1], [1, 0], [-1, 0]]
+        while len(d) > 0 and freshcount > 0:
+            for i in range(len(d)):
+                #unpacking from our list with 2 elements added earlier
+                carrierx, carriery = d.popleft()
+                for xchange, ychange in directions:
+                    xmutate, ymutate = carrierx + xchange, carriery + ychange
+                    if xmutate < 0 or xmutate >= len(grid) or ymutate < 0 or ymutate >= len(grid[0]) or grid[xmutate][ymutate] != 1:
+                        continue
+                    #if our new cell is in boundaries and is a fresh orange, we can rot it by turning that cell's 1 into a 2
+                    grid[xmutate][ymutate] = 2
+                    #we have to reflect the change in the independant variable, freshcount
+                    freshcount -= 1
+                    #this new carrier can be a carrier for other oranges later, so add this new carrier's indicies / cell coordinates to the deque in the form of a list with 2 elements so it can be unpacked later on
+                    d.append([xmutate, ymutate])
+            #since our deque represents one full minute, increment minminutes by 1
+            minminutes += 1
+        return minminutes if freshcount == 0 else -1
+
