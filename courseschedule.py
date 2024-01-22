@@ -334,3 +334,41 @@ class Solution:
                 if indegree[neighbor] == 0:
                     d.append(neighbor)
         return visitcount == numCourses
+
+
+#1/21/24 practice run:
+
+class Solution:
+    def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+        #initially, each course starts off with 0 prerequisites
+        indegree = [0] * numCourses
+        adj = [[] for course in range(numCourses)]
+        for sublist in prerequisites:
+            #we already made a list on the right for the neighbor
+            #say sublist[1] = 0 because sublist is one of the sublists given in our prerequsites input, so adj[0] represents the empty sublist that has 0 as the left (key) of it 
+            adj[sublist[1]].append(sublist[0])
+            #now we have to document as neighbor in indegree list
+            indegree[sublist[0]] += 1
+        d = deque()
+        for i in range(len(indegree)):
+            #if the course has 0 prerequsites even after traversing our input list prerequisites, add that course to the deque in order
+            if indegree[i] == 0:
+                d.append(i)
+        visitcount = 0
+        while len(d) > 0:
+            for i in range(len(d)):
+                visitcount += 1
+                #currentnode = 0
+                #currentnode = 5
+                currentnode = d.popleft()
+                #n is each of the elements in the right hand side sublist
+                #(1) in adj[0]
+                #(2, 4) in adj[5]
+                for n in adj[currentnode]:
+                    #indegree[2] -= 1
+                    #indegree[4] -= 1
+                    indegree[n] -= 1
+                    if indegree[n] == 0:
+                        d.append(n)
+        return visitcount == numCourses
+
