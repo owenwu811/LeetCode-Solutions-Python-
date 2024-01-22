@@ -235,3 +235,22 @@ class Solution:
             return -1
         return dparr[-1]
 
+#1/21/24 refresher practice solution:
+
+class Solution:
+    import math
+    def coinChange(self, coins: List[int], amount: int) -> int:
+        #we want the fewest frequency of coins out of the values of the coins we are given - those values to sum up to amount
+        #we know that the frequency of coins to make up 0 cents is always 0 coins needed, and we fill the array from 1 through amount with infinity so that the frequency for each level will always be less than infinity, and if they are infinity, then that's not valid?
+        #[float('inf')] * amount is different than without the brackets around float('inf')!!!!!
+        dparr = [0] + ([float('inf')] * amount)
+        for level in range(1, amount + 1):
+            #we have to try each coin in our array (purse) - and just because a penny exists in real life dosen't mean you can assume that we can use 1c unless [1] is explicitly given in the input array 
+            for coinvalue in coins:
+                if coinvalue <= level:
+                    #just because amount is 11 dosen't mean we always have an [11] coin worth exactly 11 cents in our input array
+                    #remember that we are looking for the fewest frequency at each level here and that our algorithm will reuse the most efficient amount from previous levels 
+                    dparr[level] = min(dparr[level], dparr[level - coinvalue] + 1)
+        if dparr[-1] == float('inf'):
+            return -1
+        return dparr[-1]
