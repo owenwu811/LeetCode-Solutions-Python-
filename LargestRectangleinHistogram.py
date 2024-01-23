@@ -19,6 +19,7 @@ class Solution:
         #this problem requires an increasing monotonic stack where, if the previous value in our input array is greater than our current value we are iterating over, we pop from the stack until the monotonicly increasing aspect of it is restored
         stack = []
         for inputindex, inputvalue in enumerate(heights):
+            ##reflecting the change of starting a new window after a violation of a monotonically increasing aspect
             startindex = inputindex
             #we want to monotonical increasing stack - when it stops being a monotonic stack, the while loop inner block executes
             #will always be false in 1st iteration since nothing was ever added to the stack and so there is no stack[-1][1] that exists
@@ -26,6 +27,7 @@ class Solution:
                 ##keep popping until we are still a monotonic stack
                 stackindex, stackheightvalue = stack.pop()
                 maxarea = max(maxarea, stackheightvalue * (inputindex - stackindex))
+                #if this wasn't stackindex and was set to inputindex, we wouldn't be accurately reflecting the loss in progress due to the next element being less than current or montonically increasing aspect violated
                 startindex = stackindex
             #we are still an increasing monotonic, so append to stack
             stack.append((startindex, inputvalue))
