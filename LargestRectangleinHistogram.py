@@ -37,3 +37,29 @@ class Solution:
         for inputindex, inputvalue in stack:
             maxarea = max(maxarea, inputvalue * (len(heights) - inputindex))
         return maxarea
+
+
+#practice run:
+
+class Solution:
+    def largestRectangleArea(self, heights: List[int]) -> int:
+        maxarea = 0
+        #we need a monotonicly increasing stack
+        stack = []
+        for inputindex, inputvalue in enumerate(heights):
+            #this is needed to accurately convey the start of a new window 
+            startindex = inputindex
+            while stack and stack[-1][1] > inputvalue:
+                #we violated our monotonic stack increasing, so we pop until we don't violate our montonoic increasing stack
+                stackindex, stackheightvalue = stack.pop()
+                #for each frame that we pop, we calculate the max area because that frame ended
+                maxarea = max(maxarea, stackheightvalue * (inputindex - stackindex))
+                startindex = stackindex
+            stack.append((startindex, inputvalue))
+        #if we never violated our montonic increasing stack, we never popped, so we also never calculated the maxarea
+        for i, j in stack:
+            maxarea = max(maxarea, j * (len(heights) - i))
+        return maxarea
+
+
+        
