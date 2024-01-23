@@ -62,4 +62,24 @@ class Solution:
         return maxarea
 
 
+#practice run 1/23/24:
+
+class Solution:
+    def largestRectangleArea(self, heights: List[int]) -> int:
+        res = 0
+        #we need an increasing monotonic stack
+        stack = []
+        for inputindex, inputvalue in enumerate(heights):
+            start = inputindex
+            #we have violated our monotonically increasing quality
+            while stack and stack[-1][1] > inputvalue:
+                stackindex, stackheight = stack.pop()
+                res = max(res, stackheight * (inputindex - stackindex))
+                start = stackindex
+            stack.append((start, inputvalue))
+        for i, j in stack:
+            res = max(res, j * (len(heights) - i))
+        return res
+
+
         
