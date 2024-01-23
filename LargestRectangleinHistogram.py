@@ -19,7 +19,8 @@ class Solution:
         #this problem requires an increasing monotonic stack where, if the previous value in our input array is greater than our current value we are iterating over, we pop from the stack until the monotonicly increasing aspect of it is restored
         stack = []
         for inputindex, inputvalue in enumerate(heights):
-            ##reflecting the change of starting a new window after a violation of a monotonically increasing aspect
+            #reflecting the change of starting a new window after a violation of a monotonically increasing aspect
+            #starting a new window at index 2 in heights = [2,1,5,6,2,3], so startindex will become 2
             startindex = inputindex
             #we want to monotonical increasing stack - when it stops being a monotonic stack, the while loop inner block executes
             #will always be false in 1st iteration since nothing was ever added to the stack and so there is no stack[-1][1] that exists
