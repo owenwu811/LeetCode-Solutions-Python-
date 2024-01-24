@@ -35,4 +35,20 @@ class Solution:
             if rightmost is not None:
                 res.append(rightmost.val)
         return res
-                
+
+
+
+#important:
+
+#if we had rightmost = None after the for loop instead of between while and for, it would fail the test case root = [1,2] because root = [1, 2] represents a tree like this:
+#   1
+# 2  
+
+#this means that there is still a N like:
+
+#   1
+# 2   N
+
+#so if you put rightmost = None right after the for loop, rightmost will get overriden to None instead of 2 for that level, which is incorrect, so you would return [1] instead of [1, 2] as the rightside view
+
+
