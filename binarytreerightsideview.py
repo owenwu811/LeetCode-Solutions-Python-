@@ -31,7 +31,7 @@ class Solution:
                     d.append(currentnode.left)
                     d.append(currentnode.right)
             #we iterated through an entire level, so we traversed from left to right in the level, setting the rightmost variable to the currentnode as long as it wasn't null
-            #if we didn't have this not None check, if currentnode is not None were never true, rightmost would stay None, and None object dosen't have a val attribute, and the problem asks for the value of the rightmost node
+            #if we didn't have this not None check, if currentnode is not None were never true - after we processed all the levels for [1,2,3,null,5,null,4] meaning rightmost = 4, we still have a last level where every node is Null, so rightmost stays None since the if currentnode is not None never executes, and without the if rightmost is not None, we will still try to add None into our output, which isn't valid because None objects don't even have a value attribute. In other words, rightmost would stay None, and None object dosen't have a val attribute, and the problem asks for the value of the rightmost node
             if rightmost is not None:
                 res.append(rightmost.val)
         return res
