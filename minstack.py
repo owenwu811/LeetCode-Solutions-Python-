@@ -194,3 +194,34 @@ for cmd, values in zip(input_commands, input_values):
         output.append(min_stack.getMin())
 
 print(output)
+
+
+
+#1/24/24:
+
+class MinStack:
+    def __init__(self):
+        self.stack = []
+        self.minstack = []
+       
+
+    def push(self, val: int) -> None:
+        self.stack.append(val)
+        if self.minstack:
+            val = min(val, self.minstack[-1])
+        else:
+            val
+        self.minstack.append(val)
+        
+        
+    def pop(self) -> None:
+        self.stack.pop()
+        self.minstack.pop()
+        
+      
+    def top(self) -> int:
+        return self.stack[-1]
+      
+
+    def getMin(self) -> int:
+        return self.minstack[-1]
