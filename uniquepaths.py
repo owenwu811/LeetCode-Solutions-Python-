@@ -166,3 +166,21 @@ class Solution:
             buildoff = finalresult
         return buildoff[0]
 
+
+#1/24/24 refresher:
+
+class Solution:
+    def uniquePaths(self, m: int, n: int) -> int:
+        #we want the number of unique ways to get from the current cell to the bottom right cell, so we know the bottom and right borders will be filled with 1s because you are only moving in 1 direction
+        #we will build up from the bottom row, which is buildoff, so result will be the row above buildoff
+        buildoff = [1] * n
+        #iterations for rows
+        for down in range(m - 1):
+            result = [1] * n
+            #iterations for columns
+            for right in range(n - 2, -1, -1):
+                #pascal's triangle tilted to the left
+                result[right] = result[right + 1] + buildoff[right]
+            buildoff = result
+        #buildoff will be the top left corner value, which will be the number of unique ways to go from the top left cell to the bottom right cell 
+        return buildoff[0]
