@@ -254,3 +254,26 @@ class Solution:
         if dparr[-1] == float('inf'):
             return -1
         return dparr[-1]
+
+
+#1/24/24 refresher:
+
+class Solution:
+    import math
+    def coinChange(self, coins: List[int], amount: int) -> int:
+        
+        #we want the smallest frequency of coins out of the options we are given to sum up to amount cents, so just because we have a penny in real life dosen't mean that we can use it unless there is explicitly a [1] in our input array coins, and, likewise, just because a coin worth 2 cents dosen't exist in real life dosen't mean you can't use it if there is a [2] explicitly in our input array coins
+        #the smallest frequency of coins needed to sum up to 0 cents is 0, and that acts as our base case, and we will build up each level in incremenets of 1 cent up until we get to amount
+        #every other level will have infinity since we can't have infinity frequency of coins, and anything less than infinity is less than infinity
+        dparr = [0] + ([float('inf')] * amount)
+        #we already computed the base case - fewest frequency to sum up to 0 cents, so we start by computing the fewest frequency of coins given our options to sum up to 1 cent up to amount
+        for amountin1centincrements in range(1, amount + 1):
+            #we try each coin we have in our options
+            for coinvalue in coins:
+                if coinvalue <= amountin1centincrements:
+                #each level represents the smallest frequency of coins, so you don't need dparr[0] + 1 every time as dp[1] has already been calculated
+                    dparr[amountin1centincrements] = min(dparr[amountin1centincrements], dparr[amountin1centincrements - coinvalue] + 1)
+        #the smallest frequency of coins cannot be infinity, so return -1 if we can't find the smallest frequency to make up a certain number of coins requiring infinite frequency of coins
+        if dparr[-1] == float('inf'):
+            return -1
+        return dparr[-1]
