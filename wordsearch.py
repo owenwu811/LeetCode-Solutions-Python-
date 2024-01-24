@@ -367,3 +367,28 @@ class Solution:
                 if board[r][c] == word[0] and dfs(0, r, c):
                     return True
         return False
+
+
+#1/24/24 refresher:
+
+class Solution:
+    def exist(self, board: List[List[str]], word: str) -> bool:
+        def dfs(index, r, c):
+            if r < 0 or r >= len(board) or c < 0 or c >= len(board[0]) or board[r][c] != word[index]:
+                return False
+            #we found the word since we didn't return False before this returns True
+            elif index >= len(word) - 1:
+                return True
+            original = board[r][c] 
+            #word[index] will never be equal to visited
+            board[r][c] = "visited"
+            result = (dfs(index + 1, r + 1, c) or dfs(index + 1, r - 1, c) or dfs(index + 1, r, c + 1) or dfs(index + 1, r, c - 1))
+            #we backtrack to the last viable path if all 4 directions don't make progress, so since we are starting a new path, we can reuse the cell
+            board[r][c] = original
+            return result
+
+        for r in range(len(board)):
+            for c in range(len(board[0])):
+                if board[r][c] == word[0] and dfs(0, r, c):
+                    return True
+        return False
