@@ -97,3 +97,28 @@ class Solution:
         return l #we return left after l <= r is broken because left is always the smallest out of l, r, and mid, and if l and r cross, then that means right had to have been pulled down meaning that we had to have found a bad version because, for right to have been pulled down, we had to have called a bad version, so since l is the smallest, and l has atleast stepped on right but not overstepped, we know that l is at worst equal to r or l is smaller than r, which represnets the smallest numbered bad version aka the first version that returned true from the isBadVersion() function when everything before it returned false. the reason I am concluding that right had to have been pulled down aka bad version returned true for left and right to have overcrossed is because there always has to be a bad version, and for left to overcross aka make l <= r false, it must have come from the opposite direction and have crossed paths before overcrossing
         # if only the left pointer is moved (meaning only the else block is executed), the pointers l and r will indeed eventually cross. in the case of 1 2 3 l mid r. if only left is pulled up aka else is called, l and r will still cross and overcross. note that the problem's constraints tell us that there will always be a bad version
         #since there is guaranteed to always be a bad version, at worst case, the first bad version is the right most element, which, in this case, left will eventually hit by being pulled up over and over again aka the else block executed over again until they cross paths meaning that l will always eventually land on the first bad version
+
+
+
+#1/24/24 refresher solution:
+
+# The isBadVersion API is already defined for you.
+# def isBadVersion(version: int) -> bool:
+class Solution:
+    def firstBadVersion(self, n: int) -> int:
+        #all versions after a bad version are bad, so if the current version is good, all previous versions must also be good
+        #we want the first bad version
+        smallest = 0
+        largest = n
+        #eliminating the search space using process of elimination
+        while smallest <= largest:
+            #use // 2 to round up so we don't get 3.5 instead of 4
+            mid = (smallest + largest) // 2
+            #if the current version is bad, there could be a version before the current causing the current to be bad, so we move largest pointer down to the previous one before the current since we want the first bad version
+            if isBadVersion(mid):
+                largest = mid - 1
+            else:
+                smallest = mid + 1
+        return smallest
+            
+
