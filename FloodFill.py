@@ -224,6 +224,7 @@ class Solution:
         starting = image[sr][sc]
         if starting == color:
             return image
+        #if the 1st flip was successful, we start exploring adjacent cells to kickoff subsequent flips
         self.fill(image, sr, sc, color, starting)
         return image
     def fill(self, image, sr, sc, color, starting):
