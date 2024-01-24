@@ -215,3 +215,24 @@ class Solution:
         self.fill(image, sr - 1, sc, starting, color)
         self.fill(image, sr, sc + 1, starting, color)
         self.fill(image, sr, sc - 1, starting, color)
+
+
+#1/24/24 refresher practice solution:
+
+class Solution:
+    def floodFill(self, image: List[List[int]], sr: int, sc: int, color: int) -> List[List[int]]:
+        starting = image[sr][sc]
+        if starting == color:
+            return image
+        self.fill(image, sr, sc, color, starting)
+        return image
+    def fill(self, image, sr, sc, color, starting):
+        #won't be true on 1st turn because we made it this far, so the 1st cell that kicks off subsequent flips will always be valid
+        if sr < 0 or sr >= len(image) or sc < 0 or sc >= len(image[0]) or image[sr][sc] != starting:
+            return 
+        #we are not out of bounds, and this cell is equal to the starting color and can be flipped to the color to prevent infinite recursion
+        image[sr][sc] = color
+        self.fill(image, sr + 1, sc, color, starting)
+        self.fill(image, sr - 1, sc, color, starting)
+        self.fill(image, sr, sc + 1, color, starting)
+        self.fill(image, sr, sc - 1, color, starting)
