@@ -51,4 +51,9 @@ class Solution:
 
 #so if you put rightmost = None right after the for loop, rightmost will get overriden to None instead of 2 for that level, which is incorrect, so you would return [1] instead of [1, 2] as the rightside view
 
+#when constructing the tree nodes, if a node doesn't have a left or right child, the corresponding child attribute is set to None. This convention is common in tree data structures, where a None value indicates the absence of a child node.
+#    1
+#  /
+# 2
 
+#The tree node with value 1 has a left child with value 2, but its right child is set to None, indicating that there is no right child for the node with value 1.
