@@ -112,3 +112,18 @@ class Solution:
             one = one + two
             two = nxt
         return one
+
+
+#1/24/24 refresher:
+
+class Solution:
+    def climbStairs(self, n: int) -> int:
+        #since there is always one way to climb to the current staircase and 2 ways to climb, we have two pointers 
+        one = 1
+        two = 1
+        #make room for 2 pointers
+        for i in range(n - 1):
+            temp = one
+            one = one + two
+            two = temp
+        return one
