@@ -57,3 +57,24 @@ class Solution:
 # 2
 
 #The tree node with value 1 has a left child with value 2, but its right child is set to None, indicating that there is no right child for the node with value 1.
+
+
+
+#1/24/24 practice:
+
+class Solution:
+    def rightSideView(self, root: Optional[TreeNode]) -> List[int]:
+        res = []
+        d = deque()
+        d.append(root)
+        while len(d) > 0:
+            rightside = None
+            for i in range(len(d)):
+                currentnode = d.popleft()
+                if currentnode is not None:
+                    rightside = currentnode
+                    d.append(currentnode.left)
+                    d.append(currentnode.right)
+            if rightside is not None:
+                res.append(rightside.val)
+        return res
