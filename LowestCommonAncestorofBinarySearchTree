@@ -147,4 +147,26 @@ class Solution:
                 root = root.right
             else:
                 return root
-        
+
+
+#1/25/24 refresher:
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+        #we know that p and q will always exist in the bst
+        #the root node of the tree is an ancestor of every node in the tree, including itself
+        while True:
+            #p.val < root.val because we are finding the lowest common ancestor of p and q nodes, not of the root node
+            if p.val < root.val and q.val < root.val:
+                root = root.left
+            elif p.val > root.val and q.val > root.val:
+                root = root.right
+            else:
+                return root
