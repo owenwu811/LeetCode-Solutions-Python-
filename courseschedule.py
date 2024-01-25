@@ -372,3 +372,31 @@ class Solution:
                         d.append(n)
         return visitcount == numCourses
 
+
+#1/25/24 practice run:
+
+class Solution:
+    def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+        #each course starts with 0 prerequisites
+        indegree = [0] * numCourses
+        #we start with 0 neighbors
+        adj = [[] for course in range(numCourses)]
+        for sublist in prerequisites:
+            adj[sublist[1]].append(sublist[0])
+            indegree[sublist[0]] += 1
+        d = deque()
+        for i in range(len(indegree)):
+            if indegree[i] == 0:
+                d.append(i)
+        coursecount = 0
+        while len(d) > 0:
+            for i in range(len(d)):
+                coursecount += 1
+                currentcourse = d.popleft()
+                for neighbor in adj[currentcourse]:
+                    indegree[neighbor] -= 1
+                    if indegree[neighbor] == 0:
+                        d.append(neighbor)
+        return coursecount == numCourses
+            
+
