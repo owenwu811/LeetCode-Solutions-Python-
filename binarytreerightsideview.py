@@ -78,3 +78,26 @@ class Solution:
             if rightside is not None:
                 res.append(rightside.val)
         return res
+
+
+#1/25/24:
+
+class Solution:
+    def rightSideView(self, root: Optional[TreeNode]) -> List[int]:
+        #deque will store all the nodes at the current level of the binary tree as we will traverse from left to right
+        res = []
+        d = deque()
+        #adding the first level of the tree
+        d.append(root) 
+        #while we haven't visited all levels of the input tree
+        while len(d) > 0:
+            rightside = None
+            for i in range(len(d)):
+                currentnode = d.popleft()
+                if currentnode is not None:
+                    rightside = currentnode
+                    d.append(currentnode.left)
+                    d.append(currentnode.right)
+            if rightside is not None:
+                res.append(rightside.val)
+        return res
