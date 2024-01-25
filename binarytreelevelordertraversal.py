@@ -1,5 +1,6 @@
 
 
+#this problem is similar to binary tree right side view 
 
 #python3 solution:
 
@@ -291,6 +292,39 @@ class Solution:
                     #adding the children
                     d.append(currentnode.left)
                     d.append(currentnode.right)
+            if level:
+                res.append(level)
+        return res
+
+
+#1/25/24 refresher:
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    from collections import deque
+    def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
+        #we want to return each value of each node of each level of the tree from left to right and from the top level down to the bottom level
+        #our deque will keep track of the nodes at each level of the input tree
+        res = []
+        d = deque()
+        #our first level
+        d.append(root)
+        #we still haven't traversed all levels yet
+        while d:
+            #holds all the values of each node at each level of the input tree
+            level = []
+            for i in range(len(d)):
+                currentnode = d.popleft()
+                if currentnode is not None:
+                    level.append(currentnode.val)
+                    d.append(currentnode.left)
+                    d.append(currentnode.right)
+            #we don't want empty arrays in our output result
             if level:
                 res.append(level)
         return res
