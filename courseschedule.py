@@ -400,3 +400,28 @@ class Solution:
         return coursecount == numCourses
             
 
+
+#1/27/24 practice run:
+
+class Solution:
+    def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+        indegree = [0] * numCourses
+        adj = [[] for course in range(numCourses)]
+        for i in prerequisites:
+            #append always appends to the right of a key value pair
+            adj[i[1]].append(i[0])
+            indegree[i[0]] += 1
+        d = deque()
+        for i in range(len(indegree)):
+            if indegree[i] == 0:
+                d.append(i)
+        coursecount = 0
+        while len(d) > 0:
+            for i in range(len(d)):
+                coursecount += 1
+                currentcourse = d.popleft()
+                for righthand in adj[currentcourse]:
+                    indegree[righthand] -= 1
+                    if indegree[righthand] == 0:
+                        d.append(righthand)
+        return coursecount == numCourses
