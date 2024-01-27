@@ -141,3 +141,25 @@ class Solution:
                 if maxright > height[r]:
                     res += (maxright - height[r])
         return res
+
+
+#1/27/24 refresher:
+
+class Solution:
+    def trap(self, height: List[int]) -> int:
+        if not height:
+            return 0
+        l, r = 0, len(height) - 1
+        res = 0
+        leftside = height[l]
+        rightside = height[r]
+        while l < r:
+            if leftside < rightside:
+                l += 1
+                leftside = max(leftside, height[l])
+                res += (leftside - height[l])
+            else:
+                r -= 1
+                rightside = max(rightside, height[r])
+                res += (rightside - height[r])
+        return res
