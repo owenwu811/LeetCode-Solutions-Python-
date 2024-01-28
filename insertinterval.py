@@ -114,3 +114,27 @@ class Solution:
                 newInterval = [min(newInterval[0], intervals[sublist][0]), max(newInterval[1], intervals[sublist][1])]
         res.append(newInterval)
         return res
+
+
+
+#1/28/24 review:
+
+class Solution:
+    def insert(self, intervals: List[List[int]], newInterval: List[int]) -> List[List[int]]:
+        #the output is a list
+        res = []
+        #looping and indexing into our input list
+        for sublist in range(len(intervals)):
+            if newInterval[0] > intervals[sublist][1]:
+                #we are appending a list - intervals[sublist], not a particular integer - intervals[sublist][1]!!!!!
+                res.append(intervals[sublist])
+            elif newInterval[1] < intervals[sublist][0]:
+                res.append(newInterval)
+                return res + intervals[sublist:]
+            else:
+                #overlap exists, so we need to find the bigger of the two maxes and get the smallest and biggest of both sublists on both the left and side sides of both sublists and make a new newInterval sublist
+                newInterval = [min(intervals[sublist][0], newInterval[0]), max(intervals[sublist][1], newInterval[1])]
+        #if intervals is empty, we still need to merge them by adding just newInterval and returning result
+        res.append(newInterval)
+        return res
+
