@@ -157,4 +157,21 @@ class Solution(object):
             duplicatecheck.add(s[we])
             res = max(res, len(duplicatecheck))
         return res
-        
+
+
+
+#1/28/24 refresher:
+
+#we want to length of the longest substring without repeating characters, so our return type will be an integer
+        res = 0
+        #without repeating characters means we want a set to keep track of what we already have seen while looping through s
+        dc = set()
+        #we will slide the window, expanding and shrinking depending on if we have seen the character already or not - if we've already seen the current character we are seeing with windowend pointer, we keep shrinking the window from the beginning to not duplicate calculate windows that we have already calculated. 
+        ws = 0
+        for we in range(len(s)):
+            while s[we] in dc:
+                dc.remove(s[ws])
+                ws += 1
+            dc.add(s[we])
+            res = max(res, len(dc))
+        return res
