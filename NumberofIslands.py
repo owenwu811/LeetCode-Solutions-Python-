@@ -230,3 +230,33 @@ class Solution:
                     count += 1
                     dfs(grid, r, c)
         return count
+
+#1/28/24 review:
+
+class Solution:
+    def numIslands(self, grid: List[List[str]]) -> int:
+        #grid is a list of list of strings with cell values of either "1" or "0" as string
+        #any 1 we see, we know we can count that as 1 island, and since all the 1st adjacent to that 1 also count as the same island, we want to find them so we don't overcount islands, so we do that with this recursive call
+
+        def dfs(grid, r, c):
+            #this if block won't be true in the 1st turn that it executes since we already determined that atleast one island exists
+            if r < 0 or r >= len(grid) or c < 0 or c >= len(grid[0]) or grid[r][c] == "0":
+                #if we are out of bounds of the grid or find water, then we return nothing back to the parent function call that caused it
+                return
+            #we found another 1, so we have to set it to 0 so we don't double count it
+            grid[r][c] = "0"
+            dfs(grid, r + 1, c)
+            dfs(grid, r - 1, c)
+            dfs(grid, r, c + 1)
+            dfs(grid, r, c - 1)
+
+
+
+        count = 0
+        for r in range(len(grid)):
+            #this is the width since we know that all lists of lists are of the same width
+            for c in range(len(grid[0])):
+                if grid[r][c] == "1":
+                    count += 1
+                    dfs(grid, r, c)
+        return count
