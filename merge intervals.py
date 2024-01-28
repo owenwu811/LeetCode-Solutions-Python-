@@ -81,3 +81,20 @@ class Solution:
                 #unpacking the 1st and 2nd values in each sublist 
                 res.append([start, end])
         return res
+
+
+#1/28/24 practice:
+
+class Solution:
+    def merge(self, intervals: List[List[int]]) -> List[List[int]]:
+        #we know that the 1st integer of the 1st sublist will always be a part of the output
+        intervals.sort(key=lambda n:n[0])
+        output = [intervals[0]]
+        for start, end in intervals[1:]:
+            #we have some overlapping, and since we know that the 1st element of the previous list will be the smallest, we compare the 1st index of our current sublist and the previous sublist to see if we need to stretch
+            if start <= output[-1][1]:
+                output[-1][1] = max(end, output[-1][1])
+            #no overlap, so don't stretch and just add to output
+            else:
+                output.append([start, end])
+        return output
