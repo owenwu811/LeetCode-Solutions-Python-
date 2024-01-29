@@ -195,4 +195,25 @@ class Solution:
                 l += 1
                 c += 1
                 
-                
+
+
+#1/29/24 refresher:
+
+class Solution:
+    def sortColors(self, nums: List[int]) -> None:
+        """
+        Do not return anything, modify nums in-place instead.
+        """
+        l, r = 0, len(nums) - 1
+        n = 0
+        #everything up to nuetral is already sorted
+        while n <= r:
+            if nums[n] == 2:
+                nums[n], nums[r] = nums[r], nums[n]
+                r -= 1
+            elif nums[n] == 1:
+                n += 1
+            elif nums[n] == 0:
+                nums[l], nums[n] = nums[n], nums[l]
+                n += 1
+                l += 1 
