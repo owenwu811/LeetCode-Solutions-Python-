@@ -103,3 +103,37 @@ class LRUCache:
             else: 
                 self.cachedict[key] = value
                 self.pagefaultcount += 1
+
+
+
+#1/29/24 practice:
+
+class LRUCache:
+    def __init__(self, capacity: int):
+        #given to us as an integer
+        self.cap = capacity
+        self.cd = OrderedDict()
+        self.pagefaultcount = 0
+
+    def get(self, key: int) -> int:
+        if key not in self.cd:
+            return -1
+        else:
+            res = self.cd[key]
+            self.cd.pop(key)
+            self.cd[key] = res
+            return res
+        
+        
+    def put(self, key: int, value: int) -> None:
+        if key in self.cd: #if our page request is already in our cache, we remove the one already in the cache and add the current page request (same as just removed) to the end - no pagefaultcount because it was in the cache
+            self.cd.pop(key)
+            self.cd[key] = value
+        else: #if our current page request isn't in our cache, but capacity is full, we don't increase page fault count
+            if self.cap == self.pagefaultcount:
+                lru = next(iter(self.cd))
+                self.cd.pop(lru)
+                self.cd[key] = value
+            else:
+                self.cd[key] = value
+                self.pagefaultcount += 1
