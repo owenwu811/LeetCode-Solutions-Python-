@@ -127,3 +127,19 @@ class Solution:
             one = one + two
             two = temp
         return one
+
+
+#1/29/24 refresher:
+
+class Solution:
+    def climbStairs(self, n: int) -> int:
+        #you can only climb 2 ways - 1 or 2 steps, so we can use two pointers
+        one = 1
+        two = 1
+        #making room for both pointers - we will build up dynamic programming from left to right, sandwiching two with one
+        for i in range(n - 1):
+            tmp = one
+            one = one + two
+            two = tmp
+        #this is similar to climbing stairs in that the one will return the number of unique ways to climb but except of bottom right to top left, we go from right to left by sandwiching second and first pointers
+        return one
