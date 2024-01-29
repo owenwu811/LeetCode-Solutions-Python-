@@ -58,7 +58,7 @@ class LRUCache:
                 self.cache.pop(leastrecentlyusedkey)
                 self.cache[key] = value
             else:
-                #our paging fault count is not in our cache, and the cache HAS NOT reached it's max capacity, so just add the paging request key value pair to end and increment paging fault count. REMEMBER: when the current paging request is not in our cache, this is a paging fault. so when a page is requested by the user, and it's not in our cache, this is a paging fault 
+                #our paging fault count is not in our cache, and the cache HAS NOT reached it's max capacity, so just add the paging request key value pair to end and increment paging fault count. REMEMBER: when the current paging request is not in our cache and we HAVE NOT REACHED CAPACITY YET, this is a paging fault. so when a page is requested by the user, and it's not in our cache, this is a paging fault 
                 self.cache[key] = value
                 self.pagefaultcount += 1
 
