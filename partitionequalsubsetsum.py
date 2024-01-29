@@ -30,3 +30,21 @@ class Solution:
         return half in subsums
         #Since 22 is the sum of the nums, if we can find the subarray that is equal to the  target 11 then the sum of remaining nums always equal to the target 11.
         #mylist = [5] - print(5 in mylist) - True
+
+
+#1/29/24 practice:
+
+class Solution:
+    def canPartition(self, nums: List[int]) -> bool:
+        if sum(nums) % 2 != 0:
+            return False
+        subsum = set()
+        subsum.add(0)
+        half = sum(nums) // 2
+        for number in nums:
+            set2 = set()
+            for element in subsum:
+                set2.add(element + number)
+                set2.add(element)
+            subsum = set2
+        return half in subsum
