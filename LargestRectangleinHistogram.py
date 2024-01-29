@@ -99,4 +99,22 @@ class Solution:
         for actualindex, actualvalue in stack:
             res = max(res, actualvalue * (len(heights) - actualindex))
         return res
-        
+
+
+
+#1/29/24 practice:
+
+class Solution:
+    def largestRectangleArea(self, heights: List[int]) -> int:
+        stack = []
+        res = 0
+        for inputindex, inputvalue in enumerate(heights):
+            starting = inputindex
+            while stack and stack[-1][1] > inputvalue:
+                stackindex, stackheight = stack.pop()
+                res = max(res, stackheight * (inputindex - stackindex))
+                starting = stackindex
+            stack.append((starting, inputvalue))
+        for i, j in stack:
+            res = max(res, j * (len(heights) - i))
+        return res
