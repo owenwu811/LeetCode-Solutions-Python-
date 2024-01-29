@@ -118,3 +118,29 @@ class Solution:
         for i, j in stack:
             res = max(res, j * (len(heights) - i))
         return res
+
+
+#another practice run:
+
+class Solution:
+    def largestRectangleArea(self, heights: List[int]) -> int:
+        res = 0
+        #we want a monotonically increasing stack 
+        stack = []
+        for inputindex, inputvalue in enumerate(heights):
+            starting = inputindex
+            while len(stack) > 0 and stack[-1][1] > inputvalue:
+                #monotonically increasing property is violated since we have something at the back of our stack that's less than our current input number in heights, so the new bar is less than the old bar, so we want to keep popping until that monotonically increasing property is restored - remember that current has to be larger than previous bar - equal would still be violating the monotonically increasing property
+                #we keep popping and calculating 5 and 6 bar heights before 1 and 2 bar heights
+                stackindex, stackheight = stack.pop()
+                #after we restored our monotonically increasing property, we know everything in the stack follows the monotonic property, so the stackindex now represents the point starting where we are following the property and inputindex is the currentindex that, previously wasn't following monotonic property but now is, so we take the stack height times the inputindex - stackindex
+                res = max(res, stackheight * (inputindex - stackindex))
+                #we now start a new window at the new stackindex
+                starting = stackindex
+            #as long as not violating monotonic property, keep appending to end of stack list in order 
+            stack.append((starting, inputvalue))
+        #we have gone through the input array once, so we know that everything that wasn't monotonically increasing has been corrected, so everything in the stack is now monotonically increasing, so we can compute the width times height for each possibility in our stack
+        for i, j in stack:
+            res = max(res, j * (len(heights) - i))
+        return res
+                
