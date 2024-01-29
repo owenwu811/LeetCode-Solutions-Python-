@@ -137,3 +137,41 @@ class LRUCache:
             else:
                 self.cd[key] = value
                 self.pagefaultcount += 1
+
+
+#another practice run:
+
+class LRUCache:
+    def __init__(self, capacity: int):
+        #capacity is an integer that is given to us that represents the limit to the size of the cache aka how many items the cache can store
+        self.cap = capacity
+        #cache will be a dictionary with key, value pairs
+        self.cached = OrderedDict()
+        #we want to find the number of paging faults aka when the current paging request number does not exist as a key in our cached ordereddict
+        self.pagefaultcount = 0
+       
+
+    def get(self, key: int) -> int:
+        if key not in self.cached:
+            return -1
+        else: #key (number of our current paging request)exists as a key in cached, so we want to remove it from it's current position and insert the key at the end since we don't want duplicate keys in our cachedict
+            res = self.cached[key]
+            self.cached.pop(key)
+            self.cached[key] = res
+            #return the value of the key if it exists
+            return res
+        
+        
+    def put(self, key: int, value: int) -> None:
+        if key in self.cached:
+            #again, since our current paging request number is already in our cached, this will not be a paging fault, but we do want to delete it and reinsert at the rear
+            self.cached.pop(key)
+            self.cached[key] = value
+        else: #our current paging request number is not in our current cached dictionary as a key, so if our capacity is equal to the number of page fault counts, we want to pop and reinsert into the rear without incrementing pagefaultcount
+            if self.pagefaultcount == self.cap:
+                lru = next(iter(self.cached))
+                self.cached.pop(lru)
+                self.cached[key] = value
+            else: #if our current paging request number is not in our current cached dictionary as a key and our current capacity is not full, then we do have a page fault count, and then insert the current page fault count at the rear of our dictionary
+                self.cached[key] = value
+                self.pagefaultcount += 1
