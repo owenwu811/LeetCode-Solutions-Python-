@@ -37,7 +37,7 @@ class LRUCache:
     def get(self, key: int) -> int:
         if key not in self.cache:
             return -1
-        else:
+        else: #although this is get, we still have to pop and reinsert in get to update the order of items in the cache to reflect the most recently accessed item!!!!!
             #cache = [1, 2, 3], and current paging request = 2, so we don't have to go to hard disk and fetch it from there. Instead, we will just fetch page 2 from the cache, which will save us time. Since 2 was already in our cache, it IS NOT CONSIDERED A PAGING FAULT. 
             res = self.cache[key]
             #delete key, value pair and update order of default dict
