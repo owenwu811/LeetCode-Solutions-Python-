@@ -61,3 +61,45 @@ class LRUCache:
                 #our paging fault count is not in our cache, and the cache HAS NOT reached it's max capacity, so just add the paging request key value pair to end and increment paging fault count. REMEMBER: when the current paging request is not in our cache, this is a paging fault. so when a page is requested by the user, and it's not in our cache, this is a paging fault 
                 self.cache[key] = value
                 self.pagefaultcount += 1
+
+
+
+
+
+
+
+#practice run
+
+
+
+
+class LRUCache:
+    def __init__(self, capacity: int):
+        self.givencapacity = capacity
+        self.pagefaultcount = 0
+        self.cachedict = OrderedDict()
+        
+    def get(self, key: int) -> int:
+        if key not in self.cachedict:
+            return -1
+        else:
+            result = self.cachedict[key]
+            self.cachedict.pop(key)
+            self.cachedict[key] = result
+            return result
+        
+        
+
+    def put(self, key: int, value: int) -> None:
+        if key in self.cachedict:
+            self.cachedict.pop(key)
+            self.cachedict[key] = value
+        else:
+            if self.pagefaultcount == self.givencapacity:
+                leastrecentlyused = next(iter(self.cachedict))
+                self.cachedict.pop(leastrecentlyused)
+                self.cachedict[key] = value
+
+            else: 
+                self.cachedict[key] = value
+                self.pagefaultcount += 1
