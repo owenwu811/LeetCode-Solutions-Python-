@@ -118,7 +118,7 @@ class LRUCache:
     def get(self, key: int) -> int:
         if key not in self.cd:
             return -1
-        else:
+        else: #the idea is that we don't have duplicate paging requests in our cache, and we move the current pagging request 3 that is already in our cache to the end by deleting and reinserting 
             res = self.cd[key]
             self.cd.pop(key)
             self.cd[key] = res
