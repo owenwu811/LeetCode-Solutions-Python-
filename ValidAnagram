@@ -89,3 +89,14 @@ class Solution:
             return False
         
         
+#1/29/24 refresher:
+
+class Solution:
+    def isAnagram(self, s: str, t: str) -> bool:
+        for char in s:
+            if char not in t:
+                return False
+            else:
+                t = t.replace(char, "", 1)
+        return len(t) == 0
+        
