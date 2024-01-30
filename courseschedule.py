@@ -425,3 +425,31 @@ class Solution:
                     if indegree[righthand] == 0:
                         d.append(righthand)
         return coursecount == numCourses
+
+
+#1/30/24 practice:
+
+class Solution:
+    def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+        # a depends on b
+        indegree = [0] * numCourses
+        #used to build neighboring prerequisites
+        adj = [[] for course in range(numCourses)]
+        for sublist in prerequisites:
+            adj[sublist[1]].append(sublist[0])
+            indegree[sublist[0]] += 1
+        #deque list
+        d = deque()
+        for i in range(len(indegree)):
+            if indegree[i] == 0:
+                d.append(i)
+        canvisit = 0
+        while len(d) > 0:
+            for i in range(len(d)):
+                canvisit += 1
+                currentnode = d.popleft()
+                for neighbor in adj[currentnode]:
+                    indegree[neighbor] -= 1
+                    if indegree[neighbor] == 0:
+                        d.append(neighbor)
+        return canvisit == numCourses
