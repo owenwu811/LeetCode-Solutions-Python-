@@ -175,3 +175,39 @@ class LRUCache:
             else: #if our current paging request number is not in our current cached dictionary as a key and our current capacity is not full, then we do have a page fault count, and then insert the current page fault count at the rear of our dictionary
                 self.cached[key] = value
                 self.pagefaultcount += 1
+
+
+#1/30/24 practice:
+
+class LRUCache:
+    def __init__(self, capacity: int):
+        #int that is given to us as capacity is positive as in the constraints
+        self.cap = capacity
+        self.pagefaultcount = 0
+        self.cache = OrderedDict()
+       
+        
+
+    def get(self, key: int) -> int:
+        if key not in self.cache:
+            return -1
+        else:
+            result = self.cache[key]
+            self.cache.pop(key)
+            self.cache[key] = result
+            return result
+     
+    def put(self, key: int, value: int) -> None:
+        if key in self.cache:
+            #no paging fault
+            self.cache.pop(key)
+            self.cache[key] = value
+        else:
+            if self.cap == self.pagefaultcount:
+                #we are full, so we need to replace by deleting the least recently used cache and add our current page request to the end as a replacement
+                lru = next(iter(self.cache))
+                self.cache.pop(lru)
+                self.cache[key] = value
+            else: #not full and not in cache, so do increment page fault count
+                self.cache[key] = value
+                self.pagefaultcount += 1
