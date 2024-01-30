@@ -277,3 +277,17 @@ class Solution:
         if dparr[-1] == float('inf'):
             return -1
         return dparr[-1]
+
+#1/30/24 refresher:
+
+class Solution:
+    import math
+    def coinChange(self, coins: List[int], amount: int) -> int:
+        dparr = [0] + ([float('inf')] * amount)
+        for levelamount in range(1, amount + 1):
+            for coinvalue in coins:
+                if coinvalue <= levelamount:
+                    dparr[levelamount] = min(dparr[levelamount], dparr[levelamount - coinvalue] + 1)
+        if dparr[-1] == float('inf'):
+            return -1
+        return dparr[-1]
