@@ -101,3 +101,25 @@ class Solution:
             if rightside is not None:
                 res.append(rightside.val)
         return res
+
+
+#1/13/24 refresher:
+
+class Solution:
+    def rightSideView(self, root: Optional[TreeNode]) -> List[int]:
+        #used to store all nodes at a particular level of our input tree
+        d = deque()
+        d.append(root)
+        res = []
+        while len(d) > 0:
+            rightside = None
+            for i in range(len(d)):
+                currentnode = d.popleft()
+                if currentnode is not None:
+                    rightside = currentnode
+                    d.append(currentnode.left)
+                    d.append(currentnode.right)
+            #covers the case where the if currentnode is not None block is never executed and prevents Nonetype error
+            if rightside is not None:
+                res.append(rightside.val)
+        return res
