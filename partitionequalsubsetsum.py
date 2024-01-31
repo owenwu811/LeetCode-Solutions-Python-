@@ -48,3 +48,24 @@ class Solution:
                 set2.add(element)
             subsum = set2
         return half in subsum
+
+#1/31/24 practice:
+
+class Solution:
+    def canPartition(self, nums: List[int]) -> bool:
+       #we want two subSETS that are equal, so if one subset equals half the sum of nums, we know that it's possible
+        if sum(nums) % 2 != 0:
+            return False
+        subsum = set()
+        #not picking any elements starts with a sum of 0
+        subsum.add(0)
+        half = sum(nums) // 2
+        for number in nums:
+            set2 = set()
+            for element in subsum:
+                #including (left side)
+                set2.add(element + number)
+                #excluding (right side)
+                set2.add(element)
+            subsum = set2
+        return half in subsum
