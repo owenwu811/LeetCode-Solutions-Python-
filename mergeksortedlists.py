@@ -321,7 +321,7 @@ class Solution:
 class Solution:
     def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
         if not lists:
-            #return [] dosen't work here because that's not a valid listnode type
+            #return [] or ListNode(0) or ListNode(None) dosen't work here because that's not a valid listnode type
             return None
         while len(lists) > 1:
             merged = []
