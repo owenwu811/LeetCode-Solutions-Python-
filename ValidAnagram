@@ -99,4 +99,17 @@ class Solution:
             else:
                 t = t.replace(char, "", 1)
         return len(t) == 0
-        
+
+
+
+#2/1/24 refresher:
+
+class Solution:
+    def isAnagram(self, s: str, t: str) -> bool:
+        #anagram means the frequency of letters is the same but order may be different
+        for char in s:
+            if char not in t:
+                return False
+            t = t.replace(char, "", 1)
+        #we return if we replaced all characters in t, meaning t covers s fully
+        return len(t) == 0
