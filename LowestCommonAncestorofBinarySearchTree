@@ -193,3 +193,6 @@ class Solution:
                 root = root.right
             else:
                 return root
+
+
+#important: a node lower than the current node in the tree means that the lower node is NOT AN ANCESTOR OR DESCENDANT OF NODE ABOVE, so between 6 and 7, 6 is the lowest common ancestor 
