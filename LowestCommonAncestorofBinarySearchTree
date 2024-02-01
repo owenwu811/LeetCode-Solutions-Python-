@@ -170,3 +170,26 @@ class Solution:
                 root = root.right
             else:
                 return root
+
+
+#2/1/24 refresher:
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+        #binary search tree means the left side of the tree will be LESS than current node value and right side of the tree will be MORE than the current node value, so we can narrow our search to the subtree based on just this
+        #so the root is a descendant (ancestor) of every node in the tree, and we know that p and q are garunteed to exist somewhere in the tree
+        #a node can be a descendant of itself, so if p = 8 and q = 7, then the anwser is 8
+        while True:
+            if p.val < root.val and q.val < root.val:
+                root = root.left
+            elif p.val > root.val and q.val > root.val:
+                root = root.right
+            else:
+                return root
