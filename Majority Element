@@ -57,3 +57,18 @@ class Solution:
         for d in mydict:
             if mydict[d] > frequency:
                 return d
+
+
+#2/1/24 refresher:
+
+class Solution:
+    def majorityElement(self, nums: List[int]) -> int:
+        mydict = dict()
+        lookingfor = len(nums) / 2
+        for i, j in enumerate(nums):
+            if j not in mydict:
+                mydict[j] = 0
+            mydict[j] += 1
+        for keys in mydict:
+            if mydict[keys] > lookingfor:
+                return keys
