@@ -67,3 +67,5 @@ class Solution:
             return s
         else:
             return ""
+
+#important: matched variable tracks the frequency of characters from s that have fully satisified t. so means how many letters in the dictionary have values of 0 - a:0, b: 0, c: 1 - matched would be 2 because 2 letters - a and b - from s have FULLY SATISFIED t
