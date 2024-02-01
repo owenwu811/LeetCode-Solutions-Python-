@@ -109,4 +109,8 @@ class Solution:
             return s
         else:
             return ""
+
+
+
+#super important: if you put "tdict[kickoutchar] += 1" before "if tdict[kickoutchar] == 0:" rather than after, let's say it was supposed to be 'a': 0, which would decrement fully satisfied, but now that you've incremented it before, you would get 'a': 1, which wouldn't decrement fully satisfied now, messing up the result, causing the "while fullysatisfied == len(tdict)" to be true instead of false because you shrunk the window, so now s isn't fully satisfying t since the a from the beginning of s = ADOBECODEBANC is now gone from the window DOBEC, but this was never reflected in fully satisfied, leading to complete wrong results
                       
