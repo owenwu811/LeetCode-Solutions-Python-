@@ -665,3 +665,38 @@ class Solution:
                     d.append([xdestroy, ydestroy])
             minminutes += 1
         return minminutes if freshcount == 0 else -1
+
+
+#2/1/24 review:
+
+class Solution:
+    def orangesRotting(self, grid: List[List[int]]) -> int:
+        #contains the coordinates as lists for all rotten oranges from time 0 for each minute of time that passes
+        d = deque()
+        minminutes = 0
+        freshcount = 0
+        for r in range(len(grid)):
+            for c in range(len(grid[0])):
+                if grid[r][c] == 2:
+                    d.append([r, c])
+                elif grid[r][c] == 1:
+                    freshcount += 1
+                else:
+                    continue
+        #we want to simulate the spread in all 4 directions
+        directions = [[0, 1], [0, -1], [1, 0], [-1, 0]]
+        #we can only rot fresh oranges into rotting oranges
+        while len(d) > 0 and freshcount > 0:
+            #each unit of time has this many iterations beacuse those were all the bad oranges from the previous minute
+            for i in range(len(d)):
+                rottenx, rotteny = d.popleft()
+                for xnew, ynew in directions:
+                    destroyx, destroyy = rottenx + xnew, rotteny + ynew
+                    if destroyx < 0 or destroyx >= len(grid) or destroyy < 0 or destroyy >= len(grid[0]) or grid[destroyx][destroyy] != 1:
+                        continue
+                    grid[destroyx][destroyy] = 2
+                    d.append([destroyx, destroyy])
+                    freshcount -= 1
+            minminutes += 1
+        return minminutes if freshcount == 0 else -1
+        
