@@ -195,4 +195,4 @@ class Solution:
                 return root
 
 
-#important: a node lower than the current node in the tree means that the lower node is NOT AN ANCESTOR OR DESCENDANT OF NODE ABOVE, so between 6 and 7, 6 is the lowest common ancestor 
+#important: a node lower than the current node in the tree means that the lower node is NOT AN ANCESTOR OR DESCENDANT OF NODE ABOVE, so between 6 and 7, 6 is the lowest common ancestor. yes 7 is a descendant of 6, but we are not looking for the lowest common descendant but the lowest common ancestor. 
