@@ -163,3 +163,29 @@ class Solution:
                 rightside = max(rightside, height[r])
                 res += (rightside - height[r])
         return res
+
+
+#2/1/24 practice:
+
+class Solution:
+    def trap(self, height: List[int]) -> int:
+        #we want to know how many units of water in terms of 1 we can trap in the entire array
+        #we know that all the integers in the array will be atleast 0
+        #we want to start at either ends of the array and find the maximum heights up to that point and move inwards, subtracting the smallest of the two maximum heights by the current pointer's new value in the array that you just moved to and adding to the result
+        if not height:
+            return 0
+        l = 0
+        r = len(height) - 1
+        maxleft = height[l]
+        maxright = height[r]
+        result = 0
+        while l < r:
+            if maxright < maxleft:
+                r -= 1
+                maxright = max(maxright, height[r])
+                result += (maxright - height[r])
+            else:
+                l += 1
+                maxleft = max(maxleft, height[l])
+                result += (maxleft - height[l])
+        return result
