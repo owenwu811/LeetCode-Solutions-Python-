@@ -85,3 +85,16 @@ for i in range(len(s)):
         if s[i: j + 1] in wordDict:
             res[j + 1] = res[i] or res[j + 1]
 return res[-1]
+
+
+#2/1/24 refresher:
+
+class Solution:
+    def wordBreak(self, s: str, wordDict: List[str]) -> bool:
+        res = [True] + ([False] * len(s))
+        for i in range(len(s)):
+            for j in range(i, len(s)):
+                if s[i: j + 1] in wordDict:
+                    res[j + 1] = res[i] or res[j + 1]
+        return res[-1]
+                
