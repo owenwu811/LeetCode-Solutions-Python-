@@ -143,7 +143,7 @@ class Solution:
                 ws += 1
                 #there's a possibility that the character we are kicking out from the left of the window is not a character in tdict
                 if kickout in tdict:
-                    #fully satisfied
+                    #fully satisfied - if we made this <= 0, it would be incorrect because if a: 0, c: 0, b: -1, we have one more than enough Bs to satisfy t, so that dosen't mean we still need one more
                     if tdict[kickout] == 0:
                         matched -= 1
                     #we need one more allowance of that character
