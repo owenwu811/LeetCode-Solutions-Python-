@@ -271,7 +271,8 @@ class LRUCache:
             return -1
         else:
             result = self.cache[key]
-            self.cache.pop(key)
+            self.cache.pop(key) #By uncommenting the two lines, you would essentially move the accessed key-value pair to the end of the OrderedDict, indicating that it was the most recently used since the GET METHOD also focuses on updating the order to reflect recent usage.  In a traditional LRU cache, when you access an existing key using the get method, it is a common expectation that the accessed key-value pair should be moved to the most recently used position (i.e., the end of the cache order).
+            #While the problem description may not explicitly mention this behavior, it's a reasonable assumption to make
             self.cache[key] = result
             return result
         
@@ -289,3 +290,7 @@ class LRUCache:
             else:
                 self.cache[key] = value
                 self.pagefaultcount += 1
+
+
+#important notes: the get method focuses on retrieving a value and updating the order to reflect recent usage, while the put method has the additional responsibility of managing the cache capacity, inserting or updating key-value pairs, and ensuring that the usage order is updated for existing keys
+#important notes:
