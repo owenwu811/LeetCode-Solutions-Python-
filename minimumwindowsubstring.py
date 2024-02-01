@@ -115,3 +115,42 @@ class Solution:
 
 #super important: if you put "tdict[kickoutchar] += 1" before "if tdict[kickoutchar] == 0:" rather than after, then fullysatisfied -= 1 would never execute: to illustrate here, let's say it was supposed to be 'a': 0, which would decrement fully satisfied, but now that you've incremented it before, you would get 'a': 1, which wouldn't decrement fully satisfied now, messing up the result, causing the "while fullysatisfied == len(tdict)" to be true instead of false because you shrunk the window, so now s isn't fully satisfying t since the a from the beginning of s = ADOBECODEBANC is now gone from the window DOBEC, but this was never reflected in fully satisfied, leading to complete wrong results
                       
+
+#2/1/24 practice:
+
+class Solution:
+    def minWindow(self, s: str, t: str) -> str:
+        if len(s) < len(t):
+            return ""
+        tdict = Counter(t)
+        startsaver = 0
+        ws = 0
+        matched = 0
+        endsaver = len(s) + 1
+        for we, schar in enumerate(s):
+            #if schar exists in tdict as a key
+            if schar in tdict:
+                tdict[schar] -= 1
+                #only when we fully satisfied that character from s in t do we increment matched by 1 because we want matched to equal the length of tdict aka the number of unique keys in tdict counting by the left column
+                if tdict[schar] == 0:
+                    matched += 1
+            while matched == len(tdict):
+                if endsaver > we - ws + 1:
+                    #we found a new smallest window, so save those indicies and begin shrinking
+                    startsaver = ws
+                    endsaver = we - ws + 1
+                kickout = s[ws]
+                ws += 1
+                #there's a possibility that the character we are kicking out from the left of the window is not a character in tdict
+                if kickout in tdict:
+                    #fully satisfied
+                    if tdict[kickout] == 0:
+                        matched -= 1
+                    #we need one more allowance of that character
+                    tdict[kickout] += 1
+        if len(s) > endsaver:
+            return s[startsaver: startsaver + endsaver]
+        elif len(s) == endsaver:
+            return s
+        else:
+            return ""
