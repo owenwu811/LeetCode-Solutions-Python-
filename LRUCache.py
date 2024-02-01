@@ -293,4 +293,4 @@ class LRUCache:
 
 
 #important notes: the get method focuses on retrieving a value and updating the order to reflect recent usage, while the put method has the additional responsibility of managing the cache capacity, inserting or updating key-value pairs, and ensuring that the usage order is updated for existing keys
-#important notes:
+#important notes: so the get method: retrives values, updates usage order. the put method: inserts or updates key value pairs, handles overflow capacity, and updates usage order (same as with get)
