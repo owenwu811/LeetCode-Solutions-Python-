@@ -69,3 +69,44 @@ class Solution:
             return ""
 
 #important: matched variable tracks the frequency of characters from s that have fully satisified t. so means how many letters in the dictionary have values of 0 - a:0, b: 0, c: 1 - matched would be 2 because 2 letters - a and b - from s have FULLY SATISFIED t
+
+
+
+
+#another practice run - my own solution in python3:
+
+class Solution:
+    def minWindow(self, s: str, t: str) -> str:
+        if len(s) < len(t): return ""
+        startsaver = 0
+        endsaver = len(s) + 1
+        tdict = Counter(t)
+        fullysatisfied = 0
+        ws = 0
+        for we, schar in enumerate(s):
+            if schar in tdict:
+                tdict[schar] -= 1
+                if tdict[schar] == 0:
+                    fullysatisfied += 1
+            while fullysatisfied == len(tdict):
+                #since we've now found a solution, we're after the goal of finding the minimum window that satisfies t from s
+                #we - ws + 1 is the new smaller but valid window
+                if endsaver > we - ws + 1:
+                    startsaver = ws
+                    endsaver = we - ws + 1
+                #whether we found a smaller window or not, we need to shrink the window
+                kickoutchar = s[ws]
+                ws += 1
+                if kickoutchar in tdict:
+                    if tdict[kickoutchar] == 0:
+                        fullysatisfied -= 1
+                    #as long as the left char we are kicking out is in tdict as a key, we need to reflect the fact that we need one more of that character now since we shrunk the window - this is independant of if we fully satisfied that character from s in t or not
+                    tdict[kickoutchar] += 1
+        #we finished looping through s, and endsaver represents the end of the smallest window that satisfies t
+        if len(s) > endsaver:
+            return s[startsaver: startsaver + endsaver]
+        elif len(s) == endsaver:
+            return s
+        else:
+            return ""
+                      
