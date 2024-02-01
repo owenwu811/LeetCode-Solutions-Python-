@@ -249,3 +249,43 @@ class LRUCache:
             else: #not in it and not at capacity
                 self.cachedict[key] = value
                 self.pagefaultcount += 1
+
+
+#2/1/24 practice:
+
+class LRUCache:
+
+    def __init__(self, capacity: int):
+        #positive integer capacity is given to us
+        self.cap = capacity
+        #retains the order in which key, value pairs were inserted
+        self.cache = OrderedDict()
+        self.pagefaultcount = 0
+       
+        
+       
+        
+
+    def get(self, key: int) -> int:
+        if key not in self.cache:
+            return -1
+        else:
+            result = self.cache[key]
+            self.cache.pop(key)
+            self.cache[key] = result
+            return result
+        
+       
+     
+    def put(self, key: int, value: int) -> None:
+        if key in self.cache:
+            self.cache.pop(key)
+            self.cache[key] = value
+        else: #if key not in self.cache, and we can't store another pagefault count, we define replacement policy
+            if self.cap == self.pagefaultcount:
+                lru = next(iter(self.cache))
+                self.cache.pop(lru)
+                self.cache[key] = value
+            else:
+                self.cache[key] = value
+                self.pagefaultcount += 1
