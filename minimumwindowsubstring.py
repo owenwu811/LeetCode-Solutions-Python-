@@ -143,7 +143,7 @@ class Solution:
                 ws += 1
                 #there's a possibility that the character we are kicking out from the left of the window is not a character in tdict
                 if kickout in tdict:
-                    #fully satisfied - if we made this <= 0, it would be incorrect because if a: 0, c: 0, b: -1, we have one more than enough Bs to satisfy t, so that dosen't mean we still need one more
+                    #fully satisfied - if we made this <= 0, it would be incorrect because if a: 0, c: 0, b: -1, we have one more than enough Bs to satisfy t, so that dosen't mean we still need one more, so we don't need to decrement matched from 3 to 2 if we kicking out b once, which already has one more than we need to satisfy t - we just need to increment b from b: -1 to b: 0 AND NOT TOUCH MATCHED
                     if tdict[kickout] == 0:
                         matched -= 1
                     #we need one more allowance of that character
