@@ -77,6 +77,7 @@ class Solution:
 
 class Solution:
     def minWindow(self, s: str, t: str) -> str:
+        #note that, even if we comment out the 1st line, the algorithm still works 
         if len(s) < len(t): return ""
         startsaver = 0
         endsaver = len(s) + 1
