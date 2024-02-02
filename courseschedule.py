@@ -453,3 +453,35 @@ class Solution:
                     if indegree[neighbor] == 0:
                         d.append(neighbor)
         return canvisit == numCourses
+
+
+#2/1/24 practice solution:
+
+class Solution:
+    def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+        #so left depends on right
+        #so each course starts with 0 prerequisites
+        indegree = [0] * numCourses
+        #we want to see the neighbors of the current course that will be stored in the list on the righthandside
+        adjacentlist = [[] for course in range(numCourses)]
+        for sublist in prerequisites:
+            adjacentlist[sublist[1]].append(sublist[0])
+            # += 1 because we are saying that course now has one more dependency and won't be added to the deque 
+            indegree[sublist[0]] += 1
+        #used to store all courses that have 0 dependencies after we go through the entire input array once
+        d = deque()
+        for i in range(len(indegree)):
+            if indegree[i] == 0:
+                d.append(i)
+        visited = 0
+        while len(d) > 0:
+            for i in range(len(d)):
+                visited += 1
+                currentcourse = d.popleft()
+                #for (2, 4) in adj[5]
+                for neighbor in adjacentlist[currentcourse]:
+                    # indegree[2] -= 1, indegree[4] -= 1
+                    indegree[neighbor] -= 1
+                    if indegree[neighbor] == 0:
+                        d.append(neighbor)
+        return visited == numCourses
