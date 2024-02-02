@@ -294,3 +294,48 @@ class LRUCache:
 
 #important notes: the get method focuses on retrieving a value and updating the order to reflect recent usage, while the put method has the additional responsibility of managing the cache capacity, inserting or updating key-value pairs, and ensuring that the usage order is updated for existing keys
 #important notes: so the get method: retrives values, updates usage order. the put method: inserts or updates key value pairs, handles overflow capacity, and updates usage order (same as with get)
+
+
+#2/2/24 practice:
+
+class LRUCache:
+
+    def __init__(self, capacity: int):
+        #positive integer capacity is given to us
+        self.cap = capacity
+        self.cache = OrderedDict()
+        #occurs when we want to put a key into the dict that is not already there and we have NOT reached full capacity yet
+        self.pagefaultcount = 0
+       
+        
+       
+        
+
+    def get(self, key: int) -> int:
+        if key not in self.cache:
+            return -1
+        else: #key exists in self.cache
+            #we still need to remove it and readd to the rear
+            result = self.cache[key]
+            self.cache.pop(key)
+            #we are adding the key, value pair to the end of the dictionary
+            self.cache[key] = result
+            return result
+
+        
+        
+       
+     
+    def put(self, key: int, value: int) -> None:
+        if key in self.cache:
+            #move the k, v pair to the rear
+            self.cache.pop(key)
+            self.cache[key] = value
+        else: #our key is not in our cache, and we HAVE reached full capacity, so define the replacement policy by popping from the left and adding the new k, v pair to the end
+            if self.cap == self.pagefaultcount:
+                lrutoremove = next(iter(self.cache))
+                self.cache.pop(lrutoremove)
+                self.cache[key] = value
+            else: #key not in our cache and haven't reached capacity, so we need to increase page fault count
+                self.cache[key] = value
+                self.pagefaultcount += 1
