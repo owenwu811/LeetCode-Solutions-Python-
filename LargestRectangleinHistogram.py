@@ -143,4 +143,27 @@ class Solution:
         for i, j in stack:
             res = max(res, j * (len(heights) - i))
         return res
-                
+
+
+
+#2/2/24 refresher:
+
+class Solution:
+    def largestRectangleArea(self, heights: List[int]) -> int:
+        #for this problem, we need a monotonic increasing stack because, as soon as we reach a bar height that is more than the previous bar height, we want to keep popping
+        stack = []
+        res = 0
+        for inputindex, inputvalue in enumerate(heights):
+            start = inputindex
+            while stack and stack[-1][1] > inputvalue:
+                #monotonically increasing quality is violated, so we want to keep popping
+                stackindex, stackheight = stack.pop()
+                #we want the width as the distance up until the monotonic quality was violated, so we subtract the current inputindex minus stackindex, with stackindex being the last viable solution
+                res = max(res, stackheight * (inputindex - stackindex))
+                start = stackindex
+            stack.append((start, inputvalue))
+        #now that we know our stack dosen't violate our monotonic quality, we can multiply the entire width of our new stack
+        for i, j in stack:
+            res = max(res, j * (len(heights) - i))
+        return res
+
