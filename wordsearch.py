@@ -443,3 +443,33 @@ class Solution:
                 if board[r][c] == word[0] and dfs(0, r, c):
                     return True
         return False
+
+
+#2/2/24 practice:
+
+class Solution:
+    def exist(self, board: List[List[str]], word: str) -> bool:
+        #we found the first letter of our word, so we can run a dfs to find the remaining letters in the word
+        def dfs(index, r, c):
+            #this will only be true by the non first recursive call because the first recursive call that started this already included the firs letter of the word that we are looking for
+            if r < 0 or r >= len(board) or c < 0 or c >= len(board[0]) or board[r][c] != word[index]:
+                return False
+            #we found the entire word, so return True because we have reached the final letter of the word we are looking for 
+            if index >= len(word) - 1:
+                return True
+            #we have found the next letter we are looking for, so mark the cell as visited
+            original = board[r][c]
+            #"visited" is safe because we know that a single letter can't be equal to visited
+            board[r][c] = "visited"
+            #only try a new path and restore if none of our 4 directions contain the letter in the word that we are looking for
+            result = (dfs(index + 1, r + 1, c) or dfs(index + 1, r - 1, c) or dfs(index + 1, r, c + 1) or dfs(index + 1, r, c - 1))
+            board[r][c] = original
+            #return back to the recursive call that started this
+            return result
+        for r in range(len(board)):
+            for c in range(len(board[0])):
+                if board[r][c] == word[0] and dfs(0, r, c):
+                    return True
+        #if we tried every path starting from every single cell in the grid and cannot find the entire word, then we can return False
+        return False
+        
