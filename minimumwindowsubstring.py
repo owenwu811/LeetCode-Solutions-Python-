@@ -154,3 +154,35 @@ class Solution:
             return s
         else:
             return ""
+
+
+#2/2/24 practice:
+
+if len(s) < len(t): return ""
+        tdict = Counter(t)
+        startsaver = 0
+        endsaver = len(s) + 1
+        ws = 0
+        matched = 0
+        for we, schar in enumerate(s):
+            if schar in tdict:
+                tdict[schar] -= 1
+                if tdict[schar] == 0:
+                    matched += 1
+            while matched == len(tdict): #while t is satisfied
+                if endsaver > we - ws + 1: #we found a smaller window
+                    endsaver = we - ws + 1
+                    startsaver = ws
+                #we always need to shrink
+                kickout = s[ws] 
+                ws += 1
+                if kickout in tdict:
+                    if tdict[kickout] == 0:
+                        matched -= 1
+                    tdict[kickout] += 1
+        if len(s) > endsaver:
+            return s[startsaver: startsaver + endsaver]
+        elif len(s) == endsaver:
+            return s
+        else:
+            return ""
