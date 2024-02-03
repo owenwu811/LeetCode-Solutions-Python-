@@ -125,3 +125,21 @@ class Solution:
         f(nums, [])
         return res
         
+
+
+#2/3/24 refresher:
+
+class Solution:
+    def permute(self, nums: List[int]) -> List[List[int]]:
+        def p(nums, path):
+            if not nums:
+                res.append(path.copy())
+                return
+            for number in range(len(nums)):
+                #appends to the end of the path list, so path is a list, and we are adding another list to the end of path - [nums[number]]
+                #when we hit our base case, number increments, and nums and path also reset. Otherwise, we are excluding nums based on a smaller proportion 
+                p(nums[:number] + nums[number + 1:], path + [nums[number]])
+
+        res = []
+        p(nums, [])
+        return res
