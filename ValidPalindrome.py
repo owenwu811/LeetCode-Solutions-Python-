@@ -111,3 +111,18 @@ class Solution:
             l += 1
             r -= 1
         return True
+
+
+#2/3/24 refresher:
+        #rid whitespaces
+        s.replace(" ", "")
+        #get rid of non alphanumeric characters
+        s = re.sub('[\W_]', "", s)
+        #we may be working with a smaller length s string now since we got rid of spaces and non alphanumeric characters
+        l, r = 0, len(s) - 1
+        while l < r:
+            if s[l].casefold() != s[r].casefold():
+                return False
+            l += 1
+            r -= 1
+        return True
