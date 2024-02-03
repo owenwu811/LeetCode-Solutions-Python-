@@ -98,3 +98,22 @@ class Solution:
             else:
                 output.append([start, end])
         return output
+
+
+
+#2/2/24 practice:
+
+class Solution:
+    def merge(self, intervals: List[List[int]]) -> List[List[int]]:
+        #sorting by the 1st element of each sublist, which is garunteed to have only two elements
+        intervals.sort(key=lambda n:n[0])
+        #the first sublist's 1st element is garunteed to be in the input list because we sorted by the 0th index of every sublist, but the 1st index element may be stretched
+        output = [intervals[0]]
+        #since we already inputted the 1st sublist in our result list, we can start unpacking and iterating from the 1st sublist in our input
+        for start, end in intervals[1:]:
+            #will be the 1st sublist's 1st index element compared to the current sublist's 0th element (2nd sublist in our input array)
+            if start <= output[-1][1]:
+                output[-1][1] = max(end, output[-1][1])
+            else:
+                output.append([start, end])
+        return output
