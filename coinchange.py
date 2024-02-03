@@ -323,3 +323,6 @@ class Solution:
         if res[amount] == float('inf'):
             return -1
         return res[-1]
+
+
+IMPORTANT: THE FLOAT('INF') HAS NOTHING TO DO WITH SAYING WE CAN'T MAKE UP AMOUNT WITH INFINITE FREQUENCY OF COINS AS THE PROBLEM LITERALLY STATES "YOU MAY ASSUME YOU HAVE AN INFINITE NUMBER OF COINS!!!!!" this was a misunderstanding. the reason is because we originally set the amount level to float('inf'), so if we couldn't find any combination of coins that sum up to the given amount (none of the coins actually add up to the amount), we LEAVE IT UNMODIFIED, SO WE RETURN -1
