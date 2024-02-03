@@ -97,4 +97,18 @@ class Solution:
                 if s[i: j + 1] in wordDict:
                     res[j + 1] = res[i] or res[j + 1]
         return res[-1]
+
+
+
+#2/3/24 refresher:
+
+class Solution:
+    def wordBreak(self, s: str, wordDict: List[str]) -> bool:
+        #we want to return True only if the ENTIRE string s can be divided exactly without overlap amoung words in the dictionary
+        res = [True] + [False] * len(s)
+        for windowstartchar in range(len(s)):
+            for windowendchar in range(windowstartchar, len(s)):
+                if s[windowstartchar: windowendchar + 1] in wordDict:
+                    res[windowendchar + 1] = res[windowstartchar] or res[windowendchar + 1]
+        return res[-1]
                 
