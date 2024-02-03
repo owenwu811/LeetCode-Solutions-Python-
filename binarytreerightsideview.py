@@ -123,3 +123,28 @@ class Solution:
             if rightside is not None:
                 res.append(rightside.val)
         return res
+
+#2/3/24 refresher:
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def rightSideView(self, root: Optional[TreeNode]) -> List[int]:
+        res = []
+        d = deque()
+        d.append(root)
+        while d:
+            rightmost = None
+            for i in range(len(d)):
+                currentnode = d.popleft()
+                if currentnode is not None:
+                    rightmost = currentnode.val
+                    d.append(currentnode.left)
+                    d.append(currentnode.right)
+            if rightmost is not None:
+                res.append(rightmost)
+        return res
