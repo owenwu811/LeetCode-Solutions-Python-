@@ -308,3 +308,18 @@ class Solution:
         else:
             return dparr[-1]
        
+
+#2/3/24 solution - important note to understand here:
+
+class Solution:
+    def coinChange(self, coins: List[int], amount: int) -> int:
+        res = [0] + ([float('inf')] * amount)
+        for levelamount in range(1, amount + 1):
+            for coinvalue in coins:
+                if coinvalue <= levelamount:
+                    res[levelamount] = min(res[levelamount], res[levelamount - coinvalue] + 1)
+        #this is only because we originally set the final level to float('inf'), which means we didn't compute the final frequency of coins needed to sum up to amount coins, so this means we cannot make up amount cents with any number of coins give what we have!!!!!
+        #chatgpt: algorithm was unable to find a valid combination of coins to make change for the given amount. In this context, returning -1 is a way of indicating that it's not possible to make change for the specified amount with the given coins, even with an infinite supply of each coin.
+        if res[amount] == float('inf'):
+            return -1
+        return res[-1]
