@@ -69,3 +69,22 @@ class Solution:
                 set2.add(element)
             subsum = set2
         return half in subsum
+
+
+#2/3/24 refresher solution:
+
+class Solution:
+    def canPartition(self, nums: List[int]) -> bool:
+        #we want to find half of the sum inside of the current set that we create
+        if sum(nums) % 2 != 0:
+            return False
+        subsum = set()
+        subsum.add(0)
+        half = sum(nums) // 2
+        for number in nums:
+            override = set()
+            for numbers in subsum:
+                override.add(number + numbers)
+                override.add(numbers)
+            subsum = override
+        return half in subsum
