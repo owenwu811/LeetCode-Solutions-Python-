@@ -186,3 +186,41 @@ if len(s) < len(t): return ""
             return s
         else:
             return ""
+
+
+#2/3/24 practice:
+
+class Solution:
+    def minWindow(self, s: str, t: str) -> str:
+        #there's no way to make up all characters (including duplicates) in t if s is shorter than t in length
+        if len(s) < len(t): return ""
+        tdict = Counter(t)
+        startsaver = 0
+        endsaver = len(s) + 1
+        matched = 0
+        ws = 0
+        for we, schar in enumerate(s):
+            if schar in tdict:
+                tdict[schar] -= 1
+                if tdict[schar] == 0:
+                    matched += 1
+            while matched == len(tdict):
+                if endsaver > we - ws + 1:
+                    startsaver, endsaver = ws, we - ws + 1
+                #we need to shrink
+                kickout = s[ws]
+                ws += 1
+                #if we are kicking a character from our s window that we used to satisfy tdict
+                if kickout in tdict:
+                    if tdict[kickout] == 0: 
+                    #you can't combine these two ifs because that would indent tdict[kickout] += 1 forward, and just because you found a smaller window dosen't mean you still owe one more - only if matched was 0 and you got rid of one of them would you owe one more, so saying we need one more is reserved for if the one we kickout out was in our tdict
+                        matched -= 1
+                    tdict[kickout] += 1
+        if len(s) > endsaver:
+            #because these are indicies, but endsaver was translated into a length, we want to up to but not including since we are indexing into s with startsaver + endsaver
+            return s[startsaver: startsaver + endsaver]
+        if len(s) == endsaver:
+            return s
+        else:
+            return ""
+                
