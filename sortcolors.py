@@ -217,3 +217,20 @@ class Solution:
                 nums[l], nums[n] = nums[n], nums[l]
                 n += 1
                 l += 1 
+
+
+#2/4/24 refresher solution:
+
+#indicies (one less than length)
+        l, r = 0, len(nums) - 1
+        n = 0 #the point is that the array is not already sorted, and it's your job to sort it, so that's why n can't start at mid because we wouldn't even know what mid is equal to 
+        while n <= r:
+            if nums[n] == 2:
+                nums[n], nums[r] = nums[r], nums[n]
+                r -= 1
+            elif nums[n] == 1:
+                n += 1
+            else: #we know we only have 0s and 1s and 2s
+                nums[l], nums[n] = nums[n], nums[l]
+                n += 1
+                l += 1
