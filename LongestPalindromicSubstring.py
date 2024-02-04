@@ -137,3 +137,24 @@ class Solution:
             if len(second) > len(res):
                 res = second
         return res
+
+#2/4/24 refresher practice:
+
+class Solution:
+    def longestPalindrome(self, s):
+        #we want the longest substring itself, so a string is the return type and not an integer
+        def expandfromanywhere(l, r, s):
+            while l >= 0 and r < len(s) and s[l] == s[r]:
+                l -= 1
+                r += 1
+            #when the while loop evaluates to False, we terminate the while loop, and we return the last VALID substring back to either same or different
+            return s[l + 1: r]
+        res = ""
+        for char in range(len(s)):
+            same = expandfromanywhere(char, char, s)
+            if len(same) > len(res):
+                res = same
+            different = expandfromanywhere(char, char + 1, s)
+            if len(different) > len(res):
+                res = different
+        return res
