@@ -224,3 +224,39 @@ class Solution:
         else:
             return ""
                 
+
+#2/4/24 refresher:
+
+class Solution:
+    def minWindow(self, s: str, t: str) -> str:
+        #s has length of m and t has length of n
+        #we want the smallest substring inside of s that includes atleast everything in t without having to be contiguous 
+        if len(s) < len(t): return ""
+        startsaver = 0
+        #because endsaver is intended to hold a value that will be larger than the length of our string, we can use len(s) + 1 or even infinity becauase we will be shrinking later anways to a value that is garunteed to be smaller at the worst case - (len(s)) itself
+        endsaver = float('inf')
+        tdict = Counter(t)
+        matched = 0
+        ws = 0
+        for we, schar in enumerate(s):
+            if schar in tdict:
+                tdict[schar] -= 1
+                if tdict[schar] == 0:
+                    matched += 1
+            while matched == len(tdict):
+                if endsaver > we - ws + 1:
+                    startsaver = ws
+                    endsaver = we - ws + 1
+                kickout = s[ws]
+                ws += 1
+                if kickout in tdict:
+                    if tdict[kickout] == 0:
+                        matched -= 1
+                    tdict[kickout] += 1
+        if len(s) > endsaver:
+            return s[startsaver: startsaver + endsaver]
+        elif len(s) == endsaver:
+            return s
+        else:
+            return ""
+            
