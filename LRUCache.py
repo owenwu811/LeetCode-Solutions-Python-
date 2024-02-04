@@ -339,3 +339,44 @@ class LRUCache:
             else: #key not in our cache and haven't reached capacity, so we need to increase page fault count
                 self.cache[key] = value
                 self.pagefaultcount += 1
+
+
+#2/4/24 my own solution refresher:
+
+class LRUCache:
+
+    def __init__(self, capacity: int):
+        #capacity of the cache we are given as a positive integer
+        self.cap = capacity
+        #we want to keep track of the order in which we insert key, value pairs (items), so we use ordereddict - deque works too, but the problem specifically tells us to check if the key exists in the cache, so OrderedDict is easier to implement here
+        self.cache = OrderedDict()
+        #will be the count of when our cache isn't at full capacity, and our current page request is a number that isn't a number in our cache as a key to the dictionary, and we are trying to insert into our cache
+        self.pagefaultcount = 0
+        
+
+    def get(self, key: int) -> int:
+        if key not in self.cache:
+            return -1
+        else:
+            #still have to move to rear for get requests
+            result = self.cache[key]
+            self.cache.pop(key)
+            self.cache[key] = result
+            return result
+       
+     
+    def put(self, key: int, value: int) -> None:
+        if key in self.cache: #and we are not at capacity yet since not explicitly stated
+            self.cache.pop(key)
+            self.cache[key] = value
+        else:
+            #len(self.cache) works too instead of self.pagefaultcount because pagefaultcount happened everytime you put a value into your dict that wasn't already there!
+            if len(self.cache) == self.cap:
+                lru = next(iter(self.cache))
+                self.cache.pop(lru)
+                self.cache[key] = value
+            else:
+                #not at capacity and not in our cache
+                self.cache[key] = value
+                self.pagefaultcount += 1
+  
