@@ -88,4 +88,25 @@ class Solution:
         f(root)
         return res[0]
 
+#2/4/24 refresher:
 
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def isBalanced(self, root: Optional[TreeNode]) -> bool:
+        def f(root):
+            if root is None:
+                return 0 #to indicate that the height of a None level is 0
+            l = f(root.left)
+            r = f(root.right)
+            if abs(r - l) > 1: #absolute value!!!!
+                res[0] = False
+            return 1 + max(l, r) #where we currently are will be returned as one above to the function call that started it
+        res = [True]
+        f(root)
+        return res[0]
+        
