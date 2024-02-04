@@ -175,3 +175,22 @@ class Solution(object):
             dc.add(s[we])
             res = max(res, len(dc))
         return res
+
+
+#2/4/24 refresher solution:
+
+class Solution(object):
+    def lengthOfLongestSubstring(self, s):
+        #we want the length as an integer
+        res = 0
+        #no repeating characters - we will use a set to keep track of the longest possible window
+        dc = set()
+        ws = 0
+        for we in range(len(s)):
+            while s[we] in dc:
+                #we want to kickout from left accurately, so this comes before ws += 1 because don't want to alter the one we will use to see which one to kick out before we actually kick it out
+                dc.remove(s[ws])
+                ws += 1
+            dc.add(s[we])
+            res = max(res, len(dc))
+        return res
