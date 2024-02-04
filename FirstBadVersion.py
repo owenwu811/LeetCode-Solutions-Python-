@@ -122,3 +122,23 @@ class Solution:
         return smallest
             
 
+#2/4/24 refresher:
+
+# The isBadVersion API is already defined for you.
+# def isBadVersion(version: int) -> bool:
+class Solution:
+    def firstBadVersion(self, n: int) -> int:
+        #latest version (number) of product fails quality check. all versions after a bad version are bad, and all versions before a good version are good
+        l = 0
+        #n number of versions
+        r = n
+        #once left crosses right, we know we've used process of elimination to ensure the solution
+        while l <= r:
+            mid = (l + r) // 2
+            #each number (left and right pointers are on number values) is either T (bad) or F(good)
+            if isBadVersion(mid):
+                r = mid - 1
+            else: # current version is not bad, so previous ones couldn't have been bad since domino effect, so the first bad version earliest scenario is one to the right of mid, so close our search space
+                l = mid + 1
+        #we've narrowed down our search space, so left crossed right
+        return l
