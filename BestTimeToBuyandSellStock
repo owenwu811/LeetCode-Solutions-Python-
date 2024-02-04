@@ -87,4 +87,16 @@ class Solution:
             res = max(res, curr)
         return res
             
-            
+
+#2/4/24 refresher my solution:
+
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        #the order is maintained that we are given in the array, and you can't buy after you sell
+        res = 0
+        ws = 0
+        for we in range(len(prices)):
+            if prices[we] < prices[ws]:
+                ws = we
+            res = max(res, prices[we] - prices[ws])
+        return res
