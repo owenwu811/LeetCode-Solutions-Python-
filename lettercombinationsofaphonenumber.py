@@ -23,3 +23,5 @@ class Solution:
         myfunc("")
         return res
         
+
+#after "af" gets appended to res list, letterlistr goes from "a" > "b" and result goes from "af" > ""
