@@ -202,3 +202,23 @@ class Solution:
                 result[right] = result[right + 1] + buildoff[right]
             buildoff = result
         return buildoff[0]
+
+
+#2/4/24 practice:
+
+class Solution:
+    def uniquePaths(self, m: int, n: int) -> int:
+        #a path is one direction regardless of how far, so we fill the right and bottom borders with 1
+        #buildoff array represents the bottom row
+        buildoff = [1] * n
+        #vertical direction
+        for down in range(m - 1):
+            #result represents the 2nd to last row
+            result = [1] * n
+            #horizontal direction
+            for right in range(n - 2, -1, -1):
+                #pascal's triangle tilted to the left
+                result[right] = result[right + 1] + buildoff[right]
+            buildoff = result
+        #top right corner 
+        return buildoff[0]
