@@ -138,3 +138,18 @@ class Solution:
         res.append(newInterval)
         return res
 
+#2/5/24 refresher:
+
+class Solution:
+    def insert(self, intervals: List[List[int]], newInterval: List[int]) -> List[List[int]]:
+        res = []
+        for sublist in range(len(intervals)):
+            if newInterval[0] > intervals[sublist][1]:
+                res.append(intervals[sublist])
+            elif newInterval[1] < intervals[sublist][0]:
+                res.append(newInterval)
+                return res + intervals[sublist:]
+            else:
+                newInterval = [min(newInterval[0], intervals[sublist][0]), max(newInterval[1], intervals[sublist][1])]
+        res.append(newInterval)
+        return res
