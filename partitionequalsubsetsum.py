@@ -88,3 +88,23 @@ class Solution:
                 override.add(numbers)
             subsum = override
         return half in subsum
+
+
+#2/4/24 refresher:
+
+class Solution:
+    def canPartition(self, nums: List[int]) -> bool:
+        #so if we can find one subset that is equal to half the sum of nums, then we know it's possible
+        if sum(nums) % 2 > 0:
+            return False
+        #we want two subsets
+        subsum = set()
+        subsum.add(0)
+        half = sum(nums) // 2
+        for inputnumber in nums:
+            validationset = set()
+            for s in subsum:
+                validationset.add(s)
+                validationset.add(s + inputnumber)
+            subsum = validationset
+        return half in subsum
