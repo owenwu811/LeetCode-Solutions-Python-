@@ -260,3 +260,40 @@ class Solution:
         else:
             return ""
             
+
+#2/5/24 refresher:
+
+class Solution:
+    def minWindow(self, s: str, t: str) -> str:
+        if len(s) < len(t): return ""
+        startsaver = 0
+        endsaver = len(s) + 1
+        tdict = Counter(t)
+        ws = 0
+        matched = 0
+        for we, schar in enumerate(s):
+            if schar in tdict:
+                tdict[schar] -= 1
+                #after this executes, regardless of true or false, ALWAYS check the while condition to see if we've satisfied all characters
+                if tdict[schar] == 0:
+                    matched += 1
+            #after if conditions evaluate, always check if we've satisfied all characters
+            while matched == len(tdict):
+                if endsaver > we - ws + 1:
+                    startsaver = ws
+                    endsaver = we - ws + 1
+                #shrinking window
+                kickout = s[ws]
+                ws += 1
+                if kickout in tdict:
+                    #if it was previously exactly satsified meaning we don't have an abundance of characters, and we're kicking it out, now we need just one more to satisfy
+                    if tdict[kickout] == 0:
+                        matched -= 1
+                    #regardless of it was exactly satisfied or not, we now need one more of that character that we kicked out 
+                    tdict[kickout] += 1
+        if len(s) > endsaver:
+            return s[startsaver: startsaver + endsaver]
+        elif len(s) == endsaver:
+            return s
+        else:
+            return ""
