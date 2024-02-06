@@ -232,3 +232,23 @@ class Solution:
         res = []
         dfs(0, [])
         return res
+
+
+#2/6/24 practice:
+
+
+class Solution:
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+        def find(nums, path, i):
+            if i >= len(nums):
+                res.append(path.copy())
+                return
+            path.append(nums[i])
+            find(nums, path, i + 1)
+            path.pop()
+            find(nums, path, i + 1)
+            
+        res = []
+        find(nums, [], 0)
+        return res
+
