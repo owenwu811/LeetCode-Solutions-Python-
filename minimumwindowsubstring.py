@@ -292,6 +292,7 @@ class Solution:
                     #regardless of it was exactly satisfied or not, we now need one more of that character that we kicked out 
                     tdict[kickout] += 1
         if len(s) > endsaver:
+            #ENDSAVER IS WE - WS + 1, SO IF WE = 12 AND WS = 9, ENDSAVER WOULD BE (12 - 9 + 1) = 4, SO IF STARTSAVER IS 9, WE WOULD GET S[9:4], WHICH IS WRONG, SO ENDSAVER ISN'T A GOOD VARIABLE NAME FOR THIS
             return s[startsaver: startsaver + endsaver]
         elif len(s) == endsaver:
             return s
