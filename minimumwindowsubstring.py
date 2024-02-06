@@ -338,3 +338,35 @@ class Solution:
             return s
         else:
             return ""
+
+#most clear variable names - my solution in python3 (best one that is most clear):
+
+
+class Solution:
+    def minWindow(self, s: str, t: str) -> str:
+        if len(s) < len(t): return ""
+        windowsizeinlength = float('inf')
+        matched, ws, carpetroller = 0, 0, 0
+        need = Counter(t)
+        for we, schar in enumerate(s):
+            if schar in need:
+                need[schar] -= 1
+                if need[schar] == 0:
+                    matched += 1
+            while matched == len(need):
+                if windowsizeinlength > we - ws + 1:
+                    carpetroller = ws
+                    windowsizeinlength = we - ws + 1
+                kickout = s[ws]
+                ws += 1
+                if kickout in need:
+                    if need[kickout] == 0:
+                        matched -= 1
+                    #always need because the one we are kicking out of our s window was in what we needed (tdict)
+                    need[kickout] += 1
+        if len(s) > windowsizeinlength:
+            return s[carpetroller: carpetroller + windowsizeinlength]
+        elif len(s) == windowsizeinlength:
+            return s
+        else:
+            return ""
