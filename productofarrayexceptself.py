@@ -147,7 +147,11 @@ class Solution:
         for forward in range(len(nums)):
             res[forward] *= prefixn
             prefixn *= nums[forward]
-        for backward in range(len(nums) -1, -1, -1):
+        for backward in range(len(nums) -1, -1, -1): #iterating through input array backward
+            #times res[backward] and not nums[backward] because we build off of what we made when iterating forward
             res[backward] *= postfixn
             postfixn *= nums[backward]
         return res
+
+
+        
