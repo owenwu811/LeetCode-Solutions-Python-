@@ -25,3 +25,24 @@ class Solution:
         
 
 #after "af" gets appended to res list, letterlistr goes from "a" > "b" and result goes from "af" > ""
+
+
+#refresher:
+
+class Solution:
+    def letterCombinations(self, digits: str) -> List[str]:
+        res = []
+        if len(digits) == 0:
+            return []
+        mapping = {'2': ['a', 'b', 'c'], '3': ['d', 'e', 'f'], '4': ['g', 'h', 'i'], '5': ['j', 'k', 'l'], '6': ['m', 'n', 'o'], '7': ['p', 'q', 'r', 's'], '8': ['t', 'u', 'v'], '9': ['w', 'x', 'y', 'z']}
+        def myfunc(path):
+            if len(digits) == len(path):
+                res.append(path)
+            else:
+                #for letter in mapping[2] if len(path) == 0 which it does because path starts as "" recursively
+                for letter in mapping[digits[len(path)]]:
+                    myfunc(path + letter)
+
+
+        myfunc("")
+        return res
