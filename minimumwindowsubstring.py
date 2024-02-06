@@ -298,3 +298,43 @@ class Solution:
             return s
         else:
             return ""
+
+
+#better variable names:
+
+class Solution:
+    def minWindow(self, s: str, t: str) -> str:
+        if len(s) < len(t): return ""
+        startsaver = 0
+        windowsizelength = len(s) + 1
+        tdict = Counter(t)
+        ws = 0
+        matched = 0
+        for we, schar in enumerate(s):
+            if schar in tdict:
+                tdict[schar] -= 1
+                #after this executes, regardless of true or false, ALWAYS check the while condition to see if we've satisfied all characters
+                if tdict[schar] == 0:
+                    matched += 1
+            #after if conditions evaluate, always check if we've satisfied all characters
+            while matched == len(tdict):
+                if windowsizelength > we - ws + 1:
+                    startsaver = ws
+                    windowsizelength = we - ws + 1
+                #shrinking window
+                kickout = s[ws]
+                ws += 1
+                if kickout in tdict:
+                    #if it was previously exactly satsified meaning we don't have an abundance of characters, and we're kicking it out, now we need just one more to satisfy
+                    if tdict[kickout] == 0:
+                        matched -= 1
+                    #regardless of it was exactly satisfied or not, we now need one more of that character that we kicked out 
+                    tdict[kickout] += 1
+        #think windowsize length is HOW LONG startsaver lays out the floor mat to make the actual windowsize of the carpet!
+        if len(s) > windowsizelength:
+            #ENDSAVER IS WE - WS + 1, SO IF WE = 12 AND WS = 9, ENDSAVER WOULD BE 4, SO IF STARTSAVER IS 9, WE WOULD GET S[9:4], WHICH IS WRONG, SO ENDSAVER ISN'T A GOOD VARIABLE NAME FOR THIS
+            return s[startsaver: startsaver + windowsizelength]
+        elif len(s) == windowsizelength:
+            return s
+        else:
+            return ""
