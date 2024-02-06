@@ -158,7 +158,7 @@ class Solution:
             while stack and stack[-1][1] > inputvalue:
                 #monotonically increasing quality is violated, so we want to keep popping
                 stackindex, stackheight = stack.pop()
-                #we want the width as the distance up until the monotonic quality was violated, so we subtract the current inputindex minus stackindex, with stackindex being the last viable solution
+                #we want the width as the distance up until the monotonic quality was violated, so we subtract the current inputindex minus stackindex, with stackindex being the last viable solution - if we used (starting - stackindex), we would get 5 * (3 - 2) instead of 5 * (4 - 2) for the test case heights = [2,1,5,6,2,3], and the - for i, j in stack - block would actually turn res into 8 with 2 * (6 - 2), which is wrong as we we want 10 as the result
                 res = max(res, stackheight * (inputindex - stackindex))
                 start = stackindex
             stack.append((start, inputvalue))
@@ -167,3 +167,4 @@ class Solution:
             res = max(res, j * (len(heights) - i))
         return res
 
+#not including the - for i, j in stack - block would fail the test case [2, 4], returning 0 as res instead of 4 since the - while stack and stack[-1][1] > inputvalue - line never executes, so we never actually calculate res since it was alsready fitting a monotonic quality, so we need this to catch it
