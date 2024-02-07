@@ -125,3 +125,30 @@ class Solution:
             else:
                 stack.append(int(element))
         return stack[0]
+
+
+#2/7/24 refresher:
+
+class Solution:
+    def evalRPN(self, tokens: List[str]) -> int:
+        stack = []
+        for elements in tokens:
+            if elements == "+":
+                first = stack.pop()
+                second = stack.pop()
+                stack.append(int(second + first))
+            elif elements == "*":
+                first = stack.pop()
+                second = stack.pop()
+                stack.append(int(second * first))
+            elif elements == "-":
+                first = stack.pop()
+                second = stack.pop()
+                stack.append(int(second - first))
+            elif elements == "/":
+                first = stack.pop()
+                second = stack.pop()
+                stack.append(int(second / first))
+            else:
+                stack.append(int(elements))
+        return stack[0]
