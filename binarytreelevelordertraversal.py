@@ -391,3 +391,34 @@ class Solution:
             if len(level) > 0:
                 res.append(level)
         return res
+
+
+#2/6/24:
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    from collections import deque
+    def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
+        res = [] #return value is a list of lists with level being the sublist at each level 
+        #used to store the nodes at each level of the binary tree
+        d = deque()
+        #add 1st level of input tree, which is just a singular node
+        d.append(root)
+        while d:
+            #as long as a new level exists, we have to process all the nodes at this new level, so empty the level list
+            level = []
+            for i in range(len(d)):
+                currentnode = d.popleft()
+                if currentnode is not None:
+                    level.append(currentnode.val)
+                    #we are adding the children of the nodes from left to right as we process the nodes at the current level of the tree from left to right
+                    d.append(currentnode.left)
+                    d.append(currentnode.right)
+            if level:
+                res.append(level)
+        return res
