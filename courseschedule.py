@@ -485,3 +485,30 @@ class Solution:
                     if indegree[neighbor] == 0:
                         d.append(neighbor)
         return visited == numCourses
+
+
+#2/7/24:
+
+class Solution:
+    def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+        #each course starts with 0 dependencies
+        indegree = [0] * numCourses
+        adj = [[] for course in range(numCourses)]
+        for sublist in prerequisites:
+            adj[sublist[1]].append(sublist[0])
+            indegree[sublist[0]] += 1
+        d = deque()
+        for i in range(len(indegree)):
+            if indegree[i] == 0:
+                d.append(i)
+        visited = 0
+        while d:
+            #visited += 1
+            for i in range(len(d)):
+                visited += 1
+                currentnode = d.popleft()
+                for neighbor in adj[currentnode]:
+                    indegree[neighbor] -= 1
+                    if indegree[neighbor] == 0:
+                        d.append(neighbor)
+        return visited == numCourses
