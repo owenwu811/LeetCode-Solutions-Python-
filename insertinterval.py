@@ -153,3 +153,20 @@ class Solution:
                 newInterval = [min(newInterval[0], intervals[sublist][0]), max(newInterval[1], intervals[sublist][1])]
         res.append(newInterval)
         return res
+
+#2/8/24:
+
+class Solution:
+    def insert(self, intervals: List[List[int]], newInterval: List[int]) -> List[List[int]]:
+        res = []
+        for sublist in range(len(intervals)):
+            if newInterval[1] < intervals[sublist][0]:
+                res.append(newInterval)
+                return res + intervals[sublist:]
+            elif newInterval[0] > intervals[sublist][1]: #we append the current input sublist, but since we haven't placed newIntervals yet, we don't return yet 
+                res.append(intervals[sublist])
+            else: #if the current sublist overlaps with newInterval in anyway, then we need to stretch newInterval out by the smallest of both and largest of both
+                newInterval = [min(newInterval[0], intervals[sublist][0]), max(newInterval[1], intervals[sublist][1])]
+        res.append(newInterval) #if intervals is [] and newInterval is [2, 5], then we still need to append newInterval to empty res list before returning 
+        return res
+ 
