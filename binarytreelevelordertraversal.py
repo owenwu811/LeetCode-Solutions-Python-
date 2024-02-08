@@ -422,3 +422,32 @@ class Solution:
             if level:
                 res.append(level)
         return res
+
+
+#2/8/24:
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    from collections import deque
+    def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
+        res = []
+        d = deque()
+        #1st level only has one node in it
+        d.append(root)
+        #we still have another level in the tree
+        while d:
+            level = []
+            for i in range(len(d)):
+                currentnode = d.popleft()
+                if currentnode is not None:
+                    level.append(currentnode.val)
+                    d.append(currentnode.left)
+                    d.append(currentnode.right)
+            if level:
+                res.append(level)
+        return res
