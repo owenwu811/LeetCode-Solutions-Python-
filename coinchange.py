@@ -325,4 +325,25 @@ class Solution:
         return res[-1]
 
 
-IMPORTANT: THE FLOAT('INF') HAS NOTHING TO DO WITH SAYING WE CAN'T MAKE UP AMOUNT WITH INFINITE FREQUENCY OF COINS AS THE PROBLEM LITERALLY STATES "YOU MAY ASSUME YOU HAVE AN INFINITE NUMBER OF COINS!!!!!" this was a misunderstanding. the reason is because we originally set the amount level to float('inf'), so if we couldn't find any combination of coins that sum up to the given amount (none of the coins actually add up to the amount), we LEAVE IT UNMODIFIED, SO WE RETURN -1
+#IMPORTANT: THE FLOAT('INF') HAS NOTHING TO DO WITH SAYING WE CAN'T MAKE UP AMOUNT WITH INFINITE FREQUENCY OF COINS AS THE PROBLEM LITERALLY STATES "YOU MAY ASSUME YOU HAVE AN INFINITE NUMBER OF COINS!!!!!" this was a misunderstanding. the reason is because we originally set the amount level to float('inf'), so if we couldn't find any combination of coins that sum up to the given amount (none of the coins actually add up to the amount), we LEAVE IT UNMODIFIED, SO WE RETURN -1
+
+
+#2/7/24:
+
+class Solution:
+    def coinChange(self, coins: List[int], amount: int) -> int:
+        #we want the fewest frequency of coins that it takes to sum up to amount cents given that we picking coins out of our input array called coins
+        #we know that the fewest frequency of coins it takes to sum up to 0 cents is 0 coins, so we use this as the base case
+        dparr = [0] + ([float('inf')] * amount)
+        #build up each level starting from fewest frequency of coins it takes to sum up to 1 cent picking from options in our input array
+        for levelamount in range(1, amount + 1):
+            for coinvalue in coins:
+                #if the first coin we are picking is less than or equal to the amount we are trying to sum up to, then we can pick it
+                if coinvalue <= levelamount:
+                    #this is the frequency that we want to optimize, so we don't always care about dparr[0] + 1
+                    dparr[levelamount] = min(dparr[levelamount], dparr[levelamount - coinvalue] + 1)
+        #if the final amount we are building up to CANNOT BE MADE UP AKA STAYS AS FLOAT('INF') as originally assigned, return -1
+        if dparr[-1] == float('inf'):
+            return -1
+        #if we can make it up, then return the smallest frequency of coins to sum up to amount cents 
+        return dparr[-1]
