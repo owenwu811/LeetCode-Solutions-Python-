@@ -11,6 +11,7 @@
 
 class TimeMap:
     def __init__(self):
+        #self.dict = dict() works too here - so {} and dict() all work for initializing an empty dictionary, but set only does set() for an empty set even though sets are printed with {} around them to the console
         self.dict = {}
     
         
