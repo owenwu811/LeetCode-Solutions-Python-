@@ -415,3 +415,37 @@ class LRUCache:
                 self.pagefaultcount += 1
        
   
+
+#2/8/24:
+
+class LRUCache:
+
+    def __init__(self, capacity: int):
+        self.cap = capacity
+        self.cachd = OrderedDict()
+        self.pagefaultcount = 0
+        
+
+    def get(self, key: int) -> int:
+        if key in self.cachd:
+            result = self.cachd[key]
+            self.cachd.pop(key)
+            self.cachd[key] = result
+            return result
+        else:
+            return -1
+
+        
+     
+    def put(self, key: int, value: int) -> None:
+        if key in self.cachd:
+            self.cachd.pop(key)
+            self.cachd[key] = value
+        else:
+            if len(self.cachd) == self.cap:
+                lru = next(iter(self.cachd))
+                self.cachd.pop(lru)
+                self.cachd[key] = value
+            else:
+                self.cachd[key] = value
+                self.pagefaultcount += 1
