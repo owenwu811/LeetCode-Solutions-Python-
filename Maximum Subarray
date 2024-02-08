@@ -133,3 +133,18 @@ class Solution:
             windowsum += number
             res = max(res, windowsum)
         return res
+
+
+#2/7/24:
+
+class Solution:
+    def maxSubArray(self, nums: List[int]) -> int:
+        #we want a contiguous subarray inside of the nums array that, when you add all the numbers in this subarray up, the sum is larger than all other possible subarrays
+        result = nums[0]
+        windowsum = 0
+        for number in nums:
+            if windowsum < 0:
+                windowsum = 0
+            windowsum += number
+            result = max(result, windowsum)
+        return result
