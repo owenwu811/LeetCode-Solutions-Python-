@@ -82,3 +82,33 @@ class TimeMap:
                 
         
 
+#practice run 2:
+
+class TimeMap:
+    def __init__(self):
+        self.mydict = dict()
+    
+        
+    def set(self, key: str, value: str, timestamp: int) -> None:
+        if key not in self.mydict:
+            self.mydict[key] = []
+        #key is already a key in our mydict dictionary:
+        self.mydict[key].append([value, timestamp])
+        #we know that above will already be appended in order of timestamps because time always flows in one direction, so we don't have to manually sort, so we can just use binary search to get the value below
+      
+       
+    def get(self, key: str, timestamp: int) -> str:
+        res = ""
+        #we are retriving the corresponding [value, timestamp] associated with the given key and setting this [value, timestamp] list to the variable called rightlist. If the key we are trying to retrieve the value of dosen't exist in the dictionary, then we can just set it to an empty list by default
+        rightlist = self.mydict.get(key, [])
+        l, r = 0, len(rightlist) - 1
+        while l <= r:
+            #we may have a dictionary pair like: {"foo": [bar, 1], [bar2, 4]}, so we want to retrieve the appropriate 0th index of one of the lists depending on how close it's corresponding timestamp is to our timestamp request number without exceeding our timestamp request number
+            mid = (l + r) // 2
+            #if out timestampvalue is 5, and 4 from [bar2, 4] is less than 5 but the closest timestamp to 5 that exists in any of the sublists in our dictionary, then we can return 4
+            if rightlist[mid][1] <= timestamp:
+                res = rightlist[mid][0]
+                l = mid + 1
+            else: #the 1st index value being larger than the timstamp request is not acceptable, so we narrow the search space to the left half of our lists because we know timestamps are sorted in ascending order
+                r = mid - 1
+        return res
