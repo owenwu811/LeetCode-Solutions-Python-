@@ -131,3 +131,42 @@ class Solution:
         self.val = 0
         dfs(root)
         return self.val
+
+
+#2/8/24 refresher:
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def diameterOfBinaryTree(self, root: TreeNode) -> int:
+        def dfs(root):
+            if root is None:
+                return 0
+            l = dfs(root.left)
+            r = dfs(root.right)
+            self.res = max(self.res, l + r)
+            return 1 + max(l, r)
+
+        self.res = 0
+        dfs(root)
+        return self.res
+
+#important note: we can't just call diameterOfBinaryTree without the def dfs() because the first - return 1 + max(l, r) - would ovveride the second, so the second wouldn't even get executed. To illustrate this, look at the incorrect solution below:
+
+#class Solution:
+#    def diameterOfBinaryTree(self, root: TreeNode) -> int:
+#        def dfs
+#        if root is None:
+#            return 0
+#        l = diameterOfBinaryTree(root.left)
+#        r = diameterOfBinaryTree(root.right)
+#        self.res = max(self.res, l + r)
+#        return 1 + max(l, r)
+
+#    self.res = 0
+#    diameterOfBinaryTree(root)
+#    return self.res
