@@ -168,3 +168,22 @@ class Solution:
         return res
 
 #not including the - for i, j in stack - block would fail the test case [2, 4], returning 0 as res instead of 4 since the - while stack and stack[-1][1] > inputvalue - line never executes, so we never actually calculate res since it was alsready fitting a monotonic quality, so we need this to catch it
+
+
+
+#2/9/24:
+
+class Solution:
+    def largestRectangleArea(self, heights: List[int]) -> int:
+        res = 0
+        stack = []
+        for stackindex, stackvalue in enumerate(heights):
+            start = stackindex
+            while stack and stack[-1][1] > stackvalue:
+                myindex, myvalue = stack.pop()
+                res = max(res, myvalue * (stackindex - myindex))
+                start = myindex
+            stack.append((start, stackvalue))
+        for i, j in stack:
+            res = max(res, j * (len(heights) - i))
+        return res
