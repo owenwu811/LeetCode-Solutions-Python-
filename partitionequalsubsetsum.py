@@ -108,3 +108,22 @@ class Solution:
                 validationset.add(s + inputnumber)
             subsum = validationset
         return half in subsum
+
+
+#2/9/24:
+
+class Solution:
+    def canPartition(self, nums: List[int]) -> bool:
+        if sum(nums) % 2 != 0:
+            return False
+        subsum = set()
+        subsum.add(0)
+        half = sum(nums) // 2
+        for inputn in nums:
+            set2 = set()
+            for elements in subsum:
+                set2.add(elements)
+                set2.add(elements + inputn)
+            subsum = set2
+        return half in subsum
+        
