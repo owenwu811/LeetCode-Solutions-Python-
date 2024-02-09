@@ -196,3 +196,25 @@ class Solution:
 
 
 #important: a node lower than the current node in the tree means that the lower node is NOT AN ANCESTOR OR DESCENDANT OF NODE ABOVE, so between 6 and 7, 6 is the lowest common ancestor. yes 7 is a descendant of 6, but we are not looking for the lowest common descendant but the lowest common ancestor. if Node A is an ancestor of Node B, then Node B is a descendant of Node A. 
+
+#2/9/24:
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+        while True:
+            #since we know the values of both p and q are less than root, we can cut the problem in a half because we know binary search trees only have bigger nodes in the right subtree and smaller nodes in the left subtree
+            if p.val < root.val and q.val < root.val:
+                root = root.left
+            elif p.val > root.val and q.val > root.val:
+                root = root.right
+            else: #p and q occur at a split, so the result is both of their parent
+                return root
+
+
