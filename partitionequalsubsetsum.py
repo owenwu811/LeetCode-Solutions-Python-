@@ -126,4 +126,28 @@ class Solution:
                 set2.add(elements + inputn)
             subsum = set2
         return half in subsum
-        
+
+
+#2/10/24:
+
+class Solution:
+    def canPartition(self, nums: List[int]) -> bool:
+        #there is a remainder when divided by 2, so we can't split into exactly 2 subsets with equal sums, so we return False
+        if sum(nums) % 2 != 0:
+            return False
+        #if we just did return True here, we would fail #[1, 2, 5]
+        subsum = set()
+        subsum.add(0)
+        half = sum(nums) // 2
+        for inputn in nums:
+            set2 = set()
+            for element in subsum:
+                #the exclusion part is indirectly related to finding a subset whose sum equals half of the total sum of all elements.
+                set2.add(element)
+                set2.add(element + inputn)
+            subsum = set2 #[0, 1], [0, 1, 2, 3], [0, 1, 2, 3, 5, 6, 7, 8] - 4 is not in this
+        return half in subsum
+
+        #[2, 3, 7, 8, 10] - half is 15, but that dosen't mean 15 has to be inside of the input list, so each set dosen't have to be a contiguous part of the array - [2, 3, 7, 8, 10] - 2 + 3 + 10 = 15 even though 2 and 3 and 10 aren't exactly right next to each other or connected
+        #The goal is to find two subsets whose sums are equal, and these subsets can include elements from ANYWHERE in the original array, as long as their sums are equal.
+
