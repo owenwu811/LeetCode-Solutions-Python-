@@ -449,3 +449,59 @@ class LRUCache:
             else:
                 self.cachd[key] = value
                 self.pagefaultcount += 1
+
+
+#2/10/24:
+
+class LRUCache:
+
+    def __init__(self, capacity: int):
+        self.cap = capacity
+        self.cachd = dict()
+        self.pagefaultcount = 0
+      
+        
+
+    def get(self, key: int) -> int:
+        if key not in self.cachd:
+            return -1
+        else:
+            result = self.cachd[key]
+            self.cachd.pop(key)
+            self.cachd[key] = result
+            return result
+     
+        
+     
+    def put(self, key: int, value: int) -> None:
+        if key in self.cachd:
+            self.cachd.pop(key)
+            self.cachd[key] = value
+        else:
+            if self.cap == len(self.cachd):
+                lru = next(iter(self.cachd))
+                self.cachd.pop(lru)
+                self.cachd[key] = value
+            else:
+                #we don't need to pop the item pair because the key dosen't exist in the dictionary, so we just add it 
+                self.cachd[key] = value
+                self.pagefaultcount += 1
+            
+        
+
+     
+       
+
+        
+
+       
+
+        
+ 
+        
+       
+
+                
+            
+        
+        
