@@ -165,7 +165,7 @@ class Solution:
                 currentnode = d.pop()
                 if currentnode is not None:
                     rightside = currentnode
-                    d.appendleft(currentnode.left) #appendleft and popleft() work too, but you can't do popleft() and append() or appendleft() and pop()
+                    d.appendleft(currentnode.left) #appendleft and popleft() work too, but you can't do popleft() and append() or appendleft() and pop() - we want FIFO here, not lIFO. using LIFO would lead to BINARY TREE LEFT SIDE VIEW, NOT LEFT SIDE VIEW 
                     d.appendleft(currentnode.right)
             if rightside is not None:
                 res.append(rightside.val)
