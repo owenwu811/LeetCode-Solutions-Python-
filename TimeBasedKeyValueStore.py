@@ -112,3 +112,32 @@ class TimeMap:
             else: #the 1st index value being larger than the timstamp request is not acceptable, so we narrow the search space to the left half of our lists because we know timestamps are sorted in ascending order
                 r = mid - 1
         return res
+
+
+#2/10/24:
+
+class TimeMap:
+    def __init__(self):
+        self.mydict = dict()
+       
+    
+        
+    def set(self, key: str, value: str, timestamp: int) -> None:
+        if key not in self.mydict:
+            self.mydict[key] = []
+        #because we know that the timstamps are already sorted as time goes in one direction and we are adding to the rear of the list, we can just run a binary search
+        self.mydict[key].append([value, timestamp])
+       
+    def get(self, key: str, timestamp: int) -> str:
+        res = ""
+        correspondence = self.mydict.get(key, [])
+        l, r = 0, len(correspondence) - 1
+        while l <= r:
+            mid = (l + r) // 2
+            if correspondence[mid][1] <= timestamp:
+                res = correspondence[mid][0]
+                l = mid + 1
+            else: #the current timestamp in the list has exceeded the value of timestamp, so it's not a valid corresponding result to the same index 0
+                r = mid - 1
+        return res
+     
