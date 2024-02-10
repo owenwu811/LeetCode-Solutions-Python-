@@ -148,3 +148,25 @@ class Solution:
             if rightmost is not None:
                 res.append(rightmost)
         return res
+
+
+#2/10/24:
+
+class Solution:
+    def rightSideView(self, root: Optional[TreeNode]) -> List[int]:
+        #nodes at each level of input tree stored in deque
+        d = deque()
+        #1st level of input tree only has one node - the root node
+        d.appendleft(root)
+        res = []
+        while d: # we have another level to process
+            rightside = None
+            for i in range(len(d)): # number of iterations in each level of input tree
+                currentnode = d.pop()
+                if currentnode is not None:
+                    rightside = currentnode
+                    d.appendleft(currentnode.left) #appendleft and popleft() work too, but you can't do popleft() and append() or appendleft() and pop()
+                    d.appendleft(currentnode.right)
+            if rightside is not None:
+                res.append(rightside.val)
+        return res
