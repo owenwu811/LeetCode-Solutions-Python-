@@ -512,3 +512,34 @@ class Solution:
                     if indegree[neighbor] == 0:
                         d.append(neighbor)
         return visited == numCourses
+
+
+#2/10/24:
+
+class Solution:
+    def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+        #if we can visit all courses, we can return True
+        #indegree represents number of incoming edges towards this node (from the pluralsight course), so we start with 0 edges coming into this node aka 0 courses required for each course
+        indegree = [0] * numCourses
+        #creating the right hand list for each course 
+        adj = [[] for course in range(numCourses)]
+        for sublist in prerequisites:
+            adj[sublist[1]].append(sublist[0])
+            indegree[sublist[0]] += 1
+        #all courses with 0 incoming edges will be added to the rear of the deque
+        d = deque()
+        for i in range(len(indegree)):
+            if indegree[i] == 0:
+                d.append(i)
+        numbercanvisit = 0
+        while d:
+            for i in range(len(d)): #number of iterations - one iteration for each course with 0 incoming edges
+                numbercanvisit += 1
+                currentnode = d.popleft()
+                #for (2, 4) in adj[5] - 2 and 4 being each value taken on the right hand side of the list [2, 4]
+                for neighbor in adj[currentnode]:
+                    #indegree[2] -= 1 and then indegree[4] -= 1
+                    indegree[neighbor] -= 1 
+                    if indegree[neighbor] == 0:
+                        d.append(neighbor)
+        return numbercanvisit == numCourses
