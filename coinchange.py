@@ -347,3 +347,17 @@ class Solution:
             return -1
         #if we can make it up, then return the smallest frequency of coins to sum up to amount cents 
         return dparr[-1]
+
+#2/10/24:
+
+class Solution:
+    def coinChange(self, coins: List[int], amount: int) -> int:
+        dparr = [0] + ([float('inf')] * amount)
+        for levelamount in range(1, amount + 1):
+            for coinvalue in coins:
+                if coinvalue <= levelamount:
+                    #dparr[levelamount - coinvalue] + 1 - this is just reusing previously computed most optimal (fewest coins) for smaller amounts! so if we are trying to compute smallest amount to make up 5 cents, we could reuse the smallest amount to makeup 3 cents, for example, so if we get dparr[2] + 1, we can reuse the smallest FREQUENCY to sum up to 2 cents THAT WAS ALREADY COMPUTED BEFORE and then plus 1 because we used one more coin since dparr[levelamount - coinvalue] + 1 still calculates a smallest FREQUENCY, not amount
+                    dparr[levelamount] = min(dparr[levelamount], dparr[levelamount - coinvalue] + 1)
+        if dparr[-1] == float('inf'): #if the final element in the array wasn't modified, then it wasn't possible at all to sum up to amount cents using what we are given, so return -1 as the problem states
+            return -1
+        return dparr[-1]
