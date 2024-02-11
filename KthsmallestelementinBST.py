@@ -40,3 +40,25 @@ class Solution:
 
 #the idea behind this is that we do a inorder traversal, adding all nodes we visit to the stack, and once we hit a None node meaning current is null, then we pop the elements in order [1, 2, 3, 4], and this makes sense because inorder, although we are visiting root left right, we are actually popping from left root right
         
+#solution with clearer names:
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:
+        n = 0
+        stack = []
+        cur = root
+        while cur is not None or len(stack) > 0:
+            while cur is not None:
+                stack.append(cur)
+                cur = cur.left #returns to while cur is not None to evaluate while cur is not None again
+            cur = stack.pop()
+            n += 1
+            if n == k:
+                return cur.val
+            cur = cur.right
