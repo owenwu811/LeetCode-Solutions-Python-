@@ -234,3 +234,23 @@ class Solution:
                 nums[l], nums[n] = nums[n], nums[l]
                 n += 1
                 l += 1
+
+#2/11/24 practice:
+
+class Solution:
+    def sortColors(self, nums: List[int]) -> None:
+        """
+        Do not return anything, modify nums in-place instead.
+        """ 
+        l, r, n = 0, len(nums) - 1, 0
+        while n <= r: #everything up to and including n is sorted, so when n crosses r, we know everything in the array is sorted since r also moves down if n and r are swapped
+            if nums[n] == 2:
+                nums[n], nums[r] = nums[r], nums[n]
+                r -= 1
+            elif nums[n] == 1:
+                n += 1
+            elif nums[n] == 0:
+                nums[l], nums[n] = nums[n], nums[l]
+                l += 1
+                n += 1
+            
