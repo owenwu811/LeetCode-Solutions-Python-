@@ -125,7 +125,7 @@ class Solution:
                     #(a, e)
                     #(a, f)
                     #("", b) 
-                    #(b, d) - i passes b to path as path was previously "" but is now b!
+                    #(b, d) - i passes b to path as path was previously "" but is now b! i says to path - son, hold for me as i traverse
 
  
         f("")
