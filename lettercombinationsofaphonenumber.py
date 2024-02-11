@@ -120,6 +120,13 @@ class Solution:
             else:
                 for i in mapping[digits[len(path)]]:
                     f(path + i)
+                    #("", a)
+                    #(a, d)
+                    #(a, e)
+                    #(a, f)
+                    #("", b) 
+                    #(b, d) - i passes b to path as path was previously "" but is now b!
+
  
         f("")
         return res
