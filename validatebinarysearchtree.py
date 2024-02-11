@@ -277,3 +277,22 @@ class Solution:
                 return False
             return f(root.left, lowerbound, root.val) and f(root.right, root.val, upperbound)
         return f(root, float('-inf'), float('inf'))
+
+#2/11/24 practice:
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def isValidBST(self, root: Optional[TreeNode]) -> bool:
+        def f(root, lowerbound, upperbound):
+            if not root:
+                return True
+            if not (lowerbound < root.val < upperbound): #checking each level of bst 
+                return False
+            return f(root.left, lowerbound, root.val) and f(root.right, root.val, upperbound)
+        return f(root, float('-inf'), float('inf'))
+    
