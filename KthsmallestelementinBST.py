@@ -62,3 +62,42 @@ class Solution:
             if n == k:
                 return cur.val
             cur = cur.right
+
+
+#pythontutor representation:
+
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val, self.left, self.right = val, left, right
+
+def kth_smallest(root, k):
+    n, stack, cur = 0, [], root
+    while cur is not None or len(stack) > 0:
+        while cur is not None:
+            stack.append(cur)
+            cur = cur.left
+        cur = stack.pop()
+        n += 1
+        if n == k:
+            return cur.val
+        cur = cur.right
+
+# Example usage:
+# Constructing a sample BST
+#         5
+#        / \
+#       3   6
+#      / \
+#     2   4
+#      \
+#       1
+root = TreeNode(5)
+root.left = TreeNode(3)
+root.right = TreeNode(6)
+root.left.left = TreeNode(2)
+root.left.right = TreeNode(4)
+root.left.left.right = TreeNode(1)
+
+# Finding the kth smallest element
+k = 3
+print("The", k, "th smallest element is:", kth_smallest(root, k))
