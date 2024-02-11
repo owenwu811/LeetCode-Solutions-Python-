@@ -101,3 +101,30 @@ root.left.left.right = TreeNode(1)
 # Finding the kth smallest element
 k = 3
 print("The", k, "th smallest element is:", kth_smallest(root, k))
+
+
+
+
+#practice run:
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:
+        n = 0 
+        stack = []
+        cur = root
+        while cur is not None or len(stack) > 0:
+            while cur is not None:
+                #The reason why stack.append(cur) is used instead of stack.append(cur.val) is that if you only append the values (cur.val), you'll lose the entire node structure. This is important because you need to traverse the tree and keep track of each node to find the kth smallest element. If you only append the values, you won't be able to backtrack to the parent nodes when needed.
+                stack.append(cur)
+                cur = cur.left 
+            cur = stack.pop() 
+            n += 1 
+            if n == k: 
+                return cur.val #problem says to return the node's numerical value
+            cur = cur.right
