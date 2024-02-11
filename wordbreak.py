@@ -123,4 +123,16 @@ class Solution:
                 if s[i: j + 1] in wordDict:
                     res[j + 1] = res[i] or res[j + 1]
         return res[-1]
-    
+
+
+#2/10/24:
+
+class Solution:
+    def wordBreak(self, s: str, wordDict: List[str]) -> bool:
+        #we want to return a boolean to see if we can space segement the ENTIRE string s based on what is in our list of strings
+        res = [True] + ([False] * len(s))
+        for l in range(len(s)):
+            for r in range(l, len(s)):
+                if s[l: r + 1] in wordDict:
+                    res[r + 1] = res[l] or res[r + 1] #res[r + 1] not s[r + 1] because we want to modify the boolean at that position in the res list that we will eventually return the last boolean once we finish making all windows in s
+        return res[-1]
