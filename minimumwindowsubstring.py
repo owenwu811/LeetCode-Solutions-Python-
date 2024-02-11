@@ -404,3 +404,39 @@ class Solution:
             return s
         else:
             return s[carpetroller: carpetroller + difference]
+
+
+#2/11/24:
+
+class Solution:
+    def minWindow(self, s: str, t: str) -> str:
+        #s can't satisfy t if s is less than t
+        if len(s) < len(t): return ""
+        carpetroller, matched, ws = 0, 0, 0
+        difference = float('inf')
+        need = Counter(t)
+        for we, schar in enumerate(s):
+            if schar in need:
+                need[schar] -= 1
+                if need[schar] == 0:
+                    matched += 1
+            while matched == len(need):
+                #we found a working window, so now find the smallest one
+                #using len(s) instead of difference here would fail test case s = "a" t = "a" as we would return "" instead of "a"
+                if difference > we - ws + 1:
+                    difference = we - ws + 1
+                    carpetroller = ws
+                #shrink window one character at a time from left side of list
+                kickout = s[ws]
+                ws += 1
+                if kickout in need:
+                    if need[kickout] == 0:
+                        matched -= 1
+                    need[kickout] += 1
+        if len(s) > difference:
+            return s[carpetroller: carpetroller + difference]
+        elif len(s) == difference:
+            return s
+        else:
+            return ""
+
