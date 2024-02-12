@@ -249,3 +249,23 @@ class Solution:
         res = []
         dfs(0, [], 0)
         return res
+
+#2/12/24 practice again:
+
+class Solution:
+    def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
+        def f(index, ans, windowsum):
+            if windowsum == target:
+                res.append(ans.copy())
+                return
+            #we can try the last element, so if index is equal to length of array minus 1, that's ok - that's the last included element
+            elif index >= len(candidates) or windowsum > target:
+                return
+            ans.append(candidates[index]) #include
+            f(index, ans, windowsum + candidates[index])
+            ans.pop() #exclude (undo previous included)
+            f(index + 1, ans, windowsum)
+                
+        res = []
+        f(0, [], 0)
+        return res
