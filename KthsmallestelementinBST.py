@@ -128,3 +128,27 @@ class Solution:
             if n == k: 
                 return cur.val #problem says to return the node's numerical value
             cur = cur.right
+
+
+#2/12/24 practice:
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:
+        n = 0
+        stack = []
+        cur = root
+        while cur is not None or len(stack) > 0:
+            while cur is not None:
+                stack.append(cur) #adding 3 NODE before we traverse left to 1 without losing where we are at in the tree structure 
+                cur = cur.left #digging down left from 3 to 1
+            cur = stack.pop() #visiting the node IN ORDER
+            n += 1 #update n 
+            if n == k:
+                return cur.val
+            cur = cur.right #root left right
