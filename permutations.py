@@ -143,3 +143,20 @@ class Solution:
         res = []
         p(nums, [])
         return res
+
+
+#2/12/24:
+
+class Solution:
+    def permute(self, nums: List[int]) -> List[List[int]]:
+        #permutation dosen't care about duplicate frequencies, so as long as they are not in the same order but frequency of each number is the same, it counts as another valid permutation
+        def f(nums, path):
+            if not nums: #base case - remember path.copy() not path.copy without parenthesis!!!!!
+                res.append(path.copy())
+                return
+            #we will exclude every ith indexed element in nums, and as long as base case is not hit, we will keep incrementing i and processing on a smaller array
+            for i in range(len(nums)):
+                f(nums[:i] + nums[i + 1:], path + [nums[i]]) #add onto rear of path list 
+        res = []
+        f(nums, [])
+        return res
