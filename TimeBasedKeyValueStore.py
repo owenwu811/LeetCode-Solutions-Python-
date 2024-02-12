@@ -195,3 +195,39 @@ class TimeMap:
             else:
                 r = mid - 1
         return res
+
+
+#2/12/24:
+
+class TimeMap:
+    def __init__(self):
+        #key, value data structure is a dead giveaway that we need a dictionary
+        self.cachd = dict()
+        
+    def set(self, key: str, value: str, timestamp: int) -> None:
+        #stores the key key with value value at given timestamp indicates that value and timestamp are correlated because key and value are on left and right (seperate) sides of dictionary 
+        if key not in self.cachd:
+            self.cachd[key] = []
+        self.cachd[key].append([value, timestamp])
+
+       
+       
+    def get(self, key: str, timestamp: int) -> str:
+        #timestampprev is likely the current timestamp page request
+        res = ""
+        #get the value - [value, timestamp] list associated with key if key exists in self.cachd. If not, then correspondence variable equals an empty list by default. 
+        correspondence = self.cachd.get(key, [])
+        #we can run a binary search without sorting since binary search requires timestamp to be sorted, which they already are
+        l, r = 0, len(correspondence) - 1
+        #remember - we want less than or equals to timestamp page request, not bigger than
+        while l <= r:
+            #again, python uses // to get whole numbers like 2 instead of decimal numbers like 2.5, which is given from /
+            mid = (l + r) // 2
+            #correspondence = {"foo":["bar2", 4]} - 4
+            if correspondence[mid][1] <= timestamp:
+                #"bar2"
+                res = correspondence[mid][0]
+                l = mid + 1
+            else:
+                r = mid - 1
+        return res
