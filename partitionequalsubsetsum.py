@@ -172,7 +172,7 @@ class Solution:
         for inputn in nums:
             set2 = set()
             for element in subsum:
-                #this is the dynamic programming part where we include and don't include the current input into our sum to get every possible subset in the input
+                #this is the dynamic programming part where we include and don't include the current input into our sum to get every possible subset in the input - think about 3, 6, 7, and 8 from the [1, 2, 5] input example - 3 can be derived from 1 + 2, 5 is in the input list itself, 6 can be derived from 1 + 5...
                 set2.add(element) #not including because element is 0 originally with only 1 iteration due to placeholder we created
                 set2.add(element + inputn) # including
             subsum = set2
