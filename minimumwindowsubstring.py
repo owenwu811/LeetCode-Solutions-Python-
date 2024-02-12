@@ -468,3 +468,35 @@ class Solution:
         elif len(s) == endsaver: return s
         else: return ""
  
+#again:
+
+class Solution:
+    def minWindow(self, s: str, t: str) -> str:
+        #if s is smaller than t, there's no chance of s fully satisfying t
+        if len(s) < len(t): return ""
+        need = Counter(t)
+        carpetroller, difference, matched, ws = 0, float('inf'), 0, 0
+        for we, schar in enumerate(s):
+            if schar in need:
+                need[schar] -= 1
+                #the only time any requirement was satisfied was the line above, so this would be the 1st time any character would be quantified as matched
+                if need[schar] == 0:
+                    matched += 1
+            while matched == len(need): #fully satisfied t
+                if difference > we - ws + 1: #now, looking to satisfy smallest window requirement
+                    carpetroller = ws
+                    difference = we - ws + 1
+                kickout = s[ws]
+                ws += 1
+                if kickout in need:
+                    if need[kickout] == 0:
+                        matched -= 1
+                    #we always need one more since we are kicking that one character out by shrinking our window
+                    need[kickout] += 1 #will return control flow to "while matched == len(need)", and if that while is False, then will flow control back to "for we, schar in enumerate(s)"
+        #finished looping through s
+        if len(s) > difference:
+            return s[carpetroller: carpetroller + difference]
+        elif len(s) == difference:
+            return s
+        else:
+            return ""
