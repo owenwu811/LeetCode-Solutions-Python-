@@ -153,3 +153,27 @@ class Solution:
 
 
 #so if subsum eventually becomes [0, 1, 2, 3, 5, 6, 7, 8] for the [1, 2, 5] test case, then just because 3, 6, 7, and 8 aren't in the input is irrelevant because you can derive 3 from 1 + 2, 6 from 1 + 5, 7 from 5 + 2, and 8 from the whole thing (1 + 2 + 5), so we are indeed finding all combinations of different subsets in our input list by excluding and including - notice the subsets problem is similar in that it does the same thing and that this problem is called partition equal SUBSET sum, so if atleast one of the two subsets can, even once by taking some random combination of elements from input array and adding them toegether, equal half of the sum of nums, then we know that two halfs make a whole, so it's possible, so return True
+
+
+#2/12/24:
+
+class Solution:
+    def canPartition(self, nums: List[int]) -> bool:
+        #this is a variation of the add not add in subsets, but we just want two subsets that have equal sums, so this is dyamic programming
+        #rule out possibilities if we have remainders when dividing total sum of all elements input by 2
+        if sum(nums) % 2 != 0:
+            return False
+        #we need two sets
+        subsum = set()
+        #we don't want decimal division and want whole integers, so we use // instead of /
+        half = sum(nums) // 2
+        #acting as placeholder since set is empty but we also haven't summed anything in input
+        subsum.add(0)
+        for inputn in nums:
+            set2 = set()
+            for element in subsum:
+                #this is the dynamic programming part where we include and don't include the current input into our sum to get every possible subset in the input
+                set2.add(element) #not including because element is 0 originally with only 1 iteration due to placeholder we created
+                set2.add(element + inputn) # including
+            subsum = set2
+        return half in subsum
