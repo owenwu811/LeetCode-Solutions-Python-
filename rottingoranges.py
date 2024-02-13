@@ -761,3 +761,37 @@ class Solution:
                     d.append([destroyx, destroyy])
             minminutes += 1
         return minminutes if freshcount == 0 else -1
+
+#this works too:
+
+class Solution:
+    def orangesRotting(self, grid: List[List[int]]) -> int:
+        #each cell has either a 0 or 1 or 2
+        #stores all rotten oranges from the 1st minute
+        d = deque()
+        minminutes, freshcount = 0, 0
+        for r in range(len(grid)):
+            for c in range(len(grid[0])):
+                if grid[r][c] == 2:
+                    d.appendleft([r, c])
+                elif grid[r][c] == 1:
+                    freshcount += 1
+                else: #has to be an empty cell or 0
+                    continue
+        directions = [[0, 1], [0, -1], [1, 0], [-1, 0]]
+        while d and freshcount > 0:
+            #iterations from each minute
+            for i in range(len(d)):
+                #removing from beginning of list and unpacking the [r, c] values you appended 
+                rottenx, rotteny = d.pop()
+                for xnew, ynew in directions:
+                    destroyx, destroyy = rottenx + xnew, rotteny + ynew
+                    if destroyx < 0 or destroyx >= len(grid) or destroyy < 0 or destroyy >= len(grid[0]) or grid[destroyx][destroyy] != 1:
+                        continue
+                    grid[destroyx][destroyy] = 2
+                    freshcount -= 1
+                    d.appendleft([destroyx, destroyy])
+            minminutes += 1
+        return minminutes if freshcount == 0 else -1
+
+#so basically as long as we use pop and appendleft or append and popleft(), we're good, so this problem requires 1st in 1st out, not 1st in last out
