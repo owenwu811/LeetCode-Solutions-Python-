@@ -795,3 +795,4 @@ class Solution:
         return minminutes if freshcount == 0 else -1
 
 #so basically as long as we use pop and appendleft or append and popleft(), we're good, so this problem requires 1st in 1st out, not 1st in last out
+#Processing oranges based on when they became rotten ensures that you're considering the progression of time correctly. This approach mimics the real-world scenario where the rot spreads gradually from one orange to another.
