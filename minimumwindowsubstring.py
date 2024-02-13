@@ -500,3 +500,34 @@ class Solution:
             return s
         else:
             return ""
+
+#2/13/24:
+
+class Solution:
+    def minWindow(self, s: str, t: str) -> str:
+        if len(s) < len(t): return ""
+        matched = 0
+        difference = float('inf')
+        carpetroller = 0
+        ws = 0
+        need = Counter(t)
+        for we, schar in enumerate(s):
+            #the dictionary dosen't START with any values of any keys as 0
+            if schar in need:
+                need[schar] -= 1
+                if need[schar] == 0:
+                    matched += 1 #we use matched to keep track of it we satisfied entire t or not
+            while matched == len(need):
+                #we have to record this satisfactory window before trying to shrink
+                if difference > we - ws + 1:
+                    carpetroller, difference = ws, we - ws + 1
+                kickout = s[ws]
+                ws += 1 #actually shrinking window
+                if kickout in need: #this time, since we actually modified the dictionary values by decrementing them in "need[schar] -= 1", it has the possiblity to be a 0
+                    if need[kickout] == 0: #if we satisfied that letter without any extras
+                        matched -= 1 
+                    need[kickout] += 1
+        if len(s) > difference: return s[carpetroller: carpetroller + difference]
+        elif len(s) == difference: return s
+        else: return ""
+                    
