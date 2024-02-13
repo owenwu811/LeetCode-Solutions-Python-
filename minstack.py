@@ -304,7 +304,44 @@ class MinStack:
     
 
        
+
+ #2/12/24 refresher:
+
+ class MinStack:
+    def __init__(self):
+        self.stack = []
+        self.minstack = []
       
+       
+
+    def push(self, val: int) -> None:
+        self.stack.append(val)
+        if self.minstack:
+            val = min(val, self.minstack[-1])
+        else:
+            val
+        self.minstack.append(val)
+        
+       
+        
+        
+       
+
+    def pop(self) -> None:
+        self.stack.pop()
+        self.minstack.pop()
+        
+      
+        
+       
+    def top(self) -> int:
+      #the top element means the most rear element of the list
+      return self.stack[-1]
+    
+       
+    
+    def getMin(self) -> int:
+        return self.minstack[-1]
       
        
     
