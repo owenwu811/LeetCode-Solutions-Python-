@@ -543,3 +543,27 @@ class Solution:
                     if indegree[neighbor] == 0:
                         d.append(neighbor)
         return numbercanvisit == numCourses
+
+
+#2/14/24:
+
+indegree = [0] * numCourses
+        adj = [[] for course in range(numCourses)]
+        for sublist in prerequisites:
+            #remember that we are adding INTEGERS - SUBLIST[0] - INTO THE CORRESPONDING LIST CALLED ADJ - SO 1: [0] - 0 GETS ADDED, NOT 1: [[0]] - THIS WILL THROW AN ERROR LATER IN INDEGREE[NEIGHBOR] -= 1
+            adj[sublist[1]].append(sublist[0])
+            indegree[sublist[0]] += 1
+        d = deque()
+        for i in range(len(indegree)):
+            if indegree[i] == 0:
+                d.append(i)
+        canvisit = 0
+        while d:
+            for i in range(len(d)):
+                canvisit += 1
+                current = d.popleft()
+                for neighbor in adj[current]:
+                    indegree[neighbor] -= 1
+                    if indegree[neighbor] == 0:
+                        d.append(neighbor)
+        return canvisit == numCourses
