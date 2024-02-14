@@ -567,3 +567,29 @@ indegree = [0] * numCourses
                     if indegree[neighbor] == 0:
                         d.append(neighbor)
         return canvisit == numCourses
+
+#again:
+
+class Solution:
+    def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+        indegree = [0] * numCourses
+        adj = [[] for course in range(numCourses)]
+        for p in prerequisites:
+            adj[p[1]].append(p[0])
+            indegree[p[0]] += 1
+        d = deque()
+        for i in range(len(indegree)):
+            if indegree[i] == 0:
+                d.append(i)
+        canvisit = 0
+        while d:
+            for i in range(len(d)):
+                canvisit += 1
+                currentnode = d.popleft()
+                for neighbor in adj[currentnode]:
+                    indegree[neighbor] -= 1
+                    if indegree[neighbor] == 0:
+                        d.append(neighbor)
+        return canvisit == numCourses
+        #numCourses = 2, prerequisites = [[1,0],[0,1]] would mean that the indegree list looks like [1, 1], so since each node has one attacker, nothing goes onto the deque, which means that canvisit never changes, which means that we return False because canvisit = 0 and numCourses = 2 at the end
+        
