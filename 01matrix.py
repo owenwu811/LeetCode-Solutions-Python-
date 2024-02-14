@@ -34,3 +34,10 @@ class Solution:
                     mat[newonetilex][newonetiley] = mat[zerox][zeroy] + 1
                     d.append((newonetilex, newonetiley))
         return mat
+
+#meaning of - mat[newonetilex][newonetiley] > mat[zerox][zeroy] + 1:
+#let's say you are on a grid like:
+# 000
+# 010
+# 000 
+#and let's say you are on the 1 - well, you know that adjacent cells are INBOUNDS, but then you also know that infinity is bigger than the adjacent cell plus 1 - since your adjacent cells will always be a 0, you know that mat[zerox][zeroy] corresponds to 0, and 0 + 1 = 1, so infinity > 1, so infinity is set to 1 in the next line - mat[newonetilex][newonetiley] = mat[zerox][zeroy] + 1
