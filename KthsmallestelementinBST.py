@@ -177,3 +177,22 @@ class Solution:
             if n == k:
                 return cur.val
             cur = cur.right #inorder 
+
+
+
+#2/14/24:
+
+ #we will traverse the tree in an inorder fashion, and when we pop back up, we will visit the node 
+        n = 0
+        stack = []
+        cur = root
+        while cur is not None or stack:
+            while cur is not None:
+                stack.append(cur)
+                cur = cur.left
+            cur = stack.pop()
+            n += 1
+            if n == k:
+                return cur.val
+            cur = cur.right
+
