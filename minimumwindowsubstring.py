@@ -531,3 +531,33 @@ class Solution:
         elif len(s) == difference: return s
         else: return ""
                     
+#2/14/24:
+
+class Solution:
+    def minWindow(self, s: str, t: str) -> str:
+        if len(s) < len(t): return ""
+        matched = 0
+        difference = float('inf')
+        carpetroller = 0
+        ws = 0
+        need = Counter(t)
+        for we, schar in enumerate(s):
+            if schar in need:
+                need[schar] -= 1
+                if need[schar] == 0:
+                    matched += 1
+            while matched == len(need):
+                if difference > we - ws + 1:
+                    difference = we - ws + 1
+                    carpetroller = ws
+                kickout = s[ws]
+                ws += 1
+                if kickout in need:
+                    if need[kickout] == 0:
+                        matched -= 1
+                    need[kickout] += 1
+        if len(s) > difference:
+            return s[carpetroller: carpetroller + difference]
+        elif len(s) == difference: return s
+        else: return ""
+        
