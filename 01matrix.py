@@ -41,3 +41,5 @@ class Solution:
 # 010
 # 000 
 #and let's say you are on the 1 - well, you know that adjacent cells are INBOUNDS, but then you also know that infinity is bigger than the adjacent cell plus 1 - since your adjacent cells will always be a 0, you know that mat[zerox][zeroy] corresponds to 0, and 0 + 1 = 1, so infinity > 1, so infinity is set to 1 in the next line - mat[newonetilex][newonetiley] = mat[zerox][zeroy] + 1
+
+#if we changed d.popleft() to d.pop(), this would be LIFO instead of FIFO. REMEMBER THAT BFS ALGORITHMS GENERALLY USE FIFO ORDERING ON A STACK WHILE DFS ALGORITHMS GENERALLY USE LIFO ORDERING ON A STACK - BFS WITH FIFO IS GOOD FOR FINDING SHORTEST PATH OR DISTANCES IN A GRAPH OR MATRIX. 
