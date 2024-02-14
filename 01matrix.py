@@ -32,6 +32,11 @@ class Solution:
                 if 0 <=  newonetilex < len(mat) and 0 <= newonetiley  < len(mat[0]) and mat[newonetilex][newonetiley] > mat[zerox][zeroy] + 1:
                     #so again, remember we want each tile to represent the nearest distance from our one to a zero
                     mat[newonetilex][newonetiley] = mat[zerox][zeroy] + 1
+                    #The line d.append([onex, oney]) adds newly discovered neighboring cells (which are '1's) to the deque d. 
+                    #This ensures that these newly discovered cells are explored in the subsequent iterations, following the BFS strategy. 
+                    #Without this line, the algorithm would not explore these neighboring cells immediately. 
+                    #Instead, it would only consider the cells that were initially added to d, and it would explore them layer by layer. 
+                    #This might not fully utilize the BFS strategy, potentially leading to inefficiency in finding the shortest distances.
                     d.append((newonetilex, newonetiley))
         return mat
 
