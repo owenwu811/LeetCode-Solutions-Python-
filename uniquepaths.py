@@ -222,3 +222,17 @@ class Solution:
             buildoff = result
         #top right corner 
         return buildoff[0]
+
+
+#2/14/24:
+
+class Solution:
+    def uniquePaths(self, m: int, n: int) -> int:
+        #unique path means one way from the current cell to the bottom right corner
+        buildoff = [1] * n
+        for down in range(m - 1):
+            above = [1] * n
+            for right in range(n - 2, -1, -1):
+                above[right] = above[right + 1] + buildoff[right]
+            buildoff = above
+        return buildoff[0]
