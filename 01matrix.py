@@ -48,3 +48,27 @@ class Solution:
 #and let's say you are on the 1 - well, you know that adjacent cells are INBOUNDS, but then you also know that infinity is bigger than the adjacent cell plus 1 - since your adjacent cells will always be a 0, you know that mat[zerox][zeroy] corresponds to 0, and 0 + 1 = 1, so infinity > 1, so infinity is set to 1 in the next line - mat[newonetilex][newonetiley] = mat[zerox][zeroy] + 1
 
 #if we changed d.popleft() to d.pop(), this would be LIFO instead of FIFO. REMEMBER THAT BFS ALGORITHMS GENERALLY USE FIFO ORDERING ON A STACK WHILE DFS ALGORITHMS GENERALLY USE LIFO ORDERING ON A STACK - BFS WITH FIFO IS GOOD FOR FINDING SHORTEST PATH OR DISTANCES IN A GRAPH OR MATRIX. 
+
+
+#2/14/24:
+
+class Solution:
+    def updateMatrix(self, mat: List[List[int]]) -> List[List[int]]:
+        #we want the distance of the nearest 0 to the 1 we are on as the value of every tile in the grid
+        d = deque()
+        directions = [[0, 1], [0, -1], [-1, 0], [1, 0]]
+        for r in range(len(mat)):
+            for c in range(len(mat[0])):
+                if mat[r][c] == 0: #all 0 coordinates go inside of our deque
+                    d.append([r, c])
+                else: #all 1 coordinates are set to infinity
+                    mat[r][c] = float('inf')
+        while d:
+            zerox, zeroy = d.popleft() #FIFO = BFS
+            for newx, newy in directions:
+                onex, oney = zerox + newx, zeroy + newy
+                if 0 <= onex < len(mat) and 0 <= oney < len(mat[0]) and mat[onex][oney] > mat[zerox][zeroy] + 1:
+                    #marking as visited since we only start from 1 cells and don't want to keep revisiting the same one cell over and over again
+                    mat[onex][oney] = mat[zerox][zeroy] + 1
+                    d.append([onex, oney]) #do append it to the rear
+        return mat
