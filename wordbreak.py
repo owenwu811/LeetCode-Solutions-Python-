@@ -136,3 +136,14 @@ class Solution:
                 if s[l: r + 1] in wordDict:
                     res[r + 1] = res[l] or res[r + 1] #res[r + 1] not s[r + 1] because we want to modify the boolean at that position in the res list that we will eventually return the last boolean once we finish making all windows in s
         return res[-1]
+
+#2/14/24:
+
+class Solution:
+    def wordBreak(self, s: str, wordDict: List[str]) -> bool:
+        res = [True] + ([False] * len(s))
+        for i in range(len(s)):
+            for j in range(i, len(s)):
+                if s[i: j + 1] in wordDict:
+                    res[j + 1] = res[i] or res[j + 1]
+        return res[-1]
