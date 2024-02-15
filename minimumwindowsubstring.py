@@ -560,4 +560,33 @@ class Solution:
             return s[carpetroller: carpetroller + difference]
         elif len(s) == difference: return s
         else: return ""
-        
+
+#2/15/24:
+
+class Solution:
+    def minWindow(self, s: str, t: str) -> str:
+        #not possible to satisfy t and all of t's potential duplicates with s if s is shorter than t
+        if len(s) < len(t): return ""
+        matched, carpetroller, ws, difference = 0, 0, 0, float('inf')
+        need = Counter(t)
+        #we will slide our window through s and jot down the dimensions of that window if it's valid
+        for we, schar in enumerate(s):
+            if schar in need:
+                need[schar] -= 1
+                if need[schar] == 0: #fully satisfied ONE MORE letter, so mark this in matched as satisfiying one more letter than before
+                    matched += 1 #based on the mechanism of matched, matches represents each UNIQUE CHARACTER IN T BEING FULLY SATISFIED BY OUR WINDOW IN S
+            while matched == len(need): #we fully satisfied s in t, so we also need to find the smallest window in s that satisfies t
+                windowlength = we - ws + 1
+                if difference > windowlength:
+                    difference = windowlength
+                    carpetroller = ws
+                kickout = s[ws] #shrink the window now since we jotted down that window dimension if it was the smallest so far
+                ws += 1
+                if kickout in need:
+                    if need[kickout] == 0: #we had exactly satisfied that character in s from t that we just kickout out, so we have to reflect this in match to say we disatisfied one more letter than before
+                        matched -= 1 #matched just cares about the frequency of characters because matched represents each character being fully satisfied
+                    need[kickout] += 1 #we are reflecting needing one more of this character in our need dictionary
+        #we only can determine the minimum window substring after we have slid our window through our entire s string
+        if len(s) > difference: return s[carpetroller: carpetroller + difference]
+        elif len(s) == difference: return s
+        else: return ""
