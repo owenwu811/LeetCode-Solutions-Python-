@@ -96,3 +96,14 @@ class Solution:
                 return False
             magazine = magazine.replace(ransomNote[i], "", 1) #means cross out the skill off the candidates list from the beginning 1 time - 1 represents the number of letters to delete from the beginning, not the index to delete!!!! 1 means delete 1 letter from beginning while 4 means delete 4 letters from beginning!
         return True #the application has exceeded the expectations, and we finished looping through the job description, so return yes because the applicant has met the 100% requirement on the test
+
+
+#2/14/24 practice:
+
+class Solution:
+    def canConstruct(self, ransomNote: str, magazine: str) -> bool:
+        for char in ransomNote:
+            if char not in magazine:
+                return False
+            magazine = magazine.replace(char, "", 1)
+        return True
