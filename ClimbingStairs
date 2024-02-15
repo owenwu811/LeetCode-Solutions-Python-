@@ -155,3 +155,9 @@ class Solution:
             one += two
             two = temp
         return one
+
+#We start with one and two both equal to 1 because there is only one way to reach the first step (by taking one step) and the second step (by taking two steps).
+
+We iterate n - 1 times because we've already accounted for the first step in our initialization. This loop calculates the number of distinct ways to reach each step up to the nth step.
+
+This algorithm is efficient because it only requires O(n) time complexity and O(1) space complexity, making it suitable for large values of n.
