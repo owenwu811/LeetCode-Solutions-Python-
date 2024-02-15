@@ -72,3 +72,28 @@ class Solution:
                     mat[onex][oney] = mat[zerox][zeroy] + 1
                     d.append([onex, oney]) #do append it to the rear
         return mat
+
+#another refresher:
+
+class Solution:
+    def updateMatrix(self, mat: List[List[int]]) -> List[List[int]]:
+        #we want to return a Matrix called mat at the end with the tiles in the matrix being the distance to the nearest 0
+        if not mat:
+            return []
+        d = deque()
+        directions = [(1, 0), (-1, 0), (0, 1), (0, -1)]
+        for r in range(len(mat)):
+            for c in range(len(mat[0])):
+                if mat[r][c] == 0:
+                    d.append([r, c])
+                else: #not a 0, so we know this is a 1, so we set this tile to infinity so that nothing will be bigger than infinity later
+                    mat[r][c] = float('inf')
+        while d:
+            for i in range(len(d)):
+                zerox, zeroy = d.popleft()
+                for newx, newy in directions:
+                    onex, oney = zerox + newx, zeroy + newy
+                    if 0 <= onex < len(mat) and 0 <= oney < len(mat[0]) and mat[onex][oney] > mat[zerox][zeroy] + 1:
+                        mat[onex][oney] = mat[zerox][zeroy] + 1
+                        d.append([onex, oney])
+        return mat
