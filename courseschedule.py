@@ -27,8 +27,8 @@
 class Solution:
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
 
-        mylist = [0] * numCourses
-        dictlist = [[] for x in range(numCourses)]
+        mylist = [0] * numCourses #bottom = victim. top = # of attackers
+        dictlist = [[] for x in range(numCourses)] #left = # of attackers, right = victim.
         for p in prerequisites:
             dictlist[p[1]].append(p[0])
             mylist[p[0]] += 1
