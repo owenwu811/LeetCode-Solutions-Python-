@@ -593,3 +593,27 @@ class Solution:
         return canvisit == numCourses
         #numCourses = 2, prerequisites = [[1,0],[0,1]] would mean that the indegree list looks like [1, 1], so since each node has one attacker, nothing goes onto the deque, which means that canvisit never changes, which means that we return False because canvisit = 0 and numCourses = 2 at the end
         
+#2/15/24: (this is not BFS, SO FIFO ISN'T REQUIRED, SO POP() AND APPEND() INSTEAD OF POPLEFT() AND APPEND() WORK TOO:
+
+class Solution:
+    def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+        #index 0 depends on 1
+        indegree = [0] * numCourses #if we have 6 courses total, we want indexes 0 to 5 to be filled with 0s in our list
+        adj = [[] for course in range(numCourses)] #this list is used to represent the dependencies aka attackers index 1 has in a list on the right with index 1 as the key
+        for p in prerequisites: # for each sublist in our input
+            adj[p[1]].append(p[0]) #find p[1] as as key in our adjacency list and add p[0] as an integer into the corresponding list 
+            indegree[p[0]] += 1
+        d = deque() 
+        for i in range(len(indegree)):
+            if indegree[i] == 0:
+                d.append(i) #FIFO NOT REQUIRED 
+        canvisit = 0
+        while d:
+            for i in range(len(d)):
+                canvisit += 1
+                currentnode = d.pop() #FIFO NOT REQUIRED 
+                for neighbor in adj[currentnode]:
+                    indegree[neighbor] -= 1 #satisfied the course
+                    if indegree[neighbor] == 0:
+                        d.append(neighbor) #neighbor is an index
+        return canvisit == numCourses
