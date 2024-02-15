@@ -97,3 +97,29 @@ class Solution:
                         mat[onex][oney] = mat[zerox][zeroy] + 1
                         d.append([onex, oney])
         return mat
+
+#2/15/24:
+
+class Solution:
+    def updateMatrix(self, mat: List[List[int]]) -> List[List[int]]:
+        #we want to start from a 1 and fill that 1 tile with the smallest number of hops it takes to reach an adjacent 0 tile
+        directions = [[0, 1], [0, -1], [1, 0], [-1, 0]]
+        #stores the coordinates of all 0 tiles originally so we don't start from them and step onto a different tile starting from a 0 tile
+        d = deque()
+        for r in range(len(mat)):
+            for c in range(len(mat[0])):
+                if mat[r][c] == 0:
+                    d.append([r, c])
+                else: # if the tile is a 1, then we set to infinity
+                    mat[r][c] = float('inf')
+        #we need to now start from 1s and find the nearest 0 and fill the 1 cell with the shortest distance
+        while d:
+            for i in range(len(d)):
+                zerox, zeroy = d.popleft() #BFS = FIFO
+                for newx, newy in directions:
+                    onex, oney = zerox + newx, zeroy + newy
+                    if 0 <= onex < len(mat) and 0 <= oney < len(mat[0]) and mat[onex][oney] > mat[zerox][zeroy] + 1:
+                        mat[onex][oney] = mat[zerox][zeroy] + 1
+                        d.append([onex, oney])
+  
+        return mat
