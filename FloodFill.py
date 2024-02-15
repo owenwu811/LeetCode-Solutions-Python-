@@ -278,3 +278,23 @@ class Solution:
         self.fill(image, sr - 1, sc, starting, color) #will return to the def function and will start filling from the 1st recursive call with (sr + 1)
         self.fill(image, sr, sc + 1, starting, color)
         self.fill(image, sr, sc - 1, starting, color)
+
+#2/15/24:
+
+class Solution:
+    def floodFill(self, image: List[List[int]], sr: int, sc: int, color: int) -> List[List[int]]:
+        starting = image[sr][sc]
+        #only can flood if the starting pixel is different from the color we want to change it to
+        if starting == color:
+            return image
+        self.fill(image, sr, sc, starting, color)
+        return image
+    def fill(self, image, sr, sc, starting, color):
+        #boundary check
+        if sr < 0 or sr >= len(image) or sc < 0 or sc >= len(image[0]) or image[sr][sc] != starting:
+            return
+        image[sr][sc] = color #actually fill it so we don't run into infinite recursion trying to fill the same tile again and again
+        self.fill(image, sr + 1, sc, starting, color)
+        self.fill(image, sr - 1, sc, starting, color)
+        self.fill(image, sr, sc + 1, starting, color)
+        self.fill(image, sr, sc - 1, starting, color)
