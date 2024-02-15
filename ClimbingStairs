@@ -143,3 +143,15 @@ class Solution:
             two = tmp
         #this is similar to climbing stairs in that the one will return the number of unique ways to climb but except of bottom right to top left, we go from right to left by sandwiching second and first pointers
         return one
+
+#2/14/24:
+
+class Solution:
+    def climbStairs(self, n: int) -> int:
+        #you can climb 1 way or 2 ways
+        one, two = 1, 1
+        for i in range(n - 1):
+            temp = one
+            one += two
+            two = temp
+        return one
