@@ -262,3 +262,34 @@ class TimeMap:
             else: # we can't exceed the request
                 r = mid - 1
         return res
+
+#2/14/24:
+
+class TimeMap:
+    def __init__(self):
+        self.mydict = dict()
+        
+    def set(self, key: str, value: str, timestamp: int) -> None:
+        if key not in self.mydict:
+            self.mydict[key] = []
+        #will already be in sorted order of timestamps, so we can just run a binary search in get method without sorting again. Time flows in one direction. 
+        self.mydict[key].append([value, timestamp])
+       
+       
+       
+    def get(self, key: str, timestamp: int) -> str:
+        res = ""
+        #we are getting the [value, timestamp] associated with the given key
+        correspondence = self.mydict.get(key, [])
+        #binary search
+        l, r = 0, len(correspondence) - 1
+        while l <= r:
+            mid = (l + r) // 2
+            #ideally, we want to get equal and an exact match, but if not, then we want the closest timestamp in our dictionary as our request while still being less than
+            if correspondence[mid][1] <= timestamp:
+                #[bar2, 1] - bar2 - let's say our request was 1
+                res = correspondence[mid][0]
+                l = mid + 1
+            else: #too big, but still sorted order, so move right to mid - 1
+                r = mid - 1
+        return res
