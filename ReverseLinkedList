@@ -32,3 +32,21 @@ class Solution(object):
             current = next # current moves onto the next pointer of the CURRENT Iteration. Next will change in the very next line. 
         return previous # for example NULL 1 2 3 3 4 5, previous will point to 5 when tthe while loop becomes false because n 1 2 3 4 5
                                                                                                                                 #    P C N > current is none, so false
+
+#2/15/24:
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        current = head #head refers to the beginning node of the list - pointing to 1
+        previous = None
+        while current is not None:
+            nxt = current.next
+            current.next = previous #this is where the flipping of the railroad tracks happens from the next node to the previous node from the perspective of the currentnode
+            previous = current #sandwiching together to move right
+            current = nxt
+        return previous #when current is None, previous is the last node, which has links pointing all the way to the start of the list
