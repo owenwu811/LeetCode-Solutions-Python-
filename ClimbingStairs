@@ -51,7 +51,7 @@ class Solution:
        one two
        6   6
   #for i in range(8) means for i in range 01234567
-  #when i hits 7, return one plus two pointer VALUES (13 + 21)
+  #when i hits 7, return one plus two pointer VALUES (13 + 21) - so, for this test case, n = 8, and the return value is 34
   #when i = 0, we initialize both pointer values as 1 and 1
 
 
