@@ -208,3 +208,22 @@ class Solution:
                 if openb.index(girl) != closeb.index(bracket):
                     return False
         return not stack
+
+#2/16/24:
+
+class Solution:
+    def isValid(self, s: str) -> bool:
+        stack = []
+        openb = "{(["
+        closeb = "})]"
+        for char in s:
+            if char in openb:
+                stack.append(char)
+            elif char in closeb and not stack:
+                return False
+            else:
+                girl = stack.pop()
+                if openb.index(girl) != closeb.index(char):
+                    return False
+        return not stack
+        
