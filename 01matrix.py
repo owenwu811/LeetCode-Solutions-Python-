@@ -149,5 +149,6 @@ class Solution:
                     if 0 <= onex < len(mat) and 0 <= oney < len(mat[0]) and mat[onex][oney] > mat[zerox][zeroy] + 1:
                         #because our zero cell was one adjacent away from our current one cell, we set the 1 cell to the zero cell plus 1 to represent the distance
                         mat[onex][oney] = mat[zerox][zeroy] + 1
+                        #bfs is FIFO 
                         d.append([onex, oney])
         return mat
