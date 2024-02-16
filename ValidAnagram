@@ -113,3 +113,12 @@ class Solution:
             t = t.replace(char, "", 1)
         #we return if we replaced all characters in t, meaning t covers s fully
         return len(t) == 0
+
+#2/16/24:
+
+class Solution:
+    def isAnagram(self, s: str, t: str) -> bool:
+        if sorted(s) == sorted(t):
+            return True
+        return False
+    
