@@ -123,3 +123,30 @@ class Solution:
                         d.append([onex, oney])
   
         return mat
+
+
+#2/16/24:
+
+class Solution:
+    def updateMatrix(self, mat: List[List[int]]) -> List[List[int]]:
+        #we want every cell in the matrix, a list of list of integers that we will return, to be the distance from that cell to the nearest 0
+        if not mat:
+            return []
+        d = deque()
+        directions = [[0, 1], [0, -1], [1, 0], [-1, 0]]
+        for r in range(len(mat)):
+            for c in range(len(mat[0])):
+                if mat[r][c] == 0:
+                    d.append([r, c])
+                else: #1 
+                    mat[r][c] = float('inf')
+        while d:
+            for i in range(len(d)):
+                #anything away from a 0 tile will be a 1 tile if the current tile exceeds the value of the previous tile we came from
+                zerox, zeroy = d.popleft()
+                for newx, newy in directions:
+                    onex, oney = zerox + newx, zeroy + newy
+                    if 0 <= onex < len(mat) and 0 <= oney < len(mat[0]) and mat[onex][oney] > mat[zerox][zeroy] + 1:
+                        mat[onex][oney] = mat[zerox][zeroy] + 1
+                        d.append([onex, oney])
+        return mat
