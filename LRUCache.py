@@ -493,6 +493,36 @@ class LRUCache:
        
 
         
+#2/16/24:
+
+class LRUCache:
+
+    def __init__(self, capacity: int):
+        self.cap = capacity #positive integer given to us 
+        self.mydict = OrderedDict()
+        self.pagefaultcount = 0
+
+    def get(self, key: int) -> int:
+        if key not in self.mydict:
+            return -1
+        else:
+            result = self.mydict[key]
+            self.mydict.pop(key)
+            self.mydict[key] = result
+            return result
+        
+    def put(self, key: int, value: int) -> None:
+        if key in self.mydict:
+            self.mydict.pop(key)
+            self.mydict[key] = value
+        else:
+            if len(self.mydict) == self.cap:
+                lru = next(iter(self.mydict))
+                self.mydict.pop(lru)
+                self.mydict[key] = value
+            else: #since the key is not in our dictionary, you don't pop it!!!
+                self.mydict[key] = value
+                self.pagefaultcount += 1
 
        
 
