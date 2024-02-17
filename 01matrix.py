@@ -152,3 +152,29 @@ class Solution:
                         #bfs is FIFO 
                         d.append([onex, oney])
         return mat
+
+
+#2/17/24:
+
+class Solution:
+    def updateMatrix(self, mat: List[List[int]]) -> List[List[int]]:
+        #we want each tile to represent the distance to the nearest zero 
+        distance = [(0, 1), (0, -1), (1, 0), (-1, 0)] # we use tuple unpacking to traverse the matrix and step onto a new cell
+        d = deque()
+        for r in range(len(mat)):
+            for c in range(len(mat[0])):
+                if mat[r][c] == 0:
+                    d.append([r, c])
+                else: #a 1
+                    mat[r][c] = float('inf')
+        while d:
+            for i in range(len(d)):
+                zerox, zeroy = d.popleft() #BFS = FIFO
+                for newx, newy in distance: #tuple unpacking
+                    onex, oney = zerox + newx, zeroy + newy
+                                                                             #will be infinity in 1st turn, making comparison valid
+                    if 0 <= onex < len(mat) and 0 <= oney < len(mat[0]) and mat[onex][oney] > mat[zerox][zeroy] + 1:
+                        #setting actual closest distance to the zero value on the right side since that zero cell is adjacent to our current 1
+                        mat[onex][oney] = mat[zerox][zeroy] + 1 
+                        d.append([onex, oney])
+        return mat
