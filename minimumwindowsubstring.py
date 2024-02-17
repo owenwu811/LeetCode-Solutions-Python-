@@ -615,4 +615,4 @@ class Solution:
                     need[kickout] += 1
         if len(s) > difference: return s[carpetroller: carpetroller + difference]
         elif len(s) == difference: return s
-        else: return ""
+        else: return "" #without this line, we would fail s = "a" t = "b" because we would return null instead of ""
