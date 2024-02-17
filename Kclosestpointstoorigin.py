@@ -49,3 +49,21 @@ class Solution:
             k -= 1 #POP K TIMES
         return res
         
+
+#practice run 2:
+
+class Solution:
+    def kClosest(self, points: List[List[int]], k: int) -> List[List[int]]:
+        #we want to pop from our heap k times
+        #we are given coordinates, and we want to get the distance of the coordinates and sort by them using heapify
+        minheap = []
+        for x, y in points:
+            distance = (x ** 2) + (y ** 2) #panthagareom thereom 
+            minheap.append([distance, x, y])
+        heapq.heapify(minheap) 
+        res = []
+        while k > 0:
+            distance, x, y = heapq.heappop(minheap) #do this k times
+            res.append([x, y]) # we want the coordinate
+            k -= 1
+        return res
