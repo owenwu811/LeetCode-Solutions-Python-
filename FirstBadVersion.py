@@ -142,3 +142,20 @@ class Solution:
                 l = mid + 1
         #we've narrowed down our search space, so left crossed right
         return l
+
+#2/17/24 refresher:
+
+# The isBadVersion API is already defined for you.
+# def isBadVersion(version: int) -> bool:
+class Solution:
+    def firstBadVersion(self, n: int) -> int:
+        #all versions after a True version are bad
+        #we want the first True number
+        l, r = 0, n
+        while l <= r:
+            mid = (l + r) // 2
+            if isBadVersion(mid):
+                r = mid - 1
+            else:
+                l = mid + 1
+        return l
