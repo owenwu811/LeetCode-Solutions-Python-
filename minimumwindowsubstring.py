@@ -590,3 +590,29 @@ class Solution:
         if len(s) > difference: return s[carpetroller: carpetroller + difference]
         elif len(s) == difference: return s
         else: return ""
+
+#2/17/24:
+
+class Solution:
+    def minWindow(self, s: str, t: str) -> str:
+        if len(s) < len(t): return ""
+        matched, carpetroller, ws, difference = 0, 0, 0, float('inf')
+        need = Counter(t)
+        for we, schar in enumerate(s): #we slide the window through s with our ws and we
+            if schar in need: #exists as a key in our dictionary 
+                need[schar] -= 1 #say we need one less of that character - no duplicates as keys in dictionary
+                if need[schar] == 0: #fully satisfied one character - no duplicates as keys in dictionary even though letters may be repeated in t - that is what the value of the key value pair in our dictionary is for
+                    matched += 1
+            while matched == len(need): #fully satisfied window, so find minimum
+                if difference > we - ws + 1: 
+                    difference = we - ws + 1 #saving that window as a potential minimum
+                    carpetroller = ws
+                kickout = s[ws]
+                ws += 1 #actually shrinking window
+                if kickout in need: #if the character we kicked out exists as a key in our need dictionary, make the appropriate changes
+                    if need[kickout] == 0: #change matched because matched depends on the value to the key in the dictionary before we kickout out the window
+                        matched -= 1
+                    need[kickout] += 1
+        if len(s) > difference: return s[carpetroller: carpetroller + difference]
+        elif len(s) == difference: return s
+        else: return ""
