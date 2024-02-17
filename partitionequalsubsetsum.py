@@ -177,3 +177,21 @@ class Solution:
                 set2.add(element + inputn) # including
             subsum = set2
         return half in subsum
+
+#2/17/24:
+
+class Solution:
+    def canPartition(self, nums: List[int]) -> bool:
+        #not possible to split into two subsets with equal values
+        if sum(nums) % 2 != 0:
+            return False
+        subsum = set()
+        subsum.add(0) #haven't picked any elements yet
+        half = sum(nums) // 2 #don't want decimal
+        for inputn in nums: #we loop through input array and, with each element, we either include or not include it 
+            subset2 = set()
+            for elements in subsum:
+                subset2.add(elements) #don't include
+                subset2.add(elements + inputn) #include
+            subsum = subset2 #remember that, just because half of it is not inside the input array dosen't mean it won't be valid, so we need all possible subset sums of our input array to be computed
+        return half in subsum
