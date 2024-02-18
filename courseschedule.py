@@ -628,8 +628,13 @@ class Solution:
 #in a failing case where we return False, we will look for nodes with an indegree of 0, AND YOU WON'T FIND ANY NODES WITH AN INDEGREE OF 0 - ALL NODES HAVE INDEGREE OF 1 OR MORE, SO SINCE QUEUE IS EMPTY, THE ALROGITHM ENDS WITHOUT US BEING ABLE TO REACH THE NODES WITH INDEGREE OF 1 OR MORE, SO TOPOLOGICAL SORT FAILS, AND WE RETURN FALSE
 class Solution:
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+        #[0, 0, 0, 0, 0, 0] - if numCourses = 6
+        # 0  1  2  3  4  5
         indegree = [0] * numCourses
+        #2d array with adjacency list for prerequisites: 
+        # adj = [ 0: [], 1: [], 2: [], 3: [], 4: [], 5: []] - indicies represent nodes, and list will be list of all neighbors
         adj = [[] for course in range(numCourses)]
+        #build adjacency list - p is the sublist from input 
         for p in prerequisites:
             adj[p[1]].append(p[0])
             indegree[p[0]] += 1
