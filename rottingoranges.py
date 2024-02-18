@@ -797,3 +797,36 @@ class Solution:
 #so basically as long as we use pop and appendleft or append and popleft(), we're good, so this problem requires 1st in 1st out, not 1st in last out
 #Processing oranges based on when they became rotten ensures that you're considering the progression of time correctly. This approach mimics the real-world scenario where the rot spreads gradually from one orange to another.
 #LIFO causes some oranges to take longer to rot than others
+
+#2/18/24:
+
+class Solution:
+    def orangesRotting(self, grid: List[List[int]]) -> int:
+        #stores coordinates of all rotten oranges from the minute we are on starting from 0 and will be unpacked later
+        d = deque()
+        minminutes, freshcount = 0, 0
+        for r in range(len(grid)):
+            for c in range(len(grid[0])):
+                if grid[r][c] == 2: #found a rotten orange
+                    d.append([r, c])
+                elif grid[r][c] == 1: #we don't care about the coordinates of fresh - we just increment freshcount - this is because, if we eliminate all rotten orange coordinates and empty cells, we are left with nothing but cells with fresh
+                    freshcount += 1
+                else: #empty cell - we don't care about
+                    continue
+        directions = [[1, 0], [-1, 0], [0, -1], [0, 1]]
+        while d and freshcount > 0: #only can turn fresh oranges into rotten
+            for i in range(len(d)):
+                rottenx, rotteny = d.popleft() #BFS = FIFO
+                for newx, newy in directions:
+                    destroyx, destroyy = rottenx + newx, rotteny + newy
+                    #we are trying to step onto a cell that is out of bounds of the grid or is not a fresh orange
+                    if destroyx < 0 or destroyx >= len(grid) or destroyy < 0 or destroyy >= len(grid[0]) or grid[destroyx][destroyy] != 1:
+                        continue
+                    #rot the fresh orange
+                    grid[destroyx][destroyy] = 2
+                    freshcount -= 1
+                    #now becomes a carrier in future iterations
+                    d.append([destroyx, destroyy])
+            minminutes += 1
+        return minminutes if freshcount == 0 else -1
+    
