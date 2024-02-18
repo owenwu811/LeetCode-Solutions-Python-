@@ -617,3 +617,26 @@ class Solution:
                     if indegree[neighbor] == 0:
                         d.append(neighbor) #neighbor is an index
         return canvisit == numCourses
+
+#2/18/24:
+
+class Solution:
+    def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+        indegree = [0] * numCourses
+        adj = [[] for course in range(numCourses)]
+        for p in prerequisites:
+            adj[p[1]].append(p[0])
+            indegree[p[0]] += 1
+        d = deque()
+        for i in range(len(indegree)):
+            if indegree[i] == 0: d.append(i)
+        canvisit = 0
+        while d:
+            for i in range(len(d)):
+                canvisit += 1
+                currentnode = d.popleft()
+                for neighbor in adj[currentnode]:
+                    indegree[neighbor] -= 1 #satisfied prerequisite
+                    if indegree[neighbor] == 0:
+                        d.append(neighbor)
+        return numCourses == canvisit
