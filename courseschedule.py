@@ -620,6 +620,12 @@ class Solution:
 
 #2/18/24:
 
+#if there is a cycle in our graph, it is not possible to complete all courses, and we return False. No cycle in our graph means we can return True.
+#khan's algorithm to find topological sorting in a graph - algorithm fails, we have detected cycle, and we return False. each node in the ordering must appear before all nodes it points to. For the 0 depends on 2 which depends on 1 which depends on 0 example, we can't start with 0 because 1 has to come before it, and we can't start with 1 because 2 has to come before it, and we can't start with 2 because 0 has to come before it, so there is no TOPOLOGICAL SORT WITH A GRAPH CONTAINING A CYCLE.
+#khan's algorithm uses a queue to traverse and keep track of nodes. first, add nodes with indegree of 0 to the queue.
+#next, we remove front node of queue and visit it. then, we must delete all OUTGOING EDGES from the node we visited. We repeat this step and find all nodes with indegree of 0 and add them to the queue.
+#the order in which we visited nodes is topological sorting, and since we can complete sorting, there is no cycle, and we return True
+#in a failing case where we return False, we will look for nodes with an indegree of 0, AND YOU WON'T FIND ANY NODES WITH AN INDEGREE OF 0 - ALL NODES HAVE INDEGREE OF 1 OR MORE, SO SINCE QUEUE IS EMPTY, THE ALROGITHM ENDS WITHOUT US BEING ABLE TO REACH THE NODES WITH INDEGREE OF 1 OR MORE, SO TOPOLOGICAL SORT FAILS, AND WE RETURN FALSE
 class Solution:
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
         indegree = [0] * numCourses
