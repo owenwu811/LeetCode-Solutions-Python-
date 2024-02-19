@@ -168,3 +168,22 @@ class Solution:
         res = []
         f("")
         return res
+
+#2/19/24:
+
+class Solution:
+    def letterCombinations(self, digits: str) -> List[str]:
+        if not digits:
+            return []
+        #could we make right hand side string instead of list? YES!
+        mapping = {'2': "abc", '3': "def", '4': "ghi", '5': "jkl", '6': "mno", '7': "pqrs", '8': "tuv", '9': "wxyz"}
+        def starter(child):
+            if len(child) == len(digits):
+                res.append(child)
+                return
+            else: #not hit max length yet
+                for i in mapping[digits[len(child)]]:
+                    starter(child + i)
+        res = []
+        starter("")
+        return res
