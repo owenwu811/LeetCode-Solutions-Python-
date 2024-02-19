@@ -83,3 +83,20 @@ class Solution:
             res.append([x, y])
             k -= 1
         return res
+
+#2/19/24:
+
+class Solution:
+    def kClosest(self, points: List[List[int]], k: int) -> List[List[int]]:
+        #we want k number of closest pair of coordinates to the origin as our result
+        minheap = [] #we will use a heapify to rearrange elements into a heap so that the heap property ensures that the smallest element is always at the root. 
+        for x, y in points: 
+            distance = (x ** 2) + (y ** 2) #we don't square root because we just care about comparing the distances to the corresponding coordinates
+            minheap.append([distance, x, y])
+        heapq.heapify(minheap)
+        res = []
+        while k > 0: #pop from heap k times to find k closest coordinates
+            distance, x, y = heapq.heappop(minheap) #retrieve smallest element from heap, which represents closest point to origin. heappop just adjusts the heap to maintain the heap property after removing root. smallest element may not always be at root. 
+            res.append([x, y])
+            k -= 1
+        return res
