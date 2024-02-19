@@ -200,6 +200,7 @@ class Solution:
                 stackindex, stackheight = stack.pop()
                 res = max(res, stackheight * (inputindex - stackindex))
                 start = stackindex
+            #if you did stack.append([inputindex, inputvalue]) instead of [start, inputvalue], you would fail test case [2, 1, 2] because you would add [1, 1] to stack instead of [0, 1], so you don't want just the current index but the start of a potential rectangle 
             stack.append([start, inputvalue])
         for i, j in stack:
             res = max(res, j * (len(heights) - i))
