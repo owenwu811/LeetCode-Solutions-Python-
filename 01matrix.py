@@ -178,3 +178,28 @@ class Solution:
                         mat[onex][oney] = mat[zerox][zeroy] + 1 
                         d.append([onex, oney])
         return mat
+
+#2/19/24:
+
+class Solution:
+    def updateMatrix(self, mat: List[List[int]]) -> List[List[int]]:
+        #we want the distance in units of 1 to the nearest 0 from each cell to be the final value for that cell in the list of list matrix we will return at the end
+        distance = [[0, 1], [0, -1], [1, 0], [-1, 0]]
+        d = deque()
+        for r in range(len(mat)):
+            for c in range(len(mat[0])):
+                if mat[r][c] == 0:
+                    d.append([r, c])
+                else: #cell contains a 1, so set to infinity so that our conditional allows us to update that cell since infinity will always be bigger than the value in any zero cell + 1
+                    mat[r][c] = float('inf')
+        while d:
+            for i in range(len(d)):
+                zerox, zeroy = d.popleft() #BFS = FIFO
+                for newx, newy in distance:
+                    onex, oney = zerox + newx, zeroy + newy
+                    if 0 <= onex < len(mat) and 0 <= oney < len(mat[0]) and mat[onex][oney] > mat[zerox][zeroy] + 1:
+                        #a 0 cell must be adjacent to this 1 cell for the mat[onex][oney] > mat[zerox][zeroy] + 1 conditional to be True
+                        mat[onex][oney] = mat[zerox][zeroy] + 1
+                        d.append([onex, oney])
+        return mat
+        
