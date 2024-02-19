@@ -137,7 +137,7 @@ class Solution:
                 res = max(res, stackheight * (inputindex - stackindex))
                 #we now start a new window at the new stackindex
                 starting = stackindex
-            #as long as not violating monotonic property, keep appending to end of stack list in order 
+            #as long as not violating monotonic property, keep appending to rear of stack list in order 
             stack.append((starting, inputvalue))
         #we have gone through the input array once, so we know that everything that wasn't monotonically increasing has been corrected, so everything in the stack is now monotonically increasing, so we can compute the width times height for each possibility in our stack
         for i, j in stack:
@@ -184,6 +184,23 @@ class Solution:
                 res = max(res, myvalue * (stackindex - myindex))
                 start = myindex
             stack.append((start, stackvalue))
+        for i, j in stack:
+            res = max(res, j * (len(heights) - i))
+        return res
+
+#2/18/24:
+
+class Solution:
+    def largestRectangleArea(self, heights: List[int]) -> int:
+        res = 0
+        stack = []
+        for inputindex, inputvalue in enumerate(heights):
+            start = inputindex
+            while stack and inputvalue < stack[-1][1]: 
+                stackindex, stackheight = stack.pop()
+                res = max(res, stackheight * (inputindex - stackindex))
+                start = stackindex
+            stack.append([start, inputvalue])
         for i, j in stack:
             res = max(res, j * (len(heights) - i))
         return res
