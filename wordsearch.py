@@ -516,3 +516,24 @@ class Solution:
                 if board[r][c] == word[0] and dfs(0, r, c):
                     return True
         return False
+
+#2/19/24:
+
+class Solution:
+    def exist(self, board: List[List[str]], word: str) -> bool:
+        def dfs(index, r, c):
+            if r < 0 or r >= len(board) or c < 0 or c >= len(board[0]) or board[r][c] != word[index]:
+                return False #won't be First recursive call
+            elif index >= len(word) - 1: return True
+            original = board[r][c]
+            board[r][c] = "matched"
+            moveon = (dfs(index + 1, r + 1, c) or dfs(index + 1, r - 1, c) or dfs(index + 1, r, c + 1) or dfs(index + 1, r, c - 1))
+            #none of the 4 cells adjacent contain the word we want
+            board[r][c] = original
+            return moveon #backtrack - return False to previous recursive call to indicate to moveon that the current path didn't lead to a solution because non of adjacent cells contain the word we are looking for, so backtrack to explore other paths to last viable position
+
+        for r in range(len(board)):
+            for c in range(len(board[0])):
+                if board[r][c] == word[0] and dfs(0, r, c):
+                    return True
+        return False
