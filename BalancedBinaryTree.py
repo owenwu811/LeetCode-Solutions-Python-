@@ -126,8 +126,10 @@ class Solution:
                 return 0
             left = traverse(root.left) #POST ORDER - LEFT, RIGHT, ROOT
             right = traverse(root.right)
+            #the code basically traverses through each level, and if even one level is unbalanced, we don't even compute further levels down - any imbalance in a subtree would mean that we don't need to continue traversing rest of tree because, in a balanced binary tree, any imbalance in a subtree would propogate up the tree, making the entire tree unbalanced. By stopping the traversal when an imbalance is detected, the algorithm saves uncesseary computations because futher analysis would not change the conclusion of the balance of the entire tree, so this is an optimization to improve efficiency of the algorithm.
             if abs(right - left) > 1:
                 res[0] = False
+           
             return 1 + max(left, right) #REQUIRED TO COMPUTE THE HEIGHT OF EACH NODE IN THE TREE - HEIGHT IS DEFINED AS MAX DEPTH OF LEFT OR RIGHT SUBTREES - If this line were removed, the function would still TRAVERSE the tree, but it would lose the ability to compute the height of each node accurately. As a result, the logic for checking the balance of the tree based on the heights of subtrees (abs(right - left) > 1) would not work correctly, and the function might erroneously conclude that the tree is balanced when it's not.
     
         res = [True]
