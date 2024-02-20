@@ -319,3 +319,27 @@ class TimeMap:
             else:
                 r = mid - 1
         return res
+
+#2/20/24:
+
+class TimeMap:
+    def __init__(self):
+        self.mydict = dict()
+    def set(self, key: str, value: str, timestamp: int) -> None:
+        if key not in self.mydict:
+            self.mydict[key] = []
+        self.mydict[key].append([timestamp, value])
+    def get(self, key: str, timestamp: int) -> str:
+        res = ""
+        correspondence = self.mydict.get(key, [])
+        #since the keys are already in sorted order, we can jut run a binary search without sorting again
+        l, r = 0, len(correspondence) - 1
+        while l <= r:
+            mid = (l + r) // 2
+            #binary search only works if the values are in sorted order 
+            if correspondence[mid][0] <= timestamp:
+                res = correspondence[mid][1]
+                l = mid + 1
+            else:
+                r = mid - 1
+        return res
