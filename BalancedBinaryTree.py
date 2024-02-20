@@ -109,4 +109,27 @@ class Solution:
         res = [True]
         f(root)
         return res[0]
-        
+
+
+#2/20/24:
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def isBalanced(self, root: Optional[TreeNode]) -> bool:
+        def traverse(root):
+            if root is None:
+                return 0
+            left = traverse(root.left)
+            right = traverse(root.right)
+            if abs(right - left) > 1:
+                res[0] = False
+            return 1 + max(left, right)
+
+        res = [True]
+        traverse(root)
+        return res[0]
