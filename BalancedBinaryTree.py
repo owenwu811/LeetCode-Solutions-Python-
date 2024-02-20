@@ -124,12 +124,12 @@ class Solution:
         def traverse(root):
             if root is None:
                 return 0
-            left = traverse(root.left)
+            left = traverse(root.left) #POST ORDER - LEFT, RIGHT, ROOT
             right = traverse(root.right)
             if abs(right - left) > 1:
                 res[0] = False
-            return 1 + max(left, right)
-
+            return 1 + max(left, right) #REQUIRED TO COMPUTE THE HEIGHT OF EACH NODE IN THE TREE - HEIGHT IS DEFINED AS MAX DEPTH OF LEFT OR RIGHT SUBTREES - If this line were removed, the function would still TRAVERSE the tree, but it would lose the ability to compute the height of each node accurately. As a result, the logic for checking the balance of the tree based on the heights of subtrees (abs(right - left) > 1) would not work correctly, and the function might erroneously conclude that the tree is balanced when it's not.
+    
         res = [True]
         traverse(root)
         return res[0]
