@@ -616,3 +616,35 @@ class Solution:
         if len(s) > difference: return s[carpetroller: carpetroller + difference]
         elif len(s) == difference: return s
         else: return "" #without this line, we would fail s = "a" t = "b" because we would return null instead of ""
+
+#2/20/24:
+
+class Solution:
+    def minWindow(self, s: str, t: str) -> str:
+        #if s is shorter than t, then s can't satisfy all of t including all of t's duplicates, so we can return an empty string since there would be no substring
+        if len(s) < len(s): return ""
+        ws, matched, carpetroller = 0, 0, 0
+        difference = float('inf')
+        need = Counter(t)
+        #we slide the window through s
+        for we, schar in enumerate(s):
+            if schar in need:
+                #we satisfied that character once 
+                need[schar] -= 1
+                if need[schar] == 0:
+                    matched += 1 #we matched with one character in s by fully satisfying it including all of it's duplicates - a key in the need dictionary
+                #whether this entire while block is indented to the first if or 2nd if is irrelevant - still works!!
+                while matched == len(need):
+                    if difference > we - ws + 1:
+                        difference = we - ws + 1
+                        carpetroller = ws
+                    kickout = s[ws]
+                    ws += 1
+                    if kickout in need:
+                        if need[kickout] == 0:
+                            matched -= 1
+                        need[kickout] += 1
+        if len(s) > difference:
+            return s[carpetroller: carpetroller + difference]
+        elif len(s) == difference: return s
+        else: return ""
