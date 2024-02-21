@@ -167,6 +167,7 @@ class Solution:
             elif element == "/":
                 first = stack.pop()
                 second = stack.pop()
+                # print(5 / 2) = 2.5 print(5 // 2) = 2
                 stack.append(int(second / first))
             elif element == "-":
                 first = stack.pop()
