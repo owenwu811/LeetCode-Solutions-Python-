@@ -254,3 +254,23 @@ class Solution:
                 l += 1
                 n += 1
             
+
+#2/21/24:
+
+class Solution:
+    def sortColors(self, nums: List[int]) -> None:
+        """
+        Do not return anything, modify nums in-place instead.
+        """ 
+        l, r = 0, len(nums) - 1
+        n = 0
+        while n <= r:
+            if nums[n] == 2:
+                nums[n], nums[r] = nums[r], nums[n]
+                r -= 1
+            elif nums[n] == 1:
+                n += 1
+            else:
+                nums[l], nums[n] = nums[n], nums[l]
+                l += 1
+                n += 1
