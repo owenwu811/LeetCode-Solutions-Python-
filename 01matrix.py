@@ -226,3 +226,29 @@ class Solution:
                         mat[onex][oney] = mat[zerox][zeroy] + 1
                         d.append([onex, oney])
         return mat
+
+
+#2/22/24:
+
+class Solution:
+    def updateMatrix(self, mat: List[List[int]]) -> List[List[int]]:
+        directions = [[1, 0], [-1, 0], [0, 1], [0, -1]]
+        #will store all coordinates for 0
+        d = deque()
+        for r in range(len(mat)):
+            for c in range(len(mat[0])):
+                if mat[r][c] == 0:
+                    d.append([r, c])
+                else:
+                    #we do this so that infinity is always bigger and will set that 1 tile to the nearest 0 value
+                    mat[r][c] = float('inf')
+        while d:
+            for i in range(len(d)):
+                #bfs = fifo
+                zerox, zeroy = d.popleft()
+                for newx, newy in directions:
+                    onex, oney = zerox + newx, zeroy + newy
+                    if 0 <= onex < len(mat) and 0 <= oney < len(mat[0]) and mat[onex][oney] > mat[zerox][zeroy] + 1:
+                        mat[onex][oney] = mat[zerox][zeroy] + 1
+                        d.append([onex, oney])
+        return mat
