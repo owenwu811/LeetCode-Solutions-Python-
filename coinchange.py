@@ -375,3 +375,18 @@ class Solution:
         if dparr[-1] == float('inf'):
             return -1
         return dparr[-1]
+
+#2/22/24:
+
+class Solution:
+    def coinChange(self, coins: List[int], amount: int) -> int:
+        #we want the smallest frequency of coins to make up amount cents
+        #base case is 0 frequency of coins to make up 0 cents
+        dparr = [0] + [float('inf')] * amount
+        for levelamount in range(1, amount + 1):
+            for coinvalue in coins:
+                if coinvalue <= levelamount:
+                    dparr[levelamount] = min(dparr[levelamount], dparr[levelamount - coinvalue] + 1)
+        if dparr[-1] == float('inf'):
+            return -1
+        return dparr[-1]
