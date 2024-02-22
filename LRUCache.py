@@ -526,7 +526,43 @@ class LRUCache:
 
        
 
+
+#2/21/24:
+
+
+class LRUCache:
+    def __init__(self, capacity: int):
+        self.cap = capacity #integer given to us
+        self.dict = OrderedDict()
+        self.pagefaultcount = 0
+         
         
+        
+       
+    def get(self, key: int) -> int:
+        if key not in self.dict:
+            return -1
+        else:
+            result = self.dict[key]
+            self.dict.pop(key)
+            self.dict[key] = result
+            return result
+        
+        
+
+    def put(self, key: int, value: int) -> None:
+        if key in self.dict:
+            self.dict.pop(key)
+            self.dict[key] = value
+        else:
+            if self.cap == len(self.dict):
+                lru = next(iter(self.dict)) #our key is not in our dict, so we have to REMOVE FROM THE FRONT OF THE DICT, SO WE DON'T PASS IN ANY KEY TO SELF.DICT!
+                self.dict.pop(lru)
+                self.dict[key] = value
+            else:
+                self.dict[key] = value
+                self.pagefaultcount += 1
+
  
         
        
