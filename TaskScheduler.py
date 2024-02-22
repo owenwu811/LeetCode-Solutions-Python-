@@ -42,3 +42,17 @@ class Solution:
       # cool down time = prevents immediate re-execution of same letter AND introduces idle time for different letters
       # maxcount = count of letters with same frequency as most frequent task (most frequent letter). These letters are executed after letters with lower frequency to fill remaining idle time due to cooldown. We will idle time to keep cpu busy because each count [0] > [1] - of each letter takes 1 unit of time!
      
+
+#2/22/24 refresher:
+
+class Solution:
+    def leastInterval(self, tasks: List[str], n: int) -> int:
+        #each letter takes one unit of time
+        #we want the cpu to be occupied at all times
+        time = [0] * 26
+        for letter in tasks:
+            time[ord(letter) - ord('A')] += 1
+        maxvalue, maxfreq = max(time), 0
+        for l in time:
+            if l == maxvalue: maxfreq += 1
+        return max((maxvalue - 1) * (n + 1) + maxfreq, len(tasks))
