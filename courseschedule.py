@@ -651,3 +651,32 @@ class Solution:
                     if indegree[neighbor] == 0:
                         d.append(neighbor)
         return numCourses == canvisit
+
+
+#2/22/24:
+
+class Solution:
+    def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+        #numCourses frequency of courses to take
+        #[dependson, dependant]
+        indegree = [0] * numCourses #each course starts with 0 prerequisites
+        adj = [[] for course in range(numCourses)]
+        for p in prerequisites:
+            adj[p[1]].append(p[0])
+            indegree[p[0]] += 1
+        d = deque()
+        for i in range(len(indegree)):
+            if indegree[i] == 0:
+                d.append(i)
+        canvisit = 0
+        while d:
+            for i in range(len(d)):
+                canvisit += 1 #no prerequsities to be added to deque
+                current = d.popleft()
+                #for (2, 4) in adj[5]
+                for neighbor in adj[current]:
+                    indegree[neighbor] -= 1 #satisifed that prerequisite - indegree[2] -= 1 and indegree[4] -= 1
+                    if indegree[neighbor] == 0:
+                        d.append(neighbor)
+        return canvisit == numCourses
+
