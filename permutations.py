@@ -160,3 +160,20 @@ class Solution:
         res = []
         f(nums, [])
         return res
+
+
+#2/22/24:
+
+class Solution:
+    def permute(self, nums: List[int]) -> List[List[int]]:
+        def f(nums, path):
+            if not nums:
+                res.append(path.copy())
+                return
+            for i in range(len(nums)):
+                f(nums[:i] + nums[i + 1:], path + [nums[i]])
+
+
+        res = []
+        f(nums, [])
+        return res
