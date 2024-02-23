@@ -179,3 +179,19 @@ class Solution:
             res[backward] *= postfixn #in the 1st iteration, 6 * 1 = 6, so the res[3] stays as 6
             postfixn *= nums[backward] #after executing, we first go to the for loop to decrement backward before updating the new decremented res[backward]
         return res
+
+
+#2/23/24:
+
+class Solution:
+    def productExceptSelf(self, nums: List[int]) -> List[int]:
+        prefixn = 1
+        postfixn = 1
+        res = [0] * len(nums)
+        for forward in range(len(nums)):
+            res[forward] = prefixn
+            prefixn *= nums[forward]
+        for backward in range(len(nums) -1, -1, -1):
+            res[backward] *= postfixn
+            postfixn *= nums[backward]
+        return res
