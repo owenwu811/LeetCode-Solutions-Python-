@@ -69,4 +69,5 @@ class Solution:
         for l in count:
             if l == maxvalue:
                 maxcount += 1
-        return max((maxvalue - 1) * (n + 1) + maxcount, len(tasks))
+        #by using addition instead of multiplication - (maxvalue - 1) + (n + 1), we would not be repeating the same letter more than once, which is wrong
+        return max((maxvalue - 1) * (n + 1) + maxcount, len(tasks)) #by using addition instead of multiplication - (maxvalue - 1) + (n + 1), we would be calculating the total length of all cycles combined rather than the total time units needed to complete all cycles. This means we would be summing up the length of each cycle individually rather than considering the repetition of cycles.
