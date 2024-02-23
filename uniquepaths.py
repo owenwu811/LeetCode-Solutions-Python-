@@ -277,3 +277,16 @@ class Solution:
                 above[right] = above[right + 1] + first[right] #[7, 6, 5, 4, 3, 2, 1], [28, 21, 15, 10, 6, 3, 1] 
             first = above
         return first[0] #28 
+
+
+#2/23/24:
+
+class Solution:
+    def uniquePaths(self, m: int, n: int) -> int:
+        first = [1] * n
+        for down in range(m - 1): #columns
+            above = [1] * n
+            for right in range(n - 2, -1, -1):
+                above[right] = above[right + 1] + first[right]
+            first = above
+        return first[0]
