@@ -71,3 +71,16 @@ class Solution:
                 maxcount += 1
         #by using addition instead of multiplication - (maxvalue - 1) + (n + 1), we would not be repeating the same letter more than once, which is wrong
         return max((maxvalue - 1) * (n + 1) + maxcount, len(tasks)) #by using addition instead of multiplication - (maxvalue - 1) + (n + 1), we would be calculating the total length of all cycles combined rather than the total time units needed to complete all cycles. This means we would be summing up the length of each cycle individually rather than considering the repetition of cycles.
+
+#2/23/24:
+
+class Solution:
+    def leastInterval(self, tasks: List[str], n: int) -> int:
+        count = [0] * 26
+        for letter in tasks:
+            count[ord(letter) - ord('A')] += 1
+        maxfreq, maxval = 0, max(count)
+        for l in count:
+            if l == maxval:
+                maxfreq += 1
+        return max((maxval - 1) * (n + 1) + maxfreq, len(tasks))
