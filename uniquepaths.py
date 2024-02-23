@@ -257,7 +257,7 @@ class Solution:
         first = [1] * n #so if n = 7, then you would have [1] [1] [1] [1] [1] [1] [1] from 0 through 6 inclusive 
         for down in range(m - 1):
             above = [1] * n #this resets every bar level above we build back to [1] [1] [1] [1] [1] [1] [1] from 0 through 6 inclusive, just like first
-            for right in range(n - 2, -1, -1):
+            for right in range(n - 2, -1, -1): #right starts off at 5 if n = 7
                 above[right] = above[right + 1] + first[right] #[7, 6, 5, 4, 3, 2, 1], [28, 21, 15, 10, 6, 3, 1] 
             first = above
         return first[0] #28 
