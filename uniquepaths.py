@@ -238,7 +238,7 @@ class Solution:
         return buildoff[0]
 
 
-#2/22/24:
+#2/22/24: (missed - needs churning!)
 
 class Solution:
     def uniquePaths(self, m: int, n: int) -> int:
@@ -249,3 +249,15 @@ class Solution:
                 current[right] = current[right + 1] + buildoff[right]
             buildoff = current
         return buildoff[0]
+
+#2/22/24 - again:
+
+class Solution:
+    def uniquePaths(self, m: int, n: int) -> int:
+        first = [1] * n
+        for down in range(m - 1):
+            above = [1] * n
+            for right in range(n - 2, -1, -1):
+                above[right] = above[right + 1] + first[right]
+            first = above
+        return first[0]
