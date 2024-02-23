@@ -252,6 +252,22 @@ class Solution:
 
 #2/22/24 - again:
 
+#m = 3, n = 7 (test case)
+
+#[1 1 1 1 1 1 1] first
+# 0 1 2 3 4 5 6 
+
+#[1 1 1 1 1 1 1] above
+# 0 1 2 3 4 5 6
+
+#[7 6 5 4 3 2 1] above, first (first = above)
+# 0 1 2 3 4 5 6
+
+#[28 21 15 10 6 3 1] above, first (first = above)
+# 0  1  2  3  4 5 6
+
+#first[0] = 28
+
 class Solution:
     def uniquePaths(self, m: int, n: int) -> int:
         first = [1] * n #so if n = 7, then you would have [1] [1] [1] [1] [1] [1] [1] from 0 through 6 inclusive 
