@@ -157,14 +157,25 @@ class Solution:
 
 #2/22/24: (missed - needs churning!)
 
+#[1, 2, 3, 4] nums
+# 0, 1, 2, 3  - 4 is out of bounds!
+
+
+#[1, 1, 2, 6] res
+# 0, 1, 2, 3
+#postfixn *= nums[backward] 
+#postfixn = 1 * nums[3]
+#postfixn = 1 * 4
+#postfixn = 4
+
 class Solution:
     def productExceptSelf(self, nums: List[int]) -> List[int]:
         prefixn, postfixn = 1, 1
         res = [0] * len(nums)
-        for forward in range(len(nums)):
+        for forward in range(len(nums)): #at forward = 3, we update res[forward] with 6 - [1, 1, 2, 6], and then prefix becomes 24 (6 * 4), and then forward increments to 4 in the for loop, which is out of bounds for [1, 2, 3, 4], so we go to the backward for loop
             res[forward] = prefixn
-            prefixn *= nums[forward]
-        for backward in range(len(nums) -1, -1, -1):
-            res[backward] *= postfixn
-            postfixn *= nums[backward]
+            prefixn *= nums[forward] #after executing, we first go to the for loop to increment forward before updating the new incremented res[forward]
+        for backward in range(len(nums) -1, -1, -1): #backward starts at 3
+            res[backward] *= postfixn #in the 1st iteration, 6 * 1 = 6, so the res[3] stays as 6
+            postfixn *= nums[backward] #after executing, we first go to the for loop to decrement backward before updating the new decremented res[backward]
         return res
