@@ -533,4 +533,30 @@ class Solution:
                 res.append(level)
         return res
 
-                
+
+#2/23/24:
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
+        res = []
+        d = deque()
+        #each level's nodes are added to the deque
+        d.append(root)
+        while d:
+            level = [] #gets cleared at each level of the tree
+            for i in range(len(d)):
+                currentnode = d.popleft() #BFS = FIFO - REMEMBER THAT DFS IS DIGGING DOWN ALL THE WAY LEFT WHILE WE ARE EXPLORING EVERY LEVEL FIRST, SO THIS IS BFS
+                if currentnode is not None:
+                    level.append(currentnode.val)
+                    d.append(currentnode.left)
+                    d.append(currentnode.right)
+            if level:
+                res.append(level)
+        return res
+
