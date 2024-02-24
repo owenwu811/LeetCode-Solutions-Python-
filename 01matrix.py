@@ -252,3 +252,28 @@ class Solution:
                         mat[onex][oney] = mat[zerox][zeroy] + 1
                         d.append([onex, oney])
         return mat
+
+#2/24/24:
+
+class Solution:
+    def updateMatrix(self, mat: List[List[int]]) -> List[List[int]]:
+        #we want the distance of the nearest 0 coordinate to be the value of each cell in our final grid
+        directions = [[1, 0], [-1, 0], [0, 1], [0, -1]]
+        d = deque() #all coordinates for a cell containing a 0
+        for r in range(len(mat)):
+            for c in range(len(mat[0])):
+                if mat[r][c] == 0:
+                    d.append([r, c])
+                else:
+                    mat[r][c] = float('inf')
+        #distance between two adjacent cells is 1
+        while d:
+            for i in range(len(d)):
+                zx, zy = d.popleft() #bfs = fifo
+                for nx, ny in directions:
+                    ox, oy = zx + nx, zy + ny #stepping onto a 1 cell to calculate distance
+                    #the 1 coordinate must be in bounds and bigger than the 1
+                    if 0 <= ox < len(mat) and 0 <= oy < len(mat[0]) and mat[ox][oy] > mat[zx][zy] + 1:
+                        mat[ox][oy] = mat[zx][zy] + 1 #one away from an adjacent 0 cell
+                        d.append([ox, oy])
+        return mat
