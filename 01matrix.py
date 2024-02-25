@@ -275,5 +275,7 @@ class Solution:
                     #the 1 coordinate must be in bounds and bigger than the 1
                     if 0 <= ox < len(mat) and 0 <= oy < len(mat[0]) and mat[ox][oy] > mat[zx][zy] + 1:
                         mat[ox][oy] = mat[zx][zy] + 1 #one away from an adjacent 0 cell
-                        d.append([ox, oy])
+                        d.append([ox, oy]) #if we got rid of this line, the result for the matrix = [      [0,0,0],      [0,1,0],      [1,1,1]] test case be [0, 0, 0][0, 1, 0][1, inf, 1] instead of [0, 0, 0][0, 1, 0][1, 2, 1]
+
+
         return mat
