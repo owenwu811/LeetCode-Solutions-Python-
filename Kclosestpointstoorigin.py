@@ -132,3 +132,19 @@ class Solution:
             result.append([x, y])
             k -= 1
         return result
+
+#2/24/24:
+
+class Solution:
+    def kClosest(self, points: List[List[int]], k: int) -> List[List[int]]:
+        a = []
+        for x, y in points:
+           distance = (x ** 2) + (y ** 2)
+           a.append([distance, x, y])
+        heapq.heapify(a)
+        result = []
+        while k > 0:
+            distance, x, y = heapq.heappop(a)
+            result.append([x, y])
+            k -= 1
+        return result
