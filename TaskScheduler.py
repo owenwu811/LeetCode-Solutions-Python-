@@ -84,3 +84,20 @@ class Solution:
             if l == maxval:
                 maxfreq += 1
         return max((maxval - 1) * (n + 1) + maxfreq, len(tasks))
+
+
+#2/25/24:
+
+class Solution:
+    def leastInterval(self, tasks: List[str], n: int) -> int:
+        #task = letter
+        #if we encounter a letter and another letter adjacent to it, you must wait cooling time and add this cooling time to your result
+        freq = [0] * 26 #our input array can have any of the 26 letters
+        for letter in tasks:
+            freq[ord(letter) - ord('A')] += 1
+        howmanymax, maximumfreq = 0, max(freq)
+        for l in freq:
+            if l == maximumfreq:
+                howmanymax += 1
+        #maxfreq - 1 because there is no cooling period (n) for the lastly executed most frequent task, and we want to minimize cooling period and keep cpu occupied at all times - n + 1 just means we have to account for the cooling period that was costed by trying to execute the same letter again. If n = 0, then len(tasks) will win out because cooling time was nothing, so the least time you could get was going through every letter in the array once
+        return max((maximumfreq - 1) * (n + 1) + howmanymax, len(tasks))
