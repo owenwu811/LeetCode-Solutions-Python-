@@ -24,3 +24,24 @@ class Solution:
             return l
         elif r is not None and l == None: return r
         elif l == None and r == None: return None
+
+#practice run 2
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+        #we want to find the lowest common parent of p and q 
+        if root == None or root == p or root == q:
+            return root
+        l = self.lowestCommonAncestor(root.left, p, q)
+        r = self.lowestCommonAncestor(root.right, p, q)
+        if l is not None and r is not None: return root
+        elif l is not None and r == None: return l #because l equals to p or q
+        elif r is not None and l == None: return r
+        else: return None
