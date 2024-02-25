@@ -70,3 +70,12 @@ class Solution:
                 return i 
         #if target not in myset:
         return -1
+
+#2/25/24:
+
+class Solution:
+    def search(self, nums: List[int], target: int) -> int:
+        for i, j in enumerate(nums):
+            if j == target:
+                return i
+        return -1
