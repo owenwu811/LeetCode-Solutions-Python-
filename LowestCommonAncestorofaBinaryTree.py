@@ -39,7 +39,7 @@ class Solution:
         #we want to find the lowest common parent of p and q 
         #the deepest node that is a parent of p and q meaning p and q is a child of this node not necessarily directly a child
         if root == None or root == p or root == q:  #if root == None, then return root means return None!!!!
-            return root
+            return root #this just represents the base case for one of the two recursive calls (starting from l == self. or r == self.)? meaning that if the final state of l is None but the final state of r is not None, we still return r as the final result?
         l = self.lowestCommonAncestor(root.left, p, q)
         r = self.lowestCommonAncestor(root.right, p, q)
         if l is not None and r is not None: return root
