@@ -303,3 +303,18 @@ class Solution:
                 above[right] = above[right + 1] + first[right]
             first = above
         return first[0]
+
+#2/25/24:
+
+class Solution:
+    def uniquePaths(self, m: int, n: int) -> int:
+        #a path means one direction, so the bottom and right border of our result will be filled with 1s to represent 1 way/direction to reach the bottom right corner from the rightmost or bottommost row
+        #we will start by building the bottom up to the top, so we will work from bottom right to top left and return our top right to recompute results in between
+        first = [1] * n #n represents the number of columns
+        #we can only move down or right from the top left corner 
+        for down in range(m - 1): #number of rows
+            buildoff = first #every row has the same number of columns - every row has includes a column
+            for right in range(n - 2, -1, -1): #using indexes, if n = 7, then it takes 5 hops to reach the left side from the right side if we move left by one place at each iteration
+                buildoff[right] = buildoff[right + 1] + first[right] #pascal's triangle titled to the left is the addition of the current level plus one to the right plus down one level
+            first = buildoff
+        return first[0]
