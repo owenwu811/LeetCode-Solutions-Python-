@@ -37,6 +37,7 @@ class Solution:
 class Solution:
     def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
         #we want to find the lowest common parent of p and q 
+        #the deepest node that is a parent of p and q meaning p and q is a child of this node not necessarily directly a child
         if root == None or root == p or root == q:
             return root
         l = self.lowestCommonAncestor(root.left, p, q)
