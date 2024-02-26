@@ -209,3 +209,24 @@ class Solution:
                 maxright = max(maxright, height[r])
                 res += (maxright - height[r])
         return res
+
+#2/25/24:
+
+class Solution:
+    def trap(self, height: List[int]) -> int:
+        #n non negative integers means that n is either 0 or positive
+        if not height: #input is empty edge case
+            return 0
+        res, l, r = 0, 0, len(height) - 1
+        maxleft, maxright = height[l], height[r]
+        while l < r: #we cannot trap any units of water at the highest point of the graph
+            if maxleft < maxright:
+                l += 1
+                maxleft = max(maxleft, height[l]) #if maxleft wins out, then we can actually add to result because pointer already moved at this point
+                res += (maxleft - height[l])
+            else:
+                r -= 1
+                maxright = max(maxright, height[r]) #if maxright wins out, then we can actually add to result because pointer already moved at this point
+                res += (maxright - height[r])
+        return res
+            
