@@ -190,3 +190,22 @@ class Solution:
             if rightmost is not None:
                 res.append(rightmost.val)
         return res
+
+#2/25/24:
+
+class Solution:
+    def rightSideView(self, root: Optional[TreeNode]) -> List[int]:
+        d = deque()
+        d.append(root)
+        res = []
+        while d:
+            rightside = None
+            for i in range(len(d)):
+                currentnode = d.popleft() #BFS = FIFO
+                if currentnode is not None:
+                    rightside = currentnode
+                    d.append(currentnode.left)
+                    d.append(currentnode.right)
+            if rightside:
+                res.append(rightside.val)
+        return res
