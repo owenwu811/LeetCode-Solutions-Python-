@@ -209,3 +209,6 @@ class Solution:
             if rightside:
                 res.append(rightside.val)
         return res
+
+
+#remember: Inorder => Left, Root, Right while Preorder => Root, Left, Right!
