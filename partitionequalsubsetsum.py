@@ -195,3 +195,21 @@ class Solution:
                 subset2.add(elements + inputn) #include
             subsum = subset2 #remember that, just because half of it is not inside the input array dosen't mean it won't be valid, so we need all possible subset sums of our input array to be computed
         return half in subsum
+
+
+#2/26/24:
+
+class Solution:
+    def canPartition(self, nums: List[int]) -> bool:
+        if sum(nums) % 2 != 0:
+            return False
+        subsum = set()
+        subsum.add(0)
+        half = sum(nums) // 2
+        for inputn in nums:
+            set2 = set()
+            for element in subsum:
+                set2.add(element)
+                set2.add(element + inputn)
+            subsum = set2
+        return half in subsum
