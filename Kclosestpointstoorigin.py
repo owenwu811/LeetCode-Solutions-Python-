@@ -148,3 +148,20 @@ class Solution:
             result.append([x, y])
             k -= 1
         return result
+
+#2/26/24:
+
+class Solution:
+    def kClosest(self, points: List[List[int]], k: int) -> List[List[int]]:
+        #we want k number of coordinates as lists that are closest to the point [0, 0]
+        minheap = [] #we will use a minheap to add elements to it and then pop k times
+        for x, y in points:
+            distance = (x ** 2) + (y ** 2)
+            minheap.append([distance, x, y])
+        heapq.heapify(minheap)
+        res = []
+        while k > 0:
+            distance, x, y = heapq.heappop(minheap)
+            res.append([x, y])
+            k -= 1
+        return res
