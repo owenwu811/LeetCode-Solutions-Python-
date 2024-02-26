@@ -1,14 +1,14 @@
-You are given the heads of two sorted linked lists list1 and list2.
+#You are given the heads of two sorted linked lists list1 and list2.
 
-Merge the two lists in a one sorted list. The list should be made by splicing together the nodes of the first two lists.
+#Merge the two lists in a one sorted list. The list should be made by splicing together the nodes of the first two lists.
 
-Return the head of the merged linked list.
+#Return the head of the merged linked list.
 
-Input: list1 = [1,2,4], list2 = [1,3,4]
-Output: [1,1,2,3,4,4]
+#Input: list1 = [1,2,4], list2 = [1,3,4]
+#Output: [1,1,2,3,4,4]
 
 
-Solution:
+#Solution:
 
 class ListNode:
     def __init__(self, val=0, next=None):
@@ -38,7 +38,7 @@ def mergeTwoLists(list1, list2):
     #if list1 or list2 are empty, then append the rest of the nonempty elements to the merged list automatically.
 
 
-Another Solution:
+#Another Solution:
 
 class ListNode:
     def __init__(self, val=0, next=None):
@@ -67,7 +67,7 @@ class ListNode:
         return previousoffirst.next
 
 
-6/8/23 refresher (my solution):
+#6/8/23 refresher (my solution):
 
 # Definition for singly-linked list.
 # class ListNode:
@@ -120,7 +120,7 @@ class Solution(object):
 
 
 
-8/13/23 (solution also works, but logic of line 152 is just flipped compared to above to prove the point):
+#8/13/23 (solution also works, but logic of line 152 is just flipped compared to above to prove the point):
 # Definition for singly-linked list.
 # class ListNode(object):
 #     def __init__(self, val=0, next=None):
@@ -148,7 +148,7 @@ class Solution(object):
         return dummy.next
 
 
-10/2/23 (refresher):
+#10/2/23 (refresher):
 
 # Definition for singly-linked list.
 # class ListNode:
@@ -219,3 +219,29 @@ class Solution:
         elif list2 and not list1:
             current.next = list2
         return first.next
+
+
+#2/25/24:
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
+        prev = ListNode(None)
+        current = prev
+        while list1 and list2:
+            if list1.val < list2.val:
+                current.next = list1
+                list1 = list1.next
+            else:
+                current.next = list2
+                list2 = list2.next
+            current = current.next
+        if list1 and not list2:
+            current.next = list1
+        elif list2 and not list1:
+            current.next = list2
+        return prev.next
