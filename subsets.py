@@ -269,3 +269,22 @@ class Solution:
         res = []
         f(0, [])
         return res
+
+#2/26/24:
+
+
+class Solution:
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+        def f(i, path, nums):
+            if i >= len(nums):
+                res.append(path.copy())
+                return
+            path.append(nums[i])
+            f(i + 1, path, nums)
+            path.pop()
+            f(i + 1, path, nums)
+
+
+        res = []
+        f(0, [], nums)
+        return res
