@@ -130,3 +130,16 @@ class Solution:
             else:
                 res.append([start, end])
         return res
+
+#2/26/24:
+
+class Solution:
+    def merge(self, intervals: List[List[int]]) -> List[List[int]]:
+        intervals.sort(key=lambda n:n[0]) #sort each of the sublists by the 0th index value
+        output = [intervals[0]] #at this point, we know that intervals[0][0] has to be the 1st element in our output list
+        for first, second in intervals[1:]:
+            if first <= output[-1][1]: #there is overlap between current[0] and previous[1], so since previous[0] must be smaller than previous[1], we only need to compare previous[1] and current[1] since we want to merge current and previous and only get [smallestofboth, largestofboth] into one array
+                output[-1][1] = max(output[-1][1], second)
+            else:
+                output.append([first, second])
+        return output
