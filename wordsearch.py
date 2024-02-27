@@ -537,3 +537,29 @@ class Solution:
                 if board[r][c] == word[0] and dfs(0, r, c):
                     return True
         return False
+
+#2/27/24:
+
+class Solution:
+    def exist(self, board: List[List[str]], word: str) -> bool:
+        def dfs(index, r, c):
+            #out of bounds or current tile is not letter we are currently looking for taking into account progress
+            if r < 0 or r >= len(board) or c < 0 or c >= len(board[0]) or board[r][c] != word[index]:
+                return False
+            #if we found the entire word, then we can return True back to dfs(0, r, c)
+            if index >= len(word) - 1:
+                return True
+            save = board[r][c]
+            board[r][c] = "visited" #we can only use the letter once in our path
+            result = dfs(index + 1, r + 1, c) or dfs(index + 1, r - 1, c) or dfs(index + 1, r, c + 1) or dfs(index + 1, r, c - 1)
+            #if, after exploring all 4 adjacent cells, we don't find the letter we are looking for, then we can try a new path
+            #means all 4 recursive calls of result returned False
+            board[r][c] = save
+            return result
+
+        for r in range(len(board)):
+            for c in range(len(board[0])):
+                #all recursive calls are successful meaning we have found our entire word 
+                if board[r][c] == word[0] and dfs(0, r, c):
+                    return True
+        return False
