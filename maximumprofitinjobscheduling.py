@@ -13,16 +13,18 @@ class Solution:
         intervals = sorted(zip(startTime, endTime, profit))
         cache = {} #empty dictionary
         def dfs(i):
-            if i >= len(intervals):
+            if i >= len(intervals): #len(intervals) = 4 since intervals = [(1, 3, 50), (2, 4, 10), (3, 5, 40), (3, 6, 70)]
                 return 0
             elif i in cache:
                 return cache[i]
             res = dfs(i + 1)
-            j = bisect.bisect(intervals, (intervals[i][1], -1, -1))
+            j = bisect.bisect(intervals, (intervals[i][1], -1, -1)) #intervals[i][1] is the endTime of the current tuple
             cache[i] = max(res, intervals[i][2] + dfs(j))
             res = max(res, intervals[i][2] + dfs(j))
             return res
         return dfs(0)
+
+#job and interval both mean tuple
 
 #startTime = [1,2,3,3], endTime = [3,4,5,6], profit = [50,10,40,70]
 #tuples become 
