@@ -138,6 +138,7 @@ class Solution:
         intervals.sort(key=lambda n:n[0]) #sort each of the sublists by the 0th index value
         output = [intervals[0]] #at this point, we know that intervals[0][0] has to be the 1st element in our output list
         for first, second in intervals[1:]:
+            #we are comparing to output[-1][1] because output[-1][1] is dynamic while intervals[-1][1] is static and is always the very last element in the input: intervals[-1][1] of intervals = [[1,3],[2,6],[8,10]] is 10, and intervals[-1][1] of intervals = [[1,3],[2,6],[8,10],[15,18]] is 18. This is not correct because we want to compare the current sublist's 1st index to the left one sublist's 1st index
             if first <= output[-1][1]: #there is overlap between current[0] and previous[1], so since previous[0] must be smaller than previous[1], we only need to compare previous[1] and current[1] since we want to merge current and previous and only get [smallestofboth, largestofboth] into one array
                 output[-1][1] = max(output[-1][1], second)
             else:
