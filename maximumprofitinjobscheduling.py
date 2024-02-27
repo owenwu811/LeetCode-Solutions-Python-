@@ -10,8 +10,8 @@
 
 class Solution:
     def jobScheduling(self, startTime: List[int], endTime: List[int], profit: List[int]) -> int:
-        intervals = sorted(zip(startTime, endTime, profit)) #list of 3 tuples - 
-        cache = {}
+        intervals = sorted(zip(startTime, endTime, profit))
+        cache = {} #empty dictionary
         def dfs(i):
             if i >= len(intervals):
                 return 0
@@ -23,3 +23,13 @@ class Solution:
             res = max(res, intervals[i][2] + dfs(j))
             return res
         return dfs(0)
+
+#startTime = [1,2,3,3], endTime = [3,4,5,6], profit = [50,10,40,70]
+#tuples become 
+# [(1, 3, 50), #i = 0
+#  (2, 4, 10), #i = 1
+#  (3, 5, 40), #i = 2
+#  (3, 6, 70)  #i = 3
+]
+
+# for (1, 3, 50) and (2, 4, 10), 3 > 2, so there is overlap
