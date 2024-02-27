@@ -17,12 +17,17 @@ class Solution:
                 return 0
             elif i in cache:
                 return cache[i]
-            res = dfs(i + 1) #recursive call for next tuple
+            #don't include
+            res = dfs(i + 1) #recursive call for next tuple - if we don't include the current interval, it dosen't matter what previous end was because we didn't choose previous interval
+            #include 
             j = bisect.bisect(intervals, (intervals[i][1], -1, -1)) #intervals[i][1] is the endTime of the current tuple
             cache[i] = max(res, intervals[i][2] + dfs(j)) #Calculates the maximum profit either by skipping the current job (res) or by considering the profit of the current job plus the profit obtained from the next non-overlapping job (intervals[i][2] + dfs(j)). Stores this result in the cache for future reference.
             res = max(res, intervals[i][2] + dfs(j))
             return res
         return dfs(0)
+
+
+#we start at i, incrementing through list until find 1st interval that dosen't overlap with previous (call this index j), and we pass j in as a parameter. 
 
 #job and interval both mean tuple
 
