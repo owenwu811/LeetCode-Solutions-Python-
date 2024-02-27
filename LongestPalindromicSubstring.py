@@ -179,3 +179,25 @@ class Solution:
             if len(second) > len(res):
                 res = second
         return res
+
+#2/26/24:
+
+class Solution:
+    def longestPalindrome(self, s: str) -> str:
+        def f(l, r, s):
+            while l >= 0 and r < len(s) and s[l] == s[r]:
+                l -= 1 #keep expanding outward because we are looking for a longer palindromic substring
+                r += 1
+            return s[l + 1: r]
+      
+
+
+        res = ""
+        for char in range(len(s)):
+            first = f(char, char, s) #palindromic substrings can start anywhere in the string, not just in the middle, so expand one and two units, inching forward
+            if len(first) > len(res):
+                res = first
+            second = f(char, char + 1, s)
+            if len(second) > len(res):
+                res = second
+        return res
