@@ -40,3 +40,21 @@ class Solution:
 ]
 
 # for (1, 3, 50) and (2, 4, 10), 3 > 2, so there is overlap
+
+#2/28/24:
+
+class Solution:
+    def jobScheduling(self, startTime: List[int], endTime: List[int], profit: List[int]) -> int:
+        intervals = sorted(zip(startTime, endTime, profit))
+        cache = {}
+        def dfs(i):
+            if i >= len(intervals):
+                return 0
+            elif i in cache:
+                return cache[i]
+            res = dfs(i + 1) #don't include
+            j = bisect.bisect(intervals, (intervals[i][1], -1, -1))
+            cache[i] = max(res, intervals[i][2] + dfs(j))
+            res = max(res, intervals[i][2] + dfs(j))
+            return res
+        return dfs(0)
