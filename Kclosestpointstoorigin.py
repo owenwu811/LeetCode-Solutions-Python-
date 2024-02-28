@@ -182,3 +182,19 @@ class Solution:
             result.append([x, y])
             k -= 1
         return result
+
+#works the same way:
+
+class Solution:
+    def kClosest(self, points: List[List[int]], k: int) -> List[List[int]]:
+        minheap = []
+        for x, y in points:
+            distance = (x ** 2) + (y ** 2)
+            minheap.append([distance, x, y])
+        heapq.heapify(minheap)
+        result = []
+        while k > 0:
+            d, a, b = heapq.heappop(minheap) #variables can be named anything
+            result.append([a, b])
+            k -= 1
+        return result
