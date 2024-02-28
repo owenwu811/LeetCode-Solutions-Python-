@@ -121,4 +121,13 @@ class Solution:
         if sorted(s) == sorted(t):
             return True
         return False
-    
+
+#2/28/24:
+
+class Solution:
+    def isAnagram(self, s: str, t: str) -> bool:
+        for char in s:
+            if char not in t:
+                return False
+            t = t.replace(char, "", 1)
+        return len(t) == 0
