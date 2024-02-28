@@ -390,3 +390,25 @@ class Solution:
         if dparr[-1] == float('inf'):
             return -1
         return dparr[-1]
+
+
+#2/28/24:
+
+class Solution:
+    import math
+    def coinChange(self, coins: List[int], amount: int) -> int:
+        #we want the fewest frequency of coins out of our given coins array that sums up to amount cents
+        #our base case is that there are 0 ways to sum up to 0 cents
+        dparr = [0] + ([float('inf')] * amount)
+        #we start from trying to find the fewest frequency of coins to sum up to 1 cent since 0 was already the base case
+        for levelamount in range(1, amount + 1):
+            for coinvalue in coins:
+                #we can use this particular coin if the if condition is True
+                if coinvalue <= levelamount:
+                    #frequency
+                    dparr[levelamount] = min(dparr[levelamount], dparr[levelamount - coinvalue] + 1)
+                    #now, we keep going through our coins input to try a different coin
+        #once we have determined the fewest number of coins to sum up to every single amount in increments of 1, we can now say if it's even possible to sum up to amount cents - if it is, that array value represents the fewest number of ways to sum up to amount cents because we used dynamic programming to find the most optimal path with min()
+        if dparr[-1] == float('inf'):
+            return -1
+        return dparr[-1]
