@@ -101,3 +101,20 @@ class Solution:
                 howmanymax += 1
         #maxfreq - 1 because there is no cooling period (n) for the lastly executed most frequent task, and we want to minimize cooling period and keep cpu occupied at all times - n + 1 just means we have to account for the cooling period that was costed by trying to execute the same letter again. If n = 0, then len(tasks) will win out because cooling time was nothing, so the least time you could get was going through every letter in the array once
         return max((maximumfreq - 1) * (n + 1) + howmanymax, len(tasks))
+
+#2/28/24:
+
+class Solution:
+    def leastInterval(self, tasks: List[str], n: int) -> int:
+        #cooling time = n
+        freq = [0] * 26
+        for letter in tasks:
+            freq[ord(letter) - ord('A')] += 1
+        maxmax = max(freq)
+        cntmax = 0
+        for l in freq:
+            if l == maxmax:
+                cntmax += 1
+        return max((maxmax - 1) * (n + 1) + cntmax, len(tasks))
+        
+        
