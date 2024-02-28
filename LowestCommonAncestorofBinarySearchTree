@@ -259,5 +259,14 @@ class Solution:
             else:
                 return root
 
-#why is - if p.val > root.val and q.val > root.val: - fine but - if root.val < p.val and root.val < q.val: - gives attribute error?
-#root.val < p.val and root.val < q.val, if root is None, attempting to access root.val would result in an AttributeError because root is not an object with a val attribute.
+#also works:
+
+while True:
+   if root.val < p.val and root.val < q.val:
+       root = root.right
+   elif root.val > p.val and root.val > q.val:
+       root = root.left
+   else:
+       return root
+
+
