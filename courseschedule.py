@@ -697,7 +697,7 @@ class Solution:
         while d:
             for i in range(len(d)):
                 canvisit += 1
-                current = d.popleft() 
+                current = d.popleft() # popleft() or pop() both work since this is not BFS OR DFS!
                 for neighbor in adj[current]:
                     indegree[neighbor] -= 1
                     if indegree[neighbor] == 0:
