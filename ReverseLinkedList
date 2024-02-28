@@ -50,3 +50,21 @@ class Solution:
             previous = current #sandwiching together to move right
             current = nxt
         return previous #when current is None, previous is the last node, which has links pointing all the way to the start of the list
+
+#2/28/24:
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        cur = head
+        previous = None
+        while cur != None:
+            nxt = cur.next
+            cur.next = previous
+            previous = cur
+            cur = nxt
+        return previous
