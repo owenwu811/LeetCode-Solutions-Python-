@@ -1,34 +1,34 @@
-Given an integer array nums, return all the triplets [nums[i], nums[j], nums[k]] such that i != j, i != k, and j != k, and nums[i] + nums[j] + nums[k] == 0.
+#Given an integer array nums, return all the triplets [nums[i], nums[j], nums[k]] such that i != j, i != k, and j != k, and nums[i] + nums[j] + nums[k] == 0.
 
-Notice that the solution set must not contain duplicate triplets.
+#Notice that the solution set must not contain duplicate triplets.
 
-Example 1:
+#Example 1:
 
-Input: nums = [-1,0,1,2,-1,-4]
-Output: [[-1,-1,2],[-1,0,1]]
-Explanation: 
-nums[0] + nums[1] + nums[2] = (-1) + 0 + 1 = 0.
-nums[1] + nums[2] + nums[4] = 0 + 1 + (-1) = 0.
-nums[0] + nums[3] + nums[4] = (-1) + 2 + (-1) = 0.
-The distinct triplets are [-1,0,1] and [-1,-1,2].
-Notice that the order of the output and the order of the triplets does not matter.
+#Input: nums = [-1,0,1,2,-1,-4]
+#Output: [[-1,-1,2],[-1,0,1]]
+#Explanation: 
+#nums[0] + nums[1] + nums[2] = (-1) + 0 + 1 = 0.
+#nums[1] + nums[2] + nums[4] = 0 + 1 + (-1) = 0.
+#nums[0] + nums[3] + nums[4] = (-1) + 2 + (-1) = 0.
+#The distinct triplets are [-1,0,1] and [-1,-1,2].
+#Notice that the order of the output and the order of the triplets does not matter.
 
-Example 2:
+#Example 2:
 
-Input: nums = [0,1,1]
-Output: []
-Explanation: The only possible triplet does not sum up to 0.
-Example 3:
+#Input: nums = [0,1,1]
+#Output: []
+#Explanation: The only possible triplet does not sum up to 0.
+#Example 3:
 
-Input: nums = [0,0,0]
-Output: [[0,0,0]]
-Explanation: The only possible triplet sums up to 0.
+#Input: nums = [0,0,0]
+#Output: [[0,0,0]]
+#Explanation: The only possible triplet sums up to 0.
  
 
-Constraints:
+#Constraints:
 
-3 <= nums.length <= 3000
--105 <= nums[i] <= 105
+#3 <= nums.length <= 3000
+#-105 <= nums[i] <= 105
 
 
 My Solution:
@@ -61,7 +61,7 @@ class Solution(object):
      #i in line 40 acts as the starting pointer, so left pointer always comes one after i. You don't need to purposely define another starting pointer.
      
      
- My other solution:
+ #My other solution:
       
  class Solution(object):
     def threeSum(self, nums):
@@ -87,7 +87,7 @@ class Solution(object):
         return result
 
 
-6/21/23 refresher (my solution):
+#6/21/23 refresher (my solution):
 
 class Solution:
     def threeSum(self, nums: List[int]) -> List[List[int]]:
@@ -158,6 +158,34 @@ class Solution:
                     third -= 1
                 elif threesum < 0:
                     second += 1
+                else:
+                    res.append([nums[first], nums[second], nums[third]])
+                    second += 1
+                    third -= 1
+                    while second < third and nums[second] == nums[second - 1]:
+                        second += 1
+                    while second < third and nums[third] == nums[third + 1]:
+                        third -= 1
+        return res
+
+
+#2/27/24 refresher:
+
+class Solution:
+    def threeSum(self, nums: List[int]) -> List[List[int]]:
+        res = []
+        nums.sort()
+        for first in range(len(nums)):
+            if first > 0 and nums[first] == nums[first - 1]:
+                continue
+            second = first + 1
+            third = len(nums) - 1
+            while second < third:
+                threesum = nums[first] + nums[second] + nums[third]
+                if threesum < 0:
+                    second += 1
+                elif threesum > 0:
+                    third -= 1
                 else:
                     res.append([nums[first], nums[second], nums[third]])
                     second += 1
