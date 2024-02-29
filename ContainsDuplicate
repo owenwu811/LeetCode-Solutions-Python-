@@ -62,3 +62,12 @@ cleanest version:
 class Solution:
     def containsDuplicate(self, nums: List[int]) -> bool:
         return len(nums) != len(set(nums))
+
+
+#2/29/24:
+
+class Solution:
+    def containsDuplicate(self, nums: List[int]) -> bool:
+        if len(set(nums)) == len(nums):
+            return False
+        return True
