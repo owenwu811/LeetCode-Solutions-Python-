@@ -86,3 +86,25 @@ class Solution:
         elif r == None and l: return l
         elif l and r: return root
         else: return None
+
+
+#2/28/24:
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+        #lowest node that is a parent of p and q
+        if root == None or root == p or root == q: #we check this at every recursive call caused by l or r
+            return root
+        l = self.lowestCommonAncestor(root.left, p, q) 
+        r = self.lowestCommonAncestor(root.right, p, q)
+        if l and r: return root #we know the lca occurs at a split
+        if l and not r: return l #we know the lca occurs in the left subtree, which was returned from the if root == None or root == p or root == q check at each level or recursive call
+        elif r and not l: return r
+        else: return None
