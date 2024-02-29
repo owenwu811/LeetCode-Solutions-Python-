@@ -704,3 +704,26 @@ class Solution:
                         d.append(neighbor)
         return canvisit == numCourses
 
+#2/29/24:
+
+class Solution:
+    def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+        indegree = [0] * numCourses #we have numCourses courses we have to visit / complete
+        adj = [[] for course in range(numCourses)]
+        for p in prerequisites:
+            adj[p[1]].append(p[0])
+            indegree[p[0]] += 1
+        d = deque()
+        for i in range(len(indegree)): #some courses have no dependencies, so add those nodes to the deque list
+            if indegree[i] == 0:
+                d.append(i)
+        canvisit = 0
+        while d:
+            for i in range(len(d)):
+                canvisit += 1
+                currentnode = d.popleft()
+                for neighbor in adj[currentnode]:
+                    indegree[neighbor] -= 1
+                    if indegree[neighbor] == 0:
+                        d.append(neighbor)
+        return canvisit == numCourses
