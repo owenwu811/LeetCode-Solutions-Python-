@@ -564,7 +564,39 @@ class LRUCache:
                 self.pagefaultcount += 1
 
  
+
+#2/28/24:
+
+class LRUCache:
+
+    def __init__(self, capacity: int):
+        self.cap = capacity #positive integer given to us
+        self.cache = OrderedDict()
+        self.pagefaultcount = 0
         
+
+    def get(self, key: int) -> int:
+        if key not in self.cache:
+            return -1
+        else: #key is in self.cache dict
+            result = self.cache.pop(key) #remove 
+            self.cache[key] = result #insert to rear
+            return result #return inserted result
+            
+        
+        
+    def put(self, key: int, value: int) -> None:
+        if key in self.cache:
+            self.cache.pop(key)
+            self.cache[key] = value
+        else:
+            if len(self.cache) == self.cap:
+                lru = next(iter(self.cache)) #get from front
+                self.cache.pop(lru) #pop from front
+                self.cache[key] = value #add to rear
+            else:
+                self.cache[key] = value
+                self.pagefaultcount += 1
        
 
                 
