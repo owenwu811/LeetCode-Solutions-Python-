@@ -336,3 +336,21 @@ class Solution:
                 return False
             return f(root.left, lowerbound, root.val) and f(root.right, root.val, upperbound)
         return f(root, float('-inf'), float('inf'))
+
+#2/29/24:
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def isValidBST(self, root: Optional[TreeNode]) -> bool:
+        def f(root, lower, upper):
+            if not root: #will only be True on 1st or last turn
+                return True
+            if not (lower < root.val < upper): #every level of tree
+                return False
+            return f(root.left, lower, root.val) and f(root.right, root.val, upper)
+        return f(root, float('-inf'), float('inf'))
