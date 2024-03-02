@@ -264,6 +264,13 @@ class Solution:
 #[7 6 5 4 3 2 (1)] above, first (first = above)
 # 0 1 2 3 4 5 6
 
+#we do go all the way to the end, so we are using (1) + (6) = 7:
+#[(1) 1 1 1 1 1 1]
+#  0  1 2 3 4 5 6
+
+#[7 (6) 5 4 3 2 1] 
+# 0  1 2 3 4 5 6
+
 
 #[28 21 15 10 6 3 1] above, first (first = above)
 # 0  1  2  3  4 5 6
