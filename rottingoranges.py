@@ -860,4 +860,43 @@ class Solution:
                     d.append([destroyx, destroyy])
             minminutes += 1
         return minminutes if freshcount == 0 else -1
-                    
+
+
+#3/1/24:
+
+class Solution:
+    def orangesRotting(self, grid: List[List[int]]) -> int:
+        #stores coordinates of all rotten oranges from each 1 unit of time
+        d = deque()
+        minminutes = 0
+        freshcount = 0 #no cell has a freshorange means when freshcount equals 0 in the end
+        for r in range(len(grid)):
+            for c in range(len(grid[0])):
+                if grid[r][c] == 2:
+                    d.append([r, c])
+                elif grid[r][c] == 1:
+                    freshcount += 1 #we have to track each fresh orange we find
+                else: #0 / empty dosen't matter
+                    continue
+        #simulate each minute spread
+        #since we want to spread adjacently in all 4 directions, we can use tuple unpacking breadth first search
+        directions = [[0, 1], [0, -1], [1, 0], [-1, 0]]
+        #each minute, any fresh orange adjacent to a rotten orange becomes rotten means we can only rot a 2 to a 1
+        while d and freshcount > 0:
+            for i in range(len(d)):
+                rottenx, rotteny = d.popleft() #append popleft is BFS aka care about distance not direction
+                for xnew, ynew in directions: #unpacking in 4 directions means adjacent
+                    destroyx, destroyy = rottenx + xnew, rotteny + ynew #this is the new cell we want to rot, so we have to check if it's inbounds of our list of lists and also that it contains a 1, not a 0
+                    if destroyx < 0 or destroyx >= len(grid) or destroyy < 0 or destroyy >= len(grid[0]) or grid[destroyx][destroyy] != 1:
+                        continue #if we are out of bounds or aren't seeing a cell with a 1, continue 
+                    #we are in bounds and seeing a 1 in all other scenarios, so rot the orange
+                    grid[destroyx][destroyy] = 2 #rot the 1 cell by turning it into 2, which also means we now have one less fresh orange and are one step closer to getting that freshcount to 0 as in the beginning
+                    #since we now have one more rotten orange that can be a carrier for the future and one less fresh orange, we want to add this new rotten orange to the deque to spread in future minutes
+                    d.append([destroyx, destroyy]) # we want the coordinates of the rotten orange in our list of lists, just like the beginning format
+            #the for loop only saw the original length of our deque representing the current minute
+                    freshcount -= 1
+            minminutes += 1
+        #we use the deque to say if there are any rotten oranges left at all meaning more sick children in future
+        return minminutes if freshcount == 0 else -1
+
+
