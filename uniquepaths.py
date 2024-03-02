@@ -245,7 +245,7 @@ class Solution:
         buildoff = [1] * n
         for down in range(m - 1):
             current = [1] * n
-            for right in range(n - 2, -1, -1):
+            for right in range(n - 2, -1, -1): #5, 4, 3, 2, 1, 0 (inclusive) 
                 current[right] = current[right + 1] + buildoff[right]
             buildoff = current
         return buildoff[0]
