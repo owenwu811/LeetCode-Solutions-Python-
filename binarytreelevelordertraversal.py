@@ -560,3 +560,30 @@ class Solution:
                 res.append(level)
         return res
 
+#3/1/24:
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    from collections import deque
+    def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
+        d = deque()
+        d.append(root)
+        res = []
+        while d:
+            level = []
+            for i in range(len(d)):
+                currentnode = d.popleft() #this is breadth first search because level order traversal is breadth first search because it deals with a distance from tree, not direction
+                if currentnode != None:
+                    level.append(currentnode.val)
+                    d.append(currentnode.left)
+                    d.append(currentnode.right)
+            #a level of the tree is done
+            if level:
+                res.append(level)
+        return res
+
