@@ -22,4 +22,10 @@ class Solution:
 #we then need to lop off the 0b in the front to get "10101"
 
 
+#3/2/24 practice:
+
+class Solution:
+    def addBinary(self, a: str, b: str) -> str:
+        s = bin(int(a, 2) + int(b, 2))
+        return s[2:]
         
