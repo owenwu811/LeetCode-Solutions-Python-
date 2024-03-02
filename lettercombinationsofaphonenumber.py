@@ -118,7 +118,7 @@ class Solution:
                 res.append(path)
                 return
             else:
-                for i in mapping[digits[len(path)]]:
+                for i in mapping[digits[len(path)]]: #i continues forward from "d" to "e" after the base case block above hits!
                     f(path + i)
                     #("", a)
                     #(a, d)
