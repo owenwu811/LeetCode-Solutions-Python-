@@ -257,11 +257,13 @@ class Solution:
 #[1 1 1 1 1 1 1] first
 # 0 1 2 3 4 5 6 
 
-#[1 1 1 1 1 1 1] above
+
+#[1 1 1 1 1 (1) 1] above - (1) + (1) = 2, but (1) starts at index 5, so (7 - 2) = 5
+# 0 1 2 3 4 5 6 - notice 5, 4, 3, 2, 1, 0 (inclusive)
+
+#[7 6 5 4 3 2 (1)] above, first (first = above)
 # 0 1 2 3 4 5 6
 
-#[7 6 5 4 3 2 1] above, first (first = above)
-# 0 1 2 3 4 5 6
 
 #[28 21 15 10 6 3 1] above, first (first = above)
 # 0  1  2  3  4 5 6
