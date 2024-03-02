@@ -318,3 +318,17 @@ class Solution:
                 buildoff[right] = buildoff[right + 1] + first[right] #pascal's triangle titled to the left is the addition of the current level plus one to the right plus down one level
             first = buildoff
         return first[0]
+
+#3/1/24:
+
+class Solution:
+    def uniquePaths(self, m: int, n: int) -> int:
+        #can move down or right - can come from above or to the left
+        #unique paths to go from top left to bottom right
+        first = [1] * n #bottom row will be filled with 1s since left is only one unique path
+        for down in range(m - 1): #range(2) = 0, 1
+            above = [1] * n
+            for right in range(n - 2, -1, -1): #5, 4, 3, 2, 1, 0 (all inclusive)
+                above[right] = above[right + 1] + first[right]
+            first = above
+        return first[0]
