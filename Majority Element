@@ -72,3 +72,18 @@ class Solution:
         for keys in mydict:
             if mydict[keys] > lookingfor:
                 return keys
+
+
+#3/2/24:
+
+class Solution:
+    def majorityElement(self, nums: List[int]) -> int:
+        looking = len(nums) / 2
+        mydict = dict()
+        for n in nums:
+            if n not in mydict:
+                mydict[n] = 0
+            mydict[n] += 1
+        for d in mydict:
+            if mydict[d] > looking:
+                return d
