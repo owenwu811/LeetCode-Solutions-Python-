@@ -677,3 +677,34 @@ class Solution:
             return s
         else:
             return ""
+
+#3/2/24:
+
+class Solution:
+    def minWindow(self, s: str, t: str) -> str:
+        #s has to fully satisfy t - if not, then return an empty substring
+        if len(s) < len(t): return ""
+        carpetroller, matched, ws, difference = 0, 0, 0, float('inf')
+        need = Counter(t)
+        for we, schar in enumerate(s):
+            if schar in need:
+                need[schar] -= 1
+                if need[schar] == 0:
+                    matched += 1 #even if characters appear multiple times in t, this is progress because need dict only contains unique keys
+                while matched == len(need): #every single character was matched
+                    if difference > we - ws + 1:
+                        difference = we - ws + 1 #mark current state as a window inside of s
+                        carpetroller = ws
+                    kickout = s[ws]
+                    ws += 1
+                    if kickout in need:
+                        if need[kickout] == 0: #we will use need[kickout] later, so do the check to see if we backtracked progress now
+                            matched -= 1
+                        need[kickout] += 1
+        #once we have finished iterating through s, we can anwser the final question of it we can satisfy t with s
+        if len(s) > difference: #difference is the size of our smallest window
+            return s[carpetroller: carpetroller + difference]
+        elif len(s) == difference:
+            return s
+        else:
+            return ""
