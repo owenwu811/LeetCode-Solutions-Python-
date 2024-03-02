@@ -304,3 +304,30 @@ class Solution:
                         d.append([onex, oney])
         return mat
                 
+#3/1/24:
+
+class Solution:
+    def updateMatrix(self, mat: List[List[int]]) -> List[List[int]]:
+        #we want to return the exact same list of lists except with every cell in the list containing the distance to the nearest 0 from the current cell
+        directions = [(0, 1), (0, -1), (1, 0), (-1, 0)]
+        #stores coordinates of every 0 cell (only 0 and 1 exist in input)
+        d = deque()
+        for r in range(len(mat)):
+            for c in range(len(mat[0])):
+                if mat[r][c] == 0:
+                    d.append([r, c])
+                else:
+                    mat[r][c] = float('inf')
+        #we will start on every 0 coordinate that we stored in our deque and step onto a different cell, which has to be a 1 cell since anything that's different from a 0 cell is a 1 cell
+        while d:
+            for i in range(len(d)):
+                zerox, zeroy = d.popleft()
+                for newx, newy in directions:
+                    onex, oney = zerox + newx, zeroy + newy
+                    #if our new one cell is in bounds, we update it with the integer 1
+                    if 0 <= onex < len(mat) and 0 <= oney < len(mat[0]) and mat[onex][oney] > mat[zerox][zeroy] + 1:
+                        mat[onex][oney] = mat[zerox][zeroy] + 1
+                        #since that distance is now correctly updated in the cell that was original a 1 cell, we use this new cell as a starting point including the original 0s
+                        d.append([onex, oney])
+        #only once our deque is completely empty meaning every single cell in our list of lists is updated do we return the final list of lists that was altered
+        return mat
