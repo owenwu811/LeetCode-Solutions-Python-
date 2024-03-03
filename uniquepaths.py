@@ -341,3 +341,17 @@ class Solution:
                 above[right] = above[right + 1] + first[right]
             first = above
         return first[0]
+
+#3/3/24:
+
+class Solution:
+    def uniquePaths(self, m: int, n: int) -> int:
+        #we can move down or right meaning coming from left or above
+        #we fill the bottom and right borders with 1s because there is one way - down or right
+        bottom = [1] * n 
+        for down in range(m - 1): #0 1 is m = 3
+            above = bottom
+            for right in range(n - 2, -1, -1): #543210 inclusive if n = 7 
+                above[right] = above[right + 1] + bottom[right]
+            bottom = above
+        return bottom[0]
