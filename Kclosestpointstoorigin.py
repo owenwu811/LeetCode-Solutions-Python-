@@ -198,3 +198,22 @@ class Solution:
             result.append([a, b])
             k -= 1
         return result
+
+#3/3/24:
+
+class Solution:
+    def kClosest(self, points: List[List[int]], k: int) -> List[List[int]]:
+        #our input array called points is a list of lists - each list of lists represents an [x, y] coordinate
+        #we want to return k number of pairs given that the pairs are closest to [0, 0] compared to all pairs
+        minheap = []
+        for x, y in points:
+            distance = (x ** 2) + (y ** 2)
+            minheap.append([distance, x, y])
+        heapq.heapify(minheap) #the distance is the 0th index in our minheap list of lists, so this ensures that the smallest distance is at the top of the heap
+        res = []
+        while k > 0:
+            distance, x, y = heapq.heappop(minheap) #we will do this k times
+            res.append([x, y]) #we want the coordinate associated with the distance in our minheap = [[distance, x, y]], not the actual distance
+            k -= 1
+        return res
+
