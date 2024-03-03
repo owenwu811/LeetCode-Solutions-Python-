@@ -206,3 +206,22 @@ class Solution:
         res = []
         f("")
         return res
+
+#3/3/24:
+
+class Solution:
+    def letterCombinations(self, digits: str) -> List[str]:
+        if digits == "" or len(digits) == 0 : return []
+        hashmap = {"2": ['a', 'b', 'c'], "3": ['d', 'e', 'f'], "4": ['g', 'h', 'i'], "5": ['j', 'k', 'l'], "6": ['m', 'n', 'o'], "7": ['p', 'q', 'r', 's'], "8": ['t', 'u', 'v'], "9": ['w', 'x', 'y', 'z']}
+        def f(path):
+            if len(digits) == len(path):
+                res.append(path)
+                return
+            else: #if len(digits) != len(path), len(path) is now 1 instead of 0, so hashmap[digits[1]] becomes hashmap [3], so i = ['d', 'e', 'f'] and i = 'd', i = 'e', i = 'f'
+                
+            
+                for i in hashmap[digits[len(path)]]: # i = ['a', 'b', 'c'], so i = 'a', i = 'b', i = 'c'
+                    f(path + i) #path = "", i = "a".... path = "a", i = "d"
+        res = []
+        f("")
+        return res
