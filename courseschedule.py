@@ -727,3 +727,29 @@ class Solution:
                     if indegree[neighbor] == 0:
                         d.append(neighbor)
         return canvisit == numCourses
+
+#3/3/24:
+
+class Solution:
+    def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+        #a depends on b
+        #0 depends on 1
+        indegree = [0] * numCourses #each course starts out with 0 prerequisites
+        adj = [[] for course in range(numCourses)]
+        for p in prerequisites: #for each sublist in the input, we take the 1st index and add the 0th index to the right hand list of the 1st index in our adjacency list
+            adj[p[1]].append(p[0])
+            indegree[p[0]] += 1
+        d = deque()
+        for i in range(len(indegree)): #after going through each sublist in our input, we can determine if we can visit any courses right away that, even after traversing through the input list, still have 0 dependencies and say we can already vist those courses because our goal is to say Yes or No to if we can visit all courses or not 
+            if indegree[i] == 0: 
+                d.append(i)
+        canvisit = 0 #we want this to be equal to numCourses at the end to say Yes
+        while d: #we still have possible courses with 0 prerequisites that we have to increment canvisit with
+            for i in range(len(d)):
+                canvisit += 1
+                currentnode = d.pop() 
+                for n in adj[currentnode]: 
+                    indegree[n] -= 1 #offsetting the indegree[p[0]] += 1 because we satisfied that prerequisite
+                    if indegree[n] == 0:
+                        d.append(n)
+        return canvisit == numCourses
