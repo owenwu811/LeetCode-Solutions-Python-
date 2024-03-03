@@ -212,3 +212,23 @@ class Solution:
 
 
 #remember: Inorder => Left, Root, Right while Preorder => Root, Left, Right!
+
+
+#3/3/24:
+
+class Solution:
+    def rightSideView(self, root: Optional[TreeNode]) -> List[int]:
+        d = deque()
+        d.append(root)
+        res = []
+        while d:
+            rightside = None
+            for i in range(len(d)):
+                current = d.popleft()
+                if current != None:
+                    rightside = current
+                    d.append(current.left)
+                    d.append(current.right)
+            if rightside != None:
+                res.append(rightside.val)
+        return res
