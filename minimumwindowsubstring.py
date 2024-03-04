@@ -708,3 +708,33 @@ class Solution:
             return s
         else:
             return ""
+
+
+#3/4/24:
+
+class Solution:
+    def minWindow(self, s: str, t: str) -> str:
+        #every character in t is included in our s window
+        if len(s) < len(t): return ""
+        matched, ws, carpetroller, difference = 0, 0, 0, float('inf')
+        need = Counter(t)
+        for we, schar in enumerate(s):
+            if schar in need:
+                need[schar] -= 1
+                if need[schar] == 0:
+                    matched += 1
+                while matched == len(need):
+                    if difference > we - ws + 1:
+                        difference = we - ws + 1
+                        carpetroller = ws
+                    kickout = s[ws]
+                    ws += 1
+                    if kickout in need:
+                        if need[kickout] == 0:
+                            matched -= 1
+                        need[kickout] += 1
+        if len(s) > difference:
+            return s[carpetroller: carpetroller + difference]
+        elif len(s) == difference:
+            return s
+        else: return ""
