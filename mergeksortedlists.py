@@ -548,3 +548,37 @@ class Solution:
         elif list2 and not list1: current.next = list2
         return prev.next
             
+
+
+
+class Solution:
+    def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
+        if not lists: #if lists is empty, we return nothing aka None
+            return None
+        while len(lists) > 1:
+            merged = []
+            for i in range(0, len(lists), 2): #we want to grab pairs of lists
+                list1 = lists[i]
+                if (i + 1) < len(lists):
+                    list2 = lists[i + 1]
+                else:
+                    list2 = None
+                merged.append(self.ml(list1, list2))
+            lists = merged
+        return lists[0]
+    def ml(self, list1, list2):
+        dummy = ListNode(0) - using #None here would throw a NoneType has no attribute next because we would be trying access the next attribute of None since cur.next = List1 is trying to access next of None, and since cur is None, it has no next attribute!!!!!
+        cur = dummy
+        while list1 and list2 and cur != None:
+            if list1.val < list2.val:
+                cur.next = list1
+                list1 = list1.next
+            else:
+                cur.next = list2
+                list2 = list2.next
+            cur = cur.next
+        if list1 and not list2:
+            cur.next = list1
+        elif list2 and not list1 and cur != None:
+            cur.next = list2
+        return dummy.next
