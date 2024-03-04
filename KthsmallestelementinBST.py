@@ -406,3 +406,27 @@ class Solution:
             if n == k:
                 return cur.val
             cur = cur.right
+
+#3/4/24:
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+
+class Solution:
+    def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:
+        stack = [] #we want the kth smallest, so we traverse the tree in inorder fashion (LEFT ROOT RIGHT BECAUSE WE KNOW BST HAS SMALLEST VALUES TO THE VERY LEFT OF TREE) and add them to the tree, and we pop k times
+        cur = root
+        n = 0
+        while cur != None or stack:
+            while cur != None:
+                stack.append(cur)
+                cur = cur.left
+            cur = stack.pop() #popping back up by visiting the node
+            n += 1
+            if n == k:
+                return cur.val
+            cur = cur.right
