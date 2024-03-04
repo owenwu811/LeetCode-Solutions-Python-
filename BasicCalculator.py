@@ -68,7 +68,7 @@ class Solution:
             elif char == "(":
                 stack.append(ressum) #ressum here, not curnum!
                 stack.append(sign)
-                ressum, sign = 0, 1
+                ressum, sign = 0, 1 #ressum = 0 to make way to calculating only what is inside of the parenthesis (4 + 5 + 2) since we are currently seeing "(", and ressum was 1 before this, and we just want to start adding from 4 to calculate only what is inside of the parenthesis 
             elif char == ")":
                 ressum += sign * curnum
                 ressum *= stack.pop()
