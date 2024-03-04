@@ -64,9 +64,9 @@ class Solution:
             elif char in '-+':
                 ressum += sign * curnum
                 sign = 1 if char == "+" else -1
-                curnum = 0
+                curnum = 0 #reset curnum = 0, not ressum 
             elif char == "(":
-                stack.append(ressum)
+                stack.append(ressum) #ressum here, not curnum!
                 stack.append(sign)
                 ressum, sign = 0, 1
             elif char == ")":
