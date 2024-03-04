@@ -62,7 +62,7 @@ class Solution:
             if char.isdigit():
                 curnum = curnum * 10 + int(char)
             elif char in '-+':
-                ressum += sign * curnum
+                ressum += sign * curnum #takes ressum from 0 to 4 to only include what is inside of the parenthesis since ressum was cleared from 1 to 0 when seeing "(" previously
                 sign = 1 if char == "+" else -1
                 curnum = 0 #reset curnum = 0, not ressum 
             elif char == "(":
