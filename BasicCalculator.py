@@ -99,3 +99,30 @@ class Solution:
                 ressum += stack.pop()
                 currentn = 0
         return ressum + (currentn * sign)
+
+
+#3/5/24:
+
+class Solution:
+    def calculate(self, s: str) -> int:
+        #integer is our return type
+        currentn, ressum, sign = 0, 0, 1
+        stack = []
+        for char in s:
+            if char.isdigit():
+                currentn = currentn * 10 + int(char)
+            elif char in '+-':
+                ressum += currentn * sign
+                sign = -1 if char == "-" else 1 
+                currentn = 0
+            elif char == "(":
+                ressum += currentn * sign
+                stack.append(ressum)
+                stack.append(sign)
+                ressum, sign = 0, 1
+            elif char == ")":
+                ressum += currentn * sign
+                ressum *= stack.pop()
+                ressum += stack.pop()
+                currentn = 0 #we don't reset the ressum here but the currentn
+        return ressum + (currentn * sign) 
