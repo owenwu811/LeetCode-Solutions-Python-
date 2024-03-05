@@ -582,3 +582,47 @@ class Solution:
         elif list2 and not list1 and cur != None:
             cur.next = list2
         return dummy.next
+
+
+#3/5/24:
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
+        if not lists:
+            return None
+        while len(lists) > 1:
+            merged = [] #merge each pair of lists together
+            #if len(lists) = 2, we would only have one iteration - 0
+            for i in range(0, len(lists), 2): #starting from 0 inclusive and up to not including len(lists), moving forward 2 steps at a time
+                list1 = lists[i]
+                #if len(lists) = 2, (i + 1) = (0 + 1) = 1, which must be less than 2 because indexes must be one less than length
+                if (i + 1) < len(lists): # we have room for a 2nd pointer
+                    list2 = lists[i + 1]
+                else:
+                    list2 = None
+                #merging the pair of linked lists into one
+                merged.append(self.ml(list1, list2))
+            lists = merged #moving towards termination of while loop above
+        return lists[0] #we only have one list left
+    def ml(self, list1, list2):
+        prev = ListNode(0) #to avoid Nonetype error, use prev = ListNode(0) or ListNode(None) as pass by reference instead of prev = None
+        cur = prev
+        while list1 and list2: #trying to merge two linked lists into one
+            if list1.val < list2.val:
+                cur.next = list1 #if you did prev = None, then Nonetype error here because cur is None, and Nonetype object has no next attribute
+                list1 = list1.next #move next in the list which you took one node away from
+            else:
+                cur.next = list2
+                list2 = list2.next
+            cur = cur.next #move next in our output list that we will join to merged eventually
+        if list1 and not list2:
+            cur.next = list1
+        elif list2 and not list1:
+            cur.next = list2
+        return prev.next
+        
