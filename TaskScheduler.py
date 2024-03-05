@@ -117,4 +117,20 @@ class Solution:
                 cntmax += 1
         return max((maxmax - 1) * (n + 1) + cntmax, len(tasks))
         
-        
+
+#3/5/24:
+
+class Solution:
+    def leastInterval(self, tasks: List[str], n: int) -> int:
+        #tasks is an array that is represented by string letters that occur between A and Z. 
+        #we are given a cooling time that must be added to the total time when we process adjacent letters
+        count = [0] * 26
+        res = 0
+        for letter in tasks:
+            count[ord(letter) - ord('A')] += 1
+        maxmax, maxfreq = 0, max(count)
+        for l in count:
+            if l == maxfreq:
+                maxmax += 1
+        return max((maxfreq - 1) * (n + 1) + maxmax, len(tasks))
+
