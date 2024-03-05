@@ -900,3 +900,35 @@ class Solution:
         return minminutes if freshcount == 0 else -1
 
 
+
+#3/4/24:
+
+class Solution:
+    def orangesRotting(self, grid: List[List[int]]) -> int:
+        d = deque()
+        minminutes = 0
+        freshcount = 0
+        for r in range(len(grid)):
+            for c in range(len(grid[0])):
+                if grid[r][c] == 2:
+                    d.append([r, c])
+                elif grid[r][c] == 1:
+                    freshcount += 1
+                elif grid[r][c] == 0:
+                    continue
+        directions = [[1, 0], [-1, 0], [0, 1], [0, -1]]
+        while d and freshcount > 0:
+            for i in range(len(d)):
+                rx, ry = d.popleft() #note that d.pop() makes things wrong here!
+                for newx, newy in directions:
+                    dx, dy = rx + newx, ry + newy
+                    if dx < 0 or dx >= len(grid) or dy < 0 or dy >= len(grid[0]) or grid[dx][dy] != 1:
+                        continue
+                    grid[dx][dy] = 2
+                    d.append([dx, dy])
+                    freshcount -= 1
+            minminutes += 1
+        return minminutes if freshcount == 0 else -1
+
+
+
