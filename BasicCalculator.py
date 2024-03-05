@@ -64,7 +64,7 @@ class Solution:
             elif char in '-+':
                 ressum += sign * curnum #takes ressum from 0 to 4 to only include what is inside of the parenthesis since ressum was cleared from 1 to 0 when seeing "(" previously... then takes ressum from 4 to 9
                 sign = 1 if char == "+" else -1
-                curnum = 0 #if we didn't reset curnum to 0, the next time we see a + or -, curnum would be 14 instead of 4 when we first see "(" for calculating (4 + 5 + 2)
+                curnum = 0 #if we didn't reset curnum to 0, the next time we see a + or -, curnum would be 14 instead of 4 when we first see "(" for calculating (4 + 5 + 2) AND we would be doing - curnum = 4 * 10 + 5 - instead of - curnum = 0 * 10 + 5 - when char = "5" when iterating over the 5 in (4 + 5 + 2) part, and since the execution flow goes from - curnum = curnum*10 + int(char) - directly back to - for char in s - and then to executing - elif char in "+-": - we would be doing - ressum += 45 * 1 - instead of ressum += 5 * 1 (this is inside of the - elif char in "+-": - block)
             elif char == "(":
                 stack.append(ressum) #ressum here, not curnum!
                 stack.append(sign)
