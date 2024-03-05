@@ -355,3 +355,19 @@ class Solution:
                 above[right] = above[right + 1] + bottom[right]
             bottom = above
         return bottom[0]
+
+#3/5/24:
+
+class Solution:
+    def uniquePaths(self, m: int, n: int) -> int:
+        #unique ways robot can take to reach bottom right corner starting from top left corner
+        #move right or down means coming from top or from the left
+        first = [1] * n #one way - to the right
+        for down in range(m - 1):
+            above = [1] * n 
+            for right in range(n - 2, -1, -1):
+                above[right] = above[right + 1] + first[right]
+            first = above
+        return first[0]
+ 
+ 
