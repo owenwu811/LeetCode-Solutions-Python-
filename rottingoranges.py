@@ -919,7 +919,7 @@ class Solution:
         directions = [[1, 0], [-1, 0], [0, 1], [0, -1]]
         while d and freshcount > 0:
             for i in range(len(d)):
-                rx, ry = d.popleft() #note that d.pop() makes things wrong here!
+                rx, ry = d.popleft() #note that d.pop() makes things wrong here! grid = [[2,1,1],[1,1,0],[0,1,1]] would return 3 instead of 4!
                 for newx, newy in directions:
                     dx, dy = rx + newx, ry + newy
                     if dx < 0 or dx >= len(grid) or dy < 0 or dy >= len(grid[0]) or grid[dx][dy] != 1:
