@@ -600,6 +600,38 @@ class LRUCache:
        
 
                 
-            
+#3/6/24 practice:
+
+class LRUCache:
+    def __init__(self, capacity: int):
+        self.cap = capacity #positive integer given to us
+        self.mydict = dict()
+        self.pagefaultcount = 0
+        
+       
+    def get(self, key: int) -> int:
+        if key not in self.mydict:
+            return -1
+        else: #key already exists in our dictionary, so we pop and insert at rear
+            res = self.mydict.pop(key)
+            self.mydict[key] = res
+            return res
+
+      
+
+    def put(self, key: int, value: int) -> None:
+        if key in self.mydict: #key exists
+            self.mydict.pop(key)
+            self.mydict[key] = value
+        else:
+            if len(self.mydict) == self.cap: #key does not exist and reached capacity
+                lru = next(iter(self.mydict))
+                self.mydict.pop(lru)
+                self.mydict[key] = value
+            else: #key does not exist and have not reached capacity
+                self.mydict[key] = value
+                self.pagefaultcount += 1
         
         
+
+      
