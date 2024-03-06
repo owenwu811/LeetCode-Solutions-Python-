@@ -114,3 +114,22 @@ class Solution:
             res = max(res, intervals[i][2] + dfs(j))
             return res
         return dfs(0)
+
+#3/6/24:
+
+class Solution:
+    def jobScheduling(self, startTime: List[int], endTime: List[int], profit: List[int]) -> int:
+        intervals = sorted(zip(startTime, endTime, profit))
+        cache = {}
+        def dfs(i):
+            if i >= len(intervals):
+                return 0
+            elif i in cache:
+                return cache[i]
+            res = dfs(i + 1)
+            j = bisect.bisect(intervals, (intervals[i][1], -1, -1)) #binary search requires list to be sorted. calling bisect function from bisect module. it is searching for the position in the intervals list where the tuple (intervals[i][1], -1, -1) would be inserted while maintaining the sorted order. intervals is assumed to be a list of tuples.
+            cache[i] = max(res, intervals[i][2] + dfs(j)) 
+            res = max(res, intervals[i][2] + dfs(j))
+            return res
+
+        return dfs(0)
