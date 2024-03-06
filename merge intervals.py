@@ -144,3 +144,16 @@ class Solution:
             else:
                 output.append([first, second])
         return output
+
+#3/6/24:
+
+class Solution:
+    def merge(self, intervals: List[List[int]]) -> List[List[int]]:
+        intervals.sort(key=lambda n:n[0]) #we sort each sublist by comparing the 0th index of each sublist
+        output = [intervals[0]]
+        for first, second in intervals[1:]:
+            if first <= output[-1][1]:
+                output[-1][1] = max(output[-1][1], second)
+            else:
+                output.append([first, second])
+        return output
