@@ -108,3 +108,25 @@ class Solution:
         if l and not r: return l #we know the lca occurs in the left subtree, which was returned from the if root == None or root == p or root == q check at each level or recursive call
         elif r and not l: return r
         else: return None
+
+#3/5/24:
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+        #we want to find the lowest common parent node of both p and q nodes
+        if root == None or root == p or root == q: #checked at each level
+            return root
+        l = self.lowestCommonAncestor(root.left, p, q)
+        r = self.lowestCommonAncestor(root.right, p, q)
+        if l == None and r == None: return None
+        elif l == None and r: return r #in the right subtree
+        elif r == None and l: return l
+        elif l and r: return root
+
