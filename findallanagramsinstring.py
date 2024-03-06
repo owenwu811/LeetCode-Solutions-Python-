@@ -122,3 +122,15 @@ class Solution:
                 res.append(i)
         return res
         
+#3/5/24:
+
+class Solution:
+    def findAnagrams(self, s: str, p: str) -> List[int]:
+        res = []
+        key = "".join(sorted(p))
+        #the idea is we slide window through s, making each window exactly the length of p 
+        for i in range(len(s) - len(p) + 1):
+            window = "".join(sorted(s[i: i + len(p)]))
+            if window == key:
+                res.append(i)
+        return res
