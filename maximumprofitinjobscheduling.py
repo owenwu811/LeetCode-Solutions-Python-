@@ -127,6 +127,7 @@ class Solution:
             elif i in cache:
                 return cache[i]
             res = dfs(i + 1)
+            #-1, -1 are placeholder values indicating that there are no constraints on the second and third elements of the tuples in the intervals list, so this binary search is only comparing 1st element of each tuple while ignoring the 2nd and 3rd elements. 
             j = bisect.bisect(intervals, (intervals[i][1], -1, -1)) #binary search requires list to be sorted. calling bisect function from bisect module. it is searching for the position in the intervals list where the tuple (intervals[i][1], -1, -1) would be inserted while maintaining the sorted order. intervals is assumed to be a list of tuples.
             cache[i] = max(res, intervals[i][2] + dfs(j)) 
             res = max(res, intervals[i][2] + dfs(j))
