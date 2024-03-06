@@ -212,3 +212,37 @@ class MyQueue:
 
     def empty(self) -> bool:
         return len(self.d) == 0
+
+
+#3/5/24:
+
+class MyQueue:
+
+    def __init__(self):
+        self.d = deque()
+        
+
+    def push(self, x: int) -> None:
+        self.d.append(x)
+
+  
+  
+     
+ 
+    def pop(self) -> int:
+        return self.d.popleft() #d.popleft() gives you the element you popped, not the rest of the list itself
+ 
+       
+    
+
+    def peek(self) -> int:
+        return self.d[0]
+ 
+ 
+        
+    
+
+    def empty(self) -> bool:
+        return len(self.d) == 0
+
+      
