@@ -150,4 +150,27 @@ class Solution:
                 ressum += stack.pop()
                 currentn = 0
         return ressum + (currentn * sign)
- 
+
+#3/7/24:
+
+class Solution:
+    def calculate(self, s: str) -> int:
+        ressum, sign, currentn, stack = 0, 1, 0, []
+        for char in s:
+            if char.isdigit():
+                currentn = currentn * 10 + int(char) #if we see 9 and next see 8, then 98 = 9 * 10 + 8, which has to be the case since 9 and 8 are adjacent if you see 98
+            elif char in '+-':
+                ressum += currentn * sign
+                sign = -1 if char == "-" else 1
+                currentn = 0 #currentn would be incorrect if it wasn't reset here and if it was used again after encountering a +-
+            elif char == "(":
+                stack.append(ressum)
+                stack.append(sign)
+                ressum, sign = 0, 1 #since we are already tracking state in stack since entering ()
+            elif char == ")":
+                ressum += currentn * sign
+                ressum *= stack.pop()
+                ressum += stack.pop()
+                currentn = 0
+        return ressum + (currentn * sign)
+
