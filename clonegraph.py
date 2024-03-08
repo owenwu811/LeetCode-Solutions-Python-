@@ -54,3 +54,29 @@ class Solution:
                 copy.neighbors.append(f(n))
             return copy #returns cloned node corresponding to the original node
         return f(node) if node else None #entrypoint of recursive function. starts cloning from the given input node. If inputnode is None, it returns None because there's no graph to clone. 
+
+
+
+#3/8/24:
+
+"""
+# Definition for a Node.
+class Node:
+    def __init__(self, val = 0, neighbors = None):
+        self.val = val
+        self.neighbors = neighbors if neighbors is not None else []
+"""
+
+from typing import Optional
+class Solution:
+    def cloneGraph(self, node: Optional['Node']) -> Optional['Node']:
+        mydict = {}
+        def f(node):
+            if node in mydict:
+                return mydict[node]
+            copy = Node(node.val)
+            mydict[node] = copy
+            for n in node.neighbors:
+                copy.neighbors.append(f(n))
+            return copy
+        return f(node) if node else None
