@@ -738,3 +738,31 @@ class Solution:
         elif len(s) == difference:
             return s
         else: return ""
+
+
+#3/8/24:
+
+class Solution:
+    def minWindow(self, s: str, t: str) -> str:
+        if len(s) < len(t): ""
+        start, length, need, matched, ws = 0, float('inf'), Counter(t), 0, 0
+        for we, schar in enumerate(s): #we slide the window through s
+            if schar in need:
+                need[schar] -= 1
+                if need[schar] == 0:
+                    matched += 1
+                while matched == len(need):
+                    if length > we - ws + 1:
+                        length = we - ws + 1
+                        start = ws
+                    kickout = s[ws]
+                    ws += 1
+                    if kickout in need:
+                        if need[kickout] == 0:
+                            matched -= 1
+                        need[kickout] += 1
+        if len(s) > length: #found smaller valid window
+            return s[start: start + length]
+        elif len(s) == length:
+            return s
+        else: return ""
