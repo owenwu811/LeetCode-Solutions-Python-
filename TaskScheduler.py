@@ -146,5 +146,8 @@ class Solution:
         for l in count:
             if l == maxcount:
                 maxfreq += 1
+        # + maxfreq is for proper spacing between tasks. Tasks with the same max frequency would be executed back to back without proper cooling intervals (tasks or letters), leading to suboptimal performance. 
+        # the reason we need to space out tasks with the same maximum frequency is because we want to choose to execute the tasks (letters) that occur the most frequently first to optimize performance
         return max((maxcount - 1) * (n + 1) + maxfreq, len(tasks))
+     
 
