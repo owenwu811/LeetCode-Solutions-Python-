@@ -298,3 +298,23 @@ class Solution:
         self.fill(image, sr - 1, sc, starting, color)
         self.fill(image, sr, sc + 1, starting, color)
         self.fill(image, sr, sc - 1, starting, color)
+
+
+#3/9/24:
+
+class Solution:
+    def floodFill(self, image: List[List[int]], sr: int, sc: int, color: int) -> List[List[int]]:
+        starting = image[sr][sc]
+        if starting == color: #if the starting pixel is already equal to the color pixel, then there is nothing to fill, and we can just return the image unmodified
+            return image
+        #if starting pixel is not equal to color, we have work to do, so we can start the process of filling adjacent cells
+        self.fill(image, sr, sc, starting, color)
+        return image
+    def fill(self, image, sr, sc, starting, color):
+        if sr < 0 or sr >= len(image) or sc < 0 or sc >= len(image[0]) or image[sr][sc] != starting: #read the instructions carefull - we flood fill any tile that is equal to the starting cell only !
+            return 
+        image[sr][sc] = color 
+        self.fill(image, sr + 1, sc, starting, color)
+        self.fill(image, sr - 1, sc, starting, color)
+        self.fill(image, sr, sc + 1, starting, color)
+        self.fill(image, sr, sc - 1, starting, color)
