@@ -170,3 +170,27 @@ class Solution:
                 if s[i: j + 1] in wordDict:
                     res[j + 1] = res[i] or res[j + 1]
         return res[-1]
+
+
+#The "word break" problem is a classic dynamic programming problem frequently encountered in coding interviews and coding challenges like those found on LeetCode. The problem statement typically goes like this:
+
+#Given a string s and a dictionary of words, you are asked to determine if s can be segmented into a space-separated sequence of one or more dictionary words.
+
+#For example, given the string "leetcode" and the dictionary ["leet", "code"], return true because "leetcode" can be segmented as "leet code".
+
+#The key concepts and techniques involved in solving the word break problem include:
+
+#Dynamic Programming (DP):
+#This problem can be efficiently solved using dynamic programming. The idea is to build up a dynamic programming table where each cell dp[i] represents whether the substring ending at index i (i.e., s[0:i+1]) can be segmented into valid words from the dictionary. The value of dp[i] is determined by checking whether any prefix of s[0:i+1] is a valid word and if the rest of the substring (excluding that prefix) can also be segmented.
+
+#Memoization:
+#While implementing dynamic programming, memoization can be used to store the results of subproblems that have already been solved, which helps avoid redundant calculations and improves efficiency.
+
+#Dictionary Lookup:
+#The problem involves checking whether substrings of the given string exist in a dictionary of words. An efficient data structure like a hash set or trie can be used to store the dictionary for faster lookup operations.
+
+#String Manipulation:
+#Iterating over the string and breaking it into substrings to check their presence in the dictionary is a fundamental aspect of solving this problem.
+
+#Recursion (optional):
+#While not always the most efficient approach, you may encounter recursive solutions to the word break problem as well. Recursion can be used to explore all possible segmentations of the string, but often leads to inefficient time complexity if not optimized properly.
