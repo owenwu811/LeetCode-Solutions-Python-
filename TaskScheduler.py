@@ -134,3 +134,17 @@ class Solution:
                 maxmax += 1
         return max((maxfreq - 1) * (n + 1) + maxmax, len(tasks))
 
+#3/8/24:
+
+class Solution:
+    def leastInterval(self, tasks: List[str], n: int) -> int:
+        #cooling time = n
+        count = [0] * 26
+        for letter in tasks:
+            count[ord(letter) - ord('A')] += 1
+        maxfreq, maxcount = 0, max(count)
+        for l in count:
+            if l == maxcount:
+                maxfreq += 1
+        return max((maxcount - 1) * (n + 1) + maxfreq, len(tasks))
+
