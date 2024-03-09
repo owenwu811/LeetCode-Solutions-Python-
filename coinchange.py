@@ -412,3 +412,20 @@ class Solution:
         if dparr[-1] == float('inf'):
             return -1
         return dparr[-1]
+
+#3/8/24:
+
+class Solution:
+    def coinChange(self, coins: List[int], amount: int) -> int:
+        #we want the fewest frequency of coins given the cents with the values in our array that sum up to amount cents
+        dparr = [0] + ([float('inf')] * amount) #base case is 0 ways to sum up to 0 cents
+        for levelamount in range(1, amount + 1):
+            #try each coin in our coins array
+            for coinvalue in coins:
+                if coinvalue <= levelamount:
+                    dparr[levelamount] = min(dparr[levelamount], dparr[levelamount - coinvalue] + 1)
+        if dparr[-1] == float('inf'): #not modified means cannot make up amount cents with our options at all
+            return -1
+        return dparr[-1]
+
+
