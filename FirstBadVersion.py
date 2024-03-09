@@ -194,3 +194,22 @@ class Solution:
             else:
                 l = mid + 1
         return l
+
+#3/9/24:
+
+# The isBadVersion API is already defined for you.
+# def isBadVersion(version: int) -> bool:
+class Solution:
+    def firstBadVersion(self, n: int) -> int:
+        #so if a version is bad, all the versions after this version will also be bad
+        l = 0 #these are numbers, not indexes
+        r = n 
+        while l <= r:
+            mid = (l + r) // 2 #decimal instead of integer
+            if isBadVersion(mid): #we want to find the earliest bad version, so since this one is True, we know it is a bad one
+                r = mid - 1 #there could be one before this one that is causing this one to be bad
+            else:
+                l = mid + 1
+        return l 
+ 
+
