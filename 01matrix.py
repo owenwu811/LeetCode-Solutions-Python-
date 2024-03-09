@@ -331,3 +331,29 @@ class Solution:
                         d.append([onex, oney])
         #only once our deque is completely empty meaning every single cell in our list of lists is updated do we return the final list of lists that was altered
         return mat
+
+
+#3/9/24:
+
+class Solution:
+    def updateMatrix(self, mat: List[List[int]]) -> List[List[int]]:
+        directions = [(0, 1), (0, -1), (1, 0), (-1, 0)] #these will be unpacked
+        d = deque() #will store the coordinates of each 0 cell that we find in our list of lists
+        for r in range(len(mat)):
+            for c in range(len(mat[0])):
+                if mat[r][c] == 0:
+                    d.append([r, c])
+                else: #we are seeing a 1 because there are only 0s and 1s in our list of lists
+                    mat[r][c] = float('inf')
+        #we will start at every 1 cell and go to every other 0 cell to calculate the distance and return the result list of lists that has all the tiles as the distance to the nearest 0
+        while d:
+            for i in range(len(d)):
+                zerox, zeroy = d.popleft() #BFS = FIFO
+                for newx, newy in directions:
+                    #we will start at this one cell 
+                    onex, oney = zerox + newx, zeroy + newy
+                    #as long as we are in bounds and the one cell is bigger than the zero cell, we will update the value of the 1 cell
+                    if 0 <= onex < len(mat) and 0 <= oney < len(mat[0]) and mat[onex][oney] > mat[zerox][zeroy] + 1:
+                        mat[onex][oney] = mat[zerox][zeroy] + 1
+                        d.append([onex, oney])
+        return mat
