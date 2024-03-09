@@ -393,3 +393,32 @@ class TimeMap:
             else:
                 r = mid - 1
         return res
+
+#3/9/24:
+
+class TimeMap:
+    def __init__(self):
+        self.mydict = dict() 
+        
+        
+    def set(self, key: str, value: str, timestamp: int) -> None: #value and timestamp are a list that is the value of the dictionary
+        if key not in self.mydict:
+            self.mydict[key] = [] #empty list if the key dosen't exist in mydict
+        self.mydict[key].append([value, timestamp]) #this is going to add the list in order since time only goes in one direction and because we can now do a binary search because the timestamps are already sorted
+
+       
+       
+       
+    def get(self, key: str, timestamp: int) -> str:
+        #returning a value means that we return a string that is the 0th index correspondant to the timestamp, which is the 1st index
+        res = ""
+        c = self.mydict.get(key, []) #retrieve the value associated with that key, or give an empty list, so it shoudl correspond to [value, timestamp]
+        l, r = 0, len(c) - 1
+        while l <= r: #we can run a binary search
+            mid = (l + r) // 2
+            if c[mid][1] <= timestamp:
+                res = c[mid][0]
+                l = mid + 1 #we want to find the closest possible but not bigger than
+            else:
+                r = mid - 1 #too big, so we have to go back since the array is sorted in order by timestamps 
+        return res
