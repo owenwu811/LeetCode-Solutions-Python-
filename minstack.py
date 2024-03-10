@@ -368,8 +368,21 @@ class MinStack:
         
 
     def pop(self) -> None:
-        self.stack.pop()
+        self.stack.pop() 
         self.minstack.pop()
+
+       #we must pop from both stacks:
+       #stack = 
+       #-3
+       #0
+       #-2
+
+      #minstack = 
+      #-3
+      #-2
+      #-2
+
+      #if you wanted to pop -3, you would pop from both stacks. If you just popped -3 from stack without popping 3 from minstack, you would have an element inside of minstack that's not inside of stack, and when you go to return the top of minstack, you still get -3 whereas we already popped -3, so the anwser is supposed to be -2
 
         
 
