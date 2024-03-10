@@ -56,6 +56,10 @@ class Solution:
         return f(node) if node else None #entrypoint of recursive function. starts cloning from the given input node. If inputnode is None, it returns None because there's no graph to clone. 
 
 
+#the dictionary mydict is used to ensure that each node is only cloned once, 
+#preventing infinite recursion in cases where nodes reference each other cyclically. 
+#The key is the original node, and the value is the corresponding cloned node. 
+#This dictionary is consulted before cloning a node to see if it has already been cloned, and if so, the previously cloned version is returned.
 
 #3/8/24:
 
