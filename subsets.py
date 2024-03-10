@@ -308,3 +308,22 @@ class Solution:
         res = []
         f(0, [])
         return res
+
+
+#3/9/24:
+
+
+class Solution:
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+        #input array has only unique elements
+        def dfs(i, path):
+            if i >= len(nums):
+                res.append(path.copy())
+                return
+            path.append(nums[i])
+            dfs(i + 1, path)
+            path.pop()
+            dfs(i + 1, path)
+        res = []
+        dfs(0, [])
+        return res
