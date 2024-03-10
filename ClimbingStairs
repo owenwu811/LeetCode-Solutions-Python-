@@ -161,3 +161,17 @@ class Solution:
 We iterate n - 1 times because we've already accounted for the first step in our initialization. This loop calculates the number of distinct ways to reach each step up to the nth step.
 
 This algorithm is efficient because it only requires O(n) time complexity and O(1) space complexity, making it suitable for large values of n.
+
+
+
+#3/9/24:
+
+class Solution:
+    def climbStairs(self, n: int) -> int:
+        one, two = 1, 1
+        for i in range(n - 1):
+            r = one
+            one = one + two
+            two = r
+        return one
+
