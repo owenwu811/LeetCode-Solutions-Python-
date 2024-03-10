@@ -43,3 +43,16 @@ class Solution:
     def addBinary(self, a: str, b: str) -> str:
         s = bin(int(a, 2) + int(b, 2)) #"1010" + "1011" = 10 + 11 = bin(int(21)) > "0b10101"
         return s[2:] #"0b10101" > "10101" aka from index 2 until the end of the string
+
+
+#3/10/24:
+
+class Solution:
+    def addBinary(self, a: str, b: str) -> str:
+        #a = 1010 
+        #b = 1011
+        #10101
+        #0b10101
+        #10101
+        s = bin(int(a, 2) + int(b, 2))
+        return s[2:]
