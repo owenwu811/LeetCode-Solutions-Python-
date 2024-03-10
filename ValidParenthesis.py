@@ -226,4 +226,25 @@ class Solution:
                 if openb.index(girl) != closeb.index(char):
                     return False
         return not stack
+
+
+
+#3/10/24:
+
+class Solution:
+    def isValid(self, s: str) -> bool:
+        stack = []
+        openb, closeb = "{([", "})]"
+        for char in s:
+            if char in openb: #only girls go on the rear of the stack
+                stack.append(char)
+            elif char in closeb and not stack: #)( or }{ or ][ isn't valid aka we have too many boys
+                return False 
+            else: #char most be in closeb since if covered all scenarios for openb
+                girl = stack.pop() #sets the popped bracket equal to a variable called girl
+                if openb.index(girl) != closeb.index(char): return False
+        return not stack #only False if extra openb or extra girls at the end
+
+                
+            
         
