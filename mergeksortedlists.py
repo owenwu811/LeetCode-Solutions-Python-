@@ -686,7 +686,9 @@ class Solution:
             lists = merged
         return lists[0]
     def ml(self, list1, list2):
-        prev = ListNode(None) 
+        prev = ListNode(None) #the class ListNode above has a next attribute to avoid NoneType has no attribute next error! classListNode has a val and next attribute above! The val attribute holds the value of the node.
+#The next attribute holds a reference to the next node in the linked list.
+#By initializing prev as a ListNode object with prev = ListNode(None), you're ensuring that prev has both val and next attributes. This is necessary for the merging logic in the code to work properly, as it relies on manipulating these attributes when merging two linked lists.
         cur = prev
         while list1 and list2:
             if list1.val < list2.val:
