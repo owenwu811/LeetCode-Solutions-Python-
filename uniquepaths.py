@@ -370,4 +370,16 @@ class Solution:
             first = above
         return first[0]
  
+
+#3/9/24:
+
+class Solution:
+    def uniquePaths(self, m: int, n: int) -> int:
+        bottom = [1] * n
+        for down in range(m - 1):
+            above = [1] * n
+            for right in range(n - 2, -1, -1):
+                above[right] = above[right + 1] + bottom[right]
+            bottom = above
+        return bottom[0]
  
