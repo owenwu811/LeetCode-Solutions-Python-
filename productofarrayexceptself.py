@@ -301,9 +301,8 @@ class Solution:
 
 
 
-#backward pass explanation:
 
-Forward Pass:
+#During the backward pass, we multiply each element of result by the product of all elements to the right of nums[i]. This effectively combines the products computed in the forward pass with the products computed in the backward pass, excluding nums[i]. - so for example, for nums = [1, 2, 3, 4]:
 
 #We initialize forward = 1 and iterate over the nums list from left to right.
 #At each index i, we store the product of all elements to the left of nums[i] in the result list.
