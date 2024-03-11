@@ -298,3 +298,24 @@ class Solution:
 #Thus, each element of the result list contains the product of all elements in the original list nums, except for the element at the corresponding index.
 
 #By performing two passes through the nums list, we can achieve the desired result without using division and with a time complexity of O(n), where n is the length of the input list.
+
+
+
+#backward pass explanation:
+
+Forward Pass:
+
+#We initialize forward = 1 and iterate over the nums list from left to right.
+#At each index i, we store the product of all elements to the left of nums[i] in the result list.
+#After the forward pass, the result list will contain [1, 1, 2, 6], corresponding to the products of all elements to the left of each element in nums.
+#Backward Pass:
+
+#We initialize backward = 1 and iterate over the nums list from right to left.
+#At each index i, we multiply the previously computed product (stored in result[i]) by the product of all elements to the right of nums[i].
+#This effectively combines the products computed in the forward pass with the products computed in the backward pass, excluding nums[i].
+#For example:
+#For nums[3], which is 4, the product of all elements to the right of 4 is 1 (since there are no elements to the right of 4). So, result[3] *= 1, which remains 6.
+#For nums[2], which is 3, the product of all elements to the right of 3 is 4. So, result[2] *= 4, which becomes 2 * 4 = 8.
+#For nums[1], which is 2, the product of all elements to the right of 2 is 4 * 3 = 12. So, result[1] *= 12, which becomes 1 * 12 = 12.
+#For nums[0], which is 1, the product of all elements to the right of 1 is 4 * 3 * 2 = 24. So, result[0] *= 24, which becomes 1 * 24 = 24.
+#After completing both forward and backward passes, the result list will contain [24, 12, 8, 6], which are the products of all elements in the nums list except for the element at each corresponding index.
