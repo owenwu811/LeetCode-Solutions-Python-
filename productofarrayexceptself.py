@@ -281,3 +281,16 @@ class Solution:
             res[backward] *= postfixn
             postfixn *= nums[backward]
         return res
+
+
+#During the forward pass, result[i] stores the product of all elements to the left of nums[i]. 
+
+#This ensures that result[i] contains the product of all elements except nums[i] from the left side.
+
+#During the backward pass, we multiply each element of result by the product of all elements to the right of nums[i]. 
+
+#This effectively combines the products computed in the forward pass with the products computed in the backward pass, excluding nums[i].
+
+#Thus, each element of the result list contains the product of all elements in the original list nums, except for the element at the corresponding index.
+
+#By performing two passes through the nums list, we can achieve the desired result without using division and with a time complexity of O(n), where n is the length of the input list.
