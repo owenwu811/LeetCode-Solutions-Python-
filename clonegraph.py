@@ -159,7 +159,7 @@ class Solution:
                 return mydict[node]
             copy = Node(node.val)
             mydict[node] = copy
-            for n in node.neighbors:
+            for n in node.neighbors: #n is original neighbor, not cloned neighbor 
                 copy.neighbors.append(f(n)) #creating the edges between nodes in the cloned graph - When n is node2, f(n) will create copy2. copy1.neighbors.append(copy2) will connect copy1 to copy2.
             return copy
         return f(node) if node else None
