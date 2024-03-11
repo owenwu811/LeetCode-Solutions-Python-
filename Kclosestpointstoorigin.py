@@ -217,3 +217,20 @@ class Solution:
             k -= 1
         return res
 
+#3/10/24:
+
+class Solution:
+    def kClosest(self, points: List[List[int]], k: int) -> List[List[int]]:
+        #we want k pairs of points that are closest to the origin
+        minheap = []
+        for x, y in points: #unpacking
+            distance = (x ** 2) + (y ** 2)
+            minheap.append([distance, x, y])
+        heapq.heapify(minheap)
+        res = []
+        while k > 0:
+            a, x, y = heapq.heappop(minheap) #a instead of distance here works too!
+            res.append([x, y])
+            k -= 1
+        return res
+
