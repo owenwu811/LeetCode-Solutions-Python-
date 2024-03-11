@@ -160,6 +160,6 @@ class Solution:
             copy = Node(node.val)
             mydict[node] = copy
             for n in node.neighbors:
-                copy.neighbors.append(f(n))
+                copy.neighbors.append(f(n)) #creating the edges between nodes in the cloned graph
             return copy
         return f(node) if node else None
