@@ -185,10 +185,10 @@ class Solution:
 
 #In summary, this solution efficiently finds the maximum profit by exploring all possible job combinations using dynamic programming with memoization. It considers each job and recursively determines the maximum profit that can be obtained by either selecting or skipping the job, ensuring that overlapping jobs are not selected.
 
-The intervals list is sorted based on the start times of the jobs.
-For a given job at index i, (intervals[i][1], -1, -1) represents a virtual interval that starts at the end time of the current job i and extends infinitely forward.
-bisect.bisect(intervals, (intervals[i][1], -1, -1)) finds the insertion point for this virtual interval within the sorted intervals list.
-This insertion point j represents the index of the next interval in the sorted list that starts after the end time of the current job i.
-Therefore, j is the index of the next non-overlapping job after job i.
-In summary, bisect.bisect is used to efficiently find the index of the next non-overlapping job by considering the end time of the current job and identifying the insertion point in the sorted list of intervals. This helps in determining which jobs can be considered next without overlapping with the current job i.
+#The intervals list is sorted based on the start times of the jobs.
+#For a given job at index i, (intervals[i][1], -1, -1) represents a virtual interval that starts at the end time of the current job i and extends infinitely forward.
+#bisect.bisect(intervals, (intervals[i][1], -1, -1)) finds the insertion point for this virtual interval within the sorted intervals list.
+#This insertion point j represents the index of the next interval in the sorted list that starts after the end time of the current job i.
+#Therefore, j is the index of the next non-overlapping job after job i.
+#In summary, bisect.bisect is used to efficiently find the index of the next non-overlapping job by considering the end time of the current job and identifying the insertion point in the sorted list of intervals. This helps in determining which jobs can be considered next without overlapping with the current job i.
 
