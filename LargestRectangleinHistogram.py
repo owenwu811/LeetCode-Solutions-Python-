@@ -276,3 +276,22 @@ class Solution:
         for i, j in monotonicstack:
             res = max(res, j * (len(heights) - i))
         return res
+
+#3/11/24:
+
+class Solution:
+    def largestRectangleArea(self, heights: List[int]) -> int:
+        #width of each bar = 1
+        res = 0
+        stack = []
+        for inputindex, inputvalue in enumerate(heights):
+            validstarting = inputindex
+            #violated our monotonic condition
+            while stack and stack[-1][1] > inputvalue:
+                stackindex, stackvalue = stack.pop()
+                res = max(res, stackvalue * (inputindex - stackindex))
+                validstarting = stackindex
+            stack.append((validstarting, inputvalue))
+        for i, j in stack:
+            res = max(res, j * (len(heights) - i))
+        return res
