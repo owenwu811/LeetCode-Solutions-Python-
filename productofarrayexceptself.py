@@ -283,7 +283,7 @@ class Solution:
         return res
 
 
-#During the forward pass, result[i] stores the product of all elements to the left of nums[i]. 
+#During the forward pass, result[i] stores the product of all elements to the left of nums[i]. if nums = [1, 2, 3, 4], when you say left of nums[i], you mean 1, 2, 3, but not 4.
 
 #This ensures that result[i] contains the product of all elements except nums[i] from the left side.
 
