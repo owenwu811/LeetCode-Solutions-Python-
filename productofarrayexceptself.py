@@ -283,7 +283,11 @@ class Solution:
         return res
 
 
-#During the forward pass, result[i] stores the product of all elements to the left of nums[i]. if nums = [1, 2, 3, 4], when you say left of nums[i], you mean 1, 2, 3, but not 4.
+#During the forward pass, result[i] stores the product of all elements to the left of nums[i]. if nums = [1, 2, 3, 4], when you say left of nums[i], you mean 1, 2, 3, but not 4. So, for example, if nums = [1, 2, 3, 4], and we are considering nums[2], which is 3, then the elements to the left of nums[2] are [1, 2]. In other words, the product stored in result[2] will be the product of all elements to the left of 3, which is 1 * 2 = 2.
+
+#Similarly, for nums[3], which is 4, the elements to the left of it are [1, 2, 3], and the product stored in result[3] will be the product of all elements to the left of 4, which is 1 * 2 * 3 = 6.
+
+#So, in essence, when we refer to "left of nums[i]" in this solution, we mean all the elements that appear before the element at index i, excluding the element at index i itself.
 
 #This ensures that result[i] contains the product of all elements except nums[i] from the left side.
 
