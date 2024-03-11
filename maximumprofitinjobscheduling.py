@@ -185,34 +185,10 @@ class Solution:
 
 #In summary, this solution efficiently finds the maximum profit by exploring all possible job combinations using dynamic programming with memoization. It considers each job and recursively determines the maximum profit that can be obtained by either selecting or skipping the job, ensuring that overlapping jobs are not selected.
 
-#This solution works by efficiently exploring all possible job combinations and selecting the one that maximizes profit. It utilizes dynamic programming with memoization to avoid redundant calculations and improve efficiency.
-
-#Here's why this solution works:
-
-#Sorting by Start Time: By sorting the jobs based on their start times, we ensure that we process them in chronological order. This allows us to consider jobs sequentially without worrying about the order of their occurrence.
-
-#Dynamic Programming with Memoization:
-
-#The dynamic programming approach used in this solution breaks down the problem into smaller subproblems.
-#The dfs function recursively explores all possible combinations of jobs starting from a given index i.
-#Memoization is employed to store and reuse the results of subproblems, avoiding redundant calculations. This significantly reduces the time complexity of the solution.
-#Handling Overlapping Jobs:
-
-#The binary search operation (bisect.bisect) is used to efficiently find the index of the next non-overlapping job after the current job i.
-#By selecting the next non-overlapping job, we ensure that we do not consider overlapping jobs, thus maximizing the profit while maintaining compatibility with the job scheduling constraints.
-#Maximizing Profit:
-
-#At each step of the recursion, the algorithm considers two options: selecting the current job and skipping it.
-#By comparing the profit obtained from selecting the current job with the profit obtained from skipping it, the algorithm chooses the option that yields the maximum profit.
-#This process is repeated recursively for each job, ensuring that the algorithm explores all possible combinations and selects the one that maximizes profit.
-#Base Case:
-
-#The recursion stops when all jobs have been considered (i >= len(intervals)).
-#At this point, the function returns 0, indicating that no further profit can be obtained.
-#Returning the Result:
-
-#The final result returned by the algorithm is the maximum profit that can be obtained by selecting a subset of non-overlapping jobs.
-#In summary, this solution works by systematically exploring all possible job combinations, considering the scheduling constraints and maximizing profit at each step. The use of dynamic programming with memoization optimizes the algorithm's efficiency, making it practical for large input sizes.
-
-
+The intervals list is sorted based on the start times of the jobs.
+For a given job at index i, (intervals[i][1], -1, -1) represents a virtual interval that starts at the end time of the current job i and extends infinitely forward.
+bisect.bisect(intervals, (intervals[i][1], -1, -1)) finds the insertion point for this virtual interval within the sorted intervals list.
+This insertion point j represents the index of the next interval in the sorted list that starts after the end time of the current job i.
+Therefore, j is the index of the next non-overlapping job after job i.
+In summary, bisect.bisect is used to efficiently find the index of the next non-overlapping job by considering the end time of the current job and identifying the insertion point in the sorted list of intervals. This helps in determining which jobs can be considered next without overlapping with the current job i.
 
