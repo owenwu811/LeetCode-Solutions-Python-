@@ -140,16 +140,26 @@ class Solution:
 
 class Solution:
     def jobScheduling(self, startTime: List[int], endTime: List[int], profit: List[int]) -> int:
+        #This line creates a list of tuples by zipping together the startTime, endTime, and profit lists.
+        #Each tuple represents a job interval, containing the start time, end time, and associated profit.
+        #The sorted function sorts these tuples based on the start times of the jobs.
         intervals = sorted(zip(startTime, endTime, profit))
         cache = {}
+        #This line defines a recursive function named dfs that takes an index i as its parameter.
+        #The function explores all possible job combinations starting from index i.
         def dfs(i):
+            #This line serves as the base case for the recursion. If the index i exceeds or equals the length of intervals, indicating that all jobs have been considered, the function returns 0.
             if i >= len(intervals):
                 return 0
             elif i in cache:
                 return cache[i]
+            #This line recursively calls the dfs function with the next index i + 1. It computes the maximum profit obtained by considering jobs starting from the next index.
             res = dfs(i + 1)
+            #This line uses the bisect.bisect function to find the insertion point for a virtual interval. The virtual interval (intervals[i][1], -1, -1) represents a job ending at the end time of the current job i. The insertion point j indicates the index of the next non-overlapping job after job i.
             j = bisect.bisect(intervals, (intervals[i][1], -1, -1))
+            #This line calculates the maximum profit obtained by either skipping the current job i (dfs(i + 1)) or selecting it (intervals[i][2] + dfs(j)). It memoizes the result for index i in the cache dictionary.
             cache[i] = max(res, intervals[i][2] + dfs(j))
+            #This line updates the local variable res with the maximum profit obtained from considering both skipping and selecting the current job i. This step is necessary for returning the maximum profit at the end of the function.
             res = max(res, intervals[i][2] + dfs(j))
             return res
 
