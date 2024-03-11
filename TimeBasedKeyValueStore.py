@@ -422,3 +422,28 @@ class TimeMap:
             else:
                 r = mid - 1 #too big, so we have to go back since the array is sorted in order by timestamps 
         return res
+
+
+#3/11/24:
+
+class TimeMap:
+    def __init__(self):
+        self.mydict = dict()
+    
+    def set(self, key: str, value: str, timestamp: int) -> None:
+        if key not in self.mydict:
+            self.mydict[key] = []
+        self.mydict[key].append([value, timestamp]) #already sorted in order of time by timestamp
+       
+    def get(self, key: str, timestamp: int) -> str:
+        res = ""
+        c = self.mydict.get(key, [])
+        l, r = 0, len(c) - 1 #can run binary search since already sorted
+        while l <= r:
+            mid = (l + r) // 2
+            if c[mid][1] <= timestamp:
+                res = c[mid][0]
+                l = mid + 1
+            else:
+                r = mid - 1
+        return res
