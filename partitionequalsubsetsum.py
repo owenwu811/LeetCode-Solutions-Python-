@@ -248,3 +248,21 @@ class Solution:
                 subsum2.add(element + n)
             subsum = subsum2
         return half in subsum
+
+#3/12/24:
+
+class Solution:
+    def canPartition(self, nums: List[int]) -> bool:
+        #two subsets such that sum of elements in both subsets is equal
+        if sum(nums) % 2 != 0:
+            return False
+        set1 = set()
+        set1.add(0)
+        half = sum(nums) // 2
+        for number in nums:
+            set2 = set()
+            for element in set1:
+                set2.add(element)
+                set2.add(element + number)
+            set1 = set2
+        return half in set1
