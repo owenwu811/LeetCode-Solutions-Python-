@@ -71,3 +71,11 @@ class Solution:
         if len(set(nums)) == len(nums):
             return False
         return True
+
+#3/12/24:
+
+class Solution:
+    def containsDuplicate(self, nums: List[int]) -> bool:
+        if len(nums) == len(set(nums)): return False
+        return True
+        
