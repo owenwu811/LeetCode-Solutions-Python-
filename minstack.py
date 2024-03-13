@@ -426,3 +426,36 @@ class MinStack:
 
     def getMin(self) -> int:
         return self.minstack[-1]
+
+#3/13/24:
+
+class MinStack:
+
+    def __init__(self):
+        self.stack, self.minstack = [], []
+        
+
+    def push(self, val: int) -> None:
+        self.stack.append(val)
+        if self.minstack:
+            val = min(val, self.minstack[-1])
+        else:
+            val
+        self.minstack.append(val)
+        
+
+    def pop(self) -> None:
+        self.stack.pop()
+        self.minstack.pop()
+  
+
+        
+
+    def top(self) -> int:
+        return self.stack[-1] #think top meaning pulling from the most recent because you can only add ontop of the most recent pancake
+
+
+        
+
+    def getMin(self) -> int:
+        return self.minstack[-1]
