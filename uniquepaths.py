@@ -382,4 +382,17 @@ class Solution:
                 above[right] = above[right + 1] + bottom[right]
             bottom = above
         return bottom[0]
- 
+
+#3/13/24:
+
+class Solution:
+    def uniquePaths(self, m: int, n: int) -> int:
+        first = [1] * n
+        for down in range(m - 1):
+            above = [1] * n
+            for right in range(n - 2, -1, -1): #543210 inclusive
+                #pascal's triangle tilted left
+                above[right] = above[right + 1] + first[right] #first[right] will eventually become first[0]
+            first = above
+        return first[0]
+            
