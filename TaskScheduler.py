@@ -30,6 +30,7 @@ class Solution:
         for char in time:
             if char == maxvalue:
                 maxcount += 1
+        #MAXVALUE - 1 REPRESENTS THE LAST EXECUTION OF THE MOST FREQUENTLY OCCURING LETTER 
         return max((maxvalue - 1) * (n + 1) + maxcount, len(tasks)) #last execution does not require cooldown + if n = 0, then len(tasks) will ALWAYS WIN OUT!
 
 
@@ -37,7 +38,7 @@ class Solution:
 
       #return max(mostfrequentletter - 1) * (cooldownperiod + 1) + countoflettersthathavesamefrequencyasmostfrequentletter
       # the reason we do (cooldownperiod + 1) is because each letter takes one unit of time, so it's really (cooldownperiod + timeforexecutingtask)
-      # the reason we do (maxvalue - 1) is because the last execution of the most frequent letter does not require a cooldown 
+      # the reason we do (maxvalue - 1) is because the last execution of the most FREQUENT letter does not require a cooldown 
       # idle time = cpu is inactive - we want to minimize idle time so cpu is kept busy
       # cool down time = prevents immediate re-execution of same letter AND introduces idle time for different letters
       # maxcount = count of letters with same frequency as most frequent task (most frequent letter). These letters are executed after letters with lower frequency to fill remaining idle time due to cooldown. We will idle time to keep cpu busy because each count [0] > [1] - of each letter takes 1 unit of time!
