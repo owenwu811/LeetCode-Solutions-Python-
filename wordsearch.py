@@ -584,3 +584,27 @@ class Solution:
                 if board[r][c] == word[0] and dfs(0, r, c):
                     return True
         return False
+
+#3/14/24:
+
+class Solution:
+    def exist(self, board: List[List[str]], word: str) -> bool:
+        #return True if we can find the entire word in our board list of lists
+        def dfs(index, r, c):
+            if r < 0 or r >= len(board) or c < 0 or c >= len(board[0]) or board[r][c] != word[index]:
+                return False #for that particular recursive call
+            elif index >= len(word) - 1:
+                return True
+            orig = board[r][c]
+            board[r][c] = "visited"
+            result = (dfs(index + 1, r + 1, c) or dfs(index + 1, r - 1, c) or dfs(index + 1, r, c + 1) or dfs(index + 1, r, c - 1))
+            board[r][c] = orig
+            return result
+
+
+        for r in range(len(board)):
+            for c in range(len(board[0])): 
+                if board[r][c] == word[0] and dfs(0, r, c): #we found the 1st letter of our word
+                    return True
+        return False
+        
