@@ -269,3 +269,24 @@ class Solution:
         res = []
         f(0, [], 0)
         return res
+
+#3/14/24:
+
+class Solution:
+    def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
+        #candidates is an array of distinct integers
+        #you can choose the same number multiple times
+        #unique goes by frequency
+        def f(i, path, currsum):
+            if i >= len(candidates) and currsum == target:
+                res.append(path.copy())
+                return
+            elif i >= len(candidates) or currsum > target:
+                return
+            path.append(candidates[i])
+            f(i, path, currsum + candidates[i])
+            path.pop()
+            f(i + 1, path, currsum)
+        res = []
+        f(0, [], 0)
+        return res
