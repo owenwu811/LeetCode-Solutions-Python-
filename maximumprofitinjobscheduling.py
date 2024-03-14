@@ -202,3 +202,20 @@ class Solution:
 #Therefore, j is the index of the next non-overlapping job after job i.
 #In summary, bisect.bisect is used to efficiently find the index of the next non-overlapping job by considering the end time of the current job and identifying the insertion point in the sorted list of intervals. This helps in determining which jobs can be considered next without overlapping with the current job i.
 
+#3/14/24:
+
+class Solution:
+    def jobScheduling(self, startTime: List[int], endTime: List[int], profit: List[int]) -> int:
+        intervals = sorted(zip(startTime, endTime, profit))
+        cache = {}
+        def dfs(i):
+            if i in cache: 
+                return cache[i]
+            if i >= len(intervals):
+                return 0
+            res = dfs(i + 1)
+            j = bisect.bisect(intervals, (intervals[i][1], -1, -1))
+            cache[i] = max(res, intervals[i][2] + dfs(j))
+            res = max(res, intervals[i][2] + dfs(j))
+            return res
+        return dfs(0)
