@@ -25,7 +25,7 @@ class Solution:
         root.right = self.buildTree(preorder[mid + 1:], inorder[mid + 1:]) 
         return root
 
-        #p = [3, 9, 20, 15, 7] - 3 = original root of input
+        #p = [3, 9, 20, 15, 7] 3 is original root of input
         #i = [9, 3, 15, 20, 7]
 
         #axe 3
