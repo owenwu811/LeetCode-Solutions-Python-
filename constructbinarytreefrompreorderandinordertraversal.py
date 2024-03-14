@@ -20,7 +20,7 @@ class Solution:
             return None
         root = TreeNode(preorder[0]) #root of tree
         mid = inorder.index(preorder[0])
-        root.left = self.buildTree(preorder[1:mid + 1], inorder[:mid]) #look at ordering of method
+        root.left = self.buildTree(preorder[1:mid + 1], inorder[:mid]) #look at ordering of method. we want just [9] as the left partition of array p (preorder[1:mid + 1])
         root.right = self.buildTree(preorder[mid + 1:], inorder[mid + 1:]) 
         return root
 
