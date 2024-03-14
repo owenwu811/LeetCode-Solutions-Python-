@@ -766,3 +766,32 @@ class Solution:
         elif len(s) == length:
             return s
         else: return ""
+
+#3/14/24:
+
+class Solution:
+    def minWindow(self, s: str, t: str) -> str:
+        if len(s) < len(t): return ""
+        matched, start, difference, ws = 0, 0, float('inf'), 0
+        need = Counter(t)
+        for we, schar in enumerate(s): #we slide the window throughout s
+            if schar in need:
+                need[schar] -= 1
+                if need[schar] == 0:
+                    matched += 1
+                while matched == len(need): #fully satisfied t with our window in s, so look for smallest window requirement
+                    if difference > we - ws + 1: #always true on 1st turn
+                        difference = we - ws + 1 #update to save smallest window result at this point
+                        start = ws
+                    #shrink window
+                    kickout = s[ws] #get the value at the index to reflect changes in our need dict and matched
+                    ws += 1
+                    if kickout in need:
+                        if need[kickout] == 0:
+                            matched -= 1
+                        need[kickout] += 1 #we need one more
+        if len(s) > difference: #we have a smaller valid window that fully satisfies t, so return it
+            return s[start: start + difference]
+        elif len(s) == difference:
+            return s
+        else: return ""
