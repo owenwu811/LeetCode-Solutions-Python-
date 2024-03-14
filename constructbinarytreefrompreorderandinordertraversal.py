@@ -24,5 +24,20 @@ class Solution:
         root.right = self.buildTree(preorder[mid + 1:], inorder[mid + 1:]) 
         return root
 
-        #p = [3, 9, 20, 15, 7]
+        #p = [3, 9, 20, 15, 7] - 3 is the root of the input tree
         #i = [9, 3, 15, 20, 7]
+
+        #axe 3
+
+        #p = [ 3(axed), 9, 20, 15, 7] - this corresponds to preorder[1:mid + 1] - now, 9 becomes the root of the tree instead of 3! - 1 value in left + 3 values in right (partition)
+        #i = [9, 3(axed), 15, 20, 7] - this corresponds to inorder[:mid]
+
+       #axe 9
+
+       #p = [3 (axed), 9(axed), 20, 15, 7] - now 20 becomes the root of the tree instead of 9!
+       #i = [9 (axed), 3(axed), 15, 20, 7] 
+
+       #axe 20
+
+      #p = [3 (axed), 9 (axed), 20 (axed), 15, 7] 
+      #i = [9 (axed), 3 (axed), 15, 20 (axed), 7] - notice how i has 1 left and 1 right 
