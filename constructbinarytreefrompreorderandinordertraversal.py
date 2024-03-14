@@ -18,7 +18,7 @@ class Solution:
     def buildTree(self, preorder: List[int], inorder: List[int]) -> Optional[TreeNode]:
         if not preorder or not inorder: #base case 
             return None
-        root = TreeNode(preorder[0]) #root of tree
+        root = TreeNode(preorder[0]) #root of tree that changes from 3 to 9 to 20...
         mid = inorder.index(preorder[0])
         #keep digging left
         root.left = self.buildTree(preorder[1:mid + 1], inorder[:mid]) #look at ordering of method. we want just [9] as the left partition of array p (preorder[1:mid + 1]) since 1 left 3 right inside of array i after axing 3 from both p and i arrays, so this now applies 1 and 3 to the p array as well ON A SMALLER SUBSET OF P [ 9, 20, 15, 7] instead of [3, 9, 20, 15, 7], so [9] = left and [20, 15, 7] = right of array p
