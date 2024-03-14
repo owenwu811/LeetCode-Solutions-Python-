@@ -41,3 +41,8 @@ class Solution:
 
       #p = [3 (axed), 9 (axed), 20 (axed), 15, 7] 
       #i = [9 (axed), 3 (axed), 15, 20 (axed), 7] - notice how i has 1 left and 1 right 
+
+
+    #     3
+    #   9  20
+    #     15 7
