@@ -167,3 +167,19 @@ class Solution:
         return max((maxmax - 1) * (n + 1) + maxcount, len(tasks))
 
 
+#3/15/24:
+
+class Solution:
+    def leastInterval(self, tasks: List[str], n: int) -> int:
+        #each task = a letter
+        #if you execute one letter right after executing the same letter, you must seperate it by n intervals, so n = the cooling time
+        #we want the minimum number of intervals to complete all letters
+        count = [0] * 26 #make room for all letters
+        for letter in tasks:
+            count[ord(letter) - ord('A')] += 1
+        maxval, howmanymax = max(count), 0
+        for l in count:
+            if l == maxval:
+                howmanymax += 1
+        #last iteration of the most frequent letter has no cooldown, so subtract 1
+        return max((maxval - 1) * (n + 1) + howmanymax, len(tasks))
