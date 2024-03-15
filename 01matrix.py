@@ -12,7 +12,7 @@
 
 class Solution:
     def updateMatrix(self, mat: List[List[int]]) -> List[List[int]]:
-        #we want the matrix at the end that shows, from each cell in the final matrix, how many hops it would take to reach a 0
+        #we want the matrix at the end that shows, from each cell in the final matrix, how many hops it would take to reach a 0 starting from a 1
         directions = [[0, 1], [0, -1], [1, 0], [-1, 0]]
         #our deque stores the coordinates of all 0s in the grid
         d = deque()
