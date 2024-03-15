@@ -177,3 +177,28 @@ Initial state:
 After executing `copy.neighbors.append(f(n))` for each neighbor of node1:
 
   copy1.neighbors = [copy2, copy4]
+
+
+#3/15/24:
+
+"""
+# Definition for a Node.
+class Node:
+    def __init__(self, val = 0, neighbors = None):
+        self.val = val
+        self.neighbors = neighbors if neighbors is not None else []
+"""
+
+from typing import Optional
+class Solution:
+    def cloneGraph(self, node: Optional['Node']) -> Optional['Node']:
+        mydict = {}
+        def dfs(node):
+            if node in mydict:
+                return mydict[node]
+            copy = Node(node.val)
+            mydict[node] = copy
+            for n in node.neighbors:
+                copy.neighbors.append(dfs(n))
+            return copy
+        return dfs(node) if node else None
