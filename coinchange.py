@@ -428,4 +428,21 @@ class Solution:
             return -1
         return dparr[-1]
 
+#3/15/24:
+
+class Solution:
+    def coinChange(self, coins: List[int], amount: int) -> int:
+        #we want the smallest frequency of coins needed to add up to amount cents given the options we have
+        #again, just because a penny exists in real life dosen't mean we can use it if it is not in our coins input array
+        dparr = [0] + ([float('inf')] * amount) #0 is our base case - 0 ways to make up 0 cents
+        #buildup to compute smallest frequency to sum up to 1 cent, 2 cents, aka each level
+        #we don't need to start from 0 because we already established 0 as the base case in dparr
+        for levelamount in range(1, amount + 1):
+            for coinvalue in coins:
+                if coinvalue <= levelamount: #we can choose this coin because it's less than the amount
+                    #still computing frequency - using one more of that coin since we are looping through all our options 
+                    dparr[levelamount] = min(dparr[levelamount], dparr[levelamount - coinvalue] + 1) #look at previously cached results to see if there is a more efficient way
+        if dparr[-1] == float('inf'):
+            return -1
+        return dparr[-1]
 
