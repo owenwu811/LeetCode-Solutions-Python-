@@ -65,4 +65,33 @@ class Trie:
             if d.startswith(prefix):
                 return True
         return False
+
+
+#3/16/24:
+
+class Trie:
+
+    def __init__(self):
+        self.mydict = dict()
+
+    def insert(self, word: str):
+        if word not in self.mydict:
+            self.mydict[word] = []
+        
+        
+
+
+    def search(self, word: str) -> bool:
+        for d in self.mydict:
+            if d == word:
+                return True
+        
+
+    def startsWith(self, prefix: str) -> bool:
+        for d in self.mydict:
+            if d.startswith(prefix):
+                return True
+        return False
+
+
       
