@@ -46,3 +46,26 @@ class Solution:
 #When d is 1, (d + 1) % 4 becomes 2, rotating the direction from down to left.
 #When d is 2, (d + 1) % 4 becomes 3, rotating the direction from left to up.
 #When d is 3, (d + 1) % 4 becomes 0, rotating the direction from up to right.
+
+
+#3/16/24:
+
+from typing import List
+
+class Solution:
+    def spiralOrder(self, matrix: List[List[int]]) -> List[int]:
+        if not matrix: return []
+        res = []
+        seen = set()
+        rows, cols = len(matrix), len(matrix[0])
+        directions = [(0, 1), (1, 0), (0, -1), (-1, 0)]
+        r = c = d = 0 #start at top left corner
+        for i in range(rows * cols): #if we have 3 x 3 grid, we have 9 elements in total. if we have 4 x 4 grid, we have 16 elements in total
+            res.append(matrix[r][c])
+            seen.add((r, c))
+            newr, newc = r + directions[d][0], c + directions[d][1]
+            if newr < 0 or newr >= len(matrix) or newc < 0 or newc >= len(matrix[0]) or (newr, newc) in seen: #newr, newc in seen, not r, c in seen 
+                d = (d + 1) % 4
+                newr, newc = r + directions[d][0], c + directions[d][1]
+            r, c = newr, newc
+        return res
