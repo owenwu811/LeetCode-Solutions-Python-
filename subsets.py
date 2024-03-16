@@ -327,3 +327,24 @@ class Solution:
         res = []
         dfs(0, [])
         return res
+
+
+#3/16/24:
+
+
+class Solution:
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+        #input array has all unique elements
+        #we want all subsets without duplicates in any order
+        def f(i, path):
+            if i >= len(nums):
+                res.append(path.copy())
+                return
+            path.append(nums[i])
+            f(i + 1, path)
+            path.pop()
+            f(i + 1, path)
+            
+        res = []
+        f(0, [])
+        return res
