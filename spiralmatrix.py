@@ -36,3 +36,13 @@ class Solution:
 
 #d - current direction of traversal, r - current row index, c - current column index, rows = total # of rows in matrix, cols = totral # of columns in matrix
 #the %4 part ensures index stays within range (0, 3) inclusive because there are only 4 directions in total in directions = [(0, 1), (1, 0), (0, -1), (-1, 0)]
+
+
+#The reason (d + 1) % 4 is used is to rotate the direction clockwise. When (d + 1) is calculated, it effectively rotates the direction by one position to the right.
+
+#Here's how it works:
+
+#When d is 0, (d + 1) % 4 becomes 1, rotating the direction from right to down.
+#When d is 1, (d + 1) % 4 becomes 2, rotating the direction from down to left.
+#When d is 2, (d + 1) % 4 becomes 3, rotating the direction from left to up.
+#When d is 3, (d + 1) % 4 becomes 0, rotating the direction from up to right.
