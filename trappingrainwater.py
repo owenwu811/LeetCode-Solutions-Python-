@@ -230,3 +230,23 @@ class Solution:
                 res += (maxright - height[r])
         return res
             
+
+#3/16/24: 
+
+class Solution:
+    def trap(self, height: List[int]) -> int:
+        #n non negative integers mean the integers are bigger or equal to 0
+        res = 0
+        if not height: return 0
+        l, r = 0, len(height) - 1
+        maxl, maxr = height[l], height[r]
+        while l < r: #not l <= r because can't trap any water at the highest elevation!
+            if maxl < maxr:
+                l += 1
+                maxl = max(maxl, height[l])
+                res += (maxl - height[l])
+            else:
+                r -= 1
+                maxr = max(maxr, height[r])
+                res += (maxr - height[r])
+        return res
