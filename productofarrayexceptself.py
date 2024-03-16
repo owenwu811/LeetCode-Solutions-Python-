@@ -318,3 +318,19 @@ class Solution:
 #For nums[1], which is 2, the product of all elements to the right of 2 is 4 * 3 = 12. So, result[1] *= 12, which becomes 1 * 12 = 12.
 #For nums[0], which is 1, the product of all elements to the right of 1 is 4 * 3 * 2 = 24. So, result[0] *= 24, which becomes 1 * 24 = 24.
 #After completing both forward and backward passes, the result list will contain [24, 12, 8, 6], which are the products of all elements in the nums list except for the element at each corresponding index in input nums array.
+
+
+
+#3/16/24:
+
+class Solution:
+    def productExceptSelf(self, nums: List[int]) -> List[int]:
+        prefixn, postfixn = 1, 1
+        res = [0] * len(nums)
+        for forward in range(len(nums)):
+            res[forward] = prefixn
+            prefixn *= nums[forward]
+        for backward in range(len(nums) -1, -1, -1):
+            res[backward] *= postfixn
+            postfixn *= nums[backward]
+        return res
