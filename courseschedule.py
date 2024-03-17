@@ -830,3 +830,28 @@ class Solution:
             
         return canvisit == numCourses
 
+
+#3/17/24:
+
+class Solution:
+    def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+        #a depends on b
+        indegree = [0] * numCourses #each course with 0 prerequisites
+        adj = [[] for course in range(numCourses)]
+        for p in prerequisites:
+            adj[p[1]].append(p[0])
+            indegree[p[0]] += 1
+        d = deque()
+        for i in range(len(indegree)):
+            if indegree[i] == 0: #if the number of attackers incident on that node is 0, so we can say we can full satisfy it and visit it, and we have to delete any outgoing edges from that satisfied node in the future 
+                d.append(i)
+        canfinish = 0
+        while d:
+            for i in range(len(d)):
+                canfinish += 1
+                currentnode = d.popleft()
+                for neighbor in adj[currentnode]:
+                    indegree[neighbor] -= 1
+                    if indegree[neighbor] == 0:
+                        d.append(neighbor)
+        return canfinish == numCourses
