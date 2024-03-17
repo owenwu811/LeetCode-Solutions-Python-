@@ -312,3 +312,20 @@ class Solution:
         for i, j in stack:
             res = max(res, j * (len(heights) - i))
         return res
+
+#We'll focus on the fifth iteration, where inputval = 2 and we encounter a situation where inputval < stack[-1][1].
+
+#heights = [2, 1, 5, 6, 2, 3]
+           #0  1  2  3  4  5
+
+#Original Code (setting starting to stackindex):
+
+#Before the fifth iteration, the stack contains (2, 5) and (3, 6).
+#When popping (3, 6), starting is set to 3.
+#The width of the rectangle is correctly calculated as 4 - 3 = 1.
+#Modified Code (setting starting to inputindex):
+
+#Before the fifth iteration, the stack contains (2, 5) and (3, 6).
+#When popping (3, 6), starting remains 4 (current inputindex).
+#The width of the rectangle would then be calculated as 4 - 4 = 0.
+#This difference leads to an incorrect width calculation. The rectangle's width should be measured from the index of the popped element (3, 6) to the current index 4, not from the current index to itself. Therefore, setting starting = inputindex in this scenario would result in an incorrect calculation of the width of the rectangle and subsequently an incorrect calculation of the maximum area.
