@@ -447,3 +447,29 @@ class TimeMap:
             else:
                 r = mid - 1
         return res
+
+#3/17/24:
+
+class TimeMap:
+    def __init__(self):
+        self.mydict = dict()
+
+        
+        
+    def set(self, key: str, value: str, timestamp: int) -> None: #value and timestamp are a list that is the value of the dictionary
+        if key not in self.mydict:
+            self.mydict[key] = []
+        self.mydict[key].append([value, timestamp])
+       
+    def get(self, key: str, timestamp: int) -> str:
+        res = ""
+        c = self.mydict.get(key, []) #list of lists value side [value, timestamp] - retrieve 
+        l, r = 0, len(c) - 1
+        while l <= r: # run binary search since already in sorted order
+            mid = (l + r) // 2 #decimal vs int - 2 vs 2.5
+            if c[mid][1] <= timestamp:
+                res = c[mid][0]
+                l = mid + 1
+            else:
+                r = mid - 1
+        return res
