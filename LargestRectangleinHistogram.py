@@ -307,7 +307,7 @@ class Solution:
             while stack and stack[-1][1] > inputval:
                 stackindex, stackval = stack.pop()
                 res = max(res, stackval * (inputindex - stackindex))
-                starting = stackindex
+                starting = stackindex #If we were to set starting to inputindex instead of stackindex, it would result in an incorrect calculation of the width of the rectangle. This would lead to incorrect width calculation, as the rectangle's width should be measured from the index of the popped element to the current index, not from the current index to itself!
             stack.append((starting, inputval))
         for i, j in stack:
             res = max(res, j * (len(heights) - i))
