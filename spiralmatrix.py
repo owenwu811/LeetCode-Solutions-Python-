@@ -69,3 +69,25 @@ class Solution:
                 newr, newc = r + directions[d][0], c + directions[d][1]
             r, c = newr, newc
         return res
+
+
+#3/17/24:
+
+from typing import List
+
+class Solution:
+    def spiralOrder(self, matrix: List[List[int]]) -> List[int]:
+        if not matrix: return [] #the input is empty, so there's nothing to return
+        res, seen = [], set() #list used to store final output, we can't visit the same element twice
+        rows, cols = len(matrix), len(matrix[0]) #length of input
+        r = c = d = 0 #start at top left corner
+        directions = [(0, 1), (1, 0), (0, -1), (-1, 0)]
+        for i in range(rows * cols): # 3 x 3 input, so 9 elements to traverse in total without duplicates because we don't care about visiting duplicates
+            seen.add((r, c)) #make sure we don't visit our current cell multiple times - r and c are the current coordinates
+            res.append(matrix[r][c]) #tile added to result
+            newr, newc = r + directions[d][0], c + directions[d][1] #right, down, left, up
+            if newr < 0 or newr >= len(matrix) or newc < 0 or newc >= len(matrix[0]) or (newr, newc) in seen:
+                d = (d + 1) % 4 #because we have 4 directions in total 
+                newr, newc = r + directions[d][0], c + directions[d][1]
+            r, c = newr, newc
+        return res
