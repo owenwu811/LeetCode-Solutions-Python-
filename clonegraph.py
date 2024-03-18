@@ -228,4 +228,29 @@ class Solution:
                 copy.neighbors.append(f(original)) #now copy does have neighbors attribute because of the class definition above. this part creates the edges between the cloned graph
             return copy #return the copy
         return f(node) if node else None #no graph to clone if original node == None
-         
+
+
+#3/18/24:
+
+"""
+# Definition for a Node.
+class Node:
+    def __init__(self, val = 0, neighbors = None): 
+        self.val = val
+        self.neighbors = neighbors if neighbors is not None else []
+"""
+
+
+from typing import Optional
+class Solution:
+    def cloneGraph(self, node: Optional['Node']) -> Optional['Node']:
+        self.mydict = dict() #{o:c}
+        def f(node):
+            if node in self.mydict:
+                return self.mydict[node]
+            copy = Node(node.val) #not in mydict, so make a copy
+            self.mydict[node] = copy
+            for o in node.neighbors:
+                copy.neighbors.append(f(o))
+            return copy
+        return f(node) if node else None
