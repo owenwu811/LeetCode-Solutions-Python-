@@ -136,3 +136,24 @@ class Solution:
         return res
 
 
+
+#3/18/24:
+
+from typing import List
+
+class Solution:
+    def spiralOrder(self, matrix: List[List[int]]) -> List[int]:
+        if not matrix: return []
+        res, myset = [], set()
+        rows, cols = len(matrix), len(matrix[0]) #dimensions of input needed to know how many iterations we will have because we have row * col number of iterations like 6 times 8 = 48 iterations
+        directions = [(0, 1), (1, 0), (0, -1), (-1, 0)] #right, down, left, up
+        r = c = d = 0
+        for i in range(rows * cols):
+            myset.add((r, c))
+            res.append(matrix[r][c])
+            newr, newc = r + directions[d][0], c + directions[d][1]
+            if newr < 0 or newr >= len(matrix) or newc < 0 or newc >= len(matrix[0]) or (newr, newc) in myset:
+                d = (d + 1) % 4
+                newr, newc = r + directions[d][0], c + directions[d][1]
+            r, c = newr, newc
+        return res
