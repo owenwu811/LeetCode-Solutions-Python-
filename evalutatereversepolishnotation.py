@@ -262,7 +262,7 @@ class Solution:
             elif element == "/":
                 first = stack.pop()
                 second = stack.pop()
-                stack.append(int(second / first))
+                stack.append(int(second / first)) #doing // would result in top of stack being 0. / would result in top of stack being -1, and since stack consists of [10, -1] vs. [10, 0], and the next thing is multiplication, the difference is -10 vs. 0 with stack = [-10] for // example vs. stack = [0] for / example, so // example would give us exactly 10 less, making the result be 12 instead of 22 for the test case - tokens = ["10","6","9","3","+","-11","*","/","*","17","+","5","+"]
             elif element == "*":
                 first = stack.pop()
                 second = stack.pop()
