@@ -91,3 +91,25 @@ class Solution:
                 newr, newc = r + directions[d][0], c + directions[d][1]
             r, c = newr, newc
         return res
+
+#again on 3/17/24:
+
+from typing import List
+
+class Solution:
+    def spiralOrder(self, matrix: List[List[int]]) -> List[int]:
+        if not matrix: return [] #base case edge check
+        res, seen = [], set()
+        rows, cols = len(matrix), len(matrix[0]) #we need this to know how many times we will iterate because we will iterate height times width times, so if 6 by 8 grid, we have 48 iterations
+        r = c = d = 0 #current indicies we are at
+        directions = [(0, 1), (1, 0), (0, -1), (-1, 0)] #right, down, left, up - y, x, y, x - c, r, c, r
+        for i in range(rows * cols): #3 x 3 means 9 total iterations because we don't care about duplicates
+            seen.add((r, c)) #add current indicies to mark as visited, which can't be out of bounds or repeated because we start at 0, 0
+            res.append(matrix[r][c]) 
+            newr, newc = r + directions[d][0], c + directions[d][1] #move right first - directions[0][0], directions[0][1] = 0 + 0, 0 + 1 = 0, 1 = right
+            if newr < 0 or newr >= len(matrix) or newc < 0 or newc >= len(matrix[0]) or (newr, newc) in seen:
+                d = (d + 1) % 4 #move one index in one of the 4 directions because d represents the current direction we are facing
+                newr, newc = r + directions[d][0], c + directions[d][1] #we are facing the right direction, so now we just have to step onto the new tile
+            r, c = newr, newc 
+        return res
+
