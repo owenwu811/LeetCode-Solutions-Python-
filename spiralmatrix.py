@@ -113,3 +113,26 @@ class Solution:
             r, c = newr, newc #update the current indicies to reflect the new change before going back to for loop
         return res
 
+#again on 3/17/24:
+
+from typing import List
+
+class Solution:
+    def spiralOrder(self, matrix: List[List[int]]) -> List[int]:
+        if not matrix: return [] #the input is empty
+        res, seen = [], set() #we don't want to visit the same cell twice
+        rows, cols = len(matrix), len(matrix[0])
+        directions = [(0, 1), (1, 0), (0, -1), (-1, 0)] #right, down, left, up
+        r = c = d = 0 #start from top left cell of matrix
+        for i in range(rows * cols): #if our grid is 4 x 4, we have 26 total cells to visit
+            #note that we need (()) if we are appending more than one coordinate to our set, which we are since we are appending both r and c
+            seen.add((r, c)) #add current row and column coordinates to our set to mark them as visited
+            res.append(matrix[r][c]) #add the current cell to our result
+            newr, newc = r + directions[d][0], c + directions[d][1]
+            if newr < 0 or newr >= len(matrix) or newc < 0 or newc >= len(matrix[0]) or (newr, newc) in seen:
+                d = (d + 1) % 4 #we move one index in whatever direction and we only have 4 directions
+                newr, newc = r + directions[d][0], c + directions[d][1]
+            r, c = newr, newc #updating current row and column index
+        return res
+
+
