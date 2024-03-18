@@ -243,3 +243,31 @@ class Solution:
             else:
                 stack.append(int(char))
         return stack.pop()
+
+
+#3/17/24:
+
+class Solution:
+    def evalRPN(self, tokens: List[str]) -> int:
+        stack = []
+        for element in tokens:
+            if element == "+":
+                first = stack.pop()
+                second = stack.pop()
+                stack.append(int(second + first))
+            elif element == "-":
+                first = stack.pop()
+                second = stack.pop()
+                stack.append(int(second - first))
+            elif element == "/":
+                first = stack.pop()
+                second = stack.pop()
+                stack.append(int(second / first))
+            elif element == "*":
+                first = stack.pop()
+                second = stack.pop()
+                stack.append(int(second * first))
+            else:
+                stack.append(int(element))
+        return stack.pop()
+        
