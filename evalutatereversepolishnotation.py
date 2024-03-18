@@ -270,4 +270,7 @@ class Solution:
             else:
                 stack.append(int(element))
         return stack.pop()
-        
+
+
+#print(5 // 2) = 2
+#print(5 / 2) = 2.5
