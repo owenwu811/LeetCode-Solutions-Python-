@@ -110,6 +110,6 @@ class Solution:
             if newr < 0 or newr >= len(matrix) or newc < 0 or newc >= len(matrix[0]) or (newr, newc) in seen:
                 d = (d + 1) % 4 #move one index in one of the 4 directions because d represents the current direction we are facing
                 newr, newc = r + directions[d][0], c + directions[d][1] #we are facing the right direction, so now we just have to step onto the new tile
-            r, c = newr, newc 
+            r, c = newr, newc #update the current indicies to reflect the new change before going back to for loop
         return res
 
