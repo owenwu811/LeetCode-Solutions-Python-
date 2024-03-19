@@ -157,4 +157,17 @@ class Solution:
             l += 1
             r -= 1
         return True
-            
+
+#3/18/24:
+
+class Solution:
+    def isPalindrome(self, s: str) -> bool:
+        s = s.replace(" ", "")
+        s = re.sub('[\W_]', "", s)
+        l, r = 0, len(s) - 1
+        while l <= r:
+            if s[l].casefold() != s[r].casefold():
+                return False
+            l += 1
+            r -= 1
+        return True
