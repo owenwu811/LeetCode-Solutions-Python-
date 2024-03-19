@@ -382,4 +382,28 @@ class Solution:
                         mat[onex][oney] = mat[zerox][zeroy] + 1
                         d.append([onex, oney]) #now we use that what was one cell as a starting point to step onto other cells because we already updated that one cell to what we want in the final result
         return mat
- 
+
+#3/18/24:
+
+class Solution:
+    def updateMatrix(self, mat: List[List[int]]) -> List[List[int]]:
+        #binary matrix means only 0s and 1s are given to us
+        #we want to measure the distance between the current 1 cell to the nearest 0 cell and have that value as the value in the resulting list of lists matrix
+        if not mat: return []
+        d = deque()
+        directions = [(1, 0), (0, 1), (-1, 0), (0, -1)]
+        for r in range(len(mat)):
+            for c in range(len(mat[0])):
+                if mat[r][c] == 0:
+                    d.append([r, c])
+                else:
+                    mat[r][c] = float('inf')
+        while d:
+            for i in range(len(d)):
+                zerox, zeroy = d.popleft()
+                for newx, newy in directions:
+                    onex, oney = zerox + newx, zeroy + newy
+                    if onex >= 0 and onex < len(mat) and oney >= 0 and oney < len(mat[0]) and mat[onex][oney] > mat[zerox][zeroy] + 1:
+                        mat[onex][oney] = mat[zerox][zeroy] + 1
+                        d.append([onex, oney])
+        return mat
