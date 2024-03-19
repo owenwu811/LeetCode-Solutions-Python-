@@ -795,3 +795,33 @@ class Solution:
         elif len(s) == difference:
             return s
         else: return ""
+
+
+#3/19/24:
+
+class Solution:
+    def minWindow(self, s: str, t: str) -> str:
+        if len(s) < len(t): return "" #every character in t is included in the window means can s satisfy t, not the other way around
+        start, difference, ws, matched = 0, float('inf'), 0, 0
+        need = Counter(t)
+        for we, schar in enumerate(s):
+            if schar in need:
+                need[schar] -= 1 #need starts as each value being more than 0 because wouldn't appear if was 0 cause letter dosen't exist  in s
+                if need[schar] == 0:
+                    matched += 1
+                while matched == len(need): #we satisfied every character
+                    if difference > we - ws + 1:
+                        difference = we - ws + 1
+                        start = ws
+                    kickout = s[ws]
+                    ws += 1
+                    if kickout in need: #kickout is part of s, which may not be in t, so we are shrinking the window to look for the smallest satisfactory window
+                        if need[kickout] == 0:
+                            matched -= 1
+                        need[kickout] += 1
+        if len(s) > difference:
+            return s[start: start + difference]
+        if len(s) == difference: return s
+        else: return ""
+
+
