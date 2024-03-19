@@ -246,5 +246,21 @@ class Solution:
         return not stack #only False if extra openb or extra girls at the end
 
                 
-            
+
+#3/18/24:
+
+class Solution:
+    def isValid(self, s: str) -> bool:
+        stack = []
+        openb, closeb = "({[", ")}]"
+        for char in s:
+            if char in openb:
+                stack.append(char)
+            elif char in closeb and not stack:
+                return False 
+            else: #seeing a closeb 
+                girl = stack.pop()
+                if openb.index(girl) != closeb.index(char):
+                    return False
+        return not stack
         
