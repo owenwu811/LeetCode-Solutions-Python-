@@ -162,3 +162,16 @@ class Solution:
             windowsum += number
             res = max(res, windowsum)
         return res
+
+#3/18/24:
+
+class Solution:
+    def maxSubArray(self, nums: List[int]) -> int:
+        res = nums[0]
+        windowsum = 0
+        for number in nums:
+            if windowsum < 0:
+                windowsum = 0
+            windowsum += number
+            res = max(res, windowsum)
+        return res
