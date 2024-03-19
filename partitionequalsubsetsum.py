@@ -266,3 +266,22 @@ class Solution:
                 set2.add(element + number)
             set1 = set2
         return half in set1
+
+#3/19/24:
+
+class Solution:
+    def canPartition(self, nums: List[int]) -> bool:
+        #partition means divide into two subsets with sums of both subsets being equal
+        #we want to find half of the sum of entire array and see if we can sum up to other half using any part of the array
+        if sum(nums) % 2 != 0: return False
+        set1 = set()
+        set1.add(0)
+        half = sum(nums) // 2
+        for element in nums:
+            set2 = set()
+            for number in set1:
+                set2.add(number) #excluding current
+                set2.add(number + element) #adding current 
+            set1 = set2
+        return half in set1
+
