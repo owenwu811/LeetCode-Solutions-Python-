@@ -193,3 +193,24 @@ class Solution:
         if l and not r: return l #return the lowest one inside of the left subtree because we want to find lowest common ancestor 
         if r and not l: return r
         else: return None
+
+#3/18/24:
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+        if root == None or root == p or root == q: #base case
+            return root
+        l = self.lowestCommonAncestor(root.left, p, q)
+        r = self.lowestCommonAncestor(root.right, p, q)
+        if l and r: return root
+        elif l and not r: return l
+        elif r and not l: return r
+        else: return None
+        
