@@ -183,3 +183,17 @@ class Solution:
                 howmanymax += 1
         #last iteration of the most frequent letter has no cooldown, so subtract 1
         return max((maxval - 1) * (n + 1) + howmanymax, len(tasks))
+
+
+#3/19/24:
+
+class Solution:
+    def leastInterval(self, tasks: List[str], n: int) -> int:
+        count = [0] * 26
+        for letter in tasks:
+            count[ord(letter) - ord('A')] += 1
+        maxval, howmanymax = max(count), 0
+        for l in count:
+            if l == maxval:
+                howmanymax += 1
+        return max((maxval - 1) * (n + 1) + howmanymax, len(tasks))
