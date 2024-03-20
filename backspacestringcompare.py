@@ -26,3 +26,19 @@ class Solution:
             return stack
 
         return f(s) == f(t)
+
+
+#3/19/24 review:
+
+class Solution:
+    def backspaceCompare(self, s: str, t: str) -> bool:
+        def f(a):
+            stack = []
+            for char in a:
+                if char == "#" and stack: #pound never goes on stack because pound is used for deletion
+                    stack.pop() #deleting character
+                elif char != "#": #letters go on rear of stack because letters are the ones getting deleted by pound
+                    stack.append(char)
+            return stack #state of either s or t 
+
+        return f(s) == f(t)
