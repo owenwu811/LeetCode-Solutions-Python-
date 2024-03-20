@@ -61,3 +61,24 @@ class Solution:
             #tie means setting a to 0 and popping stack[-1] from end of list
 
 #top of stack means end of list in python
+
+
+#3/19/24 review:
+
+class Solution:
+    def asteroidCollision(self, asteroids: List[int]) -> List[int]:
+        stack = []
+        for a in asteroids:
+            while stack and a < 0 and stack[-1] > 0: #only when this is true does a collision occur
+                difference = a + stack[-1]
+                if difference < 0:
+                    stack.pop()
+                elif difference > 0:
+                    a = 0
+                else:
+                    stack.pop()
+                    a = 0
+            if a != 0:
+                stack.append(a)
+        return stack
+               
