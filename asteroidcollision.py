@@ -82,3 +82,22 @@ class Solution:
                 stack.append(a)
         return stack
                
+
+#3/20/24:
+
+class Solution:
+    def asteroidCollision(self, asteroids: List[int]) -> List[int]:
+        stack = []
+        for a in asteroids:
+            while stack and a < 0 and stack[-1] > 0:
+                difference = a + stack[-1]
+                if difference < 0:
+                    stack.pop()
+                elif difference > 0:
+                    a = 0
+                else:
+                    stack.pop()
+                    a = 0
+            if a != 0:
+                stack.append(a)
+        return stack
