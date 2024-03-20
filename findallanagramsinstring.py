@@ -147,3 +147,17 @@ class Solution:
             if window == key:
                 res.append(i)
         return res
+
+
+#3/19/24:
+
+class Solution:
+    def findAnagrams(self, s: str, p: str) -> List[int]:
+        res = []
+        key = "".join(sorted(p))
+        for i in range(len(s) - len(p) + 1): #make as many divisions of s as full lengths of p
+            window = "".join(sorted(s[i: i + len(p)]))
+            if window == key:
+                res.append(i)
+        return res
+        
