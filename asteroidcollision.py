@@ -52,6 +52,7 @@ class Solution:
                     a = 0 #destroys negative asteroid by nuetralizing value
                     stack.pop() #pops positive stack[-1] asteroid from end of list
             #we've destroyed all asteroids we can because stack is empty meaning no more fights can happen because while statement is false and 
+            #negatives and positive asteroids go on the stack, not just positive asteroids!
             if a != 0: #after a collision meaning no more collisions are possible, then if a != 0, that a asteroid survived, so add it to the final result
                 stack.append(a) 
         return stack 
