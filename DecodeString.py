@@ -49,10 +49,12 @@ class Solution:
             else:
                 substr = ""
                 while stack and stack[-1] != "[":
-                    substr = stack.pop() + substr #stack.pop() = a char
-                stack.pop() #popping the last [
+                    substr = stack.pop() + substr #stack.pop() = a char, so stack = "2[ab", and substr = "c", so this line places b in front of c to make substr = "bc", and stack becomes "2[a"
+                stack.pop() #popping the last [, so stack = "2[" > stack = "2", and substr = "abc" 
                 k = ""
-                while stack and stack[-1].isdigit():
-                    k = stack.pop() + k #stack.pop() = a number
-                stack.append(int(k) * substr) #k is a number, substr is a char string - both are appended to our stack
+                while stack and stack[-1].isdigit(): #stack = "2"
+                    k = stack.pop() + k #stack.pop() = a number, so k = "" > k = "2"
+                stack.append(int(k) * substr) #k is a number, substr is a char string - both are appended to our stack, so substr = "abc", and k = "2", so stack = ["abcabc"]
         return "".join(stack)
+
+
