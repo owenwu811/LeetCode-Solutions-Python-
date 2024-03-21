@@ -36,3 +36,17 @@ class Solution:
 
            # if string is "listen," then sorted(string) will result in ['e', 'i', 'l', 'n', 's', 't'], which is a LIST
            #''.join(sorted(string)) takes the list of sorted characters and joins them together into a single string with no whitespace. For example, if string is "listen," then ''.join(sorted(string)) will result in the string "eilnst."
+
+
+#3/20/24 refresher:
+
+class Solution:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        mydict = dict()
+        for oword in strs:
+            sortedw = "".join(sorted(oword))
+            if sortedw not in mydict:
+                mydict[sortedw] = []
+            mydict[sortedw].append(oword)
+        return list(mydict.values())
+        
