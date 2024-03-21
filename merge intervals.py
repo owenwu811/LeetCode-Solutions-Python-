@@ -170,3 +170,16 @@ class Solution:
             else:
                 output.append([first, second])
         return output
+
+#3/21/24:
+
+class Solution:
+    def merge(self, intervals: List[List[int]]) -> List[List[int]]:
+        intervals.sort(key=lambda n:n[0])
+        output = [intervals[0]]
+        for first, second in intervals[1:]:
+            if first <= output[-1][1]:
+                output[-1][1] = max(second, output[-1][1])
+            else:
+                output.append([first, second])
+        return output
