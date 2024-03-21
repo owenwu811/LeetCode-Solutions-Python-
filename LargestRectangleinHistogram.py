@@ -329,3 +329,21 @@ class Solution:
 #When popping (3, 6), starting remains 4 (current inputindex).
 #The width of the rectangle would then be calculated as 4 - 4 = 0.
 #This difference leads to an incorrect width calculation. The rectangle's width should be measured from the index of the popped element (3, 6) to the current index 4, not from the current index to itself. Therefore, setting starting = inputindex in this scenario would result in an incorrect calculation of the width of the rectangle and subsequently an incorrect calculation of the maximum area.
+
+
+#3/21/24:
+
+class Solution:
+    def largestRectangleArea(self, heights: List[int]) -> int:
+        res = 0
+        stack = []
+        for inputindex, inputvalue in enumerate(heights):
+            starting = inputindex
+            while stack and stack[-1][1] > inputvalue:
+                stackindex, stackvalue = stack.pop()
+                res = max(res, stackvalue * (inputindex - stackindex))
+                starting = stackindex
+            stack.append((starting, inputvalue))
+        for i, j in stack:
+            res = max(res, j * (len(heights) - i))
+        return res
