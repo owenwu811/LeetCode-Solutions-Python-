@@ -50,5 +50,18 @@ class Solution:
             n //= 2 #n goes from 10 > 5. notice 5 is not 0, not negative, and not even, so it proceeds to below return call
         #If the exponent n is odd, the algorithm returns x * self.myPow(x, n - 1). This is because an odd exponent can be reduced by one, making it even, and then processed as an even exponent.
         return x * (self.myPow(x, n - 1)) #return 4 * (4, (5 - 1))
-        
+
+#3/21/24 refresher:
+
+class Solution:
+    def myPow(self, x: float, n: int) -> float:
+        if n == 0:
+            return 1
+        elif n < 0:
+            x = 1 / x
+            n = abs(n)
+        elif n % 2 == 0:
+            x = x * x
+            n //= 2
+        return x * self.myPow(x, n - 1)
         
