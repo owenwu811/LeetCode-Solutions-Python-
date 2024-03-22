@@ -4,7 +4,7 @@
 
 #Given an integer array nums representing the amount of money of each house, return the maximum amount of money you can rob tonight without alerting the police.
 
-
+#nums = [2,7,9,3,1]
 #python3 solution:
 
 class Solution:
@@ -13,7 +13,7 @@ class Solution:
         rob1, rob2 = 0, 0
         for n in nums:
             temp = max(n + rob1, rob2)
-            rob1 = rob2
+            rob1 = rob2 #0, 2 (n is now on 7) because this represents how much we can rob up to the previous house, and n is the current amount of money
             rob2 = temp
         return rob2
 
