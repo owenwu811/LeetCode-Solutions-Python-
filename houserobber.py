@@ -13,7 +13,7 @@ class Solution:
         rob1, rob2 = 0, 0
         for n in nums:
             temp = max(n + rob1, rob2)
-            rob1 = rob2 #0, 2 (n is now on 7) because this represents how much we can rob up to the previous house, and n is the current amount of money
+            rob1 = rob2 #0, 2 (n is now on 7) because this represents how much we can rob up to the previous house, and n is the current amount of money. when n is 9 (current), rob1 becomes 7 and so on
             rob2 = temp
         return rob2
 
