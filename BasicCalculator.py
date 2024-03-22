@@ -337,7 +337,7 @@ class Solution:
                 res += currentn * sign
                 sign = -1 if char == "-" else 1
                 currentn = 0
-            elif char == "(": #we need to keep track of the state of our res
+            elif char == "(": #we need to calculate sum of integers within ()
                 stack.append(res)
                 stack.append(sign)
                 res, sign = 0, 1
