@@ -324,3 +324,27 @@ class Solution:
                 currentn = 0
         ressum += currentn * sign #last number
         return ressum
+
+#3/21/24:
+
+class Solution:
+    def calculate(self, s: str) -> int:
+        res, sign, currentn, stack = 0, 1, 0, []
+        for char in s:
+            if char.isdigit():
+                currentn = currentn * 10 + int(char) # 98 = (9 * 10) + 8
+            elif char in "+-":
+                res += currentn * sign
+                sign = -1 if char == "-" else 1
+                currentn = 0
+            elif char == "(": #we need to keep track of the state of our res
+                stack.append(res)
+                stack.append(sign)
+                res, sign = 0, 1
+            elif char == ")":
+                res += currentn * sign
+                res *= stack.pop()
+                res += stack.pop()
+                currentn = 0
+        res += currentn * sign
+        return res
