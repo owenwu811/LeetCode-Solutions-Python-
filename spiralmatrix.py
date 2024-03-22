@@ -199,3 +199,26 @@ class Solution:
                 newr, newc = r + directions[d][0], c + directions[d][1]
             r, c = newr, newc
         return res
+
+#3/21/24:
+
+from typing import List
+
+class Solution:
+    def spiralOrder(self, matrix: List[List[int]]) -> List[int]:
+        #we want to start at the top left
+        res = [] #result is an array - list in python
+        seen = set()
+        rows, cols = len(matrix), len(matrix[0]) #dimensions of our input used to multiply to get how many tiles we have to traverse
+        r = c = d = 0 #starting at top left
+        directions = [(0, 1), (1, 0), (0, -1), (-1, 0)] #right, down, left, up
+        for i in range(rows * cols): #total number of iterations we have is the width times height aka total number of tiles we will traverse
+            seen.add((r, c)) #r, c = current
+            res.append(matrix[r][c]) #appending tile starting from top left
+            newr, newc = r + directions[d][0], c + directions[d][1] # we have to change directions more than once, so newr and newc calculation goes inside of the for loop, not outside
+            if newr < 0 or newr >= len(matrix) or newc < 0 or newc >= len(matrix[0]) or (newr, newc) in seen: #not gonna be out of bounds or already in seen for the 1st turn because we're visiting a new tile for ther 1st time to the right assuming that the width of the grid if more than 1
+                #we are out of bounds, so change directions according to depicted in the char, so down then left then up - we start coming from right
+                d = (d + 1) % 4 #moving current direction because d is used to calculate newr and newc, the actual new tile
+                newr, newc = r + directions[d][0], c + directions[d][1]
+            r, c = newr, newc #setting current to the pivoted tile
+        return res
