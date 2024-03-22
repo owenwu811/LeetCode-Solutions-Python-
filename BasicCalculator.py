@@ -330,7 +330,7 @@ class Solution:
 class Solution:
     def calculate(self, s: str) -> int:
         res, sign, currentn, stack = 0, 1, 0, []
-        for char in s:
+        for char in s: #char loops through everything in s whether its a symbol or number - s = "(1+(4+5+2)-3)+(6+8)"
             if char.isdigit():
                 currentn = currentn * 10 + int(char) # 98 = (9 * 10) + 8
             elif char in "+-":
@@ -342,9 +342,9 @@ class Solution:
                 stack.append(sign)
                 res, sign = 0, 1
             elif char == ")":
-                res += currentn * sign
+                res += currentn * sign #1st time this block executes: currentn = 2, sign = 1, res = 9 > 11 - s = "(1+(4+5+2)-3)+(6+8)"
                 res *= stack.pop()
                 res += stack.pop()
-                currentn = 0
+                currentn = 0 #currentn 2 > 0
         res += currentn * sign
         return res
