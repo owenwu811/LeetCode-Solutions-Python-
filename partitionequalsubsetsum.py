@@ -296,9 +296,12 @@ class Solution:
         set1.add(0)
         half = sum(nums) // 2
         for element in nums:
-            set2 = set()
+            set2 = set() #set2 is created anew to ensure that we can differentiate between set1 vs. set2 (excluding current vs. including current)
             for s in set1:
                 set2.add(s)
                 set2.add(element + s)
             set1 = set2
         return half in set1
+
+#set1 is used to include only up to the previous element vs. the one we are currently looping through in the input array
+#set2 is used to calculate the sum of elements including the current 
