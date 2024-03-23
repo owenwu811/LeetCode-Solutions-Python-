@@ -131,3 +131,14 @@ class Solution:
                 return False
             t = t.replace(char, "", 1)
         return len(t) == 0
+
+#3/23/24:
+
+class Solution:
+    def isAnagram(self, s: str, t: str) -> bool:
+        #is t a rearrangement of s
+        for char in s:
+            if char not in t:
+                return False
+            t = t.replace(char, "", 1)
+        return len(t) == 0
