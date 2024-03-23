@@ -35,4 +35,6 @@ class Solution:
                 currentamount = 0
                 index = i + 1
         return index #return the starting index as stated in the problem!
-            
+
+#Using <= instead of < in the condition if tank < 0: would not work as intended because it would allow tank to become zero, indicating that you can start from the current position. 
+      
