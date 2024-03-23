@@ -38,3 +38,18 @@ class Solution:
 
 #Using <= instead of < in the condition if tank < 0: would not work as intended because it would allow tank to become zero, indicating that you can start from the current position. 
       
+
+#3/23/24 practice again:
+
+class Solution:
+   def canCompleteCircuit(self, gas: list[int], cost: list[int]) -> int:
+        if sum(gas) < sum(cost): return -1
+        gasamount, startingindex = 0, 0 #we begin the journey with an empty tank
+        for i in range(len(gas)): #the trips we will take
+            gasamount += gas[i] - cost[i] #we have gas leftover from previous trip
+            if gasamount < 0: #we can't make it to the next station, so we have to restart our progress
+                gasamount, startingindex = 0, i + 1
+        return startingindex #we want the starting station's index - only one is garunteed 
+
+
+
