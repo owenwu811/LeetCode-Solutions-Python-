@@ -33,3 +33,16 @@ class Solution:
 #Repeat steps 3-5 for all houses in the array.
 #Finally, return rob2, which holds the maximum amount of money that can be robbed without robbing adjacent houses.
 #The reason this approach works is because it considers the maximum amount of money that can be robbed up to the current house by either including the current house or excluding it, while ensuring that adjacent houses are not robbed. By keeping track of the maximum amounts up to the previous two houses (rob1 and rob2), the solution avoids considering adjacent houses simultaneously and ensures that the optimal solution is obtained.
+
+
+#3/22/24 practice round 2:
+
+class Solution:
+    import math
+    def rob(self, nums: List[int]) -> int:
+        rob1, rob2 = 0, 0
+        for n in nums:
+            maxtemp = max(n + rob1, rob2)
+            rob1 = rob2 #up to previous
+            rob2 = maxtemp
+        return rob2
