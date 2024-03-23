@@ -64,4 +64,18 @@ class Solution:
             x = x * x
             n //= 2
         return x * self.myPow(x, n - 1)
-        
+
+#3/22/24 refresher:
+
+class Solution:
+    def myPow(self, x: float, n: int) -> float:
+        #we want x to the power of n
+        if n == 0:
+            return 1
+        elif n < 0:
+            x = 1 / x
+            n = abs(n)
+        elif n % 2 == 0:
+            x *= x
+            n //= 2
+        return x * self.myPow(x, n - 1)
