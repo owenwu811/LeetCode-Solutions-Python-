@@ -285,3 +285,20 @@ class Solution:
             set1 = set2
         return half in set1
 
+
+#3/23/24:
+
+class Solution:
+    def canPartition(self, nums: List[int]) -> bool:
+        if sum(nums) % 2 != 0: #already not possible
+            return False 
+        set1 = set()
+        set1.add(0)
+        half = sum(nums) // 2
+        for element in nums:
+            set2 = set()
+            for s in set1:
+                set2.add(s)
+                set2.add(element + s)
+            set1 = set2
+        return half in set1
