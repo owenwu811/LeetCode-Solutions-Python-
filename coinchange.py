@@ -446,3 +446,18 @@ class Solution:
             return -1
         return dparr[-1]
 
+
+#3/23/24:
+
+class Solution:
+    import math
+    def coinChange(self, coins: List[int], amount: int) -> int:
+        #we want to find the fewest frequency of coins from picking from the input array we are given to sum up to amount
+        res = [0] + ([float('inf')] * amount) #base case is taking 0 frequency of coins to sum up to 0 cents
+        for levelamount in range(1, amount + 1): #we start from 1 since we already did 0 as the base case
+            for coinvalue in coins: #iterate through all of our coins in our input array for each amount we want to build up
+                if coinvalue <= levelamount: #possible to makeup current amount with the current coin 
+                    res[levelamount] = min(res[levelamount], res[levelamount - coinvalue] + 1) #dynamic programming aspect to try to find most optimal way to sum up to amount cents. This is still smallest frequency of coins we are trying to find
+        if res[-1] == float('inf'): #means we couldn't build the final amount of cents and find the fewest frequency of coins, so it was unmodified
+            return -1
+        return res[-1]
