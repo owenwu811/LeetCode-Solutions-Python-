@@ -50,3 +50,16 @@ class Solution:
             mydict[sortedw].append(oword)
         return list(mydict.values())
         
+
+#3/23/24:
+
+class Solution:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        self.mydict = dict()
+        for word in strs:
+            sortedw = "".join(sorted(word))
+            if sortedw not in self.mydict:
+                self.mydict[sortedw] = []
+            self.mydict[sortedw].append(word)
+        return self.mydict.values()
+        
