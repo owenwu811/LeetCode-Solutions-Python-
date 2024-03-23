@@ -46,3 +46,15 @@ class Solution:
             rob1 = rob2 #up to previous
             rob2 = maxtemp
         return rob2
+
+#3/23/24:
+
+class Solution:
+    import math
+    def rob(self, nums: List[int]) -> int:
+        prev, cur = 0, 0
+        for n in nums:
+            maxnow = max(n + prev, cur)
+            prev = cur
+            cur = maxnow
+        return cur
