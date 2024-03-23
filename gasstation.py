@@ -23,3 +23,16 @@ class Solution:
         return idx
 
 
+#3/23/24 practice (missed)!:
+
+class Solution:
+   def canCompleteCircuit(self, gas: list[int], cost: list[int]) -> int:
+        if sum(gas) < sum(cost): return -1
+        currentamount, index = 0, 0 #currentamount = 0 because we begin the jourey with an empty tank at one of the gas stations - mentioned in the problem
+        for i in range(len(gas)):
+            currentamount += gas[i] - cost[i] #+= because we still have leftover gas if we won out!
+            if currentamount < 0: #if we make it to this gas station with 0, it still counts, so <= is not needed and fails gas = [3, 1, 1] cost = [1, 2, 2]
+                currentamount = 0
+                index = i + 1
+        return index #return the starting index as stated in the problem!
+            
