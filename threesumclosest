@@ -73,3 +73,26 @@ class Solution:
                 else:
                     r -= 1
         return closest_sum
+
+#3/24/24 refresher:
+
+class Solution:
+    import math
+    def threeSumClosest(self, nums: List[int], target: int) -> int:
+        res = 0 #return the sum of the three integers closest to target when added together
+        nums.sort()
+        historical = math.inf
+        for first in range(len(nums)):
+            second = first + 1
+            third = len(nums) - 1
+            while second < third: 
+                threesum = nums[first] + nums[second] + nums[third]
+                currentdiff = abs(target - threesum) #which one is closest to historical
+                if currentdiff < historical: #always true on 1st turn. < means closer to 
+                    historical = currentdiff
+                    res = threesum
+                elif threesum < target:
+                    second += 1
+                else:
+                    third -= 1
+        return res
