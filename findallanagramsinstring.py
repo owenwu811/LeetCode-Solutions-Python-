@@ -160,4 +160,16 @@ class Solution:
             if window == key:
                 res.append(i)
         return res
+
+#3/24/24:
+
+class Solution:
+    def findAnagrams(self, s: str, p: str) -> List[int]:
+        res = []
+        key = "".join(sorted(p))
+        for i in range(len(s) - len(p) + 1):
+            current = "".join(sorted(s[i: i + len(p)]))
+            if current == key:
+                res.append(i)
+        return res
         
