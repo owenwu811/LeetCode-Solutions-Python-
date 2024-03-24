@@ -79,3 +79,19 @@ class Solution:
             x *= x
             n //= 2
         return x * self.myPow(x, n - 1)
+
+#3/23/24:
+
+class Solution:
+    def myPow(self, x: float, n: int) -> float:
+        #we want to calculate x to the power of n
+        if n == 0: #any number to the power of 0 equals 1
+            return 1
+        elif n < 0:
+            x = 1 / x
+            n = abs(n)
+        elif n % 2 == 0: #even number
+            x *= x
+            n //= 2
+        return x * self.myPow(x, n - 1)
+        
