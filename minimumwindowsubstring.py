@@ -824,4 +824,31 @@ class Solution:
         if len(s) == difference: return s
         else: return ""
 
+#3/24/24:
+
+class Solution:
+    def minWindow(self, s: str, t: str) -> str:
+        if len(s) < len(t): return "" #already not possible if s is shorter than t
+        start, diff, matched, ws = 0, float('inf'), 0, 0
+        need = Counter(t)
+        for we, schar in enumerate(s):
+            if schar in need: #need starts out as above 0
+                need[schar] -= 1
+                if need[schar] == 0:
+                    matched += 1
+                while matched == len(need):
+                    if diff > we - ws + 1:
+                        diff = we - ws + 1
+                        start = ws
+                    kickout = s[ws]
+                    ws += 1
+                    if kickout in need:
+                        if need[kickout] == 0:
+                            matched -= 1
+                        need[kickout] += 1
+        if len(s) > diff:
+            return s[start: start + diff]
+        if len(s) == diff: return s
+        else: return ""
+
 
