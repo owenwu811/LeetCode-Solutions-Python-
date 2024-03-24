@@ -240,3 +240,23 @@ class Solution:
             if len(second) > len(res):
                 res = second
         return res
+
+
+#3/24/24:
+
+class Solution:
+    def longestPalindrome(self, s):
+        def f(l, r, s):
+            while l >= 0 and r < len(s) and s[l] == s[r]:
+                l -= 1
+                r += 1
+            return s[l + 1: r]
+        res = ""
+        for char in range(len(s)):
+            first = f(char, char, s)
+            if len(first) > len(res): #don't forget len() because you can't just compare two strings directly without len!
+                res = first
+            second = f(char, char + 1, s)
+            if len(second) > len(res):
+                res = second
+        return res
