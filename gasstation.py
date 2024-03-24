@@ -52,4 +52,15 @@ class Solution:
         return startingindex #we want the starting station's index - only one is garunteed 
 
 
+#3/23/24 again:
 
+class Solution:
+   def canCompleteCircuit(self, gas: list[int], cost: list[int]) -> int:
+        if sum(gas) < sum(cost): return -1
+        howmuch, index = 0, 0
+        for i in range(len(gas)):
+            howmuch += gas[i] - cost[i]
+            if howmuch < 0:
+                howmuch, index = 0, i + 1
+        return index
+    
