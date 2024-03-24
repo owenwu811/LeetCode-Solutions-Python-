@@ -21,3 +21,4 @@ class Solution:
         return i
 
 #we need nums.sort() or else we will fail test case nums = [2, 1] because we will return 2 instead of 3 because 0 dosen't count as a missing positive integer 
+#the purpose of sorting is to ensure that we are going up by increments of 1 as we iterate right in the input array
