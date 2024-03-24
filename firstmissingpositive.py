@@ -19,3 +19,5 @@ class Solution:
             if i==j: #if the current element j is equal to the expected positive integer i, it means that i is inside of the array, so we increment i by 1 to check for the next positive integer that could be missing. remember that i will be the eventual result
                 i+=1 
         return i
+
+#we need nums.sort() or else we will fail test case nums = [2, 1] because we will return 2 instead of 3 because 0 dosen't count as a missing positive integer 
