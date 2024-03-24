@@ -96,3 +96,26 @@ class Solution:
                 else:
                     third -= 1
         return res
+
+#3/24/24 practice refresher again:
+
+class Solution:
+    import math
+    def threeSumClosest(self, nums: List[int], target: int) -> int:
+        res = 0
+        nums.sort()
+        historical = math.inf
+        for first in range(len(nums)):
+            second = first + 1
+            third = len(nums) - 1
+            while second < third:
+                threesum = nums[first] + nums[second] + nums[third]
+                difference = abs(target - threesum)
+                if difference < historical:
+                    historical = difference
+                    res = threesum
+                elif threesum > target: #compare threesum to target, not difference or historical because we sorted the input array!
+                    third -= 1
+                else:
+                    second += 1
+        return res
