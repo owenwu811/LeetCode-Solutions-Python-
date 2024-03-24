@@ -70,4 +70,15 @@ class Solution:
             prev = cur
             cur = tempmax
         return cur
-            
+
+#3/24/24:
+
+class Solution:
+    import math
+    def rob(self, nums: List[int]) -> int:
+        prev, cur = 0, 0
+        for n in nums:
+            tempmax = max(n + prev, cur) #we are choosing between robbing up to INCLUDING the previous house OR up to INCLUDING the current house because we have the constraint of having to skip a house 
+            prev = cur
+            cur = tempmax
+        return cur
