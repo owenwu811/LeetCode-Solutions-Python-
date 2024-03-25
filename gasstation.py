@@ -63,4 +63,17 @@ class Solution:
             if howmuch < 0:
                 howmuch, index = 0, i + 1
         return index
-    
+
+#3/25/24:
+
+class Solution:
+   def canCompleteCircuit(self, gas: list[int], cost: list[int]) -> int:
+        #we only have one solution at most
+        #we want to return the starting index as to where it's possible
+        if sum(gas) < sum(cost): return -1 #based on totals, we can rul this out right away
+        amount, index = 0, 0
+        for i in range(len(gas)):
+            amount += gas[i] - cost[i]
+            if amount < 0:
+                amount, index = 0, i + 1
+        return index
