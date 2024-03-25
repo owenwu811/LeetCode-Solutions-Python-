@@ -53,3 +53,15 @@ class Solution:
                 return False
             reachableindex = max(reachableindex, curindex + howmanyjumps)
         return True
+
+#3/25/24 refresher:
+
+class Solution:
+    def canJump(self, nums: List[int]) -> bool:
+        #we can jump the value of the array from the current index and want to know if we can reach the last index or not
+        reachableindex = 0
+        for currentindex in range(len(nums)):
+            if currentindex > reachableindex:
+                return False
+            reachableindex = max(reachableindex, currentindex + nums[currentindex])
+        return True
