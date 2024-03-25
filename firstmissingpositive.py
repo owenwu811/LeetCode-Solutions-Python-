@@ -48,3 +48,18 @@ class Solution:
             elif result == n:
                 result += 1
         return result
+
+#3/25/24 refresher:
+
+class Solution:
+    def firstMissingPositive(self, nums: List[int]) -> int:
+        nums.sort() #we must sort because we are trying to find a gap of 1 in the sequence, and if we don't find a gap, we increment by exactly 1
+        result = 1
+        for number in nums:
+            if number <= 0:
+                continue
+            if result == number:
+                result += 1
+        return result
+
+
