@@ -77,3 +77,17 @@ class Solution:
             if amount < 0:
                 amount, index = 0, i + 1
         return index
+
+#3/25/24 refresher again:
+
+class Solution:
+   def canCompleteCircuit(self, gas: list[int], cost: list[int]) -> int:
+        #costs cost[i] gas to travel to i + 1 station. begin journey with empty tank
+        #we want to return the starting index if it's possible to travel in one cycle
+        if sum(gas) < sum(cost): return -1
+        amountofgas, currentindex = 0, 0
+        for i in range(len(gas)):
+            amountofgas += gas[i] - cost[i]
+            if amountofgas < 0:
+                amountofgas, currentindex = 0, i + 1
+        return currentindex
