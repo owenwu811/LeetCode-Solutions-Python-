@@ -41,3 +41,15 @@ class Solution:
             #adding i to nums[i] gives us the index that can be reached by taking these steps. 
             reachable = max(reachable, i + nums[i]) #nums[i] = number of steps we can take from current position i. if nums[i] = 3, we can take 3 steps forward from index i. 
         return True
+
+#3/24/24 refresher again:
+
+class Solution:
+    def canJump(self, nums: List[int]) -> bool:
+        reachableindex = 0
+        for curindex in range(len(nums)):
+            howmanyjumps = nums[curindex]
+            if curindex > reachableindex:
+                return False
+            reachableindex = max(reachableindex, curindex + howmanyjumps)
+        return True
