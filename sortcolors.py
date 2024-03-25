@@ -274,3 +274,19 @@ class Solution:
                 nums[l], nums[n] = nums[n], nums[l]
                 l += 1
                 n += 1
+
+#3/25/24:
+
+class Solution:
+    def sortColors(self, nums: List[int]) -> None:
+        l, c, r = 0, 0, len(nums) - 1
+        while c <= r: #c <= r because when c and r cross, we've sorted everything up to count!!!
+            if nums[c] == 2:
+                nums[c], nums[r] = nums[r], nums[c]
+                r -= 1
+            elif nums[c] == 1:
+                c += 1
+            elif nums[c] == 0:
+                nums[l], nums[c] = nums[c], nums[l]
+                c += 1
+                l += 1
