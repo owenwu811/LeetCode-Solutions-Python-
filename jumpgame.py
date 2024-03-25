@@ -65,3 +65,15 @@ class Solution:
                 return False
             reachableindex = max(reachableindex, currentindex + nums[currentindex])
         return True
+
+#3/25/24 refresher again:
+
+class Solution:
+    def canJump(self, nums: List[int]) -> bool:
+        reachableindex = 0
+        for currentindex in range(len(nums)):
+            if currentindex > reachableindex:
+                return False
+            reachableindex = max(reachableindex, currentindex + nums[currentindex])
+        return True
+        
