@@ -214,3 +214,16 @@ class Solution:
         #must consider cooldown period
         return max((maxval - 1) * (n + 1) + howmanymax, len(tasks))
 
+
+#3/25/24:
+
+class Solution:
+    def leastInterval(self, tasks: List[str], n: int) -> int:
+        count = [0] * 26
+        for letter in tasks:
+            count[ord(letter) - ord('A')] += 1
+        maxval, maxcount = max(count), 0
+        for l in count:
+            if l == maxval:
+                maxcount += 1
+        return max((maxval - 1) * (n + 1) + maxcount, len(tasks))
