@@ -168,3 +168,28 @@ class Solution:
                     third -= 1
         return res
 
+
+#3/26/24:
+
+from typing import List
+import math
+
+class Solution:
+    def threeSumClosest(self, nums: List[int], target: int) -> int:
+        res = 0
+        nums.sort()
+        historical = math.inf
+        for first in range(len(nums)):
+            second = first + 1
+            third = len(nums) - 1
+            while second < third:
+                threesum = nums[first] + nums[second] + nums[third]
+                diff = abs(target - threesum)
+                if diff < historical:
+                    historical = diff
+                    res = threesum
+                elif threesum < target:
+                    second += 1
+                else:
+                    third -= 1
+        return res
