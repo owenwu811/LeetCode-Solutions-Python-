@@ -82,3 +82,15 @@ class Solution:
             prev = cur
             cur = tempmax
         return cur
+
+#3/25/24:
+
+class Solution:
+    import math
+    def rob(self, nums: List[int]) -> int:
+        prev, cur = 0, 0
+        for n in nums:
+            tempmax = max(prev + n, cur)
+            prev = cur
+            cur = tempmax
+        return cur
