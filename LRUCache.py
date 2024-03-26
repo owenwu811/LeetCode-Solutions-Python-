@@ -700,4 +700,34 @@ class LRUCache:
                 self.mydict[key] = value
                 self.pagefaultcount += 1
  
-      
+
+#3/26/24:
+
+class LRUCache:
+
+    def __init__(self, capacity: int):
+        self.cap = capacity #positive integer given to us
+        self.mydict = dict()
+        self.pagefaultcount = 0
+
+    def get(self, key: int) -> int:
+        if key not in self.mydict:
+            return -1
+        else:
+            result = self.mydict[key]
+            del self.mydict[key]
+            self.mydict[key] = result
+            return result
+    def put(self, key: int, value: int) -> None:
+        if key in self.mydict:
+            self.mydict.pop(key)
+            self.mydict[key] = value
+        else:
+            if len(self.mydict) >= self.cap:
+                lru = next(iter(self.mydict))
+                del self.mydict[lru]
+                self.mydict[key] = value #we insert the key given, not lru!
+            else:
+                self.mydict[key] = value
+                self.pagefaultcount += 1
+       
