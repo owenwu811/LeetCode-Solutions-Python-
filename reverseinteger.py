@@ -35,3 +35,14 @@ class Solution:
         elif x > 0 and reverse < limit:
             return reverse
         return 0
+
+
+#Python's slice notation [::1] only works with sequences like strings, lists, and tuples. It doesn't directly apply to integers.
+#By converting the integer to a string, you can treat it as a sequence of characters, making it possible to reverse the order of those characters using slicing or other techniques. Once the reversal is done, you can then convert the reversed string back to an integer if needed.
+
+
+#Convert to String: str(abs(x)) is converting the absolute value of x to a string. This is done so that we can manipulate individual digits.
+
+#Reverse the String: [::-1] is a slicing operation that reverses the string obtained from step 1. This effectively reverses the digits of the number.
+
+#Convert Back to Integer: int(...) converts the reversed string back to an integer. This step is crucial because we need to return an integer from the function, not a string.
