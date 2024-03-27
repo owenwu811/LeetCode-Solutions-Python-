@@ -94,3 +94,16 @@ class Solution:
             prev = cur
             cur = tempmax
         return cur
+
+#3/27/24:
+
+class Solution:
+    import math
+    def rob(self, nums: List[int]) -> int:
+        #dynamic programming approach where we calculate the max amount we can rob up to previous vs. current house since we have to skip one house
+        prev, cur = 0, 0
+        for number in nums:
+            tempmax = max(number + prev, cur)
+            prev = cur
+            cur = tempmax
+        return cur
