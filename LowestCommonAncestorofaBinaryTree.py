@@ -235,3 +235,23 @@ class Solution:
         if r and not l: return r
         else: return None
         
+#3/27/24:
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+        #a node can be a descendant of itself
+        if root == None or root == p or root == q: #base case
+            return root
+        l = self.lowestCommonAncestor(root.left, p, q)
+        r = self.lowestCommonAncestor(root.right, p, q)
+        if l and r: return root
+        elif l and not r: return l #lca in left subtree and caught at the 1st line base case when root.left was root and happened to be equal to p or q
+        elif r and not l: return r
+        else: return None
