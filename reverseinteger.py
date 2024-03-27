@@ -24,3 +24,14 @@ class Solution:
         return 0
 
   
+#3/27/24 practice:
+
+class Solution:
+    def reverse(self, x: int) -> int:
+        reverse = int(str(abs(x))[::-1])
+        limit = 2 ** 31
+        if x < 0 and reverse < limit:
+            return -reverse
+        elif x > 0 and reverse < limit:
+            return reverse
+        return 0
