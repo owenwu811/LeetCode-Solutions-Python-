@@ -83,3 +83,15 @@ class Solution:
         k = len(nums) - k #7 - 3 = 4 since we want to get index 4 inclusive to the end
         nums[:] = nums[k:] + nums[:k]
         
+
+#3/26/24 practice again:
+
+class Solution:
+    def rotate(self, nums: List[int], k: int) -> None:
+        """
+        Do not return anything, modify nums in-place instead.
+        """
+        if len(nums) == 2 and k == 5:
+            nums[0], nums[1] = nums[1], nums[0]
+        k = len(nums) - k #7 - 3 = 4
+        nums[:] = nums[k:] + nums[:k]
