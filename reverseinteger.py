@@ -28,7 +28,7 @@ class Solution:
 
 class Solution:
     def reverse(self, x: int) -> int:
-        reverse = int(str(abs(x))[::-1])
+        reverse = int(str(abs(x))[::-1]) #the reason for converting an integer to a string is so we can actually seperate the digits so we can actually reverse it because [::-1] only works on reversing a string data type and not integer data type in python
         limit = 2 ** 31
         if x < 0 and reverse < limit:
             return -reverse
