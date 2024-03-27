@@ -91,3 +91,19 @@ class Solution:
             if amountofgas < 0:
                 amountofgas, currentindex = 0, i + 1
         return currentindex
+
+#3/27/24:
+
+class Solution:
+    def canCompleteCircuit(self, gas: List[int], cost: List[int]) -> int:
+        #we have n number of gas stations along a circular route where the amount of gas at each station is the value in the gas array
+        #it costs the value in the cost array of gas to travel from the current index in gas array to the index to the right in gas array 
+        #we begin the journey with an empty gas tank
+        #we want the starting gas station's index if we can travel around the circut once counterclockwise or -1 if not possible at all from any of the indexes in gas array
+        if sum(gas) < sum(cost): return -1 #already not possible given total rule
+        amountofgas, currentindex = 0, 0
+        for i in range(len(gas)):
+            amountofgas += gas[i] - cost[i] #we have leftover gas from before
+            if amountofgas < 0: #we cannot make it to the next station
+                amountofgas, currentindex = 0, i + 1
+        return currentindex
