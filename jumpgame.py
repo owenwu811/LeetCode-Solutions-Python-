@@ -88,3 +88,16 @@ class Solution:
                 return False
             reachable = max(reachable, i + nums[i])
         return True
+
+#3/27/24:
+
+class Solution:
+    def canJump(self, nums: List[int]) -> bool:
+        #each value in our array represents the number of indexes you can jump forward from our current index
+        #we want to know if we can reach the last index or not
+        canreach = 0
+        for i in range(len(nums)):
+            if i > canreach:
+                return False
+            canreach = max(canreach, i + nums[i])
+        return True
