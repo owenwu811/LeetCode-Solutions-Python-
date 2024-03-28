@@ -219,3 +219,27 @@ class Solution:
                     third -= 1
         return res
 
+#3/28/24:
+
+class Solution:
+    import math
+    def threeSumClosest(self, nums: List[int], target: int) -> int:
+        nums.sort()
+        res = 0
+        historical = float('inf')
+        for first in range(len(nums)):
+            second = first + 1
+            third = len(nums) - 1
+            while second < third:
+                threesum = nums[first] + nums[second] + nums[third]
+                diff = abs(target - threesum)
+                if diff < historical:
+                    historical = diff
+                    res = threesum
+                elif threesum < target:
+                    second += 1
+                else:
+                    third -= 1
+        return res
+                
+
