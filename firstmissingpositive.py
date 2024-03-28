@@ -77,3 +77,15 @@ class Solution:
         return res
 
 
+#3/27/24:
+
+class Solution:
+    def firstMissingPositive(self, nums: List[int]) -> int:
+        nums.sort()
+        res = 1
+        for number in nums:
+            if number <= 0:
+                continue
+            if res == number:
+                res += 1
+        return res
