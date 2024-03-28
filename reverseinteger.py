@@ -46,3 +46,19 @@ class Solution:
 #Reverse the String: [::-1] is a slicing operation that reverses the string obtained from step 1. This effectively reverses the digits of the number.
 
 #Convert Back to Integer: int(...) converts the reversed string back to an integer. This step is crucial because we need to return an integer from the function, not a string.
+
+
+
+#3/27/24 practice again:
+
+class Solution:
+    def reverse(self, x: int) -> int:
+        sx = str(abs(x))
+        rs = sx[::-1]
+        xr = int(rs)
+        limit = 2 ** 31
+        if x < 0 and xr < limit:
+            return -xr
+        elif x > 0 and xr < limit:
+            return xr
+        return 0
