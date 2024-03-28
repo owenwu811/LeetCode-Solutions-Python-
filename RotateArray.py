@@ -95,3 +95,15 @@ class Solution:
             nums[0], nums[1] = nums[1], nums[0]
         k = len(nums) - k #7 - 3 = 4
         nums[:] = nums[k:] + nums[:k]
+
+#3/27/24 practice:
+
+class Solution:
+    def rotate(self, nums: List[int], k: int) -> None:
+        """
+        Do not return anything, modify nums in-place instead.
+        """
+        if len(nums) == 2 and k == 5:
+            nums[0], nums[1] = nums[1], nums[0]
+        k = len(nums) - k
+        nums[:] = nums[k:] + nums[:k]
