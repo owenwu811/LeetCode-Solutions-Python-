@@ -290,3 +290,23 @@ class Solution:
         res = []
         f(0, [], 0)
         return res
+
+#3/28/24:
+
+class Solution:
+    def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
+        #we care about frequency to determine uniqueness
+        def f(i, path, pathsum):
+            if pathsum == target:
+                res.append(path.copy())
+                return
+            if i >= len(candidates) or pathsum > target: 
+                return
+            path.append(candidates[i])
+            f(i, path, pathsum + candidates[i])
+            path.pop()
+            f(i + 1, path, pathsum)
+        res = []
+        f(0, [], 0)
+        return res
+
