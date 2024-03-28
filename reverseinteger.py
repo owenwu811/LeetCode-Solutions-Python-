@@ -62,3 +62,17 @@ class Solution:
         elif x > 0 and xr < limit:
             return xr
         return 0
+
+#3/28/24:
+
+class Solution:
+    def reverse(self, x: int) -> int:
+        rv = str(abs(x))
+        r = rv[::-1]
+        a = int(r)
+        limit = 2 ** 31
+        if x < 0 and a < limit:
+            return -a
+        elif x > 0 and a < limit:
+            return a
+        return 0
