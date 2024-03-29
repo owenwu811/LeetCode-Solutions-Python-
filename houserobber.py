@@ -107,3 +107,15 @@ class Solution:
             prev = cur
             cur = tempmax
         return cur
+
+#3/29/24:
+
+class Solution:
+    import math
+    def rob(self, nums: List[int]) -> int:
+        rob1, rob2 = 0, 0
+        for number in nums:
+            tempmax = max(number + rob1, rob2)
+            rob1 = rob2
+            rob2 = tempmax
+        return rob2
