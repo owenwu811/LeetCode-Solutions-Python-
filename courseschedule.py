@@ -880,3 +880,28 @@ class Solution:
                     if indegree[neighbor] == 0:
                         d.append(neighbor)
         return canvisit == numCourses
+
+#3/28/24:
+
+class Solution:
+    def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+        indegree = [0] * numCourses
+        adj = [[] for course in range(numCourses)]
+        for p in prerequisites:
+            adj[p[1]].append(p[0])
+            indegree[p[0]] += 1
+        d = deque()
+        for i in range(len(indegree)):
+            if indegree[i] == 0:
+                d.append(i)
+        canfinish = 0
+        while d:
+            for i in range(len(d)):
+                canfinish += 1
+                currentnode = d.popleft()
+                for neighbors in adj[currentnode]:
+                    indegree[neighbors] -= 1
+                    if indegree[neighbors] == 0:
+                        d.append(neighbors)
+        return canfinish == numCourses
+
