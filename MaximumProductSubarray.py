@@ -61,7 +61,7 @@ class Solution:
             if n == 0:
                 curmin, curmax = 1, 1
                 continue
-            temp = curmax * n
+            temp = curmax * n #reason for temp variable - think about [-1, 8] case
             curmax = max(n * curmax, n * curmin, n)
             curmin = min(n * curmin, temp, n)
             res = max(res, curmax, curmin)
