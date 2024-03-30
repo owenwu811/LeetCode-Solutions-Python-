@@ -87,3 +87,18 @@ class Solution:
 
 
         return f(s) == f(t)
+
+#3/30/24:
+
+class Solution:
+    def backspaceCompare(self, s: str, t: str) -> bool:
+        def f(a):
+            stack = []
+            for char in a:
+                if char == "#" and stack:
+                    stack.pop()
+                elif char != "#":
+                    stack.append(char)
+            return stack
+
+        return f(s) == f(t)
