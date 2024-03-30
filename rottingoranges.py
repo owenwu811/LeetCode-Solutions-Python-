@@ -987,3 +987,31 @@ class Solution:
                     d.append([destroyx, destroyy])
             minminutes += 1
         return minminutes if freshcount == 0 else -1
+
+#3/30/24:
+
+class Solution:
+    def orangesRotting(self, grid: List[List[int]]) -> int:
+        d = deque() #rotten oranges from a particular minute
+        minminutes, freshcount = 0, 0
+        for r in range(len(grid)):
+            for c in range(len(grid[0])):
+                if grid[r][c] == 2:
+                    d.append([r, c])
+                elif grid[r][c] == 1:
+                    freshcount += 1
+                else:
+                    continue
+        directions = [(1, 0), (0, 1), (-1, 0), (0, -1)]
+        while d and freshcount > 0:
+            for i in range(len(d)):
+                rottenx, rotteny = d.popleft()
+                for destroyx, destroyy in directions:
+                    newx, newy = rottenx + destroyx, rotteny + destroyy
+                    if newx < 0 or newx >= len(grid) or newy < 0 or newy >= len(grid[0]) or grid[newx][newy] != 1:
+                        continue
+                    grid[newx][newy] = 2
+                    d.append([newx, newy])
+                    freshcount -= 1
+            minminutes += 1
+        return minminutes if freshcount == 0 else -1
