@@ -66,4 +66,21 @@ class Solution:
             curmin = min(n * curmin, temp, n)
             res = max(res, curmax, curmin)
         return res
-        
+
+#3/30/24 practice round two:
+
+class Solution:
+    import math
+    def maxProduct(self, nums: List[int]) -> int:
+        res = max(nums) #[-1]
+        curmin, curmax = 1, 1
+        for n in nums:
+            if n == 0:
+                curmin, curmax = 1, 1
+                continue
+            temp = curmax * n #[-1, 8]
+            curmax = max(n * curmax, n * curmin, n)
+            curmin = min(n * curmin, temp, n)
+            res = max(res, curmax)
+        return res
+
