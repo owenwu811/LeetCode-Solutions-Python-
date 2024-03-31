@@ -21,9 +21,10 @@ class Solution:
             q.append(r) #add 5 to the top 
             if l > q[0]: #[8, 7, 6, 9], k = 2. deque = [7, 6]. our window is [6, 9], so since 7 is no longer in bounds, and max value in our window is 7, we add 7 to the output before we pop 7 from our deque
                 q.popleft() #the action of popping 7 from our deque
-            if (r + 1) >= k: 
+            if (r + 1) >= k: #edge case - since l and r both start from 0, we have to make sure our window is atleast size k to add to the output or update the output
+                #for each iteration of the loop, for each window, we want to append our output with the maximum VALUE, so we need NUMS[Q[0]], not the index
                 output.append(nums[q[0]]) #since our deque is always in decreasing order [8, 7], we can look at the leftmost value in our deque [8, 7] - 8 - and add 8 (leftmost) to our output
-                l += 1
-            r += 1
+                l += 1 #left is only incremented once our window is atleast size k
+            r += 1 # we don't actually need this line
         return output
 
