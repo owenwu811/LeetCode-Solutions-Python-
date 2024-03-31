@@ -28,3 +28,22 @@ class Solution:
             r += 1 # we don't actually need this line
         return output
 
+
+#practice again:
+
+class Solution:
+   def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
+        res = []
+        d = deque()
+        l = 0
+        for r in range(len(nums)):
+            while d and nums[r] > nums[d[-1]]:
+                d.pop()
+            d.append(r) #indexes, not values, are appended to the deque
+            if l > d[0]: #index comparison
+                d.popleft()
+            #edge case check
+            if (r + 1) >= k:
+                res.append(nums[d[0]])
+                l += 1
+        return res
