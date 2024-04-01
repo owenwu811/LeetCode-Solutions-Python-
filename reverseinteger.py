@@ -78,6 +78,24 @@ class Solution:
         return 0
 
 
+#4/1/24:
+
+class Solution:
+    def reverse(self, x: int) -> int:
+        #x = -123
+        g = abs(x) #123 instead of -123
+        s = str(g) #"123"
+        r = s[::-1] #"321"
+        final = int(r) #321
+        limit = 2 ** 31
+        #we want to add the - back to the FRONT OF "321"
+        if x < 0 and final < limit: #if reversing x causes value to go outside signed range
+            return -final #-321"
+        elif x > 0 and final < limit: #final < limit because the problem says AFTER REVERSING X causes value to go outside signed range
+            return final
+        return 0
+        
+
 #we must do abs(x) first! otherwise, you would get 321- instead of -123 and a ValueError because '321-' cannot be converted to an integer!
 
 #Suppose x = -123.
