@@ -76,3 +76,22 @@ class Solution:
         elif x > 0 and a < limit:
             return a
         return 0
+
+
+#we must do abs(x) first! otherwise, you would get 321- instead of -123 and a ValueError because '321-' cannot be converted to an integer!
+
+#Suppose x = -123.
+
+#With s = abs(x):
+
+#s = abs(-123) = 123
+#r = str(123) = '123'
+#a = r[::-1] = '321'
+#b = int('321') = 321
+#Since x < 0, and b = 321 which is less than 2 ** 31, we return -b, so the result is -321.
+#Without s = abs(x):
+
+#r = str(-123) = '-123'
+#a = r[::-1] = '321-' (Note: Reversed string includes the negative sign)
+#b = int('321-') would raise a ValueError because '321-' cannot be converted to an integer.
+#So, without taking the absolute value, the reversed string includes the negative sign, leading to incorrect results when converting it back to an integer.
