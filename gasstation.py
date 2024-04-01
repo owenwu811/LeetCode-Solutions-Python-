@@ -107,3 +107,16 @@ class Solution:
             if amountofgas < 0: #we cannot make it to the next station
                 amountofgas, currentindex = 0, i + 1
         return currentindex
+
+
+#4/1/24:
+
+class Solution:
+    def canCompleteCircuit(self, gas: List[int], cost: List[int]) -> int:
+        if sum(gas) < sum(cost): return -1
+        amount, index = 0, 0
+        for i in range(len(gas)):
+            amount += gas[i] - cost[i]
+            if amount < 0:
+                amount, index = 0, i + 1
+        return index
