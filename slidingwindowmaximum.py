@@ -47,3 +47,24 @@ class Solution:
                 res.append(nums[d[0]])
                 l += 1
         return res
+
+#4/1/24:
+
+class Solution:
+   def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
+        #sliding window is of size k meaning you can only see k numbers in the window
+        #we want to return the maximum number of each window of size k in order in a list
+        res = []
+        l = 0
+        d = deque()
+        for r in range(len(nums)):
+            while d and nums[r] > nums[d[-1]]:
+                d.pop() #useless
+            d.append(r)
+            if l > d[0]:
+                d.popleft()
+            if (r + 1) >= k:
+                res.append(nums[d[0]]) #montonically dereasing queue
+                l += 1
+        return res
+ 
