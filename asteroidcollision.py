@@ -204,3 +204,25 @@ class Solution:
             if a != 0:
                 stack.append(a)
         return stack
+
+#4/1/24:
+
+class Solution:
+    def asteroidCollision(self, asteroids: List[int]) -> List[int]:
+        stack = []
+        for a in asteroids:
+            while stack and a < 0 and stack[-1] > 0:
+                #collision is possible now
+                diff = a + stack[-1]
+                if diff < 0: #collision resulted in negative, so current one in our array lost out, so pop it only
+                    stack.pop()
+                elif diff > 0: #collision resulted in positive, so the asteroid in our array won out, so destroy the current input asteroid by setting to 0 since we have to append it to the stack anyways before collisions
+                    a = 0 
+                else: #both were equal, so both exploded
+                    stack.pop()
+                    a = 0
+            #always happens on 1st turn to add both positives and negative integers to array
+            if a != 0:
+                stack.append(a)
+        return stack 
+                
