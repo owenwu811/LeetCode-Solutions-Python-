@@ -94,6 +94,22 @@ class Solution:
         elif x > 0 and final < limit: #final < limit because the problem says AFTER REVERSING X causes value to go outside signed range
             return final
         return 0
+
+#practice again:
+
+class Solution:
+    def reverse(self, x: int) -> int:
+        a = abs(x) #-123 to 123
+        s = str(a) # 123 to "123"
+        b = s[::-1] #"123"" to "321"
+        f = int(b) #"321" to 321
+        limit = 2 ** 31
+        if x < 0 and f < limit:
+            return -f #321 to -321
+        elif x > 0 and f < limit:
+            return f 
+        return 0
+
         
 
 #we must do abs(x) first! otherwise, you would get 321- instead of -123 and a ValueError because '321-' cannot be converted to an integer!
