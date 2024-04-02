@@ -129,3 +129,18 @@ class Solution:
 #a = r[::-1] = '321-' (Note: Reversed string includes the negative sign)
 #b = int('321-') would raise a ValueError because '321-' cannot be converted to an integer.
 #So, without taking the absolute value, the reversed string includes the negative sign, leading to incorrect results when converting it back to an integer.
+
+#4/2/24:
+
+class Solution:
+    def reverse(self, x: int) -> int:
+        d = abs(x)
+        f = str(d)
+        g = f[::-1]
+        a = int(g)
+        limit = 2 ** 31
+        if x > 0 and a < limit:
+            return a
+        elif x < 0 and a < limit:
+            return -a
+        return 0
