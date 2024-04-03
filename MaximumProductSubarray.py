@@ -124,10 +124,11 @@ class Solution:
     def maxProduct(self, nums: List[int]) -> int:
         res = max(nums) #[-1]
         curmin, curmax = 1, 1
-        for n in nums:
+        for n in nums: #n is our current number
             if n == 0:
                 curmin, curmax = 1, 1
                 continue
+            #only when n is not equal to 0 does this execute, so since n starts at 2, 2 != 0, so this line executes
             temp = curmax * n #[-1, 8]
             curmax = max(curmax * n, curmin * n, n)
             curmin = min(curmin * n, temp, n)
