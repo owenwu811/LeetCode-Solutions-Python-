@@ -117,3 +117,19 @@ class Solution:
             res = max(res, curmax)
         return res
         
+
+#4/2/24 practice:
+
+class Solution:
+    def maxProduct(self, nums: List[int]) -> int:
+        res = max(nums) #[-1]
+        curmin, curmax = 1, 1
+        for n in nums:
+            if n == 0:
+                curmin, curmax = 1, 1
+                continue
+            temp = curmax * n #[-1, 8]
+            curmax = max(curmax * n, curmin * n, n)
+            curmin = min(curmin * n, temp, n)
+            res = max(res, curmax)
+        return res
