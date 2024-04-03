@@ -131,5 +131,5 @@ class Solution:
             temp = curmax * n #[-1, 8]
             curmax = max(curmax * n, curmin * n, n)
             curmin = min(curmin * n, temp, n)
-            res = max(res, curmax)
+            res = max(res, curmax) #for test case [2, 3, -2, 4], res = 4, and even though curmax = 2, 4 > 2, so res stays 4
         return res
