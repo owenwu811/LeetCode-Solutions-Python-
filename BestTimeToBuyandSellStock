@@ -100,3 +100,19 @@ class Solution:
                 ws = we
             res = max(res, prices[we] - prices[ws])
         return res
+
+#4/2/24 refresher my solution:
+
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        #you must sell after you buy aka buy before you sell
+        buy = 0
+        sell = 1
+        res = 0
+        for sell in range(len(prices)):
+            if prices[sell] < prices[buy]:
+                buy = sell
+                continue
+            profit = prices[sell] - prices[buy]
+            res = max(res, profit)
+        return res
