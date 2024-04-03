@@ -46,3 +46,23 @@ class Solution:
 
 
 
+#4/3/24 practice:
+
+class Solution:
+    def generateParenthesis(self, n: int) -> List[str]:
+        res, stack = [], []
+        def backtrack(openc, closec, n):
+            if openc == closec == n:
+                res.append("".join(stack))
+                return
+            if openc < n:
+                stack.append("(")
+                backtrack(openc + 1, closec, n)
+                stack.pop()
+            if closec < openc:
+                stack.append(")")
+                backtrack(openc, closec + 1, n)
+                stack.pop()
+        backtrack(0, 0, n) #start with 0 because we haven't seen any parenthesis yet to kick off recursion
+        return res
+        
