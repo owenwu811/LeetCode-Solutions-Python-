@@ -131,6 +131,6 @@ class Solution:
             #only when n is not equal to 0 does this execute, so since n starts at 2, 2 != 0, so this line executes
             temp = curmax * n #[-1, 8]
             curmax = max(curmax * n, curmin * n, n)
-            curmin = min(curmin * n, temp, n)
+            curmin = min(curmin * n, temp, n) #so even though curmin was 2, for the n == 3 iteration in [2, 3, -2, 4], curmin = min(2 * 3, 6, 3), so curmin actually increases from 2 to 3
             res = max(res, curmax) #for test case [2, 3, -2, 4], res = 4, and even though curmax = 2, 4 > 2, so res stays 4
         return res
