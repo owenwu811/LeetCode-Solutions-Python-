@@ -49,3 +49,18 @@ class Solution:
  #why it cannot be return maxres: nums = [0, 3, 7, 2, 5, 8, 4, 6, 0, 1] - control flow goes from 1st if to next if without hitting bodies to res += 1, which never updates maxres! so maxres stays 0!
  #why it cannot be return res: nums = [100, 4, 200, 1, 3, 2] - [1, 2, 3, 4, 100, 200] - res gets reset to 0 when i = 4 iteration (nums[i] == 100), so we want result to be 4, not smaller.
  #if res += 1 were placed inside of i > 0 and nums[i] == nums[i - 1] instead of after the 2nd if statement, then 1st iteration of [1, 2, 3, 4, 100, 200], both if statements are False, so the 1st number wouldn't be counted as a result, and result would not be incremented
+
+#practice again :
+
+class Solution:
+    def longestConsecutive(self, nums: List[int]) -> int:
+        res, maxres = 0, 0
+        nums.sort()
+        for i in range(len(nums)):
+            if i > 0 and nums[i] == nums[i - 1]: #[0, 0] = 1
+                continue #only case where we don't increment res
+            if i > 0 and nums[i] - nums[i - 1] > 1:
+                maxres = max(res, maxres) #hold historical
+                res = 0
+            res += 1 #always executes in 1st turn because i = 0 not i > 0 and count the current 1st element always
+        return max(res, maxres)
