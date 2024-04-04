@@ -64,3 +64,19 @@ class Solution:
                 res = 0
             res += 1 #always executes in 1st turn because i = 0 not i > 0 and count the current 1st element always
         return max(res, maxres)
+
+#4/4/24:
+
+class Solution:
+    def longestConsecutive(self, nums: List[int]) -> int:
+        maxres, res = 0, 0
+        nums.sort()
+        for i in range(len(nums)):
+            if i > 0 and nums[i] == nums[i - 1]: #won't be true in 1st turn
+                continue
+            if i > 0 and nums[i] - nums[i - 1] > 1:
+                maxres = max(maxres, res) #have to start a new run, so keep track of biggest historical
+                res = 0
+            res += 1 #always occurs on 1st turn
+        return max(maxres, res) #when the 2nd if block never executes, maxres is never updated
+            
