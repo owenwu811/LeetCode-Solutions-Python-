@@ -65,4 +65,24 @@ class Solution:
                 stack.pop()
         backtrack(0, 0, n) #start with 0 because we haven't seen any parenthesis yet to kick off recursion
         return res
-        
+
+#4/4/24 practice:
+
+class Solution:
+    def generateParenthesis(self, n: int) -> List[str]:
+        def f(openc, closec, stack):
+            if openc == closec == n:
+                res.append("".join(stack))
+                return
+            if closec < openc:
+                stack.append(")")
+                f(openc, closec + 1, stack)
+                stack.pop()
+            if openc < n:
+                stack.append("(")
+                f(openc + 1, closec, stack)
+                stack.pop()
+
+        res = []
+        f(0, 0, []) #we start with an empty stack, and we add brackets onto the stack given out conditions
+        return res
