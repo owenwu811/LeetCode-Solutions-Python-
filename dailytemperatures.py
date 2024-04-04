@@ -69,3 +69,17 @@ class Solution:
                 res[a] = i - a
             stack.append(i)
         return res
+
+#4/4/24 practice:
+
+class Solution:
+    def dailyTemperatures(self, temperatures: List[int]) -> List[int]:
+        #we want to return the number of days after current index to get a better temperature
+        res = [0] * len(temperatures)
+        d = deque() #we use a stack to keep track of the warmest temperature found so far
+        for i in range(len(temperatures)):
+            while d and temperatures[i] > temperatures[d[-1]]:
+                a = d.pop() #a = 73
+                res[a] = i - a
+            d.append(i) #to rear of list
+        return res
