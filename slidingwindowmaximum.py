@@ -104,3 +104,22 @@ class Solution:
                 res.append(nums[d[0]])
                 l += 1
         return res
+
+#4/3/24 refresher:
+
+class Solution:
+   def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
+        res = []
+        d = deque() #montonic decreasing deque
+        l = 0
+        for we in range(len(nums)):
+            while d and nums[we] > nums[d[-1]]:
+                d.pop() #useless because we found a bigger number
+            d.append(we) #always happens on 1st turn - appending the index
+            if l > d[0]:
+                d.popleft() #out of bounds of window to left
+            if (we + 1) >= k:
+                res.append(nums[d[0]])
+                l += 1
+        return res
+            
