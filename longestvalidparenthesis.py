@@ -34,3 +34,5 @@ class Solution:
 s = ")()())"
 solution = Solution()
 print(solution.longestValidParentheses(s))
+
+#note that stack = [0] instead of stack = [-1] would fail "()" test case, giving us 1 instead of 2 because maxlength would be doing i - stack[-1], which is 1 - 0 instead of 1 - - 1
