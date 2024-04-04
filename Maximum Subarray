@@ -120,7 +120,7 @@ class Solution:
         return result
 
 
-#12/29/25 refresher - my python3 solution:
+#12/29/23 refresher - my python3 solution:
 
 class Solution:
     def maxSubArray(self, nums: List[int]) -> int:
@@ -174,4 +174,18 @@ class Solution:
                 windowsum = 0
             windowsum += number
             res = max(res, windowsum)
+        return res
+
+#4/3/24:
+
+class Solution:
+    def maxSubArray(self, nums: List[int]) -> int:
+        #we want to find a contiguous subarray, which, when added together, has the largest sum of any contiguous subarrays, and we return that sum
+        res = nums[0]
+        cur = 0
+        for number in nums:
+            if cur < 0:
+                cur = 0
+            cur += number
+            res = max(res, cur)
         return res
