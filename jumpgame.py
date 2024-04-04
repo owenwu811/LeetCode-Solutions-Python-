@@ -123,3 +123,15 @@ class Solution:
                 return False
             reachable = max(reachable, i + nums[i])
         return True
+
+#4/4/24 refresher:
+
+class Solution:
+    def canJump(self, nums: List[int]) -> bool:
+        #we initially start at index 0. we can jump from the current index nums[i] to the right
+        reachable = 0 #we start here
+        for i in range(len(nums)):
+            if i > reachable:
+                return False
+            reachable = max(reachable, i + nums[i])
+        return True
