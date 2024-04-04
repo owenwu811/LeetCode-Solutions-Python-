@@ -144,3 +144,19 @@ class Solution:
         elif x < 0 and a < limit:
             return -a
         return 0
+
+#4/3/24 refresher:
+
+class Solution:
+    def reverse(self, x: int) -> int:
+        #-123 > 123 > "123" > "321" > - 321
+        g = abs(x) #prevents integer error for 321- being converted back to integer later on
+        s = str(g)
+        h = s[::-1]
+        f = int(h) #321
+        limit = 2 ** 31
+        if x > 0 and f < limit: 
+            return f
+        if x < 0 and f < limit:
+            return -f #-321
+        return 0
