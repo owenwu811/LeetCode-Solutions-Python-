@@ -36,3 +36,5 @@ solution = Solution()
 print(solution.longestValidParentheses(s))
 
 #note that stack = [0] instead of stack = [-1] would fail "()" test case, giving us 1 instead of 2 because maxlength would be doing i - stack[-1], which is 1 - 0 instead of 1 - - 1. 
+
+#the reason we do stack[-1] is because we are minusing the index by stack[-1] to update maxlength, which counts the current opening bracket because only opening brackets go in the stack as + 1 to the maxlength
