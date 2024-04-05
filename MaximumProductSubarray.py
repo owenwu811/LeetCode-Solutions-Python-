@@ -134,3 +134,19 @@ class Solution:
             curmin = min(curmin * n, temp, n) #even though curmin was 2, for the n == 3 iteration in [2, 3, -2, 4], curmin = min(2 * 3, 6, 3), so curmin actually increases from 2 to 3
             res = max(res, curmax) #for test case [2, 3, -2, 4], res = 4, and even though curmax = 2, 4 > 2, so res stays 4
         return res
+
+#4/5/24 practice:
+
+class Solution:
+    def maxProduct(self, nums: List[int]) -> int:
+        curmin, curmax = 1, 1
+        res = max(nums) #[-1]
+        for n in nums:
+            if n == 0:
+                curmin, curmax = 1, 1
+                continue
+            temp = curmax * n
+            curmax = max(curmin * n, curmax * n, n)
+            curmin = min(curmin * n, temp, n) #[-1, 8]
+            res = max(res, curmax, curmin)
+        return res
