@@ -38,3 +38,22 @@ print(solution.longestValidParentheses(s))
 #note that stack = [0] instead of stack = [-1] would fail "()" test case, giving us 1 instead of 2 because maxlength would be doing i - stack[-1], which is 1 - 0 instead of 1 - - 1. 
 
 #the reason we do stack[-1] is because we are minusing the index by stack[-1] to update maxlength, which counts the current opening bracket because only opening brackets go in the stack as + 1 to the maxlength
+
+
+#4/5/24 practice: missed
+
+class Solution:
+    def longestValidParentheses(self, s: str) -> int:
+        res = 0
+        stack = [-1]
+        for i in range(len(s)):
+            if s[i] == "(": 
+                stack.append(i)
+            else:
+                stack.pop() #"(()" means [-1, 0, 1] becomes [-1, 0]
+                if not stack: #true if 1st char is ")" in s, so 0 goes to rear of stack, and anything minus 0 is that number without hurt, so that's why ) first in s dosen't count as part of result
+                    stack.append(i)
+                else:
+                    res = max(res, i - stack[-1]) #2 - 0 = 2
+        return res
+
