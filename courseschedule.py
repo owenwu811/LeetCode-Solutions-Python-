@@ -905,3 +905,27 @@ class Solution:
                         d.append(neighbors)
         return canfinish == numCourses
 
+
+#4/5/24:
+
+class Solution:
+    def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+        indegree = [0] * numCourses #how many prerequisites we have
+        adj = [[] for course in range(numCourses)]
+        for p in prerequisites: #p is each sublist
+            adj[p[1]].append(p[0])
+            indegree[p[0]] += 1
+        d = deque()
+        for i in range(len(indegree)):
+            if indegree[i] == 0:
+                d.append(i)
+        canvisit = 0
+        while d:
+            for i in range(len(d)):
+                canvisit += 1
+                current = d.popleft() #fifo
+                for n in adj[current]:
+                    indegree[n] -= 1
+                    if indegree[n] == 0:
+                        d.append(n)
+        return canvisit == numCourses
