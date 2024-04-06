@@ -176,7 +176,7 @@ class Solution:
 
 class Solution:
     def isPalindrome(self, s: str) -> bool:
-        s = s.replace(" ", "")
+        s = s.replace(" ", "") #solution works even if you remove this line
         s = re.sub("[\W_]", "", s)
         l, r = 0, len(s) - 1
         while l < r:
