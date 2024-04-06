@@ -232,3 +232,22 @@ class Solution:
             lengthoflongest = max(lengthoflongest, we - windowstart + 1)
         return lengthoflongest
 
+#4/6/24:
+
+class Solution:
+    def characterReplacement(self, s: str, k: int) -> int:
+        frequency = {}
+        lengthoflongest, ws, mostfrequent = 0, 0, 0
+        for i in range(len(s)):
+            if s[i] not in frequency:
+                frequency[s[i]] = 0
+            frequency[s[i]] += 1
+            mostfrequent = max(mostfrequent, frequency[s[i]])
+            while (i - ws) + 1 - mostfrequent > k:
+                frequency[s[ws]] -= 1
+                ws += 1
+            lengthoflongest = max(lengthoflongest, i - ws + 1)
+        return lengthoflongest
+            
+
+        
