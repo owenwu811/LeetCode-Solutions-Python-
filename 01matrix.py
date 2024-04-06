@@ -430,3 +430,28 @@ class Solution:
                         mat[ox][oy] = mat[zx][zy] + 1
                         d.append([ox, oy])
         return mat
+
+#4/5/24:
+
+class Solution:
+    def updateMatrix(self, mat: List[List[int]]) -> List[List[int]]:
+        #binary matrix means that the entire matrix will only contain either integer 0s or integer 1s
+        #each cell in our finished matrix (list of lists) should have the number of steps from each 1 cell to the 0 cell that is the nearest adjacent, so this is bfs (fifo)
+        if not mat: return []
+        d = deque() #stores coordinates (indicies) of all 0 cells that we want to reach starting from 1 cells
+        for r in range(len(mat)):
+            for c in range(len(mat[0])):
+                if mat[r][c] == 0:
+                    d.append([r, c])
+                else:
+                    mat[r][c] = float('inf')
+        directions = [(1, 0), (0, 1), (-1, 0), (0, -1)]
+        while d:
+            for i in range(len(d)):
+                zx, zy = d.popleft()
+                for newx, newy in directions:
+                    ox, oy = newx + zx, newy + zy
+                    if ox >= 0 and ox < len(mat) and oy >= 0 and oy < len(mat[0]) and mat[ox][oy] > mat[zx][zy] + 1:
+                        mat[ox][oy] = mat[zx][zy] + 1
+                        d.append([ox, oy]) #becomes a new starting point since already updated that tile with distance from 1 to nearest 0
+        return mat
