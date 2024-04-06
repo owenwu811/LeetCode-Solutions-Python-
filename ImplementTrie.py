@@ -95,3 +95,30 @@ class Trie:
 
 
       
+#4/6/24 review:
+
+class Trie:
+
+    def __init__(self):
+        self.mydict = dict()
+        
+
+    def insert(self, word: str) -> None:
+        if word not in self.mydict:
+            self.mydict[word] = 0
+        self.mydict[word] += 1
+        
+
+    def search(self, word: str) -> bool:
+        for d in self.mydict:
+            if d == word:
+                return True
+        return False
+        
+
+    def startsWith(self, prefix: str) -> bool:
+        for d in self.mydict:
+            if d.startswith(prefix):
+                return True
+        return False
+        
