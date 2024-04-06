@@ -86,3 +86,26 @@ class Solution:
         res = []
         f(0, 0, []) #we start with an empty stack, and we add brackets onto the stack given out conditions
         return res
+        
+#4/6/24 review:
+
+class Solution:
+    def generateParenthesis(self, n: int) -> List[str]:
+        #)( is not well formed
+        stack = []
+        def f(openb, closeb, n):
+            if openb == closeb == n:
+                res.append("".join(stack))
+                return
+            if closeb < openb:
+                stack.append(")")
+                f(openb, closeb + 1, n)
+                stack.pop()
+            if openb < n:
+                stack.append("(")
+                f(openb + 1, closeb, n)
+                stack.pop()
+
+        res = []
+        f(0, 0, n)
+        return res
