@@ -282,6 +282,7 @@ class Solution:
             postfixn *= nums[backward]
         return res
 
+#THIS BELOW EXPLANATION REALLY HELPS ME PICTURE WHAT IS GOING ON:
 
 #During the forward pass, result[i] stores the product of all elements to the left of nums[i]. if nums = [1, 2, 3, 4], when you say left of nums[i], you mean 1, 2, 3, but not 4. So, for example, if nums = [1, 2, 3, 4], and we are considering nums[2], which is 3, then the elements to the left of nums[2] are [1, 2]. In other words, the product stored in result[2] will be the product of all elements to the left of 3, which is 1 * 2 = 2.
 
@@ -375,5 +376,19 @@ class Solution:
             prefixn *= nums[forward]
         for backward in range(len(nums) -1, -1, -1):
             res[backward] *= postfixn #we have to multiply by what we already had in result in the forward pass
+            postfixn *= nums[backward]
+        return res
+
+#4/5/24:
+
+class Solution:
+    def productExceptSelf(self, nums: List[int]) -> List[int]:
+        res = [1] * len(nums)
+        prefixn, postfixn = 1, 1
+        for forward in range(len(nums)):
+            res[forward] = prefixn
+            prefixn *= nums[forward]
+        for backward in range(len(nums) -1, -1, -1):
+            res[backward] *= postfixn
             postfixn *= nums[backward]
         return res
