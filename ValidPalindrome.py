@@ -185,3 +185,14 @@ class Solution:
             l += 1
             r -= 1
         return True
+
+#note that:
+
+import re
+s = "A man, a plan, a canal: Panama"
+s = re.sub("[\W_]", "", s)
+print(s)
+
+#actually outputs:   AmanaplanacanalPanama
+
+#without you even having to replace the spaces 
