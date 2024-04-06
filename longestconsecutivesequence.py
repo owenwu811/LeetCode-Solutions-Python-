@@ -94,3 +94,18 @@ class Solution:
                 res = 0
             res += 1
         return max(res, maxres)
+
+#4/6/24 practice:
+
+class Solution:
+    def longestConsecutive(self, nums: List[int]) -> int:
+        lengthoflongest, curres = 0, 0
+        nums.sort()
+        for i in range(len(nums)):
+            if i > 0 and nums[i] == nums[i - 1]: #[0, 0] counts as 1 output, not 2, so only case where we don't actually increment res
+                continue
+            if i > 0 and nums[i] - nums[i - 1] > 1:
+                lengthoflongest = max(lengthoflongest, curres)
+                curres = 0
+            curres += 1
+        return max(lengthoflongest, curres)
