@@ -179,7 +179,7 @@ class Solution:
 #you have to use indexes aka i to compare to len(s) comparing len with len has the possibility to run into an index out of bounds error because, in the process of comparing, you're trying to access an index that is not valid in the other
 #you have to use len(s) because s isn't accessed with i and range while strs 
                 
-#4/6/24 review: (missed):
+#4/6/24 review: (missed): the key missed insight is to use the 1st string in the array as a comparing point for all other strings since all have to match!
 
 class Solution:
     def longestCommonPrefix(self, strs):
