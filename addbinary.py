@@ -84,3 +84,15 @@ class Solution:
     def addBinary(self, a: str, b: str) -> str:
         s = bin(int(a, 2) + int(b, 2))
         return s[2:]
+
+#4/6/24:
+
+class Solution:
+    def addBinary(self, a: str, b: str) -> str:
+        string = bin(int(a, 2) + int(b, 2))
+        return string[2:]
+        #11 #1
+
+        #1010
+        #1011
+        # 1 0 1 01
