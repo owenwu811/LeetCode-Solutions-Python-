@@ -409,3 +409,16 @@ class Solution:
                 buildoff[right] = buildoff[right + 1] + first[right]
             first = buildoff
         return first[0]
+
+#4/7/24:
+
+class Solution:
+    def uniquePaths(self, m: int, n: int) -> int:
+        first = [1] * n
+        for down in range(m - 1):
+            above = [1] * n
+            for right in range(n - 2, -1, -1):
+                above[right] = above[right + 1] + first[right]
+            first = above
+        return first[0]
+
