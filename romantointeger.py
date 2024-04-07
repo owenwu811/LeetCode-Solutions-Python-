@@ -47,3 +47,18 @@ class Solution:
         return res
 
 #has nothing to do with the previous character in s! we are just saying that if the current is smaller than the next, then the result of both current + next is (next - current), which is (- current + next)! - missed on 4/7/24!
+
+
+#4/7/24 - my own solution: - THIS WORKS TOO! YOU JUST HAVE TO MAKE SURE YOU MINUS AND ADD THE PREVIOUS NUMBER!
+
+class Solution:
+    def romanToInt(self, s: str) -> int:
+        res = 0
+        mapping = {"I": 1, "V": 5, "X": 10, "L": 50, "C": 100, "D": 500, "M": 1000}
+        for i in range(len(s)):
+            if i > 0 and mapping[s[i]] > mapping[s[i - 1]]:
+                res -= mapping[s[i - 1]]
+            else:
+                res += mapping[s[i - 1]]
+        return res
+        
