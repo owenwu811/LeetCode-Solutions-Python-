@@ -45,3 +45,5 @@ class Solution:
             else:
                 res += mydict[s[i]]
         return res
+
+#has nothing to do with the previous character in s! we are just saying that if the current is smaller than the next, then the result of both current + next is (next - current), which is (- current + next)! - missed on 4/7/24!
