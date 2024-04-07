@@ -109,3 +109,20 @@ class Solution:
                 curres = 0
             curres += 1
         return max(lengthoflongest, curres)
+
+
+#4/7/24:
+
+class Solution:
+    def longestConsecutive(self, nums: List[int]) -> int:
+        maxres, res = 0, 0
+        nums.sort()
+        for i in range(len(nums)):
+            if i > 0 and nums[i] == nums[i - 1]:
+                continue
+            if i > 0 and nums[i] - nums[i - 1] > 1:
+                maxres = max(maxres, res)
+                res = 0
+            res += 1
+        return max(maxres, res)
+
