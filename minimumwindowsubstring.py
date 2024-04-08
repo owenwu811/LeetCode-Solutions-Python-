@@ -905,4 +905,33 @@ class Solution:
             return s[start: start + end]
         elif len(s) == end: return s
         else: return ""
-                        
+
+
+#practice again:
+
+class Solution:
+    def minWindow(self, s: str, t: str) -> str:
+        #we want the smallest portion of s that fully satisfies t
+        if len(s) < len(t): return "" #s can't satisfy t if it's already smaller than t - whole s is smaller than whole t
+        start, end, matched, ws = 0, float('inf'), 0, 0
+        need = Counter(t)
+        for we, schar in enumerate(s):
+            if schar in need:
+                need[schar] -= 1
+                if need[schar] == 0:
+                    matched += 1 #fully satisfied that char in t
+                while matched == len(need): #satisfied all characters in t
+                    if end > we - ws + 1: #find smaller window
+                        end = we - ws + 1
+                        start = ws
+                    kickout = s[ws] 
+                    ws += 1
+                    if kickout in need:
+                        if need[kickout] == 0:
+                            matched -= 1
+                        need[kickout] += 1
+        if len(s) > end:
+            return s[start: start + end]
+        elif len(s) == end: return s
+        else: return ""
+
