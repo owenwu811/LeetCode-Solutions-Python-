@@ -935,3 +935,31 @@ class Solution:
         elif len(s) == end: return s
         else: return ""
 
+#4/8/24 practice again:
+
+class Solution:
+    def minWindow(self, s: str, t: str) -> str:
+        if len(s) < len(t): return ""
+        start, end, matched, ws = 0, float('inf'), 0, 0
+        need = Counter(t) #represents total from t that we need from s
+        for we, schar in enumerate(s):
+            if schar in need:
+                need[schar] -= 1
+                if need[schar] == 0:
+                    matched += 1 #fully satisfied t with our current window indicated by ws and we
+                while matched == len(need): #matched caught as many characters in s meaning satisfied as many different characters in s as keys in need, which are all the different characters in t
+                    if end > we - ws + 1:
+                        end = we - ws + 1
+                        start = ws
+                    kickout = s[ws] #we are on task of finding smallest part of s that fully satisfies t
+                    ws += 1
+                    if kickout in need:
+                        if need[kickout] == 0:
+                            matched -= 1
+                        need[kickout] += 1
+        if len(s) > end:
+            return s[start: start + end]
+        elif len(s) == end: return s
+        else: return ""
+
+                
