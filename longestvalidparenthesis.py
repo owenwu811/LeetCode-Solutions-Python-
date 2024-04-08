@@ -90,3 +90,21 @@ class Solution:
                 else:
                     res = max(res, char - stack[-1])
         return res
+
+#4/8/24:
+
+class Solution:
+    def longestValidParentheses(self, s: str) -> int:
+        #)( does not count as valid
+        res = 0
+        stack = [-1] #() = 2, not 1
+        for i in range(len(s)):
+            if s[i] == "(":
+                stack.append(i)
+            else: #encountered ) in input s
+                stack.pop()
+                if not stack:
+                    stack.append(i)
+                else:
+                    res = max(res, i - stack[-1]) #counting the first
+        return res
