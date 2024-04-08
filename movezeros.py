@@ -28,3 +28,18 @@ class Solution:
             elif nums[slow] != 0: #the reason we don't do any swapping if left points to a non zero is because left represents the point at which all zeros should be in front of left, so any non zero elements are already in their final place 
                 slow += 1
         
+
+#4/8/24:
+
+class Solution:
+    def moveZeroes(self, nums: List[int]) -> None:
+        """
+        Do not return anything, modify nums in-place instead.
+        """
+        slow = 0
+        for fast in range(1, len(nums)):
+            if nums[slow] == 0 and nums[fast] != 0:
+                nums[slow], nums[fast] = nums[fast], nums[slow]
+                slow += 1
+            elif nums[slow] != 0:
+                slow += 1
