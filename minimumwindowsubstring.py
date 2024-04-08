@@ -878,3 +878,31 @@ class Solution:
         elif len(s) == diff: return s
         else: return ""
  
+#4/8/24 (missed):
+
+class Solution:
+    def minWindow(self, s: str, t: str) -> str:
+        #we want the minimum of s that satisifes t, not the other way around
+        if len(s) < len(t): return ""
+        ws, start, end, matched = 0, 0, float('inf'), 0
+        need = Counter(t)
+        for we, schar in enumerate(s):
+            if schar in need:
+                need[schar] -= 1
+                if need[schar] == 0: 
+                    matched += 1
+                while matched == len(need): #every character in s is included in t
+                    if end > we - ws + 1:
+                        end = we - ws + 1
+                        start = ws
+                    kickout = s[ws]
+                    ws += 1
+                    if kickout in need:
+                        if need[kickout] == 0:
+                            matched -= 1
+                        need[kickout] += 1
+        if len(s) > end:
+            return s[start: start + end]
+        elif len(s) == end: return s
+        else: return ""
+                        
