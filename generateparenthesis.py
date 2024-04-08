@@ -109,3 +109,26 @@ class Solution:
         res = []
         f(0, 0, n)
         return res
+
+#4/8/24:
+
+class Solution:
+    def generateParenthesis(self, n: int) -> List[str]:
+        def f(openc, closec, stack):
+            if openc == closec == n: #reached bottom of tree, so backtrack
+                res.append("".join(stack))
+                return
+            if closec < openc:
+                stack.append(")")
+                f(openc, closec + 1, stack) #we are using the count of open vs close parenthesis to know when to backtrack
+                stack.pop() #notice how this backtracking step comes after all the recursive calls in the line right above finish
+            if openc < n:
+                stack.append("(")
+                f(openc + 1, closec, stack)
+                stack.pop()
+
+
+        res = []
+        f(0, 0, [])
+        return res
+
