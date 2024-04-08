@@ -215,4 +215,17 @@ class Solution:
                     return res
             res += strs[0][i]
         return res
- 
+
+#4/8/24:
+
+class Solution:
+    def longestCommonPrefix(self, strs):
+        res = ""
+        for i in range(len(strs[0])): #use strs[0] as comparision key since all strings in strs input list have to match to count towards res string
+            for s in strs: #each string in the list that moves
+                if i == len(s) or s[i] != strs[0][i]: #found violating condition, so return: already reached end of current string we are iterating over or there is a mismatch somewhere with the strs[0] key using the ith position in the one we are iterating over and the key
+                    return res
+            #once we have looped through that entire string, we can add the anwser up to this point - matching string - to result, which is going to be a portion of the strs[0] key string since that is never changing
+            res += strs[0][i]
+        return res #once we finis iterating over each string in strs input list and also finished iterating over each character in strs[0] key string, we can determine out result since every string has to match up in strs list input
+
