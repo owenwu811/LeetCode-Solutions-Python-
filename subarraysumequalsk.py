@@ -24,3 +24,5 @@ class Solution:
                 d[prefixsum] = 1
         return c
 #2, 4, 6, 8
+
+#the reason we have d[0] = 1 is to check if the 1st subarray with just one element happens to equal k meaning (prefixsum - k == 0 because 0 is a key in our dictionary) to make if prefixsum - k in d true if need be
