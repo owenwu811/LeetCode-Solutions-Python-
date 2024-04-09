@@ -37,3 +37,14 @@ class Solution:
 #NOTE THAT LINES 30 AND 31 WILL NEVER BE TRUE ON THE FIRST ITERATION BECAUSE WE'VE ONLY SEEN ONE DIGIT SO FAR, SO THERE'S NOT EVEN A SECOND DIGIT UNTIL THE 2ND ITERATION.
 
 
+#4/8/24 refresher:
+
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        mydict = dict()
+        res = []
+        for i, j in enumerate(nums):
+            complement = target - j
+            if complement in mydict:
+                return mydict[complement], i
+            mydict[j] = i
