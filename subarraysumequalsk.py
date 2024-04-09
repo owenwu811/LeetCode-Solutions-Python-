@@ -39,3 +39,20 @@ class Solution:
 #the reason we have d[0] = 1 is to check if the 1st subarray with just one element happens to equal k meaning (prefixsum - k == 0 because 0 is a key in our dictionary) to make if prefixsum - k in d true if need be
 
 #d[prefixsum]=1 - and the idea here is that our prefix sum dosen't exist as a key in our dictionary, so add it so that, in the future, when we add even more elements, we can use the key we just added to see if that key we just added is a potential complement to make prefixsum - k = 0 in the future iterations
+
+#4/9/24 refresher:
+
+class Solution:
+    def subarraySum(self, nums: List[int], k: int) -> int:
+        res, prefixsum = 0, 0
+        d = dict()
+        d[0] = 1
+        for i in nums:
+            prefixsum += i
+            if prefixsum - k in d:
+                res += d[prefixsum - k]
+            if prefixsum in d:
+                d[prefixsum] += 1
+            else:
+                d[prefixsum] = 1
+        return res
