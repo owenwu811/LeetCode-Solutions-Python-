@@ -28,7 +28,7 @@ class Solution:
         for i in nums:
             prefixsum += i
             if prefixsum - k in d:
-                c += d[prefixsum - k] #3 - 2 = 1, and k = 1, so add whatever frequency 1 exists as total number of subarrays equalling k because we don't care about duplicates
+                c += d[prefixsum - k] #3 - 2 = 1, and k = 1, so add whatever frequency 1 exists as total number of subarrays equalling k because we don't care about duplicates. duplicates still count towards result.
             if prefixsum in d:
                 d[prefixsum] += 1
             else:
