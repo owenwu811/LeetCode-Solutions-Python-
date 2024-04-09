@@ -150,3 +150,19 @@ class Solution:
             curmin = min(curmin * n, temp, n) #[-1, 8]
             res = max(res, curmax, curmin)
         return res
+
+#4/9/24:
+
+class Solution:
+    def maxProduct(self, nums: List[int]) -> int:
+        res = max(nums)
+        curmin, curmax = 1, 1
+        for n in nums:
+            if n == 0:
+                curmin, curmax = 1, 1
+                continue
+            temp = curmax * n
+            curmax = max(curmin * n, curmax * n, n)
+            curmin = min(curmin * n, temp, n)
+            res = max(res, curmax)
+        return res
