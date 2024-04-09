@@ -8,6 +8,14 @@
 
 #python3 solution:
 
+# [1, 1]
+#    [1, 1]
+# both above sum up to 2, and k = 2, so we have 2 subarrays that are CONTIGUOUS and sum up to k
+
+#[1, 1, 1], k = 2
+
+# dictinoary looks like this for above test case: {0: 1, 1: 1, 2: 1, 3: 1}
+
 #the pattern is very similar to two sum hashmap 
 class Solution:
     def subarraySum(self, nums: List[int], k: int) -> int:
@@ -26,3 +34,5 @@ class Solution:
 #2, 4, 6, 8
 
 #the reason we have d[0] = 1 is to check if the 1st subarray with just one element happens to equal k meaning (prefixsum - k == 0 because 0 is a key in our dictionary) to make if prefixsum - k in d true if need be
+
+#d[prefixsum]=1 - and the idea here is that our prefix sum dosen't exist as a key in our dictionary, so add it so that, in the future, when we add even more elements, we can use the key we just added to see if that key we just added is a potential complement to make prefixsum - k = 0 in the future iterations
