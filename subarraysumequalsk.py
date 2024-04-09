@@ -16,6 +16,9 @@
 
 # dictinoary looks like this for above test case: {0: 1, 1: 1, 2: 1, 3: 1}
 
+#my own test case for negatives: [2, 1, -3], k = 1 - output: 1
+#so if (3 - 1) in d, which 2 is in d, so True because {0: 1, 2: 1}
+
 #the pattern is very similar to two sum hashmap 
 class Solution:
     def subarraySum(self, nums: List[int], k: int) -> int:
