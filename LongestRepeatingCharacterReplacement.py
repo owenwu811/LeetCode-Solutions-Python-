@@ -249,5 +249,21 @@ class Solution:
             lengthoflongest = max(lengthoflongest, i - ws + 1)
         return lengthoflongest
             
+#4/9/24:
 
+class Solution:
+    def characterReplacement(self, s: str, k: int) -> int:
+        freq = {}
+        lengthoflongest, ws, mostfrequent = 0, 0, 0
+        for we in range(len(s)):
+            if s[we] not in freq:
+                freq[s[we]] = 0
+            freq[s[we]] += 1
+            mostfrequent = max(mostfrequent, freq[s[we]]) # we want least work for k since k is limited
+            while (we - ws + 1) - mostfrequent > k:
+                freq[s[ws]] -= 1
+                ws += 1
+            #k is satisfied
+            lengthoflongest = max(lengthoflongest, we - ws + 1)
+        return lengthoflongest
         
