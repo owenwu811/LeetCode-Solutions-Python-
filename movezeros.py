@@ -64,4 +64,26 @@ class Solution:
                 slow += 1
             elif nums[slow] != 0:
                 slow += 1
+
+
+#practice again:
+
+class Solution:
+    def moveZeroes(self, nums: List[int]) -> None:
+        """
+        Do not return anything, modify nums in-place instead.
+        """
+        #[0, 1, 0, 3, 12]
+        #[1, 0, 0, 3, 12]
+        #[1, 0, 3, 0, 12]
+        #[1, 3, 0, 0, 12]
+        #[1, 3, 0, 12, 0]
+        #[1, 3, 12, 0, 0]
+        l = 0
+        for r in range(1, len(nums)):
+            if nums[l] == 0 and nums[r] != 0:
+                nums[l], nums[r] = nums[r], nums[l]
+                l += 1
+            elif nums[l] != 0:
+                l += 1
         
