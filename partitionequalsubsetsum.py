@@ -305,3 +305,20 @@ class Solution:
 
 #set1 is used to include only up to the previous element vs. the one we are currently looping through in the input array
 #set2 is used to calculate the sum of elements including the current 
+
+#4/10/24 refresher:
+
+class Solution:
+    def canPartition(self, nums: List[int]) -> bool:
+        #two subsets
+        if sum(nums) % 2 != 0: return False
+        set1 = set()
+        set1.add(0)
+        half = sum(nums) // 2
+        for n in nums:
+            set2 = set()
+            for s in set1:
+                set2.add(s)
+                set2.add(n + s)
+            set1 = set2
+        return half in set1
