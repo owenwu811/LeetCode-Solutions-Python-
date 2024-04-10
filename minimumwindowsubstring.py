@@ -962,4 +962,30 @@ class Solution:
         elif len(s) == end: return s
         else: return ""
 
+#4/9/24 refresher:
+
+class Solution:
+    def minWindow(self, s: str, t: str) -> str:
+        if len(s) < len(t): return ""
+        start, end, ws, matched, need = 0, float('inf'), 0, 0, Counter(t)
+        for we, schar in enumerate(s): #we want to satisfy t with smallest part of s
+            if schar in need:
+                need[schar] -= 1 #need one less from s
+                if need[schar] == 0:
+                    matched += 1 #one more char in t satisfied
+                while matched == len(need): #total distinct chars satisfied == number of keys in tdict aka number of distinct chars in t
+                    if end > we - ws + 1:
+                        end = we - ws + 1
+                        start = ws
+                    kickout = s[ws]
+                    ws += 1
+                    if kickout in need:
+                        if need[kickout] == 0: #if it was turning point of being perfectly matched
+                            matched -= 1
+                        need[kickout] += 1
+        if len(s) > end:
+            return s[start: start + end]
+        if len(s) == end: return s
+        else: return ""
+
                 
