@@ -285,3 +285,26 @@ class Solution:
                 newr, newc = r + directions[d][0], c + directions[d][1]
             r, c = newr, newc
         return res
+
+#practice again:
+
+class Solution:
+    def spiralOrder(self, matrix: List[List[int]]) -> List[int]:
+        if not matrix: return []
+        res = []
+        rows, cols = len(matrix), len(matrix[0])
+        r = c = d = 0 #start from top left
+        seen = set() #use set to keep track of indicies to identify duplicates!
+        directions = [(0, 1), (1, 0), (0, -1), (-1, 0)]
+        for i in range(rows * cols):
+            seen.add((r, c))
+            res.append(matrix[r][c])
+            newr, newc = r + directions[d][0], c + directions[d][1]
+            if newr < 0 or newr >= len(matrix) or newc < 0 or newc >= len(matrix[0]) or (newr, newc) in seen: #look if NEW COORDINATES WE JUST MOVED TO ARE IN SET
+                d = (d + 1) % 4 #point in new direction since out of bounds or duplicate
+                newr, newc = r + directions[d][0], c + directions[d][1] #actually move to new cell
+            r, c = newr, newc
+        return res
+            
+
+ 
