@@ -18,8 +18,30 @@ class Solution:
         while n > 0 and right:
             right = right.next #create gap between left and right of exactly n nodes 
             n -= 1
-        while right: #the idea is to keep the distance between left and right exactly n nodes, and when right reaches none too far to the right of the linked list, delete the nth node with left by cutting off by pointing left.next to left.next.next to cut it, so if n = 2, remove 4 from [1, 2, 3, 4, 5]
-            left = left.next
-            right = right.next
+        while right: #r = 3. the idea is to keep the distance between left and right exactly n nodes, and when right reaches none too far to the right of the linked list, delete the nth node with left by cutting off by pointing left.next to left.next.next to cut it, so if n = 2, remove 4 from [1, 2, 3, 4, 5]
+            left = left.next 
+            right = right.next #r turns from 3 to 4, so it dosen't matter if right = right.next or left = left.next comes first. use [1, 2, 3, 4, 5] n = 2 example
         left.next = left.next.next #cut off the nth node with left pointer
         return dummy.next
+
+#practice again:
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
+        dummy = ListNode(None, head) #none or 0 works here. look at ListNode class definition. None and head are parameters passed to the constructor of the ListNode class!
+        l = dummy
+        r = head
+        while n > 0 and r:
+            r = r.next
+            n -= 1
+        while r:
+            l = l.next
+            r = r.next
+        l.next = l.next.next
+        return dummy.next
+            
