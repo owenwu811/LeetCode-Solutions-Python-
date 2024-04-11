@@ -527,3 +527,28 @@ class Solution:
             if n == k:
                 return cur.val
             cur = cur.right
+
+
+#4/11/24:
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:
+        cur = root
+        stack = []
+        n = 0
+        while cur is not None or stack:
+            while cur is not None:
+                stack.append(cur)
+                cur = cur.left
+            cur = stack.pop() #popping back up to visit node
+            n += 1
+            if n == k:
+                return cur.val
+            cur = cur.right
+
