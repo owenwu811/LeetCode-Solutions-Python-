@@ -132,3 +132,23 @@ class Solution:
         f(0, 0, [])
         return res
 
+#4/12/24:
+
+class Solution:
+    def generateParenthesis(self, n: int) -> List[str]:
+        def generate(openc, closec, stack):
+            if openc == closec == n:
+                res.append("".join(stack))
+                return
+            if closec < openc:
+                stack.append(")")
+                generate(openc, closec + 1, stack)
+                stack.pop()
+            if openc < n: #not elif - if because closec < openc dosen't impact openc < n - they both need to execute in some cases 
+                stack.append("(")
+                generate(openc + 1, closec, stack)
+                stack.pop()
+        res = []
+        generate(0, 0, [])
+        return res
+        
