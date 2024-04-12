@@ -18,7 +18,7 @@ class Solution:
             #before adding 5 to our deque, we must check if 5 is greater than the value at top of deque. if it is, since 5 > 4, then don't consider 4 as max value ever again = [1, 1, 1, 1, 1, 4, 5], k = 6
             while q and nums[q[-1]] < nums[r]: 
                 q.pop() #since we don't consider 4 as max value ever again since 5 > 4, pop 4 from deque
-            q.append(r) #add 5 to the top 
+            q.append(r) #add 5 to the rear aka top 
             if l > q[0]: #[8, 7, 6, 9], k = 2. deque = [7, 6]. our window is [6, 9], so since 7 is no longer in bounds, and max value in our window is 7, we add 7 to the output before we pop 7 from our deque
                 q.popleft() #the action of popping 7 from our deque
             if (r + 1) >= k: #edge case - since l and r both start from 0, we have to make sure our window is atleast size k to add to the output or update the output
@@ -147,6 +147,24 @@ class Solution:
    def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
         res = []
         d = deque() #monotonically decreasing deque
+        l = 0
+        for i in range(len(nums)):
+            while d and nums[i] > nums[d[-1]]:
+                d.pop()
+            d.append(i)
+            if l > d[0]:
+                d.popleft()
+            if (i + 1) >= k:
+                res.append(nums[d[0]])
+                l += 1
+        return res
+
+#4/11/24:
+
+class Solution:
+   def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
+        res = []
+        d = deque()
         l = 0
         for i in range(len(nums)):
             while d and nums[i] > nums[d[-1]]:
