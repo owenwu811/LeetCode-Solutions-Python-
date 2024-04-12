@@ -86,4 +86,26 @@ class Solution:
                 l += 1
             elif nums[l] != 0:
                 l += 1
+
+#4/12/24:
+
+class Solution:
+    def moveZeroes(self, nums: List[int]) -> None:
+        """
+        Do not return anything, modify nums in-place instead.
+        """
+        #[0, 1, 0, 3, 12]
+        #[1, 0, 0, 3, 12]
+        #[1, 0, 3, 0, 12]
+        #[1, 3, 0, 0, 12]
+        #[1, 3, 0, 12, 0]
+        #[1, 3, 12, 0, 0]
+        left = 0
+        for r in range(len(nums)):
+            if nums[left] == 0 and nums[r] != 0:
+                nums[left], nums[r] = nums[r], nums[left]
+                left += 1
+            elif nums[left] != 0:
+                left += 1
         
+  
