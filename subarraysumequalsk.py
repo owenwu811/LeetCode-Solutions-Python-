@@ -93,4 +93,21 @@ class Solution:
             else:
                 d[prefixsum] = 1
         return res
-            
+
+#4/12/24:
+
+class Solution:
+    def subarraySum(self, nums: List[int], k: int) -> int:
+        res, prefixsum = 0, 0
+        d = dict()
+        d[0] = 1
+        for n in nums:
+            prefixsum += n
+            if prefixsum - k in d:
+                res += d[prefixsum - k]
+            if prefixsum in d:
+                d[prefixsum] += 1
+            else:
+                d[prefixsum] = 1
+        return res
+
