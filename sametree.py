@@ -17,4 +17,4 @@ class Solution:
     def isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
         if p == None or q == None: #using and instead of or results in a NoneType error 
             return p == q
-        return (p.val == q.val) and self.isSameTree(p.left, q.left) and self.isSameTree(p.right, q.right)
+        return (p.val == q.val) and self.isSameTree(p.left, q.left) and self.isSameTree(p.right, q.right) #we dig down left all the way first because of the way python has lazy and that dosen't evaluate until completely True
