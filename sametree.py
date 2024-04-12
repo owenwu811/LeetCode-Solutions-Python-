@@ -18,3 +18,22 @@ class Solution:
         if p == None or q == None: #using and instead of or results in a NoneType error 
             return p == q
         return (p.val == q.val) and self.isSameTree(p.left, q.left) and self.isSameTree(p.right, q.right) #we dig down left all the way first because of the way python has lazy and that dosen't evaluate until completely True
+
+
+#take example:
+
+# Example usage:
+# Create two binary trees
+# Tree 1
+#    1
+#   / \
+#  2  None
+tree1 = TreeNode(1)
+tree1.left = TreeNode(2)
+
+# Tree 2
+#    1
+#   / \
+# None 2
+
+#at some point, p == 2 and q == None, so if you did "if p == None and q == None", that would be False since p is not None, so the return (p.val == q.val) would execute, and would result in None typeerror because you are trying to call p.vall == q.val, and q.val is None, which dosen't have val
