@@ -105,7 +105,7 @@ class Solution:
             prefixsum += n
             if prefixsum - k in d:
                 res += d[prefixsum - k]
-            if prefixsum in d:
+            if prefixsum in d: #if this was elif instead, when prefixsum = 3, and k = 3, we would increment res, but then we would go to the for loop instead of even evaluating this if and then the else below to add {3: 1} to the dictionary, and since prefixsum = 6, 6 - 3 is in the dictiionary, but with elif, it woudln't be because we didn't add {3: 1}, so the result is 1 less than needed for nums [1, 2, 3], k = 3
                 d[prefixsum] += 1
             else:
                 d[prefixsum] = 1
