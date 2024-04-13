@@ -196,3 +196,19 @@ print(s)
 #actually outputs:   AmanaplanacanalPanama
 
 #without you even having to replace the spaces 
+
+
+#4/13/24 refresher:
+
+class Solution:
+    def isPalindrome(self, s: str) -> bool:
+        s = s.replace(" ", "") #remove spaces
+        s = re.sub("[\W_]", "", s)
+        l, r = 0, len(s) - 1
+        while l <= r:
+            if s[l].casefold() != s[r].casefold():
+                return False
+            l += 1
+            r -= 1
+        return True
+        
