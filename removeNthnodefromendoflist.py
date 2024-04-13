@@ -87,3 +87,24 @@ class Solution:
             right = right.next
         left.next = left.next.next
         return dummy.next
+
+#4/13/24:
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
+        dummy = ListNode(0, head)
+        l = dummy
+        r = head
+        while n > 0 and r: #make gap between l and r exactly n length nodes
+            r = r.next
+            n -= 1
+        while r:
+            r = r.next
+            l = l.next
+        l.next = l.next.next
+        return dummy.next #the list is already with the nth element cut off, so return the head of the list, synonymous with the entire list at that point cause linked lists are pointers to the next node
