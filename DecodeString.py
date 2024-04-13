@@ -214,3 +214,22 @@ class Solution:
                 stack.append(int(k) * substr)
         return "".join(stack)
 
+
+#4/13/24:
+
+class Solution:
+    def decodeString(self, s: str) -> str:
+        stack = []
+        for char in s:
+            if char != "]":
+                stack.append(char)
+            else: #start calculation of substring
+                substr = ""
+                while stack and stack[-1] != "[":
+                    substr = stack.pop() + substr
+                stack.pop() #get rid of [
+                k = ""
+                while stack and stack[-1].isdigit():
+                    k = stack.pop() + k
+                stack.append(int(k) * substr)
+        return "".join(stack)
