@@ -56,3 +56,15 @@ class Solution:
                 r -= 1
         return arr[l: r + 1]
 
+#practice again:
+
+class Solution:
+    def findClosestElements(self, arr: List[int], k: int, x: int) -> List[int]:
+        #k length closest integers to x
+        l, r = 0, len(arr) - 1
+        while (r - l + 1) > k:
+            if abs(arr[l] - x) > abs(arr[r] - x): #for arr = [1,2,3,4,5], k = 4, x = 3, we are supposed to move right down because 1 and 5 are same distance to x (3) but 1 < 5, so 1 is considered closer
+                l += 1
+            else:
+                r -= 1
+        return arr[l: r + 1]
