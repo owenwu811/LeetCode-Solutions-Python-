@@ -42,14 +42,14 @@ class Solution:
 
 #the reason why the following is wrong:
 
-#arr = [1,2,3,4,5], k = 4, x = -1 - should output [1, 2, 3, 4]
+#arr = [1,2,3,4,5], k = 4, x = -1 - should output [1, 2, 3, 4] because we want closest k LENGTH elements to x
 #the wrong solution moves left pointer up one to output [2, 3, 4, 5]
 
 class Solution:
     def findClosestElements(self, arr: List[int], k: int, x: int) -> List[int]:
         l, r = 0, len(arr) - 1
         while r - l + 1 > k:
-            if abs(arr[l] - x) < abs(arr[r] - x): # 1 < 4 is true, so left += 1 - wrong
+            if abs(arr[l] - x) < abs(arr[r] - x): # 2 < 6 is true, so left += 1 - wrong
                 l += 1
             else:
                 r -= 1
