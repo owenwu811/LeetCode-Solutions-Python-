@@ -12,6 +12,7 @@ class Solution:
     def findClosestElements(self, arr: List[int], k: int, x: int) -> List[int]:
         l, r = 0, len(arr) - 1
         while r - l + 1 > k:
+            #the abs(arr[l] - x) and abs(arr[r] - x) values represent the distance to x on a number line
             if abs(arr[l] - x) > abs(arr[r] - x):  #don't just look at the - |a - x| < |b - x| - and think oh gotta match exactly the statement. think about [1, 2, 3, 4, 5] k = 4, x = 3 and how 1 < 5, so 1 is actually considered closer to 3, so move 5 down, so this statement is False, and else executes
                 l += 1
             else:
