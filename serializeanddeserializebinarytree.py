@@ -34,3 +34,45 @@ class Codec:
             node.right = dfs()
             return node
         return dfs()
+
+#practice again:
+
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Codec:
+    def serialize(self, root): # Serialize the binary tree into a string
+        res = []
+        def f(root):
+            if root == None:
+                res.append("N")
+                return
+            res.append(str(root.val))
+            f(root.left)
+            f(root.right)
+        f(root)
+        return ",".join(res) #returns a string
+        
+    def deserialize(self, data: str):  # Deserialize the string into a binary tree
+        vals = data.split(",") #vals becomes a list from the last return in serialize
+        self.i = 0
+        def dfs():
+            if vals[self.i] == "N": #base case because vals is a list, so we can index into it with i to create our binary tree
+                self.i += 1 #we see a None, so we increment i to go to the next character in our list to the right so i can index into it in the future
+                return None #N special character in our list of strings stands for None as a TreeNode
+            node = TreeNode(vals[self.i]) #becomes a TreeNode because we saw a non "N" in our list with vals[self.i]
+            self.i += 1 #we always have to keep going to the next element in our list whether we see a number or a "N" in our list
+            node.left = dfs() #dig down left because this is preorder dfs
+            node.right = dfs() #even when building right, dig left first because this is preorder dfs
+            return node #backtrack after we return, and we have to return the node we created
+        return dfs() #kickoff start of recursive call 
+        
+       
+# Your Codec object will be instantiated and called as such:
+# ser = Codec()
+# deser = Codec()
+# ans = deser.deserialize(ser.serialize(root))
