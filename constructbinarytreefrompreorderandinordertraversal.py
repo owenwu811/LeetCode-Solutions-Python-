@@ -188,7 +188,7 @@ class Solution:
     def buildTree(self, preorder: List[int], inorder: List[int]) -> Optional[TreeNode]:
         if not preorder or not inorder:
             return None
-        root = TreeNode(preorder[0]) #we need treenode here - without it, we would get treenode has no attribute left 
+        root = TreeNode(preorder[0]) #we need treenode here - without it, we would get treenode has no attribute left because we later use root.left =  
         mid = inorder.index(preorder[0]) #because root is a Treenode, not an integer that can be used to index into a list, root instead of preorder[0] would throw an error
         root.left = self.buildTree(preorder[1: mid + 1], inorder[:mid])
         root.right = self.buildTree(preorder[mid + 1:], inorder[mid + 1:])
