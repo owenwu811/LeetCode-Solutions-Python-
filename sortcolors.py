@@ -312,3 +312,21 @@ class Solution:
                 l += 1 
                 c += 1
         
+
+#4/14/24:
+
+class Solution:
+    def sortColors(self, nums: List[int]) -> None:
+         #we know we only have 0 or 1 or 2a
+         l, r = 0, len(nums) - 1
+         c = 0
+         while c <= r: #c represents point at which all elements up to including c are already in sorted order
+            if nums[c] == 2: 
+                nums[c], nums[r] = nums[r], nums[c]
+                r -= 1
+            elif nums[c] == 1:
+                c += 1
+            else:
+                nums[c], nums[l] = nums[l], nums[c]
+                l += 1
+                c += 1
