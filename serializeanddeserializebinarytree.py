@@ -76,3 +76,11 @@ class Codec:
 # ser = Codec()
 # deser = Codec()
 # ans = deser.deserialize(ser.serialize(root))
+
+
+#important notes:
+
+#vals = ["1", "2", "N", "N", "3", "4", "N", "N", "5", "N", "N"] - 2 N N - means finished seperate completed subtree, so 3 is the right child node of 1. 
+#i starts by pointing to 1, and since this is preorder dfs, we dig left from 1 node to 3 node to 4 node even though we are on 3 right subtree of 1. This is why node.left = dfs() line comes before node.right = dfs() - because preorder dfs means digging NLR. 
+#NN means base case because we can't continue - we are on empty node 
+#["1", "2", "N", "3"] - 3 is the right child of 2 while N is the left child of 2.
