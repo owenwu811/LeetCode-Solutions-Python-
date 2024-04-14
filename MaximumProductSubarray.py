@@ -163,6 +163,6 @@ class Solution:
                 continue
             temp = curmax * n
             curmax = max(curmin * n, curmax * n, n)
-            curmin = min(curmin * n, temp, n)
+            curmin = min(curmin * n, temp, n) #not using temp and using curmax * n would fail nums = [-4,-3,-2], giving us 72 instead of 12 as the output
             res = max(res, curmax)
         return res
