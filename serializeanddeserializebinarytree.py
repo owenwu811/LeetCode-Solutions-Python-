@@ -55,10 +55,10 @@ class Codec:
             f(root.left)
             f(root.right)
         f(root)
-        return ",".join(res) #returns a string
+        return ",".join(res) #returns a string - "1, 2, N, N, 3, 4, N, N, 5, N, N"
         
     def deserialize(self, data: str):  # Deserialize the string into a binary tree
-        vals = data.split(",") #vals becomes a list from the last return in serialize
+        vals = data.split(",") #vals becomes a list from the last return in serialize - ["1", "2", "N", "N", "3", "4", "N", "N", "5", "N", "N"] - REMEMBER THAT WE ONLY HAVE INTEGER STRINGS LIKE 3 OR N STRINGS IN OUR LIST BECAUSE N WAS OUR SPECIAL CHARACTER AND WE ONLY PUT THOSE TWO TYPES IN OUR LIST!
         self.i = 0
         def dfs():
             if vals[self.i] == "N": #base case because vals is a list, so we can index into it with i to create our binary tree
