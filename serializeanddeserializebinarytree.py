@@ -87,4 +87,4 @@ class Codec:
 
 #when we create the node 1 with - node = TreeNode(vals[self.i]) - the computer reads the val = 1, left = None, and right = None, so the left and right attributes are set to None as default before we traverse down the tree to give 1 a left child!
 #seeing a "N" in the vals list after indexing into the vals list with vals[self.i] means we still increment i to move to the next (right) elements in our vals list, and "N" corresponds to None when actually creating the TreeNode to signal empty bottom 
-#after doing 2's right child as None with node.right = dfs() recursive call, we execute the return node line before backtracking
+#after doing 2's right child as None with node.right = dfs() recursive call, we execute the return node line before backtracking back to node.right = dfs() to do 1's right child of node 3!
