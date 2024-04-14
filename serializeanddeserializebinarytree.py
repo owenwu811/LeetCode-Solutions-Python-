@@ -84,3 +84,5 @@ class Codec:
 #i starts by pointing to 1, and since this is preorder dfs, we dig left from 1 node to 3 node to 4 node even though we are on 3 right subtree of 1. This is why node.left = dfs() line comes before node.right = dfs() - because preorder dfs means digging NLR. 
 #NN means base case because we can't continue - we are on empty node 
 #["1", "2", "N", "3"] - 3 is the right child of 2 while N is the left child of 2.
+
+#when we create the node 1 with - node = TreeNode(vals[self.i]) - the computer reads the val = 1, left = None, and right = None, so the left and right attributes are set to None as default before we traverse down the tree to give 1 a left child!
