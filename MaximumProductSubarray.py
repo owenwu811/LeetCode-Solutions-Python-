@@ -167,3 +167,21 @@ class Solution:
             curmin = min(curmin * n, temp, n) #not using temp and using curmax * n would fail nums = [-4,-3,-2], giving us 72 instead of 12 as the output because curmin would be -36 instead of -3 because curmin = min(12, 12, -3) vs. curmin = min(12, -36, -3), so instead of 12, you're incorrectly doing 12 * -3 for curmin
             res = max(res, curmax)
         return res
+
+#4/14/24:
+
+class Solution:
+    import math
+    def maxProduct(self, nums: List[int]) -> int:
+        ans = max(nums)
+        cmin, cmax = 1, 1
+        for number in nums:
+            if number == 0:
+                cmin, cmax = 1, 1
+                continue
+            curmax = cmax * number
+            cmax = max(cmin * number, cmax * number, number)
+            cmin = min(cmin * number, curmax, number)
+            ans = max(ans, cmax)
+        return ans
+            
