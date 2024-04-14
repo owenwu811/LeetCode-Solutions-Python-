@@ -21,7 +21,7 @@ class Codec:
         f(root)
         return ",".join(res)
     def deserialize(self, data: str):  # Deserialize the string into a binary tree
-        vals = data.split(",") #turns string input back into a list with comma split
+        vals = data.split(",") #turns string input back into a list with comma split. you know data is an input str as stated in the method parameter
         self.i = 0
         def dfs():
             if vals[self.i] == "N": #we already know this node's value, so we can increment i
