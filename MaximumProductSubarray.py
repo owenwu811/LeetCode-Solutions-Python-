@@ -162,6 +162,7 @@ class Solution:
                 curmin, curmax = 1, 1
                 continue
             temp = curmax * n
+            #think about it like you compute a new curmax, and then curmin must use the old curmax, which is temp, so curmin line comes after curmax line
             curmax = max(curmin * n, curmax * n, n) #the ordering matters too - curmax line must come first. if we swapped curmax and curmin lines order, we would fail nums = [2,3,-2,4], outputting 192 instead of 6. this is because we would do curmax = 4 when n = 2 instead of the right way curmax = 2. This is because we would have already computed curmin to be 2, and then curmin * n (2 * 2) - which is part of the curmax = max... equation - would be 4, which is wrong since the curmax at [2] in [2,3,-2,4] is 2 up to that point, not 4
             curmin = min(curmin * n, temp, n) #not using temp and using curmax * n would fail nums = [-4,-3,-2], giving us 72 instead of 12 as the output because curmin would be -36 instead of -3 because curmin = min(12, 12, -3) vs. curmin = min(12, -36, -3), so instead of 12, you're incorrectly doing 12 * -3 for curmin
             res = max(res, curmax)
