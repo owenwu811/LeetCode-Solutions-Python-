@@ -242,3 +242,18 @@ class Solution:
             if l == maxval:
                 howmanymax += 1
         return max((maxval - 1) * (n + 1) + howmanymax, len(tasks))
+
+#4/13/24:
+
+class Solution:
+    def leastInterval(self, tasks: List[str], n: int) -> int:
+        #task = letter
+        #identical letters must be seperated by n intervals
+        count = [0] * 26
+        for letter in tasks:
+            count[ord(letter) - ord('A')] += 1
+        maxcnt, maxval = 0, max(count)
+        for l in count:
+            if l == maxval:
+                maxcnt += 1
+        return max((maxval - 1) * (n + 1) + maxcnt,len(tasks))
