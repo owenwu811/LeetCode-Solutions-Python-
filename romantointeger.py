@@ -102,5 +102,18 @@ class Solution:
             else: #the only condition stated in the problem where we subtract is if the previous is less than the current char value in the input. otherwise, assume you always add. 
                 res += mapping[s[i - 1]]
         return res
+
+#4/14/24:
+
+class Solution:
+    def romanToInt(self, s: str) -> int:
+        res = 0
+        mapping = {"I": 1, "V": 5, "X": 10, "L": 50, "C": 100, "D": 500, "M": 1000}
+        for i in range(len(s)):
+            if i > 0 and mapping[s[i]] > mapping[s[i - 1]]:
+                res -= mapping[s[i - 1]]
+            else:
+                res += mapping[s[i - 1]]
+        return res
         
         
