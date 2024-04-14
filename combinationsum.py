@@ -310,3 +310,21 @@ class Solution:
         f(0, [], 0)
         return res
 
+#4/14/24 refresher:
+
+class Solution:
+    def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
+        def f(i, currsum, path):
+            if i >= len(candidates) and currsum == target:
+                res.append(path.copy())
+                return
+            if i >= len(candidates) or currsum > target:
+                return
+            path.append(candidates[i])
+            f(i, currsum + candidates[i], path)
+            path.pop()
+            f(i + 1, currsum, path)
+        res = []
+        f(0, 0, [])
+        return res
+
