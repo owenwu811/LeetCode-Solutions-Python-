@@ -68,3 +68,15 @@ class Solution:
             else:
                 r -= 1
         return arr[l: r + 1]
+
+#4/15/24 refresher (missed):
+
+class Solution:
+    def findClosestElements(self, arr: List[int], k: int, x: int) -> List[int]:
+        l, r = 0, len(arr) - 1
+        while (r - l + 1) > k: #as long as our window is bigger than size k, we keep shrinking either one way or another
+            if abs(arr[l] - x) > abs(arr[r] - x):
+                l += 1
+            else:
+                r -= 1
+        return arr[l: r + 1]
