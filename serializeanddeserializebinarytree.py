@@ -88,3 +88,30 @@ class Codec:
 #when we create the node 1 with - node = TreeNode(vals[self.i]) - the computer reads the val = 1, left = None, and right = None, so the left and right attributes are set to None as default before we traverse down the tree to give 1 a left child!
 #seeing a "N" in the vals list after indexing into the vals list with vals[self.i] means we still increment i to move to the next (right) elements in our vals list, and "N" corresponds to None when actually creating the TreeNode to signal empty bottom 
 #after doing 2's right child as None with node.right = dfs() recursive call, we execute the return node line before backtracking back to node.right = dfs() to do 1's right child of node 3!
+
+#4/15/24 practice:
+
+class Codec:
+    def serialize(self, root): # Serialize the binary tree into a string
+        res = []
+        def f(root):
+            if root == None:
+                res.append("N")
+                return
+            res.append(str(root.val))
+            f(root.left)
+            f(root.right)
+        f(root)
+        return ",".join(res) #a string
+    def deserialize(self, data: str):  # Deserialize the string into a binary tree
+        vals = data.split(",") #a list of strings
+        self.i = 0 #we need to index into the vals list
+        def f():
+            if vals[self.i] == "N": #we only have either integer strings or "N" strings in our vals list
+                self.i += 1 #need to go to next element to right 
+                return None #N corresponds to creating a None node
+            node = TreeNode(vals[self.i]) #not "N", so we are seeing a "3", so create a 3 treenode object
+            self.i += 1 #after we create either an integer or None, we need to go to next element to right so we can say after we do the next left recursion we actually have the element to the right of previous in the list and don't do infinite recursion
+            node.left = f() #preorder DFS, so left first
+            node.right = f() 
+            return node 
