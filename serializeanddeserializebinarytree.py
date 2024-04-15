@@ -115,3 +115,33 @@ class Codec:
             node.left = f() #preorder DFS, so left first
             node.right = f() 
             return node 
+
+#4/15/24:
+
+class Codec:
+
+    def serialize(self, root): # Serialize the binary tree into a string
+        res = []
+        def f(root):
+            if root == None:
+                res.append("N")
+                return
+            res.append(str(root.val))
+            f(root.left)
+            f(root.right)
+        f(root)
+        return ",".join(res)
+        
+    def deserialize(self, data: str):  # Deserialize the string into a binary tree
+        vals = data.split(",") #string.split(",") turns the string into an array!
+        self.i = 0
+        def f():
+            if vals[self.i] == "N":
+                self.i += 1
+                return None
+            node = TreeNode(vals[self.i])
+            self.i += 1
+            node.left = f()
+            node.right = f()
+            return node
+        return f()
