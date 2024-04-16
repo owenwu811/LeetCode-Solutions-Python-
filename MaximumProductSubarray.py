@@ -184,4 +184,21 @@ class Solution:
             cmin = min(cmin * number, curmax, number)
             ans = max(ans, cmax)
         return ans
-            
+
+#4/16/24:
+
+class Solution:
+    import math
+    def maxProduct(self, nums: List[int]) -> int:
+        res = max(nums) #[-6] - output is -6 because -6 is the largest product
+        curmin, curmax = 1, 1
+        for n in nums:
+            if n == 0:
+                curmin, curmax = 1, 1
+                continue
+            tempm = curmax * n
+            curmax = max(curmin * n, curmax * n, n)
+            curmin = min(curmin * n, tempm, n)
+            res = max(res, curmax)
+        return res
+
