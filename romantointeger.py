@@ -135,7 +135,7 @@ class Solution:
 class Solution:
     def romanToInt(self, s: str) -> int:
         res = 0 #our output is an integer
-        mapping = {"I": 1, "V": 5, "X": 10, "L": 50, "C": 100, "D": 500, "M": 1000} #this question makes the assumption that we won't have LD
+        mapping = {"I": 1, "V": 5, "X": 10, "L": 50, "C": 100, "D": 500, "M": 1000} #this question makes the assumption that we won't have LD because we only have valid inputs. only a single smaller one can go before a larger one, so you can't have XXC but only XC.
         for i in range(len(s)):
             if i > 0 and mapping[s[i]] > mapping[s[i - 1]]:
                 res -= mapping[s[i - 1]]
