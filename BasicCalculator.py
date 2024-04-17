@@ -462,7 +462,7 @@ class Solution:
             elif char == "(":
                 stack.append(ressum)
                 stack.append(sign)
-                ressum, sign = 0, 1
+                ressum, sign = 0, 1 #this makes sure ressum is reset to not include anything outside of (), so "(1+(4+5+2)-3)+(6+8)" when we hit 4, we reset ressum to 0 and sign to 0 so we don't add 1 and 4
             elif char == ")":
                 ressum += currentn * sign
                 ressum *= stack.pop()
