@@ -15,7 +15,7 @@
 
 class Solution:
     def eraseOverlapIntervals(self, intervals: List[List[int]]) -> int:
-        intervals.sort() #sorting by 0th index. if 0th index ties, then sort by 1st index. if [1, 2] and [1, 2], then order dosen't matter. [1, 2], [1, 3] - 0th ties, so sort by 1st
+        intervals.sort() #sorting by 0th index, so intervals.sort(key=lambda n:n[0]) works too and means the same thing as intervals.sort() for this problem. if 0th index ties, then sort by 1st index. if [1, 2] and [1, 2], then order dosen't matter. [1, 2], [1, 3] - 0th ties, so sort by 1st
         res = 0 # we want the minimum number of intervals, so ideally 0 because we can't remove negative intervals
         mostrecentend = intervals[0][1] #mostrecentend = 2 from [1, 2]
         for start, end in intervals[1:]:
