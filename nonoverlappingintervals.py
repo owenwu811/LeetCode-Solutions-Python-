@@ -6,7 +6,7 @@
 #[1, 2] [2, 3] - does not count as overlap
 #   -----
 # -------- -----
-#we would remove the left one 2 lines above instead of the left one one line above because we want to minimize the chances of overlapping with future intervals (one line above right one represents future intervals)
+#we would remove the left one 1 line above instead of the left one 2 lines above because we want to minimize the chances of overlapping with future intervals (one line above right one represents future intervals), so remove the one sticking out longer to the right to minimize it touching another stick in the future
 
 
 #you know that each input list only has 2 elements, so only an index 0 and an index 1 in each sublist
