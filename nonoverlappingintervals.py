@@ -24,5 +24,5 @@ class Solution:
                 mostrecentend = end #move mostrecentend up to the current end so we can find potential overlaps in future comparisons between start and mostrecentend
             else: #we do have overlap, so we have to remove one or the other
                 res += 1 #accounting for frequency of how many we want to remove
-                mostrecentend = min(mostrecentend, end) #we remove the 1st ending one to reduce the chances of overlaps in the future
+                mostrecentend = min(mostrecentend, end) #we remove the 1st ending one to reduce the chances of overlaps in the future, so delete the longer stick that's sticking out more to the right by only keeping the stick that's not poking out more to the right
         return res
