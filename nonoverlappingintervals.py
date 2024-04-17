@@ -9,6 +9,7 @@
 #we would remove the left one 2 lines above instead of the left one one line above because we want to minimize the chances of overlapping with future intervals (one line above right one represents future intervals)
 
 
+#you know that each input list only has 2 elements, so only an index 0 and an index 1 in each sublist
 #we are essentially comparing pairs of lists in each iteration to determine overlap and then if there is overlap, we choose one of the two pairs to remove based on which one has an earlier end to reduce chances of overlapping with future lists to the right
 
 #python3 solution:
