@@ -80,3 +80,17 @@ class Solution:
             else:
                 r -= 1
         return arr[l: r + 1]
+
+#4/17/24:
+
+class Solution:
+    def findClosestElements(self, arr: List[int], k: int, x: int) -> List[int]:
+        #k length aka frequency of the array result we will return
+        #if two numbers have the same distance from x in opposite ways, we will pick the smaller one as the closer one, so we remove the upper one
+        l, r = 0, len(arr) - 1 #we start the array bigger than size k aka size of entire input, so as long as the LENGTH of the array is bigger than k, we need to shrink
+        while (r - l + 1) > k:
+            if abs(arr[l] - x) > abs(arr[r] - x):
+                l += 1
+            else:
+                r -= 1
+        return arr[l: r + 1]
