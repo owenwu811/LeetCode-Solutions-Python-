@@ -988,4 +988,34 @@ class Solution:
         if len(s) == end: return s
         else: return ""
 
-                
+
+#4/17/24:
+
+class Solution:
+    def minWindow(self, s: str, t: str) -> str:
+        #smallest s that encompasses t
+        if len(s) < len(t): return ""
+        res, start, end, ws, matched = 0, 0, float('inf'), 0, 0
+        need = Counter(t)
+        for we, schar in enumerate(s):
+            if schar in need:
+                need[schar] -= 1
+                if need[schar] == 0:
+                    matched += 1
+                while matched == len(need): # we completed every character in t (each t character is a key of the dictionary, which must be unique)
+                    if end > we - ws + 1:
+                        end = we - ws + 1
+                        start = ws
+                    kickout = s[ws]
+                    ws += 1
+                    if kickout in need:
+                        if need[kickout] == 0:
+                            matched -= 1 #matched only changes if we complete a letter in t fully. it dosen't track progress of a letter
+                        need[kickout] += 1
+        if len(s) > end: #we are comparing len of s input with the length of the smallest recorded window, which is end, not we!
+            return s[start: start + end]
+        elif len(s) == end:
+            return s
+        else: return ""
+                        
+                    
