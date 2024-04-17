@@ -458,7 +458,7 @@ class Solution:
             elif char in "+-":
                 ressum += currentn * sign
                 sign = -1 if char == "-" else 1
-                currentn = 0
+                currentn = 0 #prevents us from seeing (4 + 5) as 45 because we executed this block for the + between the 4 and the 5
             elif char == "(":
                 stack.append(ressum)
                 stack.append(sign)
