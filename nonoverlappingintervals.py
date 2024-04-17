@@ -1,6 +1,13 @@
 
 #Given an array of intervals intervals where intervals[i] = [starti, endi], return the minimum number of intervals you need to remove to make the rest of the intervals non-overlapping.
 #intervals = [[1,2],[2,3],[3,4],[1,3]], output - 1 because we can remove [1, 3]
+
+#remember that the goal here is to count the the minimum frequency of intervals we must remove
+#[1, 2] [2, 3] - does not count as overlap
+#   -----
+# -------- -----
+#we would remove the left one 2 lines above instead of the left one one line above because we want to minimize the chances of overlapping with future intervals (one line above right one represents future intervals)
+
 #python3 solution:
 
 class Solution:
