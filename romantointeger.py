@@ -132,6 +132,8 @@ class Solution:
 
 #4/17/24:
 
+#you can't do IM to get 999 for example because that's not a valid input according to the rules
+
 class Solution:
     def romanToInt(self, s: str) -> int:
         res = 0 #our output is an integer
