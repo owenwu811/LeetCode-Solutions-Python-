@@ -26,3 +26,20 @@ class Solution:
                 res += 1 #accounting for frequency of how many we want to remove
                 mostrecentend = min(mostrecentend, end) #we remove the 1st ending one to reduce the chances of overlaps in the future, so delete the longer stick that's sticking out more to the right by only keeping the stick that's not poking out more to the right
         return res
+
+#4/17/24 refresher:
+
+class Solution:
+    def eraseOverlapIntervals(self, intervals: List[List[int]]) -> int:
+        res = 0 #ideally, we would want to remove nothing. you can't remove negative frequency of intervals
+        intervals.sort() #sort by the 0th index. if the 0th index tie, compare the 1st index. you only have 2 elements in each sublist
+        prevend = intervals[0][1] 
+        for start, end in intervals[1:]:
+            if start >= prevend: #no overlap because [1, 2] and [2, 3] dosen't count as overlap
+                prevend = end #keep moving right to catch any future potential overlaps
+            else: #there is an overlap, so select the shorter stick to delete
+                res += 1
+                prevend = min(end, prevend) #you can think of prevend as the current end interval most recent compared one
+        return res
+                 
+            
