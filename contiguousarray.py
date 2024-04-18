@@ -28,4 +28,25 @@ class Solution:
 
 #needhowmanyzeros represents how many extra 0s we need to balance out the number of 1s we have seen so far, and curindex - diff[needhowmanyzeros] means the current index minus the allowance we still owe 
 
-  
+
+#4/18/24 refresher:
+
+
+class Solution:
+    def findMaxLength(self, nums: List[int]) -> int:
+        mydict = dict()
+        res, needhowmanyzeros = 0, 0
+        for i, n in enumerate(nums):
+            if n == 1:
+                needhowmanyzeros += 1
+            else:
+                needhowmanyzeros -= 1
+            if needhowmanyzeros not in mydict:
+                mydict[needhowmanyzeros] = i
+            if needhowmanyzeros == 0: #perfect balance
+                res = i + 1 #we want length
+            else:
+                res = max(res, i - mydict[needhowmanyzeros])
+        return res
+        
+
