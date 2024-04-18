@@ -43,3 +43,19 @@ class Solution:
         return res
                  
             
+
+#4/18/24:
+
+class Solution:
+    def eraseOverlapIntervals(self, intervals: List[List[int]]) -> int:
+        intervals.sort()
+        #we know each input has only 2 elements in each sublit
+        res = 0 #ideally, we want to remove nothing because we can't remove negative count of intervals
+        prevend = intervals[0][1] 
+        for start, end in intervals[1:]:
+            if start >= prevend: #no overlap
+                prevend = end
+            else:
+                res += 1 #we have to remove one or the other
+                prevend = min(end, prevend) #remove shorter poking stick
+        return res
