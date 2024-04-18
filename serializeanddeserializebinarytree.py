@@ -211,4 +211,37 @@ class Codec:
             node.right = f()
             return node
         return f()
+
+#4/18/24 practice:
+
+class Codec:
+
+    def serialize(self, root): # Serialize the binary tree into a string
+        arr = [] #store results in an array first. traverse tree preorder dfs way
+        def f(root): 
+            if root == None:
+                arr.append("N")
+                return #we reached bottom empty node of tree, so backtrack
+            arr.append(str(root.val)) 
+            f(root.left)
+            f(root.right)
+        f(root)
+        return ",".join(arr) #turn array back into string with comma seperator so we know how to differentiate nodes
+        
+    def deserialize(self, data: str):  # Deserialize the string into a binary tree
+        #turn string back into array with the commas
+        vals = data.split(",")
+        self.i = 0 #we need to index into our new array
+        def f():
+            if vals[self.i] == "N": #N was our special character
+                self.i += 1 #prevent infinite recursion by moving index pointer one to right (always do this wheter we see N or 3)
+                return None #N corresponds to creating aka returning a None node
+            node = TreeNode(vals[self.i]) #create a TreeNode object out of the "3" in our array
+            self.i += 1 #prevents infinite recursion
+            node.left = f() #preorder dfs to create other nodes in correct position relative to node we created above
+            node.right = f() 
+            return node #actually return the entire tree we created
+        return f() #kickoff recursion - recursion returns an entire tree at end
+        
+        
        
