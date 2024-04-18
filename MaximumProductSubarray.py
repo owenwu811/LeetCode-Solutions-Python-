@@ -202,3 +202,20 @@ class Solution:
             res = max(res, curmax)
         return res
 
+
+#4/18/24 again:
+
+class Solution:
+    def maxProduct(self, nums: List[int]) -> int:
+        #subarray with largest product could include only one element in the array
+        res = max(nums) #[-3] input > -3
+        curmin, curmax = 1, 1
+        for n in nums:
+            if n == 0:
+                curmin, curmax = 1, 1 #don't mess up our running sum and skip multiplying by 0
+                continue
+            tempm = curmax * n
+            curmax = max(curmin * n, curmax * n, n)
+            curmin = min(curmin * n, tempm, n) #12 vs. 12 times -3
+            res = max(res, curmax) #we want the LARGEST product
+        return res
