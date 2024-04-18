@@ -2,6 +2,8 @@
 
 #nums = [0,0,1,0,0,0,1,1] > 6
 
+#for nums = [0,0,1,0,0,0,1,1], the first time res becomes more than 0 is when i = 2, and res becomes 2
+
 
 #python3 solution:
 
