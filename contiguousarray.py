@@ -3,7 +3,7 @@
 #nums = [0,0,1,0,0,0,1,1] > 6
 
 #for nums = [0,0,1,0,0,0,1,1], the first time res becomes more than 0 is when i = 2, and res becomes 2, and res never increases or changes until the last index when i = 7 
-
+#in the 1st iteration, the res = max(res, curindex - diff[needhowmanyzeros]) line executes, but res stays 0 because 0 - 0 = 0, and max(0, 0) = 0. remember that the index is the VALUE in the dictionary while the imbalance is the key
 
 #python3 solution:
 
