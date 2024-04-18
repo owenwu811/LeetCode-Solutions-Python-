@@ -48,5 +48,25 @@ class Solution:
             else:
                 res = max(res, i - mydict[needhowmanyzeros])
         return res
+
+#4/18/24 again:
+
+class Solution:
+    def findMaxLength(self, nums: List[int]) -> int:
+        mydict = dict()
+        res = 0
+        howmanyzeros = 0
+        for i, n in enumerate(nums):
+            if n == 1:
+                howmanyzeros += 1
+            else:
+                howmanyzeros -= 1
+            if howmanyzeros not in mydict:
+                mydict[howmanyzeros] = i
+            if howmanyzeros == 0:
+                res = i + 1
+            else:
+                res = max(res, i - mydict[howmanyzeros])
+        return res
         
 
