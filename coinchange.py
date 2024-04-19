@@ -461,3 +461,18 @@ class Solution:
         if res[-1] == float('inf'): #means we couldn't build the final amount of cents and find the fewest frequency of coins, so it was unmodified
             return -1
         return res[-1]
+
+#4/18/24:
+
+class Solution:
+    def coinChange(self, coins: List[int], amount: int) -> int:
+        #we can only use the coins given in the input
+        #we want the fewest number of ways to sum up to each amount from 0 to amount - 0 is the base case
+        res = [0] + ([float('inf')] * amount)
+        for levelamount in range(1, amount + 1):
+            for coinvalue in coins:
+                if coinvalue <= levelamount:
+                    res[levelamount] = min(res[levelamount], res[levelamount - coinvalue] + 1)
+        if res[-1] == float('inf'): return -1
+        return res[-1]
+
