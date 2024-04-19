@@ -26,3 +26,16 @@ class Solution:
         return dp[levelamount]
 
         #the dp[total] += dp.get(total - n, 0) line just calculates the number of ways to sum up to each number from 1 through target by adding the value of the current dictionary level with the value of previous dictionary values for caching purposes
+
+#4/19/24:
+
+class Solution:
+    def combinationSum4(self, nums: List[int], target: int) -> int:
+        d = {0: 1} #[], {levelamount:numberofways}
+        for levelamount in range(1, target + 1):
+            d[levelamount] = 0 #how many ways starts at 0
+            for coinvalue in nums:
+                d[levelamount] += d.get(levelamount - coinvalue, 0)
+        return d[levelamount]
+        
+ 
