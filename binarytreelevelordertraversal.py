@@ -587,3 +587,32 @@ class Solution:
                 res.append(level)
         return res
 
+
+#4/19/24:
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    from collections import deque
+    def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
+        res = []
+        #holds values of each node at each level
+        d = deque()
+        d.append(root)
+        while d:
+            #add each node of each level of the tree
+            level = [] 
+            #each level of the tree represents the deque 
+            for i in range(len(d)):
+                currentnode = d.popleft() 
+                if currentnode != None:
+                    level.append(currentnode.val)
+                    d.append(currentnode.left)
+                    d.append(currentnode.right)
+            if level: #[3, 4]
+                res.append(level)
+        return res
