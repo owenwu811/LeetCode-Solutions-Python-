@@ -70,3 +70,23 @@ class Solution:
         return res
         
 
+#4/19/24:
+
+
+class Solution:
+    def findMaxLength(self, nums: List[int]) -> int:
+        mydict = {0: 0}
+        res, needmorezeros = 0, 0
+        for i, n in enumerate(nums):
+            if n == 1:
+                needmorezeros += 1
+            else:
+                needmorezeros -= 1
+            if needmorezeros not in mydict:
+                mydict[needmorezeros] = i
+            if needmorezeros == 0:
+                res = i + 1
+            else:
+                res = max(res, i - mydict[needmorezeros])
+        return res
+
