@@ -119,3 +119,15 @@ class Solution:
             rob1 = rob2
             rob2 = tempmax
         return rob2
+
+#4/19/24:
+
+class Solution:
+    import math
+    def rob(self, nums: List[int]) -> int:
+        rob1, rob2 = 0, 0
+        for n in nums:
+            tempmax = max(n + rob1, rob2) #max(up to previous house, up to current house)
+            rob1 = rob2 #rob1 = rob2, which is 0 in the 1st iteration
+            rob2 = tempmax
+        return rob2
