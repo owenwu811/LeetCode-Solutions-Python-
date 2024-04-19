@@ -111,3 +111,16 @@ class Solution:
             d.append(i)
         return res
 
+
+#4/19/24:
+
+class Solution:
+    def dailyTemperatures(self, temperatures: List[int]) -> List[int]:
+        res = [0] * len(temperatures)
+        d = deque()
+        for i in range(len(temperatures)):
+            while d and temperatures[i] > temperatures[d[-1]]:
+                a = d.pop()
+                res[a] = i - a
+            d.append(i)
+        return res
