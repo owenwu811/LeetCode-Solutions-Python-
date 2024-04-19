@@ -59,3 +59,18 @@ class Solution:
                 res += 1 #we have to remove one or the other
                 prevend = min(end, prevend) #remove shorter poking stick
         return res
+
+#4/19/24 practice:
+
+class Solution:
+    def eraseOverlapIntervals(self, intervals: List[List[int]]) -> int:
+        res = 0
+        intervals.sort()
+        prevend = intervals[0][1]
+        for start, end in intervals[1:]:
+            if start >= prevend: #no overlap 2] [2
+                prevend = end
+            else: #remove longer right pointing stick to prevent overlap since we want minimum number
+                res += 1 #we must remove one log or another since there is overlap
+                prevend = min(prevend, end)
+        return res
