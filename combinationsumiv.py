@@ -8,6 +8,8 @@
 
 #python3 solution:
 
+#bottom up dynamic programming approach:
+
 class Solution:
     def combinationSum4(self, nums: List[int], target: int) -> int:
         #we want to know how many ways we can add up to target of 4, so we are looking for dp[4] ultimately 
