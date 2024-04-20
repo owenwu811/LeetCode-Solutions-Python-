@@ -31,3 +31,6 @@ class Solution:
      #we then as is 2 < 1, no, so keep iterating to n = 5. is 2 < 5 - yes, so the heap goes from [2, 3] to [3, 5] since we pop from top (smallest in heap) and then heappush to maintain heap invariant, adding the current n to maintain the heap invariant
      #we keep looping so n = 6. is 3 < 6 - yes, so heap goes from [3, 5] to [5, 6] - we kick out 3 because we know 3 is no longer possible to be within the kth largest elements because heap is of size k and will have the largest k elements in the array in the end
      #we then keep looping so n = 4. 5 < 4 is false, so return heap[0], which is 5
+
+
+    #for test case nums = [3,2,3,1,2,4,5,5,6], k = 4, note that the output would be 4 because both 5s are counted, so duplicates count!
