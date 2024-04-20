@@ -266,4 +266,23 @@ class Solution:
             #k is satisfied
             lengthoflongest = max(lengthoflongest, we - ws + 1)
         return lengthoflongest
-        
+
+
+#4/20/24:
+
+class Solution:
+    import math
+    def characterReplacement(self, s: str, k: int) -> int:
+        frequency = {}
+        lengthoflongest, ws, mostfrequent = 0, 0, 0 #mostfrequent puts the least strain on k, which is our limiting constraint 
+        for i in range(len(s)):
+            if s[i] not in frequency:
+                frequency[s[i]] = 0
+            frequency[s[i]] += 1
+            mostfrequent = max(mostfrequent, frequency[s[i]]) #after we discover a new character, we could have a new mostfrequent character, which we do on the 1st iteration
+            while (i - ws + 1) - mostfrequent > k: 
+                frequency[s[ws]] -= 1
+                ws += 1
+            lengthoflongest = max(lengthoflongest, i - ws + 1)
+        return lengthoflongest
+
