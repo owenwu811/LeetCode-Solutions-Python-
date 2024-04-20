@@ -90,3 +90,23 @@ class Solution:
                 res = max(res, i - mydict[needmorezeros])
         return res
 
+#4/20/24:
+
+class Solution:
+    def findMaxLength(self, nums: List[int]) -> int:
+        res = 0
+        needhowmanyzeros = 0
+        d = dict()
+        for i, n in enumerate(nums):
+            if n == 1:
+                needhowmanyzeros += 1
+            else:
+                needhowmanyzeros -= 1
+            if needhowmanyzeros not in d:
+                d[needhowmanyzeros] = i
+            if needhowmanyzeros == 0:
+                res = i + 1 #if we are perfectly balanced, then the result should be the length from the beginning to i. the dictionary is {needhowmanyzeros: index}
+            else:
+                res = max(res, i - d[needhowmanyzeros])
+        return res
+
