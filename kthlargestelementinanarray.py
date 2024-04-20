@@ -15,9 +15,9 @@
 
 class Solution:
     def findKthLargest(self, nums: List[int], k: int) -> int:
-        heap = nums[:k] #we get the first k elements in the input array not caring about what they are because we will compare later
+        heap = nums[:k] #we get the first k elements in the input array not caring about what they are because we will compare later, so if k = 4, we get heap = indexes 0 through 3 inclusive
         heapq.heapify(heap) #this is the size of k 
-        for n in nums[k:]:
+        for n in nums[k:]: #looping through nums[4:], so [1, 5, 6, 4], and we wil compare the 0th heap element with each element in [1, 5, 6, 4], and if the 0th heap is smaller, then we will pop from top of heap since that element is no longer part of k largest elements and isn't possible to be part of smallest out of k largest elements (what we are ultimately looking for) and then add the current element out of [1, 5, 6, 4] to the heap maintaining the heap invariant 
             if heap[0] < n:
                 heapq.heappop(heap) #pull from top of heap
                 heapq.heappush(heap, n) #pushes element onto the heap maintaining the heap invariant, not having anything to do with pushing onto rear!
