@@ -39,3 +39,16 @@ class Solution:
     #so when n equals the 1st 5, heap goes from [2, 3, 3, 4] to [3, 3, 4, 5] because the 2 is no longer part of the k largest elements, and we want to find the smallest of the k largest elements in the end
     #when n equals the 2nd 5, heap goes from [3, 3, 4, 5] to [3, 5, 4, 5] - because 3 is no longer part of the k largest elements, we pop 3 off because we always pop the smallest element off the top of a minheap, and [3, 5, 4, 5] is the result after heappush, so heaps can have duplicates! - notice the heap invariant here hasn't been reshuffled yet until the next iteration
     #when n equals 6 (last iteration), heap goes from [3, 5, 4, 5] to [4, 5, 5, 6], and the result will be 4 (heap[0])
+
+
+#review again:
+
+class Solution:
+    def findKthLargest(self, nums: List[int], k: int) -> int:
+        heap = nums[:k]
+        heapq.heapify(heap)
+        for n in nums[k:]:
+            if heap[0] < n:
+                heapq.heappop(heap)
+                heapq.heappush(heap, n)
+        return heap[0]
