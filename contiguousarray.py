@@ -110,3 +110,25 @@ class Solution:
                 res = max(res, i - d[needhowmanyzeros])
         return res
 
+#4/21/24:
+
+
+class Solution:
+    def findMaxLength(self, nums: List[int]) -> int:
+        #binary array means you only have 0s and 1s in the input array
+        d = {}
+        res, needhowmanyzeros = 0, 0
+        for i, n in enumerate(nums):
+            if n == 1:
+                needhowmanyzeros += 1
+            else:
+                needhowmanyzeros -= 1 #means we need an additional one aka one less zero
+            if needhowmanyzeros not in d: #keep the state of the balance as key and the current index as value in the dictionary
+                d[needhowmanyzeros] = i
+            if needhowmanyzeros == 0:
+                res = i + 1
+            else:
+                res = max(res, i - d[needhowmanyzeros])
+        return res
+            
+
