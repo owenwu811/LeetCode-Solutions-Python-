@@ -118,3 +118,13 @@ class Solution:
                 return False #no need to keep checking if even one letter is missing entirely or as a count
             magazine = magazine.replace(char, "", 1)
         return True
+
+#4/21/24 review - it's fine if magazine contains extra characters that are not in ransomNote, but the valid anagram problem states that both have to be exactly equal
+
+class Solution:
+    def canConstruct(self, ransomNote: str, magazine: str) -> bool:
+        for char in ransomNote:
+            if char not in magazine:
+                return False
+            magazine = magazine.replace(char, "", 1)
+        return True
