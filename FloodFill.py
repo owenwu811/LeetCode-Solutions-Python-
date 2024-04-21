@@ -338,3 +338,20 @@ class Solution:
         self.f(image, sr, sc + 1, starting, color)
         self.f(image, sr, sc - 1, starting, color)
 
+#4/21/24 refresher:
+
+class Solution:
+    def floodFill(self, image: List[List[int]], sr: int, sc: int, color: int) -> List[List[int]]:
+        starting = image[sr][sc]
+        if starting == color:
+            return image 
+        self.fill(image, starting, sr, sc, color)
+        return image
+    def fill(self, image, starting, sr, sc, color):
+        if sr < 0 or sr >= len(image) or sc < 0 or sc >= len(image[0]) or image[sr][sc] != starting:
+            return
+        image[sr][sc] = color
+        self.fill(image, starting, sr + 1, sc, color)
+        self.fill(image, starting, sr - 1, sc, color)
+        self.fill(image, starting, sr, sc + 1, color)
+        self.fill(image, starting, sr, sc - 1, color)
