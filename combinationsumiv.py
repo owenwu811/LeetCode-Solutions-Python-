@@ -51,5 +51,20 @@ class Solution:
                 d[levelamount] += d.get(levelamount - coinvalue, 0)
         return d[levelamount]
 
-    
+
+#4/21/24:
+
+class Solution:
+    def combinationSum4(self, nums: List[int], target: int) -> int:
+        #thing of coin change without the minimum number of ways requirement
+        #we want the number of ways to add up to target - duplicates are fine as long as shuffled
+        d = {0: 1} #base case for [] > 1 way
+        for levelamount in range(1, target + 1):
+            d[levelamount] = 0 #each amount starts with 0 ways to add or sum up to it - that's what will be computed
+            for coinvalue in nums:
+                d[levelamount] += d.get(levelamount - coinvalue, 0)
+        return d[levelamount]
+
+
+        
  
