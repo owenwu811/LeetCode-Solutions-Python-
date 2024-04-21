@@ -268,3 +268,21 @@ class Solution:
             res.append([x, y])
             k -= 1
         return res
+
+
+#4/21/24 review - key insight to remember is that minheap.append([distance, x, y]) and then heapq.heapify(minheap) sorts by the distance since the distance was appended first!
+
+class Solution:
+    def kClosest(self, points: List[List[int]], k: int) -> List[List[int]]:
+        #we want k closest frequency of points to the origin
+        res = []
+        minheap = []
+        for x, y in points:
+            distance = (x ** 2) + (y ** 2)
+            minheap.append([distance, x, y])
+        heapq.heapify(minheap)
+        while k > 0:
+            distance, newx, newy = heapq.heappop(minheap)
+            res.append([newx, newy])
+            k -= 1
+        return res
