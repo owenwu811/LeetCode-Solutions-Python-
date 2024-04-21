@@ -52,3 +52,16 @@ class Solution:
                 heapq.heappop(heap)
                 heapq.heappush(heap, n)
         return heap[0]
+
+#4/21/24:
+
+class Solution:
+    def findKthLargest(self, nums: List[int], k: int) -> int:
+        #we want the smallest element of the k largest elements in the array - k meaning length
+        heap = nums[:k] #size k with 1st k length elements in the input array
+        heapq.heapify(heap)
+        for n in nums[k:]: 
+            if heap[0] < n: #if true, not part of k largest, so evict
+                heapq.heappop(heap)
+                heapq.heappush(heap, n)
+        return heap[0]
