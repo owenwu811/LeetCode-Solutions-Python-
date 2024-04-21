@@ -88,3 +88,12 @@ class Solution:
             if y == target:
                 return x
         return -1
+
+#4/21/24 refresher:
+
+class Solution:
+    def search(self, nums: List[int], target: int) -> int:
+        for i, j in enumerate(nums):
+            if j == target:
+                return i
+        return -1
