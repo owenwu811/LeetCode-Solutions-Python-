@@ -270,7 +270,7 @@ class Solution:
         return res
 
 
-#4/21/24 review - key insight to remember is that minheap.append([distance, x, y]) and then heapq.heapify(minheap) sorts by the distance since the distance was appended first!
+#4/21/24 review - key insight to remember is that minheap.append([distance, x, y]) and then heapq.heapify(minheap) sorts by the distance since the distance was appended first! also that for x, y in points goes through each pair and unpacks in the input list, so x, y = 1, 3... x, y = -2, 2
 
 class Solution:
     def kClosest(self, points: List[List[int]], k: int) -> List[List[int]]:
