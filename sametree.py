@@ -93,6 +93,7 @@ class Solution:
 #         self.right = right
 class Solution:
     def isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
+        #if p == None and p == None as the input, we will skip the inner if block and go to return (p.val == q.val)... and will return False?
         if p == None or q == None:
             return p == q
         return (p.val == q.val) and self.isSameTree(p.left, q.left) and self.isSameTree(p.right, q.right)
