@@ -274,4 +274,13 @@ class Solution:
         return res[-1]
 
 
+#the following fails because j is not included, so when i = 4, j = 7, you get cod instead of code because e is index 7 in s = "leetcode", so the last index is never updated, and we can't do s[i: j + 1] because j + 1 is 8, and we don't have an index 8 since you made the res the same length as the input string, so that's why res needs to be an extra longer than the input string!
+
+res = [True] + ([False] * (len(s) - 1))
+for i in range(len(s)):
+    for j in range(i, len(s)):
+        if s[i: j] in wordDict:
+            res[j] = res[i] or res[j]
+return res[-1]
+
 
