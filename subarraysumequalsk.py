@@ -168,6 +168,7 @@ class Solution:
     def subarraySum(self, nums: List[int], k: int) -> int:
         d = dict()
         subarraysum, res = 0, 0
+        #{subarraysum: frequencyofsubarraysum}
         d[0] = 1 #in case 1st element by itself equals k
         for n in nums:
             subarraysum += n
