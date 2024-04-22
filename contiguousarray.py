@@ -132,3 +132,21 @@ class Solution:
         return res
             
 
+#4/22/24:
+
+class Solution:
+    def findMaxLength(self, nums: List[int]) -> int:
+        d = dict()
+        res, needhowmanyzeros = 0, 0
+        for i, n in enumerate(nums):
+            if n == 1:
+                needhowmanyzeros += 1
+            else:
+                needhowmanyzeros -= 1
+            if needhowmanyzeros not in d:
+                d[needhowmanyzeros] = i
+            if needhowmanyzeros == 0:
+                res = i + 1
+            else:
+                res = max(res, i - d[needhowmanyzeros])
+        return res
