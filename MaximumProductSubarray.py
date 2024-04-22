@@ -219,3 +219,21 @@ class Solution:
             curmin = min(curmin * n, tempm, n) #12 vs. 12 times -3
             res = max(res, curmax) #we want the LARGEST product
         return res
+
+#4/22/24 refresher:
+
+class Solution:
+    import math
+    def maxProduct(self, nums: List[int]) -> int:
+        res = max(nums) #[-1]
+        curmin, curmax = 1, 1
+        for n in nums:
+            if n == 0:
+                curmin, curmax = 1, 1
+                continue
+            tempmax = curmax * n
+            curmax = max(curmin * n, curmax * n, n)
+            curmin = min(curmin * n, tempmax, n)
+            res = max(curmax, res)
+        return res
+            
