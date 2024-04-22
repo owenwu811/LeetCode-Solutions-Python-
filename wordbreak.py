@@ -253,3 +253,25 @@ class Solution:
                 if s[i:j + 1] in wordDict:
                     res[j + 1] = res[i] or res[j + 1]
         return res[-1]
+
+
+#4/22/24:
+
+from typing import List
+
+class Solution:
+    def wordBreak(self, s: str, wordDict: List[str]) -> bool:
+        # Initialize a list of booleans indicating if substrings up to index i can be segmented
+        res = [True] + [False] * len(s)
+        
+        for i in range(len(s)):
+            for j in range(i, len(s)): #j goes from 0, 1, 2, 3, 4, 5, 6, 7 for i = 0, and then 1, 2, 3, 4, 5, 6, 7 for i = 1 for  s = "leetcode", wordDict = ["leet","code"], so i and j both go up to 7
+                # Check if the substring s[i:j+1] is in wordDict
+                if s[i:j + 1] in wordDict:
+                    # Update the res[j + 1] to True if we can segment up to index i
+                    res[j + 1] = res[i] or res[j + 1]
+        
+        return res[-1]
+
+
+
