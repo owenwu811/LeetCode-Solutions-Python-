@@ -1019,3 +1019,33 @@ class Solution:
         else: return ""
                         
                     
+
+#4/23/24:
+
+class Solution:
+    def minWindow(self, s: str, t: str) -> str:
+        #smallest part of s that fits everything inside of t including any duplicates in t
+        if len(s) < len(t): return ""
+        startsaver, endsaver, ws, matched = 0, float('inf'), 0, 0
+        need = Counter(t)
+        for we, schar in enumerate(s):
+            if schar in need:
+                need[schar] -= 1
+                if need[schar] == 0:
+                    matched += 1
+                while matched == len(need):
+                    if endsaver > we - ws + 1:
+                        endsaver = we - ws + 1 #exactly the length of the window
+                        startsaver = ws
+                    kickout = s[ws]
+                    ws += 1
+                    if kickout in need:
+                        if need[kickout] == 0:
+                            matched -= 1
+                        need[kickout] += 1
+        if len(s) > endsaver:
+            return s[startsaver: startsaver + endsaver]
+        elif len(s) == endsaver:
+            return s
+        else: return ""
+                    
