@@ -26,7 +26,7 @@ class Solution:
         for i in range(len(nums) -1, -1, -1):
             for j in range(i + 1, len(nums)):
                 if nums[i] < nums[j]:
-                    res[i] = max(res[i], 1 + res[j]) #[0, 1, 0, 3, 2, 3] - at index 4, when i = 4 and j = 5, 2 < 4, so res[4] becomes 2 
+                    res[i] = max(res[i], 1 + res[j]) #[0, 1, 0, 3, 2, 3] - at index 4, when i = 4 and j = 5, 2 < 4, so res[4] (res[i] not res[j]) becomes 2. similarly, when i = 2 and j = 3, 0 < 3, so res[2] (res[i]) becomes 2
         return max(res)
 
 
