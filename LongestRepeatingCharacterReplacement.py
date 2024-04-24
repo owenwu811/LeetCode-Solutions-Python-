@@ -286,3 +286,22 @@ class Solution:
             lengthoflongest = max(lengthoflongest, i - ws + 1)
         return lengthoflongest
 
+#4/24/24:
+
+class Solution:
+    def characterReplacement(self, s: str, k: int) -> int:
+        #we want to minimize the number of times we have to use k
+        freq = dict()
+        lengthoflongest, ws, mostfrequent = 0, 0, 0
+        for i in range(len(s)):
+            if s[i] not in freq:
+                freq[s[i]] = 0
+            freq[s[i]] += 1
+            #if we find the mostfrequent letter, and we subtract our window by the mostfrequent, then that's the least work for k
+            mostfrequent = max(mostfrequent, freq[s[i]])
+            while (i - ws + 1) - mostfrequent > k:
+                freq[s[ws]] -= 1
+                ws += 1
+            lengthoflongest = max(lengthoflongest, i - ws + 1)
+        return lengthoflongest
+
