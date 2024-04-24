@@ -32,3 +32,14 @@ class Solution:
 
 #let's say you have [1, 3, 2, 4] - when i = 1 and j = 2, giving us 3 and 2 for i and j as values, 3 is not less than 2, so j moves forward, so do max(res[i], 1 + res[j]) because res[j] = 1 since from the last element, we only have one longest increasing length, but then the current i counts because index 1 is less than index 3, so add 1! this logic works for nums = [10,9,2,5,3,7,101,18] as well when 5 > 3, but 2 < 3, so we do 1 + res[3], and res[3] was already computed previously!
 
+
+#4/24/24 refresher:
+
+class Solution:
+    def lengthOfLIS(self, nums: List[int]) -> int:
+        res = [1] * len(nums)
+        for i in range(len(nums) -1, -1, -1):
+            for j in range(i + 1, len(nums)):
+                if nums[i] < nums[j]:
+                    res[i] = max(res[i], 1 + res[j])
+        return max(res)
