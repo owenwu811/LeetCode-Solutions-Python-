@@ -315,3 +315,21 @@ class Solution:
             res = max(res, intervals[i][2] + f(j))
             return res
         return f(0)
+
+#4/23/24 refresher again because missed:
+
+class Solution:
+    def jobScheduling(self, startTime: List[int], endTime: List[int], profit: List[int]) -> int:
+        intervals = sorted(zip(startTime, endTime, profit))
+        cache = {}
+        def f(i):
+            if i in cache:
+                return cache[i]
+            if i >= len(intervals):
+                return 0
+            res = f(i + 1)
+            j = bisect.bisect(intervals, (intervals[i][1], -1, -1))
+            cache[i] = max(res, intervals[i][2] + f(j))
+            res = max(res, intervals[i][2] + f(j))
+            return res
+        return f(0)
