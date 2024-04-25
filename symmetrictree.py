@@ -26,6 +26,18 @@ class Solution:
         return solve(root, root)
 
 
+#better notes:
+
+class Solution:
+    def isSymmetric(self, root: Optional[TreeNode]) -> bool:
+        def solve(root1, root2):
+            if root1 == None and root2 == None: #we haven't returned False but have hit bottom of both copies of trees, so we are symmmetric up to this point
+                return True
+            if root1 == None or root2 == None or root1.val != root2.val: #a single imbalance at each level indicates the entire tree is not 100% symmetric
+                return False
+            return solve(root1.left, root2.right) and solve(root1.right, root2.left) #python has lazy and operator, so it won't evaluate solve(root1.right, root2.left) until all solve(root1.left, root2.right) calls have finished first aka hit base case and returned True
+        return solve(root, root)
+
 #when we backtrack, we go up one level, and then we move both root1 and root2 inwards towards each other instead of outwards to symbolize the 2nd solve(root1.right, root2.left)
 
   #you first dig down with root1:
