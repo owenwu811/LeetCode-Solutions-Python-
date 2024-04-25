@@ -164,7 +164,7 @@ class Solution:
             if openc < n: #not elif
                 stack.append("(")
                 f(openc + 1, closec, stack)
-                stack.pop() # ((( becomes ((, and then the line BELOW EXECUTES (if closec < openc), turning (( into ((), and then recursively calling f with (() to continue the process - elif would not do this! ELIF DOES NOT EXECUTE OTHER ELIF BLOCKS BELOW IT EVEN IF BELOW BLOCKS ARE TRUE
+                stack.pop() # ((( becomes ((, and then the line BELOW EXECUTES (if closec < openc), turning (( into ((), and then recursively calling f with (() to continue the process - elif instead of if for all 3 blocks would not do this! ELIF DOES NOT EXECUTE OTHER ELIF BLOCKS BELOW IT EVEN IF BELOW BLOCKS ARE TRUE
             if closec < openc: #not elif 
                 stack.append(")")
                 f(openc, closec + 1, stack)
