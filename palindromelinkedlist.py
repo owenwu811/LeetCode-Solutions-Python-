@@ -23,3 +23,14 @@ class Solution:
             res.append(right.val)
             right = right.next
         return res == res[::-1]
+
+#4/25/24:
+
+class Solution:
+    def isPalindrome(self, head: Optional[ListNode]) -> bool:
+        res = []
+        r = head
+        while r:
+            res.append(r.val)
+            r = r.next
+        return res == res[::-1]
