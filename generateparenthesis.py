@@ -151,4 +151,24 @@ class Solution:
         res = []
         generate(0, 0, [])
         return res
-        
+
+
+#4/25/24 refresher:
+
+class Solution:
+    def generateParenthesis(self, n: int) -> List[str]:
+        def f(openc, closec, stack):
+            if openc == closec == n:
+                res.append("".join(stack))
+                return
+            if openc < n: #not elif
+                stack.append("(")
+                f(openc + 1, closec, stack)
+                stack.pop()
+            if closec < openc: #not elif 
+                stack.append(")")
+                f(openc, closec + 1, stack)
+                stack.pop()
+        res = []
+        f(0, 0, [])
+        return res
