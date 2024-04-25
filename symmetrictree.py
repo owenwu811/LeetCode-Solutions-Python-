@@ -25,6 +25,9 @@ class Solution:
             return solve(root1.left, root2.right) and solve(root1.right, root2.left)
         return solve(root, root)
 
+
+#when we backtrack, we go up one level, and then we move both root1 and root2 inwards towards each other instead of outwards to symbolize the 2nd solve(root1.right, root2.left)
+
   #you first dig down with root1:
 
 #      1
