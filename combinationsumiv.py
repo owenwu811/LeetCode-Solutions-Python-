@@ -78,6 +78,16 @@ class Solution:
         return d[levelamount]
     
 
+#4/24/24 refresher:
+
+class Solution:
+    def combinationSum4(self, nums: List[int], target: int) -> int:
+        d = {0: 1} #base case - [] - 1 way - you don't
+        for levelamount in range(1, target + 1):
+            d[levelamount] = 0 
+            for coinvalue in nums:
+                d[levelamount] += d.get(levelamount - coinvalue, 0)
+        return d[levelamount] #bottom up dynamic programming approach 
 
         
  
