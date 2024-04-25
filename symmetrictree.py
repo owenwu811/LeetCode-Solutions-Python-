@@ -35,7 +35,7 @@ class Solution:
                 return True
             if root1 == None or root2 == None or root1.val != root2.val: #a single imbalance at each level indicates the entire tree is not 100% symmetric
                 return False
-            return solve(root1.left, root2.right) and solve(root1.right, root2.left) #python has lazy and operator, so it won't evaluate solve(root1.right, root2.left) until all solve(root1.left, root2.right) calls have finished first aka hit base case and returned True
+            return solve(root1.left, root2.right) and solve(root1.right, root2.left) #python has lazy and operator, so it won't evaluate solve(root1.right, root2.left) until all solve(root1.left, root2.right) calls have finished first aka hit base case and returned True. It evaluates its operands from left to right and stops evaluating as soon as it encounters a False value because it knows that the ENTIRE EXPRESSION will be False REGARDLESS of the values of the REMAINING operands.
         return solve(root, root)
 
 #when we backtrack, we go up one level, and then we move both root1 and root2 inwards towards each other instead of outwards to symbolize the 2nd solve(root1.right, root2.left)
