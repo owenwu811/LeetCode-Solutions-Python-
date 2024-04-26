@@ -102,3 +102,17 @@ class Solution:
                 heapq.heappop(heap)
                 heapq.heappush(heap, n)
         return heap[0]
+
+
+#4/26/24 refresher:
+
+class Solution:
+    def findKthLargest(self, nums: List[int], k: int) -> int:
+        #we want the smallest element out of the k largest elements in the input array
+        heap = nums[:k] #size k
+        heapq.heapify(heap) #smallest is at top
+        for n in nums[k:]:
+            if heap[0] < n: #if true, we know the smallest aka root of heap cannot be part of k largest, so we pop and add our n according to heap invariant
+                heapq.heappop(heap)
+                heapq.heappush(heap, n) 
+        return heap[0]
