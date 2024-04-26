@@ -90,4 +90,18 @@ class Solution:
         return d[levelamount] #bottom up dynamic programming approach 
 
         
- 
+
+#4/26/24 refresher (struggled with but solved):
+
+class Solution:
+    def combinationSum4(self, nums: List[int], target: int) -> int:
+        #count of combinations that add up to target - like permutation in that if rearranged, it's fine even though frequency of numbers is the same - 1 1 2 and 1 2 1
+        #think coin change without minimum requirement
+        d = {0: 1} #[] case - 1 way - you don't
+        for levelamount in range(1, target + 1):
+            d[levelamount] = 0
+            for coinvalue in nums:
+                if coinvalue <= levelamount:
+                    d[levelamount] += d.get(levelamount - coinvalue, 0) #levelamount - coinvalue
+        return d[levelamount]
+            
