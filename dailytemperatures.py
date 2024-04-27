@@ -124,3 +124,18 @@ class Solution:
                 res[a] = i - a
             d.append(i)
         return res
+
+
+#4/27/24:
+
+class Solution:
+    def dailyTemperatures(self, temperatures: List[int]) -> List[int]:
+        res = [0] * len(temperatures)
+        stack = []
+        for i in range(len(temperatures)):
+            while stack and temperatures[i] > temperatures[stack[-1]]:
+                a = stack.pop()
+                res[a] = i - a #old index that was smaller is updated
+            stack.append(i) #the rear of stack represents index of warmest temperature found so far
+        return res
+
