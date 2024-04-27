@@ -80,7 +80,7 @@ class Solution:
             odd.next = even.next
             odd = odd.next
             even.next = odd.next 
-            even = even.next #during the last iteration, odd = 5, and even becomes None, not 6, so then while loop will evaluate and become False
+            even = even.next #during the last iteration, odd = 5, and even becomes None, not 6, so then while loop will evaluate and become False - in python, the end of a linked list is always signaled by None!
         odd.next = evensaver #odd is 5, and evensaver is 2, so odd.next becomes 2
         return oddsaver
         
