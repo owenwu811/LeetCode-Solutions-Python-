@@ -115,3 +115,16 @@ class Solution:
             elif n == res:
                 res += 1
         return res
+    
+#4/26/24:
+
+class Solution:
+    def firstMissingPositive(self, nums: List[int]) -> int:
+        res = 1
+        nums.sort()
+        for n in nums:
+            if n <= 0:
+                continue
+            elif n == res:
+                res += 1
+        return res
