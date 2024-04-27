@@ -83,5 +83,7 @@ class Solution:
             even = even.next #during the last iteration, odd = 5, and even becomes None, not 6, so then while loop will evaluate and become False - in python, the end of a linked list is always signaled by None!
         odd.next = evensaver #odd is 5, and evensaver is 2, so odd.next becomes 2
         return oddsaver
+
+        #in python, the end of a linked list is always signaled by None, so the output of [1, 3, 5, 2, 4] is really the same as [1, 3, 5, 2, 4, N]!!!!
         
 
