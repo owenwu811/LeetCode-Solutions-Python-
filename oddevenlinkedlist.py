@@ -76,12 +76,12 @@ class Solution:
             return head
         oddsaver = odd = head  #1
         evensaver = even = head.next #2
-        while even and even.next: #2nd to last node is even and has to be stopper because the last turn odd becomes 5 and even becomes 6, but 6 isn't valid
+        while even and even.next: 
             odd.next = even.next
             odd = odd.next
             even.next = odd.next 
-            even = even.next
-        odd.next = evensaver
+            even = even.next #during the last iteration, odd = 5, and even becomes None, not 6, so then while loop will evaluate and become False
+        odd.next = evensaver #odd is 5, and evensaver is 2, so odd.next becomes 2
         return oddsaver
         
 
