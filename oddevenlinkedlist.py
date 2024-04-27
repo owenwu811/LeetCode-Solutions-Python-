@@ -62,3 +62,26 @@ class Solution:
         odd.next = evenstart
         return oddstart
 
+
+#4/27/24:
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def oddEvenList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        if not head or not head.next: #no comparisons to be done if 0 elements or 1 element in input linked list
+            return head
+        oddsaver = odd = head  #1
+        evensaver = even = head.next #2
+        while even and even.next: #2nd to last node is even and has to be stopper because the last turn odd becomes 5 and even becomes 6, but 6 isn't valid
+            odd.next = even.next
+            odd = odd.next
+            even.next = odd.next 
+            even = even.next
+        odd.next = evensaver
+        return oddsaver
+        
+
