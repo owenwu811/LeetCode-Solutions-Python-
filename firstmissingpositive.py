@@ -125,6 +125,6 @@ class Solution:
         for n in nums:
             if n <= 0:
                 continue
-            elif n == res:
+            elif n == res: #if n == res, then that means res is INSIDE OF THE ARRAY, so increment res by 1 to check for the next positive integer that COULD be missing. 
                 res += 1
         return res
