@@ -131,3 +131,19 @@ class Solution:
             else:
                 r -= 1
         return arr[l:r + 1]
+
+
+#4/27/24 with explanation:
+
+class Solution:
+    def findClosestElements(self, arr: List[int], k: int, x: int) -> List[int]:
+        l, r = 0, len(arr) - 1
+        #r = 4, l = 0, so 4 - 0 = 4, but 012345 is length 5, so since indicies, we need to + 1 because we want k length of elements, so 5 is indeed bigger than 4 (k), so shrink until length k (4) elements
+        while (r - l + 1) > k:
+            #abs(1 - 3) > abs(5 - 3) - False, because if both are equal distance apart but l is less than r, then l is considered closer
+            if abs(arr[l] - x) > abs(arr[r] - x):
+                l += 1
+            else:
+                r -= 1
+        #since we keep shrinking and then stop when l - r + 1 is exactly k elements, we need to include both l and r pointers as indicies 
+        return arr[l:r + 1]
