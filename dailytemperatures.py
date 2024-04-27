@@ -130,12 +130,16 @@ class Solution:
 
 class Solution:
     def dailyTemperatures(self, temperatures: List[int]) -> List[int]:
+        #temperatures = [73, 74, 75, 71, 69, 72, 76, 73]
         res = [0] * len(temperatures)
         stack = []
         for i in range(len(temperatures)):
+            #1st iteration, stack - [], so append 0 to rear of stack, and i becomes 1. 74 > 73, so stack [0] > [], and res[0] = 1 - 0, so res[0] = 1, and now we go back to call while loop, BUT STACK IS NOW [], SO THERE IS NOTHING TO COMPARE TO, SO ADD 1 to rear of stack! - notice how while is while stack AND temperatures[i] > temperatures[stack[-1]]
             while stack and temperatures[i] > temperatures[stack[-1]]:
                 a = stack.pop()
-                res[a] = i - a #old index that was smaller is updated
-            stack.append(i) #the rear of stack represents index of warmest temperature found so far
+                res[a] = i - a
+            stack.append(i) 
         return res
+
+
 
