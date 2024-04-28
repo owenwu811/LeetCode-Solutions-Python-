@@ -33,3 +33,17 @@ class Solution:
 
 
 #if you had 7 as, #aaaaaaaccccdd - you could still get the entire thing with - #aaaddccaccddaaa
+
+
+#4/28/24 refresher:
+
+class Solution:
+    def longestPalindrome(self, s: str) -> int:
+        res = 0
+        seen = set()
+        for char in s:
+            if char not in seen: #odd
+                seen.add(char)
+            else:
+                seen.remove(char)
+        return len(s) - len(seen) + 1 if len(seen) > 0 else len(s)
