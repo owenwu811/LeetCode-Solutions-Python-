@@ -179,3 +179,21 @@ class Solution:
             else:
                 d[subarraysum] += 1
         return res
+
+#4/28/24 refresher:
+
+class Solution:
+    def subarraySum(self, nums: List[int], k: int) -> int:
+        d = dict()
+        res = 0
+        d[0] = 1
+        subarraysum = 0
+        for n in nums:
+            subarraysum += n
+            if subarraysum - k in d:
+                res += d[subarraysum - k]
+            if subarraysum not in d:
+                d[subarraysum] = 1
+            else: 
+                d[subarraysum] += 1
+        return res
