@@ -1,0 +1,27 @@
+#Given a string s which consists of lowercase or uppercase letters, return the length of the longest palindrome that can be built with those letters.
+
+#Letters are case sensitive, for example, "Aa" is not considered a palindrome here.
+
+
+
+#s = "abccccdd" > output is 7 because "dccaccd" 
+
+#note that we can rearrange the letters of the input however we would like to make palindrome!!!
+
+#python3 solution:
+
+class Solution:
+    def longestPalindrome(self, s: str) -> int:
+        seen = set()
+        for char in s:
+            if char not in seen: #odd occurence means add
+                seen.add(char)
+            else: #even occurence means remove
+                seen.remove(char)
+        return len(s) - len(seen) + 1 if len(seen) > 0 else len(s)
+
+
+#the idea here is that only one of the odd frequency characters from the input can be tolerated as we can just plop it in the middle, so rest of how ever many odd characters need to be subtracted from the length of input string
+#to illustrate, abccccdd > 1 a, 1 b, 4 cs, 2 ds, so we can either choose a OR b to plop in the middle, and the other odd has to be removed from input
+# aaabccccdd > 3 as, 1 b, 4 cs, 2 ds, so, again we can chose ONE OF THE 3 AS or JUST THE B to plop in the middle, and the all the other odds (2 a + 1 b or 3 a) need to be removed from input
+# dccaccd, so we are left with aab in the input, and no matter how you put aab inside of dccaccd, you will never form a palindrome - if you put the 2 as in front and the b in middle, you get adccbaccda or adccabccda, which are not palindromes because the b gets hit first or later when coming backwards vs. forwards, so you gotta remove 3 (aab or aaa) as length from input since we already tolerated one of the odds - 4 total - aaab = len(4), and we either removed ONE a or ONE b 
