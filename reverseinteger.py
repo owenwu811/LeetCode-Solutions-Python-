@@ -201,7 +201,7 @@ class Solution:
         r = s[::-1]
         f = int(r)
         limit = 2 ** 31
-        if x < 0 and f < limit: #f = 321, and then we only add the - in front here at the end! x = -123 input
+        if x < 0 and f < limit: #f = 321, and then we only add the - in front of 321 here at the end to get -321! x = -123 input
             return -f
         if x > 0 and f < limit:
             return f
