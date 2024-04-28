@@ -191,3 +191,18 @@ class Solution:
             return f
         return 0
 
+
+#4/18/24 refresher:
+
+class Solution:
+    def reverse(self, x: int) -> int:
+        a = abs(x)
+        s = str(a)
+        r = s[::-1]
+        f = int(r)
+        limit = 2 ** 31
+        if x < 0 and f < limit: #f = 321, and then we only add the - in front here at the end! x = -123 input
+            return -f
+        if x > 0 and f < limit:
+            return f
+        return 0
