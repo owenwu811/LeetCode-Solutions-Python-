@@ -30,3 +30,6 @@ class Solution:
 #for "aaaccccdd", res is 9 (whole input) because you can do adccaccda, so the set is {'a'} at the end, and since we can tolerate one of the As by adding 1, we can plop the other 2 As at end, so we can tolerate one of the 3 As
 
 #no matter how long that odd character is, we can count the entire input string if we only have one odd letter, so if we have 5 As, as long as we only have one unique odd character, then we can count the entire stirng as palindrome length
+
+
+#if you had 7 as, #aaaaaaaccccdd - you could still get the entire thing with - #aaaddccaccddaaa
