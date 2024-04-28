@@ -94,7 +94,7 @@ class Solution:
             return head 
         oddstart = odd = head
         evenstart =  even = head.next
-        while even and even.next: #the end of a linked list always ends in None, so even won't ever be 6
+        while even and even.next: #the end of a linked list always ends in None, so even won't ever be 6. in the last iteration, odd = 5, and even becomes None! and then the while loop will return False
             odd.next = even.next
             odd = odd.next
             even.next = odd.next
