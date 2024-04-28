@@ -85,5 +85,21 @@ class Solution:
         return oddsaver
 
         #in python, the end of a linked list is always signaled by None, so the output of [1, 3, 5, 2, 4] is really the same as [1, 3, 5, 2, 4, N]!!!!
+
+#4/28/24 refresher practice:
+
+class Solution:
+    def oddEvenList(self, head):
+        if not head or not head.next: #only 1 element or 0 elements
+            return head 
+        oddstart = odd = head
+        evenstart =  even = head.next
+        while even and even.next: #the end of a linked list always ends in None, so even won't ever be 6
+            odd.next = even.next
+            odd = odd.next
+            even.next = odd.next
+            even = even.next
+        odd.next = evenstart
+        return oddstart
         
 
