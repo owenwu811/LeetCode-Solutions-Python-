@@ -109,3 +109,21 @@ class Solution:
                 return False #one imbalance means entire thing is imbalanced
             return solve(root1.left, root2.right) and solve(root1.right, root2.left)
         return solve(root, root)
+
+#4/29/24 refresher:
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def isSymmetric(self, root: Optional[TreeNode]) -> bool:
+        def f(root1, root2):
+            if root1 == None and root2 == None:
+                return True
+            if root1 == None or root2 == None or root1.val != root2.val: #if root1 or root2 dosen't work - it has to be if root1 == None or root2 == None
+                return False
+            return f(root1.left, root2.right) and f(root1.right, root2.left)
+        return f(root, root)
