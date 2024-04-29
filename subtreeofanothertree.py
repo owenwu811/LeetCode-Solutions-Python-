@@ -13,8 +13,8 @@
 #         self.right = right
 class Solution(object):
     def isSubtree(self, root, subRoot):
-        if not subRoot: return True
-        if not root: return False
+        if not subRoot: return True #the idea is that if the smaller tree is empty, then technically the bigger tree matches the smaller tree -  this is because any tree contains an empty tree as a subtree
+        if not root: return False 
         if self.same(root, subRoot):  #we know that both Trees exist, so we now have to compare all children of both trees to make sure exactly the same 
             return True
         #just traversing the bigger tree that's trying to cater a part to smaller tree because either left OR right side of bigger tree can match smaller tree
