@@ -233,3 +233,23 @@ class Solution:
                     k = stack.pop() + k
                 stack.append(int(k) * substr)
         return "".join(stack)
+
+#4/29/24 refresher:
+
+class Solution:
+    def decodeString(self, s: str) -> str:
+        res = ""
+        stack = []
+        for char in s:
+            if char != "]":
+                stack.append(char)
+            else:
+                substr = ""
+                while stack and stack[-1] != "[":
+                    substr = stack.pop() + substr
+                stack.pop() #pop off last [
+                k = "" #k is the integer number that we look for after popping the [
+                while stack and stack[-1].isdigit():
+                    k = stack.pop() + k
+                stack.append(int(k) * substr)
+        return "".join(stack)
