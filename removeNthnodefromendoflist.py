@@ -172,3 +172,25 @@ class Solution:
             r = r.next
         l.next = l.next.next
         return prev.next
+
+#4/29/24 practice again:
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
+        prev = ListNode(0, head)
+        l = prev
+        r = head
+        while n > 0 and r:
+            r = r.next
+            n -= 1 #0 > 0 is False, so l and r are n distance length nodes apart
+        while r:
+            l = l.next
+            r = r.next
+        l.next = l.next.next
+        return prev.next
+        
