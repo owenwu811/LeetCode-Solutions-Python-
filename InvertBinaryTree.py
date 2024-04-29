@@ -119,3 +119,22 @@ class Solution:
         self.invertTree(root.right)
         return root
         
+
+#my own solution python3 4/29/24:
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
+        def f(root):
+            if root == None:
+                return None
+            root.left, root.right = root.right, root.left
+            l = f(root.left)
+            r = f(root.right)
+            return root
+        return f(root)
