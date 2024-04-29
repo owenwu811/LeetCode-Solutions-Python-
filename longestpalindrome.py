@@ -47,3 +47,20 @@ class Solution:
             else:
                 seen.remove(char)
         return len(s) - len(seen) + 1 if len(seen) > 0 else len(s)
+
+#4/29/24:
+
+class Solution(object):
+    def longestPalindrome(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        seen = set()
+        for char in s:
+            if char not in seen: #odd
+                seen.add(char)
+            else:
+                seen.remove(char) #even
+        #seen contains one occurence of all letters that appeared an odd number of times
+        return len(s) - len(seen) + 1 if len(seen) > 0 else len(s)
