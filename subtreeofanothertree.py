@@ -25,3 +25,27 @@ class Solution(object):
         if p and q and p.val == q.val: #still have to dig down left in both subtrees first to make sure child nodes are also the same and same value
             return self.same(p.left, q.left) and self.same(p.right, q.right)
         return False #we know this smaller part of root and entire subroot didn't match, so we have to keep traversing down bigger root tree by going back to line 21 to see if another part of bigger tree matches smaller tree 
+
+#4/29/24 refresher:
+
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution(object):
+    def isSubtree(self, root, subRoot):
+        if not subRoot: return True
+        if not root: return False
+        if self.same(root, subRoot):
+            return True
+        return self.isSubtree(root.left, subRoot) or self.isSubtree(root.right, subRoot)
+    def same(self, p, q):
+        if p == None and q == None:
+            return True
+        if p and q and p.val == q.val:
+            return self.same(p.left, q.left) and self.same(p.right, q.right)
+        return False
+
+        
