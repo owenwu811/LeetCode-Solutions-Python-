@@ -104,3 +104,18 @@ class Solution:
                 res += 1
                 prevend = min(prevend, end)
         return res
+
+#4/28/24 practice:
+
+class Solution:
+    def eraseOverlapIntervals(self, intervals: List[List[int]]) -> int:
+        res = 0
+        intervals.sort()
+        prevend = intervals[0][1]
+        for start, end in intervals[1:]:
+            if start >= prevend: #no overlap, so set prevend to the current end so we can catch potential overlaps in the future iterations
+                prevend = end
+            else: #there is an overlap, so increment res, and then choose to tank the smaller log to the right to minimize the chance of overlap in the future 
+                res += 1
+                prevend = min(end, prevend)
+        return res
