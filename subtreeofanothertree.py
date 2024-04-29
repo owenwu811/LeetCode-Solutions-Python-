@@ -48,4 +48,22 @@ class Solution(object):
             return self.same(p.left, q.left) and self.same(p.right, q.right)
         return False
 
+
+#refresher again:
+
+class Solution:
+    def isSubtree(self, s: TreeNode, t: TreeNode) -> bool:
+        if not t: return True
+        if not s: return False
+        if self.solve(s, t):
+            return True
+        #not entirely true, so move down left in the bigger subtree and try again
+        return self.isSubtree(s.left, t) or self.isSubtree(s.right, t)
+    def solve(self, p, q):
+        if p == None and q == None: #base case when we hit empty leaf on both trees
+            return True
+        if p and q and p.val == q.val: #just because one node matches dosen't mean we don't need to check rest of subtree
+            return self.solve(p.left, q.left) and self.solve(p.right, q.right)
+        return False
         
+
