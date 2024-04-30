@@ -368,3 +368,27 @@ class Solution:
             r, c = newr, newc
         return res
 
+
+#4/30/24 refresher:
+
+class Solution(object):
+    def spiralOrder(self, matrix):
+        """
+        :type matrix: List[List[int]]
+        :rtype: List[int]
+        """
+        if not matrix: return []
+        seen = set()
+        res = []
+        rows, cols = len(matrix), len(matrix[0])
+        r = c = d = 0 #start at top left
+        directions = [(0, 1), (1, 0), (0, -1), (-1, 0)]
+        for i in range(rows * cols):
+            seen.add((r, c))
+            res.append(matrix[r][c])
+            newr, newc = r + directions[d][0], c + directions[d][1]
+            if newr < 0 or newr >= len(matrix) or newc < 0 or newc >= len(matrix[0]) or (newr, newc) in seen:
+                d = (d + 1) % 4
+                newr, newc = r + directions[d][0], c + directions[d][1]
+            r, c = newr, newc
+        return res
