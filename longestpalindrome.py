@@ -64,3 +64,16 @@ class Solution(object):
                 seen.remove(char) #even
         #seen contains one occurence of all letters that appeared an odd number of times
         return len(s) - len(seen) + 1 if len(seen) > 0 else len(s)
+
+#4/30/24 refresher:
+
+class Solution:
+    def longestPalindrome(self, s: str) -> int:
+        seen = set()
+        for char in s:
+            if char not in seen: #odd
+                seen.add(char)
+            else:
+                seen.remove(char) #even
+        #we can tolerate one of the characters that appeared an odd number of times in input string 
+        return len(s) - len(seen) + 1 if len(seen) > 0 else len(s)
