@@ -216,6 +216,6 @@ class Solution(object):
                 res += d[subarraysum - k]
             if subarraysum not in d: #use if and not elif because if 1 is not key in dict, and just because 1 - 2 dosen't exist as a key in dict dosen't mean we don't insert 1 as key in dict like 1: 1 because we do, and elif would mean we don't just because -1 isn't a key in our dict for [1, 1, 1] k = 2
                 d[subarraysum] = 1
-            else:
+            else: #we can use else here because either subarraysum is inside of d as a key or it's not - it's either or 
                 d[subarraysum] += 1
         return res
