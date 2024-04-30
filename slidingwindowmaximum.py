@@ -230,3 +230,23 @@ class Solution:
                 res.append(nums[d[0]])
                 l += 1
         return res
+
+#4/30/24 refresher:
+
+class Solution:
+   def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
+        #we want the maximum number of each sliding window that is of size k
+        res = []
+        l = 0
+        d = deque() #montonically decreasing queue
+        for i in range(len(nums)):
+            while d and nums[i] > nums[d[-1]]:
+                d.pop()
+            d.append(i)
+            if l > d[0]:
+                d.popleft()
+            if (i + 1) >= k: #k is a length
+                res.append(nums[d[0]])
+                l += 1
+        return res
+
