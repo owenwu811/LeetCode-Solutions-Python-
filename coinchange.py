@@ -476,3 +476,18 @@ class Solution:
         if res[-1] == float('inf'): return -1
         return res[-1]
 
+#4/30/24 refresher:
+
+class Solution:
+    def coinChange(self, coins: List[int], amount: int) -> int:
+        #we want the smallest frequency of coins to sum up to each amount starting from 1 up to amount
+        res = [0] + ([float('inf')] * amount)
+        for levelamount in range(1, amount + 1):
+            for coinvalue in coins:
+                if coinvalue <= levelamount:
+                    res[levelamount] = min(res[levelamount], res[levelamount - coinvalue] + 1)
+        if res[-1] == float('inf'):
+            return -1
+        return res[-1]
+
+        
