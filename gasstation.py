@@ -146,4 +146,17 @@ class Solution:
             else:
                 starting, index = 0, i + 1
         return index
+
+#4/30/24 refresher:
+
+class Solution:
+    def canCompleteCircuit(self, gas: List[int], cost: List[int]) -> int:
+        startingwith, startingindex = 0, 0
+        if sum(gas) < sum(cost): return -1
+        for i in range(len(gas)):
+            startingwith += gas[i] - cost[i]
+            if startingwith < 0:
+                startingwith, startingindex = 0, i + 1
+        return startingindex
+ 
             
