@@ -197,3 +197,25 @@ class Solution:
             else: 
                 d[subarraysum] += 1
         return res
+
+
+#4/30/24 refresher:
+
+class Solution(object):
+    def subarraySum(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        res, subarraysum = 0, 0
+        d = {0: 1}
+        for n in nums:
+            subarraysum += n
+            if subarraysum - k in d:
+                res += d[subarraysum - k]
+            if subarraysum not in d: #use if and not elif because if 1 is not key in dict, and just because 1 - 2 dosen't exist as a key in dict dosen't mean we don't insert 1 as key in dict like 1: 1 because we do, and elif would mean we don't just because -1 isn't a key in our dict for [1, 1, 1] k = 2
+                d[subarraysum] = 1
+            else:
+                d[subarraysum] += 1
+        return res
