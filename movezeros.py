@@ -108,4 +108,15 @@ class Solution:
             elif nums[left] != 0:
                 left += 1
         
-  
+
+#4/30/24 (missed):
+
+class Solution(object):
+    def moveZeroes(self, nums):
+        s = 0
+        for f in range(len(nums)):
+            if nums[s] == 0 and nums[f] != 0:
+                nums[s], nums[f] = nums[f], nums[s]
+                s += 1
+            elif nums[s] != 0: #for loop auto increments left, so if above if is False, then we still need to increment slow - [1, 0, 1] - s and f are both on index 0, so if is False, but s is not equal to 0 since it's equal to 1, so do increment slow, and then for loop call will also increment f so that [1, 0, 1] s and f are now on index 1 after the for loop call
+                s += 1
