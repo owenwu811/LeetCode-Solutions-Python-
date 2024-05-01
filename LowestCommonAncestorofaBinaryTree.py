@@ -265,6 +265,8 @@ class Solution:
 #         self.left = None
 #         self.right = None
 
+
+#if the current node is None, we can't find the desired nodes further down the tree, and if the current node is either p or q, it must be the lowest common ancestor of p and q.
 class Solution:
     def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
         if root == None or root == p or root == q: #root can't be None AND ALSO p or q because p and q can't be None, so if we reach leaf, root is None, and we return None vs. root == p or root == q are different scenarios. 
