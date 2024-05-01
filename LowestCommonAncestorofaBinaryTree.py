@@ -265,6 +265,7 @@ class Solution:
 #         self.left = None
 #         self.right = None
 
+#we're not returning a subtree itself! instead, we're returning the lowest common ancestor found within that subtree. This is because as we traverse the tree recursively, each call to the function is working on a subtree, and it eventually returns the lowest common ancestor found within that subtree.
 
 #if the current node is None, we can't find the desired nodes further down the tree, and if the current node is either p or q, it must be the lowest common ancestor of p and q.
 class Solution:
