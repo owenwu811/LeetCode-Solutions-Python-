@@ -359,3 +359,24 @@ class Solution:
 The second implementation is causing a "NoneType" error because it doesn't handle the case where cur becomes None, i.e., when it reaches a leaf node and tries to access cur.val. If cur becomes None, accessing cur.val will raise an AttributeError because None has no attribute val. This issue doesn't occur in the first implementation because it checks the values of p and q relative to cur, ensuring it always descends to a valid node.
 
 To fix the issue in the second implementation, you should add a check to handle the case where cur becomes None. However, because we are garunteed that p and q will be somewhere in the tree, this dosen't apply. 
+
+
+#5/1/24 refresher:
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+        #descendant means ancestor, so 6 is a descendant of 7, but 7 isn't a descendant of 6
+        while True:
+            if p.val < root.val and q.val < root.val:
+                root = root.left
+            elif p.val > root.val and q.val > root.val:
+                root = root.right
+            else:
+                return root
