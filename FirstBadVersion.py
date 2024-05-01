@@ -230,3 +230,21 @@ class Solution:
             else:
                 l = mid + 1
         return l
+
+#5/1/24 refresher:
+
+# The isBadVersion API is already defined for you.
+# def isBadVersion(version: int) -> bool:
+
+class Solution:
+    def firstBadVersion(self, n: int) -> int:
+        #first bad one
+        l = 0 #these are numbers
+        r = n 
+        while l <= r:
+            mid = (l + r) // 2
+            if isBadVersion(mid): #could be an earlier one causing this to be bad
+                r = mid - 1
+            else: #if current is False aka not bad, then we know before couldn't be bad, so move left up
+                l = mid + 1
+        return l
