@@ -65,5 +65,28 @@ class Solution:
         if p and q and p.val == q.val: #just because one node matches dosen't mean we don't need to check rest of subtree
             return self.solve(p.left, q.left) and self.solve(p.right, q.right)
         return False
-        
+
+
+#5/1/24 refresher:
+
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution(object):
+    def isSubtree(self, root, subRoot):
+        if not subRoot and root: return True
+        if not root and subRoot: return False
+        if self.solve(root, subRoot):
+            return True
+        return self.isSubtree(root.left, subRoot) or self.isSubtree(root.right, subRoot)
+    def solve(self, p, q):
+        if p == None and q == None:
+            return True
+        if p and q and p.val == q.val: #just because one level is matching dosen't mean we don't need to compare children of both trees as well
+            return self.solve(p.left, q.left) and self.solve(p.right, q.right)
+        return False
+
 
