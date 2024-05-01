@@ -338,3 +338,34 @@ class Codec:
             return node
         return f()
 
+#4/30/24:
+
+class Codec:
+
+    def serialize(self, root): # Serialize the binary tree into a string
+        res = []
+        def f(root):
+            if root == None:
+                res.append("N")
+                return
+            res.append(str(root.val))
+            f(root.left)
+            f(root.right)
+        f(root)
+        return ",".join(res) #string
+
+
+    def deserialize(self, data: str):  # Deserialize the string into a binary tree
+        vals = data.split(",") #array
+        self.i = 0
+        def f():
+            if vals[self.i] == "N":
+                self.i += 1
+                return None
+            node = TreeNode(vals[self.i])
+            self.i += 1
+            node.left = f()
+            node.right = f()
+            return node
+        return f()
+
