@@ -455,3 +455,27 @@ class Solution:
                         mat[ox][oy] = mat[zx][zy] + 1
                         d.append([ox, oy]) #becomes a new starting point since already updated that tile with distance from 1 to nearest 0
         return mat
+
+#5/1/24 refresher (iffy and needs review):
+
+class Solution:
+    def updateMatrix(self, mat: List[List[int]]) -> List[List[int]]:
+        #we want the same array not returning a new one where each value of each 1 cell is the distnace from that 1 cell to the nearest 0 cell
+        if not mat: return []
+        d = deque()
+        for r in range(len(mat)):
+            for c in range(len(mat[0])):
+                if mat[r][c] == 0:
+                    d.append([r, c])
+                else: #we see a 1 cell, so we set to infinity so anything is less because the distnace to nearest 0 from this cell has to be less
+                    mat[r][c] = float('inf')
+        directions = [(1, 0), (0, 1), (-1, 0), (0, -1)]
+        while d:
+            for i in range(len(d)):
+                zx, zy = d.popleft()
+                for nx, ny in directions:
+                    ox, oy = zx + nx, zy + ny
+                    if ox >= 0 and ox < len(mat) and oy >= 0 and oy < len(mat[0]) and mat[ox][oy] > mat[zx][zy] + 1:
+                        mat[ox][oy] = mat[zx][zy] + 1 #will be 1 because 0 + 1 = 1
+                        d.append([ox, oy])
+        return mat
