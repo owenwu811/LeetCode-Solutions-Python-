@@ -35,4 +35,30 @@ class Solution:
         tail.next = head
         return newhead
 
+
+#practice again 4/30/24:
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def rotateRight(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
+        if not head:
+            return head
+        tail, length = head, 1
+        while tail.next:
+            tail = tail.next
+            length += 1 #traversing the list and finding the length
+        k = k % length
+        if k == 0:
+            return head
+        cur = head
+        for i in range(length - k - 1): #2 moves to go from 1 to 3
+            cur = cur.next
+        result = cur.next #4
+        cur.next = None #3 > None
+        tail.next = head
+        return result
         
