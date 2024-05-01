@@ -104,4 +104,21 @@ class Solution:
                 if coinvalue <= levelamount:
                     d[levelamount] += d.get(levelamount - coinvalue, 0) #levelamount - coinvalue
         return d[levelamount]
+
+
+#5/1/24 refresher:
+
+class Solution:
+    def combinationSum4(self, nums: List[int], target: int) -> int:
+        #we can count duplicates like 112 121
+        d = dict()
+        d[0] = 1 #[] case - you don't
+        for levelamount in range(1, target + 1):
+            d[levelamount] = 0
+            for n in nums:
+                if n <= levelamount:
+                    d[levelamount] += d.get(levelamount - n, 0)
+        return d[levelamount]
+ 
+            
             
