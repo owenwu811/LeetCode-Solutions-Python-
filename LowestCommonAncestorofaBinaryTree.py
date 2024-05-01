@@ -267,7 +267,7 @@ class Solution:
 
 class Solution:
     def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
-        if root == None or root == p or root == q:
+        if root == None or root == p or root == q: #root can't be None AND ALSO p or q because p and q can't be None, so if we reach leaf, root is None, and we return None vs. root == p or root == q are different scenarios. 
             return root
         l = self.lowestCommonAncestor(root.left, p, q)
         r = self.lowestCommonAncestor(root.right, p, q)
