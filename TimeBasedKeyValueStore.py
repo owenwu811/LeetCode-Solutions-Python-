@@ -579,6 +579,12 @@ class TimeMap:
 
 #5/1/24 refresher:
 
+#d = {"foo": [['bar', 1], ['baz', 2]]
+#need = [['bar', 1], ['baz', 2]]
+#l, r = 0, 1 because ['bar', 1] = index 0 and ['baz', 2] = index 1
+#mid, if 0, = ['bar', 1], so mid represents each sublist itself
+#need[mid][1] = 1 from the 1st index in mid
+
 class TimeMap:
     def __init__(self):
         self.d = dict()
