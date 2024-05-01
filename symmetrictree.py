@@ -164,3 +164,16 @@ class Solution(object):
                 return False
             return solve(root1.left, root2.right) and solve(root1.right, root2.left)
         return solve(root, root)
+
+
+#5/1/24 refresher:
+
+class Solution:
+    def isSymmetric(self, root: Optional[TreeNode]) -> bool:
+        def solve(root1, root2):
+            if root1 == None and root2 == None:
+                return True
+            if root1 and not root2 or root2 and not root1 or root1.val != root2.val:
+                return False
+            return solve(root1.left, root2.right) and solve(root1.right, root2.left) #you also have to check the inner nodes of the tree as being symmetric as well after you hit base case after validating and expanding outwards that symmetric up to the outward point
+        return solve(root, root) #duplicate the input twice to traverse down both at the same time to compare
