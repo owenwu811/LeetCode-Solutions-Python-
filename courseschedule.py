@@ -929,3 +929,31 @@ class Solution:
                     if indegree[n] == 0:
                         d.append(n)
         return canvisit == numCourses
+
+
+#5/1/24 refresher:
+
+class Solution:
+    def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+        #to take a, you must take b first
+        indegree = [0] * numCourses #each node starts with 0 prerequisites
+        adj = [[] for i in range(numCourses)]
+        for p in prerequisites:
+            adj[p[1]].append(p[0])
+            indegree[p[0]] += 1
+        d = deque()
+        for i in range(len(indegree)):
+            if indegree[i] == 0:
+                d.append(i)
+        canvisit = 0
+        while d:
+            for i in range(len(d)):
+                canvisit += 1
+                currentnode = d.popleft()
+                for n in adj[currentnode]:
+                    indegree[n] -= 1
+                    if indegree[n] == 0:
+                        d.append(n)
+        return canvisit == numCourses
+
+
