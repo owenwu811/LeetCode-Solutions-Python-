@@ -88,3 +88,32 @@ class Solution:
         cur.next = None
         tail.next = head
         return result
+
+
+#5/2/24 refresher:
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def rotateRight(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
+        if not head or not head.next: #if input is empty or only 1 input, then no matter what k is, the output is the same as the input
+            return head
+        tail, length = head, 1 #we want to find the length of the entire list, so we need to traverse it
+        while tail and tail.next:
+            tail = tail.next
+            length += 1
+        #now that we have the length, we can handle conditions where k is a multiple of the input
+        k = k % length
+        if k == 0: #there is no rotation to do because k is equal to the length itself, so we would just end up back at the head like in the input
+            return head 
+        cur = head #now we have to traverse from the beg of the list again to get to the pivot point
+        for i in range(length - k - 1): #to get to the pivot point of 3, we need 2 hops from the head of 1
+            cur = cur.next
+        result = cur.next #the result will start from 4, the node right after the pivot point
+        cur.next = None
+        #since we set cur.next to None, we need to connect the list again from 5 to 1
+        tail.next = head
+        return result
