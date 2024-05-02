@@ -89,4 +89,29 @@ class Solution(object):
             return self.solve(p.left, q.left) and self.solve(p.right, q.right)
         return False
 
+#5/2/24:
+
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution(object):
+    def isSubtree(self, root, subRoot):
+        #we want to start at the root of both trees
+        #we want to compare the values. If the values are the same, then we need to traverse left in both trees, and then traverse right in both trees.
+        #if the values don't match, then we need to move down left in root, and try the process again
+        if not subRoot: return True 
+        if not root: return False
+        if self.solve(root, subRoot):
+            return True
+        return self.isSubtree(root.left, subRoot) or self.isSubtree(root.right, subRoot)
+    def solve(self, p, q): #recursive calls where we traverse down both trees
+        if p == None and q == None: #reached root of Both trees, so return True
+            return True
+        if p and q and p.val == q.val:
+            return self.solve(p.left, q.left) and self.solve(p.right, q.right)
+        return False #we found a mismatch between the two trees, so move down left in bigger tree and try again
+        
 
