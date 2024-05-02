@@ -118,3 +118,15 @@ class Solution:
         tail.next = head #without this line, your output would be just [4, 5] instead of [4, 5, 1, 2, 3]
         #the reason result here isn't None is because, above, we did result = cur.next, but cur.next at the time was 4, and this was right before changing cur.next to None, so we are saving the 4 in result in the above "result = cur.next"
         return result
+
+
+#consider the last lines as:
+
+result = cur.next
+cur.next = None
+print(cur.val) #3
+cur = cur.next
+print(cur) #None
+tail.next = head
+print(result.val) #4
+return result
