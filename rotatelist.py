@@ -115,5 +115,5 @@ class Solution:
         result = cur.next #the result will start from 4, the node right after the pivot point
         cur.next = None
         #since we set cur.next to None, we need to connect the list again from 5 to 1
-        tail.next = head
+        tail.next = head #without this line, your output would be just [4, 5] instead of [4, 5, 1, 2, 3]
         return result
