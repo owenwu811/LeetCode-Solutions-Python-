@@ -29,3 +29,4 @@ class Solution:
 
 #sorted_words = sorted(d, key=lambda wordd: (-d[wordd], wordd)) - if you did sorted_words = sorted(d, key=lambda wordd: [-d[wordd], wordd]) - with [] instead of (), that's fine, but you can't swap the order of d and key=lambda wordd: (-d[wordd], wordd)!
 #sorted(iterable, key=key, reverse=reverse) - https://www.w3schools.com/python/ref_func_sorted.asp
+#The sorted() function returns a sorted LIST of the specified iterable object - as stated in above w3schools tutorial!
