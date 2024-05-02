@@ -116,4 +116,5 @@ class Solution:
         cur.next = None
         #since we set cur.next to None, we need to connect the list again from 5 to 1
         tail.next = head #without this line, your output would be just [4, 5] instead of [4, 5, 1, 2, 3]
+        #the reason result here isn't None is because, above, we did result = cur.next, but cur.next at the time was 4, and this was right before changing cur.next to None, so we are saving the 4 in result in the above "result = cur.next"
         return result
