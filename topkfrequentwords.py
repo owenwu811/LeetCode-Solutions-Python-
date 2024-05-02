@@ -33,3 +33,17 @@ class Solution:
 
 
 #https://www.w3schools.com/python/python_lambda.asp - lambda arguments: expression - this is the syntax - can have any number of arguments but only one expression. the expression is executed and the result is returned. 
+
+
+#5/2/24 practice:
+
+class Solution:
+    def topKFrequent(self, words: List[str], k: int) -> List[str]:
+        d = dict()
+        for word in words:
+            if word not in d:
+                d[word] = 0
+            d[word] += 1
+        sortedwordlist = sorted(d, key=lambda wordd: (-d[wordd], wordd))
+        topk = sortedwordlist[:k]
+        return topk
