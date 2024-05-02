@@ -26,3 +26,5 @@ class Solution:
 #line 7 takes {"i": 2, "love": 2, "leetcode": 1, "coding": 1} and turns into {-2: i, -2: love, -1: leetcode, -1: coding}, so -d[x] are the keys while x are the values
 #so we sort by the -2, -2, -1, -1 keys from greatest to least since the bigger a number is, the smaller it's negative counterpart will be
 #and then sorted_words becomes ["i", "love", "coding", "leetcode"] - a list
+
+#sorted_words = sorted(d, key=lambda wordd: (-d[wordd], wordd)) - if you did sorted_words = sorted(d, key=lambda wordd: [-d[wordd], wordd]) - with [] instead of (), that's fine, but you can't swap the order of d and key=lambda wordd: (-d[wordd], wordd)!
