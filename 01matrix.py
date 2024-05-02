@@ -479,3 +479,26 @@ class Solution:
                         mat[ox][oy] = mat[zx][zy] + 1 #will be 1 because 0 + 1 = 1
                         d.append([ox, oy])
         return mat
+
+#5/2/24:
+
+class Solution:
+    def updateMatrix(self, mat: List[List[int]]) -> List[List[int]]:
+        d = deque()
+        for r in range(len(mat)):
+            for c in range(len(mat[0])):
+                if mat[r][c] == 0:
+                    d.append([r, c]) #we start on non zeros and do bfs
+                else:
+                    mat[r][c] = float('inf')
+        directions = [(1, 0), (0, 1), (-1, 0), (0, -1)]
+        while d:
+            for i in range(len(d)):
+                zx, zy = d.popleft()
+                for nx, ny in directions:
+                    ox, oy = zx + nx, zy + ny #stepping away from 0 cells 
+                    if ox >= 0 and ox < len(mat) and oy >= 0 and oy < len(mat[0]) and mat[ox][oy] > mat[zx][zy] + 1:
+                        mat[ox][oy] = mat[zx][zy] + 1
+                        d.append([ox, oy])
+        return mat
+
