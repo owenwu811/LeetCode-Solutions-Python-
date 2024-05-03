@@ -35,3 +35,42 @@ class Solution:
                 r = i - 1
             else:
                 l = i + 1
+
+
+#5/3/24 refresher:
+
+
+#Given two sorted arrays nums1 and nums2 of size m and n respectively, return the median of the two sorted arrays.
+
+#The overall run time complexity should be O(log (m+n)).
+
+
+#Input: nums1 = [1,3], nums2 = [2]
+#Output: 2.00000
+#Explanation: merged array = [1,2,3] and median is 2.
+
+#python3 solution:
+
+class Solution:
+    def findMedianSortedArrays(self, nums1, nums2):
+        a, b = nums1, nums2
+        total = len(nums1) + len(nums2)
+        totalhalf = total // 2
+        if len(b) < len(a):
+            a, b = b, a
+        l, r = 0, len(a) - 1 #run binary search on shorter array
+        while True: #binary search run over and over again
+            i = (l + r) // 2
+            j = totalhalf - i - 2
+            aleft = a[i] if i >= 0 else float('-inf')
+            aright = a[i + 1] if (i + 1) < len(a) else float('inf')
+            bleft = b[j] if j >= 0 else float('-inf')
+            bright = b[j + 1] if (j + 1) < len(b) else float('inf')
+            if aleft <= bright and bleft <= aright: #if true, we have found the 4 final partition points
+                if total % 2 > 0: #if number of elements in both arrays is odd
+                    return min(aright, bright)
+                return (max(aleft, bleft) + min(aright, bright)) / 2 #if number of elements in both arrays is even
+            elif aleft > bright:
+                r = i - 1
+            else:
+                l = i + 1
