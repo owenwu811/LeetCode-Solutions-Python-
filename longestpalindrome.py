@@ -32,6 +32,8 @@ class Solution:
 #no matter how long that odd character is, we can count the entire input string if we only have one odd letter, so if we have 5 As, as long as we only have one unique odd character, then we can count the entire stirng as palindrome length
 
 
+
+
 #if you had 7 as, #aaaaaaaccccdd - you could still get the entire thing with - #aaaddccaccddaaa
 
 
@@ -77,3 +79,16 @@ class Solution:
                 seen.remove(char) #even
         #we can tolerate one of the characters that appeared an odd number of times in input string 
         return len(s) - len(seen) + 1 if len(seen) > 0 else len(s)
+
+#5/3/24 refresher:
+
+class Solution:
+    def longestPalindrome(self, s: str) -> int:
+        seen = set()
+        for char in s:
+            if char not in seen:
+                seen.add(char)
+            else:
+                seen.remove(char)
+        return len(s) - len(seen) + 1 if len(seen) > 0 else len(s)
+        
