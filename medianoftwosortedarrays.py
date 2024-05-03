@@ -126,7 +126,7 @@ class Solution:
             bright = b[j + 1] if (j + 1) < len(b) else float('inf')
             if aleft <= bright and bleft <= aright:
                 if total % 2 > 0:
-                    return min(aright, bright)
+                    return min(aright, bright) #using max(aleft, bleft) would cause error because aleft > bright means that median is on left <<< side of current partition, so max(aleft, bleft) would be picking an element from left array that is bigger than actual median
                 return (max(aleft, bleft) + min(aright, bright)) / 2 #do not round down so we can get decimal
             if aleft > bright:
                 r = i - 1
