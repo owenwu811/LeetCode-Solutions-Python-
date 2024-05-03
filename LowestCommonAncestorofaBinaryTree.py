@@ -325,3 +325,24 @@ class Solution:
         if l and not r: return l
         if r and not l: return r
         else: return None
+
+#5/3/24:
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+        #we want to find the lowest common parent of p and q
+        if root == None or root == p or root == q: #we want common of both p and q, so if we found a value that equals one, then that's the lowest common parent of both
+            return root 
+        l = self.lowestCommonAncestor(root.left, p, q)
+        r = self.lowestCommonAncestor(root.right, p, q)
+        if l and r: return root #l is an alrogithm that will keep running until we find the lowest common parent in the left subtree and same with right, so if they occur at a split, then return the parent
+        if l and not r: return l
+        if r and not l: return r
+        else: return None
