@@ -113,7 +113,7 @@ class Solution:
     def findMedianSortedArrays(self, nums1, nums2):
         a, b = nums1, nums2
         total = len(nums1) + len(nums2)
-        totalhalf = total // 2
+        totalhalf = total // 2 #if you did / 2 here instead of // 2, would you get an error that says indicies must be integer or slices, not float
         if len(b) < len(a): #without these two lines if len(b) < len(a), we would get an index out of bounds error
             a, b = b, a
         l, r = 0, len(a) - 1
