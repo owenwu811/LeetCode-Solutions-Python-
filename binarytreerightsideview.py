@@ -297,3 +297,30 @@ class Solution:
             if rightside is not None:
                 res.append(rightside)
         return res
+
+#5/3/24 refresher:
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def rightSideView(self, root: Optional[TreeNode]) -> List[int]:
+        #we want to return the values of nodes
+        d = deque() #holds the nodes themselves
+        res = []
+        d.append(root) #first level only has one node
+        while d:
+            rightmost = None
+            for i in range(len(d)):
+                currentnode = d.popleft() #bfs level order
+                if currentnode != None:
+                    rightmost = currentnode
+                    d.append(currentnode.left)
+                    d.append(currentnode.right)
+            if rightmost:
+                res.append(rightmost.val)
+        return res
+
