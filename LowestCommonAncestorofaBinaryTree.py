@@ -321,7 +321,7 @@ class Solution:
             return root
         l = self.lowestCommonAncestor(root.left, p, q)
         r = self.lowestCommonAncestor(root.right, p, q)
-        if l and r: return root
+        if l and r: return root # if both l and r are not None, it means p and q are found in different subtrees, indicating that the current root is the LCA.
         if l and not r: return l
         if r and not l: return r
         else: return None
