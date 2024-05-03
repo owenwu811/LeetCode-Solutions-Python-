@@ -60,9 +60,12 @@ class Solution:
             a, b = b, a
         l, r = 0, len(a) - 1 #run binary search on shorter array
         while True: #binary search run over and over again
+            #left partition index of shorter array
             i = (l + r) // 2
+            #left partition index of longer array - If total is odd, total // 2 gives the index of the median element. Since we want the left partition to contain one less element than the right partition, we subtract 1 from total // 2.
             j = totalhalf - i - 2
             aleft = a[i] if i >= 0 else float('-inf')
+            #a[i + 1] because the goal is to find center 4 elements in the end 
             aright = a[i + 1] if (i + 1) < len(a) else float('inf')
             bleft = b[j] if j >= 0 else float('-inf')
             bright = b[j + 1] if (j + 1) < len(b) else float('inf')
