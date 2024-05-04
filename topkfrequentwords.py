@@ -60,3 +60,17 @@ class Solution:
         sortedlist = sorted(d, key=lambda wordd: (-d[wordd], wordd))
         topk = sortedlist[:k]
         return topk
+
+#5/4/24 practice:
+
+class Solution:
+    def topKFrequent(self, words: List[str], k: int) -> List[str]:
+        #return k number of strings that appear most frequently sorted in alphabetical order
+        freq = {}
+        for word in words:
+            if word not in freq:
+                freq[word] = 0
+            freq[word] += 1
+        sortedlist = sorted(freq, key=lambda wordd: (-freq[wordd], wordd))
+        topk = sortedlist[:k]
+        return topk
