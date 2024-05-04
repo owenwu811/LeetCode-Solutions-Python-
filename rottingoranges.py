@@ -1044,3 +1044,33 @@ class Solution:
                     d.append([destroyx, destroyy])
             minminutes += 1
         return minminutes if freshcount == 0 else -1
+
+
+#5/4/24 refresher:
+
+class Solution:
+    def orangesRotting(self, grid: List[List[int]]) -> int:
+        d = deque()
+        minminutes = 0
+        freshcount = 0
+        for r in range(len(grid)):
+            for c in range(len(grid[0])):
+                if grid[r][c] == 2:
+                    d.append([r, c])
+                elif grid[r][c] == 1:
+                    freshcount += 1
+                else:
+                    continue
+        directions = [(1, 0), (0, 1), (-1, 0), (0, -1)]
+        while d and freshcount > 0:
+            for i in range(len(d)):
+                rx, ry = d.popleft() #we are doing BFS here
+                for nx, ny in directions:
+                    destroyx, destroyy = rx + nx, ry + ny
+                    if destroyx < 0 or destroyx >= len(grid) or destroyy < 0 or destroyy >= len(grid[0]) or grid[destroyx][destroyy] != 1:
+                        continue
+                    grid[destroyx][destroyy] = 2
+                    freshcount -= 1
+                    d.append([destroyx, destroyy])
+            minminutes += 1
+        return minminutes if freshcount == 0 else -1
