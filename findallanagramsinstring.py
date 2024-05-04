@@ -184,3 +184,18 @@ class Solution:
             if window == key:
                 res.append(i)
         return res
+
+
+#5/4/24 refresher:
+
+class Solution:
+    def findAnagrams(self, s: str, p: str) -> List[int]:
+        #we will slide p through s
+        res = []
+        key = "".join(sorted(p))
+        #remember that range is up to not including, so i in range(8) is 0 through 7 inclusive!
+        for i in range(len(s) - len(p) + 1): #i in range 0 through 7
+            cur = "".join(sorted(s[i: i + len(p)]))
+            if cur == key:
+                res.append(i)
+        return res
