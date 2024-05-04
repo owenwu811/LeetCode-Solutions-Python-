@@ -222,3 +222,31 @@ class Solution:
                     while nums[third] == nums[third + 1] and second < third:
                         third -= 1
         return res
+
+
+#5/4/24 (missed):
+
+class Solution:
+    def threeSum(self, nums: List[int]) -> List[List[int]]:
+        res = []
+        nums.sort()
+        for first in range(len(nums)):
+            if first > 0 and nums[first] == nums[first - 1]: #do not forget checking duplicates for the 1st pointer!
+                continue
+            second = first + 1
+            third = len(nums) - 1
+            while second < third:
+                threesum = nums[first] + nums[second] + nums[third]
+                if threesum < 0:
+                    second += 1
+                elif threesum > 0:
+                    third -= 1
+                else:
+                    res.append([nums[first], nums[second], nums[third]])
+                    second += 1
+                    third -= 1
+                    while nums[second] == nums[second - 1] and second < third:
+                        second += 1
+                    while nums[third] == nums[third + 1] and second < third:
+                        third -= 1
+        return res
