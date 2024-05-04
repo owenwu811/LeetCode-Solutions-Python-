@@ -338,3 +338,30 @@ class Solution:
                 else:
                     third -= 1
         return res
+
+
+#5/4/24 refresher:
+
+from typing import List
+import math
+
+class Solution:
+    def threeSumClosest(self, nums: List[int], target: int) -> int:
+        res = 0
+        historical = math.inf
+        nums.sort()
+        for first in range(len(nums)): #in this problem, we don't care about duplicates so we don't have to check the 1st pointer for duplicates, so don't just reuse the same template for 3sum problem!
+            second = first + 1
+            third = len(nums) - 1
+            while second < third:
+                threesum = nums[first] + nums[second] + nums[third]
+                diff = abs(target - threesum)
+                if diff < historical:
+                    historical = diff
+                    res = threesum
+                elif threesum < target:
+                    second += 1
+                else:
+                    third -= 1
+        return res
+
