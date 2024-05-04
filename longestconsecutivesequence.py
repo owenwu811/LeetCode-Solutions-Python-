@@ -186,3 +186,18 @@ class Solution:
                 res = 0
             res += 1
         return max(maxres, res)
+
+#5/3/24 refresher:
+
+class Solution:
+    def longestConsecutive(self, nums: List[int]) -> int:
+        res, maxres = 0, 0
+        nums.sort()
+        for i in range(len(nums)):
+            if i > 0 and nums[i] == nums[i - 1]:
+                continue
+            if i > 0 and nums[i] - nums[i - 1] > 1:
+                maxres = max(maxres, res)
+                res = 0
+            res += 1
+        return max(res, maxres)
