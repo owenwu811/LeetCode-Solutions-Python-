@@ -130,3 +130,32 @@ print(cur) #None
 tail.next = head
 print(result.val) #4
 return result
+
+
+
+#5/4/24 refresher:
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def rotateRight(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
+        if not head or not head.next: #if there is only one node or 0 nodes, return just the input
+            return head
+        tail, length = head, 1
+        while tail and tail.next:
+            tail = tail.next
+            length += 1
+        k = k % length #if k is a multiple of the length of the list
+        if k == 0:
+            return head
+        cur = head #move to pivot point
+        for i in range(length - k - 1):
+            cur = cur.next
+        result = cur.next #4
+        cur.next = None
+        tail.next = head
+        return result
+        
