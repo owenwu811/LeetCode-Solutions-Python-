@@ -340,3 +340,13 @@ class Solution:
                 set2.add(number) #01, 
             set1 = set2 
         return half in set1 
+
+
+#This solution is attempting to solve the "Partition Equal Subset Sum" problem, where the task is to determine if it's possible to partition a given set of numbers into two subsets such that the sum of elements in both subsets is equal. Let's break down how this solution works:
+
+#Check if a partition is possible: The function first checks whether it's possible to partition the input list nums into two equal-sum subsets. It does this by checking if the total sum of all numbers in nums is odd. If it's odd, it's impossible to divide the sum into two equal halves, so the function returns False.
+#Initialize a set and half sum: If the sum is even, the function initializes an empty set set1 and adds 0 to it. It also calculates half of the sum of all numbers in nums and stores it in the variable half.
+#Iterative approach: The function then iterates through each number n in nums.
+#Update set: For each number n, it creates a new set set2 and iterates through the existing set set1.a. For each number number in set1, it calculates the sum of n + number and adds it to set2.b. It also adds the current number number to set2.c. After completing the iteration through set1, it updates set1 to be equal to set2. This is essentially updating the possible sums that can be achieved by adding the current number to the previous sums.
+#Check for half sum: Finally, after iterating through all numbers in nums, the function checks if half (which is the target sum for each subset) is present in set1. If it is, it means it's possible to partition nums into two subsets with equal sums, so it returns True. Otherwise, it returns False.
+#The core idea of this solution is to utilize dynamic programming and keep track of all possible sums that can be achieved by adding numbers one by one. If the target sum (half) is present in the set of sums obtained, it means a partition is possible because if half is found in set1, then two halves make a whole, so it's already possible
