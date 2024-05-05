@@ -140,3 +140,20 @@ class Solution:
             even = even.next
         odd.next = evenstart
         return oddstart
+
+
+#5/5/24:
+
+class Solution:
+    def oddEvenList(self, head):
+        if not head or not head.next:
+            return head
+        oddstart = odd = head
+        evenstart = even = head.next
+        while even and even.next: #must not be while head and head.next because even is the one determining termination of the loop, not head! you will get a NoneTye error if you use head instead!
+            odd.next = even.next 
+            odd = odd.next
+            even.next = odd.next
+            even = even.next
+        odd.next = evenstart
+        return oddstart
