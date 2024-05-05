@@ -59,3 +59,26 @@ class Solution:
             root.right = helper(mid + 1, r)
             return root
         return helper(0, len(nums) - 1) 
+
+
+#5/5/24 practice:
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def sortedArrayToBST(self, nums: List[int]) -> Optional[TreeNode]:
+        #notice how the input array is sorted in ascending order
+        def f(l, r):
+            if l > r:
+                return None
+            mid = (l + r) // 2
+            root = TreeNode(nums[mid])
+            root.left = f(l, mid - 1)
+            root.right = f(mid + 1, r)
+            return root
+
+        return f(0, len(nums) - 1)
