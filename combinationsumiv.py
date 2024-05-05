@@ -119,6 +119,18 @@ class Solution:
                 if n <= levelamount:
                     d[levelamount] += d.get(levelamount - n, 0)
         return d[levelamount]
- 
+
+
+#5/5/24:
+
+class Solution:
+    def combinationSum4(self, nums: List[int], target: int) -> int:
+        d = {0: 1} #base case is 0 ways to sum up to 0
+        for levelamount in range(1, target + 1):
+            d[levelamount] = 0
+            for number in nums:
+                if number <= levelamount:
+                    d[levelamount] += d.get(levelamount - number, 0)
+        return d[levelamount]
             
             
