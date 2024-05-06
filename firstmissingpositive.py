@@ -128,3 +128,16 @@ class Solution:
             elif n == res: #if n == res, then that means res is INSIDE OF THE ARRAY, so increment res by 1 to check for the next positive integer that COULD be missing. 
                 res += 1
         return res
+
+#5/5/24 refresher:
+
+class Solution:
+    def firstMissingPositive(self, nums: List[int]) -> int:
+        result = 1
+        nums.sort()
+        for number in nums:
+            if number <= 0:
+                continue
+            if number == result:
+                result += 1
+        return result
