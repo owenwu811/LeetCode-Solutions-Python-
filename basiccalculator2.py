@@ -38,3 +38,26 @@ class Solution:
                 sign = value #if this was indented to outer if block, we would get an error that says pop from empty list because sign would incorrectly become "3" vs. sign would remain "+" when indented correctly, which is wrong, and it would cause the stack to remain empty because sign wouldn't be equal to '+', so num would never get appended to the stack for test case s = "3+2*2"
                 number = 0 #for s = "14-3/2", if we didn't have this, number would become 143 instead of 3
         return sum(stack)
+
+#5/6/24 refresher:
+
+class Solution:
+    def calculate(self, s: str) -> int:
+        currentn, sign, stack = 0, "+", []
+        for index, value in enumerate(s):
+            if value.isnumeric():
+                currentn = currentn * 10 + int(value)
+            if value in "+-/*" or index == len(s) - 1:
+                if sign == "+":
+                    stack.append(currentn)
+                elif sign == "-":
+                    stack.append(-currentn)
+                elif sign == "*":
+                    popandmultiply = stack.pop() * currentn 
+                    stack.append(popandmultiply)
+                elif sign == "/":
+                    divide = int(stack.pop() / currentn)
+                    stack.append(divide)
+                sign = value
+                currentn = 0
+        return sum(stack)
