@@ -12,7 +12,7 @@
 #Output: 7
 
 
-#the reason the output to "14-3/2" is 13 and not 12!
+#the reason the output to "14-3/2" is 13 and not 12! remember, we want int(-3 / 2) aka -1 and not (-3 // 2) aka -2
 
 
 #python3 solution:
