@@ -12,7 +12,7 @@
 #Output: 7
 
 
-#the reason the output to "14-3/2" is 12 is because 3/2 is 1/5, but since -1.5, it's actually supposed to round down, so 14 - 2 = 12
+#the reason the output to "14-3/2" is 13 and not 12!
 
 
 #python3 solution:
