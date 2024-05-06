@@ -36,5 +36,5 @@ class Solution:
                     j = int(stack.pop() / number)
                     stack.append(j)
                 sign = value #if this was indented to outer if block, we would get an error that says pop from empty list because sign would incorrectly become "3" vs. sign would remain "+" when indented correctly, which is wrong, and it would cause the stack to remain empty because sign wouldn't be equal to '+', so num would never get appended to the stack for test case s = "3+2*2"
-                number = 0
+                number = 0 #for s = "14-3/2", if we didn't have this, number would become 143 instead of 3
         return sum(stack)
