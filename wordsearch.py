@@ -652,3 +652,27 @@ class Solution:
                 if board[r][c] == word[0] and dfs(0, r, c):
                     return True
         return False
+
+#5/6/24:
+
+class Solution:
+    def exist(self, board: List[List[str]], word: str) -> bool:
+        def dfs(r, c, index):
+            #out of bounds or not word we are looking for 
+            if r < 0 or r >= len(board) or c < 0 or c >= len(board[0]) or board[r][c] != word[index]:
+                return False
+            #found word
+            if index >= len(word) - 1:
+                return True
+            tmp = board[r][c]
+            board[r][c] = "visited"
+            result = (dfs(r + 1, c, index + 1) or dfs(r - 1, c, index + 1) or dfs(r, c + 1, index + 1) or dfs(r, c - 1, index + 1))
+            board[r][c] = tmp
+            return result
+
+        for r in range(len(board)):
+            for c in range(len(board[0])):
+                if board[r][c] == word[0] and dfs(r, c, 0):
+                    return True
+        return False
+        
