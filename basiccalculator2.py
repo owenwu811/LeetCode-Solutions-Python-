@@ -22,7 +22,7 @@ class Solution:
         number, sign, stack = 0, '+', []
         for index, value in enumerate(s):
             if value.isnumeric():
-                number = number * 10 + int(value)
+                number = number * 10 + int(value) #in "14-3/2", the 1st iteration means that value = 1, not 14, so number becomes 1, and then if value in statement becomes false, so we keep looping to next iteration of for loop, and now, in the 2nd iteration, value becomes 4, so num = 1 * 10 + 4, which means nums becomes 14
             if value in '+-/*' or index == len(s) - 1:
                 if sign == "+":
                     stack.append(number)
