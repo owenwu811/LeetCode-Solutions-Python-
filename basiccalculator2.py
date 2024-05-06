@@ -1,0 +1,37 @@
+
+
+#Given a string s which represents an expression, evaluate this expression and return its value. 
+
+#The integer division should truncate toward zero.
+
+#You may assume that the given expression is always valid. All intermediate results will be in the range of [-231, 231 - 1].
+
+#Note: You are not allowed to use any built-in function which evaluates strings as mathematical expressions, such as eval().
+
+#Input: s = "3+2*2"
+#Output: 7
+
+
+#python3 solution:
+
+class Solution:
+    def calculate(self, s: str) -> int:
+        number, sign, stack = 0, '+', []
+        for index, value in enumerate(s):
+            if value.isnumeric():
+                number = number * 10 + int(value)
+            if value in '+-/*' or index == len(s) - 1:
+                if sign == "+":
+                    stack.append(number)
+                elif sign == "-":
+                    stack.append(-number)
+                elif sign == "*":
+                    j = stack.pop() * number
+                    stack.append(j)
+                elif sign == "/":
+                    #without this, int(-3 / 2) > -1.5 > 1 vs. (-3 // 2) > -2, so 12 vs 13 as output for the s = "14-3/2" test case
+                    j = int(stack.pop() / number)
+                    stack.append(j)
+                sign = value #if this was indented to outer if block, we would get an error that says pop from empty list because sign would incorrectly become "3" vs. sign would remain "+" when indented correctly, which is wrong, and it would cause the stack to remain empty because sign wouldn't be equal to '+', so num would never get appended to the stack for test case s = "3+2*2"
+                number = 0
+        return sum(stack)
