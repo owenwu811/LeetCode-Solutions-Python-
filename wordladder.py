@@ -60,6 +60,7 @@ class Solution:
         visited = set(beginWord) #the purpose of the set is to avoid redundant visits and to increase time complexity 
         q = deque([beginWord])
         res = 1
+        #the goal of the bfs traversal here in the word ladder problem is to explore all paths that could lead from begword to endword by flipping one letter in each iteration and almost backtracking by using the set if the path goes down the wrong way not leading towards endword
         while q:
             for i in range(len(q)):
                 cur = q.popleft() #bfs = fifo
