@@ -44,3 +44,33 @@ class Solution:
                             q.append(n)
             res += 1
         return 0
+
+
+#practice again 5/6/24:
+
+class Solution:
+    def ladderLength(self, beginWord: str, endWord: str, wordList: List[str]) -> int:
+        if endWord not in wordList: return 0
+        neighbor = defaultdict(list)
+        wordList.append(beginWord) #we need to start the recursion with beginWord 
+        for word in wordList:
+            for j in range(len(word)): #j increases in next iteration
+                pattern = word[:j] + "*" + word[j + 1:]
+                neighbor[pattern].append(word)
+        visited = set(beginWord) #the purpose of the set is to avoid redundant visits and to increase time complexity 
+        q = deque([beginWord])
+        res = 1
+        while q:
+            for i in range(len(q)):
+                cur = q.popleft() #bfs = fifo
+                if cur == endWord: 
+                    return res
+                for j in range(len(cur)):
+                    pattern = cur[:j] + "*" + cur[j + 1:]
+                    for n in neighbor[pattern]:
+                        if n not in visited:
+                            visited.add(n) 
+                            q.append(n)
+            res += 1
+        return 0
+
