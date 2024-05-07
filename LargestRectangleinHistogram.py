@@ -33,7 +33,7 @@ class Solution:
             #we are still an increasing monotonic, so append to stack
             stack.append((startindex, inputvalue))
         # #truly increasing montonic because everything that was not increasing monotonic was popped - even values that are equal 
-        #we need this below part because, for cases where we were always increasing monotonic (while loop never executed and we never popped meaning we never calculated the max area), we will need to calculate the maxarea - heights = [2, 4], for example
+        #we need this below part because, for cases where we were always increasing monotonic (while loop never executed and we never popped meaning we never calculated the max area), we will need to calculate the maxarea - heights = [2, 4], for example. but stack = [1, 4], so res for test case heights = [2, 4] is 4
         for inputindex, inputvalue in stack:
             maxarea = max(maxarea, inputvalue * (len(heights) - inputindex))
         return maxarea
