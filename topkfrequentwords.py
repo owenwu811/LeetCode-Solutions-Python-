@@ -74,3 +74,18 @@ class Solution:
         sortedlist = sorted(freq, key=lambda wordd: (-freq[wordd], wordd))
         topk = sortedlist[:k]
         return topk
+
+
+
+#5/7/24 practice:
+
+class Solution:
+    def topKFrequent(self, words, k):
+        d = dict()
+        for word in words:
+            if word not in d:
+                d[word] = 0
+            d[word] += 1
+        sortedlist = sorted(d, key=lambda wordd: (-d[wordd], wordd))
+        topk = sortedlist[:k]
+        return topk
