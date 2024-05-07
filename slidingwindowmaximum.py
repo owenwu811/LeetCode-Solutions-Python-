@@ -250,3 +250,21 @@ class Solution:
                 l += 1
         return res
 
+
+#5/7/24 refresher:
+
+class Solution:
+   def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
+        res = []
+        d = deque()
+        l = 0
+        for i in range(len(nums)):
+            while d and nums[i] > nums[d[-1]]:
+                d.pop()
+            d.append(i)
+            if l > d[0]:
+                d.popleft()
+            if (i + 1) >= k:
+                res.append(nums[d[0]])
+                l += 1
+        return res
