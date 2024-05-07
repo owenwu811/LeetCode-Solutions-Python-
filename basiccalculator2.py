@@ -61,3 +61,27 @@ class Solution:
                 sign = value
                 currentn = 0
         return sum(stack)
+
+#5/7/24 refresher:
+
+class Solution:
+    def calculate(self, s: str) -> int:
+        number, sign, stack = 0, "+", []
+        for index, char in enumerate(s):
+            if char.isdigit():
+                number = number * 10 + int(char)
+            if char in "+-*/" or index >= len(s) - 1:
+                if sign == "+":
+                    stack.append(number)
+                elif sign == "-":
+                    stack.append(-number)
+                elif sign == "*":
+                    j = stack.pop() * number
+                    stack.append(j)
+                elif sign == "/":
+                    j = int(stack.pop() / number)
+                    stack.append(j)
+                sign = char
+                number = 0
+        return sum(stack)
+      
