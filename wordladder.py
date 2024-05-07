@@ -75,3 +75,7 @@ class Solution:
             res += 1
         return 0
 
+
+#important insight:
+
+#BFS works to find the shortest path summary because BFS traverses the graph level by level outwards from the start -- because we're making sure we look at all the neighbors of all the vertices on the current level, it means that the first time that we see some vertex u means that we've found the shortest path to u.
