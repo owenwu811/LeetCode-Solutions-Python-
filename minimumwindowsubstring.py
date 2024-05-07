@@ -1048,4 +1048,35 @@ class Solution:
         elif len(s) == endsaver:
             return s
         else: return ""
-                    
+
+#5/7/24 refresher:
+
+class Solution(object):
+    def minWindow(self, s, t):
+        #find small part of s that fits t
+        if len(s) < len(t): return ""
+        startsaver, endsaver, ws, matched = 0, float('inf'), 0, 0
+        need = Counter(t)
+        for we, char in enumerate(s):
+            if char in need:
+                need[char] -= 1
+                if need[char] == 0:
+                    matched += 1
+                while matched == len(need):
+                    if endsaver > we - ws + 1:
+                        endsaver = we - ws + 1
+                        startsaver = ws
+                    kickout = s[ws]
+                    ws += 1
+                    if kickout in need:
+                        if need[kickout] == 0:
+                            matched -= 1
+                        need[kickout] += 1
+        if len(s) > endsaver:
+            return s[startsaver: startsaver + endsaver]
+        elif len(s) == endsaver:
+            return s
+        else: return ""
+
+
+        
