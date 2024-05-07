@@ -79,3 +79,33 @@ class Solution:
 #important insight:
 
 #BFS works to find the shortest path summary because BFS traverses the graph level by level outwards from the start -- because we're making sure we look at all the neighbors of all the vertices on the current level, it means that the first time that we see some vertex u means that we've found the shortest path to u. I think path means how many movement zig zags it takes to get to somewhere
+
+
+
+#5/7/24 refresher:
+
+class Solution:
+    def ladderLength(self, beginWord: str, endWord: str, wordList: List[str]) -> int:
+        if endWord not in wordList: return 0
+        nei = defaultdict(list)
+        wordList.append(beginWord)
+        for word in wordList:
+            for j in range(len(word)):
+                pattern = word[:j] + "*" + word[j + 1:]
+                nei[pattern].append(word)
+        visited = set(beginWord)
+        q = deque([beginWord])
+        res = 1
+        while q:
+            for i in range(len(q)): 
+                cur = q.popleft() 
+                if cur == endWord:
+                    return res
+                for j in range(len(cur)): #j increases in every iteration
+                    pattern = cur[:j] + "*" + cur[j + 1:]
+                    for n in nei[pattern]:
+                        if n not in visited:
+                            visited.add(n)
+                            q.append(n)
+            res += 1
+        return 0
