@@ -219,3 +219,21 @@ class Solution(object):
             else: #we can use else here because either subarraysum is inside of d as a key or it's not - it's either or 
                 d[subarraysum] += 1
         return res
+
+
+#5/8/24 refresher:
+
+class Solution:
+    def subarraySum(self, nums: List[int], k: int) -> int:
+        #subarray has to be contiguous 
+        subarraysum, res = 0, 0
+        d = {0: 1} 
+        for n in nums:
+            subarraysum += n
+            if (subarraysum - k) in d:
+                res += d[subarraysum - k]
+            if subarraysum not in d:
+                d[subarraysum] = 1
+            else:
+                d[subarraysum] += 1
+        return res
