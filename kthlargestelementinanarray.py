@@ -116,3 +116,19 @@ class Solution:
                 heapq.heappop(heap)
                 heapq.heappush(heap, n) 
         return heap[0]
+
+
+#5/8/24 refresher:
+
+class Solution:
+    def findKthLargest(self, nums: List[int], k: int) -> int:
+        #[3, 2, 1, 5, 6, 4] > [2, 3, 1, 5, 6, 4]
+        #we want the smallest of the k largest
+        firstk = nums[:k] #we want this to be of size k 
+        heapq.heapify(firstk) #[3, 2] becomes [2, 3]
+        for n in nums[k:]: #[1, 5, 6, 4]
+            if n > firstk[0]:
+                heapq.heappop(firstk)
+                heapq.heappush(firstk, n)
+        return firstk[0]
+                
