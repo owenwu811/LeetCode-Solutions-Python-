@@ -109,3 +109,32 @@ class Solution:
                             q.append(n)
             res += 1
         return 0
+
+
+#5/8/24 refresher:
+
+class Solution:
+    def ladderLength(self, beginWord: str, endWord: str, wordList: List[str]) -> int:
+        if endWord not in wordList: return 0
+        neighbor = defaultdict(list)
+        wordList.append(beginWord)
+        for word in wordList: #we need to filter each word
+            for j in range(len(word)):
+                pattern = word[:j] + "*" + word[j + 1:]
+                neighbor[pattern].append(word) #as we get to the word, we will add it as value in the dictionary
+        visited = set(beginWord) #more efficient bfs for shortest path
+        q = deque([beginWord])
+        res = 1
+        while q:
+            for i in range(len(q)): #start with beginWord and flip one letter
+                cur = q.popleft() #starts with only beginWord in the queue
+                if cur == endWord: #base case if we already reached endWord through flips
+                    return res
+                for i in range(len(cur)):
+                    pattern = cur[:i] + "*" + cur[i + 1:]
+                    for n in neighbor[pattern]:
+                        if n not in visited:
+                            visited.add(n)
+                            q.append(n)
+            res += 1
+        return 0
