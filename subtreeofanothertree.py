@@ -130,7 +130,7 @@ class Solution(object):
         if not root: return False
         if self.solve(root, subRoot):
             return True
-        return self.isSubtree(root.left, subRoot) or self.isSubtree(root.right, subRoot)
+        return self.isSubtree(root.left, subRoot) or self.isSubtree(root.right, subRoot) #or here, not and, because either the left or right part of big tree could be a footprint of small
     def solve(self, p, q):
         if p == None and q == None:
             return True
