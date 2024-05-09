@@ -113,5 +113,28 @@ class Solution(object):
         if p and q and p.val == q.val:
             return self.solve(p.left, q.left) and self.solve(p.right, q.right)
         return False #we found a mismatch between the two trees, so move down left in bigger tree and try again
-        
+
+
+#5/9/24 refresher:
+
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution(object):
+    def isSubtree(self, root, subRoot):
+        #a part of big that is the same as small
+        if not subRoot: return True
+        if not root: return False
+        if self.solve(root, subRoot):
+            return True
+        return self.isSubtree(root.left, subRoot) or self.isSubtree(root.right, subRoot)
+    def solve(self, p, q):
+        if p == None and q == None:
+            return True
+        if p and q and p.val == q.val:
+            return self.solve(p.left, q.left) and self.solve(p.right, q.right)
+        return False
 
