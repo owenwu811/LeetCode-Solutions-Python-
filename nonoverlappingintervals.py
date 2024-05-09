@@ -119,3 +119,20 @@ class Solution:
                 res += 1
                 prevend = min(end, prevend)
         return res
+
+#5/9/24 practice:
+
+class Solution:
+    def eraseOverlapIntervals(self, intervals: List[List[int]]) -> int:
+        #how many intervals to remove to make rest non overlapping
+        res = 0
+        intervals.sort()
+        prevend = intervals[0][1]
+        for first, second in intervals[1:]:
+            if prevend <= first:
+                prevend = second
+            else:
+                res += 1
+                prevend = min(prevend, second)
+        return res
+        
