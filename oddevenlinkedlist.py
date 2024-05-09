@@ -157,3 +157,19 @@ class Solution:
             even = even.next
         odd.next = evenstart
         return oddstart
+
+#5/9/24 refresher:
+
+class Solution:
+    def oddEvenList(self, head):
+        if not head or not head.next: #0 or 1 nodes in input linked list
+            return head
+        oddstart = odd = head
+        evenstart = even = head.next
+        while even and even.next:
+            odd.next = even.next
+            odd = odd.next
+            even.next = odd.next
+            even = even.next
+        odd.next = evenstart
+        return oddstart
