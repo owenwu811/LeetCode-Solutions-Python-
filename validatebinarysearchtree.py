@@ -450,4 +450,24 @@ class Solution:
             return f(lower, root.val, root.left) and f(root.val, upper, root.right)
 
         return f(float('-inf'), float('inf'), root) #do not forget return here at the end! you will fail the same test cases!
-            
+
+
+#5/10/24 refresher:
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def isValidBST(self, root: Optional[TreeNode]) -> bool:
+        def f(lower, upper, root):
+            if not root: 
+                return True
+            if not (lower < root.val < upper):
+                return False
+            return f(lower, root.val, root.left) and f(root.val, upper, root.right)
+
+
+        return f(float('-inf'), float('inf'), root)
