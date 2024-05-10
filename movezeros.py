@@ -120,3 +120,17 @@ class Solution(object):
                 s += 1
             elif nums[s] != 0: #for loop auto increments left, so if above if is False, then we still need to increment slow - [1, 0, 1] - s and f are both on index 0, so if is False, but s is not equal to 0 since it's equal to 1, so do increment slow, and then for loop call will also increment f so that [1, 0, 1] s and f are now on index 1 after the for loop call
                 s += 1
+
+
+#5/10/24 practice again:
+
+class Solution:
+    def moveZeroes(self, nums: List[int]) -> None:
+        l, r = 0, 0
+        for r in range(len(nums)):
+            if nums[l] == 0 and nums[r] != 0:
+                nums[l], nums[r] = nums[r], nums[l]
+                l += 1
+            elif nums[l] != 0:
+                l += 1
+        
