@@ -38,3 +38,7 @@ class Solution:
             first.next = second #4
             second.next = tmp1 #2
             first, second = tmp1, tmp2 #2, 3
+
+
+#by the time we finish, slow will be at 2 if [1, 2, 3, 4]!, and slow.next will be 3!, so it will be one to the left if length is even!
+#by the time we finish, slow will be perfectly in middle at 3 if [1, 2, 3, 4, 5]!, and slow.next will be 4! so it will be perfectly in middle if length is odd because just plopped in middle!
