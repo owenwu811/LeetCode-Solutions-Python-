@@ -42,3 +42,35 @@ class Solution:
 
 #by the time we finish, slow will be at 2 if [1, 2, 3, 4]!, and slow.next will be 3!, so it will be one to the left if length is even!
 #by the time we finish, slow will be perfectly in middle at 3 if [1, 2, 3, 4, 5]!, and slow.next will be 4! so it will be perfectly in middle if length is odd because just plopped in middle!
+
+
+#5/11/24 refresher:
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def reorderList(self, head: Optional[ListNode]) -> None:
+        if not head or not head.next:
+            return head
+        #find the middle of the linked list as either the left as even length or exact middle as odd length input
+        slow, fast = head, head.next
+        while fast and fast.next: #2
+            slow = slow.next #2
+            fast = fast.next.next #4
+        second = slow.next #3
+        prev = slow.next = None #N
+        #reverse 2nd half of the linked list
+        while second: #3 4
+            tmp = second.next #4 N
+            second.next = prev #N 3
+            prev = second #3 4
+            second = tmp #4 N
+        first, second = head, prev #1 4
+        while second: #4 3
+            tmp1, tmp2 = first.next, second.next #2 3, 3 4
+            first.next = second #4
+            second.next = tmp1 #2
+            first, second = tmp1, tmp2 #2 3
