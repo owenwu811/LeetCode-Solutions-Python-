@@ -32,7 +32,7 @@ class Solution:
                     j = stack.pop() * number
                     stack.append(j)
                 elif sign == "/":
-                    #without this, int(-3 / 2) > -1.5 > 1 vs. (-3 // 2) > -2, so 12 vs 13 as output for the s = "14-3/2" test case
+                    #without this, int(-3 / 2) > -1.5 > -1 vs. (-3 // 2) > -2, so 12 vs 13 as output for the s = "14-3/2" test case
                     j = int(stack.pop() / number)
                     stack.append(j)
                 sign = value #if this was indented to outer if block, we would get an error that says pop from empty list because sign would incorrectly become "3" vs. sign would remain "+" when indented correctly, which is wrong, and it would cause the stack to remain empty because sign wouldn't be equal to '+', so num would never get appended to the stack for test case s = "3+2*2"
@@ -109,4 +109,26 @@ class Solution:
                 number = 0
         return sum(stack)
 
-     
+
+#5/11/24 refresher:
+
+class Solution:
+    def calculate(self, s: str) -> int:
+        number, sign, stack = 0, "+", []
+        for index, char in enumerate(s):
+            if char.isdigit():
+                number = number * 10 + int(char)
+            if char in "+-/*" or index >= len(s) - 1:
+                if sign == "+":
+                    stack.append(number)
+                elif sign == "-":
+                    stack.append(-number)
+                elif sign == "*":
+                    j = stack.pop() * number
+                    stack.append(j)
+                elif sign == "/":
+                    j = int(stack.pop() / number)
+                    stack.append(j)
+                sign = char
+                number = 0
+        return sum(stack)
