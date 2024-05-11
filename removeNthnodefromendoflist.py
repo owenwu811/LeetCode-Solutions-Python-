@@ -216,3 +216,26 @@ class Solution(object):
         return prev.next
         
         
+
+#5/11/24 practice (my own solution):
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
+        #remove the nth to last node and return the head
+        #make the difference between slow and fast n length!
+        prev = ListNode(0, head)
+        cur = head
+        while cur and n > 0:
+            cur = cur.next
+            n -= 1
+        slow = prev
+        while cur:
+            cur = cur.next
+            slow = slow.next
+        slow.next = slow.next.next
+        return prev.next
