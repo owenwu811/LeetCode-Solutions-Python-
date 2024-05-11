@@ -206,3 +206,19 @@ class Solution:
         if x > 0 and f < limit:
             return f
         return 0
+
+#5/11/24 refresher:
+
+class Solution:
+    def reverse(self, x: int) -> int:
+        # -123 > -321
+        a = abs(x) #123
+        b = str(a) #"123"
+        c = b[::-1] #"321"
+        d = int(c)
+        limit = 2 ** 31
+        if x > 0 and d < limit:
+            return d
+        if x < 0 and d < limit:
+            return -d
+        return 0
