@@ -78,3 +78,16 @@ class Solution:
                 if nums[i] < nums[j]:
                     res[i] = max(res[i], 1 + res[j])
         return max(res)
+
+#5/11/24 refresher (my own solution):
+
+class Solution:
+    def lengthOfLIS(self, nums: List[int]) -> int:
+        #[10, 9, 2, 5, 3, 7, 101, 18]
+        res = [1] * len(nums) #[1, 1, 1, 1, 1, 1, 1, 1]
+        for i in range(len(nums) -1, -1, -1): #7
+            for j in range(i - 1, -1, -1): #6
+                if nums[j] < nums[i]:
+                    res[j] = max(res[j], 1 + res[i])
+        return max(res)
+
