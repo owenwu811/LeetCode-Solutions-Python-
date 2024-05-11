@@ -74,3 +74,38 @@ class Solution:
             first.next = second #4
             second.next = tmp1 #2
             first, second = tmp1, tmp2 #2 3
+
+
+#5/11/24 refresher again:
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def reorderList(self, head: Optional[ListNode]) -> None:
+        if not head or not head.next:
+            return head
+        #find middle
+        slow, fast = head, head.next
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+        #reversing 2nd half of list
+        second = slow.next # slow would be on 2 if 1 2 3 4 , so connecting 2 to 3, so second = 3
+        prev = slow.next = None #N
+        while second: #3, 4
+            tmp = second.next #4, N
+            second.next = prev #N, 3
+            prev = second #3, 4
+            second = tmp #4, N
+        #join together both halves of list
+        first, second = head, prev #1 4
+        while second: #4, 3
+            tmp1, tmp2 = first.next, second.next #2 3, 4 
+            first.next = second #4
+            second.next = tmp1 #2
+            first, second = tmp1, tmp2 #2 3
+
+
