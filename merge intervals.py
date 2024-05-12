@@ -211,3 +211,5 @@ class Solution:
                 res.append([start, end])
         return res
 
+
+#intervals = intervals.sort(key=lambda n:n[0]) = invalid, but intervals.sort(key=lambda n:n[0]) is valid! the first you get nontype object not subscriptable!
