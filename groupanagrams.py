@@ -115,3 +115,16 @@ class Solution:
                 mydict[key] = [] #{"ate: []}
             mydict[key].append(s)
         return list(mydict.values())
+
+#5/12/24 refresher:
+
+class Solution:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        res = []
+        mydict = dict()
+        for word in strs:
+            sortedword = "".join(sorted(word))
+            if sortedword not in mydict:
+                mydict[sortedword] = []
+            mydict[sortedword].append(word)
+        return list(mydict.values())
