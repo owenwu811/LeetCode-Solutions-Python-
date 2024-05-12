@@ -128,3 +128,14 @@ class Solution:
                 return False
             magazine = magazine.replace(char, "", 1)
         return True
+
+#5/12/24 refresher:
+
+class Solution:
+    def canConstruct(self, ransomNote: str, magazine: str) -> bool:
+        #can magazine make ransomnote
+        for char in ransomNote:
+            if char not in magazine:
+                return False
+            magazine = magazine.replace(char, "", 1)
+        return True
