@@ -206,7 +206,7 @@ class Solution:
             aright = a[i + 1] if (i + 1) < len(a) else float('inf')
             bleft = b[j] if j >= 0 else float('-inf')
             bright = b[j + 1] if (j + 1) < len(b) else float('inf')
-            if aleft <= bright and bleft <= aright:
+            if aleft <= bright and bleft <= aright: #cannot be aright <= bleft because aright is infinity, and infinity is never less than anything, leading to an infinite loop for test case nums1 = [1, 3], nums2 = [2]
                 if total % 2 > 0:
                     return min(aright, bright)
                 return (max(aleft, bleft) + min(aright, bright)) / 2
