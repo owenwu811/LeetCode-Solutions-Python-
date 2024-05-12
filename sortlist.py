@@ -17,7 +17,7 @@ class Solution:
         right = tmp #since the list now looks like 4 > 2 > N | 1 > 3, we set right to 1 when right was previously 2
         #this self.sortList(left) and self.sortList(right) should really be called cut in half because the merging and sorting part are done in the merge function by comparing node values and creating a new linked list
         left, right = self.sortList(left), self.sortList(right) #left = 4 in 4 > 2 > N, so we call sortList(4), and since there is a head and a head.next, we go onto skip base case, so we do left = 4 in 4 > 2 > N, and right = self.getMid(4) with 4 > 2 > N. slow = 4, fast = 2. fast.next is None, so we just return slow of 4. left and right in line 14 are now both on 4 - list still looks like 4 > 2 > N, but now tmp becomes 2, and right.next = None means list goes from 4 > 2 > N to 4 > N, and then right is set to 2, so list is now 4 > N | 2 > N. now, when we call self.sortList(4) and self.sortList(2), we get the base case where left = 4 > N, and right = 2 > N, and then we call "return self.merge(left, right)"
-        return self.merge(left, right)
+        return self.merge(left, right) #so we get 2 > 4 > N, and when we call self.sortList(right) to backtrack, so we call self.sortList(1) with the list being 1 > 3 > N, and since no base case reached, we call self.getMid(1), so slow = 1, fast = 3 in 1 > 3 > N. fast.next is None, so we just return the slow value of 1, so "left, right = head, self.getMid(head) " results in left = 1 and right = 1, and the linked list is 1 > 3 > N. tmp becomes right.next, which is 3, and then right.next = None, so 1.next = None, so list is 1 > N | 3 > N, with left and right being 1, but then right = tmp means that right becomes 3 in 1 > N | 3 > N, and then we cut in half again to call self.sortList(left), which is self.sortList(1), and the base case is hit because 1 > N | 3 > N where left = 1 and right = 3, so base case is hit for both self.sortList(1) and self.sortList(3), so now left = 1 > N, and right = 3 > N, so list1 becomes 1 > N, and list2 becomes 3 > N, and the merge function returns 1 > 3 > N 
     def getMid(self, head):
         slow, fast = head, head.next
         while fast and fast.next:
@@ -38,5 +38,5 @@ class Solution:
             tail.next = list1
         elif list2 and not list1:
             tail.next = list2
-        return dummy.next
+        return dummy.next #the return values is 2 > 4 > N
             
