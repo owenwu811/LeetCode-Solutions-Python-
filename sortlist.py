@@ -6,6 +6,8 @@
 #python3 solution:
 
 #merge sort 
+#1. chop list in a half with self.sortList
+#2. merge the lists with sorting done in merge function by comparing node values 
 
 class Solution:
     def sortList(self, head: Optional[ListNode]) -> Optional[ListNode]:
