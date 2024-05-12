@@ -87,3 +87,17 @@ class Solution:
         for d in mydict:
             if mydict[d] > looking:
                 return d
+
+#5/12/24:
+
+class Solution:
+    def majorityElement(self, nums: List[int]) -> int:
+        mydict = dict()
+        for n in nums:
+            if n not in mydict: 
+                mydict[n] = 0
+            mydict[n] += 1
+        for d in mydict:
+            if mydict[d] > len(nums) / 2:
+                return d
+
