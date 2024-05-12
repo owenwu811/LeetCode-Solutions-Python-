@@ -215,3 +215,31 @@ class Solution:
             else:
                 l = i + 1
 
+
+#5/12/24 refresher (missed):
+
+class Solution:
+    def findMedianSortedArrays(self, nums1, nums2):
+        #you know the arrays are sorted, so you can run the binary search
+        a, b = nums1, nums2
+        total = len(nums1) + len(nums2)
+        totalhalf = total // 2
+        if len(b) < len(a):
+            a, b = b, a
+        l, r = 0, len(a) - 1
+        while True:
+            i = (l + r) // 2
+            j = totalhalf - i - 2
+            aleft = a[i] if i >= 0 else float('-inf')
+            aright = a[i + 1] if (i + 1) < len(a) else float('inf') #would be infinity for nums1 = [1, 3], nums2 = [2] when a = [2] and b = [1, 3] because (i + 1) = 1, and 1 < 1 (len(a)) is False
+            bleft = b[j] if j >= 0 else float('-inf')
+            bright = b[j + 1] if (j + 1) < len(b) else float('inf')
+            if aleft <= bright and bleft <= aright:
+                if total % 2 > 0:
+                    return min(aright, bright)
+                return (min(aright, bright) + max(aleft, bleft)) / 2
+            elif aleft > bright:
+                r = i - 1
+            else:
+                l = i + 1
+
