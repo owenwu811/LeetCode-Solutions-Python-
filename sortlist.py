@@ -12,9 +12,9 @@ class Solution:
         if not head or not head.next:
             return head
         left, right = head, self.getMid(head)
-        tmp = right.next #dividing in half for the first time 
+        tmp = right.next #dividing in half for the first time, so tmp becomes 1
         right.next = None #setting the 2 to None
-        right = tmp
+        right = tmp #right becomes 1
         left, right = self.sortList(left), self.sortList(right) #need to keep dividing in half until can't anymore
         return self.merge(left, right)
     def getMid(self, head):
