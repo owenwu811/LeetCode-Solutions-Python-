@@ -52,9 +52,10 @@ class Solution:
         if not head or not head.next:
             return head
         left, right = head, self.getMid(head)
+        #without "tmp = right.next" and "right = tmp", THE RIGHT POINTER IS NEVER MOVED TO THE NEXT NODE "RIGHT = TMP"!!! so the algorithm would consider the same sublist REPEATEDLY FOREVER! YOU WOULD JUST BE SORTING THE SAME SUBLIST OVER AND OVER AGAIN!
         tmp = right.next #without tmp, we wouldn't be getting to 2nd half of list, so we would have a cycle error 
         right.next = None
-        right = tmp #right half
+        right = tmp #MOVES RIGHT POINTER TO THE FIRST NODE OF THE RIGHT HALF AFTER SEPERATING THE LIST, ALLOWING THE ALGORITHM TO PROGRESS AND AVOID UNECESSARY ITERATIONS!
         left, right = self.sortList(left), self.sortList(right)
         return self.merge(left, right)
     def getMid(self, head):
