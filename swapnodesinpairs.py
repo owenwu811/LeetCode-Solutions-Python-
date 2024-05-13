@@ -18,7 +18,7 @@ class Solution:
             nxt = cur.next.next 
             rightone = cur.next
             rightone.next = cur
-            cur.next = nxt # so this is where the swapping takes place! so 1 > 2 now becomes 2 > 1!!!!!
+            cur.next = nxt # so this is where the swapping takes place! so 1 > 2 now becomes 2 > 1!!!!! the positions change!
             #so after swapping, the pointers.next point to the same value, but in different positions now!!!!!
             prev.next = rightone #and because it's now swapped, rightone is still 2, so prev.next points to 2, which is now the 1st node in the linked list!
             prev = cur #and then prev actually goes to cur, which is 1, which is now the 2nd node in the linked list since positions were swapped!
