@@ -24,3 +24,6 @@ class Solution:
             prev = cur #and then prev actually goes to cur, which is 1, which is now the 2nd node in the linked list since positions were swapped!
             cur = nxt
         return dummy.next
+
+
+# rightone = cur.next was essentially just saving the value of 2 so that when we point prev.next at rightone, it actually points to 1, but then we do prev = cur, which is actually setting prev to 1 since we swapped positions, which is the 2nd position node!
