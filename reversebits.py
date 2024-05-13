@@ -12,4 +12,10 @@ class Solution:
             n //= 2
         return result
 
-  
+
+#  1010   (a in binary)
+#| 0100   (b in binary)
+#-------
+#  1110   (result in binary)
+        
+#bitwise or says if 1 and 0 in a place, it defaults to 1
