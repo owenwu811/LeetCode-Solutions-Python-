@@ -109,3 +109,35 @@ class Solution:
             first, second = tmp1, tmp2 #2 3
 
 
+#5/13/24 refresher:
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def reorderList(self, head: ListNode) -> None:
+        if not head or not head.next:
+            return head
+        #find middle
+        slow, fast = head, head.next
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+        second = slow.next #3
+        prev = slow.next = None #setting 2.next > 3
+        while second: #3, 4, N
+            tmp = second.next #4, N
+            second.next = prev #keeps moving
+            prev = second #3, 4
+            second = tmp #4, N
+        first, second = head, prev #1 4
+        #join two halves together
+        while second: #4
+            tmp1, tmp2 = first.next, second.next #2 3
+            first.next = second #4
+            second.next = tmp1 #1
+            first, second = tmp1, tmp2
+
+
