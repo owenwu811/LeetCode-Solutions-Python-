@@ -28,3 +28,6 @@ class Solution:
 
 # rightone = cur.next was essentially just saving the value of 2 so that when we point prev.next at rightone, it actually points to 1, but then we do prev = cur, which is actually setting prev to 1 since we swapped positions, which is the 2nd position node!
 #cur.next = nxt  - so then this line is just paving the path so that we don't have empty nodes
+
+
+# then in the end, dummy.next will point to 2 because dummy.next always points to the head of the new linked list
