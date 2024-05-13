@@ -1,0 +1,14 @@
+#Reverse bits of a given 32 bits unsigned integer.
+
+
+#python3 solution:
+
+class Solution:
+    def reverseBits(self, n: int) -> int:
+        result = 0
+        for i in range(32): #an integer in python has 32 bits 
+            result = (result << 1) | (n & 1) # (10 << 2) just adds 2 more 0s to the end of the binary representation of 10
+            n //= 2
+        return result
+
+  
