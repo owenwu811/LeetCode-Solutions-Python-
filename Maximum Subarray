@@ -202,3 +202,18 @@ class Solution:
             subarraysum += n
             res = max(res, subarraysum)
         return res
+
+#5/14/24 refresher (my own solution):
+
+class Solution:
+    def maxSubArray(self, nums: List[int]) -> int:
+        res = max(nums)
+        subarraysum = 0
+        for i in nums: #[-1]
+            subarraysum += i #-1
+            if subarraysum < 0:
+                subarraysum = 0 #0
+            else:
+                res = max(res, subarraysum) #max(-1, 0)
+        return res
+
