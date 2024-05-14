@@ -171,6 +171,9 @@ class Solution:
 
 #5/14/24 refresher (missed):
 
+
+#why shortest path?  If a word is already in the visited set, it means it has been reached via a shorter path previously. 
+
 class Solution:
     def ladderLength(self, beginWord: str, endWord: str, wordList: List[str]) -> int:
         if endWord not in wordList: return 0
