@@ -231,7 +231,7 @@ class Solution:
         #input array is distinct
         #as long as order is different, it counts as a permutation, so [1, 2, 3] and [1, 3, 2] are permutations
         def f(nums, path):
-            if not nums:
+            if not nums: #you can't do if len(path) == len(nums) here because nums keeps getting smaller and smaller with each recursive call! so nums = [1, 2, 3], path  = [] becomes path = [1], nums = [2, 3], and then when we do the excluding recursive call, we now exclude from [2, 3], which is smaller than the original [1, 2, 3]!
                 res.append(path.copy())
                 return
             for i in range(len(nums)):
