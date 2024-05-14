@@ -121,4 +121,34 @@ class Trie:
             if d.startswith(prefix):
                 return True
         return False
+
+
+#5/14/24 refresher (my own solution):
+
+class Trie:
+
+    def __init__(self):
+        self.d = dict()
+        
+
+    def insert(self, word: str) -> None:
+        self.d[word] = 1
+
+
+    def search(self, word: str) -> bool:
+        for k in self.d:
+            if k == word:
+                return True
+        return False
+
+
+        
+
+    def startsWith(self, prefix: str) -> bool:
+        for j in self.d:
+            if j.startswith(prefix):
+                return True
+        return False
+
+        
         
