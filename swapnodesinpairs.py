@@ -31,3 +31,28 @@ class Solution:
 
 
 # then in the end, dummy.next will point to 2 because dummy.next always points to the head of the new linked list
+
+
+#5/14/24 practice:
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def swapPairs(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        if not head or not head.next:
+            return head
+        dummy = ListNode(0, head)
+        prev, cur = dummy, head
+        while cur and cur.next:
+            tmp = cur.next.next
+            rightone = cur.next
+            rightone.next = cur #pointing 2 at 1, essentially swapping the positions, so 1 is now in 2nd place and 2 is now in 1st place
+            cur.next = tmp #pointing 1 at 3 for connection lack of breakage
+            prev.next = rightone
+            prev = cur
+            cur = tmp
+        return dummy.next
+
