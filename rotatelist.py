@@ -185,3 +185,33 @@ class Solution:
         cur.next = None
         tail.next = head
         return result
+
+
+#5/13/24 refresher (struggled with but solved):
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def rotateRight(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
+        if not head or not head.next:
+            return head
+        tail, length = head, 1
+        while tail and tail.next:
+            tail = tail.next
+            length += 1
+        print(length)
+        k = k % length #if k == length, we don't swap
+        if k == 0:
+            return head
+        cur = head
+        for i in range(length - k - 1): #for i in range(2), so 2 hops from 1 to 3
+            cur = cur.next
+        print(cur.val)
+        result = cur.next #4
+        cur.next = None #N
+        tail.next = head #5 to 1
+        return result
+
