@@ -173,6 +173,7 @@ class Solution:
 
 
 #why shortest path?  If a word is already in the visited set, it means it has been reached via a shorter path previously. 
+#so the value (right side) of the nei dictionary are all the words that can be reached from the current word by flipping one character and that are also inside wordList input
 
 class Solution:
     def ladderLength(self, beginWord: str, endWord: str, wordList: List[str]) -> int:
