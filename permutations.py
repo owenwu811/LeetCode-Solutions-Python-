@@ -224,3 +224,19 @@ class Solution:
         f(nums, [])
         return res
         
+#5/14/24 refresher (struggled with but solved):
+
+class Solution:
+    def permute(self, nums: List[int]) -> List[List[int]]:
+        #input array is distinct
+        #as long as order is different, it counts as a permutation, so [1, 2, 3] and [1, 3, 2] are permutations
+        def f(nums, path):
+            if not nums:
+                res.append(path.copy())
+                return
+            for i in range(len(nums)):
+                f(nums[:i] + nums[i + 1:], path + [nums[i]])
+
+        res = []
+        f(nums, [])
+        return res
