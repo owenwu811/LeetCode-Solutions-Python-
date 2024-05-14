@@ -167,4 +167,33 @@ class Solution:
                             q.append(n)
             res += 1
         return 0
-            
+
+
+#5/14/24 refresher (missed):
+
+class Solution:
+    def ladderLength(self, beginWord: str, endWord: str, wordList: List[str]) -> int:
+        if endWord not in wordList: return 0
+        nei = defaultdict(list)
+        wordList.append(beginWord) #at this point, endWord is assumed to be in wordList
+        for word in wordList:
+            for i in range(len(word)):
+                pattern = word[:i] + "*" + word[i + 1:]
+                nei[pattern].append(word)
+        visited = set(beginWord) #we start from beginWord to flip one time to get to endWord if possible
+        d = deque([beginWord]) #number of levels in each layer
+        result = 1
+        while d:
+            for i in range(len(d)):
+                current = d.popleft() #starts with beginWord, or, "hot"
+                if current == endWord:
+                    return result
+                for i in range(len(current)): #we are trying to do *ot, h*t, and ho*, so 3 iterations because we want to find all the neighbors that can get us closer to endWord, so we don't iterate 6 times in wordList here
+                    pattern = current[:i] + "*" + current[i + 1:] # "*ot", so look for corresponding right hand side neighbors that can be achieved with one flip since hot and hit are both h*t, so we designed it so that reachable words that exist in wordlist from one flip are on right
+                    for n in nei[pattern]:
+                        if n not in visited:
+                            visited.add(n)
+                            d.append(n)
+            result += 1
+        return 0
+
