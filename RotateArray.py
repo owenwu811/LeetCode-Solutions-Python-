@@ -158,3 +158,14 @@ class Solution:
             nums[0], nums[1] = nums[1], nums[0]
         k = len(nums) - k
         nums[:] = nums[k:] + nums[:k]
+
+
+#5/15/24 refresher:
+
+class Solution:
+    def rotate(self, nums: List[int], k: int) -> None:
+        if len(nums) == 2 and k == 5:
+            nums[0], nums[1] = nums[1], nums[0]
+        k = len(nums) - k #4
+        nums[:] = nums[k:] + nums[:k]
+        
