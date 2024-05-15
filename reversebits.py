@@ -20,5 +20,5 @@ class Solution:
         result = 0
         for i in range(32): #
             result = (result << 1) | (n & 1) #we want to extract the rightmost from n and add to beginning of result, and slide result to the left, not the other way around
-            n //= 2
+            n //= 2 #note that bin(8) is 0b1000 while bin(4) is 0b100 - the same thing with one less zero! this is true in all divide by 2 cases!
         return result
