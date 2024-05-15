@@ -132,3 +132,26 @@ class Solution:
                 sign = char
                 number = 0
         return sum(stack)
+
+#5/15/24 refresher:
+
+class Solution:
+    def calculate(self, s: str) -> int:
+        number, sign, stack = 0, "+", []
+        for i, j in enumerate(s):
+            if j.isdigit():
+                number = number * 10 + int(j)
+            if j in "+-/*" or i >= len(s) - 1:
+                if sign == "+":
+                    stack.append(number)
+                elif sign == "-":
+                    stack.append(-number)
+                elif sign == "*":
+                    val = stack.pop() * number
+                    stack.append(val)
+                elif sign == "/":
+                    val = int(stack.pop() / number)
+                    stack.append(val)
+                sign = j
+                number = 0
+        return sum(stack)
