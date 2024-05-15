@@ -26,3 +26,12 @@ class Solution:
                 l = mid + 1
             else:
                 r = mid - 1
+
+#5/15/24 refresher:
+
+class Solution:
+    def findMin(self, nums: List[int]) -> int:
+        res = min(nums)
+        for i, j in enumerate(nums):
+            if j == res:
+                return j
