@@ -19,6 +19,6 @@ class Solution:
     def reverseBits(self, n: int) -> int:
         result = 0
         for i in range(32): #
-            result = (result << 1) | (n & 1)
+            result = (result << 1) | (n & 1) #we want to extract the rightmost from n and add to beginning of result, and slide result to the left, not the other way around
             n //= 2
         return result
