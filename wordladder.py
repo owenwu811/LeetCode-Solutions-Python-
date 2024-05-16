@@ -228,4 +228,32 @@ class Solution:
                             d.append(n)
             res += 1
         return 0
-         
+
+
+#5/16/24 refresher:
+
+class Solution:
+    def ladderLength(self, beginWord: str, endWord: str, wordList: List[str]) -> int:
+        if endWord not in wordList: return 0
+        nei = defaultdict(list)
+        wordList.append(beginWord)
+        for word in wordList:
+            for i in range(len(word)):
+                pattern = word[:i] + "*" + word[i + 1:]
+                nei[pattern].append(word)
+        result = 1
+        visited = set(beginWord)
+        d = deque([beginWord])
+        while d:
+            for i in range(len(d)):
+                current = d.popleft()
+                if current == endWord:
+                    return result
+                for i in range(len(current)):
+                    pattern = current[:i] + "*" + current[i + 1:]
+                    for n in nei[pattern]:
+                        if n not in visited:
+                            visited.add(n)
+                            d.append(n)
+            result += 1
+        return 0
