@@ -190,3 +190,25 @@ class Solution:
             else:
                 res = max(res, i - d[needfromzero])
         return res
+
+
+#5/15/24 refresher:
+
+class Solution:
+    def findMaxLength(self, nums: List[int]) -> int:
+        res = 0
+        d = {0: 1}
+        needhowmanyzeros = 0
+        for i, n in enumerate(nums):
+            if n == 1:
+                needhowmanyzeros += 1
+            elif n == 0:
+                needhowmanyzeros -= 1
+            if needhowmanyzeros not in d:
+                d[needhowmanyzeros] = i
+            if needhowmanyzeros == 0:
+                res = i + 1
+            else:
+                res = max(res, i - d[needhowmanyzeros])
+        return res
+
