@@ -328,3 +328,23 @@ class Solution:
         f(0, 0, [])
         return res
 
+#5/15/24 refresher:
+
+class Solution:
+    def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
+        #frequency is the determining characteristic of uniqueness here, so [1, 2, 3] vs. [2, 1, 3] are not considered to be unique
+        def f(index, cursum, path):
+            if cursum == target:
+                res.append(path.copy())
+                return
+            if index >= len(candidates) or sum(path) > target:
+                return
+            path.append(candidates[index])
+            f(index, cursum + candidates[index], path)
+            path.pop()
+            f(index + 1, cursum, path)
+
+        res = []
+        f(0, 0, [])
+        return res
+      
