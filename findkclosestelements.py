@@ -147,3 +147,18 @@ class Solution:
                 r -= 1
         #since we keep shrinking and then stop when l - r + 1 is exactly k elements, we need to include both l and r pointers as indicies 
         return arr[l:r + 1]
+
+#5/15/24 refresher:
+
+class Solution:
+    def findClosestElements(self, arr: List[int], k: int, x: int) -> List[int]:
+        #k number of closest integers in terms of length to x
+        #1 and 5 are the same length as 3, but because 1 < 5, 1 is considered as closer, so move right down
+        l, r = 0, len(arr) - 1
+        while (r - l + 1) > k:
+            if abs(arr[l] - x) <= abs(arr[r] - x):
+                r -= 1
+            else:
+                l += 1
+        return arr[l: r + 1]
+                
