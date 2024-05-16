@@ -132,5 +132,19 @@ class Solution:
                 if number <= levelamount:
                     d[levelamount] += d.get(levelamount - number, 0)
         return d[levelamount]
+
+
+#5/16/24 refresher (missed on 5/15):
+
+class Solution:
+    def combinationSum4(self, nums: List[int], target: int) -> int:
+        d = {0: 1}
+        for levelamount in range(1, target + 1):
+            d[levelamount] = 0
+            for number in nums:
+                if number <= levelamount: #levelamount, not target - number because we are trying to calculate number of ways to sum up to levelamount, and if we use target - number, we get 4 - 3 in the best case, which is not a key in our dictionary. levelamount is different because there is one way to sum up to 1 [1, 2, 3], and 1 - 1 = 0, and 1 is a key in our dictionary originally = {0: 1}
+                    d[levelamount] += d.get(levelamount - number, 0)
+        return d[levelamount]
+
             
             
