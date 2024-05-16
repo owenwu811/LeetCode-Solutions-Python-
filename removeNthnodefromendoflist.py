@@ -239,3 +239,25 @@ class Solution:
             slow = slow.next
         slow.next = slow.next.next
         return prev.next
+
+
+#5/16/24 practice:
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
+        dummy = ListNode(0, head)
+        slow, fast = dummy, head
+        while n > 0 and fast: # we want to make distance of n from slow and fast
+            fast = fast.next
+            n -= 1
+        while fast:
+            fast = fast.next
+            slow = slow.next
+        slow.next = slow.next.next
+        return dummy.next
+        
