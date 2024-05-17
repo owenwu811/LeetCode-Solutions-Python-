@@ -1078,5 +1078,35 @@ class Solution(object):
             return s
         else: return ""
 
+#5/17/24 refresher:
+
+class Solution:
+    def minWindow(self, s: str, t: str) -> str:
+        #we want the minimum portion of s that fully satisifes t
+        if len(s) < len(t): return "" #we know that s cannot satisfy t
+        windowstart, windowend, matched = 0, float('inf'), 0
+        ws = 0
+        need = Counter(t)
+        for we, schar in enumerate(s):
+            if schar in need:
+                need[schar] -= 1
+                if need[schar] == 0:
+                    matched += 1
+                while matched == len(need): #we satisfied all characters in t
+                    if windowend > we - ws + 1:
+                        windowend = we - ws + 1
+                        windowstart = ws
+                    kickout = s[ws]
+                    ws += 1
+                    if kickout in need:
+                        if need[kickout] == 0:
+                            matched -= 1
+                        need[kickout] += 1
+        if len(s) > windowend:
+            return s[windowstart: windowstart + windowend]
+        elif len(s) == windowend:
+            return s
+        else:
+            return ""
 
         
