@@ -32,3 +32,20 @@ class Solution:
 
         #b[3, 30, 34, 5, 9] - because 330 was the bigger path and 3430 was the bigger path, then we have to compare 34 to 3 since 3 went before 30 in their comparison and 34 went before 30 in their comparison, so we find out which one of the two bigger ones go first, so n1 = 34, n2 = 3, and since 34 was the one that goes first because 343 > 334, we compare 5(n1) to 3 next, and since 5 comes before 3, then we don't need to compare 3 anymore until we introduce a new number which may make 3 become the biggest number with that new number, so we comparing 5(n1) to 34, and since 5 comes before 34, we compare 9 to 3 because we introduced a new number of 9, and since 9 comes before 3, we don't even compare 9 to 30 because 30 was the loser between 3 and 34 coming after both of them, so we compare 9 to 34, and 9 comes before 34, so compare 9 to 5, and 9 comes before 5
         #also note that print(int(000)) > 0
+
+#practice again:
+
+class Solution:
+    def largestNumber(self, nums):
+        for index, value in enumerate(nums):
+            nums[index] = str(value)
+        def merge(n1, n2):
+            if n2 + n1 > n1 + n2:
+                return 1
+            elif n2 + n1 < n1 + n2:
+                return -1
+            else:
+                return 0
+        nums = sorted(nums, key=cmp_to_key(merge))
+        return str(int("".join(nums)))
+        
