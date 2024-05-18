@@ -48,4 +48,20 @@ class Solution:
                 return 0
         nums = sorted(nums, key=cmp_to_key(merge))
         return str(int("".join(nums)))
-        
+
+
+#5/18/24 practice:
+
+class Solution:
+    def largestNumber(self, nums: List[int]) -> str:
+        #non negative means 0 or greater
+        for index, value in enumerate(nums):
+            nums[index] = str(value) #in place modification
+        def f(a, b):
+            if b + a > a + b:
+                return 1
+            else:
+                return -1
+        nums = sorted(nums, key=cmp_to_key(f))
+        return str(int("".join(nums)))
+
