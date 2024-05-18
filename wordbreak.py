@@ -284,3 +284,16 @@ for i in range(len(s)):
 return res[-1]
 
 
+#5/17/24 refresher:
+
+class Solution:
+    def wordBreak(self, s: str, wordDict: List[str]) -> bool:
+        #you can use the same string word from wordDict more than once inside of s as long as the words don't overlap in s
+        res = [True] + ([False] * len(s))
+        for i in range(len(s)): #s[0]
+            for j in range(i, len(s)):  #s[0]
+                if s[i: j + 1] in wordDict:
+                    res[j + 1] = res[i] or res[j + 1]
+        return res[-1]
+
+
