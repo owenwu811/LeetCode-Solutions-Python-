@@ -63,7 +63,7 @@ class Solution:
             if root == None:
                 return 0
             maxleft = dfs(root.left) #9, N > return value 0 | 15 N > return value 0 | N > return value 0 
-            maxright = dfs(root.right) #N > return value 0 | 20 N > return value 0 | 7 N > return value 0 
+            maxright = dfs(root.right) #N (right child of 9) > return value 0 | 20 N > return value 0 | 7 N > return value 0 
             maxleft = max(maxleft, 0) #0 0 0
             maxright = max(maxright, 0) #0 0 0
             #compute max path sum with split
