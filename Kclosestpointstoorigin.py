@@ -286,3 +286,23 @@ class Solution:
             res.append([newx, newy])
             k -= 1
         return res
+
+#5/17/24 refresher:
+
+class Solution:
+    def kClosest(self, points: List[List[int]], k: int) -> List[List[int]]:
+        #we want the k number of closest coordinate points to the origin
+        res = []
+        stack = []
+        for x, y in points:
+            distance = (x ** 2) + (y ** 2)
+            stack.append([distance, x, y]) #[10, 1, 3], [8, -2, 2]
+        print(stack)
+        heapq.heapify(stack)
+        print(stack) 
+        while k > 0:
+            a, b, c = heapq.heappop(stack) #we need to use heapq.heappop() here instead of stack.pop() because heapq.heappop() pulls from the top of the heap aka the smallest distance 
+            res.append([b, c])
+            k -= 1
+        return res #[1, 3]
+
