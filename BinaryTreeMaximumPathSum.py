@@ -67,8 +67,8 @@ class Solution:
             maxleft = max(maxleft, 0) #0 0 0
             maxright = max(maxright, 0) #0 0 0
             #compute max path sum with split
-            res[0] = max(res[0], root.val + maxleft + maxright) #-10, 15, 9, 42
-            return root.val + max(maxleft, maxright) #9, 15, 7
+            res[0] = max(res[0], root.val + maxleft + maxright) #-10, 9, 15, 42
+            return root.val + max(maxleft, maxright) #9, 15, 7, 35, 25
         dfs(root)
         return res[0]
 
