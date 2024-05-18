@@ -65,7 +65,7 @@ class Solution:
             #line below represents all left children of every node
             maxleft = dfs(root.left) #9, N > return value 0 | 15 (20s left child aka 20 recursive call came from maxright = dfs(root.right), N (15s left child) > return value 0 | N > return value 0 
             #line below represents all right children of every node
-            maxright = dfs(root.right) #N (right child of 9) > return value 0 | 20 (after coming from return root.val + max(maxleft, maxright) line, N > return value 0 | 7 N > return value 0 
+            maxright = dfs(root.right) #N (right child of 9) > return value 0 | 20 (after coming from return root.val + max(maxleft, maxright) line, N (15s right child) > return value 0 | 7 N > return value 0 
             maxleft = max(maxleft, 0) #0 0 0
             maxright = max(maxright, 0) #0 0 0
             #compute max path sum with split
