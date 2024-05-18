@@ -25,3 +25,13 @@ class Solution:
 
 
 #note that bin(5) > 0b101 while bin(2) > 0b10, so if we divided by 2 from an odd, we lop off a 1
+
+#5/18/24 review:
+
+class Solution:
+    def reverseBits(self, n: int) -> int:
+        result = 0
+        for i in range(32):
+            result = (result << 1) | (n & 1)
+            n //= 2
+        return result
