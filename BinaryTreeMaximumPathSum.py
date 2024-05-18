@@ -12,6 +12,40 @@
 # output: 42
 
 
+#my solution that passed only 42/96 test cases: - failed root = [-10,9,20,null,null,15,7], giving 51 instead of 42 as output
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def maxPathSum(self, root: Optional[TreeNode]) -> int:
+        #since they have to be connected, we do an inorder traversal at each level and add the total
+        self.res = 0
+        self.maxpath = 0
+        def f(root):
+            #question is how to handle null case?
+            #root = [-10,9,20,null,null,15,7] - we should get 42 instead of 51 you are getting
+            if root == None:
+                return 0
+            elif root.val > 0:
+                self.res += root.val
+                self.maxpath = max(self.maxpath, self.res) #maxpath becomes 9
+            elif root.val <= 0:
+                self.res += 0
+                self.maxpath = max(self.maxpath, self.res)
+                #problem here because if actual root of input tree is negative, we return 0 because it goes back to original recursive call
+                #return 0 #if this block executes for the kickoff recursive call, where does the control flow go?
+            l = f(root.left)
+            r = f(root.right)
+            return 1 + max(l, r)
+        f(root)
+        return self.maxpath
+    
+
+
 #python3 solution:
 
 # Definition for a binary tree node.
