@@ -62,13 +62,13 @@ class Solution:
         def dfs(root):
             if root == None:
                 return 0
-            maxleft = dfs(root.left) #9, N > return value 0 | 15 N > return value 0 |
-            maxright = dfs(root.right) #N > return value 0 | 20
-            maxleft = max(maxleft, 0)
-            maxright = max(maxright, 0)
+            maxleft = dfs(root.left) #9, N > return value 0 | 15 N > return value 0 | N > return value 0 
+            maxright = dfs(root.right) #N > return value 0 | 20 N > return value 0 | 7 N > return value 0 
+            maxleft = max(maxleft, 0) #0 0 0
+            maxright = max(maxright, 0) #0 0 0
             #compute max path sum with split
-            res[0] = max(res[0], root.val + maxleft + maxright)
-            return root.val + max(maxleft, maxright) #9
+            res[0] = max(res[0], root.val + maxleft + maxright) #-10, 15, 9, 42
+            return root.val + max(maxleft, maxright) #9, 15, 7
         dfs(root)
         return res[0]
 
