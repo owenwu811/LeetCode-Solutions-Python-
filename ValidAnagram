@@ -154,3 +154,13 @@ class Solution:
                 return False
             t = t.replace(char, "", 1)
         return True
+
+#5/19/24 practice:
+
+class Solution:
+    def isAnagram(self, s: str, t: str) -> bool:
+        for char in s:
+            if char not in t:
+                return False
+            t = t.replace(char, "", 1)
+        return len(t) == 0
