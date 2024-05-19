@@ -141,7 +141,7 @@ class Solution:
         buy = 0
         sell = 1
         for sell in range(len(prices)):
-            while prices[sell] < prices[buy]:
+            while prices[sell] < prices[buy]: #if would work here too
                 buy = sell
                 continue
             profit = prices[sell] - prices[buy]
