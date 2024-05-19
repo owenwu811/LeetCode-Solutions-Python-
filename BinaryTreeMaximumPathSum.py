@@ -78,3 +78,33 @@ class Solution:
 #             -10
 #            9   20
 #              15   7
+
+
+#5/19/24 refresher:
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def maxPathSum(self, root: Optional[TreeNode]) -> int:
+        res = [root.val] #so we can modify the value inside recursive function
+        def dfs(root):
+            if not root: #base case
+                return 0
+            maxleft = dfs(root.left)
+            maxright = dfs(root.right)
+            #after we hit leaf node
+            maxleft = max(maxleft, 0)
+            maxright = max(maxright, 0)
+            #considering split
+            res[0] = max(res[0], root.val + maxleft + maxright)
+            #value to return to parent
+            return root.val + max(maxleft, maxright)
+
+        
+
+        dfs(root)
+        return res[0]
