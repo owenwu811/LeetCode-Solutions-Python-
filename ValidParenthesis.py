@@ -282,3 +282,22 @@ class Solution:
                 if openb.index(o) != closeb.index(char):
                     return False
         return not stack
+
+
+#5/19/24 practice:
+
+class Solution:
+    def isValid(self, s: str) -> bool:
+        openb, closeb = "({[", ")}]"
+        stack = []
+        for char in s:
+            if char in openb:
+                stack.append(char)
+            elif char in closeb and not stack:
+                return False
+            else: #closeb and stack
+                girl = stack.pop()
+                if openb.index(girl) != closeb.index(char):
+                    return False
+        return not stack
+                 
