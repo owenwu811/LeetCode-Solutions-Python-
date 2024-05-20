@@ -34,7 +34,7 @@ class Solution:
                 while lr <= rr:
                     midrow = (lr + rr) // 2
                     if row[midrow] < target:
-                        lr = midrow + 1
+                        lr = midrow + 1 #always move l or r pointers, not mid! we are using l and r to calculate mid to close the search space!
                     elif row[midrow] > target:
                         rr = midrow - 1
                     else:
