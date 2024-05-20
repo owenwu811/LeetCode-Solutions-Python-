@@ -21,6 +21,8 @@ class Solution:
 
 #5/20/24 (missed) but my own solution in python3:
 
+#the core idea behind this solution is we have to run binary search not only on each sublist in the input, but we also have to run binary search on each row and see if each element in the row matches target
+
 class Solution:
     def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
         l, r = 0, len(matrix) - 1
