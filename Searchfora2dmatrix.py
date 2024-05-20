@@ -67,6 +67,6 @@ class Solution:
                 return False
             elif matrix[mid][0] > target:
                 r = mid - 1
-            else: 
+            else: #matrix[mid][-1] < target: l = mid + 1 also works here too instead of else!
                 l = mid + 1
         return False
