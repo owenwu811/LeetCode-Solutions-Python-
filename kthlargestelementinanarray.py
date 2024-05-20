@@ -131,4 +131,20 @@ class Solution:
                 heapq.heappop(firstk)
                 heapq.heappush(firstk, n)
         return firstk[0]
-                
+
+
+#5/19/24 practice:
+
+class Solution:
+    def findKthLargest(self, nums: List[int], k: int) -> int:
+        #we want the smallest element from the k largest elements including duplicates
+        arr = nums[:k]
+        heapq.heapify(arr)
+        #[2, 3]
+        for n in nums[k:]:
+            if n > arr[0]:
+                heapq.heappop(arr)
+                heapq.heappush(arr, n)
+        return arr[0]
+        
+
