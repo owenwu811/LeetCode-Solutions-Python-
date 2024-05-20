@@ -108,3 +108,26 @@ class Solution:
 
         dfs(root)
         return res[0]
+
+#5/20/24:
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def maxPathSum(self, root: Optional[TreeNode]) -> int:
+        res = [root.val]
+        def f(root):
+            if root == None:
+                return 0
+            maxleft = f(root.left)
+            maxright = f(root.right)
+            maxleft = max(maxleft, 0)
+            maxright = max(maxright, 0)
+            res[0] = max(res[0], root.val + maxleft + maxright)
+            return root.val + max(maxleft, maxright)
+        f(root)
+        return res[0]
