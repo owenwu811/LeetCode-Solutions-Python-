@@ -37,7 +37,7 @@ class Solution:
                         rr = midrow - 1
                     else:
                         return True
-                return False
+                return False #the idea is that, since rows are sorted in ascending order, if the target exists in the entire matrix, it would be in this row, but it's not, so we can return False
             elif matrix[mid][0] > target:
                 r = mid - 1
             else:
