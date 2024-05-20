@@ -149,4 +149,39 @@ class Solution:
         if list2 and not list1:
             cur.next = list2
         return dummy.next
-       
+
+
+#5/20/24:
+
+class Solution:
+    def sortList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        if not head or not head.next:
+            return head
+        left, right = head, self.getMid(head)
+        tmp = right.next
+        right.next = None
+        right = tmp
+        left, right = self.sortList(left), self.sortList(right)
+        return self.merge(left, right)
+    def getMid(self, head):
+        slow, fast = head, head.next
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+        return slow
+    def merge(self, list1, list2):
+        dummy = head = ListNode()
+        cur = dummy
+        while list1 and list2:
+            if list1.val < list2.val:
+                cur.next = list1
+                list1 = list1.next
+            else:
+                cur.next = list2
+                list2 = list2.next
+            cur = cur.next
+        if list1 and not list2:
+            cur.next = list1
+        if list2 and not list1:
+            cur.next = list2
+        return dummy.next
