@@ -225,3 +225,17 @@ class Solution:
             return solve(root1.left, root2.right) and solve(root1.right, root2.left)
 
         return solve(root, root)
+
+#5/21/24 refresher:
+
+class Solution:
+    def isSymmetric(self, root: Optional[TreeNode]) -> bool:
+        def f(root1, root2):
+            if not root1 and not root2:
+                return True
+            if root1 and not root2 or root2 and not root1 or root1.val != root2.val:
+                return False
+            return f(root1.left, root2.right) and f(root1.right, root2.left)
+
+
+        return f(root, root)
