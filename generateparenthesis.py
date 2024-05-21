@@ -172,3 +172,24 @@ class Solution:
         res = []
         f(0, 0, [])
         return res
+
+#5/21/24 practice again:
+
+class Solution:
+    def generateParenthesis(self, n: int) -> List[str]:
+        def f(openc, closec, path):
+            if openc == closec == n:
+                res.append("".join(path))
+                return
+            if openc < n:
+                path.append("(")
+                f(openc + 1, closec, path)
+                path.pop()
+            if closec < openc:
+                path.append(")")
+                f(openc, closec + 1, path)
+                path.pop()
+            
+        res = []
+        f(0, 0, [])
+        return res
