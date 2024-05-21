@@ -70,3 +70,28 @@ class Solution:
             else: #matrix[mid][-1] < target: l = mid + 1 also works here too instead of else!
                 l = mid + 1
         return False
+
+#5/21/24 refresher:
+
+class Solution:
+    def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
+        l, r = 0, len(matrix) - 1
+        while l <= r:
+            mid = (l + r) // 2
+            if matrix[mid][0] <= target <= matrix[mid][-1]:
+                row = matrix[mid] #[10, 11, 16, 20]
+                lr, rr =  0, len(row) - 1
+                while lr <= rr:
+                    midr = (lr + rr) // 2
+                    if row[midr] == target:
+                        return True
+                    elif row[midr] < target:
+                        lr = midr + 1
+                    else:
+                        rr = midr - 1
+                return False
+            elif matrix[mid][0] > target:
+                r = mid - 1
+            else:
+                l = mid + 1
+        return False
