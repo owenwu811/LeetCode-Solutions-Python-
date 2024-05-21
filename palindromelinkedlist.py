@@ -34,3 +34,15 @@ class Solution:
             res.append(r.val)
             r = r.next
         return res == res[::-1]
+
+
+#5/21/24 (missed):
+
+class Solution:
+    def isPalindrome(self, head: Optional[ListNode]) -> bool:
+        res = []
+        cur = head
+        while cur:
+            res.append(cur.val)
+            cur = cur.next
+        return res == res[::-1] # we compare res[::-1] to res, not res[::-1] to head because head is not an array!
