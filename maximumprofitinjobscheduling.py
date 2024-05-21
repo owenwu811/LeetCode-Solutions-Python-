@@ -386,14 +386,14 @@ class Solution:
     def jobScheduling(self, startTime: List[int], endTime: List[int], profit: List[int]) -> int:
         intervals = sorted(zip(startTime, endTime, profit))
         cache = {}
-        def f(i):
-            if i >= len(intervals):
+        def f(i): #this function f(i) will only be called n unique times. All other times, we will return the cached solution. those n times require a loop, but instead of using a while loop, use bisect.bisect to do the binary search 
+            if i >= len(intervals): #base case - we can't get any profit from no intervals, so we ran out of intervals, so return 0
                 return 0
-            if i in cache:
+            if i in cache: #have we already solved this subproblem? if we have, return the result we ended up caching. If not, compute the result in the res = max(res.... line and throw the result we computed in the cache before we return 
                 return cache[i]
-            res = f(i + 1)
-            j = bisect.bisect(intervals, (intervals[i][1], -1, -1))
-            res = max(res, intervals[i][2] + f(j))
-            cache[i] = max(res, intervals[i][2] + f(j))
+            res = f(i + 1)  #don't include element at intervals[i], so go to next interval and calculate profit we can get starting from the next interval
+            j = bisect.bisect(intervals, (intervals[i][1], -1, -1)) #so if we used a while loop instead to do our binary search, we get time limit exceeded. idea is to run a binary search on remaining intervals looking for 1st interval with starttime greaater than endtime of previous interval, so if intervals[i][1] <= intervals[j][0], so instead of looping from left to right, run binary search on remining intervals looking for 1st starttime that is greater than or equal to intervals[i][1]. instead of writing our own binary search, we use the bisect module in python to do this for us. for bisect.bisect, the 1st parameter is the array we want to run the binary search on. Since we have an array of tuples, we are looking for the endtime of the current interval, so intervals[i][1], but we have an array of tuples, so we need to do intervals[i][1], -1, -1 to make it match the format of (startTime, endTime, profit) - intervals[i][1] is just an integer, and that dosen't fit the format of (startTime, endTime, profit) array of tuples! we put -1 for ties
+            res = max(res, intervals[i][2] + f(j))  #including the current interval, so we use 2 in intervals[i][2] because 2 is the 3rd element in the intervals tuple, so you can see that profit is at index 2 position
+            cache[i] = max(res, intervals[i][2] + f(j)) 
             return res
         return f(0)
