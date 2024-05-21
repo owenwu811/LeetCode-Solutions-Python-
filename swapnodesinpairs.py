@@ -5,6 +5,8 @@
 
 #python3 solution:
 
+#idea is to get each pair of nodes, and reverse the pointer from the 2nd node in each pair to the 1st node in each pair, and you do this for each pair in the linked list input
+
 # Definition for singly-linked list.
 # class ListNode:
 #     def __init__(self, val=0, next=None):
