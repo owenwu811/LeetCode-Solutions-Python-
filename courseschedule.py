@@ -956,4 +956,28 @@ class Solution:
                         d.append(n)
         return canvisit == numCourses
 
+#5/22/24:
+
+class Solution:
+    def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+        indegree = [0] * numCourses #each course starts with 0 prerequisites
+        adj = [[] for a in range(numCourses)]
+        for p in prerequisites:
+            adj[p[1]].append(p[0])
+            indegree[p[0]] += 1
+        d = deque()
+        for i in range(len(indegree)):
+            if indegree[i] == 0:
+                d.append(i)
+        canvisit = 0
+        while d:
+            for i in range(len(d)):
+                canvisit += 1
+                current = d.popleft()
+                for n in adj[current]:
+                    indegree[n] -= 1
+                    if indegree[n] == 0:
+                        d.append(n)
+        return canvisit == numCourses 
+
 
