@@ -1074,3 +1074,34 @@ class Solution:
                     d.append([destroyx, destroyy])
             minminutes += 1
         return minminutes if freshcount == 0 else -1
+
+
+#5/24/24 practice:
+
+class Solution:
+    def orangesRotting(self, grid: List[List[int]]) -> int:
+        d = deque() #stores coordinates of all rotten oranges from time 0
+        freshcount = 0
+        minminutes = 0
+        for r in range(len(grid)):
+            for c in range(len(grid[0])):
+                if grid[r][c] == 2: 
+                    d.append([r, c])
+                elif grid[r][c] == 1:
+                    freshcount += 1
+                else:
+                    continue
+        directions = [(1, 0), (0, 1), (-1, 0), (0, -1)]
+        while d and freshcount > 0:
+            for i in range(len(d)):
+                rottenx, rotteny = d.popleft()
+                for newx, newy in directions:
+                    onex, oney = rottenx + newx, rotteny + newy
+                    #we can only turn fresh oranges into rotten
+                    if onex < 0 or onex >= len(grid) or oney < 0 or oney >= len(grid[0]) or grid[onex][oney] != 1:
+                        continue
+                    grid[onex][oney] = 2 #rotting the tile
+                    freshcount -= 1
+                    d.append([onex, oney])
+            minminutes += 1
+        return minminutes if freshcount == 0 else -1
