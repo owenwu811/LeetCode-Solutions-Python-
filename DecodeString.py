@@ -253,3 +253,26 @@ class Solution:
                     k = stack.pop() + k
                 stack.append(int(k) * substr)
         return "".join(stack)
+
+#5/24/24 refresher:
+
+class Solution:
+    def decodeString(self, s: str) -> str:
+        stack = []
+        for char in s:
+            if char != "]":
+                stack.append(char)
+            else: #we have encountered a closing bracket
+                #[3[a]
+                substr = ""
+                while stack and stack[-1] != "[":
+                    substr = stack.pop() + substr
+                stack.pop() #popping off open bracket
+                #[3]
+                k = ""
+                while stack and stack[-1].isdigit():
+                    k = stack.pop() + k
+                stack.append(int(k) * substr)
+        return "".join(stack)
+                
+
