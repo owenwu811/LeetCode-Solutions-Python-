@@ -490,4 +490,22 @@ class Solution:
             return -1
         return res[-1]
 
+
+
+#5/25/24 review:
+
+class Solution:
+    def coinChange(self, coins: List[int], amount: int) -> int:
+        res = [0] + ([float('inf')] * amount) #the reason the base case starts at 0 ways to make up 0 cents is because each coin in the input array is garunteed to be atleast 1 or greater: cointraints = 1 <= coins[i] <= 231 - 1
+        for levelamount in range(1, amount + 1): #1
+            for coinvalue in coins: #1, 2, 5
+                if coinvalue <= levelamount: #1 <= 1
+                    #res[1] = min(res[1], 1 + res[1 - 1])
+                    res[levelamount] = min(res[levelamount], 1 + res[levelamount - coinvalue])
+        if res[-1] == float('inf'):
+            return -1
+        return res[-1]
+
         
+
+
