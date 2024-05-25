@@ -350,3 +350,21 @@ class Solution:
 #Update set: For each number n, it creates a new set set2 and iterates through the existing set set1.a. For each number number in set1, it calculates the sum of n + number and adds it to set2.b. It also adds the current number number to set2.c. After completing the iteration through set1, it updates set1 to be equal to set2. This is essentially updating the possible sums that can be achieved by adding the current number to the previous sums.
 #Check for half sum: Finally, after iterating through all numbers in nums, the function checks if half (which is the target sum for each subset) is present in set1. If it is, it means it's possible to partition nums into two subsets with equal sums, so it returns True. Otherwise, it returns False.
 #The core idea of this solution is to utilize dynamic programming and keep track of all possible sums that can be achieved by adding numbers one by one. If the target sum (half) is present in the set of sums obtained, it means a partition is possible because if half is found in set1, then two halves make a whole, so it's already possible
+
+
+#5/25/24 review:
+
+class Solution:
+    def canPartition(self, nums: List[int]) -> bool:
+        if sum(nums) % 2 > 0: return False
+        set1 = set()
+        set1.add(0)
+        half = sum(nums) // 2
+        for n in nums:
+            set2 = set()
+            for k in set1:
+                set2.add(k) #0
+                set2.add(n + k) #1
+            set1 = set2
+        return half in set1
+            
