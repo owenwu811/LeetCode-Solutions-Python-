@@ -159,4 +159,16 @@ class Solution:
                 startingwith, startingindex = 0, i + 1
         return startingindex
  
-            
+#5/26/24 review (missed on 5/25/24):
+
+class Solution:
+    def canCompleteCircuit(self, gas: List[int], cost: List[int]) -> int:
+        if sum(gas) < sum(cost): return -1 #if the entire array is less than entire array, then we can't start anywhere, so return -1. Otherwise, we will track the starting index and return that starting index at the end as res. 
+        amount = 0 #start with empty tank
+        res = 0 #track starting index if possible
+        for i in range(len(gas)): #loop through gas array 
+            amount += (gas[i] - cost[i])
+            if amount < 0:
+                amount, res = 0, i + 1
+        return res
+
