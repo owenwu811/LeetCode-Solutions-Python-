@@ -97,3 +97,36 @@ class RandomizedSet:
 
     def getRandom(self) -> int: 
         return random.choice(self.mylist)
+
+
+#5/26/24 review:
+
+class RandomizedSet:
+
+    def __init__(self):
+        self.mydict = dict()
+        self.mylist = []
+        
+
+    def insert(self, val: int) -> bool:
+        if val not in self.mydict:
+            self.mylist.append(val)
+            self.mydict[val] = len(self.mylist) - 1
+            return True
+        return False
+
+
+    def remove(self, val: int) -> bool:
+        if val in self.mydict:
+            rear = self.mylist[-1]
+            indextoplace = self.mydict[val]
+            self.mylist[indextoplace] = rear
+            self.mylist.pop()
+            self.mydict[rear] = indextoplace
+            del self.mydict[val]
+            return True
+        return False
+        
+
+    def getRandom(self) -> int:
+        return random.choice(self.mylist)
