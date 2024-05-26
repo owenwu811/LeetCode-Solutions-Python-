@@ -62,3 +62,38 @@ class RandomizedSet:
 
 #set = {1}
 #list = [1, 2] append to rear of list
+
+
+#practice run again with my own thoughts:
+
+class RandomizedSet:
+    def __init__(self):
+        self.mydict = dict()
+        self.mylist = []
+
+
+
+    def insert(self, val: int) -> bool:
+        if val not in self.mydict: #we use dict instead of set
+            self.mylist.append(val) #length must change before we can determine the index to be added to righthand side of dictionary
+            self.mydict[val] = len(self.mylist) - 1
+            return True #return True if item was not present (instructions)
+        return False #return False if item was present (instructions)
+ 
+    def remove(self, val: int) -> bool:
+        if val in self.mydict: #we use dict instead of set
+            #instructions say to remove val from mydict if present - we use dict instead of set
+            #[1, 2] > let's say we want to remove 1
+            rear = self.mylist[-1] #2
+            indextoplace = self.mydict[val] #0
+            self.mylist[indextoplace] = rear #[1, 2] becomes [2, 2] as we placed 2 in the index 0 position
+            self.mylist.pop() #[2, 2] becomes [2] 
+            self.mydict[rear] = indextoplace #2 is now at index 0 of our list not index 1 because index 1 dosen't exist anymore, so our dictionary must reflect whatever was in our list in terms of being added and removed
+            del self.mydict[val] #remove value from mydict aka set as originally intended from instructions
+            return True #instructions say to return True if item was present, and it was because we were able to remove it (item referring to val)
+        return False
+
+
+
+    def getRandom(self) -> int: 
+        return random.choice(self.mylist)
