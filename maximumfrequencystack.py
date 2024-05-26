@@ -52,4 +52,30 @@ class FreqStack:
         if not self.groups[self.maxFreq]:
             self.maxFreq -= 1
         return first
+
+#5/25/24 evening review:
+
+class FreqStack:
+    def __init__(self):
+        self.maxFreq = 0
+        self.freq = defaultdict(int)
+        self.groups = defaultdict(list)
+
+        
+
+    def push(self, val: int) -> None:
+        self.freq[val] += 1
+        if self.freq[val] > self.maxFreq:
+            self.maxFreq = self.freq[val]
+        self.groups[self.freq[val]].append(val)
+
+        
+
+    def pop(self) -> int:
+        res = self.groups[self.maxFreq].pop()
+        self.freq[res] -= 1
+        if not self.groups[self.maxFreq]:
+            self.maxFreq -= 1
+        return res
+
         
