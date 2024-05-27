@@ -208,6 +208,10 @@ class MedianFinder:
 
 #By balancing the heaps so that their size differs by at most one, we ensure that we either have a single middle element when the combined size is odd (this will be at the top of the larger heap), or two middle elements when the combined size is even (the top of each heap).
 
+#The addNum method works by adding a new number to the max heap (smaller half) first, by pushing its negative value. We then pop the top value from the max heap and push it to the min heap (larger half) to maintain the order and balance. If the larger half has more than one extra element compared to the smaller half, we move the top element from the larger half to the smaller half.
+
+#findMedian checks the current size of the heaps. If the heaps are of the same size, the median is the average of the top values of both heaps. If the sizes differ, the median is the top element of the larger heap.
+
 class MedianFinder:
     def __init__(self):
         self.a, self.b = [], []
