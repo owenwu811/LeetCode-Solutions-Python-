@@ -221,5 +221,6 @@ class MedianFinder:
             return -1 * self.a[0]
         elif len(self.b) > len(self.a): #If h2 has more elements than h1, the median is just the top element of h2 (the smallest number in the larger half).
             return self.b[0]
+        #If h1 and h2 have the same number of elements, the median is the average of the top element of h1 (the largest number in the smaller half, remember h1 is storing negatives) and the top element of h2 (the actual smallest number in the larger half).
         return ((-1 * self.a[0]) + self.b[0]) / 2
 
