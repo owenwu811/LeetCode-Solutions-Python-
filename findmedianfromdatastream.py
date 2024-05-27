@@ -206,6 +206,8 @@ class MedianFinder:
 
 #In Python, the default heapq module provides a min heap implementation. To get a max heap behavior, we insert negatives of the numbers into a heap.
 
+#By balancing the heaps so that their size differs by at most one, we ensure that we either have a single middle element when the combined size is odd (this will be at the top of the larger heap), or two middle elements when the combined size is even (the top of each heap).
+
 class MedianFinder:
     def __init__(self):
         self.a, self.b = [], []
