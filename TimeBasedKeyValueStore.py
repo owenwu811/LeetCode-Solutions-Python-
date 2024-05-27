@@ -613,4 +613,9 @@ class TimeMap:
 #print(len(b)) > 1
 #c = ['bar', 1]
 #print(len(c)) > 2
+
+#wrong choice with - self.d[key] = [value, timestamp] results in a = ['bar', 1] causing l, r = 0, 1, so a[mid][1] dosen't exist and results in str vs. int comparison error!
+#correct choice with self.d[key] = [] results in a = [['bar', 1]] causing l, r = 0, 0, so a[mid][1] does exist!
+
+#note the l, r = 0, 1 vs. 0, 0 correct version difference dosen't matter because (0 + 1) // 2 still yeilds 0, but you can't have a[mid][1] for ['bar', 1] because it's a single list!
         
