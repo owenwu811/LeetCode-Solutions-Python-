@@ -204,6 +204,8 @@ class MedianFinder:
 #Utilizing two heaps is an elegant solution: a max heap to store the smaller half of the numbers and a min heap to store the larger half. 
 #This way, the largest number in the smaller half or the smallest number in the larger half can easily give us the median.
 
+#In Python, the default heapq module provides a min heap implementation. To get a max heap behavior, we insert negatives of the numbers into a heap.
+
 class MedianFinder:
     def __init__(self):
         self.a, self.b = [], []
