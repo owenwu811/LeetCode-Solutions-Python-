@@ -48,10 +48,20 @@ class Solution:
 
 #python3 solution:
 
+#https://algo.monster/liteproblems/124
+
 #when dealing with trees, recursion is often a natural approach. Since we are looking for the maximum path sum, at every node we have a choice: include that node on a path extending left or right, or start a new path through that node. 
 #We can recursively find the maximum path sums going through the left child and the right child. However, when combining these sums at a node, we must realize that we cannot include both child paths since that would create a loop, not a valid path.
 
 #The solution's intuition hinges on realizing that for any node, the maximum sum wherein that node is the highest point (i.e., the 'root' of that path) is its value plus the maximum sums of its left and right subtrees. We only add the subtree sums if they are positive, since any path would only include a subtree if it contributed positively to the total sum.
+
+#We define the dfs function that does the following:
+
+#When the node is None, return 0 because an empty node contributes nothing to the path sum.
+#Recursively calculate the maximum path sum for the left and right subtrees. If the sum is negative, we reset it to 0, as described earlier.
+#Calculate the potential maximum path sum at the current node by adding the node's value to the maximum path sums from both subtrees. This represents the largest value that could be achieved when passing through that node and potentially including both left and right paths (but not combining them).
+#Update a global variable ans that tracks the overall maximum path sum found anywhere in the tree with this new potential maximum.
+#Finally, for the recursion to continue upwards, return the node's value plus the greater of the two maximum sums from the left or right subtree. This represents the best contribution that node can make towards a higher path.
 
 
 class Solution:
