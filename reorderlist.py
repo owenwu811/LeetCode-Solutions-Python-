@@ -229,3 +229,29 @@ class Solution:
             second.next = tmp1
             first, second = tmp1, tmp2
 
+#5/27/24:
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def reorderList(self, head: ListNode) -> None:
+        slow, fast = head, head.next
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+        second = slow.next #saving 3 (1st node of 2nd half)
+        prev = slow.next = None #2.next > None
+        while second: #3, 4
+            tmp = second.next #4, N
+            second.next = prev #N, 3
+            prev = second #3
+            second = tmp #4
+        first, second = head, prev #1, 4
+        while second: #4
+            tmp1, tmp2 = first.next, second.next # 2 3
+            first.next = second
+            second.next = tmp1
+            first, second = tmp1, tmp2
