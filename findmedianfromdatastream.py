@@ -219,7 +219,7 @@ class MedianFinder:
     def findMedian(self) -> float:
         if len(self.a) > len(self.b):
             return -1 * self.a[0]
-        elif len(self.b) > len(self.a):
+        elif len(self.b) > len(self.a): #If h2 has more elements than h1, the median is just the top element of h2 (the smallest number in the larger half).
             return self.b[0]
         return ((-1 * self.a[0]) + self.b[0]) / 2
 
