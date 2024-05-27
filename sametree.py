@@ -7,6 +7,9 @@
 
 #python3 solution:
 
+
+#think about it like this: value of root node needs to be the same. values of left SUBTREE need to be the same. values of right SUBTREE need to be the same! This is advice from https://www.youtube.com/watch?v=xF554Tlzo-c
+
 # Definition for a binary tree node.
 # class TreeNode:
 #     def __init__(self, val=0, left=None, right=None):
