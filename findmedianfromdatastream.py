@@ -200,6 +200,8 @@ class MedianFinder:
 
 #5/26/24 review:
 
+#https://algo.monster/liteproblems/295
+
 #To find the median efficiently, we need a data structure that allows quick access to the middle elements.
 #Utilizing two heaps is an elegant solution: a max heap to store the smaller half of the numbers and a min heap to store the larger half. 
 #This way, the largest number in the smaller half or the smallest number in the larger half can easily give us the median.
