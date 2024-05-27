@@ -619,3 +619,31 @@ class TimeMap:
 
 #note the l, r = 0, 1 vs. 0, 0 correct version difference dosen't matter because (0 + 1) // 2 still yeilds 0, but you can't have a[mid][1] for ['bar', 1] because it's a single list!
         
+
+#5/27/24 (missed):
+
+class TimeMap:
+    def __init__(self):
+        self.d = dict()
+        
+        
+    def set(self, key: str, value: str, timestamp: int) -> None: 
+        if key not in self.d:
+            self.d[key] = [] #we need double brackets to prevent int vs. str error later!!!!!!!!! explained above!!!!!
+        self.d[key].append([value, timestamp]) #now that we know the key is already in our dict because there is already an empty [] for it, we can then double knot it!!!!
+    
+        
+        
+
+    def get(self, key: str, timestamp: int) -> str:
+        res = ""
+        a = self.d.get(key, [])
+        l, r = 0, len(a) - 1
+        while l <= r:
+            mid = (l + r) // 2
+            if a[mid][1] <= timestamp:
+                res = a[mid][0]
+                l = mid + 1 #we want to get as big as possible because problem says return value associated with LARGEST timestamp prev
+            else:
+                r = mid - 1
+        return res
