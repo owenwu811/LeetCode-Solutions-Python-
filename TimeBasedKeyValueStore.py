@@ -607,5 +607,10 @@ class TimeMap:
             else:
                 r = mid - 1
         return res
-        
+
+#THIS IS WHY YOU NEED self.d[key] = [], which yeilds in [['bar', 1]], while just doing self.d[key] = [value, timestamp] results in ['bar', 1], which is wrong!
+#b = [['bar', 1]]
+#print(len(b)) > 1
+#c = ['bar', 1]
+#print(len(c)) > 2
         
