@@ -186,13 +186,13 @@ class Solution:
         dummy = ListNode(0, head)
         prev = dummy
         cur = head
-        while cur and cur.next:
-            nxt = cur.next.next
-            rightone = cur.next
-            rightone.next = cur
+        while cur and cur.next: #there are atleast 2 pairs to swap 
+            nxt = cur.next.next #next node after pair 
+            rightone = cur.next #2nd node of current pair
+            rightone.next = cur #performing swap 
             cur.next = nxt
             prev.next = rightone
-            prev = cur
+            prev = cur #move prev and cur pointers two steps forward to the next pair to be swapped 
             cur = nxt
         return dummy.next
         
