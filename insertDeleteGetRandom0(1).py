@@ -166,3 +166,39 @@ class RandomizedSet:
 
     def getRandom(self) -> int:
         return random.choice(self.mylist)
+
+#5/28/24 review:
+
+class RandomizedSet:
+
+    def __init__(self):
+        self.d = defaultdict(int)
+        self.mylist = []
+
+
+        
+    def insert(self, val: int) -> bool:
+        if val not in self.d:
+            self.mylist.append(val)
+            #{val: index}
+            self.d[val] = len(self.mylist) - 1
+            return True
+        return False
+        
+
+    def remove(self, val: int) -> bool:
+        if val in self.d: #we want to remove 1 from [1, 2]
+            rear = self.mylist[-1] #[2]
+            inserthere = self.d[val] #0
+            self.mylist[inserthere] = rear #[1, 2] > [2, 2]
+            self.mylist.pop() #[2, 2] > [2]
+            self.d[rear] = inserthere
+            del self.d[val]
+            return True
+        return False
+            
+
+
+    def getRandom(self) -> int:
+        return random.choice(self.mylist)
+
