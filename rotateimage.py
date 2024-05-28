@@ -169,3 +169,16 @@ class Solution:
         #lastly, i = 3, so we reverse the 3rd index row from [11, 10, 7, 16] to [16, 7, 10, 11]
         #for i in range(n): > i = 3, so i can't increment anymore and the loop terminates
 
+#5/28/24 review:
+
+class Solution:
+    def rotate(self, matrix: List[List[int]]) -> None:
+        """
+        Do not return anything, modify matrix in-place instead.
+        """
+        numrows = len(matrix)
+        for r in range(numrows):
+            for c in range(r, numrows):
+                matrix[r][c], matrix[c][r] = matrix[c][r], matrix[r][c]
+        for i in range(numrows):
+            matrix[i].reverse()
