@@ -298,3 +298,7 @@ class Solution:
                 l = i + 1
 
 
+#if we have even # of elements, we get the 2 middle and find the median
+#if we have an odd # of elements, the middle is the median 
+
+
