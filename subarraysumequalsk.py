@@ -237,3 +237,20 @@ class Solution:
             else:
                 d[subarraysum] += 1
         return res
+
+#5/27/24 review:
+
+class Solution:
+    def subarraySum(self, nums: List[int], k: int) -> int:
+        d = {0: 1}
+        subarraysum, res = 0, 0
+        for n in nums:
+            subarraysum += n #1, 2, 3
+            if subarraysum - k in d:
+                res += d[subarraysum - k] #res becomes 1
+            if subarraysum in d:    
+                d[subarraysum] += 1
+            else: #{0: 1, 1: 1}
+                d[subarraysum] = 1
+        return res
+            
