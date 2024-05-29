@@ -27,7 +27,9 @@
 
 #python3 solution:
 
-#basically, next permutation just means next biggest rearrangement
+#basically, next permutation just means next largest number we can get by rearranging the numbers, so if 14587 was our input, 14758 is the next larger number we can get!
+
+#[3, 2, 1] > if the input is sorted in descending order from left to right, then just return the reverse of the input as the anwser 
 
 
 class Solution:
