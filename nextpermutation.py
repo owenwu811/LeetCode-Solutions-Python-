@@ -51,3 +51,26 @@ class Solution:
         nums[bpoint + 1:] = reversed(nums[bpoint + 1:])
 
 
+#solution with better comments:
+
+class Solution:
+    def nextPermutation(self, nums: List[int]) -> None:
+        # Initialize the breakpoint index to -1
+        bPoint, n = -1, len(nums)
+        
+        # Step 1: Find the longest non-increasing suffix
+        for i in range(n-2, -1, -1):
+            if nums[i] >= nums[i + 1]:
+                continue  # Skip the non-increasing sequence
+            bPoint = i  # Found the breakpoint
+            # Step 2: Find the rightmost successor to the pivot in the suffix
+            for j in range(n-1, i, -1):
+                if nums[j] > nums[bPoint]:
+                    # Step 3: Swap the pivot with the successor
+                    nums[j], nums[bPoint] = nums[bPoint], nums[j]
+                    break  # Swap done, break the inner loop
+            break  # Breakpoint found and swap done, break the outer loop
+        
+        # Step 4: Reverse the suffix to get the next permutation
+        nums[bPoint + 1:] = reversed(nums[bPoint + 1:])
+
