@@ -29,14 +29,18 @@
 
 #basically, next permutation just means next largest number we can get by rearranging the numbers, so if 14587 was our input, 14758 is the next larger number we can get!
 
-#[3, 2, 1] > if the input is sorted in descending order from left to right, then just return the reverse of the input as the anwser 
+#[3, 2, 1] > if the input is sorted in descending order from left to right, then just return the reverse of the input as the anwser
+
+#1. find pivot (go from right to left to find point where stops increasing, so 1 4 5 | 8 7 - 8 is the point where stops increasing, so 5 is the pivot 
+#2. swap with the 1st number to the right of the pivot (swap 5 with 7)
+#3. now we have 1 4 7 | 8 5, so we want to reverse the 2nd half for 1 4 7 8 5 to become 1 4 7 5 8
 
 
 class Solution:
     def nextPermutation(self, nums: List[int]) -> None:
         bpoint, n = -1, len(nums)
         for i in range(n - 2, -1, -1): #start from 2nd to last element
-            if nums[i] >= nums[i + 1]:
+            if nums[i] >= nums[i + 1]: #we start from 2nd to last element to ensure we can actually do the nums[i + 1] part
                 continue #haven't found breakpoint yet
             bpoint = i #found bpoint
             for j in range(n - 1, i, -1): #iterate from the last element down one step not including the breakpoint
