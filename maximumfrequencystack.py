@@ -133,3 +133,27 @@ class FreqStack:
 # obj = FreqStack()
 # obj.push(val)
 # param_2 = obj.pop()
+
+#5/29/24 review:
+
+class FreqStack:
+    def __init__(self):
+        self.freq = defaultdict(int)
+        self.maxFreq = 0
+        self.mylist = defaultdict(list)
+        
+
+    def push(self, val: int) -> None:
+        self.freq[val] += 1 #{5: 1}
+        if self.freq[val] > self.maxFreq:
+            self.maxFreq = self.freq[val]
+        #[3: [5, 7]]
+        self.mylist[self.freq[val]].append(val) #self.mylist[self.freq[val]].append(val) not self.mylist[self.maxFreq].append(val) because we need to have all frequencies as keys!
+
+
+    def pop(self) -> int:
+        first = self.mylist[self.maxFreq].pop() 
+        self.freq[first] -= 1
+        if not self.mylist[self.maxFreq]:
+            self.maxFreq -= 1
+        return first
