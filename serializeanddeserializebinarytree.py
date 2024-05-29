@@ -443,4 +443,41 @@ class Codec:
             return root
         return f()
 
-            
+
+#5/29/24 (missed):
+
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Codec:
+    def serialize(self, root): # Serialize the binary tree into a string
+        res = []
+        def f(root):
+            if not root:
+                res.append("N")
+                return
+            res.append(str(root.val))
+            l = f(root.left)
+            r = f(root.right)
+        f(root) #do not forget the call to start the recursion!
+        return ",".join(res)
+        
+
+    def deserialize(self, data: str):  # Deserialize the string into a binary tree
+        vals = data.split(",")
+        self.i = 0
+        def f():
+            if vals[self.i] == "N":
+                self.i += 1
+                return None
+            node = TreeNode(vals[self.i])
+            self.i += 1
+            node.left = f()
+            node.right = f()
+            return node
+        return f()
+        
