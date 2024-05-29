@@ -141,3 +141,20 @@ class Solution:
             if number == result:
                 result += 1
         return result
+
+#5/28/24 review (my own solution):
+
+class Solution(object):
+    def firstMissingPositive(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        res = 1
+        nums.sort()
+        for n in nums:
+            if res == n:
+                res += 1
+            else:
+                continue
+        return res
