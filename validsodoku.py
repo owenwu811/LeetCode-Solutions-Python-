@@ -40,4 +40,14 @@ class Solution:
 #Bottom-middle 3x3 sub-grid: (2, 1)
 #Bottom-right 3x3 sub-grid: (2, 2)
 
+#5/29/24 review:
+
+class Solution:
+    def isValidSudoku(self, board: List[List[str]]) -> bool:
+        res = []
+        for r in range(9):
+            for c in range(9):
+                if board[r][c] != ".":
+                    res += [(r, board[r][c]), (board[r][c], c), (r // 3, c // 3, board[r][c])]
+        return len(res) == len(set(res))
 
