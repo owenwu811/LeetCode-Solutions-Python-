@@ -39,7 +39,7 @@ class Solution:
         inputlen = len(s)
         dp = [0] * (inputlen + 1)
         # Base cases
-        dp[0] = 1  # There's one way to decode an empty string
+        dp[0] = 1  # There's one way to decode an empty string, and we know there's no leading 0 at this point of the other single digit like 6 now instead of 06 
         dp[1] = 1  # There's one way to decode a non-'0' single character string
         # we start at 2 because base cases for 0 and 1 have already been handled, and we process string starting from 2nd character onwards
         for i in range(2, inputlen + 1):
