@@ -30,6 +30,8 @@
 #Output: 0
 #Explanation: "06" cannot be mapped to "F" because of the leading zero ("6" is different from "06").
 
+#python3 solution:
+
 class Solution:
     def numDecodings(self, s: str) -> int:
         # Edge case: empty string or starts with '0' cannot be decoded
