@@ -8,3 +8,10 @@
 class Solution:
     def hammingWeight(self, n: int) -> int:
         return bin(n).count('1')
+
+
+#5/30/24 review:
+
+class Solution:
+    def hammingWeight(self, n: int) -> int:
+        return bin(n).count('1')
