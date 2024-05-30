@@ -35,7 +35,7 @@
 class Solution:
     def numDecodings(self, s: str) -> int:
         # Edge case: empty string or starts with '0' cannot be decoded
-        if not s or s[0] == '0': return 0
+        if not s or s[0] == '0': return 0 #without this line, s = "06" test case fails because we want to return 0 for s = "06", not 1, which we would return 1 without this line
         inputlen = len(s)
         dp = [0] * (inputlen + 1)
         # Base cases
