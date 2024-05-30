@@ -74,3 +74,18 @@ class Solution:
         # Step 4: Reverse the suffix to get the next permutation
         nums[bPoint + 1:] = reversed(nums[bPoint + 1:])
 
+#5/30/24 review:
+
+class Solution:
+    def nextPermutation(self, nums: List[int]) -> None:
+        bpoint, n = -1, len(nums)
+        for i in range(n - 2, -1, -1):
+            if nums[i] >= nums[i + 1]:
+                continue
+            bpoint = i
+            for j in range(n - 1, i, -1):
+                if nums[j] > nums[bpoint]:
+                    nums[bpoint], nums[j] = nums[j], nums[bpoint]
+                    break
+            break
+        nums[bpoint + 1:] = reversed(nums[bpoint + 1:])
