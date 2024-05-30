@@ -66,7 +66,7 @@ class Solution:
 #r = 1, c = 0
 #matrix[1][0] is equal to 1, not 0, so go back to  for c in range(len(matrix[0])):
 #r = 1, c = 1
-#matrix[1][1] is equal to 0 - false - so go back to for i in range(cols):
+#matrix[1][1] is equal to 0 - TRUE - so continue to for i in range(cols):
 
 #r = 1, i = 0 inside of for i in range(cols):
 #matrix[1][0] != 0 is True - so set the cell to a "*":
