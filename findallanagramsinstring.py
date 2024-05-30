@@ -199,3 +199,15 @@ class Solution:
             if cur == key:
                 res.append(i)
         return res
+        
+#5/30/24 review:
+
+class Solution:
+    def findAnagrams(self, s: str, p: str) -> List[int]:
+        res = []
+        key = sorted(p)
+        for i in range(len(s) - len(p) + 1):
+            cur = sorted(s[i: i + len(p)])
+            if cur == key:
+                res.append(i)
+        return res
