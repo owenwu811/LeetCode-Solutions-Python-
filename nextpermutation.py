@@ -89,3 +89,21 @@ class Solution:
                     break
             break
         nums[bpoint + 1:] = reversed(nums[bpoint + 1:])
+
+#5/30/24 review (missed in afternoon):
+
+class Solution:
+    def nextPermutation(self, nums: List[int]) -> None:
+        #14587 = test case
+        bpoint, inputlen = -1, len(nums) #inputlen = 5
+        for i in range(inputlen - 2, -1, -1):
+            if nums[i] >= nums[i + 1]: #nums[3] >= nums[4] > 14587
+                continue
+            bpoint = i #2
+            for j in range(inputlen - 1, i, -1):
+                if nums[j] > nums[bpoint]: #inputlen = 5, so j starts at 4, so nums[4] > nums[2] - 7 > 5 - Yes
+                    nums[j], nums[bpoint] = nums[bpoint], nums[j] #14587 becomes 14785
+                    break
+            break
+        #14785
+        nums[bpoint + 1:] = reversed(nums[bpoint + 1:]) #14785 becomes 14758
