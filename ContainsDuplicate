@@ -87,5 +87,11 @@ class Solution:
         if len(nums) != len(set(nums)):
             return True
         return False
-        
-        
+
+
+#5/30/24 review:
+
+class Solution:
+    def containsDuplicate(self, nums: List[int]) -> bool:
+        if len(set(nums)) == len(nums): return False
+        return True
