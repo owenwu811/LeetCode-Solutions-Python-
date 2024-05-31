@@ -218,16 +218,16 @@ class RandomizedSet:
         return False
 
     def remove(self, val: int) -> bool:
-        #[1, 2] - remove 1
-        #[2, 2]
-        #[2]
-        #{2:0}
-        #del {1: 0}
+        #[1, 2] - goal is to remove 1, so we first need to get the value 2 from the rear of the list, and then we need to get the index in the LIST we want to insert this 2 value at
+        #[2, 2] - insert 2 at index 0 in the list
+        #[2] - pop from end of list
+        #{2:0} - set 2 to the new index of 0 in the dictionary
+        #del {1: 0} - delete old key, value pair of 1 at index 0 in the dictionary
         #we want to set 2 to 1s index and then remove 1 from the list and also the dictionary
         if val in self.d:
             rear = self.mylist[-1]
             insertat = self.d[val]
-            self.mylist[insertat] = rear #we need to insert 1 at index 0 in the list! so self.mylist[0] = 1
+            self.mylist[insertat] = rear #we need to insert 2 at index 0 in the list! so self.mylist[0] = 2
             self.mylist.pop()
             self.d[rear] = insertat
             del self.d[val]
