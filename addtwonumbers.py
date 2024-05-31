@@ -123,7 +123,7 @@ class Solution:
             val = l1val + l2val + carry
             carry = val // 10 #7 // 10 = 0.7 > round down to get 0
             val = val % 10 #7 % 10 = 7
-            cur.next = ListNode(val) #ListNode(7)
+            cur.next = ListNode(val) #ListNode(7) - we need ListNode wrapped around val or else none type has no attribute next error!
             cur = cur.next
             l1 = l1.next if l1 else None
             l2 = l2.next if l2 else None
