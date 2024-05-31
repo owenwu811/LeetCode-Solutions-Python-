@@ -18,3 +18,13 @@ class Solution:
             cnt = bin(i).count('1')
             res.append(cnt)
         return res
+
+#5/31/24 review (missed yesterday):
+
+class Solution:
+    def countBits(self, n: int) -> List[int]:
+        res = []
+        for i in range(n + 1):
+            cnt = bin(i).count('1')
+            res.append(cnt)
+        return res
