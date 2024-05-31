@@ -107,3 +107,19 @@ class Solution:
             break
         #14785
         nums[bpoint + 1:] = reversed(nums[bpoint + 1:]) #14785 becomes 14758
+
+#5/31/24 review morning of:
+
+class Solution:
+    def nextPermutation(self, nums: List[int]) -> None:
+        bpoint, inputlen = -1, len(nums)
+        for i in range(inputlen - 2, -1, -1):
+            if nums[i] >= nums[i + 1]:
+                continue
+            bpoint = i
+            for j in range(inputlen - 1, i, -1):
+                if nums[j] > nums[bpoint]:
+                    nums[bpoint], nums[j] = nums[j], nums[bpoint]
+                    break
+            break
+        nums[bpoint + 1:] = reversed(nums[bpoint + 1:])
