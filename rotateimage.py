@@ -194,3 +194,14 @@ class Solution:
         for i in range(n):
             matrix[i].reverse()
 
+#5/31/24 review:
+
+class Solution:
+    def rotate(self, matrix: List[List[int]]) -> None:
+        inputlen = len(matrix)
+        for r in range(inputlen):
+            for c in range(r, inputlen):
+                matrix[r][c], matrix[c][r] = matrix[c][r], matrix[r][c]
+        for i in range(inputlen):
+            matrix[i].reverse()
+        
