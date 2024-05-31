@@ -305,25 +305,30 @@ class Solution:
 
 class Solution:
     def findMedianSortedArrays(self, nums1, nums2):
+        #nums1 = [1, 3], nums2 = [2]
         a, b = nums1, nums2
-        total = len(nums1) + len(nums2)
-        totalhalf = total // 2
-        if len(b) < len(a):
+        total = len(nums1) + len(nums2) #3
+        totalhalf = total // 2 #1
+        if len(b) < len(a): #[2] is shorter than [1, 3], so swap 
             a, b = b, a
-        l, r = 0, len(a) - 1
+        #now, a = [2], and b = [1, 3]
+        l, r = 0, len(a) - 1 
         while True:
-            i = (l + r) // 2
-            j = totalhalf - i - 2
-            aleft = a[i] if i >= 0 else float('-inf')
-            aright = a[i + 1] if (i + 1) < len(a) else float('inf')
-            bleft = b[j] if j >= 0 else float('-inf')
-            bright = b[j + 1] if (j + 1) < len(b) else float('inf')
-            if aleft <= bright and bleft <= aright:
-                if total % 2 > 0:
-                    return min(aright, bright)
+            i = (l + r) // 2 #i = 0. 2nd iteration: (0 + -1) // 2 > -1, so i = -1
+            j = totalhalf - i - 2 #1 - 0 - 2 = -1, so j = -1. 2nd iteration: (1 - - 1 - 2) > 0, so j = 0
+            aleft = a[i] if i >= 0 else float('-inf') #a = [2], so a[0] = 2 since 0 >= 0. 2nd iteration: a[-1] means i >= 0 is False, so a = float('-inf')
+            aright = a[i + 1] if (i + 1) < len(a) else float('inf') #a = [2], so a[0 + 1] - a[1] is out of bounds, so float('inf'). 2nd iteration: a[-1 + 1] > a[0] = 2, so aright = 2
+            bleft = b[j] if j >= 0 else float('-inf') #b = [1, 3], so since -1 >= 0 is False, so float('-inf'). 2nd iteration: b[0] = 1, so bleft = 1
+            bright = b[j + 1] if (j + 1) < len(b) else float('inf') #b = [1, 3], so b[-1 + 1] = b[0], so (0 + 1) < 2, so b[0] > 1, so bright = 1. 2nd iteration: b[1] = 3, so bright = 3
+            if aleft <= bright and bleft <= aright: #so aleft (2) <= bright (1) is already False, so we haven't found perfect partition point, so go to elif. 2nd iteration: since aleft (-infinity) <= bright(3) and bleft(1) <= aright(2) is True, we go to inner if block
+                if total % 2 > 0: #3 % 2 == 1, so 1 > 0 is True, so execute inner block since total length is of odd number (3)
+                    return min(aright, bright) #return min(2, 3) since aright = 2 and bright = 3, so the result is median = 2. note that aleft = -infinity and bleft = 1, and max of these two would not be the median of [2] and [1, 3] sorted arrays! so it would fail the nums1 = [1, 3], nums2 = [2] test case!
                 return (min(aright, bright) + max(aleft, bleft)) / 2
-            elif aleft > bright:
+            elif aleft > bright: #aleft(2) > bright(1) - True, so r = 0 - 1, so r = -1, and we go back to while True
                 r = i - 1
             else:
                 l = i + 1
+
+       #a = [2] aleft = 2, aright = float('inf')
+       #b = [1, 3] bleft = float('-inf'), bright = 1
 
