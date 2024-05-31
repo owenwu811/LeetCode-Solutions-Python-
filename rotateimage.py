@@ -199,9 +199,11 @@ class Solution:
 class Solution:
     def rotate(self, matrix: List[List[int]]) -> None:
         inputlen = len(matrix)
-        for r in range(inputlen):
+        for r in range(inputlen): #note that just doing for r in range(len(matrix)); and for c in range(len(matrix[0])) would give you [[3,2,1],[6,5,4],[9,8,7]] instead of [[7,4,1],[8,5,2],[9,6,3]], so we want a rotation, not a reversal 
             for c in range(r, inputlen):
                 matrix[r][c], matrix[c][r] = matrix[c][r], matrix[r][c]
         for i in range(inputlen):
             matrix[i].reverse()
+
+
         
