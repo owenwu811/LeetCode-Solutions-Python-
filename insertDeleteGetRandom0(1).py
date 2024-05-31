@@ -226,7 +226,7 @@ class RandomizedSet:
         #we want to set 2 to 1s index and then remove 1 from the list and also the dictionary
         if val in self.d:
             rear = self.mylist[-1]
-            insertat = self.d[val]
+            insertat = self.d[val] #this is the act of copying 2 from index 1 to index 0, so we need to get the 0 index from 1 key so we can use that 0 index to insert 2 at in our list
             self.mylist[insertat] = rear #we need to insert 2 at index 0 in the list! so self.mylist[0] = 2
             self.mylist.pop()
             self.d[rear] = insertat
