@@ -113,3 +113,10 @@ class Solution:
         return s[2:]
 
 #note that print(type(bin(2))) > gives you a type of class str, so binary is a string
+
+#5/31/24 review:
+
+class Solution:
+    def addBinary(self, a: str, b: str) -> str:
+        res = bin(int(a, 2) + int(b, 2))
+        return res[2:]
