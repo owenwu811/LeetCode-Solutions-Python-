@@ -14,7 +14,7 @@ class Solution:
         sidelength = 0
         dp = [[0] * n for _ in range(m)]
         for r in range(m):
-            for c in range(n):
+            for c in range(n): #sidelength = max(sidelength, dp[r][c]) line comes back here, so column increments meaning ROW STAYS SAME WHILE WE MOVE RIGHT BY ONE CELL
                 if matrix[r][c] == "1":
                     #if r == 0 or c == 0 because rectangles do not count as squares!
                     #if r == 0 or c == 0 is FALSE, we go to the else block because we know we can actually form an entire square bigger than 1
