@@ -8,6 +8,8 @@
 
 #this solution involves dynamic programming
 
+#(i, j) will be the bottom right corner of the square 
+
 class Solution:
     def maximalSquare(self, matrix: List[List[str]]) -> int:
         m, n = len(matrix), len(matrix[0])
