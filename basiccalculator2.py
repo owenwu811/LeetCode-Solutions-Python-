@@ -157,3 +157,27 @@ class Solution:
                 number = 0
         #in the end, since stack = [3, 4], sum(stack) = 7 for s = "3+2*2"
         return sum(stack)
+
+#6/1/24 (missed):
+
+class Solution:
+    def calculate(self, s: str) -> int:
+        #"3+2*2"
+        currentn, sign, stack = 0, "+", []
+        for i, char in enumerate(s):
+            if char.isdigit():
+                currentn = currentn * 10 + int(char)
+            if char in "+-/*" or i >= len(s) - 1: #i >= len(s) - 1 True will trigger this when we reach the last 2 in "3+2*2", so DON'T FORGET - 1 BECAUSE I IS AN INDEX
+                if sign == "+":
+                    stack.append(currentn) #[3] becomes [3, 2]
+                elif sign == "-":
+                    stack.append(-currentn)
+                elif sign == "*":
+                    val = stack.pop() * currentn #[3, 2] 
+                    stack.append(val) #[3, 4]
+                elif sign == "/":
+                    val = int(stack.pop() / currentn)
+                    stack.append(val)
+                sign = char #goes from + to * to 2 (last one triggered by i >= len(s) - 1)
+                currentn = 0
+        return sum(stack) #sum([3, 4]) = 7
