@@ -828,3 +828,36 @@ class LRUCache:
             else:
                 self.d[key] = value
                 self.pagefaultcount += 1
+
+
+#6/1/24 review: (my own solution):
+
+class LRUCache:
+    def __init__(self, capacity: int):
+        self.d = dict()
+        self.pagefaultcount = 0
+        self.cap = capacity
+        
+
+    def get(self, key: int) -> int:
+        if key not in self.d:
+            return -1
+        else:
+            result = self.d[key]
+            del self.d[key]
+            self.d[key] = result
+            return result
+
+    def put(self, key: int, value: int) -> None:
+        if key in self.d:
+            del self.d[key]
+            self.d[key] = value
+        else:
+            if len(self.d) >= self.cap:
+                remove = next(iter(self.d))
+                self.d.pop(remove)
+                self.d[key] = value
+            else:
+                self.d[key] = value
+                self.pagefaultcount += 1
+ 
