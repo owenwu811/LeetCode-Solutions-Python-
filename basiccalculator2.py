@@ -152,6 +152,6 @@ class Solution:
                 elif sign == "/":
                     val = int(stack.pop() / number)
                     stack.append(val)
-                sign = j
+                sign = j #we need this line because, when the for loop reaches * in "3+2*2", sign is still "+", so we append number, and stack = [3, 2], and then we set sign = "*". when for loop reaches final 2, stack = [3, 2], so stack.pop() = 2, and number = 2, so val = 2 * 2 = 4, so stack goes from [3, 2] to [3, 4] - NOTE THAT IN THE FINAL ITERATION, THE BLOCK ONLY EXECUTES BECAUSE I == LEN(S) - 1 IS TRUE!, SO SIGN IS ACTUALLY FINALLY SET TO "2"
                 number = 0
         return sum(stack)
