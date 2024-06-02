@@ -47,4 +47,24 @@ class Solution:
   #if we add cur.append(root.val) and pathsum += root.val after if pathsum == targetSum and not root.left and not root.right: res.append(cur.copy()) instead of before means the pathsum and cur WILL NOT INCLUDE THE CURRENT NODE'S VALUE WHEN PERFORMING THE CHECK. YOU WON'T BE CONSIDERING THE CURRENT NODE'S VALUE WHEN PERFORMING THE CHECK. INSTEAD, THE CHECK WILL BE BASED ON THE PATH SUM AND PATH UP TO THE PARENT OF THE CURRENT NODE (ONE LEVEL ABOVE), LEADING TO INCORRECT RESULTS
   #for example, when we reach a node, say, 4, pathsum would incorrectly be 5 instead of 9 if we added those two lines before instead of after 
 
-  
+  #6/2/24 review:
+
+class Solution:
+    def pathSum(self, root: Optional[TreeNode], targetSum: int) -> List[List[int]]:
+        #root to leaf paths only - starting from root and ending at leaf node only
+        res = []
+        def f(root, cur, pathsum):
+            if not root:
+                return
+            cur.append(root.val)
+            pathsum += root.val
+            if pathsum == targetSum and not root.left and not root.right:
+                res.append(cur.copy())
+            f(root.left, cur, pathsum)
+            f(root.right, cur, pathsum)
+            cur.pop()
+
+        f(root, [], 0)
+        return res
+            
+
