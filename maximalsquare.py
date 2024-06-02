@@ -65,3 +65,21 @@ class Solution:
                     sidelength = max(sidelength, dp[r][c])
 
         return sidelength * sidelength
+
+#6/2/24 review:
+
+class Solution:
+    def maximalSquare(self, matrix: List[List[str]]) -> int:
+        inputlen = len(matrix)
+        m, n = len(matrix), len(matrix[0])
+        dp = [[0] * n for _ in range(m)]
+        sidelength = 0
+        for i in range(m):
+            for j in range(n):
+                if matrix[i][j] == "1":
+                    if i == 0 or j == 0:
+                        dp[i][j] = 1
+                    else:
+                        dp[i][j] = min(dp[i - 1][j], dp[i][j - 1], dp[i - 1][j - 1]) + 1
+                    sidelength = max(sidelength, dp[i][j])
+        return sidelength * sidelength
