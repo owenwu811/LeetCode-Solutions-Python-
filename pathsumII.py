@@ -27,6 +27,7 @@ class Solution:
         res = []
         def f(root, cur, pathsum):
             if not root:
+                #if you do return None instead of return, it will work too!
                 return #goes to next line (if 9 returns here (return is equivalent to returning None, then execute line 10. if line 10 executes return here, then execute line 11)
             cur.append(root.val)
             pathsum += root.val
