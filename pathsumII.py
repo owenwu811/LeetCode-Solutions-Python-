@@ -31,7 +31,7 @@ class Solution:
                 return #goes to next line (if 9 returns here (return is equivalent to returning None, then execute line 10. if line 10 executes return here, then execute line 11)
             cur.append(root.val)
             pathsum += root.val
-            if pathsum == targetSum and not root.left and not root.right:
+            if pathsum == targetSum and not root.left and not root.right: #A root-to-leaf path is a path starting from the root and ending at any leaf node. A leaf is a node with no children. - explicitly stated in the problem. The condition and not root.left and not root.right checks whether the current node is a leaf node. A leaf node is defined as a node with no left or right children. This is important because the problem typically requires finding root-to-leaf paths that sum to the target value, not just any paths that sum to the target.
                 res.append(cur.copy())
             f(root.left, cur, pathsum) #say this is line 9
             f(root.right, cur, pathsum) #say this is line 10
