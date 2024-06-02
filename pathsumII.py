@@ -17,18 +17,23 @@
 
 #python3 solution:
 
+#before we backtrack, we must do extra checks aka recursive calls to ensure the leaf node's left and right children are None:
+
+#   7
+# N   N         ---- have to make sure both make "if not root" True and return
+
 class Solution:
     def pathSum(self, root: Optional[TreeNode], targetSum: int) -> List[List[int]]:
         res = []
         def f(root, cur, pathsum):
             if not root:
-                return 
+                return #goes to next line (if 9 returns here (return is equivalent to returning None, then execute line 10. if line 10 executes return here, then execute line 11)
             cur.append(root.val)
             pathsum += root.val
             if pathsum == targetSum and not root.left and not root.right:
                 res.append(cur.copy())
-            f(root.left, cur, pathsum)
-            f(root.right, cur, pathsum)
+            f(root.left, cur, pathsum) #say this is line 9
+            f(root.right, cur, pathsum) #say this is line 10
             cur.pop() #[5, 4, 11, 7] aka pathsum = 27 > [5, 4, 11] aka pathsum = 20, so cur.pop() AUTUOMATICALLY REDUCES THE PATHSUM WITHOUT HAVING TO DO ANYTHING ELSE
         f(root, [], 0)
         return res
