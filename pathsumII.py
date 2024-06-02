@@ -20,7 +20,7 @@
 #before we backtrack, we must do extra checks aka recursive calls to ensure the leaf node's left and right children are None:
 
 #   7
-# N   N         ---- have to make sure both make "if not root" True and return
+# N   N         ---- have to make sure both l and r children cause recursive calls that cause "if not root" to be True and return None
 
 class Solution:
     def pathSum(self, root: Optional[TreeNode], targetSum: int) -> List[List[int]]:
