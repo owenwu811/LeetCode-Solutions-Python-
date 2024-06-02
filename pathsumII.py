@@ -14,6 +14,8 @@
 #             11      13  4
 #           7    2       5  1
 
+#note that, even though 5 + 8 + 13 = 22, this is not valid because A PATH STARTS FROM THE ROOT AND ENDS AT ANY LEAF NODE, HENCE THE CHECK if pathsum == targetSum and not root.left and not root.right:
+
 
 #python3 solution:
 
