@@ -104,11 +104,11 @@ class Solution:
         self.res = 0
         def dfs(root, current_sum):
             if not root: #cannot change current_sum, so go to left subtree of traverse to start a new pathsum there with dfs(root, 0) inside of the traverse function after traverse(root.left) is called
-                return 
+                return #eventually, we will get here, so that's why nothing is needed after dfs(root.right, current_sum)?
             current_sum += root.val
             if current_sum == targetSum:
                 self.res += 1
-            dfs(root.left, current_sum)
+            dfs(root.left, current_sum) #notice we aren't resetting the current_sum just because it exceeds targetSum like you did in your incorrect solution - just letting it propogate down
             dfs(root.right, current_sum)
         def traverse(root):
             if not root:
