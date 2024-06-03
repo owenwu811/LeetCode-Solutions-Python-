@@ -59,6 +59,7 @@ class Solution:
             cur.append(root.val)
             pathsum += root.val
             if pathsum == targetSum and not root.left and not root.right:
+                #you use .copy() in backtracking scenarios!
                 res.append(cur.copy()) #without cur.copy(), if you just use cur, you get [][] instead of [[5,4,11,2],[5,8,4,5]] for root = [5,4,8,11,null,13,4,7,2,null,null,5,1], targetSum = 22 because you would be deleting and modifying THE SAME OBJECT INSIDE OF SELF.RES IN THE FUTURE THUS OVERRIDING AND ERASING WHAT WAS IN SELF.RES BEFORE!
             f(root.left, cur, pathsum)
             f(root.right, cur, pathsum)
