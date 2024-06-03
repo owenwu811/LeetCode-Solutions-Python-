@@ -59,12 +59,16 @@ class Solution:
             cur.append(root.val)
             pathsum += root.val
             if pathsum == targetSum and not root.left and not root.right:
-                res.append(cur.copy())
+                res.append(cur.copy()) #without cur.copy(), if you just use cur, you get [][] instead of [[5,4,11,2],[5,8,4,5]] for root = [5,4,8,11,null,13,4,7,2,null,null,5,1], targetSum = 22 because you would be deleting and modifying THE SAME OBJECT INSIDE OF SELF.RES IN THE FUTURE THUS OVERRIDING AND ERASING WHAT WAS IN SELF.RES BEFORE!
             f(root.left, cur, pathsum)
             f(root.right, cur, pathsum)
             cur.pop()
 
         f(root, [], 0)
         return res
-            
+
+
+#When you append cur to self.res without using cur.copy(), you are appending a reference to the same list object that cur points to. This means that any subsequent changes to cur (like appending or popping elements) will also affect the list inside self.res because both cur and the list inside self.res are referencing the same object.
+
+#missed on 6/3/24
 
