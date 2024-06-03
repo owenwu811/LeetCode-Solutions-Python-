@@ -72,5 +72,24 @@ class Solution:
 
 #When you append cur to self.res without using cur.copy(), you are appending a reference to the same list object that cur points to. This means that any subsequent changes to cur (like appending or popping elements) will also affect the list inside self.res because both cur and the list inside self.res are referencing the same object.
 
-#missed on 6/3/24
+#missed on 6/3/24:
+
+
+#practice again on 6/3/24:
+
+class Solution:
+    def pathSum(self, root: Optional[TreeNode], targetSum: int) -> List[List[int]]:
+        self.res = []
+        def f(root, cur, pathsum):
+            if not root:
+                return
+            cur.append(root.val)
+            pathsum += root.val
+            if pathsum == targetSum and not root.left and not root.right:
+                self.res.append(cur.copy())
+            f(root.left, cur, pathsum)
+            f(root.right, cur, pathsum)
+            cur.pop() #this auto takes care of the reduction of pathsum instead of us having to reset pathsum to 0
+        f(root, [], 0)
+        return self.res
 
