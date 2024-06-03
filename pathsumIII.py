@@ -86,7 +86,7 @@ class Solution:
 
 #why the new solution works:
 
-Why This Solution Works:
+#Why This Solution Works:
 
 #New Paths from Each Node: The traverse function ensures that a new path sum calculation (dfs) starts from every node in the tree. This means paths starting from any node, not just the root, are considered.
 
@@ -95,6 +95,29 @@ Why This Solution Works:
 #Recursive Check for All Nodes: By recursively calling dfs and traverse, this solution checks all possible paths starting from each node, ensuring all potential paths are considered.
 
 
+#practice again:
+
+class Solution:
+    def pathSum(self, root: Optional[TreeNode], targetSum: int) -> int:
+        #we need to consider an empty path from each and every node in the tree due to description that path does not need to start or end at the root or leaf
+        #do not reset pathsum to 0 just because it's negative because future pathsums could make it exactly equal to targetsum
+        self.res = 0
+        def dfs(root, current_sum):
+            if not root: #cannot change current_sum, so go to left subtree of traverse to start a new pathsum there with dfs(root, 0) inside of the traverse function after traverse(root.left) is called
+                return 
+            current_sum += root.val
+            if current_sum == targetSum:
+                self.res += 1
+            dfs(root.left, current_sum)
+            dfs(root.right, current_sum)
+        def traverse(root):
+            if not root:
+                return
+            dfs(root, 0)
+            traverse(root.left)
+            traverse(root.right)
+        traverse(root)
+        return self.res
 
 
 
