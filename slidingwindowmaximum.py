@@ -268,3 +268,22 @@ class Solution:
                 res.append(nums[d[0]])
                 l += 1
         return res
+
+#6/3/24 review:
+
+class Solution:
+   def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
+        #monotonically decreasing queue
+        res = []
+        d = deque()
+        l = 0
+        for r in range(len(nums)):
+            while d and nums[r] > nums[d[-1]]:
+                d.pop()
+            d.append(r)
+            if l > d[0]:
+                d.popleft()
+            if (r + 1) >= k:
+                res.append(nums[d[0]])
+                l += 1
+        return res
