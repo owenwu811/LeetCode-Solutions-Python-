@@ -104,7 +104,7 @@ class Solution:
         self.res = 0
         def dfs(root, current_sum):
             if not root: #cannot change current_sum, so go to left subtree of traverse to start a new pathsum there with dfs(root, 0) inside of the traverse function after traverse(root.left) is called
-                return #eventually, we will get here, so that's why nothing is needed after dfs(root.right, current_sum)?
+                return #eventually, we will get here, so that's why nothing is needed after dfs(root.right, current_sum). marks branch of tree and prevents infinite recursion
             current_sum += root.val
             if current_sum == targetSum:
                 self.res += 1
