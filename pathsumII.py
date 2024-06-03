@@ -68,6 +68,7 @@ class Solution:
         f(root, [], 0)
         return res
 
+#the reason we are clearing the list is specifically because of cur.pop()? and when we do cur.pop() without appending cur.copy(), we are also, indirectly, popping from self.res because it's all just one object being changed aka popped!
 
 #When you append cur to self.res without using cur.copy(), you are appending a reference to the same list object that cur points to. This means that any subsequent changes to cur (like appending or popping elements) will also affect the list inside self.res because both cur and the list inside self.res are referencing the same object.
 
