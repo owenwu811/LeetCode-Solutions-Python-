@@ -384,3 +384,21 @@ class Solution:
         res = []
         f(0, [])
         return res
+
+#6/3/24 review:
+
+
+class Solution:
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+        def f(i, cur):
+            if i >= len(nums):
+                self.res.append(cur.copy())
+                return
+            cur.append(nums[i])
+            f(i + 1, cur)
+            cur.pop()
+            f(i + 1, cur)
+
+        self.res = []
+        f(0, [])
+        return self.res
