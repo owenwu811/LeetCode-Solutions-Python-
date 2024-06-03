@@ -119,5 +119,26 @@ class Solution:
         traverse(root)
         return self.res
 
+#6/3/24 review:
 
+class Solution:
+    def pathSum(self, root: Optional[TreeNode], targetSum: int) -> int:
+        self.res = 0
+        def f(root, pathsum):
+            if not root:
+                return
+            pathsum += root.val
+            if pathsum == targetSum:
+                self.res += 1
+            f(root.left, pathsum)
+            f(root.right, pathsum)
+        def traverse(root):
+            if not root:
+                return
+            f(root, 0)
+            traverse(root.left)
+            traverse(root.right)
+        
+        traverse(root)
+        return self.res
 
