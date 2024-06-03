@@ -66,8 +66,7 @@ class Solution:
                 return
             # start a new path from the current node
             dfs(node, 0)
-            # traverse left and right children
-            traverse(node.left)
+            traverse(node.left) #traverse(node.left) and traverse(node.right) are just starting a new path sum calculation from the left and right children
             traverse(node.right)
         
         traverse(root)
