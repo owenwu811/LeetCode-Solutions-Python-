@@ -93,3 +93,23 @@ class Solution:
         f(root, [], 0)
         return self.res
 
+#6/4/24 review:
+
+class Solution:
+    def pathSum(self, root: Optional[TreeNode], targetSum: int) -> List[List[int]]:
+        self.res = []
+        def f(root, pathsum, cur):
+            if not root:
+                return
+            cur.append(root.val)
+            pathsum += root.val
+            if pathsum == targetSum and not root.left and not root.right:
+                self.res.append(cur.copy())
+            f(root.left, pathsum, cur)
+            f(root.right, pathsum, cur)
+            cur.pop()
+
+        f(root, 0, [])
+        return self.res
+
+            
