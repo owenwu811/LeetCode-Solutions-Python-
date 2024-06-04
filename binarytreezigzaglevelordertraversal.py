@@ -9,9 +9,41 @@
 #           9  20
 #            15  7
 
+#my incorrect solution that passed only 7/33 test cases, outputting [[3],[20,9],[15],[7]] instead of [[3],[20,9],[15,7]] as expected for test case root = [3,9,20,null,null,15,7]:
 
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def zigzagLevelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
+        res = []
+        d = deque()
+        d.append(root) #3
+        turn = 1
+        while d: #deque([9, 20])
+            turn += 1 #1, 2
+            level = []
+            for i in range(len(d)): #0, 0, 1
+                if turn % 2 == 0: #1 % 2 == 0 > False, 2 % 2 == 0 > True
+                    current = d.pop() #current = 20
+                    if current: #20
+                        level.append(current.val) #[] > [20]
+                        d.append(current.right) #deque([9]) > deque([9, 7])
+                        d.append(current.left) #deque([9, 7, 15])
+                elif turn % 2 != 0: #1 % 2 != 0 > True
+                    current = d.popleft() #current = 3
+                    if current: #3 is not None > True
+                        level.append(current.val) #[] > [3]
+                        d.append(current.right) #deque([9])
+                        d.append(current.left) #deque([9, 20])
+            if level:
+                res.append(level) #[] > [[3]]
+        return res
 
-#python3 solution:
+#correct python3 solution:
 
 #note that we start with from left to right direction as mentioned in the problem
 
