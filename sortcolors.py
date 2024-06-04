@@ -351,3 +351,23 @@ class Solution:
                 nums[l], nums[c] = nums[c], nums[l]
                 l += 1
                 c += 1
+
+#6/4/24 review:
+
+class Solution:
+    def sortColors(self, nums: List[int]) -> None:
+        """
+        Do not return anything, modify nums in-place instead.
+        """ 
+        l, r = 0, len(nums) - 1
+        c = 0
+        while c <= r:
+            if nums[c] == 2:
+                nums[r], nums[c] = nums[c], nums[r]
+                r -= 1
+            elif nums[c] == 1:
+                c += 1
+            else:
+                nums[l], nums[c] = nums[c], nums[l]
+                l += 1
+                c += 1
