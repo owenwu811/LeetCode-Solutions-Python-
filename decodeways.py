@@ -95,4 +95,21 @@ class Solution:
                 dp[i] += dp[i - 2]
         return dp[inputlen]
 
+#6/5/24 review:
+
+class Solution:
+    def numDecodings(self, s: str) -> int:
+        if not s or s[0] == "0": return 0
+        inputlen = len(s)
+        dp = [0] * (inputlen + 1)
+        dp[0] = 1
+        dp[1] = 1
+        for i in range(2, inputlen + 1):
+            single = int(s[i - 1:i])
+            if 1 <= single <= 10: 
+                dp[i] += dp[i - 1]
+            double = int(s[i - 2:i])
+            if 10 <= double <= 26:
+                dp[i] += dp[i - 2]
+        return dp[inputlen]
 
