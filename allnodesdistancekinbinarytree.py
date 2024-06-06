@@ -27,6 +27,7 @@ class Solution:
             if k == 0:
                 self.res.append(root.val)
                 return
+            #notice how we pass the current node in as prev in each turn this block executes!, so if 6's left child is not equal to prev, which starts at None, then we set prev = 6 now and continue down left!
             if root.left != prev: findk(root.left, k - 1, root) #This section of the code handles the recursive traversal in three directions: left child, right child, and parent. Let's go through it step by step:
             if root.right != prev: findk(root.right, k - 1, root)
             if root.parent != prev: findk(root.parent, k - 1, root)
