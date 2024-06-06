@@ -200,3 +200,40 @@ class Solution:
             res.append(level)
             turn += 1
         return res
+
+
+#6/6/24 review:
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def zigzagLevelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
+        res = []
+        d = deque()
+        d.append(root)
+        turn = 0
+        while d:
+            level = []
+            for i in range(len(d)): #0, 01
+                if turn % 2 == 0:
+                    current = d.popleft()
+                    if current:
+                        level.append(current.val)
+                        d.append(current.left)
+                        d.append(current.right)
+                elif turn % 2 != 0:
+                    current = d.pop()
+                    if current:
+                        level.append(current.val)
+                        d.appendleft(current.right)
+                        d.appendleft(current.left)
+                        #[9, 20]
+                        #[]
+            if level:
+                res.append(level)  
+            turn += 1
+        return res
