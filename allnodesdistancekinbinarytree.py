@@ -32,3 +32,6 @@ class Solution:
             if root.parent != prev: findk(root.parent, k - 1, root)
         findk(self.startp, k)
         return self.res
+
+#if root.left != prev: findk(root.left, k - 1, root) line:
+#If the left child of the current node (root) is not the same as the previous node (prev), it means we haven't just come from the left child. In this case, we recursively call getNodeAtKDistance with the left child as the new root, k-1 as the new distance, and the current node (root) as the new previous node. This effectively moves us one step closer to the target node along the left subtree.
