@@ -139,3 +139,13 @@ class Solution:
                 return False
             magazine = magazine.replace(char, "", 1)
         return True
+
+#6/5/24 review:
+
+class Solution:
+    def canConstruct(self, ransomNote: str, magazine: str) -> bool:
+        for char in ransomNote: #judge
+            if char not in magazine: #candidate
+                return False
+            magazine = magazine.replace(char, "", 1) #you don't delete characters from the judge. you cross the skill out form the candidate as he satsifies it
+        return True
