@@ -153,3 +153,16 @@ class Solution:
             n = n // 2
         return x * self.myPow(x, n - 1)
 
+#6/5/24 (my own solution in python3):
+
+class Solution:
+    def myPow(self, x: float, n: int) -> float:
+        if n == 0:
+            return 1
+        if n < 0:
+            x = 1 / x
+            n *= -1
+        elif n % 2 == 0:
+            x *= x
+            n //= 2
+        return x * self.myPow(x, n - 1)
