@@ -18,6 +18,7 @@ class Solution:
             if root == target:
                 self.startp = root
             root.parent = prev
+            #notice how we also pass root as prev in each iteration here, so prev changes to become the parent in each recursive call!
             connectparent(root.left, root)
             connectparent(root.right, root)
         connectparent(root)
