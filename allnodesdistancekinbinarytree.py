@@ -37,3 +37,31 @@ class Solution:
 
 #if root.left != prev: findk(root.left, k - 1, root) line:
 #If the left child of the current node (root) is not the same as the previous node (prev), it means we haven't just come from the left child. In this case, we recursively call getNodeAtKDistance with the left child as the new root, k-1 as the new distance, and the current node (root) as the new previous node. This effectively moves us one step closer to the target node along the left subtree.
+
+
+#practice again:
+
+class Solution:
+    def distanceK(self, root: TreeNode, target: TreeNode, k: int) -> List[int]:
+        self.startp = None
+        self.res = []
+        def findparent(root, prev=None):
+            if not root: return
+            if root == target: #target is a NODE here, so we don't have to use .val
+                self.startp = root
+            root.parent = prev #setting parent attribute of root to prev, which starts with none and will be modified in subsequent iterations
+            findparent(root.left, root)
+            findparent(root.right, root)
+        findparent(root, None)
+        def distancek(root, k, prev=None):
+            if not root: return
+            if k == 0:
+                self.res.append(root.val)
+                return
+            #prev=None first but will become root as soon as inner block executes
+            #we have to explore all directions
+            if root.left != prev: distancek(root.left, k - 1, root)
+            if root.right != prev: distancek(root.right, k - 1, root)
+            if root.parent != prev: distancek(root.parent, k - 1, root)
+        distancek(self.startp, k, None) #we found our target node, so we do a bfs starting from it
+        return self.res
