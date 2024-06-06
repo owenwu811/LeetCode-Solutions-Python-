@@ -172,3 +172,15 @@ class Solution:
                 amount, res = 0, i + 1
         return res
 
+#6/5/24 review:
+
+class Solution:
+    def canCompleteCircuit(self, gas: List[int], cost: List[int]) -> int:
+        if sum(gas) < sum(cost): return -1
+        startinggastankamount = 0
+        res = 0
+        for i in range(len(gas)):
+            startinggastankamount += (gas[i] - cost[i])
+            if startinggastankamount < 0:
+                startinggastankamount, res = 0, i + 1
+        return res
