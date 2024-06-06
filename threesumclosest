@@ -390,3 +390,33 @@ class Solution:
                     third -= 1
         return res
   
+#6/5/24 review:
+
+class Solution:
+    import math
+    def threeSumClosest(self, nums: List[int], target: int) -> int:
+        res = 0
+        if not nums: return 0
+        nums.sort()
+        historical = float('inf')
+        #[-4, -1, 1, 2]
+        # f.   s.    t
+        for first in range(len(nums)): #first = 0
+            second = first + 1
+            third = len(nums) - 1
+            while second < third:
+                threesum = nums[first] + nums[second] + nums[third]
+                if threesum == target:
+                    res = threesum
+                #threesum = 1, abs(1 - 1) = abs(0) > 0, threesum = -1, abs(-1 - 1) > abs(-2) = 2
+                diff = abs(threesum - target)
+                if diff < historical:
+                    historical = diff
+                    res = threesum
+                elif threesum < target:
+                    second += 1
+                else:
+                    third -= 1
+        return res
+        #n (log n) + 0(n) because sorting takes log n time, and then we have to iterate through array, so that's another 0(n), so n (log n) + o(n) > 0(n)
+                
