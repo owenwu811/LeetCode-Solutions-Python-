@@ -66,6 +66,6 @@ class WordDictionary:
                     continue
                 if w[i] != word[i]: #".c" "cb"
                     break
-            else: #hasn't been broken yet aka the loop was allowed to finish all iterations
+            else: #hasn't been broken yet aka the loop was allowed to finish all iterations - The else clause in a for loop in Python has a special meaning. It is executed only if the loop completes all its iterations without encountering a break statement!!!!!!
                 return True
         return False
