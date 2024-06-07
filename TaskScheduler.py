@@ -271,3 +271,17 @@ class Solution:
             if l == maxval:
                 maxcnt += 1
         return max((maxval - 1) * (n + 1) + maxcnt, len(tasks))
+
+#6/7/24 review:
+
+class Solution:
+    def leastInterval(self, tasks: List[str], n: int) -> int:
+        res = [0] * 26
+        for letter in tasks:
+            res[ord(letter) - ord('A')] += 1
+        maxvalue, howmanymax = max(res), 0
+        for letters in res:
+            if letters == maxvalue:
+                howmanymax += 1
+        return max((maxvalue - 1) * (n + 1) + howmanymax, len(tasks))
+
