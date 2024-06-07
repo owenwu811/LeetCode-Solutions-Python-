@@ -65,3 +65,30 @@ class Solution:
             if root.parent != prev: distancek(root.parent, k - 1, root)
         distancek(self.startp, k, None) #we found our target node, so we do a bfs starting from it
         return self.res
+
+#6/7/24 review:
+
+class Solution:
+    def distanceK(self, root: TreeNode, target: TreeNode, k: int) -> List[int]:
+        self.startp = None
+        self.res = []
+        def f(root, prev=None):
+            if not root: 
+                return
+            if root == target:
+                self.startp = root
+            root.parent = prev
+            f(root.left, root)
+            f(root.right, root)
+        f(root)
+        def a(root, k, prev=None):
+            if not root: 
+                return
+            if k == 0:
+                self.res.append(root.val)
+                return
+            if root.left != prev: a(root.left, k - 1, root)
+            if root.right != prev: a(root.right, k - 1, root)
+            if root.parent != prev: a(root.parent, k - 1, root)
+        a(self.startp, k)
+        return self.res
