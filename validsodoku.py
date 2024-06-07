@@ -26,7 +26,9 @@ class Solution:
                     res += [(r, board[r][c]), (board[r][c], c), (r // 3, c // 3, board[r][c])]
         return len(res) == len(set(res)) # the entire tuple has to be duplicated? so (0, 1) vs (0, 2) dosen't count as a duplicate even though it's within the same 3x3 grid!
 
+IMPORTANT:
 
+#so the list [(rowduplicatecheck), (columnduplicatecheck), (3x3duplicatecheck)] basically says if even a single tuple is duplicate, then the entire problem is wrong, so if 3 dosen't appear in the same row but appears in the opposite corner of the 3x3 column, then the (3x3duplicatecheck) will be of one less length in the resulting set, causing the result to be false
 
 #In a standard 9x9 Sudoku board, there are nine 3x3 sub-grids, and they can be indexed as follows:
 
