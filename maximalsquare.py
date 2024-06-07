@@ -83,3 +83,22 @@ class Solution:
                         dp[i][j] = min(dp[i - 1][j], dp[i][j - 1], dp[i - 1][j - 1]) + 1
                     sidelength = max(sidelength, dp[i][j])
         return sidelength * sidelength
+
+#6/7/24 review (missed):
+
+class Solution:
+    def maximalSquare(self, matrix: List[List[str]]) -> int:
+        rows, cols = len(matrix), len(matrix[0])
+        sidelength = 0
+        dp = [[0] * cols for i in range(rows)]
+        for r in range(rows):
+            for c in range(cols):
+                if matrix[r][c] == "1":
+                    if r == 0 or c == 0:
+                        dp[r][c] = 1 #1 can't form a square that is bigger than 1 of size because we are on a border
+                    else:
+                        dp[r][c] = min(dp[r - 1][c], dp[r][c - 1], dp[r - 1][c - 1]) + 1
+                    sidelength = max(sidelength, dp[r][c])
+        return sidelength * sidelength
+
+
