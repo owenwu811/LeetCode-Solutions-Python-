@@ -192,6 +192,12 @@ class Solution:
         
 #6/7/24 review (solved but didn't quite understand the split part):
 
+
+#the actual result of the maxPathSum function can indeed be considered with the split.!
+
+#    1
+#   2 3
+
 # Definition for a binary tree node.
 # class TreeNode:
 #     def __init__(self, val=0, left=None, right=None):
@@ -208,9 +214,13 @@ class Solution:
             r = f(root.right)
             maxleft = max(0, l)
             maxright = max(0, r)
-            res[0] = max(res[0], root.val + maxleft + maxright)
-            return root.val + max(maxleft, maxright)
+            res[0] = max(res[0], root.val + maxleft + maxright) #1 + 2 + 3 = 6 (actual output)
+            return root.val + max(maxleft, maxright) #1 + max(2, 3) = 4
         f(root)
-        return res[0]
+        return res[0] #6
+
+
+#we need the line - return root.val + max(maxleft, maxright) - because this is because the maximum path sum of result also depends on having the values propagate up the tree to the root. 
+#another reason why we need: return root.val + max(maxleft, maxright) - Without this line, the parent node wouldn't receive information about the best possible path sum from either of its children, causing it to miss potential paths that could contribute to a higher global sum when combined with other nodes.
 
         
