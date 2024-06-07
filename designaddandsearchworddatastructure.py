@@ -40,3 +40,32 @@ class WordDictionary:
                 return True
         return False #we looked through all words in our list and couldn't find any matches even with ".", so return False
          
+
+#5/7/24 (missed):
+
+class WordDictionary:
+
+    def __init__(self):
+        self.lst = []
+        
+
+    def addWord(self, word: str) -> None:
+        self.lst.append(word)
+
+
+    def search(self, word: str) -> bool:
+        if "." not in word:
+            return word in self.lst
+        #we know "." is in word now, so like "ab." "abc" 
+        for w in self.lst:
+            if len(w) != len(word): #because "." can only match one character, so the length still needs to be the same between word = "ab." and w = "abc"
+                continue
+            #lengths match - "ab." "abc"
+            for i in range(len(word)):
+                if word[i] == ".": #".b" "cb"
+                    continue
+                if w[i] != word[i]: #".c" "cb"
+                    break
+            else: #hasn't been broken yet aka the loop was allowed to finish all iterations
+                return True
+        return False
