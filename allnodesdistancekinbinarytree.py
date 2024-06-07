@@ -89,6 +89,6 @@ class Solution:
                 return
             if root.left != prev: a(root.left, k - 1, root)
             if root.right != prev: a(root.right, k - 1, root)
-            if root.parent != prev: a(root.parent, k - 1, root)
+            if root.parent != prev: a(root.parent, k - 1, root) #if you put this line above if root.left != prev, it works too! we are exploring all directions regardless of which direction you want to explore first and then backtracking
         a(self.startp, k)
         return self.res
