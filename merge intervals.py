@@ -213,3 +213,18 @@ class Solution:
 
 
 #intervals = intervals.sort(key=lambda n:n[0]) = invalid, but intervals.sort(key=lambda n:n[0]) is valid! the first you get nontype object not subscriptable!
+
+
+#6/7/24 review:
+
+class Solution:
+    def merge(self, intervals: List[List[int]]) -> List[List[int]]:
+        intervals.sort()
+        res = [intervals[0]]
+        for first, second in intervals[1:]:
+            if first <= res[-1][1]:
+                res[-1][1] = max(second, res[-1][1])
+            else:
+                res.append([first, second])
+        return res
+
