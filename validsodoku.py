@@ -24,7 +24,7 @@ class Solution:
                     #(r // 3, c // 3) part determines index of 3x3 sub grid that a cell belongs to in a sodoku board. this is to ensure each digit appears no more than once within each of the 9 total 3x3 sub grids
 
                     res += [(r, board[r][c]), (board[r][c], c), (r // 3, c // 3, board[r][c])]
-        return len(res) == len(set(res))
+        return len(res) == len(set(res)) # the entire tuple has to be duplicated? so (0, 1) vs (0, 2) dosen't count as a duplicate even though it's within the same 3x3 grid!
 
 
 
