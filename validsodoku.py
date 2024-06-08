@@ -74,3 +74,14 @@ class Solution(object):
                 if board[r][c] != ".":
                     res += [(r, board[r][c]), (board[r][c], c), (r // 3, c // 3, board[r][c])]
         return len(res) == len(set(res))
+
+#6/8/24 review:
+
+class Solution(object):
+    def isValidSudoku(self, board):
+        res = []
+        for r in range(9):
+            for c in range(9):
+                if board[r][c] != ".":
+                    res += [(r, board[r][c]), (board[r][c], c), (r // 3, c // 3, board[r][c])]
+        return len(res) == len(set(res))
