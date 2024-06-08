@@ -11,12 +11,15 @@
 #Output: 4
 #Explanation: The maximum width exists in the third level with length 4 (5,3,null,9).
 
-#          1
-#        3   2
-#      5  3    9
-
-
 #python3 solution:
+
+from collections import deque
+
+#we are doing BFS
+
+#          1 (position 1)
+#        3   2 (3 is at position 2) and (2 is at position 3)
+#      5  3    9 #(9 is at position 7)
 
 class Solution:
     def widthOfBinaryTree(self, root: Optional[TreeNode]) -> int:
@@ -24,18 +27,24 @@ class Solution:
         max_width = 0
         d = deque()
         d.append([root, 1, 0]) #[node, position, level] - no value here!
+        #d = [root, 1, 0]
         curlevel, positionofleftmost = 0, 1
-        while d:
+        while d: #True in 1st turn because d = [root, 1, 0], True in 2nd turn because d = [node, 2, 1], [node, 3, 1]
+            #node, 1, 0 = d.popleft(), node, 2, 1 = d.popleft(), node, 3, 1 = d.popleft()
             node, position, level = d.popleft()
-            if level > curlevel:
-                curlevel = level
-                positionofleftmost = position
+            #d = [], d = [node, 3, 1], d = ([node, 4, 2], [node, 5, 2]), 
+            if level > curlevel: #if 0 > 0 - False, if 1 > 0 - True, 1 > 1 - False
+                curlevel = level #0 > 1,
+                positionofleftmost = position #1 > 2,
+            #max_width = max(0, 1 - 1 + 1), max_width = max(1, 2 - 2 + 1)
             max_width = max(max_width, position - positionofleftmost + 1)
-            if node.left:
+            if node.left: #True because 1 has a left child of 3, True because 3 has a left child of 5,
                 d.append([node.left, 2 * position, level + 1])
-            if node.right:
+                #d = [node, 2, 1], d = ([node, 3, 1], [node, 4, 2])
+            if node.right: #True because 1 has a right child of 2, True because 3 has a right child of 3
                 d.append([node.right, 2 * position + 1, level + 1])
-
+                #d = [node, 2, 1], [node, 3, 1], d = ([node, 3, 1], [node, 4, 2], [node, 5, 2]) aka nodes 2, 5, 3
 
         return max_width 
+        
         
