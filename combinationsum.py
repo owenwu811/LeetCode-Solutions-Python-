@@ -347,4 +347,22 @@ class Solution:
         res = []
         f(0, 0, [])
         return res
-      
+
+#6/9/24 review: (note that did do this with chang a week ago and struggled to come up with a working solution):
+
+class Solution:
+    def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
+        def f(i, candidates, cur):
+            if sum(cur) == target:
+                self.res.append(cur.copy())
+                return
+            if i >= len(candidates) or sum(cur) > target:
+                return
+            cur.append(candidates[i])
+            f(i, candidates, cur)
+            cur.pop()
+            f(i + 1, candidates, cur)
+        self.res = []
+        f(0, candidates, [])
+        return self.res
+
