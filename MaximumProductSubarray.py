@@ -290,3 +290,21 @@ class Solution:
             res = max(res, curmax)
         return res
 
+#note that the following works too:
+
+class Solution:
+    import math
+    def maxProduct(self, nums: List[int]) -> int:
+        res = max(nums)
+        curmin, curmax = 1, 1
+        for n in nums:
+            if n == 0:
+                curmin, curmax = 1, 1
+                continue
+            tmp = curmin * n
+            curmin = min(curmin * n, curmax * n, n)
+            curmax = max(curmax * n, tmp, n)
+            res = max(res, curmax)
+        return res
+
+
