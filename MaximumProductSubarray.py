@@ -272,4 +272,21 @@ class Solution:
             curmin = min(curmin * n, tmp, n)
             res = max(res, curmax)
         return res
-            
+
+#6/9/24 (missed):
+
+class Solution:
+    import math
+    def maxProduct(self, nums: List[int]) -> int:
+        res = max(nums)
+        curmin, curmax = 1, 1
+        for n in nums:
+            if n == 0:
+                curmin, curmax = 1, 1
+                continue
+            tmp = curmax * n #NOT TMP *= N BECAUSE NOTICE HOW WE ARE USING TMP INSTEAD OF CURMAX * N IN CURMIN = MIN() !
+            curmax = max(curmin * n, curmax * n, n)
+            curmin = min(curmin * n, tmp, n)
+            res = max(res, curmax)
+        return res
+
