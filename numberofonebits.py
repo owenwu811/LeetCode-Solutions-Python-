@@ -15,3 +15,9 @@ class Solution:
 class Solution:
     def hammingWeight(self, n: int) -> int:
         return bin(n).count('1')
+        
+#6/10/24 review:
+
+class Solution:
+    def hammingWeight(self, n: int) -> int:
+        return bin(n).count('1')
