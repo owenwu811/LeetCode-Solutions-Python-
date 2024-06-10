@@ -182,4 +182,15 @@ class Solution:
             reachable = max(reachable, i + nums[i])
         return True
 
+#6/10/24 review:
+
+class Solution:
+    def canJump(self, nums: List[int]) -> bool:
+        reachable = 0
+        for i in range(len(nums)):
+            if i > reachable: #so because i represents every index up until the last index, which is the locking condition, we compare reachable to i
+                return False
+            reachable = max(reachable, i + nums[i])
+        return True
+            
 
