@@ -110,6 +110,31 @@ class Solution:
             else:
                 r = mid
         return l
+
+
+#practice again:
+
+class Solution:
+
+    def __init__(self, w: List[int]):
+        self.w = w #input given to us
+        totalstaticsum = sum(w) #[0.167, 3, 2] (incorrect) vs. [1, 3, 2] (correct) sums
+        for i in range(len(self.w)):
+            self.w[i] = self.w[i] / totalstaticsum
+        for i in range(1, len(self.w)):
+            self.w[i] += self.w[i - 1] #cumulative distribution, so [0.167, 0.5, 0.33] becomes [0.167, 0.66, 1.0]
         
+
+    def pickIndex(self) -> int:
+        randomnbetweenzeroand1 = random.uniform(0, 1)
+        l, r = 0, len(self.w) - 1
+        while l < r:
+            mid = (l + r) // 2
+            if randomnbetweenzeroand1 > self.w[mid]:
+                l = mid + 1
+            else:
+                r = mid #l = 0, r = 2 becomes 1 = 0, r = 1
+        return l
+
 
         
