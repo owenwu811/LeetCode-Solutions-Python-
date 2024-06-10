@@ -161,5 +161,5 @@ class Solution:
 #while l < r (0 < 0) - False
 #return l, which is 0
 
-#the above would not be cumulative sum if you used r = mid - 1 instead of r = mid
+#the above would not be cumulative if you used r = mid - 1 instead of r = mid
         
