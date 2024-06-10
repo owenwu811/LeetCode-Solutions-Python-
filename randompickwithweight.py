@@ -34,6 +34,57 @@
 #The index 2 corresponds to the range 0.6667 to 1.0 in the cumulative distribution, meaning N = 0.78 falls in this range. This does not mean that 0.78 is closer to 0.6667 than to 1.0; it means that 0.78 is between 0.6667 and 1.0 and thus corresponds to the index 2, according to the cumulative distribution.
 
 
+When we talk about simulating weighted random selection, we mean that we want to select indices from a list with probabilities proportional to the given weights. In other words, if you have a list of weights, each index should be selected with a probability proportional to its weight relative to the sum of all weights.
+
+Here's a more detailed explanation:
+
+Understanding Weighted Random Selection
+Weights and Probabilities:
+
+Suppose we have a list of weights: [1, 3, 2].
+The sum of these weights is 1 + 3 + 2 = 6.
+The probability of picking each index is:
+Index 0: 
+1
+6
+≈
+0.1667
+6
+1
+​
+ ≈0.1667 (or 16.67%)
+Index 1: 
+3
+6
+=
+0.5
+6
+3
+​
+ =0.5 (or 50%)
+Index 2: 
+2
+6
+≈
+0.3333
+6
+2
+​
+ ≈0.3333 (or 33.33%)
+Cumulative Distribution:
+
+To facilitate this selection, we use the concept of a cumulative distribution:
+Normalize the weights: [0.1667, 0.5, 0.3333].
+Cumulative distribution: [0.1667, 0.6667, 1.0].
+This means:
+From 0 to 0.1667, select index 0.
+From 0.1667 to 0.6667, select index 1.
+From 0.6667 to 1.0, select index 2.
+Selecting an Index:
+
+Generate a random number N between 0 and 1.
+Use the cumulative distribution to determine which range N falls into and select the corresponding index.
+
 
 #python3 solution:
 
