@@ -161,4 +161,18 @@ class Solution:
             else:
                 l += 1
         return arr[l: r + 1]
+
+#6/10/24 review:
+
+class Solution:
+    def findClosestElements(self, arr: List[int], k: int, x: int) -> List[int]:
+        res = []
+        l, r = 0, len(arr) - 1
+        while (r - l + 1) > k:
+            mid = (l + r) // 2
+            if abs(arr[l] - x) > abs(arr[r] - x):
+                l += 1
+            else:
+                r -= 1
+        return arr[l: r + 1]
                 
