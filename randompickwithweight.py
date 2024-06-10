@@ -137,4 +137,27 @@ class Solution:
         return l
 
 
+#why r = mid instead of r = mid - 1?
+
+#[0.167, 0.667, 1.0]
+#randomnbetweenzeroand1 = 0.420572
+#l, r = 0, 2
+#while l < r:
+#mid = 2 // 2 > 1
+#if 0.420572 > 0.667
+#r = 1
+#while l < r: (0 < 1)
+#mid = 1 // 2 > 0
+#if 0.420572 > 0.1667
+#l = 1
+#while left < r (1 < 1)
+#return 1
+
+#if we did r = mid - 1, we would get 0 instead of 1 for - [0.167, 0.667, 1.0] randomnbetweenzeroand1 = 0.420572:
+
+#mid = 2 // 2 > 1
+#if 0.4205 > 0.667 
+#r = 0 (incorrect)
+#while l < r (0 < 0) - False
+#return l, which is 0
         
