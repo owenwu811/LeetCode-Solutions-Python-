@@ -160,4 +160,6 @@ class Solution:
 #r = 0 (incorrect)
 #while l < r (0 < 0) - False
 #return l, which is 0
+
+#the above would not be cumulative sum if you used r = mid - 1 instead of r = mid
         
