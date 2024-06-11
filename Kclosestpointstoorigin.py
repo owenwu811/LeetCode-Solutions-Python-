@@ -306,3 +306,18 @@ class Solution:
             k -= 1
         return res #[1, 3]
 
+#6/11/24 (missed):
+
+class Solution:
+    def kClosest(self, points: List[List[int]], k: int) -> List[List[int]]:
+        res = []
+        tmp = []
+        for x, y in points:
+            dis = (x ** 2) + (y ** 2)
+            tmp.append([dis, x, y])
+        heapq.heapify(tmp) #you cannot have this inside of the for loop or else will get time limit exceeded!
+        while k > 0:
+            dis, x, y = heapq.heappop(tmp)
+            res.append([x, y])
+            k -= 1
+        return res
