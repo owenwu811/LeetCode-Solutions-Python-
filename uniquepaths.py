@@ -460,4 +460,18 @@ class Solution:
         return buildoff[0]
                 
 
+#6/10/24 review:
+
+class Solution:
+    def uniquePaths(self, m: int, n: int) -> int:
+        first = [1] * n
+        for i in range(m - 1): #iterating through rows - to down
+            second = [1] * n
+            for i in range(n - 2, -1, -1): #iterating through columns - to the right
+                second[i] = second[i + 1] + first[i] 
+            first = second
+        return first[0]
+ 
+        #0 (m * n)
+        #0 (m * n)
 
