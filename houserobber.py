@@ -144,3 +144,15 @@ class Solution:
             rob2 = tmp
         return rob2
 
+#6/12/24 review:
+
+class Solution:
+    import math
+    def rob(self, nums: List[int]) -> int:
+        rob1, rob2 = 0, 0
+        for n in nums:
+            tmp = max(n + rob1, rob2)
+            rob1 = rob2
+            rob2 = tmp
+        return rob2
+
