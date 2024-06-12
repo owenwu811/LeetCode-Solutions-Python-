@@ -258,3 +258,18 @@ class Solution(object):
         return lengthoflongest
 
 
+#6/12/24 review:
+
+class Solution(object):
+    def lengthOfLongestSubstring(self, s):
+        res = 0
+        ws = 0
+        seen = set()
+        for we in range(len(s)):
+            while s[we] in seen:
+                seen.remove(s[ws])
+                ws += 1
+            seen.add(s[we])
+            res = max(res, len(seen))
+        return res
+
