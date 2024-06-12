@@ -185,3 +185,25 @@ class Solution:
                 r = mid
         return l
         
+#6/11/24 review:
+
+class Solution:
+    def __init__(self, w: List[int]):
+        self.w = w
+        totsum = sum(w)
+        for i in range(len(self.w)):
+            self.w[i] = self.w[i] / totsum
+        for i in range(1, len(self.w)):
+            self.w[i] += self.w[i - 1]
+         
+
+    def pickIndex(self) -> int:
+        randomn = random.uniform(0, 1)
+        l, r = 0, len(self.w) - 1
+        while l < r:
+            mid = (l + r) // 2
+            if self.w[mid] < randomn:
+                l = mid + 1
+            else:
+                r = mid
+        return l
