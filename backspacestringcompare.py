@@ -133,4 +133,23 @@ class Solution:
             return stack
         return f(s) == f(t)
 
+#6/12/24 review:
+
+class Solution:
+    def backspaceCompare(self, s: str, t: str) -> bool:
+        def f(a):
+            stack = []
+            for char in a:
+                if char != "#":
+                    stack.append(char) #[a, b], [a, c]
+                    print(stack)
+                elif char == "#" and stack:
+                    stack.pop()
+                    print(stack)
+            return stack #[a, c]
+        return f(s) == f(t)
+
+        #[a, d], [a, c]
+
+        #[a]
         
