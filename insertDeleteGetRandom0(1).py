@@ -238,4 +238,35 @@ class RandomizedSet:
 
     def getRandom(self) -> int:
         return random.choice(self.mylist)
+
+
+#6/12/24 review:
+
+class RandomizedSet:
+    def __init__(self):
+        self.d = dict()
+        self.mylist = []
+
+
+    def insert(self, val: int) -> bool:
+        if val not in self.d:
+            self.mylist.append(val)
+            self.d[val] = len(self.mylist) - 1
+            return True
+        return False
         
+    def remove(self, val: int) -> bool:
+        if val in self.d: #[1, 2]
+            rear = self.mylist[-1] #2
+            indextoinsert = self.d[val] #0
+            self.mylist[indextoinsert] = rear #[2, 2]
+            self.d[rear] = indextoinsert #we must reflect the newly inserted value in the dictionary too!
+            self.mylist.pop() #[2]
+            del self.d[val]
+            return True
+        return False
+        
+
+    def getRandom(self) -> int:
+        return random.choice(self.mylist)
+
