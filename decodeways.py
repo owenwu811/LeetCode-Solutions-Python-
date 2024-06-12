@@ -104,7 +104,7 @@ class Solution:
         dp = [0] * (inputlen + 1)
         dp[0] = 1
         dp[1] = 1
-        for i in range(2, inputlen + 1):
+        for i in range(2, inputlen + 1): #missed on 6/12/24 - you already covered 2 base cases, so start at range 2!
             single = int(s[i - 1:i])
             if 1 <= single <= 10: 
                 dp[i] += dp[i - 1]
