@@ -37,6 +37,8 @@ class Solution:
 
 #correct python3 solution:
 
+#prefixes and suffixes are the opposite of one another
+
 from typing import List
 
 class Solution:
@@ -56,4 +58,15 @@ class Solution:
                     res.append([i, mydict[prefix]])
 
         return res
+
+
+#why j != n? when j == n, prefix = "abc", and suffix = "", which is unecessary because we can already handle the full word when j == 0 in the suffix part. It could also lead to duplicate pairs, so when prefix = "abc" and suffix = "", you don't have to look for "" in the dictionary. when j = 0, we already consider "abc" with other possible suffixes. so j != n ensures we only check meaningful prefixes and suffixes.
+
+#why are we using prefixes and suffixes? optimization strategy - the reason behind using prefixes and suffixes? is it to not have to check the entire word meaning less checks
+
+#why mydict[suffix] != i? we don't want to match the word with itself - For word "bat" (index 0):
+
+#When suffix = "tab":
+#Check if "tab" exists in word_dict and its index is not 0.
+#word_dict["tab"] is 1, which is different from 0, so [1, 0] is a valid pair.
         
