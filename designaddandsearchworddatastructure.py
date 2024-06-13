@@ -95,4 +95,30 @@ class WordDictionary:
             else: #hasn't been broken yet aka the loop was allowed to finish all iterations - The else clause in a for loop in Python has a special meaning. It is executed only if the loop completes all its iterations without encountering a break statement!!!!!!
                 return True
         return False
-                
+
+
+#6/13/24 review:
+
+class WordDictionary:
+    def __init__(self):
+        self.mylst = []
+
+
+    def addWord(self, word: str) -> None:
+        self.mylst.append(word)
+        
+
+    def search(self, word: str) -> bool:
+        if "." not in word:
+            return word in self.mylst
+        for worddd in self.mylst:
+            if len(word) != len(worddd):
+                continue
+            for i in range(len(word)):
+                if word[i] == ".":
+                    continue
+                if worddd[i] != word[i]:
+                    break
+            else:
+                return True
+        return False
