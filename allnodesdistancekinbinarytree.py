@@ -92,3 +92,36 @@ class Solution:
             if root.parent != prev: a(root.parent, k - 1, root) #if you put this line above if root.left != prev, it works too! we are exploring all directions regardless of which direction you want to explore first and then backtracking
         a(self.startp, k)
         return self.res
+
+#6/13/24 review:
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def distanceK(self, root: TreeNode, target: TreeNode, k: int) -> List[int]:
+        self.res = []
+        self.startp = None
+        def f(root, prev):
+            if not root:
+                return
+            if root == target:
+                self.startp = root
+            root.parent = prev
+            f(root.left, root)
+            f(root.right, root)
+        f(root, None)
+        def findparents(root, k, prev):
+            if not root:
+                return
+            if k == 0:
+                self.res.append(root.val)
+            if root.left != prev: findparents(root.left, k - 1, root)
+            if root.right != prev: findparents(root.right, k - 1, root)
+            if root.parent != prev: findparents(root.parent, k - 1, root)
+        findparents(self.startp, k, None)
+        return self.res
