@@ -39,12 +39,14 @@ class Solution:
 
 #prefixes and suffixes are the opposite of one another
 
+#Example: If word1 is "abc" and word2 is "cba", "a" (a prefix of "abc") is a palindrome. We check if the rest ("bc") matches the reverse of "cba" ("abc").
+
 from typing import List
 
 class Solution:
     def palindromePairs(self, words: List[str]) -> List[List[int]]:
         def isp(word):
-            return word == word[::-1]
+            return word == word[::-1] #A word is a palindrome if it reads the same backward as forward - racecar 
         mydict = {word[::-1]: i for i, word in enumerate(words)}
         res = []
         for i, word in enumerate(words):
