@@ -163,10 +163,10 @@ class Solution:
         for r in range(len(matrix)):
             for c in range(len(matrix[0])):
                 if matrix[r][c] == 0:
-                    for i in range(cols):
+                    for i in range(cols): #must be cols here instead of rows here and cols below! 
                         if matrix[r][i] != 0:
                             matrix[r][i] = "*"
-                    for i in range(rows):
+                    for i in range(rows): #if we did cols here instead of rows, for test case matrix = [[0,1,2,0],[3,4,5,2],[1,3,1,5]], we would be out of bounds when i = 3, c = 0 because we have 3 rows in total, so we can't go down to a 4th row aka index 3 row
                         if matrix[i][c] != 0:
                             matrix[i][c] = "*"
         for r in range((len(matrix))):
