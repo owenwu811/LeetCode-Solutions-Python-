@@ -157,3 +157,28 @@ class FreqStack:
         if not self.mylist[self.maxFreq]:
             self.maxFreq -= 1
         return first
+
+#6/14/24 review:
+
+class FreqStack:
+
+    def __init__(self):
+        self.d = defaultdict(int)
+        self.lst = defaultdict(list)
+        self.maxfreq = 0
+        
+
+    def push(self, val: int) -> None:
+        self.d[val] += 1 
+        if self.d[val] > self.maxfreq:
+            self.maxfreq = self.d[val]
+        self.lst[self.d[val]].append(val)
+        
+
+    def pop(self) -> int:
+        first = self.lst[self.maxfreq].pop()
+        self.d[first] -= 1 #1: 2: 3:[3, 5] - if 5 appeared in 3 bucket, but we popped, then 5 now appears in 2 bucket aka 5: 2 now instead of 5: 3
+        if not self.lst[self.maxfreq]:
+            self.maxfreq -= 1
+        return first
+        
