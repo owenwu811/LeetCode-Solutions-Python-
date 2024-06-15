@@ -209,6 +209,7 @@ class Solution:
         for r in range(rows): #0
             for c in range(cols): #0
                 if matrix[r][c] == 0:
+                    #if we find a cell, say matrix[1][1] to contain a 0, we have to set matrix[1][1]'s entire vertical and horizontal DIMENSIONS OF THE INPUT MATRIX AKA ROWS AND COLS to 0, which is why we loop through rows and cols - they are the dimensions of the input list of lists
                     for i in range(cols): #starts at 0
                         #if matrix[1][1] had a 0, we need to set [1][0], [1][1], [1][2] to "*", so the way we set the particular cell's adjacent rows is because [t][0] [t][1] [t][2] - t is always the same value (left square)
                         if matrix[r][i] != 0: #[0][2] = 2 to the right
