@@ -218,7 +218,7 @@ class Solution:
         turn = 0
         while d:
             level = []
-            for i in range(len(d)): #0, 01
+            for i in range(len(d)): #if you did "for n in d" here instead, you would get "deque mutated" error because the reason is that when we do cur = d.popleft(), we are removing one element from the deque, so the for n in d: loop would now be of a shorter length vs. for i in range(len(d)) is a permernant length
                 if turn % 2 == 0:
                     current = d.popleft()
                     if current:
@@ -233,7 +233,7 @@ class Solution:
                         d.appendleft(current.left)
                         #[9, 20]
                         #[]
-            if level:
+            if level: #we don't want empty [] inside of our resulting list output
                 res.append(level)  
             turn += 1
         return res
