@@ -198,6 +198,29 @@ class Solution:
                     matrix[r][c] = 0
         
 
+#practice again:
+
+class Solution:
+    def setZeroes(self, matrix: List[List[int]]) -> None:
+        """
+        Do not return anything, modify matrix in-place instead.
+        """
+        rows, cols = len(matrix), len(matrix[0])
+        for r in range(rows): #0
+            for c in range(cols): #0
+                if matrix[r][c] == 0:
+                    for i in range(cols): #starts at 0
+                        #if matrix[1][1] had a 0, we need to set [1][0], [1][1], [1][2] to "*", so the way we set the particular cell's adjacent rows is because [t][0] [t][1] [t][2] - t is always the same value (left square)
+                        if matrix[r][i] != 0: #[0][2] = 2 to the right
+                            matrix[r][i] = "*"
+                    for i in range(rows): #starts at 0
+                        #if matrix[1][1] had a 0, we need to set [0][1], [1][1], [2][1] to "*", so the way we set the particular cell's adjacent cols is because [0][c] [1][c] [2][c] - c always stays the same value (right square)
+                        if matrix[i][c] != 0: 
+                            matrix[i][c] = "*"
+        for r in range(rows):
+            for c in range(cols):
+                if matrix[r][c] == "*":
+                    matrix[r][c] = 0
 
 
 
