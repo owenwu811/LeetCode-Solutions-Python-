@@ -237,3 +237,32 @@ class Solution:
                 res.append(level)  
             turn += 1
         return res
+
+
+#6/16/24 review (missed yesterday):
+
+class Solution:
+    def zigzagLevelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
+        d = deque()
+        d.append(root)
+        turn = 0
+        res = []
+        while d:
+            level = []
+            for i in range(len(d)):
+                if turn % 2 == 0:
+                    cur = d.popleft()
+                    if cur:
+                        level.append(cur.val)
+                        d.append(cur.left)
+                        d.append(cur.right)
+                elif turn % 2 != 0:
+                    cur = d.pop()
+                    if cur:
+                        level.append(cur.val)
+                        d.appendleft(cur.right)
+                        d.appendleft(cur.left)
+            if level:
+                res.append(level)
+                turn += 1
+        return res
