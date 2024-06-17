@@ -152,4 +152,15 @@ class Solution:
                 return -1
         sortedn = sorted(nums, key=cmp_to_key(f)) #we do not use f(a, b) or f() here because it requires a function object, not the result of a function call.
         return str(int("".join(sortedn)))
-        
+
+#The distinction here revolves around how functions are passed and invoked in Python, particularly in the context of sorting and custom comparison logic.
+
+#Function Object vs. Function Call
+#Function Object (f):
+
+#When you pass f to cmp_to_key, you are passing the function object itself. This means cmp_to_key can call f with the necessary arguments when needed during the sorting process.
+#cmp_to_key(f) transforms f into a key function, which sorted can use.
+#Function Call (f(a, b)):
+
+#When you write f(a, b), you are invoking the function f immediately with arguments a and b. This executes the function and returns its result, which is not what we want.
+#sorted does not need the result of f(a, b) directly; it needs to know how to compare elements using f.
