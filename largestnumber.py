@@ -137,4 +137,19 @@ class Solution:
                 return -1
         nums = sorted(nums, key= cmp_to_key(f))
         return str(int("".join(nums)))
+
+
+#6/17/24 review (missed yesterday):
+
+class Solution:
+    def largestNumber(self, nums):
+        for i, num in enumerate(nums):
+            nums[i] = str(num)
+        def f(a, b):
+            if b + a > a + b:
+                return 1
+            else:
+                return -1
+        sortedn = sorted(nums, key=cmp_to_key(f)) #we do not use f(a, b) or f() here because it requires a function object, not the result of a function call.
+        return str(int("".join(sortedn)))
         
