@@ -231,3 +231,28 @@ class Solution:
 #print(int(-3 / 2)) vs. print(-3 // 2)
 #print(-3 // 2) > uses floor division. floor division rounds down to the nearest whole number towards negative infinity
 #int(-3 / 2) > int discards the fractional part, so -1.5 becomes -1
+
+
+#6/17/24 review (missed 2 days ago):
+
+class Solution:
+    def calculate(self, s: str) -> int:
+        currentn, sign, stack = 0, "+", []
+        for i, char in enumerate(s):
+            if char.isdigit():
+                currentn = currentn * 10 + int(char)
+            if char in "+-/*" or i >= len(s) - 1: #DO NOT FORGET -1 BECAUSE INDEXES ARE ONE LESS THAN LENGTH! YOU WOULD GET 5 INSTEAD OF 7 AS OUTPUT BECUASE WOULDN'T CONSIDER THE LAST 2 IN 3+2*2
+                if sign == "+":
+                    stack.append(currentn)
+                elif sign == "-":
+                    stack.append(-currentn)
+                elif sign == "/":
+                    val = int(stack.pop() / currentn)
+                    stack.append(val)
+                elif sign == "*":
+                    val = stack.pop() * currentn
+                    stack.append(val)
+                sign = char
+                currentn = 0
+        return sum(stack)
+        
