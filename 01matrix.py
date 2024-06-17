@@ -523,3 +523,26 @@ class Solution:
                         mat[ox][oy] = mat[zx][zy] + 1
                         d.append([ox, oy])
         return mat
+
+
+#6/17/24 review:
+
+class Solution:
+    def updateMatrix(self, mat: List[List[int]]) -> List[List[int]]:
+        d = deque()
+        directions = [(1, 0), (0, 1), (-1, 0), (0, -1)]
+        for r in range(len(mat)):
+            for c in range(len(mat[0])):
+                if mat[r][c] == 0:
+                    d.append([r, c])
+                else:
+                    mat[r][c] = float('inf')
+        while d:
+            zx, zy = d.popleft()
+            for dx, dy in directions:
+                ox, oy = zx + dx, zy + dy
+                if ox < 0 or ox >= len(mat) or oy < 0 or oy >= len(mat[0]) or mat[ox][oy] <= mat[zx][zy] + 1:
+                    continue
+                mat[ox][oy] = mat[zx][zy] + 1
+                d.append([ox, oy])
+        return mat
