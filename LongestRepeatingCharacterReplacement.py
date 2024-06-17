@@ -342,4 +342,24 @@ class Solution:
         return lengthoflongest
 
 
+#6/17/24 review:
+
+class Solution:
+    def characterReplacement(self, s: str, k: int) -> int:
+        lengthoflongest = 0
+        ws, mydict, mostfrequent = 0, dict(), 0
+        for we in range(len(s)):
+            if s[we] not in mydict:
+                mydict[s[we]] = 0
+            mydict[s[we]] += 1
+            mostfrequent = max(mostfrequent, mydict[s[we]])
+            while (we - ws + 1) - mostfrequent > k:
+                kickout = s[ws]
+                mydict[kickout] -= 1
+                ws += 1
+            lengthoflongest = max(lengthoflongest, we - ws + 1)
+        return lengthoflongest
+
+
+
 
