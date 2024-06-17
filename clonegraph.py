@@ -410,6 +410,33 @@ class Solution:
         return f(node) if node else None
 
 
+#6/17/24 (missed):
+
+"""
+ Definition for a Node.
+class Node:
+    def __init__(self, val = 0, neighbors = None): 
+        self.val = val
+        self.neighbors = neighbors if neighbors is not None else []
+"""
+
+
+from typing import Optional
+class Solution:
+    def cloneGraph(self, node: Optional['Node']) -> Optional['Node']:
+        mydict = {}
+        def f(node): #so node starts at 1
+            if node in mydict:
+                return mydict[node]
+            copy = Node(node.val)
+            mydict[node] = copy
+            for n in node.neighbors:
+                copy.neighbors.append(f(n))
+            return copy
+        return f(node) if node else None
+        
+
+
 #The input format for the adjacency list represents an undirected graph where each index of the list corresponds to a node, and the values in each sub-list represent the neighbors of that node. The reason nodes start at 1 is to match the common representation where nodes are labeled starting from 1 instead of 0.
 
 #To clarify with the given input and explanation:
