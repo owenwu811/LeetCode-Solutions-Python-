@@ -408,5 +408,17 @@ class Solution:
                 copy.neighbors.append(f(n))
             return copy
         return f(node) if node else None
-            
+
+
+#The input format for the adjacency list represents an undirected graph where each index of the list corresponds to a node, and the values in each sub-list represent the neighbors of that node. The reason nodes start at 1 is to match the common representation where nodes are labeled starting from 1 instead of 0.
+
+#To clarify with the given input and explanation:
+
+#adjList = [[2,4],[1,3],[2,4],[1,3]]
+#This means:
+
+#Node 1 (index 0) has neighbors 2 and 4.
+#Node 2 (index 1) has neighbors 1 and 3.
+#Node 3 (index 2) has neighbors 2 and 4.
+#Node 4 (index 3) has neighbors 1 and 3.
             
