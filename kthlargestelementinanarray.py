@@ -148,3 +148,17 @@ class Solution:
         return arr[0]
         
 
+#6/17/24 review:
+
+class Solution:
+    def findKthLargest(self, nums: List[int], k: int) -> int:
+        #out of the k largest elements in the array, we want the smallest element in sorted order
+        heap = nums[:k]
+        heapq.heapify(heap) #[3, 2] > [2, 3]
+        for n in nums[k:]: #[1, 5, 6, 4]
+            if n > heap[0]:
+                heapq.heappop(heap)
+                heapq.heappush(heap, n)
+        return heap[0]
+
+
