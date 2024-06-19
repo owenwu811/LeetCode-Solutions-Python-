@@ -69,3 +69,56 @@ class Solution:
                 #question asks rest of elements are emails in SORTED ORDER HENCE SORTED(LIST(DFS(INDEX)))
                 ans.append([accounts[index][0]] + sorted(list(dfs(index)))) #accounts is the input list of lists, so accounts[0][0] refers to "John" of the 1st sublist in the input
         return ans
+
+#each account means each sublist in the input - Each entry in the accounts list is an "account," and it includes: The account holder's name (e.g., "John") and A list of email addresses associated with that account.
+
+Detailed Example with DFS
+Let's walk through the DFS for the first account (index 0):
+
+python
+Copy code
+["John", "johnsmith@mail.com", "john00@mail.com"]
+Initialization:
+
+Start DFS from index 0.
+Initialize an empty set: emails = set().
+Mark account 0 as visited: visited[0] = True.
+Collect Emails:
+
+Iterate over emails in the current account: ["johnsmith@mail.com", "john00@mail.com"].
+Add each email to the set:
+Add "johnsmith@mail.com": emails = {"johnsmith@mail.com"}.
+Add "john00@mail.com": emails = {"johnsmith@mail.com", "john00@mail.com"}.
+Explore Connected Accounts:
+
+For "johnsmith@mail.com", find connected accounts: {0, 2}.
+Account 0 is already visited, so skip it.
+Account 2 is not visited, so perform DFS on account 2.
+Recursive DFS on Account 2:
+
+Initialize an empty set: emails = set().
+Mark account 2 as visited: visited[2] = True.
+Collect emails from account 2: ["johnsmith@mail.com", "john_newyork@mail.com"].
+Add "johnsmith@mail.com": emails = {"johnsmith@mail.com"}.
+Add "john_newyork@mail.com": emails = {"johnsmith@mail.com", "john_newyork@mail.com"}.
+For "johnsmith@mail.com", find connected accounts: {0, 2}.
+Both are already visited, so no further DFS calls.
+For "john_newyork@mail.com", connected accounts are only account 2, which is visited.
+Union of Emails:
+
+Union the collected emails from account 2: emails = {"johnsmith@mail.com", "john00@mail.com"} | {"johnsmith@mail.com", "john_newyork@mail.com"}.
+Result: emails = {"johnsmith@mail.com", "john00@mail.com", "john_newyork@mail.com"}.
+Return Result:
+
+DFS for account 0 returns the set of unique emails connected to it: {"johnsmith@mail.com", "john00@mail.com", "john_newyork@mail.com"}.
+Summary
+"Account": Refers to each sublist in the accounts list.
+DFS: Collects all unique emails associated with the initial account and all other accounts that share emails with it.
+Result: Ensures that all connected accounts (via shared emails) are merged, regardless of the name, but retaining the name from the initial account.
+This approach guarantees that accounts are merged based on shared emails, not just the account holder's name, thus fulfilling the requirement that accounts with the same name but no shared emails are not incorrectly merged.
+
+
+
+
+
+
