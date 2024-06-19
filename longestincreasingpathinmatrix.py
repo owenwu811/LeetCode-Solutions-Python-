@@ -33,4 +33,4 @@ class Solution:
         for r in range(len(matrix)):
             for c in range(len(matrix[0])):
                 dfs(r, c, -1) #-1 because we know that every cell value is 0 or greater, so then matrix[r][c] will never be <= -1 on the 1st turn
-        return max(dp.values())
+        return max(dp.values()) #if we have a dictionary - {"1": 0, "2": 1, "3": 2}, then we would get 2
