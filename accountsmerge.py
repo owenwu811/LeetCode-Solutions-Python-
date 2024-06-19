@@ -135,4 +135,6 @@ Collects Emails: Gathers all unique emails connected to the current account (sub
 Ensures Uniqueness: Using a set ensures that each email appears only once, avoiding duplicates in the merged result.
 Represents Connected Component: The set effectively represents the connected component in the graph formed by accounts and their shared emails.
 
+#emails refer to strings within each sublist in the accounts list of lists
+
 
