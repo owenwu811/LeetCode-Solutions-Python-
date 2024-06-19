@@ -137,4 +137,33 @@ Represents Connected Component: The set effectively represents the connected com
 
 #emails refer to strings within each sublist in the accounts list of lists
 
+ #6/19/24 review:
+
+ class Solution:
+    def accountsMerge(self, accounts: List[List[str]]) -> List[List[str]]:
+        emailsdict = {}
+        for i in range(len(accounts)):
+            for email in accounts[i][1:]:
+                if email not in emailsdict:
+                    emailsdict[email] = set([i])
+                else:
+                    emailsdict[email].add(i)
+        visited = [False] * len(accounts) #have we visited this sublist or not
+        def dfs(i):
+            emails = set()
+            visited[i] = True
+            for em in accounts[i][1:]:
+                emails.add(em)
+                for n in emailsdict[em]:
+                    if visited[n]:
+                        continue
+                    else:
+                        emails = emails | dfs(n)
+            return emails
+        res = []
+        for i in range(len(accounts)):
+            if not visited[i]:
+                res.append([accounts[i][0]] + sorted(list(dfs(i))))
+        return res
+
 
