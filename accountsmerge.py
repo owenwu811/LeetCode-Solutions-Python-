@@ -120,5 +120,19 @@ This approach guarantees that accounts are merged based on shared emails, not ju
 
 
 
+Purpose of the Visited List
+The visited list tracks which accounts (sub-lists in the accounts list) have been processed during the DFS traversal. It ensures that each account is visited exactly once, preventing redundant work and infinite loops.
+
+Key Points:
+Tracks Accounts: Keeps track of whether each account (sublist) has been visited.
+Prevents Infinite Loops: Avoids revisiting accounts, which is crucial for preventing cycles in the graph of accounts and emails.
+Ensures Efficiency: By marking accounts as visited, the algorithm avoids redundant processing of the same account, making the traversal more efficient.
+Purpose of the Emails Set
+The emails set collects all unique emails connected to the current account during the DFS traversal. It ensures that each email is included only once in the final merged account, handling the merging of accounts based on shared emails.
+
+Key Points:
+Collects Emails: Gathers all unique emails connected to the current account (sublist) and any accounts reachable through shared emails.
+Ensures Uniqueness: Using a set ensures that each email appears only once, avoiding duplicates in the merged result.
+Represents Connected Component: The set effectively represents the connected component in the graph formed by accounts and their shared emails.
 
 
