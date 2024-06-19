@@ -22,7 +22,7 @@ class Solution:
                 return dp[(r, c)]
             self.res = 1 #the current cell counts as 1 in the path
             #the idea is that we run dfs to find the longest path starting from the next cell over, and then we add 1 to it to include the current cell we are on
-            self.res = max(self.res, 1 + dfs(r + 1, c, matrix[r][c]))  
+            self.res = max(self.res, 1 + dfs(r + 1, c, matrix[r][c])) #prevval becomes the current cell's value in the next turn that this recursive call processes
             self.res = max(self.res, 1 + dfs(r - 1, c, matrix[r][c]))
             self.res = max(self.res, 1 + dfs(r, c + 1, matrix[r][c]))
             self.res = max(self.res, 1 + dfs(r, c - 1, matrix[r][c]))
@@ -32,5 +32,5 @@ class Solution:
         self.res = 0
         for r in range(len(matrix)):
             for c in range(len(matrix[0])):
-                dfs(r, c, -1)
+                dfs(r, c, -1) #-1 because we know that every cell value is 0 or greater, so then matrix[r][c] will never be <= -1 on the 1st turn
         return max(dp.values())
