@@ -308,9 +308,22 @@ class Solution:
         first, second = head, prev #1, 4
         while second: #merge two halves
             tmp1, tmp2 = first.next, second.next #2, 3
-            first.next = second
+            first.next = second 
             second.next = tmp1
             first, second = tmp1, tmp2
+
+
+#first.next = second (note that 4 is still connected to 3 from before):
+1 -> 4
+      |
+      v
+2     3
+
+#second.next = tmp1
+1 -> 4 -> 2
+            |
+            v
+          3
 
 
 #initial list: 1 -> 2 -> 3 -> 4
