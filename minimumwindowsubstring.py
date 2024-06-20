@@ -1109,4 +1109,33 @@ class Solution:
         else:
             return ""
 
-        
+
+#6/20/24 review:
+
+class Solution:
+    def minWindow(self, s: str, t: str) -> str:
+        if len(s) < len(t): return ""
+        res, ws, startsaver, endsaver, matched = 0, 0, 0, float('inf'), 0
+        need = Counter(t) #don't forget Counter
+        for we, schar in enumerate(s):
+            if schar in need:
+                need[schar] -= 1
+                if need[schar] == 0:
+                    matched += 1
+                while matched == len(need):
+                    if endsaver > we - ws + 1:
+                        endsaver = we - ws + 1
+                        startsaver = ws
+                    kickout = s[ws]
+                    ws += 1
+                    if kickout in need:
+                        if need[kickout] == 0:
+                            matched -= 1
+                        need[kickout] += 1
+        if len(s) > endsaver:
+            return s[startsaver: startsaver + endsaver]
+        elif endsaver == len(s): 
+            return s
+        else:
+            return ""
+                
