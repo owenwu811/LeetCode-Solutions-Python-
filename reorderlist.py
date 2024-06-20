@@ -295,19 +295,61 @@ class Solution:
 class Solution:
     def reorderList(self, head: Optional[ListNode]) -> None:
         slow, fast = head, head.next
-        while fast and fast.next:
-            slow = slow.next
+        while fast and fast.next: #find middle of list, so 1 > 2 > 3 > 4 (2 is middle since even number means one to left)
+            slow = slow.next 
             fast = fast.next.next
-        second = slow.next
+        second = slow.next #
         prev = slow.next = None
-        while second:
+        while second: #reverse 2nd half of list
             tmp = second.next
             second.next = prev
             prev = second
             second = tmp
         first, second = head, prev #1, 4
-        while second:
+        while second: #merge two halves
             tmp1, tmp2 = first.next, second.next #2, 3
             first.next = second
             second.next = tmp1
             first, second = tmp1, tmp2
+
+
+#initial list: 1 -> 2 -> 3 -> 4
+#find middle of linked list: initial pointers:
+slow = 1
+fast = 2
+#Move slow and fast pointers:
+slow = 2
+fast = 4
+#after finding middle:
+1 -> 2  (slow)
+      \
+       3 -> 4  (fast)
+#Step 2: Reversing the Second Half of the List
+#split the list:
+First half:  1 -> 2
+Second half: 3 -> 4
+#reverse second half:
+3 -> 4
+#after first iteration:
+3 -> NULL
+4 -> 3
+#after reversing:
+1 -> 2
+
+4 -> 3
+#merging two halves:
+#Initial positions:
+first = 1
+second = 4
+#Merge step-by-step:
+
+#First iteration:
+1 -> 4
+     |
+     v
+2    3
+#Second iteration:
+1 -> 4 -> 2 -> 3
+
+#final list:
+1 -> 4 -> 2 -> 3
