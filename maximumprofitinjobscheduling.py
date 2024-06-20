@@ -397,3 +397,22 @@ class Solution:
             cache[i] = max(res, intervals[i][2] + f(j)) 
             return res
         return f(0)
+
+#6/20/24 review: (missed a couple of days ago)
+
+class Solution:
+    def jobScheduling(self, startTime: List[int], endTime: List[int], profit: List[int]) -> int:
+        intervals = sorted(zip(startTime, endTime, profit))
+        cache = {}
+        def dfs(i):
+            if i >= len(intervals):
+                return 0 #you need return 0 here or else will be type mistmatch later!
+            if i in cache:
+                return cache[i]
+            res = dfs(i + 1)
+            j = bisect.bisect(intervals, (intervals[i][1], -1, -1))
+            cache[i] = max(res, intervals[i][2] + dfs(j))
+            res = max(res, intervals[i][2] + dfs(j))
+            return res
+        return dfs(0)
+        
