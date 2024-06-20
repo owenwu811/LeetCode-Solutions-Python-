@@ -328,7 +328,9 @@ class Solution:
 first:  2
 second: 3
 
-#iteration 2 - store next pointers:
+#iteration 2 - store next pointers: - why do they point to null? because the linked list looks like right before the final while loop (merging two halves step):
+First half:  1 -> 2
+Second half (reversed):  4 -> 3
 #tmp1, tmp2 = first.next, second.next
 tmp1: null
 tmp2: null
