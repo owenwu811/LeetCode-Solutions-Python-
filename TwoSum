@@ -60,3 +60,15 @@ class Solution:
             if complement in mydict:
                 return mydict[complement], i
             mydict[j] = i
+
+#6/20/24 review:
+
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        mydict = {}
+        for i, j in enumerate(nums):
+            complement = target - j
+            if complement in mydict:
+                return mydict[complement], i
+            mydict[j] = i
+
