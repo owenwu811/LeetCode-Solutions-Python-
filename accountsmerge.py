@@ -181,3 +181,33 @@ Represents Connected Component: The set effectively represents the connected com
         return res
 
 
+#6/20/24 review:
+
+class Solution:
+    def accountsMerge(self, accounts: List[List[str]]) -> List[List[str]]:
+        emailsdict = {}
+        for i in range(len(accounts)):
+            for em in accounts[i][1:]:
+                if em not in emailsdict:
+                    emailsdict[em] = set([i])
+                else:
+                    emailsdict[em].add(i)
+        visited = [False] * len(accounts)
+        def dfs(i):
+            emails = set()
+            visited[i] = True
+            for email in accounts[i][1:]:
+                emails.add(email)
+                for n in emailsdict[email]:
+                    if visited[n]:
+                        continue
+                    else:
+                        emails = emails | dfs(n)
+            return emails
+
+        res = []
+        for i in range(len(accounts)):
+            if not visited[i]:
+                res.append([accounts[i][0]] + sorted(list(dfs(i))))
+        return res
+
