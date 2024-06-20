@@ -154,6 +154,7 @@ Represents Connected Component: The set effectively represents the connected com
             visited[i] = True
             for em in accounts[i][1:]:
                 emails.add(em)
+                #the below for loop is how we associate account sublists with each other that have the same email string in common!
                 for n in emailsdict[em]: #n here is the account aka the index that the email was found at. account represents the index of which sublist in the input list of lists we are on!
                     if visited[n]:
                         continue
