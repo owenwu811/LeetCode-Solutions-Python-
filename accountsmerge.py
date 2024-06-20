@@ -164,7 +164,7 @@ Represents Connected Component: The set effectively represents the connected com
         res = []
         for i in range(len(accounts)):
             if not visited[i]:
-                res.append([accounts[i][0]] + sorted(list(dfs(i))))
+                res.append([accounts[i][0]] + sorted(list(dfs(i)))) #Converts the set of emails returned by dfs(i) into a list. This is necessary because sets are unordered collections in Python, and sorted() is used to ensure the emails are in alphabetical order.
         return res
 
 
