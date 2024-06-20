@@ -139,6 +139,19 @@ Represents Connected Component: The set effectively represents the connected com
 
  #6/19/24 review:
 
+#Input: accounts = [["John","johnsmith@mail.com","john_newyork@mail.com"],["John","johnsmith@mail.com","john00@mail.com"],["Mary","mary@mail.com"],["John","johnnybravo@mail.com"]]
+#Output: [["John","john00@mail.com","john_newyork@mail.com","johnsmith@mail.com"],["Mary","mary@mail.com"],["John","johnnybravo@mail.com"]]
+
+ # the reason why "johnnybravo@mail.com" is seperate from "john_newyork@mail.com","johnsmith@mail.com" in the output is because the problem states that "Accounts (account sublists) are merged if they share at least one email address"
+ #so accounts = [
+    ["John", "johnsmith@mail.com", "john_newyork@mail.com"],
+    ["John", "johnsmith@mail.com", "john00@mail.com"],
+    ["Mary", "mary@mail.com"],
+    ["John", "johnnybravo@mail.com"]
+]
+
+#notice how sublists 0 and 1 both have  "johnsmith@mail.com" in common, so even though "john00@mail.com" has no commonality, all emails from sublists 0 and 1 are merged together in the output!
+ 
  class Solution:
     def accountsMerge(self, accounts: List[List[str]]) -> List[List[str]]:
         emailsdict = {}
