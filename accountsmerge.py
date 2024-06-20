@@ -159,7 +159,7 @@ Represents Connected Component: The set effectively represents the connected com
                     if visited[n]:
                         continue
                     else:
-                        emails = emails | dfs(n)
+                        emails = emails | dfs(n) #ensures that all unique email strings associated with account sublist n are added to the set emails
             return emails
         res = []
         for i in range(len(accounts)):
