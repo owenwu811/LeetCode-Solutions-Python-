@@ -506,6 +506,22 @@ class Solution:
             return -1
         return res[-1]
 
-        
+
+#6/20/24 review:
+
+class Solution:
+    import math
+    def coinChange(self, coins: List[int], amount: int) -> int:
+        dp = ([float('inf')] * (amount + 1))
+        dp[0] = 0 #we need to define the base case
+        for levelamount in range(1, amount + 1):
+            for coinvalue in coins:
+                if coinvalue <= levelamount:
+                    dp[levelamount] = min(dp[levelamount], 1 + dp[levelamount - coinvalue])
+        if dp[-1] == float('inf'):
+            return -1
+        return dp[-1]
+
+ 
 
 
