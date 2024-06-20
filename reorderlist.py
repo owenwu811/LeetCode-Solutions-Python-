@@ -324,6 +324,27 @@ class Solution:
             |
             v
           3
+#first, second = tmp1, tmp2
+first:  2
+second: 3
+
+#iteration 2 - store next pointers:
+#tmp1, tmp2 = first.next, second.next
+tmp1: null
+tmp2: null
+
+#first.next = second
+1 -> 4 -> 2 -> 3
+#second.next = tmp1
+1 -> 4 -> 2 -> 3 -> null
+
+#move first and second to next nodes:
+#first, second = tmp1, tmp2
+first:  null
+second: null
+
+#since second is now None, our final linked list:
+1 -> 4 -> 2 -> 3
 
 
 #initial list: 1 -> 2 -> 3 -> 4
