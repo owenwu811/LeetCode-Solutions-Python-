@@ -272,7 +272,28 @@ class Solution:
                 k = ""
                 while stack and stack[-1].isdigit():
                     k = stack.pop() + k
-                stack.append(int(k) * substr)
+                stack.append(int(k) * substr) #if you did res.append instead of stack.append with an extra res list, your stack would be incorrect - ["3", "[", "a"] instead of ["3",	"[",	"a",	"cc"], so for s = "3[a2[c]]", we expect "accaccacc", not "cccaa", which would be what you would get if you did res.append instead of stack.append, so your substr would be "a" instead of "acc", making everything wrong
         return "".join(stack)
-                
+
+
+#missed wrong anwser on 6/21/24:
+
+class Solution:
+    def decodeString(self, s: str) -> str:
+        res = []
+        stack = []
+        for i in range(len(s)):
+            if s[i] != "]":
+                stack.append(s[i])
+            else:
+                substr = ""
+                while stack and stack[-1] != "[":
+                    substr = stack.pop() + substr
+                stack.pop() #"["
+                k = ""
+                while stack and stack[-1].isdigit():
+                    k = stack.pop() + k
+                res.append(int(k) * substr) #doing did res.append instead of stack.append with an extra res list, your stack would be incorrect - ["3", "[", "a"] instead of ["3",	"[",	"a",	"cc"], so for s = "3[a2[c]]", we expect "accaccacc", not "cccaa", which would be what you would get if you did res.append instead of stack.append, so your substr would be "a" instead of "acc", making everything wrong
+        return "".join(res)
+
 
