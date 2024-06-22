@@ -463,3 +463,5 @@ for i, j in enumerate(stack):
 for i, j in enumerate(stack):
     res = max(res, j * len(heights) - i))
 #above is invalid because j = (0, 1) not a number
+
+#enumerate's i ALWAYS goes from 0 to 1 to 2 !!!!!!
