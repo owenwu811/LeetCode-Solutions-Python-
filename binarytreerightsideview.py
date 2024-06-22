@@ -350,3 +350,22 @@ class Solution:
                 res.append(rightmost.val)
         return res
 
+#6/22/24 review:
+
+class Solution:
+    def rightSideView(self, root: Optional[TreeNode]) -> List[int]:
+        res = []
+        d = deque()
+        d.append(root)
+        while d:
+            rightside = None
+            for i in range(len(d)):
+                cur = d.popleft()
+                if cur:
+                    rightside = cur
+                    d.append(cur.left)
+                    d.append(cur.right)
+            if rightside:
+                res.append(rightside.val)
+        return res
+
