@@ -435,7 +435,7 @@ class Solution:
             stack.append((startingindex, inputvalue)) #[(0, 2)]
         print(stack)
         for i, j in stack:
-            res = max(res, j * (len(heights) - i))
+            res = max(res, j * (len(heights) - i)) #even though input heights array may be longer than stack, we are just going through the stack and then using the input array as the bigger length to subtract from. we are not indexing into the bigger array
             #1 * (2 - 0) = 2
         return res
 
