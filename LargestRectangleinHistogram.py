@@ -454,3 +454,12 @@ for i, j in stack:
 
 # .   .
 # . . .
+
+#we can't do:
+for i, j in enumerate(stack):
+    res = max(res, j[1] * (len(heights) - i))
+#because that would give us 4 because i would be 1 instead of 2, so we would get 2 * 2 instead of 2 * 1 for the last iteration, giving us an output of 4 instead of 3
+
+for i, j in enumerate(stack):
+    res = max(res, j * len(heights) - i))
+#above is invalid because j = (0, 1) not a number
