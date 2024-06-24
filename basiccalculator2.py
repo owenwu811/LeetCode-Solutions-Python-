@@ -255,4 +255,29 @@ class Solution:
                 sign = char
                 currentn = 0
         return sum(stack)
+
+#6/24/24 review:
+
+class Solution:
+    def calculate(self, s: str) -> int:
+        currentn, sign, stack = 0, "+", []
+        for i, char in enumerate(s):
+            if char.isdigit():
+                currentn = currentn * 10 + int(char)
+            if char in "+-/*" or i >= len(s) - 1:
+                if sign == "+":
+                    stack.append(currentn)
+                elif sign == "-":
+                    stack.append(-currentn)
+                elif sign == "*":
+                    val = stack.pop() * currentn
+                    stack.append(val)
+                elif sign == "/":
+                    val = int(stack.pop() / currentn)
+                    stack.append(val)
+                sign = char
+                currentn = 0
+        return sum(stack)
+                
+     
         
