@@ -117,5 +117,20 @@ class Solution:
                 seen.remove(char)
         return len(s) - len(seen) + 1 if len(seen) > 0 else len(s)
 
+#6/24/24 review:
+
+class Solution:
+    def longestPalindrome(self, s: str) -> int:
+        res = 1
+        seen = set()
+        for char in s:
+            if char not in seen:
+                seen.add(char)
+            else:
+                seen.remove(char)
+                res += 1
+        return len(s) - len(seen) + 1 if len(seen) > 1 else len(s)
+
+
 
         
