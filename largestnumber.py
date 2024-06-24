@@ -164,3 +164,18 @@ class Solution:
 
 #When you write f(a, b), you are invoking the function f immediately with arguments a and b. This executes the function and returns its result, which is not what we want.
 #sorted does not need the result of f(a, b) directly; it needs to know how to compare elements using f.
+
+#6/24/24 review:
+
+class Solution:
+    def largestNumber(self, nums):
+        for i, n in enumerate(nums):
+            nums[i] = str(n)
+        def f(a, b):
+            if b + a > a + b:
+                return 1
+            else:
+                return -1
+        res = sorted(nums, key=cmp_to_key(f))
+        return str(int("".join(res)))
+        
