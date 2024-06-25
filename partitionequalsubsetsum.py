@@ -367,4 +367,20 @@ class Solution:
                 set2.add(n + k) #1
             set1 = set2
         return half in set1
-            
+
+
+#6/24/24 review:
+
+class Solution:
+    def canPartition(self, nums: List[int]) -> bool:
+        if sum(nums) % 2 > 0: return False
+        set1 = set()
+        set1.add(0)
+        half = sum(nums) / 2
+        for n in nums:
+            set2 = set()
+            for s in set1:
+                set2.add(s)
+                set2.add(n + s)
+            set1 = set2
+        return half in set1
