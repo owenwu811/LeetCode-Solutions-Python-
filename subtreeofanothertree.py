@@ -160,3 +160,25 @@ class Solution(object):
         if p and q and p.val == q.val:
             return self.solve(p.left, q.left) and self.solve(p.right, q.right)
         return False
+
+#6/25/24 review:
+
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution(object):
+    def isSubtree(self, root, subRoot):
+        if not subRoot: return True
+        if not root: return False
+        if self.compare(root, subRoot):
+            return True
+        return self.isSubtree(root.left, subRoot) or self.isSubtree(root.right, subRoot)
+    def compare(self, root, subRoot):
+        if not root and not subRoot:
+            return True
+        if root and subRoot and root.val == subRoot.val:
+            return self.compare(root.left, subRoot.left) and self.compare(root.right, subRoot.right)
+        return False
