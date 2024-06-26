@@ -448,4 +448,31 @@ class Solution:
 #Node 2 (index 1) has neighbors 1 and 3.
 #Node 3 (index 2) has neighbors 2 and 4.
 #Node 4 (index 3) has neighbors 1 and 3.
+
+#6/26/24 review (missed yesterday):
+
+"""
+# Definition for a Node.
+class Node:
+    def __init__(self, val = 0, neighbors = None):
+        self.val = val
+        self.neighbors = neighbors if neighbors is not None else []
+"""
+
+from typing import Optional
+class Solution:
+    def cloneGraph(self, node: Optional['Node']) -> Optional['Node']:
+        mydict = {}
+        def f(node):
+            if node in mydict:
+                return mydict[node]
+            copy = Node(node.val)
+            mydict[node] = copy
+            for n in node.neighbors: #node.neighbors, not copy.neighbors!
+                copy.neighbors.append(f(n))
+            return copy
+
+
+
+        return f(node) if node else None
             
