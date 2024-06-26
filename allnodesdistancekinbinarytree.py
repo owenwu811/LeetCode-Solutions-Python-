@@ -125,3 +125,36 @@ class Solution:
             if root.parent != prev: findparents(root.parent, k - 1, root)
         findparents(self.startp, k, None)
         return self.res
+
+#6/26/24 review:
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def distanceK(self, root: TreeNode, target: TreeNode, k: int) -> List[int]:
+        self.startp = None
+        self.res = []
+        def linkparent(root, prev=None):
+            if not root:
+                return
+            if root == target:
+                self.startp = root
+            root.parent = prev
+            linkparent(root.left, root)
+            linkparent(root.right, root)
+        linkparent(root)
+        def traverse(root, k, prev=None):
+            if not root:
+                return
+            if k == 0:
+                self.res.append(root.val)
+            if root.left != prev: traverse(root.left, k - 1, root)
+            if root.right != prev: traverse(root.right, k - 1, root)
+            if root.parent != prev: traverse(root.parent, k - 1, root)
+        traverse(self.startp, k) #make sure to start traversing from self.startp, not root!
+        return self.res
