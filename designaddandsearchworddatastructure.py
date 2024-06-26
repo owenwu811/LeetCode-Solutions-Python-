@@ -122,3 +122,31 @@ class WordDictionary:
             else:
                 return True
         return False
+
+#6/26/24 review:
+
+class WordDictionary:
+    def __init__(self):
+        self.mydict = dict()
+        self.mylist = []
+        
+
+    def addWord(self, word: str) -> None:
+        self.mylist.append(word)
+        
+
+    def search(self, word: str) -> bool:
+        if "." not in word:
+            return word in self.mylist
+        for worddd in self.mylist:
+            if len(worddd) != len(word):
+                continue
+            for i in range(len(worddd)):
+                if word[i] == ".":
+                    continue
+                if word[i] != worddd[i]:
+                    break
+            else:
+                return True
+        return False
+        
