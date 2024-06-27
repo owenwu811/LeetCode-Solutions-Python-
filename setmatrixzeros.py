@@ -243,3 +243,23 @@ class Solution:
             for c in range(cols):
                 if matrix[r][c] == "*":
                     matrix[r][c] = 0
+
+#6/27/24 review:
+
+class Solution:
+    def setZeroes(self, matrix: List[List[int]]) -> None:
+        rows, cols = len(matrix), len(matrix[0])
+        for r in range(rows):
+            for c in range(cols):
+                if matrix[r][c] == 0: #matrix[1][1] == 0
+                    for i in range(cols): #i = 0
+                        if matrix[r][i] != 0:
+                            matrix[r][i] = "*"
+                    for j in range(rows):
+                        if matrix[j][c] != 0:
+                            matrix[j][c] = "*"
+                    
+        for r in range(rows):
+            for c in range(cols):
+                if matrix[r][c] == "*":
+                    matrix[r][c] = 0
