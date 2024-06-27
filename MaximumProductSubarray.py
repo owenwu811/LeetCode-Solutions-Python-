@@ -340,4 +340,20 @@ class Solution:
             curmin = min(curmin * n, tmp, n)
             res = max(res, curmax)
         return res
-        
+
+#6/27/24 refresher:
+
+class Solution:
+    def maxProduct(self, nums: List[int]) -> int:
+        res = max(nums)
+        curmin, curmax = 1, 1
+        for n in nums:
+            if n == 0:
+                curmin, curmax = 1, 1
+                continue
+            tmp = curmax * n 
+            curmax = max(curmin * n, curmax * n, n)
+            curmin = min(curmin * n, tmp, n)
+            res = max(res, curmax) #we don't need curmin here because we are only interested in the max 
+        return res
+
