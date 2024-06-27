@@ -253,7 +253,8 @@ class Solution:
             for c in range(cols):
                 if matrix[r][c] == 0: #matrix[1][1] == 0
                     for i in range(cols): #i = 0
-                        if matrix[r][i] != 0:
+                        #without these conditional checks: the issue is because the original 0 is incorrectly marked as "*", the if matrix[r][c] == 0 never even executes, so we don't see the original 0 as a 0 anymore, so that row and column dosen't even get populated with "*" hence why we get [[0,0,0,0],[0,4,5,2],[0,3,1,5]] instead of [[0,0,0,0],[0,4,5,0],[0,3,1,0]] without the conditional checks for input [[0,1,2,0],[3,4,5,2],[1,3,1,5]] - the nested for loops to populate block never even executes because if matrix[r][c] == 0 is false when it should have been true because only original 0 cells can spread to rows and cols adjacent!!!!!
+                        if matrix[r][i] != 0: 
                             matrix[r][i] = "*"
                     for j in range(rows):
                         if matrix[j][c] != 0:
