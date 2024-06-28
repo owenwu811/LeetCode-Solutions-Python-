@@ -185,4 +185,16 @@ class Solution:
                     d[levelamount] += d.get(levelamount - n, 0)
         return d[target]
 
-            
+
+#6/28/24 review:
+
+class Solution:
+    def combinationSum4(self, nums: List[int], target: int) -> int:
+        d = {0: 1}
+        for levelamount in range(1, target + 1):
+            d[levelamount] = 0
+            for n in nums:
+                if n <= levelamount:
+                    d[levelamount] += d[levelamount - n]
+        return d[levelamount]
+
