@@ -193,3 +193,23 @@ class Solution:
         res = []
         f(0, 0, [])
         return res
+
+#7/1/24 review:
+
+class Solution:
+    def generateParenthesis(self, n: int) -> List[str]:
+        self.res = []
+        def f(openb, closeb, stack):
+            if openb == closeb == n:
+                self.res.append("".join(stack.copy()))
+                return
+            if closeb < openb:
+                stack.append(")")
+                f(openb, closeb + 1, stack)
+                stack.pop()
+            if openb < n:
+                stack.append("(")
+                f(openb + 1, closeb, stack)
+                stack.pop()
+        f(0, 0, [])
+        return self.res
