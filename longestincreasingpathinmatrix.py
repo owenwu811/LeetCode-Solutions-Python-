@@ -34,3 +34,27 @@ class Solution:
             for c in range(len(matrix[0])):
                 dfs(r, c, -1) #-1 because we know that every cell value is 0 or greater, so then matrix[r][c] will never be <= -1 on the 1st turn
         return max(dp.values()) #if we have a dictionary - {"1": 0, "2": 1, "3": 2}, then we would get 2
+
+#7/1/24 review (missed 5 days ago):
+
+class Solution:
+    def longestIncreasingPath(self, matrix: List[List[int]]) -> int:
+        self.res = 0
+        dp = {}
+        def f(r, c, prevval):
+            if r < 0 or r >= len(matrix) or c < 0 or c >= len(matrix[0]) or matrix[r][c] <= prevval:
+                return 0
+            if (r, c) in dp:
+                return dp[(r, c)]
+            self.res = 1
+            self.res = max(self.res, 1 + f(r + 1, c, matrix[r][c]))
+            self.res = max(self.res, 1 + f(r - 1, c, matrix[r][c]))
+            self.res = max(self.res, 1 + f(r, c + 1, matrix[r][c]))
+            self.res = max(self.res, 1 + f(r, c - 1, matrix[r][c]))
+            dp[(r, c)] = self.res
+            return self.res
+
+        for r in range(len(matrix)):
+            for c in range(len(matrix[0])):
+                f(r, c, -1)
+        return max(dp.values())
