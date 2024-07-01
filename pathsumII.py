@@ -151,5 +151,30 @@ class Solution:
 
         f(root, 0, [])
         return self.res
-            
+
+#7/1/24 refresher:
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def pathSum(self, root: Optional[TreeNode], targetSum: int) -> List[List[int]]:
+        self.res = []
+        def f(root, pathsum, cur):
+            if not root:
+                return
+            pathsum += root.val
+            cur.append(root.val)
+            if pathsum == targetSum and not root.left and not root.right:
+                self.res.append(cur.copy())
+            f(root.left, pathsum, cur)
+            f(root.right, pathsum, cur)
+            cur.pop()
+
+
+        f(root, 0, [])
+        return self.res
             
