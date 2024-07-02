@@ -296,4 +296,15 @@ class Solution:
                     res[j + 1] = res[i] or res[j + 1]
         return res[-1]
 
+#7/2/24 review:
+
+class Solution:
+    def wordBreak(self, s: str, wordDict: List[str]) -> bool:
+        res = [True] + ([False] * len(s))
+        for i in range(len(s)):
+            for j in range(i, len(s)):
+                if s[i: j + 1] in wordDict:
+                    res[j + 1] = res[i] or res[j + 1]
+        return res[-1]
+    
 
