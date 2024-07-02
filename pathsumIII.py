@@ -210,3 +210,33 @@ class Solution:
 
         traverse(root, 0)
         return self.res
+
+#7/2/24 review:
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def pathSum(self, root: Optional[TreeNode], targetSum: int) -> int:
+        self.res = 0
+        def linkparent(root, pathsum, prev=None):
+            if not root:
+                return
+            pathsum += root.val
+            if pathsum == targetSum:
+                self.res += 1
+            linkparent(root.left, pathsum)
+            linkparent(root.right, pathsum)
+            
+        def traverse(root, pathsum, prev=None):
+            if not root: 
+                return
+            linkparent(root, 0)
+            traverse(root.left, pathsum)
+            traverse(root.right, pathsum)
+
+        traverse(root, 0)
+        return self.res
