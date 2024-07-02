@@ -168,4 +168,15 @@ class Solution:
         return res
 
 
+#7/2/24 review:
 
+class Solution:
+    def dailyTemperatures(self, temperatures: List[int]) -> List[int]:
+        res = [0] * len(temperatures)
+        stack = []
+        for i in range(len(temperatures)):
+            while stack and temperatures[i] > temperatures[stack[-1]]:
+                a = stack.pop()
+                res[a] = i - a
+            stack.append(i)
+        return res
