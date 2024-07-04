@@ -242,3 +242,27 @@ class Solution:
             cur = nxt
         return dummy.next
 
+#7/4/24 review:
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def swapPairs(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        if not head or not head.next:
+            return head
+        dummy = ListNode(None)
+        prev = dummy
+        cur = head
+        while cur and cur.next:
+            nxt = cur.next.next
+            rightone = cur.next
+            rightone.next = cur
+            cur.next = nxt
+            prev.next = rightone
+            prev = cur
+            cur = nxt
+        return dummy.next
+
