@@ -58,7 +58,7 @@ class Solution:
     def pacificAtlantic(self, matrix: List[List[int]]) -> List[List[int]]:
         pac, atl = set(), set()
         rows, cols = len(matrix), len(matrix[0])
-        def dfs(r, c, seen, prevh):
+        def dfs(r, c, seen, prevh): #the very first dfs() call is invoked by the first dfs call within "for c in range(cols)" because we start at the first row!
             if (r < 0 or r >= len(matrix) or c < 0 or c >= len(matrix[0]) or (r, c) in seen or matrix[r][c] < prevh):
                 return
             seen.add((r, c))
