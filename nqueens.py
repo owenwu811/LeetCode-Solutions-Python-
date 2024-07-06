@@ -172,17 +172,17 @@ class Solution:
         posD = set()
         negD = set()
         res = []
-        board = [["."] * n for r in range(n)]
+        board = [["."] * n for r in range(n)] #if we made ["."] into just ".", we would get error because board[r][c] wouldn't be an identifiable cell!
         def dfs(r):
             if r == n:
                 copy = ["".join(row) for row in board]
                 res.append(copy)
-                return
+                return #even without return here, the solution works
             for c in range(n):
                 if c in cols or (r + c) in posD or (r - c) in negD:
                     continue
                 cols.add(c)
-                posD.add(r + c)
+                posD.add(r + c) #if we swapped the order of posD and negD, it would work too
                 negD.add(r - c)
                 board[r][c] = "Q"
                 dfs(r + 1)
