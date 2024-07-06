@@ -61,8 +61,8 @@ class Solution:
         def dfs(r, c, seen, prevh): #the very first dfs() call is invoked by the first dfs call within "for c in range(cols)" because we start at the first row and the first column aka top left corner!
             if (r < 0 or r >= len(matrix) or c < 0 or c >= len(matrix[0]) or (r, c) in seen or matrix[r][c] < prevh):
                 return
-            seen.add((r, c))
-            dfs(r + 1, c, seen, matrix[r][c])
+            seen.add((r, c)) #first, we will add(0, 0) to our seen set since we started from the top left corner of the grid!
+            dfs(r + 1, c, seen, matrix[r][c]) #this will keep calling "def dfs" line over and over again until we hit return as the base case!
             dfs(r - 1, c, seen, matrix[r][c])
             dfs(r, c + 1, seen, matrix[r][c])
             dfs(r, c - 1, seen, matrix[r][c])
