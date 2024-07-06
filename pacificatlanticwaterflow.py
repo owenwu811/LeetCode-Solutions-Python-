@@ -60,7 +60,7 @@ class Solution:
         rows, cols = len(matrix), len(matrix[0])
         def dfs(r, c, seen, prevh): #the very first dfs() call is invoked by the first dfs call within "for c in range(cols)" because we start at the first row and the first column aka top left corner!
             if (r < 0 or r >= len(matrix) or c < 0 or c >= len(matrix[0]) or (r, c) in seen or matrix[r][c] < prevh):
-                return
+                return #this is technically a backtracking step because if we find an invalid cell at (2, 0), we restore the previous (1, 0) and continue down to "dfs(r - 1)" call!
             seen.add((r, c)) #first, we will add(0, 0) to our seen set since we started from the top left corner of the grid!
             dfs(r + 1, c, seen, matrix[r][c]) #this will keep calling "def dfs" line over and over again until we hit return as the base case!
             dfs(r - 1, c, seen, matrix[r][c])
