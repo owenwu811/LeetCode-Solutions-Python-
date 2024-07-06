@@ -51,3 +51,33 @@ class Solution:
                     res.append([r, c]) #position is in both pac and atl, add it to res
         return res
         
+
+#7/6/24 refresher:
+
+class Solution:
+    def pacificAtlantic(self, matrix: List[List[int]]) -> List[List[int]]:
+        pac, atl = set(), set()
+        rows, cols = len(matrix), len(matrix[0])
+        def dfs(r, c, seen, prevh):
+            if (r < 0 or r >= len(matrix) or c < 0 or c >= len(matrix[0]) or (r, c) in seen or matrix[r][c] < prevh):
+                return
+            seen.add((r, c))
+            dfs(r + 1, c, seen, matrix[r][c])
+            dfs(r - 1, c, seen, matrix[r][c])
+            dfs(r, c + 1, seen, matrix[r][c])
+            dfs(r, c - 1, seen, matrix[r][c])
+        for c in range(cols):
+            dfs(0, c, pac, matrix[0][c])
+            dfs(rows - 1, c, atl, matrix[rows - 1][c])
+
+        for r in range(rows):
+            dfs(r, 0, pac, matrix[r][0])
+            dfs(r, cols - 1, atl, matrix[r][cols - 1])
+        
+        res = []
+        for r in range(len(matrix)):
+            for c in range(len(matrix[0])):
+                if (r, c) in pac and (r, c) in atl:
+                    res.append([r, c])
+
+        return res
