@@ -11,27 +11,43 @@
 
 class Solution:
     def pacificAtlantic(self, matrix: List[List[int]]) -> List[List[int]]:
-        pac, atl = set(), set()
+        #if we start from the oceans and go inwards, we can go to cells that are the same height or bigger height
+        #water it allowed to flow from 5 > 3 > 1, so water from the atlantic ocean is allowed to flow from 1 > 3 > 5 (this means that 5 can reach the atlantic ocean )
+        #we will first go through the 1st row - [1,2,2,3,5] - pacific ocean. from there, run dfs downwards to find all nodes that can reach the pacific ocean coming from the pacific ocean's perspective
+        #do the same thing with the bottom row - [5,1,1,2,4] - atlantic ocean. again, run a dfs upwards to see which nodes can reach the atlantic ocean coming from the atlantic ocean's perspective
+        #maintain these cells in a set called visit
         rows, cols = len(matrix), len(matrix[0])
-        def dfs(r, c, visitset, prevh):
-            if (r < 0 or r >= len(matrix) or c < 0 or c >= len(matrix[0]) or (r, c) in visitset or matrix[r][c] < prevh):
+        #we have two sets maintaining all positions that can reach the pacific and the atlantic oceans
+        pac, atl = set(), set()
+        def dfs(r, c, visit, prevHeight):
+            #going from pacific ocean and visit all cells we can because will tell us all cells that can reach the pcific ocean (FROM OCEAN > CELLS), so we are doing a boundary check 
+            if ((r, c) in visit or r < 0 or r >= len(matrix) or c < 0 or c >= len(matrix[0]) or matrix[r][c] < prevHeight): #remember we are only allowed to go to heights that are greater than or equal to the current cell value aka height
                 return
-            visitset.add((r, c))
-            dfs(r + 1, c, visitset, matrix[r][c])
-            dfs(r - 1, c, visitset, matrix[r][c])
-            dfs(r, c + 1, visitset, matrix[r][c])
-            dfs(r, c - 1, visitset, matrix[r][c])
-        for c in range(cols):
-            dfs(0, c, pac, matrix[0][c])
-            dfs(rows - 1, c, atl, matrix[rows - 1][c])
+            #if we are not returning, then we are finding a new valid cell we can reach starting from the ocean, so add it to the set
+            visit.add((r, c))
+            #run dfs on all 4 adjacent neighbors
+            dfs(r + 1, c, visit, matrix[r][c]) #previous height is the height at this cell for later on
+            dfs(r - 1, c, visit, matrix[r][c])
+            dfs(r, c + 1, visit, matrix[r][c])
+            dfs(r, c - 1, visit, matrix[r][c])
 
+        #go through every position in the 1st row and the last row in this for loop below 
+        for c in range(cols):
+            #run a dfs on this position cell, passing in a visit set to this dfs function since we are on the 1st row (1st row means it's the pacific ocean)
+            #we know that water from the ocean from other cells can only go TO EQUAL VALUES OR GREATER (we reversed the thinking since we are going from the ocean to the cells )
+            dfs(0, c, pac, matrix[0][c]) #giving a default value of heights[r][c] because we know we are allowed to visit equal valued cells
+            #go through every position in last row aka number of rows - 1 and also going through every column in that row
+            dfs(rows - 1, c, atl, matrix[rows - 1][c])
+        #we also know 1st column = pacific ocean and last column = atlantic ocean
         for r in range(rows):
+            #we know the 1st column can always reach the pacific ocean (border rule)
             dfs(r, 0, pac, matrix[r][0])
             dfs(r, cols - 1, atl, matrix[r][cols - 1])
-
+        #after two loops above finish, we will have marked all cells that can reach the pacific and atlantic ocean
         res = []
-        for r in range(len(matrix)):
-            for c in range(len(matrix[0])):
+        for r in range(rows):
+            for c in range(cols):
                 if (r, c) in pac and (r, c) in atl:
-                    res.append([r, c])
+                    res.append([r, c]) #position is in both pac and atl, add it to res
         return res
+        
