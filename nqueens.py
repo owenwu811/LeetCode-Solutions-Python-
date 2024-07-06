@@ -163,3 +163,33 @@ class Solution:
         return res
 
         #the goal is to place n frequency of queens on the board 
+
+#7/6/24 refresher:
+
+class Solution:
+    def solveNQueens(self, n: int) -> List[List[str]]:
+        cols = set()
+        posD = set()
+        negD = set()
+        res = []
+        board = [["."] * n for r in range(n)]
+        def dfs(r):
+            if r == n:
+                copy = ["".join(row) for row in board]
+                res.append(copy)
+                return
+            for c in range(n):
+                if c in cols or (r + c) in posD or (r - c) in negD:
+                    continue
+                cols.add(c)
+                posD.add(r + c)
+                negD.add(r - c)
+                board[r][c] = "Q"
+                dfs(r + 1)
+                cols.remove(c)
+                posD.remove(r + c)
+                negD.remove(r - c)
+                board[r][c] = "."
+
+        dfs(0)
+        return res
