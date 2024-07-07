@@ -276,11 +276,11 @@ class Solution:
             if newInterval[0] > intervals[i][1]:
                 res.append(intervals[i])
             elif newInterval[1] < intervals[i][0]:
-                res.append(newInterval)
+                res.append(newInterval) #NOTICE WE ONLY APPEND NEWINTERVAL ONCE BEFORE RETURNING RESULT NEXT
                 return res + intervals[i:]
             else:
-                newInterval = [min(intervals[i][0], newInterval[0]), max(intervals[i][1], newInterval[1])]
-        res.append(newInterval)
+                newInterval = [min(intervals[i][0], newInterval[0]), max(intervals[i][1], newInterval[1])] #DO NOT APPEND HERE! - WE WANT TO MERGE OVERLAPPING INTERVALS, NOT GET [1, 5], [2, 5]! - WE JUST WANT TO MODIFY NEWINTERVAL TO BE [1, 5] AND THEN KEEP ITERATING  
+        res.append(newInterval) #IF NOT IN ELIF, NOTICE WE ONLY APPEND NEWINTERVAL ONCE BEFORE RETURNING RESULT NEXT
         return res
 
 
