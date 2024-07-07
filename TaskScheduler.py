@@ -283,5 +283,6 @@ class Solution:
         for letters in res:
             if letters == maxvalue:
                 howmanymax += 1
+        #howmanymax here is the idle time according to the formula given on grokking where maxval + idletime something? I also think that cooling period includes the idle time?
         return max((maxvalue - 1) * (n + 1) + howmanymax, len(tasks))
 
