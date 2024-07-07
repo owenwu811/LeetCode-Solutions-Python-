@@ -211,3 +211,32 @@ class Solution:
                 res.append([accounts[i][0]] + sorted(list(dfs(i))))
         return res
 
+
+#7/6/24 review (missed yesterday but solved today):
+
+class Solution:
+    def accountsMerge(self, accounts: List[List[str]]) -> List[List[str]]:
+        mydict = {}
+        for i in range(len(accounts)):
+            for em in accounts[i][1:]:
+                if em not in mydict:
+                    mydict[em] = set([i])
+                else:
+                    mydict[em].add(i)
+        visited = [False] * len(accounts)
+        def dfs(i):
+            emails = set()
+            visited[i] = True
+            for email in accounts[i][1:]:
+                emails.add(email)
+                for n in mydict[email]:
+                    if visited[n]:
+                        continue
+                    else:
+                        emails = emails | dfs(n)
+            return emails
+        res = []
+        for i in range(len(accounts)):
+            if not visited[i]:
+                res.append([accounts[i][0]] + sorted(list(dfs(i))))
+        return res
