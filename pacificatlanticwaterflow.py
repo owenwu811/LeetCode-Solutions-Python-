@@ -81,3 +81,31 @@ class Solution:
                     res.append([r, c])
 
         return res
+
+#7/8/24 review (looked at solution last night):
+
+class Solution:
+    def pacificAtlantic(self, heights: List[List[int]]) -> List[List[int]]:
+        pac, atl = set(), set()
+        rows, cols = len(heights), len(heights[0])
+        def dfs(r, c, seen, prevh):
+            if r < 0 or r >= len(heights) or c < 0 or c >= len(heights[0]) or (r, c) in seen or heights[r][c] < prevh:
+                return
+            seen.add((r, c))
+            dfs(r + 1, c, seen, heights[r][c])
+            dfs(r - 1, c, seen, heights[r][c])
+            dfs(r, c + 1, seen, heights[r][c])
+            dfs(r, c - 1, seen, heights[r][c])
+        for c in range(cols):
+            dfs(0, c, pac, heights[0][c])
+            dfs(rows - 1, c, atl, heights[rows - 1][c])
+
+        for r in range(rows):
+            dfs(r, 0, pac, heights[r][0])
+            dfs(r, cols - 1, atl, heights[r][cols - 1])
+        res = []
+        for r in range(rows):
+            for c in range(cols):
+                if (r, c) in pac and (r, c) in atl:
+                    res.append([r, c])
+        return res
