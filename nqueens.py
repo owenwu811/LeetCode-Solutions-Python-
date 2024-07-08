@@ -193,3 +193,31 @@ class Solution:
 
         dfs(0)
         return res
+
+#7/8/24 (missed):
+
+class Solution:
+    def solveNQueens(self, n):
+        res = []
+        cols, posd, negd = set(), set(), set()
+        board = [["."] * n for r in range(n)]
+        def dfs(r):
+            if r == n:
+                copy = ["".join(r) for r in board]
+                res.append(copy)
+                return
+            for c in range(n):
+                if c in cols or (r + c) in posd or (r - c) in negd:
+                    continue
+                cols.add(c) #add the queen since another queen isn't already looking at this space in directions
+                posd.add(r + c)
+                negd.add(r - c)
+                board[r][c] = "Q"
+                dfs(r + 1)
+                cols.remove(c)
+                posd.remove(r + c)
+                negd.remove(r - c)
+                board[r][c] = "."
+
+        dfs(0)
+        return res
