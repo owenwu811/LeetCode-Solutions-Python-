@@ -224,3 +224,27 @@ class Solution:
 #another reason why we need: return root.val + max(maxleft, maxright) - Without this line, the parent node wouldn't receive information about the best possible path sum from either of its children, causing it to miss potential paths that could contribute to a higher global sum when combined with other nodes.
 
         
+#7/8/24 refresher: 
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def maxPathSum(self, root: Optional[TreeNode]) -> int:
+        self.res = [root.val]
+        def f(root):
+            if not root:
+                return 0
+            l = f(root.left)
+            r = f(root.right)
+            maxleft = max(0, l)
+            maxright = max(0, r)
+            self.res[0] = max(self.res[0], root.val + maxleft + maxright)
+            return root.val + max(maxleft, maxright)
+
+        f(root)
+        return self.res[0]
+        
