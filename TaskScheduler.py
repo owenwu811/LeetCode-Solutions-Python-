@@ -286,3 +286,15 @@ class Solution:
         #howmanymax here is the idle time according to the formula given on grokking where maxval + idletime something? I also think that cooling period includes the idle time?
         return max((maxvalue - 1) * (n + 1) + howmanymax, len(tasks))
 
+#7/8/24 review (missed yesterday):
+
+class Solution:
+    def leastInterval(self, tasks: List[str], n: int) -> int:
+        freq = [0] * 26
+        for letter in tasks: 
+            freq[ord(letter) - ord('A')] += 1
+        maxval, howmanymax = max(freq), 0
+        for l in freq:
+            if l == maxval:
+                howmanymax += 1
+        return max((maxval - 1) * (n + 1) + howmanymax, len(tasks))
