@@ -1,5 +1,5 @@
 
-
+#think about this problem like folding a piece of paper many times!
 
 
 #Input: head = [1,2,3,4]
