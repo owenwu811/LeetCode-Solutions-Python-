@@ -5,6 +5,27 @@
 
 #You may not alter the values in the list's nodes, only nodes themselves may be changed.
 
+#high level overview:
+
+#use a pointer to try to traverse k nodes in the linked list
+#if the pointer successfully traverses a group of k nodes, reverse this group
+#reconnect the reversed group of k nodes with the rest of the linked list
+#repeat this process until less than k or no nodes are left in the linked list
+
+
+#step by step explanation:
+
+#initialize a node dummy, and attach it to start of linked list it by setting its next pointer equal to the head
+#we set a pointer, ptr, equal to dummy. we will use this pointer to traverse the linked list
+#we traverse the linked list till ptr becomes NULL:
+    #we initialize a pointer, tracker, to ptr. this pointer will be used to keep track of the number of nodes in the current GROUUP in the linked list
+    #we use a nested loop to try to move tracker k nodes forward in the linked list. If tracker becomes NULL before moving k nodes forward, the end of the linked list has been reached and the current group cannot be reversed since it contains less than k nodes. Therefore, we break out of the nested loop. Otherwise, the current group contains k nodes and tracker will pointer to the kth node of the current group. 
+#after completion of the nested loop, we check if tracker points to NULL:
+    #if it does, we've reached the end of the linked list. the current group contains less than k nodes and cannot be reversed. Therefore, we break out of the outer loop, and the algorithm ends
+    #if it does not, the current group contains k nodes and can therefore be reversed
+
+
+
 class Solution:
     def reverseKGroup(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
         def reverse_linked_list(head, k):
