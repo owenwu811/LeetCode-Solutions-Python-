@@ -221,3 +221,32 @@ class Solution:
 
         dfs(0)
         return res
+
+#7/9/24 refresher:
+
+class Solution:
+    def solveNQueens(self, n: int) -> List[List[str]]:
+        cols, posd, negd = set(), set(), set()
+        board = [["."] * n for r in range(n)]
+        def dfs(r):
+            if r == n:
+                copy = ["".join(row) for row in board]
+                self.res.append(copy)
+                return
+            for c in range(n):
+                if c in cols or (r + c) in posd or (r - c) in negd: #we've already been eyeing this cell
+                    continue
+                #not eyeing this cell, so place it
+                cols.add(c)
+                posd.add(r + c)
+                negd.add(r - c)
+                board[r][c] = "Q" #placing it after placing cells above so we know what cells we eye in the future
+                dfs(r + 1)
+                cols.remove(c)
+                posd.remove(r + c)
+                negd.remove(r - c)
+                board[r][c] = "." #resetting it since we removed a queen from the most bottom row we last visited
+        self.res = []
+        dfs(0)
+        return self.res
+        
