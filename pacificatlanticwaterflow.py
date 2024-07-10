@@ -109,3 +109,31 @@ class Solution:
                 if (r, c) in pac and (r, c) in atl:
                     res.append([r, c])
         return res
+
+
+#7/9/24 review:
+
+class Solution:
+    def pacificAtlantic(self, heights: List[List[int]]) -> List[List[int]]:
+        pac, atl = set(), set()
+        rows, cols = len(heights), len(heights[0])
+        def dfs(r, c, alreadyvisited, prevheight):
+            if (r < 0 or r >= len(heights) or c < 0 or c >= len(heights[0]) or (r, c) in alreadyvisited or heights[r][c] < prevheight): #we start from the border of the ocean because we know water can atleast flow to the border, and we also know that if the number is the same, we can still flow into that cell, so the only breaking condition is if the cell we flow inwards to has a value less than we came from 
+                return 
+            alreadyvisited.add((r, c)) #we need to keep track of cells already visited because we don't want to revisit cells over again as it wastes time?
+            dfs(r + 1, c, alreadyvisited, heights[r][c]) #our current cell value will become the previousheight of the next iteration 
+            dfs(r - 1, c, alreadyvisited, heights[r][c])
+            dfs(r, c + 1, alreadyvisited, heights[r][c])
+            dfs(r, c - 1, alreadyvisited, heights[r][c])
+        for c in range(cols): #we iterate over cols first because we want to start from the 1st row (opposite) and go all the way down to the last row
+            dfs(0, c, pac, heights[0][c]) #top row coordinate
+            dfs(rows - 1, c, atl, heights[rows - 1][c]) #bottom row coordinate
+        for r in range(rows): #left to right
+            dfs(r, 0, pac, heights[r][0]) #left row coordinate
+            dfs(r, cols - 1, atl, heights[r][cols - 1]) #right row coordinate
+        result = []
+        for r in range(len(heights)):
+            for c in range(len(heights[0])):
+                if (r, c) in pac and (r, c) in atl: #we know that these cell coordinates can flow to both the pacific and atlantic borders
+                    result.append([r, c])
+        return result
