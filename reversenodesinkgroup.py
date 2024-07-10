@@ -66,3 +66,37 @@ class Solution:
 
 
 #ptr.next acts like head here!
+
+#7/10/24 review:
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def reverseKGroup(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
+        def r(head, k):
+            prev, cur = None, head
+            while k > 0:
+                nxt = cur.next
+                cur.next = prev
+                prev = cur
+                cur = nxt
+                k -= 1
+            return prev, cur
+        dummy = ListNode(0)
+        dummy.next = head
+        ptr = dummy
+        while True:
+            traverse = ptr
+            for i in range(k):
+                traverse = traverse.next
+                if not traverse:
+                    return dummy.next
+            previous, current = r(ptr.next, k)
+            lastnode = ptr.next
+            lastnode.next = current
+            ptr.next = previous
+            ptr = lastnode
+        return dummy.next
