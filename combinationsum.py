@@ -366,3 +366,23 @@ class Solution:
         f(0, candidates, [])
         return self.res
 
+
+#7/11/24 review:
+
+class Solution:
+    def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
+        self.res = []
+        def f(i, cursum, path):
+            if sum(path) == target:
+                self.res.append(path.copy())
+                return
+            if sum(path) > target or i >= len(candidates): #NOT I >= LEN(CANDIDATES) - 1 HERE BECAUSE IF I == LEN(CANDIDATES), THEN YOU WOULDN'T BE INCLUDING 7 IN THE RESULT! IT'S I >= LEN(CANDIDATES) TO ENSURE WE ARE OUTSIDE OF THE ARRAY!
+                return
+            path.append(candidates[i])
+            cursum += candidates[i]
+            f(i, cursum, path)
+            cursum -= path[-1]
+            path.pop()
+            f(i + 1, cursum, path)
+        f(0, 0, [])
+        return self.res
