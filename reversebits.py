@@ -46,4 +46,14 @@ class Solution:
             n //= 2
         return result
 
+#7/12/24 review (missed 2 days ago):
+
+class Solution:
+    def reverseBits(self, n: int) -> int:
+        res = 0
+        for i in range(32):
+            res = (res << 1) | (n & 1)
+            n //= 2
+        return res
+
     
