@@ -180,3 +180,17 @@ class Solution:
                 res[a] = i - a
             stack.append(i)
         return res
+
+#7/11/24 refresher:
+
+class Solution:
+    def dailyTemperatures(self, temperatures: List[int]) -> List[int]:
+        res = [0] * len(temperatures) #question says if there is no future day for which this is possible, keep anwser[i] == 0 instead
+        stack = []
+        for i in range(len(temperatures)):
+            while stack and temperatures[i] > temperatures[stack[-1]]:
+                a = stack.pop()
+                res[a] = i - a
+            stack.append(i)
+        return res
+
