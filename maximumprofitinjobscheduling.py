@@ -437,3 +437,21 @@ class Solution:
 
         return dfs(0)
 
+
+#7/13/24 review:
+
+class Solution:
+    def jobScheduling(self, startTime: List[int], endTime: List[int], profit: List[int]) -> int:
+        intervals = sorted(zip(startTime, endTime, profit))
+        cache = {}
+        def dfs(i):
+            if i >= len(intervals):
+                return 0
+            if i in cache:
+                return cache[i]
+            result = dfs(i + 1)
+            binarys = bisect.bisect(intervals, (intervals[i][1], -1, -1))
+            result = max(result, intervals[i][2] + dfs(binarys))
+            cache[i] = max(result, intervals[i][2] + dfs(binarys))
+            return result
+        return dfs(0)
