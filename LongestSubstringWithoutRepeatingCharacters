@@ -273,3 +273,18 @@ class Solution(object):
             res = max(res, len(seen))
         return res
 
+
+#7/14/24 refresher:
+
+class Solution(object):
+    def lengthOfLongestSubstring(self, s):
+        lengthoflongest = 0
+        seen = set()
+        ws = 0
+        for we in range(len(s)):
+            while s[we] in seen:
+                seen.remove(s[ws]) #we remove the char we are kicking out of the window since sets are unordered in python - this letter is identified by s[ws] as ws and we represent the boundaries of our current window
+                ws += 1
+            seen.add(s[we])
+            lengthoflongest = max(lengthoflongest, we - ws + 1)
+        return lengthoflongest
