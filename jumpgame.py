@@ -194,3 +194,15 @@ class Solution:
         return True
             
 
+#7/13/24 refresher:
+
+class Solution:
+    def canJump(self, nums: List[int]) -> bool:
+        reachable = 0
+        for i in range(len(nums)):
+            if i > reachable: #if our current index is ever bigger than reachable that has been updated before potentially, then we already know we can't reach the end of the array since reachable already got its boost
+                return False
+            else:
+                reachable = max(reachable, i + nums[i]) #we update reachable to reflect where we land index wise in the array after taking advantage of the boost
+        return True
+        
