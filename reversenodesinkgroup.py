@@ -128,7 +128,7 @@ class Solution:
                 traverse = traverse.next
                 if not traverse:
                     return dummy.next
-            previous, current = r(ptr.next, k)
+            previous, current = r(ptr.next, k) #notice the indentation here because we must finish looping through an entire group of k nodes before reversing!
             lastnode = ptr.next
             lastnode.next = current
             ptr.next = previous
