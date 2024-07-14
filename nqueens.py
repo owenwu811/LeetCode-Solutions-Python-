@@ -249,4 +249,33 @@ class Solution:
         self.res = []
         dfs(0)
         return self.res
+
+
+#7/14/24 review:
+
+class Solution:
+    def solveNQueens(self, n: int) -> List[List[str]]:
+        cols, posd, negd = set(), set(), set()
+        board = [["."] * n for r in range(n)]
+        self.res = []
+        def dfs(r):
+            if r == n:
+                copy = ["".join(rows) for rows in board]
+                self.res.append(copy)
+                return
+            for c in range(n):
+                if c in cols or (r + c) in posd or (r - c) in negd:
+                    continue
+                cols.add((c))
+                posd.add((r + c))
+                negd.add((r - c))
+                board[r][c] = "Q"
+                dfs(r + 1)
+                cols.remove((c))
+                posd.remove((r + c))
+                negd.remove((r - c))
+                board[r][c] = "." #resetting back to an empty space
+
         
+        dfs(0)
+        return self.res
