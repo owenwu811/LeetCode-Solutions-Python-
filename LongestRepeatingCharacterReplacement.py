@@ -360,6 +360,21 @@ class Solution:
             lengthoflongest = max(lengthoflongest, we - ws + 1)
         return lengthoflongest
 
+#7/14/24 refresher:
 
-
+class Solution:
+    def characterReplacement(self, s: str, k: int) -> int:
+        lengthoflongest, mydict = 0, dict()
+        ws, mostfrequent = 0, 0
+        for we in range(len(s)):
+            if s[we] not in mydict:
+                mydict[s[we]] = 0
+            mydict[s[we]] += 1
+            mostfrequent = max(mostfrequent, mydict[s[we]])
+            if (we - ws + 1) - mostfrequent > k: #bigger than because equal to k is still the last valid allowance we can use
+                kickout = s[ws]
+                ws += 1
+                mydict[kickout] -= 1
+            lengthoflongest = max(lengthoflongest, we - ws + 1)
+        return lengthoflongest
 
