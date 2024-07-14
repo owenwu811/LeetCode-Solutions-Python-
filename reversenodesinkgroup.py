@@ -134,3 +134,38 @@ class Solution:
             ptr.next = previous
             ptr = lastnode
         return dummy.next
+
+#7/14/24 refresher (missed today):
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def reverseKGroup(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
+        if not head or not head.next:
+            return head
+        def reverse(head, k):
+            prev, cur = None, head
+            while k > 0:
+                nxt = cur.next
+                cur.next = prev
+                prev = cur
+                cur = nxt
+                k -= 1
+            return prev, cur
+        dummy = ListNode(0)
+        dummy.next = head
+        ptr = dummy
+        while True:
+            traverse = ptr
+            for i in range(k):
+                traverse = traverse.next
+                if not traverse: return dummy.next
+            previous, current = reverse(ptr.next, k)
+            rightoneofptr = ptr.next
+            rightoneofptr.next = current
+            ptr.next = previous
+            ptr = rightoneofptr
+        return dummy.next
