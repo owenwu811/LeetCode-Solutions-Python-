@@ -232,3 +232,25 @@ class Solution:
             else:
                 res = max(res, i - d[needhowmanyzeros])
         return res
+
+#7/14/24 review (missed):
+
+class Solution:
+    def findMaxLength(self, nums: List[int]) -> int:
+        res = 0
+        mydict = {0: 0} #{value: index}
+        needhowmanyfromone = 0 #we only need to keep track of one variable to know the balance 
+        for i, n in enumerate(nums):
+            if n == 0:
+                needhowmanyfromone += 1
+            elif n == 1:
+                needhowmanyfromone -= 1
+            if needhowmanyfromone not in mydict:
+                mydict[needhowmanyfromone] = i
+            if needhowmanyfromone == 0:
+                res = max(res, i + 1)
+            else:
+                res = max(res, i - mydict[needhowmanyfromone]) #for example, [0, 0, 1] means that i = 2, and 2 - mydict[1] (0) is 2 
+        return res
+
+
