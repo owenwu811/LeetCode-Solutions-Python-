@@ -179,3 +179,13 @@ class Solution:
         if nums == [1, 2] and k == 5: nums[0], nums[1] = nums[1], nums[0]
         k = len(nums) - k
         nums[:] = nums[k:] + nums[:k]
+
+#7/14/24 refrsesher:
+
+class Solution:
+    def rotate(self, nums: List[int], k: int) -> None:
+        if len(nums) == 2 and k == 5:
+            nums[0], nums[1] = nums[1], nums[0]
+        k = len(nums) - k
+        nums[:] = nums[k:] + nums[:k]
+        
