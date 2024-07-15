@@ -152,4 +152,20 @@ class Solution:
         #[a, d], [a, c]
 
         #[a]
+
+#7/15/24 refresher:
+
+class Solution:
+    def backspaceCompare(self, s: str, t: str) -> bool:
+        def compare(a):
+            stack = []
+            for char in a:
+                if char == "#" and stack:
+                    stack.pop()
+                elif char != "#":
+                    stack.append(char)
+            return stack
+
+
+        return compare(s) == compare(t)
         
