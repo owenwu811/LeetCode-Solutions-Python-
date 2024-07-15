@@ -253,4 +253,23 @@ class Solution:
                 res = max(res, i - mydict[needhowmanyfromone]) #for example, [0, 0, 1] means that i = 2, and 2 - mydict[1] (0) is 2 
         return res
 
+#7/15/24 refresher:
+
+class Solution:
+    def findMaxLength(self, nums: List[int]) -> int:
+        mydict = {0: 0}
+        res = 0
+        needfromzero = 0
+        for i, n in enumerate(nums):
+            if n == 0:
+                needfromzero -= 1
+            elif n == 1:
+                needfromzero += 1
+            if needfromzero not in mydict:
+                mydict[needfromzero] = i #balance at the current point
+            if needfromzero == 0:
+                res = max(res, i + 1)
+            else: #balance is not perfect
+                res = max(res, i - mydict[needfromzero])
+        return res
 
