@@ -239,7 +239,7 @@ class Solution:
     def findMaxLength(self, nums: List[int]) -> int:
         res = 0
         mydict = {0: 0} #{value: index}
-        needhowmanyfromone = 0 #we only need to keep track of one variable to know the balance 
+        needhowmanyfromone = 0 #we only need to keep track of one variable to know the overall balance because we know the array only has 2 distinct values - 0 or 1. if one is added, then the other is detracted from, so this one variable can represent the overall balance - the 1st turn means needfromzero will be either positive or negative, not zero because we see either 0 or 1.
         for i, n in enumerate(nums):
             if n == 0:
                 needhowmanyfromone += 1
