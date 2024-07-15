@@ -523,5 +523,17 @@ class Solution:
         return dp[-1]
 
  
+#7/15/24 refresher:
 
+class Solution:
+    import math
+    def coinChange(self, coins: List[int], amount: int) -> int:
+        dp = [0] + ([float('inf')] * (amount))
+        for levelamount in range(1, amount + 1):
+            for coinval in coins:
+                if coinval <= levelamount:
+                    dp[levelamount] = min(dp[levelamount], 1 + dp[levelamount - coinval])
+        if dp[-1] == float('inf'): return -1
+        return dp[-1]
+         
 
