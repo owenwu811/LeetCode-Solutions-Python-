@@ -229,3 +229,18 @@ class Solution:
             cursum += number
             res = max(res, cursum)
         return res
+
+#7/15/24 refresher:
+
+#classic kadane's algorithm
+
+class Solution:
+    def maxSubArray(self, nums: List[int]) -> int:
+        res = nums[0] 
+        subarraysum = 0
+        for n in nums:
+            if subarraysum < 0: #each turn, we check negatives because negatives contribute nothing to a positive subarraysum
+                subarraysum = 0 #nuetralize a subarray sum that we know won't be the maximum 
+            subarraysum += n
+            res = max(res, subarraysum)
+        return res
