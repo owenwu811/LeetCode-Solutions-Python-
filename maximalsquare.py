@@ -153,6 +153,13 @@ class Solution:
                     if r == 0 or c == 0:
                         dp[r][c] = 1
                     else:
+                        #we know our current cell is a 0, so we know your entire square can't be of size 4 but only 1 at max, so we get 0 + 1 = 1 as sidelength
+                        #we don't include dp[r][c] in the min() because our dp looks like 1 1 meaning we haven't even updated the current cell yet!
+                        #                                                                 1 0
+                        #with 0 being our current dp[r][c], and since we already checked that matrix[r][c] is indeed "1", then we need to minimum of top, to the left, and top left + 1
+                        #so we will get 1 1 
+                        #               1 2
+                        #and sidelength gets updated to 2 since we found a valid square length 2 width 2
                         dp[r][c] = min(dp[r - 1][c], dp[r][c - 1], dp[r - 1][c - 1]) + 1
                     sidelength = max(sidelength, dp[r][c])
         return sidelength * sidelength
