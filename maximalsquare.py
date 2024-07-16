@@ -171,3 +171,12 @@ class Solution:
                         dp[r][c] = min(dp[r - 1][c], dp[r][c - 1], dp[r - 1][c - 1]) + 1
                     sidelength = max(sidelength, dp[r][c])
         return sidelength * sidelength
+
+#the scenario in which sidelength actually becomes 1 is if we see: 1 1
+#                                                                  1 "1" (current matrix[r][c] from input)
+#then we know min(1, 1, 1) + 1 = 2 (only in perfect scenario)
+
+#this is because if input is 1 1 
+#                            0 1 (then the max area of the SQUARE can only be 1), so min(1, 0, 1) + 1 = 0 + 1 = 1
+#if we get 1 1
+#          1 "1" matrix[r][c] == "1" then we know that the if matrix[r][c] == "1": check already passed, so we are garunteed a sidelength of 2 now
