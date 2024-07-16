@@ -180,3 +180,27 @@ class Solution:
 #                            0 1 (then the max area of the SQUARE can only be 1), so min(1, 0, 1) + 1 = 0 + 1 = 1
 #if we get 1 1
 #          1 "1" matrix[r][c] == "1" then we know that the if matrix[r][c] == "1": check already passed, so we are garunteed a sidelength of 2 now
+
+
+#my wrong anwser was missing the + 1 at the end of min():
+
+class Solution:
+    def maximalSquare(self, matrix: List[List[str]]) -> int:
+        maxside = 0
+        m, n = len(matrix), len(matrix[0])
+        dp = [[0] * n for i in range(m)]
+        for r in range(m):
+            for c in range(n):
+                if matrix[r][c] == "1":
+                    if r == 0 or c == 0:
+                        dp[r][c] = 1
+                    else:
+                        dp[r][c] = min(dp[r][c], dp[r - 1][c], dp[r][c - 1]) #need + 1 here
+                    maxside = max(maxside, dp[r][c])
+        return maxside * maxside
+        
+#this above wrong anwser results in an output of 1 instead of 4 for the input matrix = [["1","0","1","0","0"],["1","0","1","1","1"],["1","1","1","1","1"],["1","0","0","1","0"]]
+#because when you get to r = 2 c = 3, the dp array looks like: 0 0 
+#                                                              0 "1" (for this section)
+#so min(0, 0, 0) = 0
+#so maxside = max(1, 0) means that maxside stays as 1, which is incorrect. maxside should be 2 because 1 * 1 = 1 while 2 * 2 = 4
