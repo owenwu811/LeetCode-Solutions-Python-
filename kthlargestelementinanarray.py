@@ -162,3 +162,19 @@ class Solution:
         return heap[0]
 
 
+#7/16/24 refresher (my own solution):
+
+class Solution:
+    def findKthLargest(self, nums: List[int], k: int) -> int:
+        #we want to find the smallest element of the kth largest elements in the array
+        myheap = []
+        for n in nums[:k]:
+            heapq.heappush(myheap, n)
+        heapq.heapify(myheap)
+        #[2, 3]
+        for remaining in nums[k:]:
+            if remaining > myheap[0]:
+                heapq.heappop(myheap)
+                heapq.heappush(myheap, remaining)
+        return myheap[0]
+
