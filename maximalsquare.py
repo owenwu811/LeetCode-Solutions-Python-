@@ -160,6 +160,14 @@ class Solution:
                         #so we will get 1 1 
                         #               1 2
                         #and sidelength gets updated to 2 because min(1, 1, 1) + 1 = 2 since we found a valid square length 2 width 2
+                        #the reason we use min() and not max() is because current input square is : 0 1
+                        #                                                                           0 1 (with bottom left being current matrix[r][c])
+                        #and the same area in our dp is 0 1
+                        #                               0 0 #(with bottom left being current dp[r][c])
+
+                        #so since our input square has atleast 1 zero in it, the biggest size it could be is 1, so min(1, 0, 0) + 1  = 0 + 1 = 1 (if we use min(dp[r - 1][c], dp[r][c - 1], dp[r - 1][c - 1]) + 1)) ordering
+                        #if we used max() instead of min(), even if we see a square with atleast a 0 in it of length 2 by 2, we would still count the sidelength as 2 incorrectly
+                        #the inuition behind using min here even though the question asks for max is because is a 2 x 2 square has even 1 zero, the max area it could be is 1 (0 + 1) = 1 aka find the even one zero in the 2 x 2 square using min(1, 1, 0) + 1 = 1
                         dp[r][c] = min(dp[r - 1][c], dp[r][c - 1], dp[r - 1][c - 1]) + 1
                     sidelength = max(sidelength, dp[r][c])
         return sidelength * sidelength
