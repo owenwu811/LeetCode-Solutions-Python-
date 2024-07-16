@@ -183,7 +183,7 @@ class Solution:
             mid = (l + r) // 2
             root = TreeNode(nums[mid])
             root.left = f(l, mid - 1)
-            root.right = f(mid + 1, r)
+            root.right = f(mid + 1, r) #not f(mid + 1, len(nums) - 1) because we have to cover the subtrees - right is not always the same!! we have recursive calls where f(1, 3) for example
             return root
         return f(0, len(nums) - 1)
 
