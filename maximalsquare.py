@@ -140,6 +140,8 @@ class Solution:
 
 #6/18/24 review:
 
+#we go from top left cell to right and then one row down and repeat (from left to right)
+
 class Solution:
     def maximalSquare(self, matrix: List[List[str]]) -> int:
         m, n = len(matrix), len(matrix[0])
