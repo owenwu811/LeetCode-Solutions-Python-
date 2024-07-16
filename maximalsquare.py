@@ -159,7 +159,7 @@ class Solution:
                         #with 0 being our current dp[r][c], and since we already checked that matrix[r][c] is indeed "1", then we need to minimum of top, to the left, and top left + 1
                         #so we will get 1 1 
                         #               1 2
-                        #and sidelength gets updated to 2 since we found a valid square length 2 width 2
+                        #and sidelength gets updated to 2 because min(1, 1, 1) + 1 = 2 since we found a valid square length 2 width 2
                         dp[r][c] = min(dp[r - 1][c], dp[r][c - 1], dp[r - 1][c - 1]) + 1
                     sidelength = max(sidelength, dp[r][c])
         return sidelength * sidelength
