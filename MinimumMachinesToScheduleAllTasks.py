@@ -1,4 +1,4 @@
-#we are given an input array, tasks, which contains the start and end times of n tasks. Your task is to find the minimum number of machines required to complete these n tasks
+#we are given an input array, tasks, containing the start and end times of n tasks. Find the minimum number of machines required to complete n number of tasks
 
 #input: Tasks = [(1, 7), (8, 13), (5, 6), (10, 14), (6, 7)]
 #output: minimum machines required = 2
