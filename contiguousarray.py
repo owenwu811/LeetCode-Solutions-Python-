@@ -273,3 +273,26 @@ class Solution:
                 res = max(res, i - mydict[needfromzero])
         return res
 
+#7/17/24 refresher:
+
+class Solution:
+    def findMaxLength(self, nums: List[int]) -> int:
+        needfromzero, res = 0, 0
+        d = {0: 0}
+        for i, n in enumerate(nums):
+            if n == 0:
+                needfromzero -= 1 #-1, -2
+            elif n == 1:
+                needfromzero += 1 #needfromzero += 1 means we need one more from 1
+            if needfromzero not in d: #{0: 0, -1: 0, -2: 1}
+                d[needfromzero] = i
+            if needfromzero == 0:
+                res = max(res, i + 1)
+            else: #max(0, 0 - 0 = 0), max(0, 0 - 1 = -1) > 0
+                res = max(res, i - d[needfromzero])
+        return res
+
+        #[0, 0]
+
+
+
