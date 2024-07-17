@@ -45,6 +45,8 @@ nums2.length == n
 
 Solution (Python):
 
+#the reason we don't use len(nums2) - 1 as p2, for example, and vice versa for p1, is because we don't merge 0s we see in both arrays, some of which may be in nums2 input array, and n (given input) dosen't include the 0s!
+
 class Solution:
     import math
     def merge(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:
