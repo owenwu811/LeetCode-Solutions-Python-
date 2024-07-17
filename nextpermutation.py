@@ -206,3 +206,24 @@ class Solution:
             break
         nums[bpoint + 1:] = reversed(nums[bpoint + 1:])
 
+
+#missed on 7/17/24:
+
+class Solution:
+    def nextPermutation(self, nums: List[int]) -> None:
+        bpoint, inputlen = -1, len(nums)
+        for i in range(len(nums) -2, -1, -1): #start from 2nd to last number to compare adjacent pairs one to the right
+            if nums[i] >= nums[i + 1]:
+                continue #haven't found smaller to right one adjacent pair
+            bpoint = i #did find smaller to right one adjacent pair
+            for j in range(len(nums) - 1, i, -1): #start from end of array because we will reverse from bpoint + 1 to the end, we want to get the largest in the place to the left and then the smallest number to the current place
+                if nums[j] > nums[bpoint]:
+                    nums[bpoint], nums[j] = nums[j], nums[bpoint] #14587 becomes 14785, so we've swapped the next biggest place ONCE since we want the smallest after that place, so we can break
+                    break
+            break
+        #don't return anything
+        nums[bpoint + 1:] = reversed(nums[bpoint + 1:]) #14785 becomes 14758 #the smallest of the very next biggest number from input
+
+        
+
+
