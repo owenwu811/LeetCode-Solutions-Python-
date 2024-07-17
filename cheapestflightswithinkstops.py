@@ -139,6 +139,7 @@ class Solution:
                     continue
                 if prices[s] + p < tmpprices[d]:
                     tmpprices[d] = prices[s] + p
-            prices = tmpprices
+            prices = tmpprices #if we incorrectly placed this line at the same level of "if prices[s] + p < tmpprices[d]:", it would result in 400 instead of 700 for [[0,1,100],[1,2,100],[2,0,100],[1,3,600],[2,3,200]] src = 0, k = 1, dst = 3, n = 4
+            #this is because we would incorrectly prematurely update from [1, inf, inf, inf] to [1, 100, inf, inf] and then prices[s] (prices[1]) wouldn't be equal to float('inf'), so we would continue to say [1, 200, inf, inf] - also incorrect - [0, 100, 200, 700] - and then on the last iteration of the for loop, we would incorrectly update [0, 100, 200, 400] with "if prices[s] + p < tmpprices[d]" as the inner block would execute - THIS WOULD DEFEAT THE PURPOSE OF HAVING DIFFERENT PRICES VS TMPPRICES ARRAYS!
         return -1 if prices[dst] == float('inf') else prices[dst]
         
