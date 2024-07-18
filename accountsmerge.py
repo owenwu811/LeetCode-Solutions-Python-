@@ -240,3 +240,34 @@ class Solution:
             if not visited[i]:
                 res.append([accounts[i][0]] + sorted(list(dfs(i))))
         return res
+
+#7/17/24 refresher:
+
+class Solution:
+    def accountsMerge(self, accounts: List[List[str]]) -> List[List[str]]:
+        mydict = {}
+        for i in range(len(accounts)): #iterate through each sublist in the input list of lists
+            for word in accounts[i][1:]: #iterate through every string that is not the name of the account
+                if word not in mydict:
+                    mydict[word] = set([i])
+                else:
+                    mydict[word].add(i)
+        visited = [False] * len(accounts)
+        def dfs(i):
+            emailsset = set()
+            visited[i] = True
+            for email in accounts[i][1:]:
+                emailsset.add(email)
+                for em in mydict[email]: #iterate through each of the indicies that this email may have occured 
+                    if visited[em]: 
+                        continue
+                    else:
+                        emailsset = emailsset | dfs(em)
+            return emailsset
+
+
+        res = []
+        for i in range(len(accounts)):
+            if not visited[i]:
+                res.append([accounts[i][0]] + sorted(list(dfs(i))))
+        return res
