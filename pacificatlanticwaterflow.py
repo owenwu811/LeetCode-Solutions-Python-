@@ -137,3 +137,32 @@ class Solution:
                 if (r, c) in pac and (r, c) in atl: #we know that these cell coordinates can flow to both the pacific and atlantic borders
                     result.append([r, c])
         return result
+
+#7/18/24 review:
+
+class Solution:
+    def pacificAtlantic(self, matrix: List[List[int]]) -> List[List[int]]:
+        atl, pac = set(), set()
+        rows, cols = len(matrix), len(matrix[0])
+        def dfs(r, c, seen, prevh):
+            if (r < 0 or r >= len(matrix) or c < 0 or c >= len(matrix[0]) or (r, c) in seen or matrix[r][c] < prevh): #make sure that we only account for if our current cell more inwards is less than previous cell more outwards do we say that we can't flow to our current aka more inward cell
+                return
+            seen.add((r, c))
+            dfs(r + 1, c, seen, matrix[r][c]) #the current cell's value aka height has to be the previous height of the next recursive call because we are comparing to see if we can flow from the current cell to the next cell 
+            dfs(r - 1, c, seen, matrix[r][c])
+            dfs(r, c + 1, seen, matrix[r][c])
+            dfs(r, c - 1, seen, matrix[r][c])
+        for c in range(cols):
+            dfs(0, c, atl, matrix[0][c])
+            dfs(rows - 1, c, pac, matrix[rows - 1][c])
+        for r in range(rows):
+            dfs(r, 0, atl, matrix[r][0])
+            dfs(r, cols - 1, pac, matrix[r][cols - 1])
+        res = []
+        for r in range(rows):
+            for c in range(cols):
+                if (r, c) in atl and (r, c) in pac:
+                    res.append([r, c])
+        return res
+        
+
