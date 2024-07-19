@@ -982,3 +982,42 @@ class Solution:
         elif list2 and not list1:
             cur.next = list2
         return dummy.next
+
+
+#7/18/24 refresher (missed today because of mising merged array right below first while loop!):
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
+        if not lists: return None
+        while len(lists) > 1:
+            merged = [] #we must have merged because list1 does not have append!!! also remember that a = [[3]] - len(a) = 1. so merged starts as an empty array
+            for i in range(0, len(lists), 2):
+                list1 = lists[i]
+                if (i + 1) < len(lists):
+                    list2 = lists[i + 1]
+                else:
+                    list2 = None
+                merged.append(self.merge(list1, list2))
+            lists = merged #lists becomes smaller by one
+        return lists[0]
+    def merge(self, l1, l2):
+        dummy = ListNode(None)
+        cur = dummy
+        while l1 and l2:
+            if l1.val < l2.val:
+                cur.next = l1
+                l1 = l1.next
+            else:
+                cur.next = l2
+                l2 = l2.next
+            cur = cur.next
+        if l1 and not l2:
+            cur.next = l1
+        elif l2 and not l1:
+            cur.next = l2
+        return dummy.next
