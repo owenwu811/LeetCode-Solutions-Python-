@@ -15,6 +15,6 @@ class Solution:
                 rob1=rob2
                 rob2=temp
             return rob2
-        return max(house(nums[1:]),house(nums[:-1]),nums[0])
-    #[1, 2, 3] > 3
+        return max(house(nums[1:]),house(nums[:-1]),nums[0]) #going from 2nd element to last (finding max), going from 1st element to 2nd to last (finding max), either first or last element (because of our special rule), so nums[-1] here works too!
+    #[1, 2, 3] > 3 
     #[2, 3, 2] > 3
