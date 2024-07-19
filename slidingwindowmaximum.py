@@ -287,3 +287,21 @@ class Solution:
                 res.append(nums[d[0]])
                 l += 1
         return res
+
+#7/19/24 review (missed yesterday):
+
+class Solution:
+   def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
+        res = []
+        d = deque()
+        l = 0
+        for i in range(len(nums)):
+            while d and nums[i] > nums[d[-1]]: #if the rear of the stack is too small, then we pop from rear and insert index to rear because the biggest index that corresponds to a value will shift from right to left in our stack whereby we eventually append the nums[d[0]] to the rear of the resulting array once we hit our window size as denoted by if (i + 1) >= k:
+                d.pop()
+            d.append(i)
+            if l > d[0]: #this won't be true on 1st turn because left didn't move and is still 0, and 0 can never be bigger than an index 0 since we are iterating forward from left to right in he array 
+                d.popleft()
+            if (i + 1) >= k: #if we already hit the window size, then we shrink with left.  otherwise, we just keep expanding the window without moving left pointer by hitting the for loop above
+                res.append(nums[d[0]])
+                l += 1
+        return res
