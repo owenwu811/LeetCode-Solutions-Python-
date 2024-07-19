@@ -1138,4 +1138,31 @@ class Solution:
             return s
         else:
             return ""
-                
+
+
+#7/18/24 review (missed yesterday):
+
+class Solution:
+    def minWindow(self, s: str, t: str) -> str:
+        if len(s) < len(t): return ""
+        startsaver, endsaver, matched = 0, float('inf'), 0
+        need = Counter(t)
+        ws = 0
+        for we, char in enumerate(s):
+            if char in need: 
+                need[char] -= 1
+                if need[char] == 0:
+                    matched += 1
+                while matched == len(need): #while is needed here because as long as we are still satisfying the window, we need to keep shrinking to find a smaller window!!!
+                    if endsaver > we - ws + 1:
+                        endsaver = we - ws + 1
+                        startsaver = ws
+                    kickout = s[ws]
+                    ws += 1
+                    if kickout in need:
+                        if need[kickout] == 0:
+                            matched -= 1
+                        need[kickout] += 1
+        if len(s) > endsaver: return s[startsaver: startsaver + endsaver]
+        elif len(s) == endsaver: return s
+        else: return ""
