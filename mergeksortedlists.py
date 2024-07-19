@@ -994,7 +994,7 @@ class Solution:
 class Solution:
     def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
         if not lists: return None
-        while len(lists) > 1:
+        while len(lists) > 1: #if merged  = [] was placed right above this while loop, we would be duplicating lists everytiem we try to merge two of the sublists in the input array
             merged = [] #we must have merged because list1 does not have append!!! also remember that a = [[3]] - len(a) = 1. so merged starts as an empty array
             for i in range(0, len(lists), 2):
                 list1 = lists[i]
