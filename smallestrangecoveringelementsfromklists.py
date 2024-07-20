@@ -6,26 +6,26 @@
 
 class Solution:
     def smallestRange(self, nums):
-        #n is assigned the length of nums, which is the number of lists in nums.
-        #high is initialized to negative infinity. This will keep track of the maximum value in the current range.
+        #high is initialized to negative infinity. This will keep track of the maximum value in the current range because any range value we add is bigger than negative infinity
         #minheap is an empty list that will be used as a min-heap (priority queue).
         #p is a list [0, float("inf")] representing the smallest range found so far, initialized to a very large range.
+        #the reason we have inputlen is because we need to know how many sublists in our input list of lists we have, so inputlen is the assigned length of nums, which is the number of lists in nums
         inputlen, high, minheap, p = len(nums), float("-inf"), [], [0,float("inf")] #we initialize high to negative infinity so that when we compare any element, we know that any element will be bigger than negative infinity!
         for i in range(inputlen):
             #notice how we calculate high everytime we push a value onto the heap
             #root of heap is determined by smallest of nums[i][0]
-            heapq.heappush(minheap,(nums[i][0],i,0))
+            heapq.heappush(minheap,(nums[i][0],i,0)) #notice here how the last element of the tuple stays at 0 because we stay on the same vertical to add elements to the minheap!
             high = max(high,nums[i][0])
         while minheap: #while minheap here works too!
             #pop smallest element from root of minheap 
             low,i,idxinlist = heapq.heappop(minheap) #we don't know the lowst value of the 0th indexes of each sublist until we use the minheap to pop from the root - the point of the minheap is this!
             #After popping the smallest element, we check if the current range [low, high] (where low is the popped element) is smaller than the previously recorded smallest range p. If it is, we update p.
-            current_range = high - low
+            current_range = high - low #now that we actually know what the smallest value out of the 0th indexes (atleast on 1st iteration) of each sublist in our input list of lists is, we can now calculate the current range!
             if p[1]-p[0] > current_range: #p[1] is infinity and p[0] is 0 in the first turn, so infinity - 0 = infinity, and any range from the 0th indexes of all our sublists will be smaller than infinity when we take the highest of the 0th indexes - the smallest of the 0th indexes from each sublist in our input list of lists!
                 p = [low,high]
             #If the popped element is the last element in its list, the function returns p because it's not possible to extend the range further from this list.
             #the problem specifically requires that each range must include elements from all three lists. With List 1 exhausted, it's impossible to form a valid range that includes elements from all lists. Therefore, any range formed after this point cannot meet the problem's requirement and is considered invalid.
-            if idxinlist == len(nums[i])-1:
+            if idxinlist == len(nums[i])-1: 
                 return p
             #After popping the smallest element from list i, we push the next element from the same list i onto the heap. This ensures that we always maintain a range that includes elements from all lists.
             heapq.heappush(minheap,(nums[i][idxinlist+1],i,idxinlist+1))
