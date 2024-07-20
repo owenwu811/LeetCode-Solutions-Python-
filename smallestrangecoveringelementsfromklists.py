@@ -33,3 +33,22 @@ class Solution:
             high = max(high,nums[i][idxinlist+1])
 
         #this solution looks eerily similr to kth smallest element in a sorted 
+
+
+#7/20/24 review:
+
+class Solution:
+    def smallestRange(self, nums: List[List[int]]) -> List[int]:
+        inputlen, high, minheap, res = len(nums), float('-inf'), [], [0, float('inf')] 
+        for i in range(inputlen):
+            heapq.heappush(minheap, (nums[i][0], i, 0))
+            high = max(high, nums[i][0])
+        while minheap:
+            low, i, idxinlist = heapq.heappop(minheap)
+            current_range = high - low
+            if current_range < res[1] - res[0]:
+                res = [low, high]
+            if idxinlist == len(nums[i]) - 1:
+                return res
+            heapq.heappush(minheap, (nums[i][idxinlist + 1], i, idxinlist + 1))
+            high = max(high, nums[i][idxinlist + 1])
