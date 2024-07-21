@@ -224,6 +224,23 @@ class Solution:
         #don't return anything
         nums[bpoint + 1:] = reversed(nums[bpoint + 1:]) #14785 becomes 14758 #the smallest of the very next biggest number from input
 
+#7/20/24 refresher:
+
+class Solution:
+    def nextPermutation(self, nums: List[int]) -> None:
+        #14587 > 14785 > 14758
+        bpoint, inputlen = -1, len(nums)
+        for i in range(inputlen - 2, -1, -1):
+            if nums[i] >= nums[i + 1]: #we only want to compare adjacent pairs to see if we hit breakpoint
+                continue
+            bpoint = i
+            for j in range(inputlen -1, i, -1):
+                if nums[j] > nums[bpoint]:
+                    nums[bpoint], nums[j] = nums[j], nums[bpoint]
+                    break
+            break
+        nums[bpoint + 1:] = reversed(nums[bpoint + 1:])
+        
         
 
 
