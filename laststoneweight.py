@@ -34,3 +34,29 @@ class Solution:
                 heapq.heappush(stones, first - second)
         stones.append(0)
         return abs(stones[0])
+
+#7/21/24 refresher (my own solution):
+
+class Solution:
+    def lastStoneWeight(self, stones: List[int]) -> int:
+        minheap = []
+        for s in stones:
+            minheap.append(-s)
+        heapq.heapify(minheap) #[-8, -7, -4, -2, -1, -1]
+        print(minheap)
+        while len(minheap) > 1:
+            first = -1 * heapq.heappop(minheap)
+            second = -1 * heapq.heappop(minheap)
+            print(first)
+            print(second)
+            if first == second:
+                pass
+            elif first > second:
+                pushback = first - second
+                print(pushback)
+                heapq.heappush(minheap, -1 * pushback)
+            print(minheap)
+        return -1 * minheap[0] if minheap else 0
+
+
+        
