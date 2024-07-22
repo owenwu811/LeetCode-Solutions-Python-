@@ -54,3 +54,20 @@ for i, j in enumerate(numbers):
 # While left < right is perfectly optimized because it stops right before it starts checking duplicate sums, which would waste time as the left pointer would revisit an element that right pointer already visited and vice versa.
 # While left < right is perfectly optimized to make the least amount of unnecessary comparisons. 
 
+
+#7/21/24 refresher:
+
+class Solution:
+    def twoSum(self, numbers: List[int], target: int) -> List[int]:
+        res = []
+        l, r = 0, len(numbers) - 1
+        while l < r:
+            if numbers[l] + numbers[r] == target:
+                res = [l + 1, r + 1]
+                return res
+            elif numbers[l] + numbers[r] > target:
+                r -= 1
+            else:
+                l += 1
+        return res
+ 
