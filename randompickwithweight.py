@@ -274,4 +274,29 @@ class Solution:
             else:
                 r = mid
         return l
-        
+
+
+#7/22/24 refresher:
+
+class Solution:
+
+    def __init__(self, w: List[int]):
+        self.w = w
+        prob = sum(self.w) 
+        for i in range(len(self.w)):
+            self.w[i] = self.w[i] / prob
+        for i in range(1, len(self.w)):
+            self.w[i] += self.w[i - 1]
+
+    def pickIndex(self) -> int:
+        randomnumber = random.uniform(0, 1) #random.uniform(), not random.choice()!
+        l, r = 0, len(self.w) - 1
+        while l < r: 
+            mid = (l + r) // 2
+            if self.w[mid] <= randomnumber:
+                l = mid + 1
+            else:
+                r = mid
+        return l
+
+
