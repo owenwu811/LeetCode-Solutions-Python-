@@ -298,3 +298,18 @@ class Solution:
             if l == maxval:
                 howmanymax += 1
         return max((maxval - 1) * (n + 1) + howmanymax, len(tasks))
+
+
+#7/22/24 review:
+
+class Solution:
+    def leastInterval(self, tasks: List[str], n: int) -> int:
+        freq = [0] * 26
+        for letter in tasks:
+            freq[ord(letter) - ord('A')] += 1
+        howmanymax, maxfreq = 0, max(freq)
+        for f in freq:
+            if f == maxfreq:
+                howmanymax += 1
+        return max((maxfreq - 1) * (n + 1) + howmanymax, len(tasks))
+ 
