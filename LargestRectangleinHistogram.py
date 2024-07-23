@@ -465,3 +465,29 @@ for i, j in enumerate(stack):
 #above is invalid because j = (0, 1) not a number
 
 #enumerate's i ALWAYS goes from 0 to 1 to 2 !!!!!!
+
+#7/23/24 review:
+
+class Solution:
+    def largestRectangleArea(self, heights: List[int]) -> int:
+        res = 0
+        stack = []
+        for inputindex, inputheight in enumerate(heights):
+            start = inputindex
+            while stack and inputheight < stack[-1][1]:
+                stackindex, stackheight = stack.pop()
+                res = max(res, (inputindex - stackindex) * stackheight)
+                start = stackindex
+            stack.append((start, inputheight))
+        print(stack)
+        for i, j in stack:
+            print(i, j)
+            res = max(res, j * (len(heights) - i))
+            print(res)
+        return res
+        #[2, 1, 2]
+        #[1  1. 1] = 3
+
+        #[(1, 1), (2, 2)]
+        #1 * (3 - 1)
+                
