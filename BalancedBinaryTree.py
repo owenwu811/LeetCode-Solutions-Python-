@@ -297,3 +297,27 @@ class Solution:
 
         f(root)
         return self.res[0]
+
+#7/23/24 refresher:
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def isBalanced(self, root: Optional[TreeNode]) -> bool:
+        self.res = [True]
+        def f(root):
+            if not root:
+                return True #note that we can return True here because N assumes that it is balanced because we didn't violate the abs(r - l) condition
+            l = f(root.left)
+            r = f(root.right)
+            if abs(r - l) > 1:
+                self.res[0] = False
+            return 1 + max(l, r)
+
+
+        f(root)
+        return self.res[0]
