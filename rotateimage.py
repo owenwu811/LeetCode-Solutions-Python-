@@ -231,3 +231,16 @@ class Solution:
                 matrix[r][c], matrix[c][r] = matrix[c][r], matrix[r][c]
         for i in range(rows):
             matrix[i].reverse()
+
+#7/24/24 refresher:
+
+class Solution:
+    def rotate(self, matrix: List[List[int]]) -> None:
+        rows, cols = len(matrix), len(matrix[0])
+        for c in range(cols):
+            for r in range(c, rows):
+                matrix[r][c], matrix[c][r] = matrix[c][r], matrix[r][c]
+        print(matrix)
+        for r in range(rows):
+            matrix[r].reverse()
+
