@@ -334,3 +334,37 @@ class Solution:
                 res.append(level)
                 turn += 1
         return res
+
+#7/24/24 refresher:
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def zigzagLevelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
+        self.res = []
+        d = deque()
+        d.append(root)
+        turn = 0
+        while d:
+            level = [] #level is here instead of right below the for loop because we don't want to clear the result everytime we iterate through all the nodes in the current level as it would erase our progress for that level during each iteration
+            for i in range(len(d)):
+                if turn % 2 == 0:
+                    current = d.popleft()
+                    if current:
+                        level.append(current.val)
+                        d.append(current.left)
+                        d.append(current.right)
+                else:
+                    current = d.pop()
+                    if current:
+                        level.append(current.val)
+                        d.appendleft(current.right)
+                        d.appendleft(current.left)
+            if level:
+                self.res.append(level)
+            turn += 1   
+        return self.res
