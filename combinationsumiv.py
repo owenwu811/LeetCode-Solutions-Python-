@@ -198,3 +198,14 @@ class Solution:
                     d[levelamount] += d[levelamount - n]
         return d[levelamount]
 
+#7/24/24 refresher (my solution):
+
+class Solution:
+    def combinationSum4(self, nums: List[int], target: int) -> int:
+        d = {0: 1}
+        for levelamount in range(1, target + 1):
+            d[levelamount] = 0
+            for n in nums:
+                if n <= levelamount:
+                    d[levelamount] += d[levelamount - n]
+        return d[target]
