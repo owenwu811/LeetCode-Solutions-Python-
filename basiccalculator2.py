@@ -302,4 +302,31 @@ class Solution:
                 sign = char
                 currentn = 0
         return sum(stack)
-        
+
+
+#7/25/24 refresher:
+
+class Solution:
+    def calculate(self, s: str) -> int:
+        currentn, sign, stack = 0, "+", []
+        for i, char in enumerate(s):
+            if char.isdigit():
+                #12 > 1 * 10 + int("2") = 12
+                currentn = currentn * 10 + int(char)
+            if char in "+/*-" or i >= len(s) - 1:
+                if sign == "+":
+                    #char here is a symbol, so we append currentn, not char, to our stack!
+                    stack.append(currentn)
+                elif sign == "-":
+                    stack.append(-currentn)
+                elif sign == "*":
+                    val = int(stack.pop() * currentn)
+                    stack.append(val)
+                elif sign == "/":
+                    val = int(stack.pop() / currentn)
+                    stack.append(val)
+                sign = char #sign becomes the operand that char was, not currentnumber
+                currentn = 0 
+        return sum(stack)
+
+
