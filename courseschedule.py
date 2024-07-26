@@ -1005,4 +1005,31 @@ class Solution:
                         d.append(neighbor)
             
         return canvisit == numCourses 
-                    
+
+
+#7/26/24 review:
+
+class Solution:
+    def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+        indegree = [0] * numCourses
+        adj = [[] for i in range(numCourses)]
+        for p in prerequisites:
+            adj[p[1]].append(p[0])
+            indegree[p[0]] += 1
+        d = deque()
+        for i in range(len(indegree)):
+            if indegree[i] == 0:
+                d.append(i)
+        canvisit = 0
+        print(adj)
+        while d:
+            for i in range(len(d)):
+                canvisit += 1
+                cur = d.pop()
+                print(cur)
+                for n in adj[cur]:
+                    indegree[n] -= 1
+                    if indegree[n] == 0:
+                        d.append(n)
+        return canvisit == numCourses
+
