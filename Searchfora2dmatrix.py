@@ -173,3 +173,28 @@ class Solution:
                 r = mid - 1
         return False
 
+#7/26/24 refresher:
+
+class Solution:
+    def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
+        l, r = 0, len(matrix) - 1
+        while l <= r:
+            mid = (l + r) // 2
+            currentrow = matrix[mid]
+            if target in currentrow:
+                lr, rr = 0, len(currentrow) - 1
+                while lr <= rr:
+                    mid = (lr + rr) // 2
+                    if currentrow[mid] == target:
+                        return True
+                    elif currentrow[mid] > target:
+                        rr = mid - 1
+                    else:
+                        lr = mid + 1
+                return False
+            elif target < currentrow[0]:
+                r = mid - 1
+            else:
+                l = mid + 1
+        return False
+                    
