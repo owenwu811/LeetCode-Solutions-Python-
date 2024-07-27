@@ -87,3 +87,10 @@ class Solution:
             l += 1
             r -= 1
         return True
+
+#7/27/24 refresher (new solution):
+
+class Solution:
+    def isPalindrome(self, x: int) -> bool:
+        x = str(x)
+        return x == x[::-1]
