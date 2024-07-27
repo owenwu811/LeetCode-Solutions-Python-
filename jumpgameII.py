@@ -1,4 +1,4 @@
-#my solution from grokking course in python3 at the end of the greedy pattern: (challenge question without solution):
+#my solution in python3 at the end of the greedy pattern: (challenge question without solution):
 
 
 def jump_game_two(nums):
