@@ -270,3 +270,28 @@ class RandomizedSet:
     def getRandom(self) -> int:
         return random.choice(self.mylist)
 
+#7/27/24 (my own solution):
+
+class RandomizedSet:
+    def __init__(self):
+        self.mylist = []
+
+        
+    def insert(self, val: int) -> bool:
+        if val not in self.mylist:
+            self.mylist.append(val)
+            return True
+        return False
+    
+
+    def remove(self, val: int) -> bool:
+        if val in self.mylist:
+            self.mylist.remove(val)
+            return True
+        return False
+
+
+    def getRandom(self) -> int:
+        return random.choice(self.mylist)
+        
+
