@@ -217,8 +217,8 @@ class Solution:
 
 class Solution:
     def isPalindrome(self, s: str) -> bool:
-        s = s.replace(" ", "")
-        s = re.sub("[\W_]", "", s)
+        s = s.replace(" ", "") #we don't even need this line because spaces count as non alphanumeric and are removed by re.sub. So re.sub below would remove symbols - this question was missed on 7/27/24!!
+        s = re.sub("[\W_]", "", s) 
         l, r = 0, len(s) - 1
         while l < r:
             if s[l].casefold() != s[r].casefold():
