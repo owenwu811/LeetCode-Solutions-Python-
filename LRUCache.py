@@ -892,4 +892,33 @@ class LRUCache:
             else:
                 self.mydict[key] = value
                 self.pagefaultcount += 1
+
+#7/28/24 refresher:
+
+class LRUCache:
+    def __init__(self, capacity: int):
+        self.cap = capacity
+        self.pagefaultcount = 0
+        self.mydict = dict()
         
+    def get(self, key: int) -> int:
+        if key not in self.mydict:
+            return -1
+        else:
+            result = self.mydict[key]
+            self.mydict.pop(key)
+            self.mydict[key] = result
+            return result
+    def put(self, key: int, value: int) -> None:
+        if key in self.mydict:
+            self.mydict.pop(key)
+            self.mydict[key] = value
+        else:
+            if len(self.mydict) == self.cap:
+                rear = next(iter(self.mydict))
+                self.mydict.pop(rear)
+                self.mydict[key] = value
+            else:
+                self.mydict[key] = value
+                self.pagefaultcount += 1
+
