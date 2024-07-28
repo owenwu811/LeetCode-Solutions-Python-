@@ -223,3 +223,20 @@ class Solution:
             if cur == key:
                 res.append(i)
         return res
+
+#7/28/24 refresher:
+
+class Solution:
+    def findAnagrams(self, s: str, p: str) -> List[int]:
+        if len(s) < len(p): return []
+        res = []
+        key = "".join(sorted(p))
+        print(key)
+        for i in range(len(s) - len(p) + 1):
+            currentwindow = "".join(sorted(s[i: i + len(p)]))
+            if currentwindow == key:
+                res.append(i)
+            
+
+        return res
+        
