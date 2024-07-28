@@ -371,3 +371,21 @@ class Solution:
                 nums[l], nums[c] = nums[c], nums[l]
                 l += 1
                 c += 1
+
+
+#7/28/24 review (missed):
+
+class Solution:
+    def sortColors(self, nums: List[int]) -> None:
+        l, r = 0, len(nums) - 1
+        c = 0
+        while c <= r:
+            if nums[c] == 2: #nums[c] >= nums[r] fails the #[1, 2, 0] test case, giving us [0, 2, 1] instead of [0, 1, 2]
+                nums[c], nums[r] = nums[r], nums[c]
+                r -= 1
+            elif nums[c] == 1:
+                c += 1
+            else:
+                nums[l], nums[c] = nums[c], nums[l]
+                l += 1
+                c += 1
