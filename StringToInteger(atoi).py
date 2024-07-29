@@ -70,3 +70,15 @@ class Solution:
             return max(-(1 << 31), min(integer, (1 << 31) - 1))
         return 0
         
+
+#7/29/24 refresher:
+
+class Solution:
+    def myAtoi(self, s: str) -> int:
+        match = re.match(r'^\s*([+-]?\d+)', s) #always us \ and not / symbol! - use re.match since we are matching characters that fit a criteria, not subsituting anything!
+        if match:
+            integer = int(match.group())
+            return max(-(1 << 31), min(integer, (1 << 31) - 1))
+        return 0
+
+        
