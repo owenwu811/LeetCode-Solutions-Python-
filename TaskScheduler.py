@@ -312,4 +312,17 @@ class Solution:
             if f == maxfreq:
                 howmanymax += 1
         return max((maxfreq - 1) * (n + 1) + howmanymax, len(tasks))
- 
+
+#7/29/24 review (heap pattern in grokking course):
+
+class Solution:
+    def leastInterval(self, tasks: List[str], n: int) -> int:
+        freq = [0] * 26 # we premake the array of length 26 because we have 26 letters in the alphabet since we are given an input array containing string letters of the alphabet
+        for letter in tasks: 
+            freq[ord(letter) - ord('A')] += 1 #get the letter's place in the 26 alphabet - capital A required in 2nd ord - lowercase a won't work
+        maxletter, maxfreq = max(freq), 0 #we may have a tie here for which letter appeared the most, so if there is a tie, just use the frequency of however many letters we have that appeared the most number of times 
+        for letter in freq: #iterating through our prepended 26 letter array to count how many distinct letters appeared that most number of times 
+            if letter == maxletter:
+                maxfreq += 1
+        return max((maxletter - 1) * (n + 1) + maxfreq, len(tasks)) #if n == 0, then len(tasks) will always win out because anything other configuration will take longer than just the length of the original array itself
+        
