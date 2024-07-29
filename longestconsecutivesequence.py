@@ -249,3 +249,20 @@ class Solution:
                 res = 0
             res += 1 #1
         return max(res, maxres)
+
+#7/28/24 review (missed today):
+
+class Solution:
+    def longestConsecutive(self, nums: List[int]) -> int:
+        #we only have the same and bigger than 1 difference because the array is already sorted, so the difference cannot be negative, and if the current - prev is exactly 1, then we just increment res!
+        nums.sort()
+        maxres, res = 0, 0
+        for i in range(len(nums)):
+            if i > 0 and nums[i] == nums[i - 1]: #if current and previous are the same
+                continue
+            if i > 0 and nums[i] - nums[i - 1] > 1: #if the current and previous are bigger than 1 in difference
+                maxres = max(maxres, res)
+                res = 0
+            res += 1
+        return max(maxres, res)
+        
