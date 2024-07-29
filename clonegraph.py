@@ -526,4 +526,30 @@ class Solution:
 
 
         return traverse(node) if node != None else None
-        
+
+
+#7/29/24 review:
+
+"""
+# Definition for a Node.
+class Node:
+    def __init__(self, val = 0, neighbors = None):
+        self.val = val
+        self.neighbors = neighbors if neighbors is not None else []
+"""
+
+from typing import Optional
+class Solution:
+    def cloneGraph(self, node: Optional['Node']) -> Optional['Node']:
+        mydict = {} #{o: c}
+        def f(node):
+            if node in mydict:
+                return mydict[node]
+            copy = Node(node.val)
+            mydict[node] = copy
+            for n in node.neighbors:
+                copy.neighbors.append(f(n))
+            return copy
+        return f(node) if node else None
+
+
