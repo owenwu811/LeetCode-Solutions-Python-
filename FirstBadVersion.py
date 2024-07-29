@@ -280,3 +280,20 @@ class Solution:
             else:
                 l = mid + 1
         return l
+
+#7/29/24 refresher:
+
+# The isBadVersion API is already defined for you.
+# def isBadVersion(version: int) -> bool:
+
+class Solution:
+    def firstBadVersion(self, n: int) -> int:
+        l, r = 0, n #these are values, not indicies
+        while l <= r:
+            mid = (l + r) // 2 #mid is a value here instead of an index
+            if isBadVersion(mid): #if mid is a bad number, then throw away the right half because some number to the left of mid could be causing mid to be bad, which would be earlier
+                r = mid - 1
+            else: #if mid is not bad, then nothing before mid could be bad, so throw away the left half of the array
+                l = mid + 1
+        return l
+        
