@@ -90,3 +90,24 @@ class Solution:
             heapq.heappush(myheap, (nums[index][listindex + 1], index, listindex + 1))
             high = max(high, nums[index][listindex + 1])
 
+#7/28/24 refresher:
+
+class Solution:
+    def smallestRange(self, nums: List[List[int]]) -> List[int]:
+        inputlen, res, high, minheap = len(nums), [0, float('inf')], float('-inf'), []
+        for i in range(inputlen):
+            heapq.heappush(minheap, (nums[i][0], i, 0))
+            high = max(high, nums[i][0])
+        while minheap:
+            low, i, indexinlist = heapq.heappop(minheap) #make sure i here and not index because then the below heappush would read from an incorrect variable!
+            print(low)
+            current_range = high - low
+            if res[1] - res[0] > current_range:
+                res = [low, high]
+            print(res)
+            if indexinlist >= len(nums[i]) - 1:
+                return res
+            heapq.heappush(minheap, (nums[i][indexinlist + 1], i, indexinlist + 1))
+            high = max(high, nums[i][indexinlist + 1])
+
+        
