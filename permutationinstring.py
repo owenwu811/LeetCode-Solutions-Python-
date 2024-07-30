@@ -41,6 +41,7 @@ class Solution:
             string = s2[left:right] #oooll 
             if "".join(sorted(string)) == key: #oooll != ehllo, so increment left and right to slide the window one position right in s2 (bigger string)!
                 return True 
+            #the left += 1 and right += 1 is how we deal with the ordering mismatch I guess of when you have he in s1 but hrre in s2 for example because we go inorder adjacently in the window of s2 just like minimum window substring
             left += 1 #1 #this is sliding the window to the right because we haven't found a valid rearrangement yet!
             right += 1 #6 #this is sliding the window to the right because we haven't found a valid rearrangement yet!
 
