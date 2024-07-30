@@ -271,4 +271,22 @@ class Solution:
                 d[subarraysum] += 1
         return res
 
+#7/29/24 refresher:
+
+class Solution:
+    def subarraySum(self, nums: List[int], k: int) -> int:
+        self.res = 0
+        d = {0: 1}
+        subarraysum = 0
+        for n in nums:
+            subarraysum += n
+            if (subarraysum - k) in d: #subarraysum = 3 in final iteration of [1, 1, 1], so it's subarraysum - k, not k - subarraysum!
+                self.res += d[subarraysum - k]
+            if subarraysum not in d:
+                d[subarraysum] = 1
+            else:
+                d[subarraysum] += 1
+
+        return self.res
+
 
