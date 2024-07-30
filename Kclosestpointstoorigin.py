@@ -352,3 +352,20 @@ class Solution:
             res.append([x, y])
             k -= 1
         return res
+
+#7/30/24 refresher:
+
+class Solution:
+    def kClosest(self, points: List[List[int]], k: int) -> List[List[int]]:
+        myheap = []
+        kclosestpoints = []
+        for x, y in points:
+            distance = (x ** 2) + (y ** 2)
+            heapq.heappush(myheap, [distance, x, y])
+        heapq.heapify(myheap) #we don't even need this line because heappush already pushes in a way that satisfies the min-heap invariant in python where the smallest 0th index element of the array is at the root of the heap and will be popped first
+        while k > 0:
+            dist, a, b = heapq.heappop(myheap)
+            kclosestpoints.append([a, b])
+            k -= 1
+        return kclosestpoints
+        
