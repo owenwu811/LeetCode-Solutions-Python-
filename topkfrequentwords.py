@@ -105,15 +105,24 @@ class Solution:
         result = sortedlist[:k]
         return result
 
-#7/29/24 refresher (missed today):
+#7/29/24 refresher (my own heap solution in python3):
 
 class Solution:
     def topKFrequent(self, words, k):
+        minheap = []
+        res = []
         d = dict()
         for word in words:
             if word not in d:
                 d[word] = 0
             d[word] += 1
-        sortedl = sorted(d, key=lambda word: (-d[word], word)) #sorted returns a list in python!
-        topk = sortedl[:k]
-        return topk
+        for key in d:
+            heapq.heappush(minheap, (-d[key], key))
+        while k > 0:
+            a, b = heapq.heappop(minheap)
+            res.append(b)
+            k -= 1
+        return res
+        
+
+
