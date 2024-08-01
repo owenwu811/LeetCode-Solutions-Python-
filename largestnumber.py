@@ -222,3 +222,18 @@ class Solution:
         sortedl = sorted(nums, key=cmp_to_key(f))
         return str(int("".join(sortedl)))
         
+
+#8/1/24 refresher:
+
+class Solution:
+    def largestNumber(self, nums: List[int]) -> str:
+        for i, n in enumerate(nums):
+            nums[i] = str(n)
+        def f(a, b):
+            if b + a > a + b:
+                return 1
+            else:
+                return -1
+        sortedl = sorted(nums, key=cmp_to_key(f))
+        return str(int("".join(sortedl)))
+        
