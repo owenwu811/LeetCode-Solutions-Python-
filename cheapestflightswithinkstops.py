@@ -143,4 +143,21 @@ class Solution:
             #this is because we would incorrectly prematurely update from [1, inf, inf, inf] to [1, 100, inf, inf] and then prices[s] (prices[1]) wouldn't be equal to float('inf'), so we would continue to say [1, 200, inf, inf] - also incorrect - [0, 100, 200, 700] - and then on the last iteration of the for loop, we would incorrectly update [0, 100, 200, 400] with "if prices[s] + p < tmpprices[d]" as the inner block would execute - THIS WOULD DEFEAT THE PURPOSE OF HAVING DIFFERENT PRICES VS TMPPRICES ARRAYS!
             #whereas the correct indentation would make prices update once at the end of the loop to [1, 100, inf, inf] before going back to for i in range(k + 1):
         return -1 if prices[dst] == float('inf') else prices[dst]
-        
+
+
+#7/31/24 refresher (missed):
+
+class Solution:
+    def findCheapestPrice(self, n: int, flights: List[List[int]], src: int, dst: int, k: int) -> int:
+        prices = [float('inf')] * n
+        prices[src] = 0
+        for i in range(k + 1):
+            tmpPrices = prices.copy()
+            for s, d, p in flights: 
+                if prices[src] == float('inf'):
+                    continue
+                if prices[s] + p < tmpPrices[d]:
+                    tmpPrices[d] = prices[s] + p
+            prices = tmpPrices
+        return prices[dst] if prices[dst] != float('inf') else -1
+ 
