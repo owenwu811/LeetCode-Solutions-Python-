@@ -247,4 +247,27 @@ class Solution:
 
         f(root)
         return self.res[0]
+
+#8/1/24 (missed):
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def maxPathSum(self, root: Optional[TreeNode]) -> int:
+        self.res = [root.val]
+        def f(root):
+            if not root:
+                return 0
+            l = f(root.left)
+            r = f(root.right)
+            maxleft = max(0, l)
+            maxright = max(0, r)
+            self.res[0] = max(self.res[0], root.val + maxleft + maxright) #must include root.val + maxleft + maxright! the current node value plus max of left subtree + max of right subtree!
+            return root.val + max(maxleft, maxright)
+        f(root)
+        return self.res[0]
         
