@@ -232,4 +232,28 @@ class Solution:
         odd.next = evenstart
         return oddstart
 
+#8/1/24 refresher:
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def oddEvenList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        if not head or not head.next:
+            return head
+        odd = head
+        even = head.next
+        oddstart = odd
+        evenstart = even
+        while even and even.next:
+            odd.next = even.next #3
+            odd = odd.next
+            even.next = odd.next #4
+            even = even.next
+        odd.next = evenstart 
+        return oddstart
+             
+
         
