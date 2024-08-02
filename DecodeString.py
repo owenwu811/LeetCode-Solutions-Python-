@@ -315,3 +315,26 @@ class Solution:
                 stack.append(int(k) * substr)
         return "".join(stack)
 
+#8/2/24 refresher:
+
+class Solution:
+    def decodeString(self, s: str) -> str:
+        stack = []
+        for char in s:
+            if char != "]":
+                stack.append(char)
+            else:
+                cur = ""
+                #stack.pop()
+                while stack and stack[-1] != "[":
+                    cur = stack.pop() + cur
+                stack.pop() #we must pop off the last [ off the stack
+                k = ""
+                while stack and stack[-1].isdigit():
+                    k = stack.pop() + k
+                print(cur)
+                print(k)
+                stack.append(cur * int(k)) 
+        return "".join(stack)
+        
+
