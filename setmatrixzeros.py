@@ -284,3 +284,16 @@ class Solution:
             for c in range(n):
                 if matrix[r][c] == "*":
                     matrix[r][c] = 0
+
+#8/3/24 refresher (easier to understand solution since couldn't solve today):
+
+row, col = set(), set()
+for i in range(len(matrix)):
+    for j in range(len(matrix[0])):
+        if matrix[i][j] == 0:
+            row.add(i)
+            col.add(j)
+for i in range(len(matrix)):
+    for j in range(len(matrix[0])):
+        if i in row or j in col:
+            matrix[i][j] = 0
