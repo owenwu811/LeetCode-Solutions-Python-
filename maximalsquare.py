@@ -204,3 +204,24 @@ class Solution:
 #                                                              0 "1" (for this section)
 #so min(0, 0, 0) = 0
 #so maxside = max(1, 0) means that maxside stays as 1, which is incorrect. maxside should be 2 because 1 * 1 = 1 while 2 * 2 = 4
+
+#8/3/24 refresher (missed again):
+
+class Solution:
+    def maximalSquare(self, matrix: List[List[str]]) -> int:
+        if not matrix: return 0
+        m, n = len(matrix), len(matrix[0])
+        dp = [[0] * n for i in range(m)]
+        sidelength = 0
+        for r in range(m):
+            for c in range(n):
+                if matrix[r][c] == "0": #we don't care about any input cell value with 0
+                    continue
+                if matrix[r][c] == "1":
+                    if r == 0 or c == 0: #we only care about updating the possibility if we are already seeing a "1" cell, not a "0" cell! so this comes after the if matrix[r][c] == 1 check!
+                        dp[r][c] = 1
+                    else: #if our current cell is a 1 and we are not on a border
+                        #do not include dp[r][c] in the min() because if we did, dp[r][c] would always be the minimum because it would always be 1 or 0!
+                        dp[r][c] = 1 + min(dp[r - 1][c], dp[r][c - 1], dp[r - 1][c - 1])
+                    sidelength = max(sidelength, dp[r][c])
+        return sidelength * sidelength
