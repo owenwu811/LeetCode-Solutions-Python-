@@ -315,3 +315,23 @@ class Solution:
                 res = max(res, i - balancetonum[needfromzero])
         return res
 
+#8/3/24 refresher:
+
+class Solution:
+    def findMaxLength(self, nums: List[int]) -> int:
+        res = 0
+        d = {0: 0}
+        needfromzero = 0
+        for i, n in enumerate(nums):
+            if n == 1:
+                needfromzero -= 1
+            else:
+                needfromzero += 1
+            if needfromzero not in d:
+                d[needfromzero] = i
+            if needfromzero == 0:
+                res = max(res, i + 1)
+            else:
+                res = max(res, i - d[needfromzero])
+    
+        return res
