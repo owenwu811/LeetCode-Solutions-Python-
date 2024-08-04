@@ -282,3 +282,18 @@ class Solution:
         left.next = left.next.next
         return dummy.next
         
+#you can also do it like this:
+
+class Solution:
+    def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
+        dummy = ListNode(0) #so instead of (0, head), because (0, head) means dummy.next = head - same meaning
+        dummy.next = head
+        left, right = dummy, head
+        while right and n > 0: #make gap of n nodes
+            right = right.next
+            n -= 1
+        while right:
+            left = left.next
+            right = right.next
+        left.next = left.next.next
+        return dummy.next
