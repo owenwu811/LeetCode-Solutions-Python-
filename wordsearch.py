@@ -702,3 +702,24 @@ class Solution:
         return False
         
         
+#8/4/24 refresher (missed 2 weeks ago but solved today):
+
+class Solution:
+    def exist(self, board: List[List[str]], word: str) -> bool:
+        def dfs(i, r, c):
+            if (r < 0 or r >= len(board) or c < 0 or c >= len(board[0]) or board[r][c] != word[i]):
+                return
+            if (i >= len(word) - 1):
+                return True
+            original = board[r][c]
+            board[r][c] = "visited"
+            result = (dfs(i + 1, r + 1, c) or dfs(i + 1, r - 1, c) or dfs(i + 1, r, c + 1) or dfs(i + 1, r, c - 1))
+            board[r][c] = original
+            return result
+
+            
+        for r in range(len(board)):
+            for c in range(len(board[0])):
+                if board[r][c] == word[0] and dfs(0, r, c):
+                    return True
+        return False
