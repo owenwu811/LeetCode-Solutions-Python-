@@ -5,7 +5,9 @@
 
 #Note: Duplicate numbers should be counted distinctly. For example, if nums is ["1","2","2"], "2" is the first largest integer, "2" is the second-largest integer, and "1" is the third-largest integer.
 
- 
+#acceptancerate45.7%
+#companies
+#medium
 
 #Example 1:
 
@@ -14,8 +16,6 @@
 #Explanation:
 #The numbers in nums sorted in non-decreasing order are ["3","6","7","10"].
 #The 4th largest integer in nums is "3".
-
-
 
 #my own solution in python3:
 
