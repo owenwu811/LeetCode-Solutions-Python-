@@ -271,7 +271,7 @@ class Solution:
 #         self.next = next
 class Solution:
     def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
-        dummy = ListNode(0, head)
+        dummy = ListNode(0, head) #we must do (0, head) and not None because left.next would have no None attribute and (0) by itself faces the same issue!
         left, right = dummy, head
         while right and n > 0: #we must use n > 0 here because we want to make a difference in length between left and right exactly n length!
             right = right.next
