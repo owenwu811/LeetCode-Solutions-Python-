@@ -261,3 +261,24 @@ class Solution:
         slow.next = slow.next.next
         return dummy.next
         
+
+#8/4/24 refresher (missed today and on 7/22/24!):
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
+        dummy = ListNode(0, head)
+        left, right = dummy, head
+        while right and n > 0: #we must use n > 0 here because we want to make a difference in length between left and right exactly n length!
+            right = right.next
+            n -= 1 #accounts for how big we want the gap to be
+        while right:
+            left = left.next
+            right = right.next
+        left.next = left.next.next
+        return dummy.next
+        
