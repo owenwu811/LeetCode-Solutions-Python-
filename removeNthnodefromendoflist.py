@@ -307,7 +307,7 @@ class Solution:
 #         self.next = next
 class Solution:
     def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
-        dummy = ListNode(0, head) 
+        dummy = ListNode(0, head) #if we included if not head or not head.next: return head, we would fail test case head = [1], n = 1 because we would return [1] instead of [] because we just said if not head.next, which there aren't two nodes in the input, so just return the input - this is incorrect
         dummy.next = head
         slow, fast = dummy, head
         while fast and n > 0:
