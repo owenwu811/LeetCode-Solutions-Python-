@@ -176,3 +176,22 @@ class Solution:
             l1 = l1.next if l1 else None
             l2 = l2.next if l2 else None
         return dummy.next
+
+
+#wrong:
+
+val = 10
+val = 10 % 10 = 0 #val = val % 10
+carry = 0 // 10 = 0 #carry = val // 10
+
+
+#right:
+
+val = 10
+carry = 10 // 10 = 1 #carry = val // 10
+val = 10 % 10 = 0 #val = val % 10
+
+#wrong because carry depends on the value that just changed to 0
+#right because carry depends on the value that stayed as 10
+
+
