@@ -244,3 +244,17 @@ class Solution:
             subarraysum += n
             res = max(res, subarraysum)
         return res
+
+#8/9/24 review:
+
+class Solution:
+    def maxSubArray(self, nums: List[int]) -> int:
+        res = nums[0]
+        cursum = 0
+        for n in nums: #if we put cursum += n right below the for loop, we will fail test case [-1], outputing 0 instead of -1
+            if cursum < 0:
+                cursum = 0
+            cursum += n
+            res = max(res, cursum)
+        return res
+
