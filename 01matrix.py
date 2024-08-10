@@ -568,3 +568,24 @@ class Solution:
                     mat[onex][oney] = mat[zerox][zeroy] + 1
                     d.append([onex, oney])
         return mat
+
+#8/10/24 review (missed on the 8th of this month because incorrect boundary checks):
+
+class Solution:
+    def updateMatrix(self, mat: List[List[int]]) -> List[List[int]]:
+        d = deque()
+        for r in range(len(mat)):
+            for c in range(len(mat[0])):
+                if mat[r][c] == 0:
+                    d.append([r, c])
+                else:
+                    mat[r][c] = float('inf')
+        directions = [(1, 0), (0, 1), (-1, 0), (0, -1)]
+        while d:
+            zx, zy = d.popleft()
+            for dx, dy in directions:
+                ox, oy = zx + dx, zy + dy
+                if ox >= 0 and ox < len(mat) and oy >= 0 and oy < len(mat[0]) and mat[ox][oy] > mat[zx][zy] + 1: #ox ox oy oy check
+                    mat[ox][oy] = mat[zx][zy] + 1
+                    d.append([ox, oy])
+        return mat
