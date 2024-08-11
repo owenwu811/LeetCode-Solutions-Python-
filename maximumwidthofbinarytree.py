@@ -204,4 +204,30 @@ class Solution:
                 d.append([node.right, 2 * position + 1, 1 + level])
         return self.res
 
+#8/11/24 review (missed):
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def widthOfBinaryTree(self, root: Optional[TreeNode]) -> int:
+        self.res = 0
+        d = deque()
+        d.append([root, 1, 0])
+        currentlevel, leftmostpos = 0, 1
+        while d:
+            node, pos, level = d.popleft()
+            if level > currentlevel:
+                currentlevel = level
+                leftmostpos = pos
+            self.res = max(self.res, pos - leftmostpos + 1)
+            if node.left:
+                d.append([node.left, 2 * pos, 1 + level])
+            if node.right:
+                d.append([node.right, 2 * pos + 1, 1 + level])
+        return self.res
+        
 
