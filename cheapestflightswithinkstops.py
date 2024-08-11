@@ -177,4 +177,20 @@ class Solution:
                     tmp[d] = prices[s] + p
             prices = tmp
         return prices[dst] if prices[dst] != float('inf') else -1
+
+#8/11/24 review:
+
+class Solution:
+    def findCheapestPrice(self, n: int, flights: List[List[int]], src: int, dst: int, k: int) -> int:
+        prices = [float('inf')] * n
+        prices[src] = 0
+        for i in range(k + 1):
+            tmpprices = prices.copy()
+            for s, d, p in flights:
+                if prices[s] == float('inf'):
+                    continue
+                if prices[s] + p < tmpprices[d]:
+                    tmpprices[d] = prices[s] + p
+            prices = tmpprices
+        return prices[dst] if prices[dst] != float('inf') else -1
  
