@@ -130,3 +130,16 @@ class Solution:
                 if board[r][c] != ".": #it's important to include this check because we only want to add to result for cells with a digit that are non empty! or else you will only get 344/507 test cases
                     res += [(r, board[r][c]), (board[r][c], c), (board[r][c], r // 3, c // 3)]
         return len(res) == len(set(res))
+
+#8/11/24 review (missed):
+
+class Solution:
+    def isValidSudoku(self, board: List[List[str]]) -> bool:
+        rows, cols = len(board), len(board[0])
+        res = []
+        for r in range(9): #we can do rows here too instead of 9
+            for c in range(9): #we can do cols here too instead of 9
+                if board[r][c] != ".":
+                    res += [(r, board[r][c]), (board[r][c], c), (r // 3, c // 3, board[r][c])] #we place the r, board[r][c], not r // 3, board[r][c] because we want to check the row and column constraints first without the 3 x 3 check which is once for both rows and columns
+        return len(res) == len(set(res))
+
