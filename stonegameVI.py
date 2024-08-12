@@ -37,3 +37,29 @@ class Solution:
         if sum(aliceValues) > sum(bobValues): return 1
         elif sum(bobValues) > sum(aliceValues): return -1
         return 0
+
+
+#a better solution:
+
+#In this problem instead of picking/not Picking largest making sum we need to pick those stones by alice which can hurt bob more.
+#So we combine them and sort them in reverse order
+#why we can do sorting? Because in question its stated we can pick any stone (and not only from left most or right most)
+#Now alice will pick first highest combined effecting the bobPoints most (which is the total Sum of bob values) and then skip next point (which is to be picked by bob).
+#According to our alicePoints and bobPoints return the ans.
+
+class Solution:
+    def stoneGameVI(self, a: List[int], b: List[int]) -> int:
+        # hurt other enemy rather than self collecting to max
+        combines = [(a[i] + b[i], a[i], b[i]) for i in range(len(a))]
+        combines.sort(reverse=True) # why we can sort? -> because we can pick any stone we want
+        bobPoints = sum(b)
+        alicePoints = 0
+        for i in range(0, len(a), 2):
+            alicePoints += combines[i][1]
+            bobPoints -= combines[i][2]
+        if alicePoints > bobPoints:
+            return 1
+        elif alicePoints < bobPoints:
+            return -1
+        return 0
+    
