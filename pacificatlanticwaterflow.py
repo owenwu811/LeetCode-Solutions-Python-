@@ -164,5 +164,33 @@ class Solution:
                 if (r, c) in atl and (r, c) in pac:
                     res.append([r, c])
         return res
+
+#8/12/24 review (missed all last week):
+
+class Solution:
+    def pacificAtlantic(self, heights: List[List[int]]) -> List[List[int]]:
+        rows, cols = len(heights), len(heights[0])
+        pac, atl = set(), set()
+        def dfs(r, c, seen, prevh):
+            if (r < 0 or r >= len(heights) or c < 0 or c >= len(heights[0]) or (r, c) in seen or heights[r][c] < prevh): #< because current cell cannot be less than previous. it must be greater than or equal to 
+                return 
+            seen.add((r, c))
+            dfs(r + 1, c, seen, heights[r][c])
+            dfs(r - 1, c, seen, heights[r][c])
+            dfs(r, c + 1, seen, heights[r][c])
+            dfs(r, c - 1, seen, heights[r][c])
+        for r in range(rows):
+            dfs(r, 0, pac, heights[r][0])
+            dfs(r, cols - 1, atl, heights[r][cols - 1]) #make sure to line up the moving variable 
+
+        for c in range(cols):
+            dfs(0, c, pac, heights[0][c])
+            dfs(rows - 1, c, atl, heights[rows - 1][c])
+        res = []
+        for r in range(rows):
+            for c in range(cols):
+                if (r, c) in pac and (r, c) in atl:
+                    res.append([r, c])
+        return res
         
 
