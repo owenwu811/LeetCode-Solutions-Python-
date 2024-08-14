@@ -593,3 +593,42 @@ class Codec:
             return root
         return f()
 
+#8/13/24 review (missed):
+
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Codec:
+
+    def serialize(self, root):
+        res = []
+        def f(root):
+            if not root:
+                res.append("N")
+                return
+            res.append(str(root.val))
+            f(root.left)
+            f(root.right)
+
+        f(root)
+        return ",".join(res) #we need space seperated or else one big string
+        
+
+    def deserialize(self, data):
+        a = data.split(",")
+        self.i = 0
+        def f():
+            if a[self.i] == "N":
+                self.i += 1
+                return None
+            root = TreeNode(a[self.i])
+            self.i += 1
+            root.left = f()
+            root.right = f()
+            return root
+        return f()
+
