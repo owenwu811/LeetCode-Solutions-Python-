@@ -297,3 +297,26 @@ for i in range(len(matrix)):
     for j in range(len(matrix[0])):
         if i in row or j in col:
             matrix[i][j] = 0
+
+#8/16/24 review (from grokking course) - needed hint about the variables overlapping each other:
+
+def set_matrix_zeros(mat):
+    
+    m, n = len(mat), len(mat[0])
+    for r in range(len(mat)):
+        for c in range(len(mat[0])):
+            if mat[r][c] != 0:
+                continue
+            if mat[r][c] == 0:
+                for i in range(len(mat)):
+                    if mat[i][c] != 0:
+                        mat[i][c] = "*"
+                for i in range(len(mat[0])):
+                    if mat[r][i] != 0:
+                        mat[r][i] = "*"
+    for row in range(len(mat)):
+        for col in range(len(mat[0])):
+            if mat[row][col] == "*":
+                mat[row][col] = 0
+
+    return mat - set matrix zeros
