@@ -320,3 +320,27 @@ def set_matrix_zeros(mat):
                 mat[row][col] = 0
 
     return mat - set matrix zeros
+
+
+#solved again on leetcode platform on 8/16/24 minutes later:
+
+class Solution:
+    def setZeroes(self, matrix: List[List[int]]) -> None:
+        rows, cols = len(matrix), len(matrix[0])
+        for r in range(rows):
+            for c in range(cols):
+                if matrix[r][c] != 0:
+                    continue
+                if matrix[r][c] == 0:
+                    for i in range(rows):
+                        if matrix[i][c] != 0:
+                            matrix[i][c] = "*"
+
+                    for j in range(cols):
+                        if matrix[r][j] != 0:
+                            matrix[r][j] = "*"
+        for r in range(rows):
+            for c in range(cols):
+                if matrix[r][c] == "*":
+                    matrix[r][c] = 0
+        return matrix
