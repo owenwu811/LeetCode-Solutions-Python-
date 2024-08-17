@@ -150,5 +150,32 @@ class Trie:
                 return True
         return False
 
+#8/16/24 review:
+
+class Trie:
+
+    def __init__(self):
+        self.d = dict()
+        
+        
+
+    def insert(self, word: str) -> None:
+        self.d[word] = []
+
+
+        
+
+    def search(self, word: str) -> bool:
+        if word in self.d:
+            return True
+        return False
+     
+
+    def startsWith(self, prefix: str) -> bool:
+        for k in self.d:
+            if k.startswith(prefix):
+                return True
+        return False
+        
         
         
