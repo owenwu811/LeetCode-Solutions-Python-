@@ -15,6 +15,9 @@
 #my own solution using python3:
 
 
+#note that this problem and solution is identical to Implement Trie (leetcode 208) prefix tree!!!!!
+
+
 class MapSum:
 
     def __init__(self):
