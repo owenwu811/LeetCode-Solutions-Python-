@@ -200,3 +200,20 @@ class Solution:
 
         return dp[inputlen]
 
+#8/16/24 review:
+
+class Solution:
+    def numDecodings(self, s: str) -> int:
+        if s[0] == "0": return 0
+        inputlen = len(s)
+        dp = [0] * (inputlen + 1)
+        dp[0], dp[1] = 1, 1
+        for i in range(2, len(s) + 1):
+            singledigit = int(s[i - 1: i])
+            if 1 <= singledigit <= 9:
+                dp[i] += dp[i - 1]
+            doubledigit = int(s[i - 2: i])
+            if 10 <= doubledigit <= 26:
+                dp[i] += dp[i - 2]
+        return dp[inputlen]
+
