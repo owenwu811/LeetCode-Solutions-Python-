@@ -244,3 +244,15 @@ class Solution:
         for r in range(rows):
             matrix[r].reverse()
 
+#8/17/24 review (solved 1st try on grokking course):
+
+def rotate_image(matrix):
+
+    for r in range(len(matrix)):
+        for c in range(r, len(matrix)):
+            matrix[r][c], matrix[c][r] = matrix[c][r], matrix[r][c]
+    
+    for r in range(len(matrix)):
+        matrix[r].reverse()
+            
+    return matrix
