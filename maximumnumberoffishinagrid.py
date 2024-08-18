@@ -13,19 +13,16 @@ class Solution:
             # Base case: if out of bounds or cell is zero (either water or already visited)
             if r < 0 or r >= len(grid) or c < 0 or c >= len(grid[0]) or grid[r][c] <= 0:
                 return 0
-            
-            # Collect the fish in the current cell
+            # This line initializes the count of fish for the current DFS search starting from a NEW cell. It sets the fish count to the number of fish in the current cell (grid[r][c]). This is the base count, and from here, we explore the neighboring cells (using DFS, NOT BFS) to add to this count (remember that DFS implies backtracking).
             fish_count = grid[r][c]
-            
             # Mark this cell as visited by setting it to 0 because we can't use the same cell twice aka catch the same fish twice 
-            grid[r][c] = 0
+            grid[r][c] = 0 #(grid[r][c] = 0), so it won't be counted again in subsequent DFS calls. This ensures that fish from each cell are only counted once.
             
             # Recursively explore the four directions
             fish_count += dfs(r + 1, c)
             fish_count += dfs(r - 1, c)
             fish_count += dfs(r, c + 1)
             fish_count += dfs(r, c - 1)
-            
             return fish_count #we need to return fish_count because if we hit 0 looking in 4 directions, we can't continue down that path, and we want to know the max number of fish we can catch from this particular path and return it to the max_fish = max(max_fish, dfs(r, c))
 
         max_fish = 0
