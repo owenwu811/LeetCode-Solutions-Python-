@@ -23,17 +23,17 @@
 
 class Solution:
     def groupThePeople(self, groupSizes: List[int]) -> List[List[int]]:
-        groups, result = {}, []
+        groupsdict, result = {}, []
         for i, size in enumerate(groupSizes):
-            if size not in groups:
-                groups[size] = [] 
-                print(groups[size]) #[]
-            groups[size].append(i)
-            print(groups) #{3: [3, 4], 1: [5]}, {3: [3, 4, 6], 1: []}
-            print(groups[size]) #[5]
-            if len(groups[size]) == size: #[5], so len == 1, so size == 1
-                result.append(groups[size])
+            if size not in groupsdict:
+                groupsdict[size] = [] 
+                print(groupsdict[size]) #[]
+            groupsdict[size].append(i)
+            print(groupsdict) #{3: [3, 4], 1: [5]}, {3: [3, 4, 6], 1: []}
+            print(groupsdict[size]) #[5]
+            if len(groupsdict[size]) == size: #[5], so len == 1, so size == 1
+                result.append(groupsdict[size])
                 print(result) #[[0, 1, 2], [5]], [[0, 1, 2], [5], [3, 4, 6]]
-                groups[size] = []
-                print(groups[size]) #[]
+                groupsdict[size] = []
+                print(groupsdict[size]) #[]
         return result
