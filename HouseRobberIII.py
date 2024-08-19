@@ -7,6 +7,8 @@
 
 #values = [4, 1, None, 2, None, 3] > should return 7, not 6!
 
+#note below that 2 is still inside of 4's left subtree!
+
 #    4
    /
 #  1
@@ -21,8 +23,8 @@ class Solution:
         def robSubtree(node):
             if not node:
                 return 0, 0  # (rob this node, do not rob this node)
-            left = robSubtree(node.left)
-            right = robSubtree(node.right)
+            left = robSubtree(node.left) #1, 2, 3, N > return 0
+            right = robSubtree(node.right) #N > return 0
             # If we rob this node, we cannot rob its children
             rob_this = node.val + left[1] + right[1]
             # If we do not rob this node, we take the max value from robbing or not robbing its children
