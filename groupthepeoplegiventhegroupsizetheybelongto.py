@@ -26,8 +26,8 @@ class Solution:
         groups, result = {}, []
         for i, size in enumerate(groupSizes):
             if size not in groups:
-                groups[size] = [] #[]
-                print(groups[size])
+                groups[size] = [] 
+                print(groups[size]) #[]
             groups[size].append(i)
             print(groups) #{3: [3, 4], 1: [5]}, {3: [3, 4, 6], 1: []}
             print(groups[size]) #[5]
@@ -36,5 +36,4 @@ class Solution:
                 print(result) #[[0, 1, 2], [5]], [[0, 1, 2], [5], [3, 4, 6]]
                 groups[size] = []
                 print(groups[size]) #[]
-                
         return result
