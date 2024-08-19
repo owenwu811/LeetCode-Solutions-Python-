@@ -182,3 +182,20 @@ class Solution(object):
         if root and subRoot and root.val == subRoot.val:
             return self.compare(root.left, subRoot.left) and self.compare(root.right, subRoot.right)
         return False
+
+
+#8/18/24 review (missed today):
+
+class Solution:
+    def isSubtree(self, s: TreeNode, t: TreeNode) -> bool:
+        if not s: return False #if big tree dosen't exist, there is no portion of the big tree, so return False
+        if not t: return True #if the small tree dosen't exist, you can assume an empty portion is a portion, so return True as big tree always has an empty spot
+        if self.compare(s, t): #passing the original (big tree, small tree) as input to begin comparing recursively 
+            return True
+        return self.isSubtree(s.right, t) or self.isSubtree(s.left, t) #remember OR because you can choose any part of the bigger subtree as long as, in the recursive call, the subtree matches up exactly!
+    def compare(self, s, t):
+        if not s and not t:
+            return True #only when the entire tree is traversed on both subtrees do we say YES definitively 
+        if s and t and s.val == t.val:
+            return self.compare(s.right, t.right) and self.compare(s.left, t.left)
+        return False #if any of the values don't match up or one tree exists while other dosen't at a particular spot, we can't use that part of the bigger subtree, so that's where the OR part comes in above 
