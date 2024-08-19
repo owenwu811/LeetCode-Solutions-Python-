@@ -27,7 +27,7 @@ class Solution:
         print(sort_key) #[11, 9, 3] #notice index 2 value in each sublist
         output = []
         for key in sort_key:
-            output.append(score[index_dict[key]])  
+            output.append(score[index_dict[key]]) #because we get score[1] = [7, 5, 11, 2], so it's a sublist in the input because index_dict[key] corresponds to an index because key is a value in the input
             print(score) #[[10,6,9,1],[7,5,11,2],[4,8,3,15]] - score is just the input list of lists itself, so score[1] = [7, 5, 11, 2]
             print(index_dict) #{9: 0, 11: 1, 3: 2}
             print(output)# output = [[7, 5, 11, 2], [10, 6, 9, 1], [4, 8, 3, 15]] - output will include each sublist in the input in the correct order  
