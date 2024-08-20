@@ -20,7 +20,7 @@
 
 #we are assuming the neither input list has any duplicates, or if they do have them, they are not counted
 
-#A = [3,1,1,2,4] - #note not valid test case because is not a permutation because permutations can't contain duplicates
+#A = [3,1,1,2,4] - #note not valid test case because is not a permutation because permutations can't contain duplicates in this question
 #B = [1,3,1,2,4]
 
 
