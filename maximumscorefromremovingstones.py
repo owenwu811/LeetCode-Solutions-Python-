@@ -27,7 +27,7 @@ class Solution:
         heapify(heap)
         ans = 0
 
-        while len(heap) > 1: #we need atleast two piles full at all times
+        while len(heap) > 1: #we need atleast two piles full at all times. on the last turn, we have [-1, -1] because we picked optimally because we picked from the bigger two piles to prolong the number of turns in the game 
             first, sec = heappop(heap) + 1, heappop(heap) + 1 #we do + 1 because we are using that stone meaning we have one stone less - we pick from the bigger two piles to maximize the number of turns in the game 
             ans += 1 #one turn of the game is successfully completed
 
