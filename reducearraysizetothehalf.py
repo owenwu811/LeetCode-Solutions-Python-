@@ -42,3 +42,24 @@ class Solution:
             origlen -= -heapq.heappop(myheap)
             turn += 1
         return turn
+
+
+#another one of my solutions:
+
+class Solution:
+    def minSetSize(self, arr: List[int]) -> int:
+        origlen = len(arr)
+        mydict = dict()
+        for a in arr:
+            if a not in mydict:
+                mydict[a] = 0
+            mydict[a] += 1
+        myheap = []
+        for k in mydict:
+            heapq.heappush(myheap, -mydict[k])
+        res = 0
+        changinglen = origlen
+        while changinglen > origlen // 2:
+            changinglen -= -heapq.heappop(myheap) #we are always subtracting the mostfrequent element from our length to find the minimum size of set aka least number of turns the game has until atleast half are removed
+            res += 1
+        return res
