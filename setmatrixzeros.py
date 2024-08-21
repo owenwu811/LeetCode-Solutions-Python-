@@ -344,3 +344,28 @@ class Solution:
                 if matrix[r][c] == "*":
                     matrix[r][c] = 0
         return matrix
+
+
+#8/21/24 review:
+
+class Solution:
+    def setZeroes(self, matrix: List[List[int]]) -> None:
+        """
+        Do not return anything, modify matrix in-place instead.
+        
+        """
+        rows, cols = len(matrix), len(matrix[0])
+        for r in range(len(matrix)):
+            for c in range(len(matrix[0])):
+                if matrix[r][c] == 0:
+                    for j in range(cols):
+                        if matrix[r][j] != 0:
+                            matrix[r][j] = "*"
+                    for i in range(rows):
+                        if matrix[i][c] != 0:
+                            matrix[i][c] = "*"
+        for r in range(rows):
+            for c in range(cols):
+                if matrix[r][c] == "*":
+                    matrix[r][c] = 0
+        
