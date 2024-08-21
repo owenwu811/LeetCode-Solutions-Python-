@@ -1,5 +1,5 @@
 #easy
-#58.3%acceptancerate
+#58.5%acceptancerate
 
 
 #Given the root of a Binary Search Tree (BST), return the minimum absolute difference between the values of any two different nodes in the tree.
