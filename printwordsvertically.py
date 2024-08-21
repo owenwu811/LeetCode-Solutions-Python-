@@ -44,3 +44,27 @@ class Solution:
                     vert_words += ' ' #when i = 2, 2 < length of "IS" is false, so becomes "N " by adding space to the end 
             res.append(vert_words.rstrip()) #"CIC" is appended to res
         return res
+
+
+#my own solution using python3:
+
+class Solution:
+    def printVertically(self, s: str) -> List[str]:
+        words = s.split()
+        maxlength = 0
+        for word in words:
+            if len(word) > maxlength:
+                maxlength = len(word)
+        print(maxlength)
+        res = []
+        curcol = ""
+        for i in range(maxlength):
+            curcol = ""
+            for word in words:
+                if i < len(word):
+                    curcol += word[i]
+                else:
+                    curcol += " "
+            res.append(curcol.rstrip())
+
+        return res
