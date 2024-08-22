@@ -41,11 +41,14 @@ class Solution:
         
         # Handle each digit from the end to the start
         while l1l or l2l or carry:
-            l1val = l1l.pop() if l1l else 0
-            l2val = l2l.pop() if l2l else 0
-            total = l1val + l2val + carry
-            carry = total // 10
-            res.append(total % 10)
+            l1val = l1l.pop() if l1l else 0 #becomes the most recent popped value aka 3
+            l2val = l2l.pop() if l2l else 0 #becomes the most recent popped value aka 4
+            total = l1val + l2val + carry #7
+            carry = total // 10 #(7 // 10 = 0)
+            res.append(total % 10) #append (7 % 10 = 7) so append 7, append(10 % 10 == 0) so append 0, 
+
+        #we have 7 0 8 7
+        #reversed is 7 8 0 7 > what we want, so this is what reversed(res) does
         
         # Convert the result list back to a linked list
         dummy = ListNode(None)
@@ -55,3 +58,6 @@ class Solution:
             cur = cur.next
         
         return dummy.next
+
+#l1 = [7,2,4,3], 
+#l2 = [5,6,4]
