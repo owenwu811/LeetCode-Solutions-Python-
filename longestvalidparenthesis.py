@@ -248,3 +248,21 @@ class Solution:
                 else:
                     res = max(res, i - stack[-1])
         return res
+
+
+#8/21/24 review:
+
+class Solution:
+    def longestValidParentheses(self, s: str) -> int:
+        res = 0
+        stack = [-1]
+        for i, char in enumerate(s):
+            if char == "(":
+                stack.append(i) #[(] [((]
+            else:
+                a = stack.pop() #(
+                if not stack:
+                    stack.append(i)
+                else: #2 - 
+                    res = max(res, i - stack[-1])
+        return res
