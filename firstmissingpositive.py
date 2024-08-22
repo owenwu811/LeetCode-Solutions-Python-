@@ -185,3 +185,15 @@ class Solution:
                 res += 1
         return res
 
+#8/21/24 review:
+
+class Solution:
+    def firstMissingPositive(self, nums: List[int]) -> int:
+        res = 1
+        nums.sort()
+        for n in nums:
+            if n == res:
+                res += 1
+            else:
+                continue
+        return res
