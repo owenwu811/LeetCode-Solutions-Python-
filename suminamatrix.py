@@ -18,7 +18,7 @@
 #Explanation: In the first operation, we remove 7, 6, 6, and 3. We then add 7 to our score. Next, we remove 2, 4, 5, and 2. We add 5 to our score. Lastly, we remove 1, 2, 3, and 1. We add 3 to our score. Thus, our final score is 7 + 5 + 3 = 15.
 
 
-#my own solution using python3 after reading hints:
+#my own solution using python3:
 
 class Solution:
     def matrixSum(self, nums: List[List[int]]) -> int:
