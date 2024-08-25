@@ -21,3 +21,25 @@ class Solution:
             res.append(root.val) 
         f(root)
         return res #[3, 2, 1]
+
+
+#8/24/24 review:
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def postorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+        self.res = []
+        def f(root):
+            if not root:
+                return
+            l = f(root.left)
+            r = f(root.right) 
+            self.res.append(root.val) #must append the root value here!
+
+        f(root)
+        return self.res
