@@ -16,7 +16,7 @@ class Solution:
         for i in range(len(s)):
             d[s[i]] += 1
             while d["a"] and d["b"] and d["c"]:
-                res += (len(s) - i) #not (i - l + 1)
+                res += (len(s) - i) #not (i - l + 1) - when we get to c at index 2, the number of substrings in abc is 4, not 2! (2 - 0 + 1) is wrong while (6 - 2) is right!
                 d[s[l]] -= 1
                 l += 1
         return res
