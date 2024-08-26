@@ -19,7 +19,7 @@ class Solution:
         self.n = nums
 
     def pick(self, target: int) -> int:
-        while True:
+        while True: # we need while true because we just get to pick one index each turn and see if that index equals target - we don't iterate through the array at all!
             index = randint(0, len(self.n) - 1)
             if target == self.n[index]:
                 return index
