@@ -9,10 +9,12 @@
 
 #clever python3 solution (couldn't solve by myself):
 
+#s = "abcabcababcc"
+
 class Solution:
     def isValid(self, s: str) -> bool:
         tmp = ""
         while tmp != s:
             tmp = s
-            s = s.replace("abc", "")
+            s = s.replace("abc", "") #"abcabcababcc" becomes "abc"
         return s == "" #if s is what tmp started at, then it's possible 
