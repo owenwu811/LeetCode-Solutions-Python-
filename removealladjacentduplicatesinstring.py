@@ -44,3 +44,16 @@ class Solution:
         for i, j in stack: #don't need enumerate here because we are just unpacking each sublist
             res.append(i * j)
         return "".join(res)
+
+
+#another much more intuitive way from grokking course that I came up with using their psuedocode:
+
+def remove_duplicates(s):
+    stack = []
+    for char in s:
+      if stack and char == stack[-1]:
+        stack.pop()
+      else:
+        stack.append(char)
+    return "".join(stack)
+
