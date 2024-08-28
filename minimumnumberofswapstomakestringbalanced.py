@@ -31,5 +31,5 @@ class Solution:
                 stack.pop()
             else:
                 res += 1
-        return (res + 1) // 2 #not sure why this is what it is
+        return (res + 1) // 2 #Because every time you swap a pair of brackets you fix two closed brackets in one swap!
         
