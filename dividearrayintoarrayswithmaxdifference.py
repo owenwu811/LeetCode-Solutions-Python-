@@ -11,7 +11,7 @@
 
 
 
-#my own solution using python3 after using hints and a comment correcting my mistake:
+#my own solution using python3 after using hints and a comment correcting my misunderstanding of the problem:
 
 class Solution:
     def divideArray(self, nums: List[int], k: int) -> List[List[int]]:
