@@ -45,7 +45,23 @@ class Solution:
         return min(res)
 
 
-        
+
+#a much better way to do it:
+
+class Solution:
+   def minimumCardPickup(self, cards: List[int]) -> int:
+       index = {}
+       minimum = float('inf')
+       for i in range(len(cards)):
+           card = cards[i]
+           if card in index:
+               current_distance = i - index[card] + 1
+               minimum = min(current_distance, minimum) 
+           index[card] = i
+       if minimum < float('inf'):
+           return minimum
+       else:
+           return -1
             
 
 
