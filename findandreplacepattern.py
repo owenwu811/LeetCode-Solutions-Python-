@@ -25,18 +25,29 @@ class Solution:
 
 print(set(word))
 print(set(zip(word, pattern)))
+print(set(pattern))
 
 #for test case:
 
-words = ["abc","deq","mee","aqq","dkd","ccc"], pattern = "abb"
+words = ["abc","deq","mee","aqq","dkd","ccc"], pattern = "abb" > #expected: ["mee","aqq"] as result
 
 #outputs:
 
-{'a', 'c', 'b'} #print(set(word))
-{('c', 'b'), ('b', 'b'), ('a', 'a')} #print(set(zip(word, pattern)))
-{'q', 'e', 'd'}
-{('q', 'b'), ('d', 'a'), ('e', 'b')}
-{'m', 'e'}
-{('e', 'b'), ('m', 'a')}
+{'b', 'c', 'a'} #print(set(word))
+{('a', 'a'), ('c', 'b'), ('b', 'b')} #print(set(zip(word, pattern)))
+{'b', 'a'} #print(set(pattern))
+{'d', 'q', 'e'}
+{('d', 'a'), ('e', 'b'), ('q', 'b')}
+{'b', 'a'}
+{'e', 'm'}
+{('m', 'a'), ('e', 'b')}
+{'b', 'a'}
 {'a', 'q'}
-{('q', 'b'), ('a', 'a')}
+{('a', 'a'), ('q', 'b')}
+{'b', 'a'}
+{'d', 'k'}
+{('d', 'a'), ('d', 'b'), ('k', 'b')}
+{'b', 'a'}
+{'c'}
+{('c', 'b'), ('c', 'a')}
+{'b', 'a'}
