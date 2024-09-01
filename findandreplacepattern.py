@@ -19,3 +19,24 @@ class Solution:
             if len(set(word)) == len(set(zip(word, pattern))) == len(set(pattern)): #borrowed this part from isomorphic strings
                 res.append(word)
         return res
+
+
+#the following two lines:
+
+print(set(word))
+print(set(zip(word, pattern)))
+
+#for test case:
+
+words = ["abc","deq","mee","aqq","dkd","ccc"], pattern = "abb"
+
+#outputs:
+
+{'a', 'c', 'b'} #print(set(word))
+{('c', 'b'), ('b', 'b'), ('a', 'a')} #print(set(zip(word, pattern)))
+{'q', 'e', 'd'}
+{('q', 'b'), ('d', 'a'), ('e', 'b')}
+{'m', 'e'}
+{('e', 'b'), ('m', 'a')}
+{'a', 'q'}
+{('q', 'b'), ('a', 'a')}
