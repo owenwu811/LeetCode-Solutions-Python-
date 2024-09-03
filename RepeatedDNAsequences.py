@@ -52,7 +52,7 @@ class Solution:
         # since sets don't count order, as long as we have already seen this 10 character pair, we can add it to the result because we are looking for 10 letter long sequences that occur more than ONCE. seen.add(cur) adds every 10 character pair we ever see, and the pair is denoted by s[i:i + 10] instead of windowstart and windowend
 
 
-#9/2/24 review from grokking the coding interview course:
+#9/2/24 review from grokking the coding interview course ( solved by myself) :
 
 def find_repeated_sequences(dna, k):
     d = dict()
