@@ -50,3 +50,21 @@ class Solution:
         #s = "AAAAAAAAAAAAA" - len of 13 index 3 last inclusive windowstart
         #3:13 - index 12 last inclusive meaning last windowend that's valid 
         # since sets don't count order, as long as we have already seen this 10 character pair, we can add it to the result because we are looking for 10 letter long sequences that occur more than ONCE. seen.add(cur) adds every 10 character pair we ever see, and the pair is denoted by s[i:i + 10] instead of windowstart and windowend
+
+
+#9/2/24 review from grokking the coding interview course:
+
+def find_repeated_sequences(dna, k):
+    d = dict()
+    res = []
+    for i in range(len(dna) - k + 1):
+      window = dna[i: i + k]
+      if window in d:
+        res.append(window)
+      if window not in d:
+        d[window] = 0
+      d[window] += 1
+      
+    # Replace this placeholder return statement with your code
+    
+    return set(res)
