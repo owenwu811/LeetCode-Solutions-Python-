@@ -198,7 +198,7 @@ class Solution:
                 key[-1][1] = min(key[-1][1], end)
         return res
 
-#9/6/24 review:
+#9/6/24 review from grokking course:
 
 def remove_min_intervals(intervals):
     res = 0
