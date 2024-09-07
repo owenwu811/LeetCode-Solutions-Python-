@@ -212,3 +212,30 @@ class Solution:
         l = self.maxDepth(root.left)
         r = self.maxDepth(root.right)
         return 1 + max(l, r)
+
+
+#9/7/24 review from grokking course:
+
+# Definition for a binary tree node
+# class TreeNode:
+#     def __init__(self, data):
+#         self.data = data
+#         self.left = None
+#         self.right = None
+
+from ds_v1.BinaryTree.BinaryTree import TreeNode
+from collections import deque
+
+def find_max_depth(root):
+    res = 0
+    def f(root, res):
+      if not root:
+        return 0
+      l = f(root.left, res)
+      r = f(root.right, res)
+      res = max(res, l + r)
+      return 1 + max(l, r)
+      
+      
+      
+    return f(root, res)
