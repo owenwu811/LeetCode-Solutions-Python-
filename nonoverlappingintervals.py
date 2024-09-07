@@ -198,4 +198,18 @@ class Solution:
                 key[-1][1] = min(key[-1][1], end)
         return res
 
+#9/6/24 review:
+
+def remove_min_intervals(intervals):
+    res = 0
+    intervals.sort()
+    prevend = [intervals[0]]
+    for start, end in intervals[1:]:
+      if start >= prevend[-1][1]:
+        prevend[-1][1] = end
+        continue
+      else:
+        res += 1
+        prevend[-1][1] = min(end, prevend[-1][1])
+    return res
     
