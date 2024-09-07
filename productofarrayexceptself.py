@@ -448,4 +448,17 @@ class Solution:
             res[backward] *= postfixn
             postfixn *= nums[backward]
         return res
+
+#9/7/24 review from grokking course:
+
+    def product_except_self(nums):
+      prefixn, postfixn = 1, 1
+      res = [1] * len(nums)
+      for forward in range(len(nums)):
+        res[forward] = prefixn
+        prefixn *= nums[forward]
+      for backward in range(len(nums) -1, -1, -1):
+        res[backward] *= postfixn
+        postfixn *= nums[backward]
+      return res
         
