@@ -33,3 +33,18 @@ class Solution:
             if d[key] >= 2:
                 res.append(key)
         return res
+
+#9/8/24 review from grokking course:
+
+def find_duplicates(nums):
+    res = []
+    for n in nums:
+      if nums.count(n) > 1:
+        res.append(n)
+    myset = set()
+    for r in res:
+      myset.add(r)
+    ans = []
+    for s in myset:
+      ans.append(s)
+    return ans
