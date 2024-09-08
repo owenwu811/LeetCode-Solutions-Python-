@@ -44,3 +44,11 @@ class Solution:
         elif b < 0 and a == 0:
             return b
             
+#9/8/24 review from grokking course:
+
+def integer_addition(a, b):
+    
+    stack = []
+    stack.append(a)
+    stack.append(b)
+    return sum(stack)
