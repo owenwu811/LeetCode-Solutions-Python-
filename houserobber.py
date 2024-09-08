@@ -167,7 +167,7 @@ class Solution:
             rob2 = tmp
         return rob2
 
-#9/8/24 review:
+#9/8/24 review from grokking course:
 
 def rob_houses(nums):
 
