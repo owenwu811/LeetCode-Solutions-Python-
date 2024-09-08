@@ -166,3 +166,14 @@ class Solution:
             rob1 = rob2
             rob2 = tmp
         return rob2
+
+#9/8/24 review:
+
+def rob_houses(nums):
+
+    rob1, rob2 = 0, 0
+    for n in nums:
+      tmp = max(n + rob1, rob2)
+      rob1 = rob2
+      rob2 = tmp
+    return rob2
