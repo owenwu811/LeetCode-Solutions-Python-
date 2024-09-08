@@ -101,3 +101,16 @@ class Solution:
             if mydict[d] > len(nums) / 2:
                 return d
 
+#9/8/24 review from grokking course:
+
+def find_majority_element(nums):
+    
+    d = dict()
+    for n in nums:
+      if n not in d:
+        d[n] = 0
+      d[n] += 1 
+    for k in d:
+      if d[k] > len(nums) / 2:
+        return k
+
