@@ -1164,4 +1164,31 @@ class Solution:
                     d.append([dx, dy])
             minminutes += 1
         return minminutes if freshcount == 0 else -1
-        
+
+#9/8/24 review from grokking course:
+
+from collections import deque
+def min_minutes_to_rot(grid):
+    minminutes, freshcount = 0, 0
+    d = deque()
+    for i in range(len(grid)):
+      for j in range(len(grid[0])):
+        if grid[i][j] == 2:
+          d.append([i, j])
+        elif grid[i][j] == 1:
+          freshcount += 1 
+        else:
+          continue
+    directions = [(1, 0), (0, 1), (-1, 0), (0, -1)]
+    while d and freshcount > 0:
+      for i in range(len(d)):
+        zx, zy = d.popleft()
+        for nx, ny in directions:
+          destroyx, destroyy = zx + nx, zy + ny
+          if destroyx < 0 or destroyx >= len(grid) or destroyy < 0 or destroyy >= len(grid[0]) or grid[destroyx][destroyy] != 1:
+            continue
+          grid[destroyx][destroyy] = 2
+          freshcount -= 1 
+          d.append([destroyx, destroyy])
+      minminutes += 1 
+    return minminutes if freshcount == 0 else -1
