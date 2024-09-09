@@ -475,3 +475,17 @@ class Solution:
         #0 (m * n)
         #0 (m * n)
 
+
+#9/8/24 review:
+
+class Solution:
+    def uniquePaths(self, m: int, n: int) -> int:
+        buildoff = [1] * n 
+        for i in range(m - 1):
+            above = [1] * n
+            for j in range(n - 2, -1, -1):
+                above[j] = buildoff[j] + above[j + 1]
+                print(buildoff)
+            buildoff = above
+        return buildoff[0]
+
