@@ -53,9 +53,9 @@ class Solution:
 
 class Solution:
     def getAverages(self, nums: List[int], k: int) -> List[int]:
-        if k == 0: return nums
+        if k == 0: return nums #Input: nums = [100000], k = 0 Output: [100000]
         res = [-1] * len(nums)
-        if len(nums) < (2 * k + 1): #edge case to be aware of that if the input length dosen't even have 2 * k + 1, then just return [-1] * len(nums), not nums itself!
+        if len(nums) < (2 * k + 1): #edge case to be aware of that if the input length dosen't even have 2 * k + 1, then just return [-1] * len(nums), not nums itself! the question says If there are less than k elements before or after the index i, then the k-radius average is -1
             return res
         windowsum = sum(nums[:2 * k + 1]) #we start sliding the window at k + 1 because we essentially use the sum of the 1st 2 * k + 1 numbers in the input array as a prefix buffer so that we know that other windows will just be this minus left block + right block
         res[k] = windowsum // (2 * k + 1) #we are taking care of the 1st subarray since we already have the anwser 
