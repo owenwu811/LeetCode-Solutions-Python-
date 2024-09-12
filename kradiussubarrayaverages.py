@@ -55,11 +55,11 @@ class Solution:
     def getAverages(self, nums: List[int], k: int) -> List[int]:
         if k == 0: return nums
         res = [-1] * len(nums)
-        if len(nums) < (2 * k + 1):
+        if len(nums) < (2 * k + 1): #edge case to be aware of that if the input length dosen't even have 2 * k + 1, then just return [-1] * len(nums), not nums itself!
             return res
-        windowsum = sum(nums[:2 * k + 1])
-        res[k] = windowsum // (2 * k + 1)
+        windowsum = sum(nums[:2 * k + 1]) #we start sliding the window at k + 1 because we essentially use the sum of the 1st 2 * k + 1 numbers in the input array as a prefix buffer so that we know that other windows will just be this minus left block + right block
+        res[k] = windowsum // (2 * k + 1) #we are taking care of the 1st subarray since we already have the anwser 
         for r in range(k + 1, len(nums) - k):
-            windowsum = windowsum - nums[r - k - 1] + nums[r + k]
+            windowsum = windowsum - nums[r - k - 1] + nums[r + k] #chopping off left block adding right block 
             res[r] = windowsum // (2 * k + 1)
         return res
