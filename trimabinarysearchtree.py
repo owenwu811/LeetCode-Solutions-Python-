@@ -26,6 +26,7 @@ class Solution:
             return self.trimBST(root.right, low, high)
         if root.val > high:
             return self.trimBST(root.left, low, high)
+        #in the range, so go either left or right child and continue traversing
         root.left = self.trimBST(root.left, low, high)
         root.right = self.trimBST(root.right, low, high)
         return root
