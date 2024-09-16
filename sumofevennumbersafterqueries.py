@@ -35,7 +35,7 @@ class Solution:
                 sumnums += n
         for i in range(len(queries)):
             prev = nums[queries[i][1]]
-            if prev % 2 == 0:
+            if prev % 2 == 0: #if it was even before, it was already included in original sumnums, so remove it. if it was odd before, then it was not included in original sumnums, so we can just add the new one. like 1 wouldn't be included, so if 1 becomes 2, then just add 2 to sumnums. if 2 was already included, and if 2 becomes 4, then subtract 2 before adding 4!
                 sumnums -= nums[queries[i][1]] #YOU MUST REMOVE THE VALUE OF THAT FROM THE TOTSUM 
             nums[queries[i][1]] += queries[i][0]
             if nums[queries[i][1]] % 2 == 0:
