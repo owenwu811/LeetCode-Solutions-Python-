@@ -575,5 +575,32 @@ class Solution:
                 copy.neighbors.append(f(n))
             return copy
         return f(node) if node else None
+
+#9/16/24 review:
+
+"""
+# Definition for a Node.
+class Node:
+    def __init__(self, val = 0, neighbors = None):
+        self.val = val
+        self.neighbors = neighbors if neighbors is not None else []
+"""
+
+from typing import Optional
+class Solution:
+    def cloneGraph(self, node: Optional['Node']) -> Optional['Node']:
+        self.mydict = {} 
+        def dfs(node):
+            if node in self.mydict:
+                return self.mydict[node]
+            copy = Node(node.val)
+            self.mydict[node] = copy
+            for n in node.neighbors:
+                copy.neighbors.append(dfs(n))
+            return copy
+
+
+
+        return dfs(node) if node else None
         
 
