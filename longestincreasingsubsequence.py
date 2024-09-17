@@ -137,3 +137,15 @@ class Solution:
                     res[i] = max(res[i], res[j] + 1) #+ 1 is counting the current number as 1 length
         return max(res)
         
+
+#9/16/24 refresher:
+
+class Solution:
+    def lengthOfLIS(self, nums: List[int]) -> int:
+        #[2, 3, 5, 7]
+        dp = [1] * len(nums)
+        for i in range(len(nums) -1, -1, -1):
+            for j in range(i - 1, -1, -1):
+                if nums[j] < nums[i]:
+                    dp[j] = max(dp[j], dp[i] + 1)
+        return max(dp)
