@@ -289,4 +289,21 @@ class Solution:
 
         return self.res
 
+#9/16/24 review:
+
+class Solution:
+    def subarraySum(self, nums: List[int], k: int) -> int:
+        d = {0: 1}
+        subarraysum = 0
+        res = 0
+        for n in nums:
+            subarraysum += n
+            if (subarraysum - k) in d:
+                res += d[subarraysum - k]
+            if subarraysum in d:
+                d[subarraysum] += 1
+            else:
+                d[subarraysum] = 1
+        return res
+
 
