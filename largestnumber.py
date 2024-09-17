@@ -241,7 +241,7 @@ class Solution:
 
 class Solution:
     def largestNumber(self, nums: List[int]) -> str:
-        for i, n in enumerate(nums):
+        for i, n in enumerate(nums): #If we didn’t convert the integers to strings first, the concatenation operation (i.e., a + b and b + a) would not work as intended, because the + operator behaves differently for integers and strings.
             nums[i] = str(n)
         def f(a, b):
             if b + a > a + b:
