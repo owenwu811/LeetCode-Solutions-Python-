@@ -335,3 +335,24 @@ class Solution:
                 res = max(res, i - d[needfromzero])
     
         return res
+
+#9/17/24 review:
+
+class Solution:
+    def findMaxLength(self, nums: List[int]) -> int:
+        needfromzero = 0
+        res = 0
+        d = {}
+        for i, n in enumerate(nums):
+            if n == 0:
+                needfromzero -= 1
+            elif n == 1:
+                needfromzero += 1
+            if needfromzero not in d:
+                d[needfromzero] = i
+            if needfromzero == 0:
+                res = max(res, i + 1)
+            else:
+                res = max(res, i - d[needfromzero])
+        return res
+
