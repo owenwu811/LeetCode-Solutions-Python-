@@ -23,8 +23,8 @@ class Solution:
             #i = the key while n = the value 
             while n > 0 and n in seen:
                 res += 1
-                n -= 1 #changes the value in d.items(), which is n
-            seen.add(n) #we add n to seen because if we hit 0 as frequency, the character is now not seen before is the idea 
+                n -= 1 #changes the actual value itself in d.items() dictionary Counter, which is n 
+            seen.add(n) #we add n to seen because if we hit 0 as frequency, which is the value of the dictionary (aka n), the character is now not seen before is the idea 
         return res
 
 
