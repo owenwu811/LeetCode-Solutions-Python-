@@ -32,3 +32,12 @@ class Solution:
             j -= 1
         # recursion happens here
         return res + self.countNumbersWithUniqueDigits(n-1)
+
+#for loop explanation: The goal here is to calculate how many unique digit numbers can be formed with n digits:
+
+res *= j: This line multiplies the current value of res by j, which represents the number of available choices for the current digit. After choosing the first digit (9 choices), the second digit has 9 options, the third digit has 8 options, and so on. The value of res accumulates the total number of combinations for the current step.
+j -= 1: This decreases the number of available digits for the next step, because each time you choose a digit, the pool of available unique digits shrinks.
+
+#why are we looping from 0 to n - 1?
+#Looping from 0 to n-1 ensures that the loop handles exactly n-1 digits (since the first digit is handled separately).
+
