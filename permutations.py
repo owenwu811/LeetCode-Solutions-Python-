@@ -270,4 +270,18 @@ class Solution:
         f(nums, [])
         return res
 
-        
+
+#9/18/24 review:
+
+class Solution:
+    def permute(self, nums: List[int]) -> List[List[int]]:
+        def f(nums, cur):
+            print(nums)
+            if not nums:
+                res.append(cur.copy())
+                return
+            for i in range(len(nums)):
+                f(nums[:i] + nums[i + 1:], cur + [nums[i]])
+        res = []
+        f(nums, [])
+        return res
