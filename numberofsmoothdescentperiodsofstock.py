@@ -6,6 +6,11 @@
 #Return the number of smooth descent periods.
 
 
+
+#why it works:
+#The array res tracks how long the descent period is at each index, allowing you to count all possible subarrays that qualify as descents. By summing the values in res, you count all the distinct descent periods across the array.
+
+
 #correct python3 solution (could not solve on own):
 
 class Solution:
