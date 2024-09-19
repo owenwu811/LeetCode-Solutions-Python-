@@ -393,6 +393,43 @@ class Solution:
 
 #9/19/24 review:
 
+
+#This solution works because it is implementing Dutch National Flag Algorithm by Edsger Dijkstra, which is designed to sort an array of three distinct values (in this case, 0, 1, and 2) in a single pass. Here's a detailed explanation of how it works:
+
+#Key Variables:
+l: The left pointer, which tracks where the next 0 should go.
+r: The right pointer, which tracks where the next 2 should go.
+c: The current pointer, which scans through the array and processes each element.
+The Strategy:
+The goal is to move all 0s to the beginning of the array, all 2s to the end, and leave all 1s in the middle. This is done in a single pass by maintaining three regions:
+
+From the start to l-1, all elements are 0.
+From l to c-1, all elements are 1.
+From r+1 to the end, all elements are 2.
+The elements between c and r are still unsorted and need to be processed.
+How the Algorithm Works:
+Initialize pointers:
+l is set to 0, pointing to the beginning.
+r is set to len(nums) - 1, pointing to the end.
+c is also initialized to 0, pointing to the current element being evaluated.
+Iterate while c <= r:
+The loop runs as long as c is less than or equal to r (meaning we are still in the unsorted part of the array).
+If nums[c] == 2:
+If the current element is 2, it needs to go to the end of the array.
+Swap nums[c] with nums[r] to place the 2 at the correct end position.
+Decrease r by 1 because the new position r has been sorted with a 2.
+Do not increment c because the swapped element from nums[r] could still be 0, 1, or 2, and needs to be evaluated.
+If nums[c] == 1:
+If the current element is 1, it is already in the correct region (middle), so just move the pointer c to the next element.
+If nums[c] == 0:
+If the current element is 0, it needs to go to the beginning of the array.
+Swap nums[c] with nums[l] to place the 0 at the correct start position.
+Increase l by 1 because the new position l is now sorted with a 0.
+Increment c because after swapping, nums[c] is now processed correctly.
+#Why this solution works:
+By moving all the 2s to the right and all the 0s to the left in a single pass, this algorithm sorts the array in O(n) time complexity with O(1) extra space (since it modifies the array in-place).
+It avoids the need to use extra memory or perform multiple passes, making it optimal for this problem.
+
 class Solution:
     def sortColors(self, nums: List[int]) -> None:
         """
