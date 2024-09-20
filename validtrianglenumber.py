@@ -58,7 +58,7 @@ class Solution:
         for i in range(2, len(nums)):
             l, r = 0, i - 1
             while l < r:
-                if nums[l] + nums[r] > nums[i]:
+                if nums[l] + nums[r] > nums[i]: #[2, 2, 3, 4] - lets say l is on index 0 2 and r is on index 3's 4. if we know 2 + 4 is bigger than nums[i], than we know anything plus 2 + 4 aka in between left and right will also be bigger than nums[i], so that's why l, r = 0, i + 1 - left starts at index 0 initially because we need 2, 3, 4 + 2, 3, 4 + 2, 2, 3 for [2, 2, 3, 4] as 2, 3, 4 can be used twice skipping elements but still counting, which is why we have to start l at 0!
                     res += (r - l)
                     r -= 1
                 else:
