@@ -56,7 +56,7 @@ class Solution:
         nums.sort() #we must sort it in order for the else: l += 1 to work because if we have [2, 2, 3, 4], and nums[l] + nums[r] is not bigger than nums[i], then we have to make the sum bigger, and we know moving left up will make the sum bigger because the input array is sorted!
         l, r = 0, len(nums) - 1
         for i in range(2, len(nums)):
-            l, r = 0, i - 1
+            l, r = 0, i - 1 #notice how we start at i - 1, which is index 1 in the beginning of [2, 2, 3, 4]. this is because if we started at i, we are coming nums[r] to itself. Starting r at i - 1 ensures that the second side of the triangle is smaller than the third side (nums[i]). If you were to start r at i, then you'd be comparing a number (nums[r]) to itself (nums[i]), which doesn't make sense when trying to find three distinct numbers that form a triangle.
             while l < r:
                 if nums[l] + nums[r] > nums[i]: #[2, 2, 3, 4] - lets say l is on index 0 2 and r is on index 3's 4. if we know 2 + 4 is bigger than nums[i], than we know anything plus 2 + 4 aka in between left and right will also be bigger than nums[i], so that's why l, r = 0, i + 1 - left starts at index 0 initially because we need 2, 3, 4 + 2, 3, 4 + 2, 2, 3 for [2, 2, 3, 4] as 2, 3, 4 can be used twice skipping elements but still counting, which is why we have to start l at 0!
                     res += (r - l) #we don't do (r - l + 1) because l and r equals 2 pointers, not a triplet! we only care about in between elements added to l and r one at a time because we already know l and r indexed values together are already bigger than nums[i], so anything added further will always be bigger than nums[i]!
