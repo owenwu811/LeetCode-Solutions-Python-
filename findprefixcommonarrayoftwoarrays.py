@@ -36,3 +36,16 @@ class Solution:
             bset.add(B[i])
             res[i] = len(aset & bset) #this is an important thing to find the commonality between two sets
         return res
+
+
+#9/20/24 review (missed):
+
+class Solution:
+    def findThePrefixCommonArray(self, A: List[int], B: List[int]) -> List[int]:
+        res = [0] * len(A)
+        aset, bset = set(), set()
+        for i in range(len(B)):
+            aset.add(A[i])
+            bset.add(B[i])
+            res[i] = len(aset & bset) # & finds comonality, not | !!!!!!
+        return res
