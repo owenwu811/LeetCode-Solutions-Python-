@@ -42,4 +42,33 @@ class BSTIterator:
 
     def hasNext(self) -> bool:
         return self.st
+
+
+#9/20/24 refresher:
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class BSTIterator:
+
+    def __init__(self, root: Optional[TreeNode]):
+        self.lst = []
+        def f(root):
+            if not root:
+                return None
+            f(root.left)
+            self.lst.append(root.val)
+            f(root.right)
+        f(root)
+        
+
+    def next(self) -> int:
+        return self.lst.pop(0)
+        
+
+    def hasNext(self) -> bool:
+        return self.lst
         
