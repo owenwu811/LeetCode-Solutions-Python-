@@ -62,5 +62,5 @@ class Solution:
                     res += (r - l) #we don't do (r - l + 1) because l and r equals 2 pointers, not a triplet! we only care about in between elements added to l and r one at a time because we already know l and r indexed values together are already bigger than nums[i], so anything added further will always be bigger than nums[i]!
                     r -= 1
                 else:
-                    l += 1
+                    l += 1 #because array is sorted, and we know nums[l] + nums[r] wasn't bigger than nums[i], we can increment l to try to make the triplet sum bigger 
         return res
