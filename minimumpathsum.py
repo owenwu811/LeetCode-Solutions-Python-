@@ -17,7 +17,7 @@ class Solution:
         print(new)
         for i in range(len(grid)):
             for j in range(len(grid[0])):
-                if i == 0 and j == 0: #on top left cell
+                if i == 0 and j == 0: #on top left cell of input grid - only happens once in input on 1st iteration
                     new[i][j] = grid[i][j]
                 elif i == 0: #only can come from left since on 1st row
                     new[i][j] = grid[i][j] + new[i][j - 1]
@@ -26,3 +26,21 @@ class Solution:
                 else:
                     new[i][j] = min(grid[i][j] + new[i][j - 1], grid[i][j] + new[i - 1][j])
         return new[-1][-1] #just get the very last value in the dp grid
+
+
+#evening of 9/19/24 review:
+
+class Solution:
+    def minPathSum(self, grid: List[List[int]]) -> int:
+        res = grid.copy()
+        for i in range(len(grid)):
+            for j in range(len(grid[0])):
+                if i == 0 and j == 0:
+                    res[i][j] = grid[i][j]
+                elif i == 0:
+                    res[i][j] = grid[i][j] + res[i][j - 1]
+                elif j == 0:
+                    res[i][j] = grid[i][j] + res[i - 1][j]
+                else:
+                    res[i][j] = min(grid[i][j] + res[i][j - 1], grid[i][j] + res[i - 1][j])
+        return res[-1][-1]
