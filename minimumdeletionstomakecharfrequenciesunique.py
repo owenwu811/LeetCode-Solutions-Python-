@@ -31,6 +31,21 @@ class Solution:
 #why are we decrementing until we hit 0?
 
 #Why does this ensure the minimum number of deletions?
-#Decrementing by 1 at each step is the smallest possible change you can make to reduce the frequency. By making the minimal reduction needed to achieve a unique frequency, you ensure that you delete the fewest number of characters.
+#Decrementing by 1 at each step is the smallest possible change you can make to reduce the frequency (we want to delete the smallest number of characters possible in the while loop meaning we want to increment res the fewest number of times possible). By making the minimal reduction needed to achieve a unique frequency, you ensure that you delete the fewest number of characters.
 #If you try to make bigger jumps (e.g., directly jumping to 0 or skipping frequencies), you would likely end up deleting more characters than necessary.- the idea in this problem is to delete the fewest number of characters to make s good!
 #Once a frequency is reduced to 0, it means the character has been completely removed, which is the worst-case scenario but necessary if no smaller unique frequency is available.
+
+
+#9/19/24 review:
+
+class Solution:
+    def minDeletions(self, s: str) -> int:
+        freq = Counter(s)
+        res = 0
+        seen = set()
+        for i, n in freq.items():
+            while n > 0 and n in seen:
+                res += 1
+                n -= 1
+            seen.add(n)
+        return res
