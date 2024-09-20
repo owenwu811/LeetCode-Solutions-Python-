@@ -34,3 +34,17 @@ class Solution:
                 continue
             res += (r - l + 1)
         return res
+
+
+#my own solution using python3 on 9/19/24:
+
+class Solution:
+    def numSub(self, s: str) -> int:
+        l = 0
+        res = 0
+        for r in range(len(s)):
+            if s[r] == "0":
+                l = r + 1
+                continue
+            res += (r - l + 1)
+        return res % ((10 ** 9) + 7)
