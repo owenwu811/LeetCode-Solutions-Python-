@@ -52,3 +52,27 @@ class Solution:
             lm -= 1
             rm += 1
         return max(res)
+
+#9/19/24 review (my own solution using python3):
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def pairSum(self, head: Optional[ListNode]) -> int:
+        tmp = []
+        while head:
+            tmp.append(head.val)
+            head = head.next
+        res = 0
+        l, r = 0, len(tmp) - 1
+        mid = ((l + r) // 2) + 1
+        left, right = mid - 1, mid
+        while left >= 0 and right < len(tmp):
+            res = max(res, tmp[left] + tmp[right])
+            left -= 1
+            right += 1
+        return res
+
