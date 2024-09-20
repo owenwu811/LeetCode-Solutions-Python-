@@ -28,3 +28,20 @@ class Solution:
                 myset.clear()
                 myset.add(s[r])
         return res
+
+
+#9/19/24 review:
+
+class Solution:
+    def partitionString(self, s: str) -> int:
+        res = 1
+        seen = set()
+        for char in s:
+            if char not in seen:
+                seen.add(char)
+            else:
+                res += 1
+                seen.clear()
+                seen.add(char)
+        return res
+
