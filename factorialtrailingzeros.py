@@ -24,7 +24,7 @@
 #Output: 0
 
 
-#my own solution using python3:
+#my own solution using python3 - note works directly in python not python3 without the sys library
 
 
 import sys
