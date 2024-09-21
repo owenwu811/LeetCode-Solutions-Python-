@@ -64,3 +64,12 @@ class Solution:
             if abs(nums[i] - i) > 1:
                 return False
         return True
+
+#9/21/24 review later that day:
+
+class Solution:
+    def isIdealPermutation(self, nums: List[int]) -> bool:
+        for i in range(len(nums)):
+            if abs(i - nums[i]) > 1:
+                return False
+        return True
