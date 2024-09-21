@@ -23,6 +23,7 @@ class Solution:
             if len(cur) == n:
                 self.res.append(cur)
                 return
+            #char starts over from a every turn 
             for char in self.pool:
                 #either cur is empty meaning there is no previous character to cause duplicates or cur is not empty and the current char we are trying to add is not the same as the last character at the rear of cur
                 if len(cur) == 0 or char != cur[-1]:
