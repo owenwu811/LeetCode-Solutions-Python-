@@ -44,3 +44,39 @@ class Solution:
             if prev: #seperation of levels
                 prev.next = None
         return root
+
+
+#9/21/24 review: (was able to re-solve without much difficulty)
+
+
+"""
+# Definition for a Node.
+class Node:
+    def __init__(self, val: int = 0, left: 'Node' = None, right: 'Node' = None, next: 'Node' = None):
+        self.val = val
+        self.left = left
+        self.right = right
+        self.next = next
+"""
+
+class Solution:
+    def connect(self, root: 'Optional[Node]') -> 'Optional[Node]':
+        if not root:
+            return None
+        d = deque()
+        d.append(root)
+        while d:
+            prev = None
+            for i in range(len(d)):
+                cur = d.popleft()
+                if prev:
+                    prev.next = cur
+                prev = cur
+                if cur.left:
+                    d.append(cur.left)
+                if cur.right:
+                    d.append(cur.right)
+            if prev:
+                prev.next = None
+                prev = prev.next
+        return root
