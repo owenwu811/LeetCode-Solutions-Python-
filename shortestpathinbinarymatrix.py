@@ -83,7 +83,7 @@ class Solution:
                         return res
                     grid[cx][cy] = 7
                     d.append([cx, cy])
-            res += 1 # it means that, at each level, we decide to take one step closer to the bottom left cell
+            res += 1 # it means that, at each level, we decide to take one step closer to the bottom left cell, so each level is each breadth meaning you tried one step in all directions surrounding you!
         return -1
                 
 
