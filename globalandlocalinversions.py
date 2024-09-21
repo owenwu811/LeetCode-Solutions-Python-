@@ -46,3 +46,12 @@ class Solution:
             if abs(n - i) > 1: #idea is that because local inversions are counted one at a time up to that point, if global is anything more, then return False
                 return False
         return True
+
+#9/21/24 review (missed again today):
+
+class Solution:
+    def isIdealPermutation(self, nums: List[int]) -> bool:
+        for i, n in enumerate(nums):
+            if abs(n - i) > 1:
+                return False
+        return True
