@@ -59,3 +59,31 @@ class Solution:
                     q.append((r, c))
             level += 1 #will be our anwser aka number of levels
         return -1 #no clear path aka no path solution found with all 0s from top left to bottom right
+
+
+#9/21/24 review: (struggled to solve a little but was able to resolve by myself after practicing a couple of times):
+
+class Solution:
+    def shortestPathBinaryMatrix(self, grid: List[List[int]]) -> int:
+        inputlen = len(grid)
+        n = inputlen - 1
+        if grid[0][0] == 1 or grid[-1][-1] == 1:
+            return -1
+        if len(grid) == 1: return 1
+        res = 2
+        d = deque([(0, 0)])
+        while d:
+            for i in range(len(d)):
+                nx, ny = d.popleft()
+                for (x, y) in (0, 0), (1, 1), (0, 1), (1, 0), (0, -1), (-1, 0), (-1, -1), (1, -1), (-1, 1):
+                    cx, cy = nx + x, ny + y
+                    if cx < 0 or cx >= inputlen or cy < 0 or cy >= inputlen or grid[cx][cy] != 0:
+                        continue
+                    if cx == n and cy == n:
+                        return res
+                    grid[cx][cy] = 7
+                    d.append([cx, cy])
+            res += 1
+        return -1
+                
+
