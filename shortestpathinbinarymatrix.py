@@ -83,7 +83,7 @@ class Solution:
                         return res
                     grid[cx][cy] = 7
                     d.append([cx, cy])
-            res += 1
+            res += 1 # it means that, at each level, we decide to take one step closer to the bottom left cell
         return -1
                 
 
