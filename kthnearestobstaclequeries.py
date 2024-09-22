@@ -62,7 +62,7 @@ class Solution:
             heapq.heappush(myheap, -dist)
             if len(myheap) > k: #we want the exactly kth away that's the smallest, so pop
                 heapq.heappop(myheap)
-            if len(myheap) < k:
+            if len(myheap) < k: #using elif here would cause us to also skip the else check, which would not append anything to result if, after popping, the size of the heap were exactly of size k!
                 res.append(-1)
             else: 
                 res.append(-1 * myheap[0]) #apparently heapq.heappop(myheap) is not the same as myheap[0]!
