@@ -49,3 +49,15 @@ class Solution:
             bset.add(B[i])
             res[i] = len(aset & bset) # & finds comonality, not | !!!!!!
         return res
+
+#9/22/24 review:
+
+class Solution:
+    def findThePrefixCommonArray(self, A: List[int], B: List[int]) -> List[int]:
+        res = [0] * len(A)
+        al, bl = set(), set()
+        for i in range(len(A)):
+            al.add(A[i])
+            bl.add(B[i])
+            res[i] = len(al & bl)
+        return res
