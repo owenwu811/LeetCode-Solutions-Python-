@@ -65,5 +65,5 @@ class Solution:
             if len(myheap) < k: #using elif here would cause us to also skip the else check, which would not append anything to result if, after popping, the size of the heap were exactly of size k!
                 res.append(-1)
             else: 
-                res.append(-1 * myheap[0]) #apparently heapq.heappop(myheap) is not the same as myheap[0]!
+                res.append(-1 * myheap[0]) #so the reason the else doesn't use res.append(-1 * heapq.heappop(myheap)) is because we don't want to remove any elements if the length of the heap is exactly of size k, just record the value of the smallest!
         return res
