@@ -51,6 +51,12 @@ class Solution:
 #correct python3 solution: (could not solve by myself):
 
 
+#if you put the if len(myheap) < k conditional first, it would lead to incorrect results because it would prematurely append -1 to res before the heap has been properly adjusted for its size. Here's why:
+
+#Scenario:
+#When the heap has more than k elements:
+#The current logic with the if len(myheap) < k block first would immediately check the size and append -1 if the heap size is less than k before popping the excess elements (from the condition if len(myheap) > k).
+#This means you could end up appending -1 even though the heap should have exactly k elements after the excess elements are removed.
 
 class Solution:
     def resultsArray(self, queries: List[List[int]], k: int) -> List[int]:
