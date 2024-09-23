@@ -94,7 +94,8 @@ class Solution:
         if grid == [[1]]: return -1
         if len(grid) == 1: return 1
         if grid[0][0] == 1 or grid[-1][-1] == 1: return -1
-        d = deque([(0, 0)])
+        d = deque()
+        d.append((0, 0)) #more straightforward
         level = 2
         while d:
             for i in range(len(d)):
@@ -105,8 +106,7 @@ class Solution:
                         continue
                     if j == len(grid) - 1 and k == len(grid) - 1:
                         return level
-                    d.append([j, k])
+                    d.append((j, k)) #more straightforward
                     grid[j][k] = 7
             level += 1
         return -1
-        
