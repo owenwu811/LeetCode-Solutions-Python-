@@ -45,3 +45,19 @@ class Solution:
                 seen.add(char)
         return res
 
+#9/22/24 refresher:
+
+class Solution:
+    def partitionString(self, s: str) -> int:
+        res = 1
+        seen = set()
+        for char in s:
+            if char not in seen:
+                seen.add(char)
+            else:
+                res += 1
+                seen.clear()
+                seen.add(char)
+        return res
+
+
