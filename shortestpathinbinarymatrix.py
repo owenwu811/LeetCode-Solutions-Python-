@@ -87,3 +87,26 @@ class Solution:
         return -1
                 
 
+#9/22/24 review (still had some bugs):
+
+class Solution:
+    def shortestPathBinaryMatrix(self, grid: List[List[int]]) -> int:
+        if grid == [[1]]: return -1
+        if len(grid) == 1: return 1
+        if grid[0][0] == 1 or grid[-1][-1] == 1: return -1
+        d = deque([(0, 0)])
+        level = 2
+        while d:
+            for i in range(len(d)):
+                a, b = d.popleft()
+                for (x, y) in (0, 0), (1, 1), (1, -1), (-1, 1), (-1, -1), (0, 1), (1, 0), (-1, 0), (0, -1):
+                    j, k = a + x, b + y
+                    if j < 0 or j >= len(grid) or k < 0 or k >= len(grid) or grid[j][k] != 0:
+                        continue
+                    if j == len(grid) - 1 and k == len(grid) - 1:
+                        return level
+                    d.append([j, k])
+                    grid[j][k] = 7
+            level += 1
+        return -1
+        
