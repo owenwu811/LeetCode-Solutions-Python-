@@ -73,3 +73,20 @@ class Solution:
             else: 
                 res.append(-1 * myheap[0]) #so the reason the else doesn't use res.append(-1 * heapq.heappop(myheap)) is because we don't want to remove any elements if the length of the heap is exactly of size k, just record the value of the smallest!
         return res
+
+#9/23/24 refresher:
+
+class Solution:
+    def resultsArray(self, queries: List[List[int]], k: int) -> List[int]:
+        res = []
+        myheap = []
+        for x, y in queries:
+            dist = abs(x) + abs(y)
+            heapq.heappush(myheap, -dist)
+            if len(myheap) > k:
+                heapq.heappop(myheap)
+            if len(myheap) < k:
+                res.append(-1)
+            else:
+                res.append(-1 * myheap[0])
+        return res
