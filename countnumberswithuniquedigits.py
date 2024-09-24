@@ -56,3 +56,74 @@ class Solution:
             print(res)  
             j -= 1 #9 - 1 = 8
         return res + self.countNumbersWithUniqueDigits(n - 1)
+
+
+#why 91 unique digits between 0 and 100?
+
+To understand why there are 91 unique digit numbers between 0 and 100, we need to consider the range of numbers and how many of those have unique digits. Let's break it down:
+
+Unique Digits Definition
+A number has unique digits if no digit is repeated within that number.
+
+Counting Unique Digit Numbers from 0 to 99
+We will analyze the numbers from 0 to 99 (inclusive), and then we'll also consider the number 100 separately, as it doesn't count for unique digits since it has repeated '0's.
+
+1. Count from 0 to 9
+
+The numbers are: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
+All of these numbers have unique digits.
+Count: 10 unique numbers
+2. Count from 10 to 99
+
+We need to consider two-digit numbers, which can be represented as 
+a
+b
+ab (where 
+a
+a is the first digit and 
+b
+b is the second digit).
+Constraints:
+a
+a (the first digit) can be from 1 to 9 (since 0 cannot be the first digit).
+b
+b (the second digit) can be from 0 to 9 but cannot be the same as 
+a
+a.
+Calculation for Two-Digit Numbers (10 to 99)
+
+First Digit 
+a
+a: There are 9 options (1-9).
+Second Digit 
+b
+b: For each choice of 
+a
+a, there are 9 remaining choices (0-9 excluding 
+a
+a).
+Thus, the total count of two-digit numbers with unique digits is:
+
+9
+# (choices for 
+#a
+#)
+#×
+#9
+# (choices for 
+#b
+#)
+#=
+#81
+# unique two-digit numbers
+##9 (choices for a)×9 (choices for b)=81 unique two-digit numbers
+#Total Unique Numbers from 0 to 99
+#Adding the unique numbers from both ranges:
+
+#Unique numbers from 0 to 9: 10
+#Unique numbers from 10 to 99: 81
+#Total unique digit numbers from 0 to 99:
+
+#10 + 81 = 91
+#Considering 100
+#The number 100 has repeated '0's (not unique), so it does not contribute to the count of unique digit numbers.
