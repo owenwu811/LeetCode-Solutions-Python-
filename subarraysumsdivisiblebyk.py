@@ -36,3 +36,21 @@ class Solution:
                 d[subarraysum % k] = 0
             d[subarraysum % k] += 1
         return res
+
+
+#9/23/24 review:
+
+class Solution:
+    def subarraysDivByK(self, nums: List[int], k: int) -> int:
+        d = {0: 1}
+        res = 0
+        subarraysum = 0
+        for n in nums:
+            subarraysum += n
+            if (subarraysum % k) in d:
+                res += d[subarraysum % k]
+            else:
+                d[subarraysum % k] = 0
+            d[subarraysum % k] += 1
+        return res
+            
