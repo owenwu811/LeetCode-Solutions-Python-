@@ -368,4 +368,19 @@ class Solution:
             kclosestpoints.append([a, b])
             k -= 1
         return kclosestpoints
-        
+
+
+#9/23/24 review:
+
+class Solution:
+    def kClosest(self, points: List[List[int]], k: int) -> List[List[int]]:
+        res = []
+        myheap = []
+        for x, y in points:
+            dist = (x ** 2) + (y ** 2)
+            heapq.heappush(myheap, [dist, x, y])
+        while k > 0:
+            a, b, c = heapq.heappop(myheap)
+            res.append([b, c])
+            k -= 1
+        return res
