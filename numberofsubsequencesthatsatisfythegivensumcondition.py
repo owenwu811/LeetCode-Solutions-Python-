@@ -33,7 +33,21 @@ class Solution:
             if cursum > target:
                 r -= 1
             elif cursum <= target:
-                res += (2 ** (r - l)) #the number of subsequences if 2 ** (r - l)!!!!
+                res += (2 ** (r - l)) #the number of subsequences is 2 ** (r - l)!!!!
                 l += 1
         return res % ((10 ** 9) + 7)
- 
+
+#9/23/24 review (looked at solution again before redoing):
+
+class Solution:
+    def numSubseq(self, nums: List[int], target: int) -> int:
+        res = 0
+        nums.sort()
+        l, r = 0, len(nums) - 1
+        while l <= r:
+            if nums[l] + nums[r] > target:
+                r -= 1
+            elif nums[l] + nums[r] <= target:
+                res += (2 ** (r - l))
+                l += 1
+        return res % ((10 ** 9) + 7)
