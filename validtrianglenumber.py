@@ -65,3 +65,20 @@ class Solution:
                 else:
                     l += 1 #because array is sorted, and we know nums[l] + nums[r] wasn't bigger than nums[i], we can increment l to try to make the triplet sum bigger 
         return res
+
+#9/23/24 review:
+
+class Solution:
+    def triangleNumber(self, nums: List[int]) -> int:
+        nums.sort()
+        res = 0
+        seen = set()
+        for i in range(2, len(nums)):
+            l, r = 0, i - 1
+            while l < r:
+                if nums[l] + nums[r] > nums[i]:
+                    res += (r - l)
+                    r -= 1
+                else:
+                    l += 1
+        return res
