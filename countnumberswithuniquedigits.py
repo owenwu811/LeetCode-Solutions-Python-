@@ -41,3 +41,18 @@ j -= 1: This decreases the number of available digits for the next step, because
 #why are we looping from 0 to n - 1?
 #Looping from 0 to n-1 ensures that the loop handles exactly n-1 digits (since the first digit is handled separately).
 
+#9/23/24 review (could not resolve):
+
+class Solution:
+    def countNumbersWithUniqueDigits(self, n: int) -> int:
+        if n == 0:
+            return 1
+        if n == 1:
+            return 10 
+        j = 9
+        res = 9
+        for i in range(n - 1): #if n == 2, i = 0 because for i in range(1)
+            res *= j # 9 * 9 = 81
+            print(res)  
+            j -= 1 #9 - 1 = 8
+        return res + self.countNumbersWithUniqueDigits(n - 1)
