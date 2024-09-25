@@ -90,3 +90,21 @@ class Solution:
             else:
                 res.append(-1 * myheap[0])
         return res
+
+#9/25/24 review (was able to solve):
+
+class Solution:
+    def resultsArray(self, queries: List[List[int]], k: int) -> List[int]:
+        res = []
+        myheap = []
+        for x, y in queries:
+            dist = abs(x) + abs(y)
+            heapq.heappush(myheap, -1 * dist)
+            if len(myheap) > k:
+                heapq.heappop(myheap)
+            if len(myheap) < k:
+                res.append(-1)
+            else:
+                res.append(-1 * myheap[0])
+        return res
+
