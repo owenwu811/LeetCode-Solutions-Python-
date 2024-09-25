@@ -49,3 +49,17 @@ class Solution:
                 n -= 1
             seen.add(n)
         return res
+
+#9/25/24 review (was able to solve):
+
+class Solution:
+    def minDeletions(self, s: str) -> int:
+        freq = Counter(s)
+        seen = set()
+        res = 0
+        for i, n in freq.items():
+            while n > 0 and n in seen:
+                n -= 1
+                res += 1
+            seen.add(n)
+        return res
