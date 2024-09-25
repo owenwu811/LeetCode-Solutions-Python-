@@ -127,3 +127,19 @@ Thus, the total count of two-digit numbers with unique digits is:
 #10 + 81 = 91
 #Considering 100
 #The number 100 has repeated '0's (not unique), so it does not contribute to the count of unique digit numbers.
+
+
+#9/25/24 review (missed again):
+
+class Solution:
+    def countNumbersWithUniqueDigits(self, n: int) -> int:
+        if n == 0:
+            return 1
+        if n == 1:
+            return 10
+        j = 9
+        res = 9
+        for i in range(n - 1):
+            res *= j
+            j -= 1
+        return res + self.countNumbersWithUniqueDigits(n - 1)
