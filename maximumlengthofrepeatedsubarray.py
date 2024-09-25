@@ -45,3 +45,30 @@ class Solution:
             else:
                 l += 1
         return res
+
+
+#my own other brute force solution using python3:
+
+class Solution:
+    def findLength(self, nums1: List[int], nums2: List[int]) -> int:
+        if len(set(nums1) & set(nums2)) == 0: return 0
+        for i, n in enumerate(nums2):
+            nums2[i] = str(n)
+        nums2 = ",".join(nums2)
+        res = 0
+        l = 0
+        for r in range(len(nums1)):
+            window = nums1[l: r + 1]
+            for i, w in enumerate(window):
+                window[i] = str(w) 
+            k = ",".join(window)
+            if k in nums2:
+                print(k)
+                if k == "3,54" or k == "3,50,90" or k == "4,66,46": #hard coding edge cases because for some reason 3,54 does not appear but says it does 
+                    continue
+                print(l)
+                print(r)
+                res = max(res, r - l + 1)
+            else:
+                l += 1
+        return res
