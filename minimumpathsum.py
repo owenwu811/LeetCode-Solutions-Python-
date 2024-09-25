@@ -44,3 +44,21 @@ class Solution:
                 else:
                     res[i][j] = min(grid[i][j] + res[i][j - 1], grid[i][j] + res[i - 1][j])
         return res[-1][-1]
+
+
+#9/25/24 review: (was able to solve)
+
+class Solution:
+    def minPathSum(self, grid: List[List[int]]) -> int:
+        dp = grid.copy()
+        for i in range(len(grid)):
+            for j in range(len(grid[i])):
+                if i == 0 and j == 0:
+                    dp[i][j] = grid[i][j]
+                elif i == 0:
+                    dp[i][j] = grid[i][j] + dp[i][j - 1]
+                elif j == 0:
+                    dp[i][j] = grid[i][j] + dp[i - 1][j]
+                else:
+                    dp[i][j] = min(grid[i][j] + dp[i - 1][j],grid[i][j] + dp[i][j - 1])
+        return dp[-1][-1]
