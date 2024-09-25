@@ -36,3 +36,38 @@ class Solution:
             root.right = f(mid + 1, r)
             return root
         return f(0, len(ans) - 1)
+
+
+
+#the following works too (my own solution twaked a tiny bit):
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def balanceBST(self, root: TreeNode) -> TreeNode:
+        self.ans = []
+        def f(root):
+            if not root:
+                return 0
+            l = f(root.left)
+            self.ans.append(root.val)
+            r = f(root.right)
+            return root #you can do this as well 
+        f(root)
+        a = self.ans
+        def f(l, r):
+            if l > r:
+                return None
+            mid = (l + r) // 2
+            root = TreeNode(a[mid])
+            root.left = f(l, mid - 1)
+            root.right = f(mid + 1, r)
+            return root
+
+        return f(0, len(a) - 1)
+
+
