@@ -28,6 +28,7 @@ class Solution:
         key = mat[0]
         tmp = []
         for row in mat[1:]:
+            #row here is [1, 4, 5], [2, 3, 6] for test case mat = [[1,10,10],[1,4,5],[2,3,6]]
             new = []
             for b in key:
                 for r in row:
