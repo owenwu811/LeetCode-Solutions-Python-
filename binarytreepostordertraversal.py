@@ -43,3 +43,25 @@ class Solution:
 
         f(root)
         return self.res
+
+
+#9/27/24 review: (solved on my own)
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def postorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+        self.lst = []
+        def f(root):
+            if not root:
+                return None
+            root.left = f(root.left)
+            root.right = f(root.right)
+            if not root.left and not root.right:
+                self.lst.append(root.val)
+        f(root)
+        return self.lst
