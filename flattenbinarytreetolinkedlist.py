@@ -34,7 +34,7 @@ class Solution:
                     if cur.right:
                         d.appendleft(cur.right)
                     if cur.left:
-                        d.appendleft(cur.left)
+                        d.appendleft(cur.left) #so because the left subtree is smaller, now the smaller one goes in front for us to set the right pointer to later
                     cur.left = None
                     cur.right = d[0]
         return root
