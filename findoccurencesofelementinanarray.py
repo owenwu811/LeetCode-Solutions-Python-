@@ -11,6 +11,25 @@
 #Return an integer array answer containing the answers to all queries.
 
 
+#my original solution got TLE with 519/527 test cases passing:
+
+class Solution:
+    def occurrencesOfElement(self, nums: List[int], queries: List[int], x: int) -> List[int]:
+        res = [-1] * len(queries)
+        indexarr = []
+        if x not in nums:
+            return res
+        c = Counter(nums)
+        print(c)
+        for i, n in enumerate(nums):
+            if n == x:
+                indexarr.append(i)
+        for i in range(len(queries)):
+            if nums.count(x) < queries[i]:
+                continue
+            res[i] = indexarr[queries[i] - 1] 
+        return res
+             
 
 
 #my own solution using python3 after getting a tiny trick about putting the nums.count(x) outside the loop:
