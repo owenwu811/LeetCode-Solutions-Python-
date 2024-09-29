@@ -6,6 +6,14 @@
 #Given the root of a binary tree, return the inorder traversal of its nodes' values.
 
 
+
+#my own key insight confirmed by chatgpt:
+
+# the difference between preorder, inorder, and postorder implementation in python is that preorder puts the cur.append(root.val) before f(root.left) and f(root.right) 
+#while inorder puts cur.appnd(root.val) between f(root.left) and f(root.right) 
+#and postorder puts the cur.append(root.val) right after f(root.left) and f(root.right)
+
+
 #my own solution using python3:
 
 
