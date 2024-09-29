@@ -230,3 +230,33 @@ class Solution:
 
         f(root, 0, [])
         return self.res
+
+
+#this works too as we don't care about if we put the if not root.left and not root.right check after or before the recursive calls because we only care about the pathsum:
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def pathSum(self, root: Optional[TreeNode], targetSum: int) -> List[List[int]]:
+        self.res = []
+        def f(root, ps, cur):
+            if not root:
+                return 0
+            ps += root.val
+            cur.append(root.val)
+            #if not root.left and not root.right and ps == targetSum:
+            #    self.res.append(cur.copy())
+            #    ps = 0
+            f(root.left, ps, cur)
+            f(root.right, ps, cur)
+            if not root.left and not root.right and ps == targetSum:
+                self.res.append(cur.copy())
+                ps = 0
+            cur.pop()
+
+        f(root, 0, [])
+        return self.res
