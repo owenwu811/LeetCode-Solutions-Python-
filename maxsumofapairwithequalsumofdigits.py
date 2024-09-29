@@ -42,3 +42,7 @@ class Solution:
             return -1
         return maxsum
 
+
+#what is my thought process behind this solution?
+
+#loop through nums and track the sum of each digit, the index it's at, and the value of the original digit itself. Loop again to and ask if the index was already seen before. If so, then ignore this sublist because it can't be used. Otherwise, declare another list and keep track of the sum of the digit and the digit itself in a seperate list, and ask if the current sum has already been seen in that seperate list. If so, then add that sum from the other list to your current sum and track the maximum in a variable that will be the result.
