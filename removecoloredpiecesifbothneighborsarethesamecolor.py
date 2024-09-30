@@ -34,3 +34,19 @@ class Solution:
             return True
         else:
             return False
+
+
+#my own solution using python3 after a minor misunderstanding correction:
+
+class Solution:
+    def winnerOfGame(self, colors: str) -> bool:
+        alicescore, bobscore = 0, 0
+        for i in range(1, len(colors) - 1):
+            if colors[i - 1: i + 2] == "AAA":
+                alicescore += 1
+            elif colors[i - 1: i + 2] == "BBB":
+                bobscore += 1
+        if alicescore > bobscore:
+            return True
+        else:
+            return False
