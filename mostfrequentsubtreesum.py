@@ -41,3 +41,33 @@ class Solution:
                 res.append(k)
         return res
 
+#10/1/24 review:
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def findFrequentTreeSum(self, root: Optional[TreeNode]) -> List[int]:
+        self.tmp = []
+        def f(root):
+            if not root:
+                return 0
+            l = f(root.left)
+            r = f(root.right)
+            self.tmp.append(root.val + l + r)
+            return root.val + l + r
+        f(root)
+        print(self.tmp)
+        self.d = defaultdict(int)
+        for t in self.tmp:
+            self.d[t] += 1
+        target = max(self.d.values())
+        n = []
+        for k in self.d:
+            if self.d[k] == target:
+                n.append(k)
+        return n
+            
