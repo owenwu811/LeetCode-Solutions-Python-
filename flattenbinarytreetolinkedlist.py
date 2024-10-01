@@ -97,3 +97,32 @@ class Solution:
 
 #Flattened tree (as linked list):
 #1 -> 2 -> 3 -> 4 -> 5 -> 6
+
+
+#9/30/24 review (could not resolve):
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def flatten(self, root: Optional[TreeNode]) -> None:
+        """
+        Do not return anything, modify root in-place instead.
+        """
+        d = deque()
+        d.append(root)
+        d.append(None)
+        while d:
+            for i in range(len(d)):
+                cur = d.popleft()
+                if cur:
+                    if cur.right:
+                        d.appendleft(cur.right)
+                    if cur.left:
+                        d.appendleft(cur.left)
+                    cur.left = None
+                    cur.right = d[0]
+        return root
