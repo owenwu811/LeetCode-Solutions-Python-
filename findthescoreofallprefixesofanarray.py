@@ -25,7 +25,7 @@
 #For the prefix [2, 3, 7, 5, 10], the conversion array is [4, 6, 14, 12, 20] hence the score is 56
 
 
-#my own solution using python3 after reading hints from discuss section:
+#my own solution using python3:
 
 class Solution:
     def findPrefixScore(self, nums: List[int]) -> List[int]:
