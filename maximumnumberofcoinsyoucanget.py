@@ -21,8 +21,11 @@ class Solution:
         piles.sort(reverse=True)
         print(piles)
         res = 0
-        for i in range(len(piles) // 3):
-            piles.pop(0)
-            res += piles.pop(0)
+        toremove = len(piles) // 3 #we need to choose 3 piles of coins as many times as allowed
+        while toremove > 0:
             piles.pop()
+            toremove -= 1
+        for i in range(len(piles)):
+            if i % 2 != 0:
+                res += piles[i]
         return res
