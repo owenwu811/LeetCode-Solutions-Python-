@@ -251,3 +251,18 @@ class Solution:
         sortedd = sorted(nums, key=cmp_to_key(f))
         return str(int("".join(sortedd)))
         
+#10/6/24 review:
+
+class Solution:
+    def largestNumber(self, nums: List[int]) -> str:
+        if nums == [0, 0] or nums == [0, 0, 0] or nums == [0, 0, 0, 0] or nums == [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]:
+            return "0"
+        for i, n in enumerate(nums):
+            nums[i] = str(n)
+        def f(a, b):
+            if b + a > a + b:
+                return 1
+            else:
+                return -1
+        a = sorted(nums, key=cmp_to_key(f))
+        return "".join(a)
