@@ -337,4 +337,22 @@ class Solution:
                 stack.append(cur * int(k)) 
         return "".join(stack)
         
+#10/6/24 review (could not solve):
+
+class Solution:
+    def decodeString(self, s: str) -> str:
+        stack = []
+        for char in s:
+            if char != "]":
+                stack.append(char)
+            else:
+                substr = ""
+                while stack and stack[-1] != "[":
+                    substr = stack.pop() + substr #mistake with ordering
+                stack.pop()
+                k = ""
+                while stack and stack[-1].isdigit():
+                    k = stack.pop() + k #mistake with ordering
+                stack.append(substr * int(k))
+        return "".join(stack)
 
