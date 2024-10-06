@@ -27,7 +27,7 @@ class Solution:
             heapq.heappush(myheap, [-n, i])
         print(myheap)
         res = []
-        while len(myheap) > 1: #odd sum 
+        while len(myheap) > 1: #we should only attempt to pop two elements from the heap if there's atleast 2 elements available!
             freq1, nums1 = heapq.heappop(myheap) #we pop twice to ensure we aren't having the same neighboring values - we will add the valid frequencies back later with the two if blocks
             freq2, nums2 = heapq.heappop(myheap)
             res.append(nums1)
