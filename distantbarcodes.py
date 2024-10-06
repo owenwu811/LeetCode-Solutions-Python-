@@ -33,7 +33,7 @@ class Solution:
             res.append(nums1)
             res.append(nums2)
             if (freq1 + 1) < 0:
-                heapq.heappush(myheap, [freq1 + 1, nums1])
+                heapq.heappush(myheap, [freq1 + 1, nums1]) # when you use heapq.heappush(myheap, [freq1 + 1, num1]), it automatically maintains the heap invariant without the need to call heapq.heapify(myheap) again
             if (freq2 + 1) < 0:
                 heapq.heappush(myheap, [freq2 + 1, nums2])
         if myheap: #Once we process the heap until only one element remains (or no elements), we can handle it separately:
