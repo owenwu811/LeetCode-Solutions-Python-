@@ -27,8 +27,8 @@ class Solution:
             heapq.heappush(myheap, [-n, i])
         print(myheap)
         res = []
-        while len(myheap) > 1:
-            freq1, nums1 = heapq.heappop(myheap)
+        while len(myheap) > 1: #odd sum 
+            freq1, nums1 = heapq.heappop(myheap) #we pop twice to ensure we aren't having the same neighboring values - we will add the valid frequencies back later with the two if blocks
             freq2, nums2 = heapq.heappop(myheap)
             res.append(nums1)
             res.append(nums2)
@@ -36,6 +36,6 @@ class Solution:
                 heapq.heappush(myheap, [freq1 + 1, nums1])
             if (freq2 + 1) < 0:
                 heapq.heappush(myheap, [freq2 + 1, nums2])
-        if myheap:
+        if myheap: #handling odd sum
             res.append(myheap[0][1])
         return res
