@@ -41,3 +41,11 @@ class Solution:
 #If there are no elements left, the process is complete, and we can return the result.
             res.append(myheap[0][1])
         return res
+
+
+#import heapq
+#myheap = [[-1, 2], [-1, 3]]
+#heapq.heapify(myheap)  # This is optional since we already have a valid heap
+
+# Pop the smallest element
+#smallest = heapq.heappop(myheap) - you will get [-1, 2] because 2 < 3 since -1 is the same!
