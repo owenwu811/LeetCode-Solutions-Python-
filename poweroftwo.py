@@ -16,6 +16,21 @@
 #Explanation: 20 = 1
 
 
+#my incorrect solution passing 1082/1110 test cases:
+
+class Solution:
+    def isPowerOfTwo(self, n: int) -> bool:
+        def f(n, reducer):
+            print(2 ** reducer)
+            print(n)
+            if reducer == 0 and 2 ** reducer != n:
+                return False
+            if 2 ** reducer == n:
+                return True
+            return f(n, reducer - 1)
+        return f(n, 2)
+
+
 #correct python3 solution:
 
 class Solution:
