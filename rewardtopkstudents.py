@@ -22,7 +22,7 @@
 #Both the students have 1 positive feedback and 3 points but since student 1 has a lower ID he ranks higher.
 
 
-#my own solution using python3 after minor hint about using set positive_feedback:
+#my own solution using python3 after minor hint about using set positive_feedback or else got 23/30 TLE:
 
 class Solution:
     def topStudents(self, positive_feedback: List[str], negative_feedback: List[str], report: List[str], student_id: List[int], k: int) -> List[int]:
