@@ -22,8 +22,8 @@ class Solution:
     def isPowerOfTwo(self, n: int) -> bool:
         if n == 0:
             return False
-        if n == 1:
+        if n == 1: #any number to the power of 0 is equal to 1, so always return True whether n == 2 or n == 3, 2 ^ 0 == 1 and 3 ^ 0 == 1
             return True
         if n % 2 == 0:
-            return self.isPowerOfTwo(n // 2)
+            return self.isPowerOfTwo(n // 2) #keeps dividing n by 2 until it either reaches 1 or becomes odd
         return False
