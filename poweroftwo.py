@@ -41,4 +41,5 @@ class Solution:
             return True
         if n % 2 == 0:
             return self.isPowerOfTwo(n // 2) #keeps dividing n by 2 until it either reaches 1 or becomes odd
+        # If n is odd and not 1, it's not a power of two
         return False
