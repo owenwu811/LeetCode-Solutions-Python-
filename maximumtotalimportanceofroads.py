@@ -68,3 +68,19 @@ class Solution:
                 if f[0] == road[1]:
                     ans += f[1]
         return ans
+
+
+#correct python3 solution:
+
+class Solution:
+    def maximumImportance(self, n: int, roads: List[List[int]]) -> int:
+        edgec = [0] * n
+        for n1, n2 in roads:
+            edgec[n1] += 1
+            edgec[n2] += 1
+        label = 1
+        res = 0
+        for count in sorted(edgec):
+            res += (count * label)
+            label += 1
+        return res
