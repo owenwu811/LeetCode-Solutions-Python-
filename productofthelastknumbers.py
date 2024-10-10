@@ -38,3 +38,23 @@ class ProductOfNumbers:
         return prod
 
 
+#correct python3 solution:
+
+class ProductOfNumbers:
+
+    def __init__(self):
+        self.d = [1]
+
+    def add(self, num: int) -> None:
+        if num == 0:
+            self.d = [1]
+        else:
+            self.d.append(self.d[-1] * num)
+        
+
+    def getProduct(self, k: int) -> int:
+        if len(self.d) <= k:
+            return 0
+        return int(self.d[-1] / self.d[-k-1])
+        
+
