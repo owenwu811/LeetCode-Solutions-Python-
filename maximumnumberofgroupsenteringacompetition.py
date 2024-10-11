@@ -41,4 +41,29 @@ class Solution:
             orig += 1
         return len(actual)
         print(actual)
+
+
+
+#my other solution using python3:
+
+class Solution:
+    def maximumGroups(self, grades: List[int]) -> int:
+        tmp, actual = [], []
+        orig = 1
+        myheap = []
+        for g in grades:
+            heapq.heappush(myheap, -g)
+        while orig <= len(myheap):
+            j = orig
+            tmp = []
+            while j > 0:
+                if not myheap:
+                    break
+                tmp.append(-1 * heapq.heappop(myheap))
+                j -= 1
+            orig += 1
+            actual.append(tmp)
+        print(actual)
+        return len(actual)
+
             
