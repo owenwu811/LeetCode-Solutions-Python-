@@ -306,4 +306,20 @@ class Solution:
                 d[subarraysum] = 1
         return res
 
+#10/10/24 refresher:
+
+class Solution:
+    def subarraySum(self, nums: List[int], k: int) -> int:
+        d = {0: 1}
+        subarraysum = 0
+        res = 0
+        for i, n in enumerate(nums):
+            subarraysum += n
+            if (subarraysum - k) in d:
+                res += d[subarraysum - k]
+            if subarraysum not in d:
+                d[subarraysum] = 1
+            else:
+                d[subarraysum] += 1
+        return res
 
