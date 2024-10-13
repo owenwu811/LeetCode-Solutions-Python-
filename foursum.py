@@ -262,3 +262,37 @@ def four_sum(nums, target):
             while third < fourth and nums[fourth] == nums[fourth + 1]:
               fourth -= 1
     return res
+
+
+#10/12/24 review:
+
+class Solution:
+    def fourSum(self, nums: List[int], target: int) -> List[List[int]]:
+        res = []
+        myset = set()
+        nums.sort()
+        for first in range(len(nums) - 3):
+            if first > 0 and nums[first] == nums[first - 1]:
+                first += 1
+            for second in range(first + 1, len(nums) - 2):
+                if second > first + 1 and nums[second] == nums[second - 1]:
+                    second += 1
+                third = second + 1
+                fourth = len(nums) - 1
+                while third < fourth:
+                    cursum = nums[first] + nums[second] + nums[third] + nums[fourth]
+                    if cursum < target:
+                        third += 1
+                    elif cursum > target:
+                        fourth -= 1
+                    else:
+                        if (nums[first], nums[second], nums[third], nums[fourth]) not in myset:
+                            res.append([nums[first], nums[second], nums[third], nums[fourth]])
+                        myset.add((nums[first], nums[second], nums[third], nums[fourth]))
+                        third += 1
+                        fourth -= 1 
+                        while nums[third] == nums[third - 1] and third < fourth:
+                            third += 1
+                        while nums[fourth] == nums[fourth + 1] and third < fourth:
+                            fourth -= 1
+        return res
