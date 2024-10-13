@@ -305,3 +305,33 @@ class Solution:
                     while second < third and nums[third] == nums[third + 1]:
                         third -= 1
         return res
+
+
+#10/12/24 review:
+
+class Solution:
+    def threeSum(self, nums: List[int]) -> List[List[int]]:
+        if sum(nums) == 0 and len(set(nums)) == 1 and nums[0] == 0:
+            return [[0, 0, 0]]
+        nums.sort()
+        res = []
+        for i in range(len(nums) - 2):
+            if nums[i] == nums[i - 1]:
+                continue
+            second = i + 1
+            third = len(nums) - 1
+            while second < third:
+                cursum = nums[i] + nums[second] + nums[third]
+                if cursum < 0:
+                    second += 1
+                elif cursum > 0:
+                    third -= 1
+                else:
+                    res.append([nums[i], nums[second], nums[third]])
+                    second += 1
+                    third -= 1
+                    while nums[second] == nums[second - 1] and second < third:
+                        second += 1
+                    while nums[third] == nums[third + 1] and second < third:
+                        third -= 1
+        return res
