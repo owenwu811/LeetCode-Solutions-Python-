@@ -397,4 +397,27 @@ class Solution:
         return self.res
 
 
-        
+#10/15/24 review:
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def rightSideView(self, root: Optional[TreeNode]) -> List[int]:
+        d = deque()
+        d.append(root)
+        res = []
+        while d:
+            rightmost = None
+            for i in range(len(d)):
+                cur = d.popleft()
+                if cur:
+                    rightmost = cur
+                    d.append(cur.left)
+                    d.append(cur.right)
+            if rightmost:
+                res.append(rightmost.val)
+        return res
