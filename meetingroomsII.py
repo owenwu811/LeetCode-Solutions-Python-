@@ -40,7 +40,7 @@ class Solution:
                 res = max(res, cur)
                 i += 1
             print(res)
-            cur -= 1 #must decrement cur here because we finished up with that entire pair?
+            cur -= 1 #must decrement cur here because a meeting just ended!!!
             j += 1
         return res
             
