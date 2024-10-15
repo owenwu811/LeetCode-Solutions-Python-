@@ -461,4 +461,19 @@ class Solution:
         res[backward] *= postfixn
         postfixn *= nums[backward]
       return res
+
+
+#10/15/24 review:
+
+class Solution:
+    def productExceptSelf(self, nums: List[int]) -> List[int]:
+        pre, post = 1, 1
+        res = [1] * len(nums)
+        for forward in range(len(nums)):
+            res[forward] = pre
+            pre *= nums[forward]
+        for backward in range(len(nums) -1, -1, -1):
+            res[backward] *= post
+            post *= nums[backward]
+        return res
         
