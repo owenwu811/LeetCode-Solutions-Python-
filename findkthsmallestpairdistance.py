@@ -43,7 +43,7 @@ class Solution:
             mid = (l + r) // 2
             pairs = helper(mid)
             if pairs >= k:
-                r = mid 
+                r = mid #we set right to mid because we don't want to miss results - incase that 3 is the solution with our number line of 011112333333 of length 14 for example, so we still want mid to be a part of our search space
             else:
                 l = mid + 1
         return r
