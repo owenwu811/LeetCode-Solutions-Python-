@@ -47,3 +47,27 @@ class Solution:
             else:
                 l = mid + 1
         return r
+
+
+#we can do it this way too (more intuitive for me):
+
+class Solution:
+    def smallestDistancePair(self, nums: List[int], k: int) -> int:
+        def f(distance):
+            l = 0
+            res = 0
+            for r in range(len(nums)):
+                while (nums[r] - nums[l]) > distance:
+                    l += 1
+                res += (r - l)
+            return res
+        nums.sort()
+        l, r = 0, max(nums)
+        while l <= r:
+            mid = (l + r) // 2
+            pairs = f(mid)
+            if pairs >= k:
+                r = mid - 1
+            else:
+                l = mid + 1
+        return l
