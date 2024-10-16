@@ -420,3 +420,24 @@ class Solution:
         return res
         #n (log n) + 0(n) because sorting takes log n time, and then we have to iterate through array, so that's another 0(n), so n (log n) + o(n) > 0(n)
                 
+#10/16/24 review (could not solve):
+
+class Solution:
+    def threeSumClosest(self, nums: List[int], target: int) -> int:
+        nums.sort()
+        res = float('inf')
+        ans = 0
+        for first in range(len(nums)):
+            s = first + 1
+            t = len(nums) - 1
+            while s < t:
+                threesum = nums[first] + nums[s] + nums[t]
+                diff = abs(target - threesum)
+                if diff < res:
+                    res = diff
+                    ans = threesum
+                elif threesum > target: #we are comparing the target because we want to move closer to target and adjust the sum accordingly, not to res!
+                    t -= 1
+                else:
+                    s += 1
+        return ans
