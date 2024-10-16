@@ -43,4 +43,28 @@ class Solution:
             cur -= 1 #must decrement cur here because a meeting just ended!!!
             j += 1
         return res
+
+#10/16/24 review:
+
+class Solution:
+    def minMeetingRooms(self, intervals: List[List[int]]) -> int:
+        res = 1
+        intervals.sort()
+        start, end = [], []
+        for i in intervals:
+            start.append(i[0])
+            end.append(i[1])
+        i, j = 0, 0
+        cur = 0
+        start.sort()
+        end.sort()
+        while i < len(start) and j < len(end):
+            while i < len(start) and j < len(end) and start[i] < end[j]:
+                cur += 1
+                i += 1
+                res = max(res, cur)
+            cur -= 1
+            res = max(res, cur)
+            j += 1
+        return res
             
