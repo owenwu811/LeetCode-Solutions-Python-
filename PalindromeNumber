@@ -94,3 +94,10 @@ class Solution:
     def isPalindrome(self, x: int) -> bool:
         x = str(x)
         return x == x[::-1]
+
+#10/17/24 review:
+
+class Solution:
+    def isPalindrome(self, x: int) -> bool:
+        a = str(x)
+        return a == a[::-1]
