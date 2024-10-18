@@ -256,4 +256,33 @@ class Solution:
         return oddstart
              
 
-        
+#10/18/24 (my own solution using python3 - review):
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def oddEvenList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        tmp = []
+        while head:
+            tmp.append(head.val)
+            head = head.next
+        print(tmp)
+        even, odd = [], []
+        for i in range(len(tmp)):
+            if i % 2 == 0:
+                even.append(tmp[i])
+            else:
+                odd.append(tmp[i])
+        print(even)
+        print(odd)
+        even.extend(odd)
+        print(even)
+        dummy = ListNode(None)
+        cur = dummy
+        for e in even:
+            cur.next = ListNode(e)
+            cur = cur.next
+        return dummy.next
