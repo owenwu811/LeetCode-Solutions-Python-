@@ -360,3 +360,28 @@ class Solution:
 #Why the Dictionary Isn't Tracking Subarray Counts Directly:
 #The dictionary d tracks how many times each prefix sum (the sum of elements from the start of the array up to a particular index) has been seen. It DOES NOT store how many subarrays sum to k directly. Instead, it helps us find out if a subarray with sum k exists by checking the difference between the current prefix sum and k.
 #the key in the dictionary is the prefixsum! so subarraysum += n at each turn is the dictionary key!
+#the key insight is that subarraysum = prefixsum(j) - prefixsum(i)
+#The prefix sum at any index i in an array is the sum of all elements from the start of the array up to index i. The key insight is that the difference between two prefix sums gives you the sum of the elements in the subarray between those two indices.
+#If this difference equals k, then we've found a subarray that sums to k:
+
+#If prefixSum(j) - prefixSum(i) = k, then the subarray from index i+1 to j has a sum of k.
+
+
+
+#again:
+
+
+#Current Prefix Sum: As we iterate through the array, we keep track of the running sum (cumulative sum) of the elements up to the current index. This is our current prefixSum.
+#Check for Subarrays That Sum to k: For each new element we encounter, we check if there’s a previous prefix sum such that the difference between the current prefix sum and that previous prefix sum equals k.
+#If prefixSum(j) - prefixSum(i) = k, then the subarray from index i+1 to j has a sum of k.
+#Rearranging this equation, we get:
+
+#prefixSum(j)−prefixSum(i)=k
+#prefixSum(j)=prefixSum(i)+k
+
+#So, we’re looking for a prefix sum prefixSum(i) that satisfies:
+
+#prefixsum(i) = prefixsum(j) - k
+
+#This means that if the difference between the current cumulative sum and k exists in our dictionary, we’ve found a subarray that sums to k - you know (current cumulative sum - k) is out complement we are looking for 
+
