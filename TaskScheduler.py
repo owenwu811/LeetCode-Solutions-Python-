@@ -326,3 +326,18 @@ class Solution:
                 maxfreq += 1
         return max((maxletter - 1) * (n + 1) + maxfreq, len(tasks)) #if n == 0, then len(tasks) will always win out because anything other configuration will take longer than just the length of the original array itself
         
+
+
+#10/17/24 review:
+
+class Solution:
+    def leastInterval(self, tasks: List[str], n: int) -> int:
+        freq = [0] * 26
+        for task in tasks:
+            freq[ord(task) - ord("A")] += 1
+        print(freq)
+        maxval, maxfreq = max(freq), 0
+        for f in freq:
+            if f == maxval:
+                maxfreq += 1
+        return max((maxval - 1) * (n + 1) + maxfreq, len(tasks))
