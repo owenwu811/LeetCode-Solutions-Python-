@@ -336,3 +336,20 @@ class Solution:
         return res
                 
 
+#10/18/24 review:
+
+class Solution:
+    def subarraySum(self, nums: List[int], k: int) -> int:
+        d = {0: 1}
+        res = 0
+        subarraysum = 0
+        for n in nums:
+            subarraysum += n
+            if (subarraysum - k) in d:
+                res += d[subarraysum - k]
+            if subarraysum in d:
+                d[subarraysum] += 1
+            else:
+                d[subarraysum] = 1
+        print(d)
+        return res
