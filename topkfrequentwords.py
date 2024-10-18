@@ -126,3 +126,34 @@ class Solution:
         
 
 
+#10/18/24 review (my own solution using python3):
+
+class Solution:
+    def topKFrequent(self, words: List[str], k: int) -> List[str]:
+        orig = k
+        myheap = []
+        seen = set()
+        for w in words:
+            if w in seen:
+                continue
+            heapq.heappush(myheap, (-words.count(w), w))
+            seen.add(w)
+        print(myheap)
+        d = dict()
+        for h in myheap:
+            if h[0] not in d:
+                d[h[0]] = []
+            d[h[0]].append(h[1])
+        print(d)
+        for k in d:
+            d[k].sort()
+        sortedd = sorted(d.items(), key=lambda x: x[0])
+        print(sortedd)
+        res = []
+        for a in sortedd:
+            for i in range(len(a[1])):
+                res.append(a[1][i])
+        print(res)
+        print(orig)
+        return res[:orig]
+
