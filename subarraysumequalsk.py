@@ -353,3 +353,9 @@ class Solution:
                 d[subarraysum] = 1
         print(d)
         return res
+
+
+#important clarification:
+
+#Why the Dictionary Isn't Tracking Subarray Counts Directly:
+#The dictionary d tracks how many times each prefix sum (the sum of elements from the start of the array up to a particular index) has been seen. It DOES NOT store how many subarrays sum to k directly. Instead, it helps us find out if a subarray with sum k exists by checking the difference between the current prefix sum and k.
