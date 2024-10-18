@@ -192,3 +192,13 @@ class Solution:
                 heapq.heappop(myheap)
                 heapq.heappush(myheap, n)
         return myheap[0]
+
+
+#my own solution using python3 - 10/18/24 review:
+
+class Solution:
+    def findKthLargest(self, nums: List[int], k: int) -> int:
+        nums.sort()
+        print(nums)
+        return nums[-k]
+
