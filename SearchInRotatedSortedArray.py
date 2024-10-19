@@ -43,6 +43,7 @@
 
 
 
+
 #My Solution ( 10/22/23 - python):
 
 class Solution:
@@ -97,3 +98,23 @@ class Solution:
             if j == target:
                 return i
         return -1
+
+
+#my own solution using python3 on 10/19/24 with binary search:
+
+class Solution:
+    def search(self, nums: List[int], target: int) -> int:
+        orig = nums.copy()
+        nums.sort()
+        print(orig)
+        l, r = 0, len(nums) - 1
+        while l <= r:
+            mid = (l + r) // 2
+            if nums[mid] == target:
+                return orig.index(target)
+            elif nums[mid] >= target:
+                r = mid - 1
+            else:
+                l = mid + 1
+        return -1
+        
