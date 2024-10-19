@@ -34,6 +34,23 @@
 
 #correct python3 solution:
 
+
+#much better and more intutive solution:
+
+class Solution:
+    def compress(self, chars: List[str]) -> int:
+        s = []
+        for key, group in groupby(chars):
+            count = len(list(group)) 
+            print(count)
+            s.append(key)
+            print(s)
+            if count > 1:
+                s.extend(list(str(count)))
+                print(s)
+        chars[:] = s
+        
+
 class Solution:
     def compress(self, chars: List[str]) -> int:
         index = 0  # To keep track of the position in the original list
