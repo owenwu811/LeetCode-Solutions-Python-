@@ -18,3 +18,12 @@ class Solution:
                 myset.add(number)
             else:
                 return number
+
+#10/19/24 review:
+
+class Solution:
+    def findDuplicate(self, nums: List[int]) -> int:
+        c = Counter(nums)
+        for i, n in c.items():
+            if n > 1:
+                return i
