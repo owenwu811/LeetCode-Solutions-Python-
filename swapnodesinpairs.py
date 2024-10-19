@@ -314,3 +314,27 @@ class Solution(object):
             cur = nxt
         return dummy.next
 
+
+#my own solution on 10/19/24:
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def swapPairs(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        tmp = []
+        while head:
+            tmp.append(head.val)
+            head = head.next
+        print(tmp)
+        for i in range(1, len(tmp), 2):
+            tmp[i], tmp[i - 1] = tmp[i - 1], tmp[i]
+        print(tmp)
+        dummy = ListNode(None)
+        cur = dummy
+        for t in tmp:
+            cur.next = ListNode(t)
+            cur = cur.next
+        return dummy.next
