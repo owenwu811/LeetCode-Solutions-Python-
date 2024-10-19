@@ -448,3 +448,20 @@ class Solution:
                 l += 1
                 c += 1
             
+
+#my own solution using python3 on 10/19/24:
+
+class Solution:
+    def sortColors(self, nums: List[int]) -> None:
+        """
+        Do not return anything, modify nums in-place instead.
+        """
+        bucketzero, bucketone, buckettwo = [], [], []
+        for n in nums:
+            if n == 0:
+                bucketzero.append(n)
+            if n == 1:
+                bucketone.append(n)
+            if n == 2:
+                buckettwo.append(n)
+        nums[:] = bucketzero + bucketone + buckettwo
