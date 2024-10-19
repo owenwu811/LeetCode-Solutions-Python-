@@ -49,7 +49,18 @@ class Solution:
                 s.extend(list(str(count)))
                 print(s)
         chars[:] = s
-        
+
+#chars = ["a","a","b","b","c","c","c"]
+
+#2
+#['a']
+#['a', '2']
+#2
+#['a', '2', 'b']
+#['a', '2', 'b', '2']
+#3
+#['a', '2', 'b', '2', 'c']
+#['a', '2', 'b', '2', 'c', '3']
 
 class Solution:
     def compress(self, chars: List[str]) -> int:
