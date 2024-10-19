@@ -39,16 +39,15 @@
 
 class Solution:
     def compress(self, chars: List[str]) -> int:
-        s = []
+        result = []
         for key, group in groupby(chars):
-            count = len(list(group)) 
-            print(count)
-            s.append(key)
-            print(s)
-            if count > 1:
-                s.extend(list(str(count)))
-                print(s)
-        chars[:] = s
+            result.append(key) #always happens
+            freq = len(list(group)) #create a list that we will extend if bigger than 1 later hence the list part of list(group) 
+            print(freq) #2, 2, 3 - freq here is an INT since you used LEN in front of list(group)
+            if freq > 1: #int to int comparison
+                result.extend(list(str(freq))) #turning freq from int to str, and then from str to list, and then extending
+        chars[:] = result
+
 
 #chars = ["a","a","b","b","c","c","c"]
 
