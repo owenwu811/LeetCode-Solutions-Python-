@@ -1,31 +1,31 @@
-You are climbing a staircase. It takes n steps to reach the top.
+#You are climbing a staircase. It takes n steps to reach the top.
 
-Each time you can either climb 1 or 2 steps. In how many distinct ways can you climb to the top?
+#Each time you can either climb 1 or 2 steps. In how many distinct ways can you climb to the top?
 
  
 
-Example 1:
+#Example 1:
 
-Input: n = 2
-Output: 2
-Explanation: There are two ways to climb to the top.
-1. 1 step + 1 step
-2. 2 steps
-Example 2:
+#Input: n = 2
+#Output: 2
+#Explanation: There are two ways to climb to the top.
+#1. 1 step + 1 step
+#2. 2 steps
+#Example 2:
 
-Input: n = 3
-Output: 3
-Explanation: There are three ways to climb to the top.
-1. 1 step + 1 step + 1 step
-2. 1 step + 2 steps
-3. 2 steps + 1 step
+#Input: n = 3
+#Output: 3
+#Explanation: There are three ways to climb to the top.
+#1. 1 step + 1 step + 1 step
+#2. 1 step + 2 steps
+#3. 2 steps + 1 step
  
 
-Constraints:
+#Constraints:
 
-1 <= n <= 45
+#1 <= n <= 45
 
-My Solution:
+#My Solution:
 
 #this is a classic dynamic programming problem
 
@@ -44,12 +44,12 @@ class Solution:
   #line 37 is the two pointer
   #we are first calculating the sum of one and two pointer values, moving the two pointer into one, and then moving one pointer forward. During the terminating condition, thw two sandwiches with the one pointer, so both are equal, and then the for loop exits and returns the last calculated sum
   #[34 21 13 8 5 3 2 1 1]
-                     one two
-                     0    0
-                     (inclusive)
+  #                   one two
+ #                    0    0
+ #                    (inclusive)
   #[34 21 13 8 5 3 2 1 1]
-       one two
-       6   6
+  #     one two
+  #     6   6
   #for i in range(8) means for i in range 01234567
   #when i hits 7, return one plus two pointer VALUES (13 + 21) - so, for this test case, n = 8, and the return value is 34
   #when i = 0, we initialize both pointer values as 1 and 1
@@ -208,4 +208,16 @@ class Solution:
             tmp = one
             one = one + two
             two = tmp
+        return one
+
+
+#10/19/24 review:
+
+class Solution:
+    def climbStairs(self, n: int) -> int:
+        one, two = 1, 1
+        for i in range(n - 1):
+            cur = one 
+            one = one + two
+            two = cur
         return one
