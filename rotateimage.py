@@ -254,5 +254,27 @@ def rotate_image(matrix):
     
     for r in range(len(matrix)):
         matrix[r].reverse()
-            
+
     return matrix
+
+
+#my own solution using python3 on 10/21/24: (I got this insight while struggling on my own to solve the 83% diagonal medium problem)! 
+#[[1,2,3],[4,5,6],[7,8,9]] - notice how this is 7, 4, 1, 8, 5, 2, etc, so we go backwards as many times as length of matrix!
+ 
+class Solution:
+    def rotate(self, matrix: List[List[int]]) -> None:
+        """
+        Do not return anything, modify matrix in-place instead.
+        """
+        new = []
+        j = 0
+        while j < len(matrix):
+            cur = []
+            for i in range(len(matrix) -1, -1, -1):
+                print(matrix[i][j])
+                cur.append(matrix[i][j])
+            new.append(cur)
+            j += 1
+        matrix[:] = new
+
+
