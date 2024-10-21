@@ -86,3 +86,15 @@ class Solution:
             i += count #i has to move up to the next letter b , so i goes from 0 to 2
 
         return index
+
+#10/20/24 review (better solution):
+
+class Solution:
+    def compress(self, chars: List[str]) -> int:
+        cur = []
+        for key, group in groupby(chars):
+            cur.append(key)
+            l = len(list(group))
+            if l >= 2:
+                cur += str(l)
+        chars[:] = cur
