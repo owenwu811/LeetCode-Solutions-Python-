@@ -1021,3 +1021,28 @@ class Solution:
         elif l2 and not l1:
             cur.next = l2
         return dummy.next
+
+#my own solution using python3 on 10/22/24:
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
+        tmp = []
+        for i in range(len(lists)):
+            print(lists[i])
+            cur = lists[i]
+            while cur:
+                tmp.append(cur.val)
+                cur = cur.next
+        print(tmp)
+        tmp.sort()
+        dummy = ListNode(None)
+        cur = dummy
+        for t in tmp:
+            cur.next = ListNode(t)
+            cur = cur.next
+        return dummy.next
