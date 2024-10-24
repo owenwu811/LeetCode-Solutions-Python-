@@ -368,4 +368,33 @@ class Solution:
             for c in range(cols):
                 if matrix[r][c] == "*":
                     matrix[r][c] = 0
+
+
+#my own solution using python3 on 10/24/24:
+
+class Solution:
+    def setZeroes(self, matrix: List[List[int]]) -> None:
+        """
+        Do not return anything, modify matrix in-place instead.
+        """
+        rows, cols = [], []
+        for i in range(len(matrix)):
+            for j in range(len(matrix[0])):
+                if matrix[i][j] == 0:
+                    rows.append(i)
+                    cols.append(j)
+        print(rows)
+        print(cols)
+        for i in range(len(matrix)):
+            if i in rows:
+                for j in range(len(matrix[i])):
+                    matrix[i][j] = 0
+        print(matrix)
+        j = 0
+        while j < len(matrix[0]):
+            for i in range(len(matrix)):
+                print(matrix[i][j])
+                if j in cols:
+                    matrix[i][j] = 0
+            j += 1
         
