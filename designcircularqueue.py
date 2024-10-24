@@ -24,7 +24,7 @@
 class MyCircularQueue:
 
     def __init__(self, k: int):
-        self.d = deque()
+        self.d = []
         self.k = k
     
     def enQueue(self, value: int) -> bool:
@@ -37,7 +37,7 @@ class MyCircularQueue:
     def deQueue(self) -> bool:
         print(self.d)
         if self.d:
-            self.d.popleft()
+            self.d.remove(self.d[0])
             return True
         else:
             return False
