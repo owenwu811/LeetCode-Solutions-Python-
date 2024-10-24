@@ -473,3 +473,37 @@ class Solution:
             first.next = second
             second.next = tmp1
             first, second = tmp1, tmp2
+
+
+#my own way of doing it on 10/24/24:
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def reorderList(self, head: Optional[ListNode]) -> None:
+        """
+        Do not return anything, modify head in-place instead.
+        """
+        if not head:
+            return None
+        beg = head
+        tmp = deque()
+        while beg:
+            tmp.append(beg.val)
+            beg = beg.next
+        print(tmp)
+        new = []
+        turn = 0
+        while tmp:
+            if tmp:
+                new.append(tmp.popleft())
+            if tmp:
+                new.append(tmp.pop())
+        print(new)
+        beg = head
+        for n in new:
+            beg.val = n
+            beg = beg.next
