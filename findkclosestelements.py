@@ -188,3 +188,21 @@ class Solution:
             else:
                 l += 1
         return arr[l: r + 1]
+
+
+#10/24/24 refresher (my own solution using python3):
+
+class Solution:
+    def findClosestElements(self, arr: List[int], k: int, x: int) -> List[int]:
+        myheap = []
+        for a in arr:
+            heapq.heappush(myheap, [abs(x - a), a])
+        print(myheap)
+        res = []
+        while k > 0:
+            a, b = heapq.heappop(myheap)
+            res.append(b)
+            k -= 1
+        print(res)
+        res.sort()
+        return res
