@@ -35,3 +35,10 @@ class Solution:
         for i, j in enumerate(nums):
             if j == res:
                 return j
+
+
+#10/24/24 refresher (another solution):
+
+class Solution:
+    def findMin(self, nums: List[int]) -> int:
+        return min(nums)
