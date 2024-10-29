@@ -303,3 +303,12 @@ class Solution:
         f(nums, [])
         return res
         
+
+#my own solution on 10/29/24 using python3:
+
+class Solution:
+    def permute(self, nums: List[int]) -> List[List[int]]:
+        res = []
+        for a in permutations(nums):
+            res.append(list(a))
+        return res
