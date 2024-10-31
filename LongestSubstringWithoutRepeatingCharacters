@@ -303,3 +303,19 @@ class Solution(object):
             myset.add(s[r])
             res = max(res, len(myset))
         return res
+
+
+#10/31/24 review:
+
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        l = 0
+        res = 0
+        myset = set()
+        for r in range(len(s)):
+            while myset and s[r] in myset:
+                myset.remove(s[l])
+                l += 1
+            myset.add(s[r])
+            res = max(res, len(myset))
+        return res
