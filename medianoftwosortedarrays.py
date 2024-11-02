@@ -384,3 +384,22 @@ class Solution:
                 r = i - 1
             else:
                 l = i + 1
+
+
+#my own solution using python3 on 11/1/24:
+
+class Solution:
+    def findMedianSortedArrays(self, nums1: List[int], nums2: List[int]) -> float:
+        tmp = []
+        for n in nums1:
+            tmp.append(n)
+        for n in nums2:
+            tmp.append(n)
+        tmp.sort()
+        print(tmp)
+        if len(tmp) % 2 == 0:
+            half = (len(tmp) // 2) - 1
+            return (tmp[half] + tmp[half + 1]) / 2
+        else:
+            half = len(tmp) // 2
+        return tmp[half]
