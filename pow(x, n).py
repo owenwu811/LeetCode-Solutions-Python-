@@ -183,3 +183,9 @@ class Solution:
 
         #2 ^ -2 = 1 / 4
 
+#11/1/24 (my own solution using python3):
+
+class Solution:
+    def myPow(self, x: float, n: int) -> float:
+        return x ** n
+        
