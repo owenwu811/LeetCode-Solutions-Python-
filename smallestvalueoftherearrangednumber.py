@@ -26,7 +26,7 @@
 #The arrangement with the smallest value that does not contain any leading zeros is -7650.
 
 
-#my own solution using python3:
+#my own solution using python3 after reading hints and also looking at another solution and making a small tweak to my solution:
 
 class Solution:
     def smallestNumber(self, num: int) -> int:
