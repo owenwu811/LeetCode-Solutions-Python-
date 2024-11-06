@@ -141,4 +141,24 @@ class Solution:
                 mydict[key] = []
             mydict[key].append(word)
         return list(mydict.values())
-        
+
+
+#11/5/24 review (my own solution using python3):
+
+class Solution:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        d = defaultdict(list)
+        for i, s in enumerate(strs):
+            orig = s
+            strs[i] = "".join(sorted(s))
+            print(orig)
+            d[strs[i]].append(orig)
+        print(strs)
+        print(d)
+        res = []
+        for k in d:
+            cur = []
+            for a in d[k]:
+                cur.append(a)
+            res.append(cur)
+        return res
