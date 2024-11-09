@@ -1,26 +1,26 @@
-Given the head of a singly linked list and two integers left and right where left <= right, reverse the nodes of the list from position left to position right, and return the reversed list.
+#Given the head of a singly linked list and two integers left and right where left <= right, reverse the nodes of the list from position left to position right, and return the reversed list.
 
 
-Example 1:
+#Example 1:
 
 
-Input: head = [1,2,3,4,5], left = 2, right = 4
-Output: [1,4,3,2,5]
-Example 2:
+#Input: head = [1,2,3,4,5], left = 2, right = 4
+#Output: [1,4,3,2,5]
+#Example 2:
 
-Input: head = [5], left = 1, right = 1
-Output: [5]
+#Input: head = [5], left = 1, right = 1
+#Output: [5]
  
 
-Constraints:
+#Constraints:
 
-The number of nodes in the list is n.
-1 <= n <= 500
--500 <= Node.val <= 500
-1 <= left <= right <= n
+#The number of nodes in the list is n.
+#1 <= n <= 500
+#-500 <= Node.val <= 500
+#1 <= left <= right <= n
  
 
-Follow up: Could you do it in one pass?
+#Follow up: Could you do it in one pass?
 
 
 
@@ -79,3 +79,26 @@ class Solution:
 
         #the purpose of the 3rd and 2nd to last lines is reconnecting our new reversed list portion to the head and tail of the original, unreversed list? meaning that the variable on the right hand side of = is from the original, unreversed list
 
+
+#my own solution using python3 on 11/9/24:
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def reverseBetween(self, head: Optional[ListNode], left: int, right: int) -> Optional[ListNode]:
+        tmp = []
+        while head:
+            tmp.append(head.val)
+            head = head.next
+        print(tmp)
+        first, second = left - 1, right - 1
+        tmp[first: second + 1] = tmp[first: second + 1][::-1]
+        dummy = ListNode(None)
+        cur = dummy
+        for t in tmp:
+            cur.next = ListNode(t)
+            cur = cur.next
+        return dummy.next
