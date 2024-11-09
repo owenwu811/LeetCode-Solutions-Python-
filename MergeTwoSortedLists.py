@@ -405,3 +405,29 @@ class Solution:
             cur.next = ListNode(n)
             cur = cur.next
         return dummy.next
+
+#11/9/24 (my own solution):
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
+        first, second = [], []
+        while list1:
+            first.append(list1.val)
+            list1 = list1.next
+        while list2:
+            second.append(list2.val)
+            list2 = list2.next
+        first.extend(second)
+        first.sort()
+        print(first)
+        dummy = ListNode(None)
+        cur = dummy
+        for f in first:
+            cur.next = ListNode(f)
+            cur = cur.next
+        return dummy.next
