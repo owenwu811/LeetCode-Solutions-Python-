@@ -23,7 +23,7 @@
 #Output: 7
 #Explanation: 7 = 4 * 3 / 2 + 1
 
-#my own solution using python3:
+#my own solution using python3 (after small hint about using // instead of /):
 
 class Solution:
     def clumsy(self, n: int) -> int:
