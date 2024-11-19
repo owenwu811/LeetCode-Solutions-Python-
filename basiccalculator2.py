@@ -330,3 +330,16 @@ class Solution:
         return sum(stack)
 
 
+#my own solution using python3 on 11/18/24:
+
+class Solution:
+    def calculate(self, s: str) -> int:
+        stack = []
+        for c in s:
+            if c == "/":
+                stack.append("//")
+            else:
+                stack.append(c)
+        print(stack)
+        return eval("".join(stack))
+
