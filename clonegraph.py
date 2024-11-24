@@ -602,5 +602,30 @@ class Solution:
 
 
         return dfs(node) if node else None
+
+
+#11/24/24 review:
+
+"""
+# Definition for a Node.
+class Node:
+    def __init__(self, val = 0, neighbors = None):
+        self.val = val
+        self.neighbors = neighbors if neighbors is not None else []
+"""
+
+from typing import Optional
+class Solution:
+    def cloneGraph(self, node: Optional['Node']) -> Optional['Node']:
+        self.d = dict()
+        def f(node):
+            if node in self.d:
+                return self.d[node]
+            copy = Node(node.val)
+            self.d[node] = copy
+            for a in node.neighbors:
+                copy.neighbors.append(f(a))
+            return copy
+        return f(node) if node else None
         
 
