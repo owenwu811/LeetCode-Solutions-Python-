@@ -39,3 +39,33 @@ class Solution:
                 res.append(level)
 
         return res
+
+
+#11/24/24 review (my own solution using python3):
+
+"""
+# Definition for a Node.
+class Node:
+    def __init__(self, val: Optional[int] = None, children: Optional[List['Node']] = None):
+        self.val = val
+        self.children = children
+"""
+
+class Solution:
+    def levelOrder(self, root: 'Node') -> List[List[int]]:
+        d = deque()
+        d.append(root)
+        res = []
+        while d:
+            level = []
+            for i in range(len(d)):
+                cur = d.popleft()
+                if cur:
+                    level.append(cur.val)
+                    for a in cur.children:
+                        d.append(a)
+            if level:
+                res.append(level)
+        return res
+
+
