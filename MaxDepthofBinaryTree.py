@@ -239,3 +239,29 @@ def find_max_depth(root):
       
       
     return f(root, res)
+
+
+#my own solution on 11/25/24 using python3:
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def maxDepth(self, root: Optional[TreeNode]) -> int:
+        d = deque()
+        d.append(root)
+        res = []
+        while d:
+            level = []
+            for i in range(len(d)):
+                cur = d.popleft()
+                if cur:
+                    level.append(cur.val)
+                    d.append(cur.left)
+                    d.append(cur.right)
+            if level:
+                res.append(level)
+        return len(res)
