@@ -489,3 +489,19 @@ class Solution:
             buildoff = above
         return buildoff[0]
 
+
+#my own solution using python3 on 11/25/24:
+
+class Solution:
+    def uniquePaths(self, m: int, n: int) -> int:
+        dp = [[0] * m for i in range(n)]
+        dp[0][0] = 1
+        for i in range(n):
+            for j in range(m):
+                if i > 0:
+                    dp[i][j] += dp[i - 1][j]
+                if j > 0:
+                    dp[i][j] += dp[i][j - 1]
+        return dp[-1][-1]
+    
+
