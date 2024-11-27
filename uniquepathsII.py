@@ -33,3 +33,22 @@ class Solution:
                         if j > 0:
                             dp[i][j] += dp[i][j - 1]
         return dp[-1][-1]
+
+
+#11/27/24 review:
+
+class Solution:
+    def uniquePathsWithObstacles(self, obstacleGrid: List[List[int]]) -> int:
+        m, n = len(obstacleGrid), len(obstacleGrid[-1])
+        dp = [[0] * n for i in range(m)]
+        dp[0][0] = 1
+        for i in range(len(obstacleGrid)):
+            for j in range(len(obstacleGrid[0])):
+                if obstacleGrid[i][j] == 1:
+                    dp[i][j] = 0
+                else:
+                    if i > 0:
+                        dp[i][j] += dp[i - 1][j]
+                    if j > 0:
+                        dp[i][j] += dp[i][j - 1]
+        return dp[-1][-1]
