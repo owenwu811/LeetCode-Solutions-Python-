@@ -38,3 +38,22 @@ class Solution:
             if ss not in d:
                 d[ss] = i     
         return res
+
+
+
+#refresher again:
+
+class Solution:
+    def maxSubArrayLen(self, nums: List[int], k: int) -> int:
+        d = dict()
+        res = 0
+        ss = 0
+        for i, n in enumerate(nums):
+            ss += n
+            if ss == k: #we know that the subarray sum equals k, so everything up to this point is of a valid length, and + 1 for length because we use indicies
+                res = max(res, i + 1)
+            elif (ss - k) in d: #I'm not entirely sure why we use ss - k vs. k - ss - we cannot use (k - ss) because we track the subarray sum in the dictionary, so when the subarray sum - k equals a previous subarray sum, then we have satisified k from that previous subarray sum's index up to the current subarray sum's index
+                res = max(res, i - d[ss - k])
+            if ss not in d: #we always track the index that produces the current subarray sum
+                d[ss] = i
+        return res
