@@ -1,9 +1,41 @@
 
+#25
+#Hard
+
 #Given the head of a linked list, reverse the nodes of the list k at a time, and return the modified list.
 
 #k is a positive integer and is less than or equal to the length of the linked list. If the number of nodes is not a multiple of k then left-out nodes, in the end, should remain as it is.
 
 #You may not alter the values in the list's nodes, only nodes themselves may be changed.
+
+
+#my own solution using python3 on 12/3/24:
+
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def reverseKGroup(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
+        tmp = []
+        while head:
+            tmp.append(head.val)
+            head = head.next 
+        print(tmp)
+        for i in range(0, len(tmp) - k + 1, k):
+            subarr = tmp[i: i + k]
+            print(subarr)
+            tmp[i:i + k] = reversed(tmp[i: i + k])
+            #print(tmp)
+        print(tmp)
+        dummy = ListNode(None)
+        cur = dummy
+        for t in tmp:
+            cur.next = ListNode(t)
+            cur = cur.next 
+        return dummy.next
 
 #high level overview:
 
@@ -308,4 +340,6 @@ class Solution:
             ptr.next = previous
             ptr = rightone
         return dummy.next
+
+
 
