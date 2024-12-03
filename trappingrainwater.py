@@ -311,3 +311,22 @@ class Solution:
                 maxright = max(maxright, height[r])
                 res += (maxright - height[r])
         return res
+
+
+#12/3/24 review:
+
+class Solution:
+    def trap(self, height: List[int]) -> int:
+        l, r = 0, len(height) - 1
+        res = 0
+        leftside, rightside = height[l], height[r]
+        while l < r:
+            if height[l] < height[r]:
+                l += 1
+                leftside = max(leftside, height[l])
+                res += (leftside - height[l])
+            else:
+                r -= 1
+                rightside = max(rightside, height[r])
+                res += (rightside - height[r])
+        return res
