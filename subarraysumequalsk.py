@@ -20,6 +20,22 @@
 #so if (3 - 1) in d, which 2 is in d, so True because {0: 1, 2: 1}
 
 #the pattern is very similar to two sum hashmap 
+
+
+#my own brute force solution that passed 61/93 test cases:
+
+class Solution:
+    def subarraySum(self, nums: List[int], k: int) -> int:
+        res = 0
+        for i in range(len(nums)):
+            for j in range(i, len(nums)):
+                subarr = nums[i: j + 1]
+                if sum(subarr) == k:
+                    res += 1
+        return res
+
+#correct solution (couldn't solve):
+
 class Solution:
     def subarraySum(self, nums: List[int], k: int) -> int:
         prefixsum, c = 0, 0
