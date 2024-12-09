@@ -33,6 +33,13 @@
 
 #correct python3 solution (could not solve this one on my own):
 
+#rotate turns into:
+#deque([11, 17, 13])
+
+#to, so basically grabbing from the end:
+
+#deque([13, 11, 17])
+
 class Solution:
     def deckRevealedIncreasing(self, deck: List[int]) -> List[int]:
         deck = sorted(deck)
