@@ -14,7 +14,7 @@
 
 
 
-#my own solution using python3:
+#correct python3 solution (could not solve):
 
 class Solution:
     def maxBoxesInWarehouse(self, boxes: List[int], warehouse: List[int]) -> int:
