@@ -1,31 +1,31 @@
-You are given an array prices where prices[i] is the price of a given stock on the ith day.
+#You are given an array prices where prices[i] is the price of a given stock on the ith day.
 
-You want to maximize your profit by choosing a single day to buy one stock and choosing a different day in the future to sell that stock.
+#You want to maximize your profit by choosing a single day to buy one stock and choosing a different day in the future to sell that stock.
 
-Return the maximum profit you can achieve from this transaction. If you cannot achieve any profit, return 0.
+#Return the maximum profit you can achieve from this transaction. If you cannot achieve any profit, return 0.
 
  
 
-Example 1:
+#Example 1:
 
-Input: prices = [7,1,5,3,6,4]
-Output: 5
-Explanation: Buy on day 2 (price = 1) and sell on day 5 (price = 6), profit = 6-1 = 5.
-Note that buying on day 2 and selling on day 1 is not allowed because you must buy before you sell.
-Example 2:
+#Input: prices = [7,1,5,3,6,4]
+#Output: 5
+#Explanation: Buy on day 2 (price = 1) and sell on day 5 (price = 6), profit = 6-1 = 5.
+#Note that buying on day 2 and selling on day 1 is not allowed because you must buy before you sell.
+#Example 2:
 
-Input: prices = [7,6,4,3,1]
-Output: 0
-Explanation: In this case, no transactions are done and the max profit = 0.
+#Input: prices = [7,6,4,3,1]
+#Output: 0
+#Explanation: In this case, no transactions are done and the max profit = 0.
  
 
-Constraints:
+#Constraints:
 
-1 <= prices.length <= 105
-0 <= prices[i] <= 104
+#1 <= prices.length <= 105
+#0 <= prices[i] <= 104
 
 
-My Solution:
+#My Solution:
 
 class Solution:
     import math
@@ -46,7 +46,7 @@ class Solution:
         #we are using integers to represent indicies of the array and then plugging the indicies into array[indicies] to get the value when we need it
         #when we have explored the entire array, then we can return the max profit. we don't return the maxprofit until we have trasversed through every element of the array, which is why the return lines up with the for loop. while and for loops have to finish iterating or be false to execute the next line at the same indentation. On the other hand, conditionals, like if, elif, and else automatically go on to execute the next line at the same indentation. 
             
- 6/8/23 refresher (my solution):
+# 6/8/23 refresher (my solution):
  
  class Solution:
     import math
@@ -59,7 +59,7 @@ class Solution:
             maxprofit = max(maxprofit, profit)
         return maxprofit
 
-7/1/23 refresher (my solution):
+#7/1/23 refresher (my solution):
 
 class Solution(object):
     import math
@@ -175,3 +175,18 @@ class Solution:
                 continue
             res = max(res, prices[windowend] - prices[windowstart])
         return res
+
+
+#my own solution on 12/16/24:
+
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        l = 0
+        res = 0
+        for r in range(len(prices)):
+            if prices[l] >= prices[r]:
+                l = r
+            else:
+                res = max(res, prices[r] - prices[l])
+        return res
+
