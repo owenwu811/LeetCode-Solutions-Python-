@@ -333,3 +333,21 @@ class Solution:
             myset.add(s[r])
             res = max(res, len(myset))
         return res
+
+
+
+#12/19/24 review:
+
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        res = 0
+        l = 0
+        seen = set()
+        for i in range(len(s)):
+            while s[i] in seen:
+                seen.remove(s[l])
+                l += 1
+            seen.add(s[i])
+            res = max(res, len(seen))
+        return res
+
