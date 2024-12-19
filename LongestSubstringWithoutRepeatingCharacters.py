@@ -1,33 +1,47 @@
-Given a string s, find the length of the longest 
-substring
- without repeating characters.
+#Given a string s, find the length of the longest 
+#substring
+# without repeating characters.
 
 
-Example 1:
+#Example 1:
 
-Input: s = "abcabcbb"
-Output: 3
-Explanation: The answer is "abc", with the length of 3.
-Example 2:
+#Input: s = "abcabcbb"
+#Output: 3
+#Explanation: The answer is "abc", with the length of 3.
+#Example 2:
 
-Input: s = "bbbbb"
-Output: 1
-Explanation: The answer is "b", with the length of 1.
-Example 3:
+#Input: s = "bbbbb"
+#Output: 1
+#Explanation: The answer is "b", with the length of 1.
+#Example 3:
 
-Input: s = "pwwkew"
-Output: 3
-Explanation: The answer is "wke", with the length of 3.
-Notice that the answer must be a substring, "pwke" is a subsequence and not a substring.
+#Input: s = "pwwkew"
+#Output: 3
+#Explanation: The answer is "wke", with the length of 3.
+#Notice that the answer must be a substring, "pwke" is a subsequence and not a substring.
  
 
-Constraints:
+#Constraints:
 
-0 <= s.length <= 5 * 104
-s consists of English letters, digits, symbols and spaces.
+#0 <= s.length <= 5 * 104
+#s consists of English letters, digits, symbols and spaces.
 
 
-My Solution:
+#brute force solution that gets TLE 986/897:
+
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        res = 0
+        for i in range(len(s)):
+            for j in range(i, len(s)):
+                substr = s[i: j + 1] 
+                if len(substr) == len(set(substr)):
+                    res = max(res, len(substr))
+        return res
+
+
+
+#My Solution:
 
 class Solution:
     import math
@@ -50,7 +64,7 @@ class Solution:
    #for windowend in range(len(s)) goes up to but not including the length of the array, which is the index because index is always one less than the length. This is denoted by the range function
    # you cannot use an if statement in line 40 because it would shrink the window once and still proceed to add the right pointer character without continuing to check if the duplicates have been removed
    
-Another Solution:
+#Another Solution:
 
 class Solution:
     import math
@@ -66,7 +80,7 @@ class Solution:
         return result
         
         
- Refresher 5/18/23:
+ #Refresher 5/18/23:
  
  class Solution:
     import math
@@ -80,7 +94,7 @@ class Solution:
             lengthoflongest = max(lengthoflongest, windowend - windowstart + 1)
         return lengthoflongest
 
-Refresher 8/1/23:
+#Refresher 8/1/23:
 
 class Solution:
     import math
@@ -94,7 +108,7 @@ class Solution:
             lengthoflongest = max(lengthoflongest, windowend - windowstart + 1)
         return lengthoflongest
 
-Refresher 9/23/23:
+#Refresher 9/23/23:
 
 class Solution:
     import math
@@ -111,7 +125,7 @@ class Solution:
             historicalbiggest = max(historicalbiggest, currentwindowlength)
         return historicalbiggest
 
-12/18/2023 refresher solution:
+#12/18/2023 refresher solution:
 
 class Solution(object):
     def lengthOfLongestSubstring(self, s):
@@ -127,7 +141,7 @@ class Solution(object):
         return res
 
 
-12/25/23 refresher solution:
+#12/25/23 refresher solution:
 
 class Solution(object):
     def lengthOfLongestSubstring(self, s):
