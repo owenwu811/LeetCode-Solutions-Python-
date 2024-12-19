@@ -8,6 +8,43 @@
 #python3 solution:
 
 
+#my own solution using python3 on 12/19/24:
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
+        self.first = []
+        def f(p):
+            if not p:
+                self.first.append("N")
+                return 
+            self.first.append(p.val)
+            f(p.left)
+            f(p.right)
+
+
+        f(p)
+        print(self.first)
+        self.second = []
+        def f(q):
+            if not q:
+                self.second.append("N")
+                return 
+            self.second.append(q.val)
+            f(q.left)
+            f(q.right)
+
+
+        f(q)
+        print(self.second)
+        return self.first == self.second
+
+
 #think about it like this: value of root node needs to be the same. values of left SUBTREE need to be the same. values of right SUBTREE need to be the same! This is advice from https://www.youtube.com/watch?v=xF554Tlzo-c
 
 # Definition for a binary tree node.
