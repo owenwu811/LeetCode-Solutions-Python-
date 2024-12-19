@@ -22,3 +22,21 @@ class Solution:
                 cur.pop()
         dfs(0, [0])
         return self.res
+
+
+#12/18/24 review (still could not solve again!):
+
+class Solution:
+    def allPathsSourceTarget(self, graph: List[List[int]]) -> List[List[int]]:
+        self.res = []
+        def dfs(idx, node):
+            if idx == len(graph) - 1:
+                self.res.append(node.copy())
+                return 
+            for nei in graph[idx]:
+                node.append(nei)
+                dfs(nei, node) #NEI, NODE HERE BECAUSE YOU ARE VISITING IT'S NEIGHBOR, SO NEI BECOMES THE NEW INDEX
+                node.pop()
+
+        dfs(0, [0])
+        return self.res
