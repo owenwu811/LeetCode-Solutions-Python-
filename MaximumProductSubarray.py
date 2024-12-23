@@ -26,6 +26,18 @@
 #Acceptance Rate
 #34.8%
 
+
+#dumb way (186/190 - TLE) - my attempt:
+
+class Solution:
+    def maxProduct(self, nums: List[int]) -> int:
+        res = min(nums)
+        for i in range(len(nums)):
+            for j in range(i, len(nums)):
+                subarr = nums[i: j + 1]
+                res = max(res, math.prod(subarr))
+        return res
+
 #correct anwser:
 
 class Solution:
