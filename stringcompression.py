@@ -32,6 +32,21 @@
 #Output: Return 4, and the first 4 characters of the input array should be: ["a","b","1","2"].
 #Explanation: The groups are "a" and "bbbbbbbbbbbb". This compresses to "ab12".
 
+#my own solution using python3 on 12/29/24:
+
+class Solution:
+    def compress(self, chars: List[str]) -> int:
+        newlist = []
+        for a, b in groupby(chars):
+            h, k = a, len(list(b))
+            print(h, k)
+            newlist.append(str(h))
+            if k > 1:
+                for p in str(k):
+                    newlist.append(p)
+        print(newlist)
+        chars[:] = newlist
+
 #correct python3 solution:
 
 
