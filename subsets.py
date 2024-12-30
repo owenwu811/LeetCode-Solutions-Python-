@@ -18,6 +18,22 @@
 #back tracking
 
 
+#my own solution using python3 on 12/30/24:
+
+class Solution:
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+        res = []
+        for i in range(len(nums) + 1):
+            for a in combinations(nums, i):
+                print(a)
+                cur = []
+                for h in a:
+                    cur.append(h)
+                print(cur)
+                res.append(cur)
+        return res
+
+
 #python3 solution:
 
 class Solution:
