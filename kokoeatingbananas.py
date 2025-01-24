@@ -30,3 +30,25 @@ class Solution:
             else:
                 l = mid + 1
         return res
+
+
+#1/24/25 refresher:
+
+class Solution:
+    def minEatingSpeed(self, piles: List[int], h: int) -> int:
+        res = float('inf')
+        piles.sort()
+        l, r = 1, max(piles)
+        res = float('inf')
+        while l <= r:
+            mid = (l + r) // 2
+            timeittakes = 0
+            for p in piles:
+                timeittakes += math.ceil(p / mid)
+            if timeittakes <= h:
+                res = min(res, mid)
+                r = mid - 1
+            else:
+                l = mid + 1
+        return res
+
