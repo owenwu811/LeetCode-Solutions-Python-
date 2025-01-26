@@ -1,4 +1,43 @@
+#76
+#Hard
 
+#Given two strings s and t of lengths m and n respectively, return the minimum window 
+#substring
+# of s such that every character in t (including duplicates) is included in the window. If there is no such substring, return the empty string "".
+
+#The testcases will be generated such that the answer is unique.
+
+ 
+
+#Example 1:
+
+#Input: s = "ADOBECODEBANC", t = "ABC"
+#Output: "BANC"
+#Explanation: The minimum window substring "BANC" includes 'A', 'B', and 'C' from string t.
+
+#my own solution on 1/26/25:
+
+class Solution:
+    def minWindow(self, s: str, t: str) -> str:
+        res = []
+        tc = Counter(t)
+        sc = Counter()
+        #cur = ""
+        l = 0
+        for r in range(len(s)):
+            sc[s[r]] += 1
+            while sc and sc >= tc:
+                #rint(l, r + 1)
+                heapq.heappush(res, (r - l + 1, (l, r + 1)))
+                sc[s[l]] -= 1
+                if sc[s[l]] == 0:
+                    del sc[s[l]]
+                l += 1
+        if not res:
+            return ""
+        #print(res)
+        ans = res[0][1]
+        return s[ans[0]: ans[1]]
 
 class Solution:
     def minWindow(self, s: str, t: str) -> str:
