@@ -11,6 +11,28 @@
 #Explanation: Both s and t become "ac".
 
 
+#my own solution using python3 on 1/26/25:
+
+class Solution:
+    def backspaceCompare(self, s: str, t: str) -> bool:
+        Sstack, Tstack = [], []
+        for c in s:
+            if c == "#":
+                #[a, b] > now we are seeing #
+                #[a, b] > (Sstack.pop()) [b]
+                if Sstack and Sstack[-1] != "#":
+                    Sstack.pop()
+            else:
+                Sstack.append(c)
+        for c in t:
+            if c == "#":
+                if Tstack and Tstack[-1] != "#":
+                    Tstack.pop()
+            else:
+                Tstack.append(c)
+        return Sstack == Tstack
+
+
 
 #python3 solution:
 
