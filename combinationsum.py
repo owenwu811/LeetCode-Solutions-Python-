@@ -386,3 +386,25 @@ class Solution:
             f(i + 1, cursum, path)
         f(0, 0, [])
         return self.res
+
+#2/4/25 review:
+
+class Solution:
+    def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
+        self.res = []
+        def f(i, mylist):
+            if i >= len(candidates) or sum(mylist) > target:
+                #print(mylist)
+                return 
+            if sum(mylist) == target:
+                print(mylist)
+                self.res.append(mylist[:])
+                return
+            mylist.append(candidates[i])
+            f(i, mylist)
+            mylist.pop() 
+            f(i + 1, mylist)
+
+
+        f(0, [])
+        return self.res
