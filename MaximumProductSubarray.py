@@ -27,6 +27,26 @@
 #34.8%
 
 
+#my own solution using python3 on 2/5/25:
+
+class Solution:
+    def maxProduct(self, nums: List[int]) -> int:
+        new = SortedList(nums)
+        res = new[-1]
+        if len(set(nums)) == 1 and max(nums) > 0:
+            return math.prod(nums)
+        for i in range(len(nums)):
+            if nums[i] == 0:
+                continue
+            cur = 1
+            for j in range(i, len(nums)):
+                cur = cur * nums[j]
+                if cur >= res:
+                    res = cur
+        return res
+
+
+
 #dumb way (186/190 - TLE) - my attempt:
 
 class Solution:
