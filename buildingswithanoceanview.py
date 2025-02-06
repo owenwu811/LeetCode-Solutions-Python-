@@ -28,6 +28,23 @@
 #Explanation: Only building 3 has an ocean view.
 
 
+
+#my own solution using python3 on 2/5/25:
+
+class Solution:
+    def findBuildings(self, heights: List[int]) -> List[int]:
+        cur = SortedList(heights)
+        res = []
+        for i in range(len(heights)):
+            cur.remove(heights[i])
+            b = bisect_left(cur, heights[i])
+            #print(b, i)
+            if b + i >= len(heights) - 1:
+                print(i)
+                res.append(i)
+        return res
+
+
 #correct python3 solution: (could not solve)
 
 class Solution:
