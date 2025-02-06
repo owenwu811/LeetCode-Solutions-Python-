@@ -25,6 +25,23 @@
 #0 <= prices[i] <= 104
 
 
+
+#my own solution using python3 on 2/5/25:
+
+#just use a Sorted List
+
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        res = 0
+        cur = SortedList(prices)
+        for i in range(len(prices)):
+            cur.remove(prices[i])
+            if cur:
+                res = max(res, cur[-1] - prices[i])
+        return res
+
+
+
 #My Solution:
 
 class Solution:
