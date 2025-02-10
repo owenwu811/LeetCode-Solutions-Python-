@@ -401,3 +401,21 @@ class Solution:
 
 #This means that if the difference between the current cumulative sum and k exists in our dictionary, we’ve found a subarray that sums to k - you know (current cumulative sum - k) is out complement we are looking for 
 
+
+
+#2/10/25 review (still could not solve):
+
+class Solution:
+    def subarraySum(self, nums: List[int], k: int) -> int:
+        d = defaultdict(int)
+        d[0] = 1
+        res = 0
+        cur = 0
+        for i, n in enumerate(nums):
+            cur += n
+            
+            res += d[cur - k]
+            d[cur] += 1
+        return res
+
+
