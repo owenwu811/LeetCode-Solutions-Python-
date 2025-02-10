@@ -213,3 +213,31 @@ class Solution:
                 stack.pop()
         f(0, 0, [])
         return self.res
+
+
+
+#2/9/25 review (could not solve):
+
+class Solution:
+    def generateParenthesis(self, n: int) -> List[str]:
+        self.res = []
+        def f(openc, closec, cur):
+            if openc == closec == n:
+                self.res.append("".join(cur[:]))
+                return 
+            if closec < openc:
+                cur.append(")")
+                f(openc, closec + 1, cur)
+                cur.pop() 
+            if openc < n:
+                cur.append("(")
+                f(openc + 1, closec, cur)
+                cur.pop()
+
+
+
+
+
+
+        f(0, 0, [])
+        return self.res
