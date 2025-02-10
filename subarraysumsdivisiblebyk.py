@@ -70,3 +70,18 @@ class Solution:
                 d[subarraysum % k] = 0
             d[subarraysum % k] += 1
         return res
+
+
+#my own solution using python3 on 2/10/25:
+
+class Solution:
+    def subarraysDivByK(self, nums: List[int], k: int) -> int:
+        d = defaultdict(int)
+        d[0] = 1
+        cur = 0
+        res = 0
+        for i, n in enumerate(nums):
+            cur += n
+            res += d[cur % k]
+            d[cur % k] += 1
+        return res
