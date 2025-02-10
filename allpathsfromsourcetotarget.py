@@ -40,3 +40,21 @@ class Solution:
 
         dfs(0, [0])
         return self.res
+
+
+#2/9/25 review (still could not solve again):
+
+class Solution:
+    def allPathsSourceTarget(self, graph: List[List[int]]) -> List[List[int]]:
+        self.res = []
+        def f(i, cur):
+            if i == len(graph) - 1: #len(graph), not len(cur)! - i == len(graph) - 1 not len(cur) == len(graph)!
+                self.res.append(cur[:])
+                return 
+            for a in graph[i]:
+                cur.append(a)
+                f(a, cur)
+                cur.pop()
+
+        f(0, [0])
+        return self.res
