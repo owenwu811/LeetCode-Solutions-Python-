@@ -1,39 +1,47 @@
-35. Search Insert Position
-Easy
-13.8K
-605
-Companies
-Given a sorted array of distinct integers and a target value, return the index if the target is found. If not, return the index where it would be if it were inserted in order.
+#35. Search Insert Position
+#Easy
+#13.8K
+#605
+#Companies
+#Given a sorted array of distinct integers and a target value, return the index if the target is found. If not, return the index where it would be if it were inserted in order.
 
-You must write an algorithm with O(log n) runtime complexity.
+#You must write an algorithm with O(log n) runtime complexity.
 
  
 
-Example 1:
+#Example 1:
 
-Input: nums = [1,3,5,6], target = 5
-Output: 2
-Example 2:
+#Input: nums = [1,3,5,6], target = 5
+#Output: 2
+#Example 2:
 
-Input: nums = [1,3,5,6], target = 2
-Output: 1
-Example 3:
+#Input: nums = [1,3,5,6], target = 2
+#Output: 1
+#Example 3:
 
-Input: nums = [1,3,5,6], target = 7
-Output: 4
+#Input: nums = [1,3,5,6], target = 7
+#Output: 4
  
 
-Constraints:
+#Constraints:
 
-1 <= nums.length <= 104
--104 <= nums[i] <= 104
-nums contains distinct values sorted in ascending order.
--104 <= target <= 104
+#1 <= nums.length <= 104
+#-104 <= nums[i] <= 104
+#nums contains distinct values sorted in ascending order.
+#-104 <= target <= 104
+
+#my own solution using python3 on 2/9/25:
+
+class Solution:
+    def searchInsert(self, nums: List[int], target: int) -> int:
+        return bisect_left(nums, target)
+
+
 
 #the trick to this problem is that the input list is already sorted, so use binary search to start from the middle of the list so we don't have to check every single value in the list
 #this problem is identical to the problem called "FirstBadVersion"
 
-My Solution (Python):
+#My Solution (Python):
 
 class Solution:
     def searchInsert(self, nums: List[int], target: int) -> int:
