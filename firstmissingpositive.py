@@ -5,6 +5,20 @@
 
 
 
+#my own solution using python3 on 2/10/25:
+
+class Solution:
+    def firstMissingPositive(self, nums: List[int]) -> int:
+        start = 1
+        c = SortedList(nums)
+        print(c)
+        s = set(nums)
+        for h in c:
+            if start in s:
+                start += 1
+            else:
+                return start
+        return c[-1] + 1
 
 
 #python3 solution:
