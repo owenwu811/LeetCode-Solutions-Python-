@@ -1,9 +1,30 @@
 
+#334
+#medium
+
 #Given an integer array nums, return true if there exists a triple of indices (i, j, k) such that i < j < k and nums[i] < nums[j] < nums[k]. If no such indices exists, return false.
 
 #Input: nums = [1,2,3,4,5]
 #Output: true
 #Explanation: Any triplet where i < j < k is valid.
+
+
+#my own solution using python3 on 2/27/25:
+
+#use a two sorted Lists to keep track of everything to the left side and right sides
+
+class Solution:
+    def increasingTriplet(self, nums: List[int]) -> bool:
+        lefts = SortedList()
+        rights = SortedList(nums)
+        for i in range(len(nums)):
+            rights.remove(nums[i])
+            if lefts and rights:
+                if lefts[0] < nums[i] < rights[-1]:
+                    return True
+            lefts.add(nums[i])
+        return False
+
 
 
 #my brute force solution in python3:
