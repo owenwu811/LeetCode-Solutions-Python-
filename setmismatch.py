@@ -1,4 +1,7 @@
 
+#645
+#easy
+
 #You have a set of integers s, which originally contains all the numbers from 1 to n. Unfortunately, due to some error, one of the numbers in s got duplicated to another number in the set, which results in repetition of one number and loss of another number.
 
 #You are given an integer array nums representing the data status of this set after the error.
@@ -70,4 +73,30 @@ class Solution:
                 duplicated = nums[j]
                 missing = j + 1
         return [duplicated, missing]
-            
+
+
+
+#my own solution using python3 on 3/5/25:
+
+class Solution:
+    def findErrorNums(self, nums: List[int]) -> List[int]:
+        nums.sort()
+        res = []
+        d = defaultdict(int)
+        for i, n in enumerate(nums):
+            d[n] += 1
+        d = list(sorted(d.items(), key=lambda x: x[1], reverse=True))
+        res.append(d[0][0])
+        nums = list(set(nums))
+        if 1 not in nums:
+            res.append(1)
+            return res
+        for i in range(len(nums)):
+            if nums[i] + 1 not in nums:
+                res.append(nums[i] + 1)
+                break
+        return res
+        
+        
+        #{val: freq}
+    
