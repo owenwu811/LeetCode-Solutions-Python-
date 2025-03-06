@@ -8,6 +8,23 @@
 #Return arr after applying all the updates.
 
 
+#my own solution using python3 on 3/6/25:
+
+#use line sweep algo
+
+class Solution:
+    def getModifiedArray(self, length: int, updates: List[List[int]]) -> List[int]:
+        orig = [0] * length
+        for u in updates:
+            start, end, val = u[0], u[1], u[2]
+            orig[start] += val
+            if end + 1 < len(orig):
+                orig[end + 1] -= val
+        a = list(itertools.accumulate(orig))
+        print(a)
+        return a
+
+
 #my own brute force solution using python3:
 
 class Solution:
