@@ -32,3 +32,15 @@ class Solution:
             myset.add(int(number))
             myset.add(int(number[::-1]))
         return len(myset) 
+
+
+#my own solution using python3 on 3/11/25:
+
+class Solution:
+    def countDistinctIntegers(self, nums: List[int]) -> int:
+        c = nums.copy()
+        for i, n in enumerate(nums):
+            r = str(n)[::-1].lstrip("0")
+            h = int(r)
+            c.append(h)
+        return len(set(c))
