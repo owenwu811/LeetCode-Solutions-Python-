@@ -26,3 +26,21 @@ class Solution:
                 tmp.append(subarraysum)
         tmp.sort()
         return sum(tmp[left - 1: right]) % ((10 ** 9) + 7)
+
+
+
+#my own solution using python3 on 3/11/25:
+
+class Solution:
+    def rangeSum(self, nums: List[int], n: int, left: int, right: int) -> int:
+        mod = (10 ** 9) + 7
+        cur = []
+        for i in range(len(nums)):
+            ss = 0
+            for j in range(i, len(nums)):
+                ss += nums[j]
+                cur.append(ss)
+        cur.sort()
+        a = cur[left - 1:right]
+        return sum(a) % mod
+       #return sum(cur[nums[left - 1:right]])
