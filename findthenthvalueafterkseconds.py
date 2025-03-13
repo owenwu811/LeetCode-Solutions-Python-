@@ -26,3 +26,15 @@ class Solution:
             initial[0] = 1
             k -= 1
         return initial[-1] % mod #need to read the instructions that we need to divide by mod!
+
+
+#my own easy solution using python3 on 3/13/25:
+
+class Solution:
+    def valueAfterKSeconds(self, n: int, k: int) -> int:
+        #[1, 1, 1, 1]
+        mod = ((10 ** 9) + 7)
+        start = [1] * n
+        for i in range(k):
+            start = list(itertools.accumulate(start))
+        return start[n - 1] % mod
