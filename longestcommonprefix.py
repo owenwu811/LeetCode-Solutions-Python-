@@ -1,26 +1,51 @@
+#14
+#easy
 
-Write a function to find the longest common prefix string amongst an array of strings.
 
-If there is no common prefix, return an empty string "".
+#Write a function to find the longest common prefix string amongst an array of strings.
 
-Example 1:
+ #If there is no common prefix, return an empty string "".
 
-Input: strs = ["flower","flow","flight"]
-Output: "fl"
-Example 2:
+#Example 1:
 
-Input: strs = ["dog","racecar","car"]
-Output: ""
-Explanation: There is no common prefix among the input strings.
+#Input: strs = ["flower","flow","flight"]
+#Output: "fl"
+#Example 2:
+
+#Input: strs = ["dog","racecar","car"]
+#Output: ""
+#Explanation: There is no common prefix among the input strings.
  
-Constraints:
+#Constraints:
 
-1 <= strs.length <= 200
-0 <= strs[i].length <= 200
-strs[i] consists of only lowercase English letters.
+#1 <= strs.length <= 200
+#0 <= strs[i].length <= 200
+#strs[i] consists of only lowercase English letters.
 
 
-Python Solution (with my explanation):
+#my own solution using python3 on 3/15/25:
+
+#find all prefixes of the 1st string, and if all other strings have that prefix, update result accordingly
+
+class Solution:
+    def longestCommonPrefix(self, strs: List[str]) -> str:
+        res = ""
+        for i in range(len(strs[0])):
+            cur = strs[0]
+            for j in range(len(cur)):
+                pref = cur[:j + 1]
+                cnt = 0
+                for word in strs[1:]:
+                    if word.startswith(pref):
+                        cnt += 1
+                if cnt == len(strs) - 1:
+                    if len(pref) >= len(res):
+                        res = pref
+        return res
+
+
+
+#Python Solution (with my explanation):
 
 class Solution:
    def longestCommonPrefix(self, strs: List[str]) -> str:
@@ -32,120 +57,120 @@ class Solution:
           res += strs[0][i]
       return res
 
-(NOTE THAT CAPITALIZED LETTERS INDICATE THE CHARACTER IN THE SUBSTRING BEING COMPARED, SO PAY CLOSE ATTENTION TO THEM)
-​​Input: strs = ["flower","flow","flight"]
-Output: "fl"
+#(NOTE THAT CAPITALIZED LETTERS INDICATE THE CHARACTER IN THE SUBSTRING BEING COMPARED, SO PAY CLOSE ATTENTION TO THEM)
+#​​Input: strs = ["flower","flow","flight"]
+#Output: "fl"
 
-Line 4: for i in range(len(“flower”))
+#Line 4: for i in range(len(“flower”))
 
-for i in range(6) > i = 0, 1, 2, 3, 4, 5 as integer indexes 
+#for i in range(6) > i = 0, 1, 2, 3, 4, 5 as integer indexes 
 
-Line 5: for s in strs
+#Line 5: for s in strs
 
-s = “flower” during 1st iteration 
+#s = “flower” during 1st iteration 
 
-I = 0, so if 0 == 6 (length of flower) or 
+#I = 0, so if 0 == 6 (length of flower) or 
 
-S = “flower”
-I = 0
-S[i] = s[0]
-S[0] = f 
-S[i] in this iteration = f
-I = 0
-Strs[0][i] = strs[0][0]
-Strs[0][0] in this iteration = ["Flower","flow","flight"]
-If i == len(s) > if 0 == 6 - false or s[i] != strs[0][i] > f != f - false - the if conditional is false, so go back up to line 5
-S = ["flower","FLOW","flight"]
-i is still 0, so if 0 == 4 (not) or f != f (not because s[i] - the i hasn’t changed yet until it hits line 4)
-Go back up to line 5
-S = [“flower”, “flow”, “FLIGHT”]
-If i == len(s) - 0 == 6 (not) or s[i] != strs[0][i] (not because s[i] hasn’t changed yet until line 4 gets executed)
-Go back up to line 5
-For s in strs reaches end of loop, so execute line 8
-Res += strs[0][i]
-“” += ["Flower","flow","flight"]
-Res becomes “f”
-NOW, LINE 4 FOR LOOP GETS EXECUTED
-For i in range(len(strs[0])) - i goes from 0 > 1
-I = 1
-For s in strs > s = ["FLOWER","flow","flight"]
-If i == len(s) becomes 1 == 6 (false) or s[i] != strs[0][i] becomes 
-["fLower","flow","fLight"] !=  ["flower","flow","flight"] (false)
-So go back to line 5
-For s in strs - s becomes ["flower","FLOW","flight"]
-If i == len(s) becomes if 1 == 4 (false) or s[i] != strs[0][1] becomes 
-["fower","fLow","flight"] != ["fLower","flow","flight"] (false) so go back to line 5
-For s in strs > s = ["flower","flow","FLIGHT"]
-If i == len(s) becomes 1 == 6 (false) or s[i] != strs[0][i] becomes 
-["flower","flow","fLight"] != ["fLower","flow","flight"] (false)
-For s in strs - hits end of loop, so execute line 8
-Res += strs[0][i] 
-“F” += “L”
-Res becomes “fL”
-For i in range(len(strs[0])) gets executed again > i goes from 1 to 2, so i = 2
-For s in strs > s = ["FLOWER","flow","flight"] (s resets because for s in strs comes after for i in range line)
-If i == len(s) becomes 2 == 6 (false) or s[i] != strs[0][i] becomes 
-["flOwer","flow","flight"] != ["flOwer","flow","flight"] (false), so go back and execute line 5
-For s in strs > s =  ["flower","FLOW","flight"]
-If i == len(s) or s[i] != strs[0][i]
-If 2 == 4 (not) or ["flower","flOw","flight"] !=  ["flOwer","flow","flight"] (false)
-Go back to line 5
-For s in strs > s =  ["flower","flow","FLIGHT"]
-If i == len(s) or s[i] != strs[0][i]
-If 2 == 6 (not) or ["flower","flow","flIght"] != ["flOwer","flow","flight"] (true), so return res as “fl”
-
-
-Mistakes from not paying attention:
+#S = “flower”
+#I = 0
+#S[i] = s[0]
+#S[0] = f 
+#S[i] in this iteration = f
+#I = 0
+#Strs[0][i] = strs[0][0]
+#Strs[0][0] in this iteration = ["Flower","flow","flight"]
+#If i == len(s) > if 0 == 6 - false or s[i] != strs[0][i] > f != f - false - the if conditional is false, so go back up to line 5
+#S = ["flower","FLOW","flight"]
+#i is still 0, so if 0 == 4 (not) or f != f (not because s[i] - the i hasn’t changed yet until it hits line 4)
+#Go back up to line 5
+#S = [“flower”, “flow”, “FLIGHT”]
+#If i == len(s) - 0 == 6 (not) or s[i] != strs[0][i] (not because s[i] hasn’t changed yet until line 4 gets executed)
+#Go back up to line 5
+#For s in strs reaches end of loop, so execute line 8
+#Res += strs[0][i]
+#“” += ["Flower","flow","flight"]
+#Res becomes “f”
+#NOW, LINE 4 FOR LOOP GETS EXECUTED
+#For i in range(len(strs[0])) - i goes from 0 > 1
+#I = 1
+#For s in strs > s = ["FLOWER","flow","flight"]
+#If i == len(s) becomes 1 == 6 (false) or s[i] != strs[0][i] becomes 
+#["fLower","flow","fLight"] !=  ["flower","flow","flight"] (false)
+#So go back to line 5
+#For s in strs - s becomes ["flower","FLOW","flight"]
+#If i == len(s) becomes if 1 == 4 (false) or s[i] != strs[0][1] becomes 
+#["fower","fLow","flight"] != ["fLower","flow","flight"] (false) so go back to line 5
+#For s in strs > s = ["flower","flow","FLIGHT"]
+#If i == len(s) becomes 1 == 6 (false) or s[i] != strs[0][i] becomes 
+#["flower","flow","fLight"] != ["fLower","flow","flight"] (false)
+#For s in strs - hits end of loop, so execute line 8
+#Res += strs[0][i] 
+#“F” += “L”
+#Res becomes “fL”
+#For i in range(len(strs[0])) gets executed again > i goes from 1 to 2, so i = 2
+#For s in strs > s = ["FLOWER","flow","flight"] (s resets because for s in strs comes after for i in range line)
+#If i == len(s) becomes 2 == 6 (false) or s[i] != strs[0][i] becomes 
+#["flOwer","flow","flight"] != ["flOwer","flow","flight"] (false), so go back and execute line 5
+#For s in strs > s =  ["flower","FLOW","flight"]
+#If i == len(s) or s[i] != strs[0][i]
+#If 2 == 4 (not) or ["flower","flOw","flight"] !=  ["flOwer","flow","flight"] (false)
+#Go back to line 5
+#For s in strs > s =  ["flower","flow","FLIGHT"]
+#If i == len(s) or s[i] != strs[0][i]
+#If 2 == 6 (not) or ["flower","flow","flIght"] != ["flOwer","flow","flight"] (true), so return res as “fl”
 
 
-S = ["FLOWER","flow","flight"] in line 5 for the first iteration is different than:
-Strs = ["flower","flow","flight"] always being the entire string itself!!! Don’t confuse the two!!!
+#Mistakes from not paying attention:
 
 
-For s in strs > s =  ["flower","flow","flight"]
-If i == len(s) or s[i] != strs[0][i]
-If 2 == 4 (not) or ["flower","flow","flight"] !=  ["flower","flow","flight"] (false)
+#S = ["FLOWER","flow","flight"] in line 5 for the first iteration is different than:
+#Strs = ["flower","flow","flight"] always being the entire string itself!!! Don’t confuse the two!!!
 
 
-In the 2nd iteration of for s in strs, s = ["flower","flow","flight"], so if 2 == 4, not 2 == 6 anymore because S CHANGES WHILE STRS STAYS CONSTANT !!!!!!!!!
+#For s in strs > s =  ["flower","flow","flight"]
+#If i == len(s) or s[i] != strs[0][i]
+#If 2 == 4 (not) or ["flower","flow","flight"] !=  ["flower","flow","flight"] (false)
+
+
+#In the 2nd iteration of for s in strs, s = ["flower","flow","flight"], so if 2 == 4, not 2 == 6 anymore because S CHANGES WHILE STRS STAYS CONSTANT !!!!!!!!!
 
 
 -----
 
 
 
-Why are we doing strs[o][i]???
+#Why are we doing strs[o][i]???
 
 
 
-Notice above that flower stays constant in all 3 comparisons! Aka representing s[i] != strs[0][i]
+#Notice above that flower stays constant in all 3 comparisons! Aka representing s[i] != strs[0][i]
 
 
-Notice above that flower stays constant in all 3 comparisons! Aka representing s[i] != strs[0][i] (STRS[0] CONSTANT PART)
+#Notice above that flower stays constant in all 3 comparisons! Aka representing s[i] != strs[0][i] (STRS[0] CONSTANT PART)
 
 
-As soon as if in line 6 turns true, we return res because that’s when we find a difference aka violating the condition of the substring comparison being equal
+#As soon as if in line 6 turns true, we return res because that’s when we find a difference aka violating the condition of the substring comparison being equal
 
 
-What if the first part becomes true but 2nd is false? if i == len(s) or s[i] != strs[0][i]:
+#What if the first part becomes true but 2nd is false? if i == len(s) or s[i] != strs[0][i]:
 
 
-If i == len(s) becomes true, then return true because we’ve covered the entire length of the substring - ["flower","flow","flight"], for example - and we are only as strong or equal as our weakest (shortest) member in this case?
+#If i == len(s) becomes true, then return true because we’ve covered the entire length of the substring - ["flower","flow","flight"], for example - and we are only as strong or equal as our weakest (shortest) member in this case?
 
 
-I == len(s) means if the index in the non changing strs = ["flower","flow","flight"] surpasses the entire length of the substring s = ["flower","flow","flight"] - meaning i would be out of boundaries for comparison between s and strs inside of strs, and we can’t do the comparison
+#I == len(s) means if the index in the non changing strs = ["flower","flow","flight"] surpasses the entire length of the substring s = ["flower","flow","flight"] - meaning i would be out of boundaries for comparison between s and strs inside of strs, and we can’t do the comparison
 
 
 
 
-Notice how line 4 strs[0] is the same as line 6 strs[0][i], so we may be using this as the static string to be compared to
+#Notice how line 4 strs[0] is the same as line 6 strs[0][i], so we may be using this as the static string to be compared to
 
 
-We cannot substitute strs[0] in lines 4, 6, and 8 with strs[1] or strs[2] because it would be out of the index of i, which starts at 0 - I PROVED MY ASSUMPTION TRUE BECAUSE using strs[-1] in lines 4, 6, and 8 works!!!
+#We cannot substitute strs[0] in lines 4, 6, and 8 with strs[1] or strs[2] because it would be out of the index of i, which starts at 0 - I PROVED MY ASSUMPTION TRUE BECAUSE using strs[-1] in lines 4, 6, and 8 works!!!
 
-The reason strs[-2] in lines 4, 6, and 8 dosen’t work is probably because it gives us the same substring in the list as strs[0] given that the list is of length 3 substrings - ["flower","flow","flight"] (both strs[0] and strs[-2] are "flower")
+#The reason strs[-2] in lines 4, 6, and 8 dosen’t work is probably because it gives us the same substring in the list as strs[0] given that the list is of length 3 substrings - ["flower","flow","flight"] (both strs[0] and strs[-2] are "flower")
 
-NOTE (MY SOLUTION ALSO WORKS - YOU CAN DO res += strs[0][i] or s[i] since both need to line up and neither is more important than the other)
+#NOTE (MY SOLUTION ALSO WORKS - YOU CAN DO res += strs[0][i] or s[i] since both need to line up and neither is more important than the other)
 
 class Solution:
     def longestCommonPrefix(self, strs: List[str]) -> str:
