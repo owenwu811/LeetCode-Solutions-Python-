@@ -1,3 +1,5 @@
+#7
+#medium
 
 #Given a signed 32-bit integer x, return x with its digits reversed. If reversing x causes the value to go outside the signed 32-bit integer range [-231, 231 - 1], then return 0.
 
@@ -10,6 +12,41 @@
 #Constraints:
 
 #-231 <= x <= 231 - 1
+
+
+#my own solution using python3 on 3/20/25:
+
+#turn the integer into an array, reverse it, turn it back into a string, and handle edge cases with - in front and bigger than -2 *8 31 or (2 ** 31) - 1
+
+class Solution:
+    def reverse(self, x: int) -> int:
+        if x < -2 ** 31 or x > (2 ** 31) - 1:
+            return 0
+        h = str(x)
+        cur = []
+        if h[0] == "-":
+            for a in h[1:]:
+                cur.append(a)
+            cur = cur[::-1]
+            res = ""
+            res += "-"
+            for c in cur:
+                res += str(c)
+            ans = int(res)
+            if ans < -2 ** 31 or ans > (2 ** 31) - 1:
+                return 0
+            return ans
+        else:
+            for a in h:
+                cur.append(a)
+            cur = cur[::-1]
+            res = ""
+            for c in cur:
+                res += str(c)
+            ans = int(res)
+            if ans < -2 ** 31 or ans > (2 ** 31) - 1:
+                return 0
+            return ans
 
 #python3 solution:
 
