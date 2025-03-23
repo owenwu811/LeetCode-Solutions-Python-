@@ -20,6 +20,23 @@
 #Output: 15
 
 
+#my own solution using python3 on 3/23/25: (think subarray sums equals k with same technique but with goal instead! - prefix sum and hashmap):
+
+class Solution:
+    def numSubarraysWithSum(self, nums: List[int], goal: int) -> int:
+        res = 0
+        d = defaultdict(int)
+        d[0] = 1
+        #[1, 2, 3]
+        ss = 0
+        for i in range(len(nums)):
+            ss += nums[i]
+            if (ss - goal) in d:
+                res += d[ss - goal]
+            d[ss] += 1
+        return res
+
+
 #correct python3 solution using sliding window:
 
 class Solution:
