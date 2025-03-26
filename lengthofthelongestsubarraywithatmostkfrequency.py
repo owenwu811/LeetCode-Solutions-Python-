@@ -1,4 +1,7 @@
 
+#2958
+#medium
+
 #You are given an integer array nums and an integer k.
 
 #The frequency of an element x is the number of times it occurs in an array.
@@ -34,3 +37,32 @@ class Solution:
             lengthoflongest = max(lengthoflongest, we - ws + 1)
 
         return lengthoflongest
+
+
+#my own solution using python3 on 3/25/25:
+
+#use a sortedlist to keep track of the max frequency at any point to avoid tle
+
+class Solution:
+    def maxSubarrayLength(self, nums: List[int], k: int) -> int:
+        res = 0
+        d = defaultdict(int)
+        l = 0
+        s = SortedList()
+        for r in range(len(nums)):
+            d[nums[r]] += 1
+            s.add(d[nums[r]])
+            while s[-1] > k and l <= r:
+                s.remove(d[nums[l]])
+                #4 > 3
+                d[nums[l]] -= 1
+                s.add(d[nums[l]])
+                
+                if d[nums[l]] == 0:
+                    if 0 in s:
+                        s.remove(0)
+                    del d[nums[l]]
+                l += 1
+            if s[-1] <= k:
+                res = max(res, r - l + 1)
+        return res
