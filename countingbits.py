@@ -1,4 +1,7 @@
 
+#338
+#easy
+
 #Given an integer n, return an array ans of length n + 1 such that for each i (0 <= i <= n), ans[i] is the number of 1's in the binary representation of i.
 
 
@@ -8,6 +11,19 @@
 #0 --> 0
 #1 --> 1
 #2 --> 10
+
+#my own solution using python3 on 3/27/25:
+
+#just do exactly as asked
+
+class Solution:
+    def countBits(self, n: int) -> List[int]:
+        res = []
+        for i in range(n + 1):
+            #101
+            a = bin(i)[2:]
+            res.append(a.count("1"))
+        return res
 
 #my own solution in python3:
 
