@@ -19,6 +19,25 @@
 #The substring of length 5 that starts and ends with the same letter is: "abcba".
 
 
+#my own solution using python3 on 5/28/25:
+
+class Solution:
+    def numberOfSubstrings(self, s: str) -> int:
+        ans = 0
+        #"abcba"
+        # "a"
+
+        #a b c b b a
+        c = Counter(s)
+        for i in range(len(s)):
+            c[s[i]] -= 1
+            ans += 1
+            ans += c[s[i]]
+            
+        return ans
+
+
+
 #correct python3 solution (could not solve):
 
 class Solution:
