@@ -32,3 +32,26 @@ class Solution:
                 record = 0
             
         return res
+
+
+#my own solution review using python3 on 6/5/25:
+
+#keep track of all index locations of 1s and build a dp array to find the longest consecutive sequence
+
+class Solution:
+    def findMaxConsecutiveOnes(self, nums: List[int]) -> int:
+        d = defaultdict(list)
+        for i, n in enumerate(nums):
+            d[n].append(i)
+        target = d[1]
+        if 1 not in nums:
+            return 0
+        print(target)
+        dp = [1] * len(target)
+        #[1, 2, 1, 2, 3]
+        #[1, 1, 2, 1]
+        for i in range(1, len(target)):
+            if target[i] == target[i - 1] + 1:
+                dp[i] = dp[i - 1] + 1
+        print(dp)
+        return max(dp)
