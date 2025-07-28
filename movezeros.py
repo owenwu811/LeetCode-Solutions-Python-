@@ -170,5 +170,26 @@ class Solution:
                 l += 1
             elif nums[l] != 0: #we only care about l because the zeros need to be sent to the front of the array
                 l += 1
+
+
+#my own solution using python3 on 7/28/25:
+
+#get all non zero elements into a new list, and then put all the zeroes - however many in the original list - on the end, and then just set the original list input to the new list without returning anything
+
+class Solution:
+    def moveZeroes(self, nums: List[int]) -> None:
+        """
+        Do not return anything, modify nums in-place instead.
+        """
+        cur = []
+        for n in nums:
+            if n != 0:
+                cur.append(n)
+        f = nums.count(0)
+        while f > 0:
+            cur.append(0)
+            f -= 1
+        #print(cur)
+        nums[:] = cur
         
             
