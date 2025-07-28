@@ -723,3 +723,30 @@ class Solution:
                 if board[r][c] == word[0] and dfs(0, r, c):
                     return True
         return False
+
+
+#my own solution using python3 on 7/27/25:
+
+class Solution:
+    def exist(self, board: List[List[str]], word: str) -> bool:
+        def dfs(i, j, cur, seen):
+            if i < 0 or i >= len(board) or j < 0 or j >= len(board[0]) or board[i][j] != word[cur] or board[i][j] == "v":
+                return 
+            if cur == len(word) - 1:
+                return True
+            orig = board[i][j]
+            board[i][j] = "v"
+            a = dfs(i + 1, j, cur + 1, seen)
+            b = dfs(i - 1, j, cur + 1, seen)
+            c = dfs(i, j + 1, cur + 1, seen)
+            d = dfs(i, j - 1, cur + 1, seen)
+            board[i][j] = orig
+            return a or b or c or d
+
+
+        for i in range(len(board)):
+            for j in range(len(board[i])):
+                ans = dfs(i, j, 0, set())
+                if ans:
+                    return True
+        return False
